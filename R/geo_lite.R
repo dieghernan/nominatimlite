@@ -3,11 +3,12 @@
 #' @description
 #' Geocodes addresses given as character values.
 #'
-#' @param address single line address (ie. `"1600 Pennsylvania Ave NW,
+#' @param address single line address (i.e. `"1600 Pennsylvania Ave NW,
 #'   Washington"`) or a vector of addresses (`c("Madrid", "Barcelona")`).
-#' @param lat	latitude column name (ie. `"lat"`).
-#' @param long	longitude column name (ie. `"long"`).
-#' @param limit	maximum number of results to return per input address.
+#' @param lat	latitude column name (i.e. `"lat"`).
+#' @param long	longitude column name (i.e. `"long"`).
+#' @param limit	maximum number of results to return per input address. Note
+#'   that each query returns a maximum of 50 results.
 #' @param custom_query API-specific parameters to be used, passed as a named
 #'   list (ie. `list(viewbox = c(<x1>,<y1>,<x2>,<y2>))`). See Details.
 #'

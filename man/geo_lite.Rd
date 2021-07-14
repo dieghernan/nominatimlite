@@ -16,13 +16,14 @@ geo_lite(
 )
 }
 \arguments{
-\item{address}{single line address (ie. \code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses (\code{c("Madrid", "Barcelona")}).}
+\item{address}{single line address (i.e. \code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses (\code{c("Madrid", "Barcelona")}).}
 
-\item{lat}{latitude column name (ie. \code{"lat"}).}
+\item{lat}{latitude column name (i.e. \code{"lat"}).}
 
-\item{long}{longitude column name (ie. \code{"long"}).}
+\item{long}{longitude column name (i.e. \code{"long"}).}
 
-\item{limit}{maximum number of results to return per input address.}
+\item{limit}{maximum number of results to return per input address. Note
+that each query returns a maximum of 50 results.}
 
 \item{full_results}{returns all data from the geocoder service if TRUE.
 If FALSE then only longitude and latitude are returned from the geocoder service.}
