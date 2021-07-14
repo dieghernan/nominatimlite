@@ -1,0 +1,14 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^nominatimlite\.Rcheck$
+^nominatimlite.*\.tar\.gz$
+^nominatimlite.*\.tgz$
+^doc$
+^Meta$
+^.github$
+^codemeta\.json$
+^pkgdown$
+^data-raw$
+^rosm.cache$

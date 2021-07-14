@@ -1,0 +1,100 @@
+---
+title: "Get started with nominatimlite"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get started with nominatimlite}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+The goal of `nominatimlite` is to provide a light interface for geocoding
+addresses, based on the [Nominatim
+API](https://nominatim.org/release-docs/latest/). **Nominatim** is a tool to
+search [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
+([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
+generate synthetic addresses of OSM points (reverse geocoding).
+
+This package is derived of the much more mature and complete `tidygeocoder`
+package by Jesse Cambon ([link](https://jessecambon.github.io/tidygeocoder/)),
+that it is available on CRAN.
+
+## Why `nominatimlite`?
+
+Since `tidygecoder` is much more complete, providing access to several geocoder
+services as Mapbox, TomTom or Google, the downloading method is based on `curl`.
+In some cases, corporative access to `curl` could be forbidden, so
+`nominatimlite` uses an approach to overcome this limitation.
+
+This is the main reason for creating this lite version of `tidygeocoder`.
+
+## What about reverse geocoding?
+
+Reverse geocoding is the process of converting a location as described by
+geographic coordinates (latitude, longitude) to a human-readable address or
+place name.
+
+This feature is not implemented yet on `nominatimlite`.
+
+## Installation
+
+You can install the developing version of `nominatimlite` with:
+
+``` r
+devtools::install_github("dieghernan/nominatimlite")
+```
+
+Alternatively, you can install `nominatimlite` using the
+[r-universe](https://dieghernan.r-universe.dev/ui#builds):
+
+```r
+# Enable this universe
+options(repos = c(
+    dieghernan = 'https://dieghernan.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))
+
+
+install.packages('nominatimlite')
+```
+
+## Example
+
+This is a basic example which shows you how to geocode some addresses:
+
+```{r example}
+library(nominatimlite)
+
+# Single address
+geo_lite("Madrid, Spain")
+
+
+# Several addresses
+
+geo_lite(c("Madrid", "Barcelona"))
+
+# With options
+
+geo_lite(c("Madrid", "Barcelona"),
+  long = "Longitude", lat = "Latitude",
+  full_results = TRUE, limit = 5
+)
+
+
+
+# Restrict search to USA
+geo_lite(c("Madrid", "Barcelona"),
+  custom_query = list(countrycodes = "US")
+)
+```
+
+For more advance users, see [Nominatim
+docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
+parameters available.

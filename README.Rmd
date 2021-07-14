@@ -1,0 +1,147 @@
+---
+output: github_document
+editor_options: 
+  markdown: 
+    wrap: 80
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  tidy = "styler",
+  fig.path = "man/figures/README-",
+  dpi = 90,
+  out.width = "100%"
+)
+```
+
+# nominatimlite <img src="man/figures/logo.png" align="right" width="120"/>
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
+[![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://codecov.io/gh/dieghernan/nominatimlite)
+[![GitHub-version](https://img.shields.io/github/r-package/v/dieghernan/nominatimlite?label=version&color=brightgreen)](https://github.com/dieghernan/nominatimlite)
+[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+
+
+<!-- badges: end -->
+
+The goal of `nominatimlite` is to provide a light interface for geocoding
+addresses, based on the [Nominatim
+API](https://nominatim.org/release-docs/latest/). **Nominatim** is a tool to
+search [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
+([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
+generate synthetic addresses of OSM points (reverse geocoding).
+
+This package is derived of the much more mature and complete `tidygeocoder`
+package by Jesse Cambon ([link](https://jessecambon.github.io/tidygeocoder/)),
+that it is available on CRAN.
+
+## Why `nominatimlite`?
+
+Since `tidygecoder` is much more complete, providing access to several geocoder
+services as Mapbox, TomTom or Google, the downloading method is based on `curl`.
+In some cases, `curl` could not be available, so
+`nominatimlite` uses an approach to overcome this limitation.
+
+This is the main reason for creating this lite version of `tidygeocoder`.
+
+## What about reverse geocoding?
+
+Reverse geocoding is the process of converting a location as described by
+geographic coordinates (latitude, longitude) to a human-readable address or
+place name.
+
+This feature is not implemented yet on `nominatimlite` (see
+https://github.com/dieghernan/nominatimlite/issues/1).
+
+## Installation
+
+You can install the developing version of `nominatimlite` with:
+
+``` r
+devtools::install_github("dieghernan/nominatimlite")
+```
+
+Alternatively, you can install `nominatimlite` using the
+[r-universe](https://dieghernan.r-universe.dev/ui#builds):
+
+```r
+# Enable this universe
+options(repos = c(
+    dieghernan = 'https://dieghernan.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))
+
+
+install.packages('nominatimlite')
+```
+
+## Example
+
+This is a basic example which shows you how to geocode some addresses:
+
+```{r example}
+library(nominatimlite)
+
+# Single address
+geo_lite("Madrid, Spain")
+
+
+# Several addresses
+
+geo_lite(c("Madrid", "Barcelona"))
+
+# With options
+
+geo_lite(c("Madrid", "Barcelona"),
+  long = "Longitude", lat = "Latitude",
+  full_results = TRUE, limit = 5
+)
+
+
+
+# Restrict search to USA
+geo_lite(c("Madrid", "Barcelona"),
+  custom_query = list(countrycodes = "US")
+)
+```
+
+For more advance users, see [Nominatim
+docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
+parameters available.
+
+## Map your results
+
+You can easily convert the results of `nominatimlite` into `sf` objects, that can
+be mapped with a variety of packages as `ggplot2`, `tmap` or `leaflet`
+
+```{r map, message=FALSE, warning=FALSE}
+
+library(sf)
+
+library(dplyr)
+library(ggplot2)
+library(ggspatial)
+
+
+# Search for McDonalds in Madrid, Spain
+
+McDonalds <- geo_lite("McDonalds, Madrid, Spain",
+                      limit = 50,
+                      full_results = TRUE) %>%
+  filter(city == "Madrid") %>%
+  # Convert to sf object
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+
+
+# Plot
+
+ggplot(McDonalds) +
+  annotation_map_tile(type = "osm", zoomin = 0) +
+  geom_sf(col = "blue")
+```
