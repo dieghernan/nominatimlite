@@ -134,14 +134,14 @@ geo_lite_single <- function(address,
   if (nrow(result) == 0) {
     warning("No results for query ", address, call. = FALSE)
     result_out <- tibble::tibble(query = address, a = NA, b = NA)
-    names(result_out) <- c("query", long, lat)
+    names(result_out) <- c("query", lat, long)
     return(result_out)
   }
 
   # Rename
   names(result) <- gsub("address.", "", names(result))
   names(result) <- gsub("namedetails.", "", names(result))
-  names(result) <- gsub("display_name", "full_address", names(result))
+  names(result) <- gsub("display_name", "address", names(result))
 
 
   # Prepare output
@@ -149,17 +149,17 @@ geo_lite_single <- function(address,
 
 
   # Output
-  result_out <- cbind(result_out, result[long], result[lat])
+  result_out <- cbind(result_out, result[lat], result[long])
 
   if (return_addresses || full_results) {
-    disp_name <- result["full_address"]
+    disp_name <- result["address"]
     result_out <- cbind(result_out, disp_name)
   }
 
 
   # If full
   if (full_results) {
-    rest_cols <- result[, !names(result) %in% c(long, lat, "full_address")]
+    rest_cols <- result[, !names(result) %in% c(long, lat, "address")]
     result_out <- cbind(result_out, rest_cols)
   }
 

@@ -167,7 +167,7 @@ reverse_geo_lite_single <- function(lat_cap,
 
 
   if (return_coords || full_results) {
-    disp_coords <- result[c("lon", "lat")]
+    disp_coords <- result[c("lat", "lon")]
     result_out <- cbind(result_out, disp_coords)
   }
 

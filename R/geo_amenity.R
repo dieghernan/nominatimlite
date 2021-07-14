@@ -169,7 +169,7 @@ geo_amenity_single <- function(bbox,
   if (nrow(result) == 0) {
     warning("No results for query ", amenity, call. = FALSE)
     result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
-    names(result_out) <- c("query", long, lat)
+    names(result_out) <- c("query", lat, long)
     return(result_out)
   }
 
@@ -184,7 +184,7 @@ geo_amenity_single <- function(bbox,
 
 
   # Output
-  result_out <- cbind(result_out, result[long], result[lat])
+  result_out <- cbind(result_out, result[lat], result[long])
 
   if (return_addresses || full_results) {
     disp_name <- result["full_address"]
