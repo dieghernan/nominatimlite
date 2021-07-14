@@ -40,8 +40,8 @@ return_addresses to FALSE does not prevent this.}
 
 \item{verbose}{if TRUE then detailed logs are output to the console}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \verb{list(viewbox = c(<x1>,<y1>,<x2>,<y2>))}). See Details.}
+\item{custom_query}{API-specific parameters to be used.
+See \code{\link[=geo_lite]{geo_lite()}}.}
 }
 \value{
 A \code{tibble} with the results.
@@ -50,9 +50,6 @@ A \code{tibble} with the results.
 This function search amenities as defined by OpenStreetMap on a restricted
 area defined by
 a bounding box in the form of \verb{c(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}.
-
-https://boundingbox.klokantech.com/,
-https://wiki.openstreetmap.org/wiki/Key:amenity
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -85,7 +82,6 @@ geo_amenity(
   amenity = c("restaurant", "pub"),
   limit = 10
 )
-
 }
 \seealso{
 \link{osm_amenities}

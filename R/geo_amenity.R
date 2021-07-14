@@ -7,15 +7,14 @@
 #' <max_latitude>, <max_longitude>)`.
 #'
 #'
-#' @description https://boundingbox.klokantech.com/,
-#' https://wiki.openstreetmap.org/wiki/Key:amenity
-#'
 #' @param bbox A numeric vector of latitude and longitude `c(<min_latitude>,
 #'   <min_longitude>, <max_latitude>, <max_longitude>)` that restrict the search
 #'   area. See Details.
 #' @param amenity A character of a vector of character with the amenities to be
 #'   geolocated (i.e. `c("pub", "restaurant")`). See Details or
 #'   [nominatimlite::osm_amenities].
+#' @param custom_query API-specific parameters to be used.
+#'   See [nominatimlite::geo_lite()].
 #'
 #' @inheritParams geo_lite
 #'
@@ -54,7 +53,6 @@
 #'   amenity = c("restaurant", "pub"),
 #'   limit = 10
 #' )
-#'
 #' @seealso [nominatimlite::osm_amenities]
 #' @export
 geo_amenity <- function(bbox,
