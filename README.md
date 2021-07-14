@@ -38,15 +38,6 @@ based on `curl`. In some cases, `curl` could not be available, so
 This is the main reason for creating this lite version of
 `tidygeocoder`.
 
-## What about reverse geocoding?
-
-Reverse geocoding is the process of converting a location as described
-by geographic coordinates (latitude, longitude) to a human-readable
-address or place name.
-
-This feature is not implemented yet on `nominatimlite` (see
-<https://github.com/dieghernan/nominatimlite/issues/1>).
-
 ## Installation
 
 You can install the developing version of `nominatimlite` with:
