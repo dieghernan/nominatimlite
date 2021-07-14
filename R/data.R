@@ -26,6 +26,8 @@
 #'
 #' @source <https://wiki.openstreetmap.org/wiki/Key:amenity>
 #'
+#' @note Data extracted on **14 June 2021**.
+#'
 #' @examples
 #'
 #' amenities <- nominatimlite::osm_amenities

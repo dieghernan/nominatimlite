@@ -119,6 +119,9 @@ Database with the list of amenities available on OpenStreetMap.
    Others \tab dive_centre \cr
 }
 }
+\note{
+Data extracted on \strong{14 June 2021}.
+}
 \examples{
 
 amenities <- nominatimlite::osm_amenities
