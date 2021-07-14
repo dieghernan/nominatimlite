@@ -31,18 +31,10 @@ that it is available on CRAN.
 
 Since `tidygecoder` is much more complete, providing access to several geocoder
 services as Mapbox, TomTom or Google, the downloading method is based on `curl`.
-In some cases, corporative access to `curl` could be forbidden, so
+In some cases, `curl` could not be available, so
 `nominatimlite` uses an approach to overcome this limitation.
 
 This is the main reason for creating this lite version of `tidygeocoder`.
-
-## What about reverse geocoding?
-
-Reverse geocoding is the process of converting a location as described by
-geographic coordinates (latitude, longitude) to a human-readable address or
-place name.
-
-This feature is not implemented yet on `nominatimlite`.
 
 ## Installation
 
