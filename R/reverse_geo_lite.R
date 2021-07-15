@@ -145,7 +145,8 @@ reverse_geo_lite_single <- function(lat_cap,
     if (names(result_init)[i] == "address") {
       result <- dplyr::bind_cols(result, tibble::as_tibble(result_init[i][[1]]))
     } else if (names(result_init)[i] == "boundingbox") {
-      r <- tibble::tibble(boundingbox = result_init[i])
+      result_init[i] <- list(result_init[[i]])
+      r <- tibble::tibble(boundingbox = unname(result_init[i]))
       result <- dplyr::bind_cols(result, r)
     } else {
       result <- dplyr::bind_cols(result, tibble::as_tibble(result_init[i]))
