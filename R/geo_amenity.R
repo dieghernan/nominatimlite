@@ -3,12 +3,12 @@
 #' @description
 #' This function search amenities as defined by OpenStreetMap on a restricted
 #' area defined by
-#' a bounding box in the form of `c(<min_latitude>, <min_longitude>,
-#' <max_latitude>, <max_longitude>)`.
+#' a bounding box in the form of (<min_latitude>, <min_longitude>,
+#' <max_latitude>, <max_longitude>).
 #'
 #'
-#' @param bbox A numeric vector of latitude and longitude `c(<min_latitude>,
-#'   <min_longitude>, <max_latitude>, <max_longitude>)` that restrict the search
+#' @param bbox A numeric vector of latitude and longitude (<min_latitude>,
+#'   <min_longitude>, <max_latitude>, <max_longitude>) that restrict the search
 #'   area. See Details.
 #' @param amenity A character of a vector of character with the amenities to be
 #'   geolocated (i.e. `c("pub", "restaurant")`). See Details or

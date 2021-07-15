@@ -10,7 +10,7 @@
 #' @param limit	maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
 #' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (ie. `list(viewbox = c(<x1>,<y1>,<x2>,<y2>))`). See Details.
+#'   list (ie. `list(countrycode = "US")`). See Details.
 #'
 #' @inheritParams tidygeocoder::geo
 #'

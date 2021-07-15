@@ -131,7 +131,10 @@ reverse_geo_lite_single <- function(lat_cap,
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
 
   if ("error" %in% names(result_init)) {
-    warning("No results for query lon=", long_cap, ", lat=", lat_cap, call. = FALSE)
+    warning("No results for query lon=",
+      long_cap, ", lat=", lat_cap,
+      call. = FALSE
+    )
     result_out <- tibble::tibble(ad = NA)
     names(result_out) <- address
     return(result_out)

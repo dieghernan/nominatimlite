@@ -31,8 +31,8 @@ that it is available on CRAN.
 
 Since `tidygecoder` is much more complete, providing access to several geocoder
 services as Mapbox, TomTom or Google, the downloading method is based on `curl`.
-In some cases, `curl` could not be available, so
-`nominatimlite` uses an approach to overcome this limitation.
+In some cases, `curl` could not be available, so `nominatimlite` uses an
+approach to overcome this limitation.
 
 This is the main reason for creating this lite version of `tidygeocoder`.
 
@@ -47,7 +47,7 @@ devtools::install_github("dieghernan/nominatimlite")
 Alternatively, you can install `nominatimlite` using the
 [r-universe](https://dieghernan.r-universe.dev/ui#builds):
 
-```r
+``` r
 # Enable this universe
 options(repos = c(
     dieghernan = 'https://dieghernan.r-universe.dev',
@@ -57,34 +57,52 @@ options(repos = c(
 install.packages('nominatimlite')
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to geocode some addresses:
+*Note: examples adapted from `tidygeocoder` package*
+
+In this first example we will geocode a few addresses using the `geo_lite()`
+function:
 
 ```{r example}
+library(tibble)
 library(nominatimlite)
 
-# Single address
-geo_lite("Madrid, Spain")
-
-
-# Several addresses
-
-geo_lite(c("Madrid", "Barcelona"))
-
-# With options
-
-geo_lite(c("Madrid", "Barcelona"),
-  long = "Longitude", lat = "Latitude",
-  full_results = TRUE, limit = 5
+# create a dataframe with addresses
+some_addresses <- tribble(
+  ~name,                  ~addr,
+  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
+  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
 )
 
+# geocode the addresses
+lat_longs <- geo_lite(some_addresses$addr, lat = "latitude", long = "longitude")
+```
 
+Only latitude and longitude are returned from the geocoder service in this
+example, but `full_results = TRUE` can be used to return all of the data from
+the geocoder service.
 
-# Restrict search to USA
-geo_lite(c("Madrid", "Barcelona"),
-  custom_query = list(countrycodes = "US")
+```{r echo=FALSE}
+knitr::kable(lat_longs)
+```
+
+To perform reverse geocoding (obtaining addresses from geographic coordinates),
+we can use the `reverse_geo_lite()` function. The arguments are similar to the
+`geo_lite()` function, but now we specify the input data columns with the `lat`
+and `long` arguments. The dataset used here is from the geocoder query above.
+The single line address is returned in a column named by the `address`.
+
+```{r}
+reverse <- reverse_geo_lite(
+  lat = lat_longs$latitude, long = lat_longs$longitude,
+  address = "address_found"
 )
+```
+
+```{r, echo = FALSE}
+knitr::kable(reverse)
 ```
 
 For more advance users, see [Nominatim

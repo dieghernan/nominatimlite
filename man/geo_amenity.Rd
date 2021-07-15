@@ -17,7 +17,8 @@ geo_amenity(
 )
 }
 \arguments{
-\item{bbox}{A numeric vector of latitude and longitude \verb{c(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)} that restrict the search
+\item{bbox}{A numeric vector of latitude and longitude (<min_latitude>,
+<min_longitude>, <max_latitude>, <max_longitude>) that restrict the search
 area. See Details.}
 
 \item{amenity}{A character of a vector of character with the amenities to be
@@ -49,7 +50,8 @@ A \code{tibble} with the results.
 \description{
 This function search amenities as defined by OpenStreetMap on a restricted
 area defined by
-a bounding box in the form of \verb{c(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}.
+a bounding box in the form of (<min_latitude>, <min_longitude>,
+<max_latitude>, <max_longitude>).
 }
 \details{
 Bounding boxes can be located using different online tools, as

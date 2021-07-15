@@ -35,7 +35,7 @@ return_addresses to FALSE does not prevent this.}
 \item{verbose}{if TRUE then detailed logs are output to the console}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \verb{list(viewbox = c(<x1>,<y1>,<x2>,<y2>))}). See Details.}
+list (ie. \code{list(countrycode = "US")}). See Details.}
 }
 \value{
 A \code{tibble} with the results.

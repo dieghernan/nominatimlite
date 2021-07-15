@@ -6,6 +6,7 @@
 ^nominatimlite.*\.tar\.gz$
 ^nominatimlite.*\.tgz$
 ^doc$
+^docs$
 ^Meta$
 ^.github$
 ^codemeta\.json$

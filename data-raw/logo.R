@@ -79,5 +79,3 @@ sticker(map,
   p_y = 1.3,
   p_size = 10
 )
-
-
