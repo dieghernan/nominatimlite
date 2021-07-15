@@ -176,7 +176,7 @@ geo_amenity_single <- function(bbox,
   # Rename
   names(result) <- gsub("address.", "", names(result))
   names(result) <- gsub("namedetails.", "", names(result))
-  names(result) <- gsub("display_name", "full_address", names(result))
+  names(result) <- gsub("display_name", "address", names(result))
 
 
   # Prepare output
@@ -187,14 +187,14 @@ geo_amenity_single <- function(bbox,
   result_out <- cbind(result_out, result[lat], result[long])
 
   if (return_addresses || full_results) {
-    disp_name <- result["full_address"]
+    disp_name <- result["address"]
     result_out <- cbind(result_out, disp_name)
   }
 
 
   # If full
   if (full_results) {
-    rest_cols <- result[, !names(result) %in% c(long, lat, "full_address")]
+    rest_cols <- result[, !names(result) %in% c(long, lat, "address")]
     result_out <- cbind(result_out, rest_cols)
   }
 
