@@ -125,7 +125,7 @@ With `nominatimlite` you can extract spatial objects easily:
 # Extract some points - McDonalds in Los Angeles
 
 McDonalds <- geo_lite_sf("McDonalds, Los Angeles, CA",
-  limit = 30,
+  limit = 20,
   custom_query = list(countrycodes = "us")
 )
 
@@ -140,13 +140,10 @@ ggplot(McDonalds) +
 You can also extract polygons using the option `polygon = TRUE`:
 
 ``` r
-Central_Park <- geo_lite_sf("Central Park, NY",
-  full_results = TRUE,
-  polygon = TRUE
-)
+pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 
-ggplot(Central_Park) +
+ggplot(pentagon_poly) +
   geom_sf()
 ```
 
-<img src="man/figures/README-central_park-1.png" width="100%" />
+<img src="man/figures/README-penta-1.png" width="100%" />

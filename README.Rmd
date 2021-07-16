@@ -138,7 +138,7 @@ With `nominatimlite` you can extract spatial objects easily:
 # Extract some points - McDonalds in Los Angeles
 
 McDonalds <- geo_lite_sf("McDonalds, Los Angeles, CA",
-  limit = 30,
+  limit = 20,
   custom_query = list(countrycodes = "us")
 )
 

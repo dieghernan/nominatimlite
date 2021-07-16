@@ -133,7 +133,7 @@ ggplot(McDonalds) +
 
 You can also extract polygons using the option `polygon = TRUE`:
 
-``{r penta }
+```{r penta }
 
 pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 
