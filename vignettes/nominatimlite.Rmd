@@ -62,7 +62,7 @@ install.packages('nominatimlite')
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from `tidygeocoder` package *
+*Note: examples adapted from `tidygeocoder` package*
 
 In this first example we will geocode a few addresses using the `geo_lite()`
 function:
