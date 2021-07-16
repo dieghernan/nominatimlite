@@ -27,6 +27,8 @@ This package is derived of the much more mature and complete `tidygeocoder`
 package by Jesse Cambon ([link](https://jessecambon.github.io/tidygeocoder/)),
 that it is available on CRAN.
 
+It also allows to load spatial objects using the `sf` package.
+
 ## Why `nominatimlite`?
 
 Since `tidygecoder` is much more complete, providing access to several geocoder
@@ -34,7 +36,6 @@ services as Mapbox, TomTom or Google, the downloading method is based on `curl`.
 In some cases, `curl` could not be available, so `nominatimlite` uses an
 approach to overcome this limitation.
 
-This is the main reason for creating this lite version of `tidygeocoder`.
 
 ## Installation
 
@@ -59,7 +60,9 @@ install.packages('nominatimlite')
 
 ## Usage
 
-*Note: examples adapted from `tidygeocoder` package*
+### Geocoding and reverse geocoding
+
+*Note: examples adapted from `tidygeocoder` package *
 
 In this first example we will geocode a few addresses using the `geo_lite()`
 function:
@@ -108,3 +111,35 @@ knitr::kable(reverse)
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
 parameters available.
+
+### Spatial objects
+
+With `nominatimlite` you can extract spatial objects easily:
+
+```{r McDonalds}
+
+# Extract some points - McDonalds in Los Angeles
+
+McDonalds <- geo_lite_sf("McDonalds, Los Angeles, CA",
+  limit = 30,
+  custom_query = list(countrycodes = "us")
+)
+
+library(ggplot2)
+
+ggplot(McDonalds) +
+  geom_sf()
+```
+
+You can also extract polygons using the option `polygon = TRUE`:
+
+```{r central_park}
+
+Central_Park <- geo_lite_sf("Central Park, NY",
+  full_results = TRUE,
+  polygon = TRUE
+)
+
+ggplot(Central_Park) +
+  geom_sf()
+```

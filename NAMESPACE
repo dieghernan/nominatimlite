@@ -2,5 +2,6 @@
 
 export(geo_amenity)
 export(geo_lite)
+export(geo_lite_sf)
 export(reverse_geo_lite)
 importFrom(utils,download.file)

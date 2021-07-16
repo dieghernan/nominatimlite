@@ -24,8 +24,10 @@ Depends:
 Imports: 
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),
+    sf (>= 0.9),
     tibble (>= 3.0.3)
 Suggests: 
+    ggplot2 (>= 3.0),
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),

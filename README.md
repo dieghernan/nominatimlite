@@ -28,15 +28,14 @@ This package is derived of the much more mature and complete
 ([link](https://jessecambon.github.io/tidygeocoder/)), that it is
 available on CRAN.
 
+It also allows to load spatial objects using the `sf` package.
+
 ## Why `nominatimlite`?
 
 Since `tidygecoder` is much more complete, providing access to several
 geocoder services as Mapbox, TomTom or Google, the downloading method is
 based on `curl`. In some cases, `curl` could not be available, so
 `nominatimlite` uses an approach to overcome this limitation.
-
-This is the main reason for creating this lite version of
-`tidygeocoder`.
 
 ## Installation
 
@@ -60,6 +59,8 @@ install.packages('nominatimlite')
 ```
 
 ## Usage
+
+### Geocoding and reverse geocoding
 
 *Note: examples adapted from `tidygeocoder` package *
 
@@ -116,54 +117,36 @@ For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
 the parameters available.
 
-## Map your results
+### Spatial objects
 
-You can easily convert the results of `nominatimlite` into `sf` objects,
-that can be mapped with a variety of packages as `ggplot2`, `tmap` or
-`leaflet`.
-
-The following example geocodes the restaurants and pubs surrounding
-Times Square, New York. The area of search has been restricted to the
-geographic bounding box of Times Square.
+With `nominatimlite` you can extract spatial objects easily:
 
 ``` r
-library(sf)
+# Extract some points - McDonalds in Los Angeles
 
-library(dplyr)
-library(ggplot2)
-library(ggspatial)
-
-
-# Search for Restaurants and Pubs in Times Square, NY
-
-# Times Square, NY, USA
-bbox <- c(
-  -73.9894467311, 40.75573629,
-  -73.9830630737, 40.75789245
+McDonalds <- geo_lite_sf("McDonalds, Los Angeles, CA",
+  limit = 30,
+  custom_query = list(countrycodes = "us")
 )
 
-rest_pubs <- geo_amenity(
-  bbox = bbox,
-  amenity = c("restaurant", "pub"),
-  limit = 10
-) %>%
-  # Convert to sf object
-  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+library(ggplot2)
 
-
-# Plot
-
-ggplot(rest_pubs) +
-  annotation_map_tile(type = "osmgrayscale", zoomin = -1) +
-  geom_sf(aes(col = query), size = 6) +
-  # Limit map to bounding box
-  coord_sf(xlim = c(bbox[c(1, 3)]), ylim = bbox[c(2, 4)]) +
-  scale_color_manual(values = c("red", "blue")) +
-  theme_void() +
-  theme(
-    legend.position = "bottom",
-    legend.title = element_blank()
-  )
+ggplot(McDonalds) +
+  geom_sf()
 ```
 
-<img src="man/figures/README-map-1.png" width="100%" />
+<img src="man/figures/README-McDonalds-1.png" width="100%" />
+
+You can also extract polygons using the option `polygon = TRUE`:
+
+``` r
+Central_Park <- geo_lite_sf("Central Park, NY",
+  full_results = TRUE,
+  polygon = TRUE
+)
+
+ggplot(Central_Park) +
+  geom_sf()
+```
+
+<img src="man/figures/README-central_park-1.png" width="100%" />
