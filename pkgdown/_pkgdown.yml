@@ -27,6 +27,7 @@ reference:
   desc: These functions return `sf` objects
   contents:
   - geo_lite_sf
+  - reverse_geo_lite_sf
 - title: Misc
   desc: Other objects included in the package
   contents:

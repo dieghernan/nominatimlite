@@ -14,18 +14,47 @@
 #' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
+#' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
+#' equivalences on terms of zoom:
+#'
+#'
+#' ```{r, echo=FALSE}
+#'
+#' t <- tibble::tribble(
+#'  ~zoom, ~address_detail,
+#'  3, "country",
+#'  5, "state",
+#'  8, "county",
+#'  10, "city",
+#'  14, "suburb",
+#'  16, "major streets",
+#'  17, "major and minor streets",
+#'  18, "building"
+#'  )
+#'
+#' knitr::kable(t)
+#'
+#'
+#' ```
+#'
 #' @return A `tibble` with the results.
 #'
 #' @examples
 #' reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #'
 #' # Several coordinates
-#' reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
+#' reverse_geo_lite(
+#'   lat = c(40.75728, 55.95335),
+#'   long = c(-73.98586, -3.188375)
+#' )
 #'
 #' # With options: zoom to country
 #' reverse_geo_lite(
-#'   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
-#'   custom_query = list(zoom = 0), verbose = TRUE, full_results = TRUE
+#'   lat = c(40.75728, 55.95335),
+#'   long = c(-73.98586, -3.188375),
+#'   custom_query = list(zoom = 0),
+#'   verbose = TRUE,
+#'   full_results = TRUE
 #' )
 #' @export
 #'
