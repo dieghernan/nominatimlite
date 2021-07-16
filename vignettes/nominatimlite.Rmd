@@ -133,13 +133,10 @@ ggplot(McDonalds) +
 
 You can also extract polygons using the option `polygon = TRUE`:
 
-```{r central_park}
+``{r penta }
 
-Central_Park <- geo_lite_sf("Central Park, NY",
-  full_results = TRUE,
-  polygon = TRUE
-)
+pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 
-ggplot(Central_Park) +
+ggplot(pentagon_poly) +
   geom_sf()
 ```
