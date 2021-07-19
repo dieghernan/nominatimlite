@@ -26,7 +26,6 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Jesse Cambon (\href{https://orcid.org/0000-0001-6854-1514}{ORCID}) [contributor]
   \item OpenStreetMap contributors (for the data.) [copyright holder]
 }
 

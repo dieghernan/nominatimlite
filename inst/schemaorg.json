@@ -5,19 +5,20 @@
     "id": "https://orcid.org/0000-0001-8457-4658"
   },
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
-  "contributor": {
-    "id": "https://orcid.org/0000-0001-6854-1514",
-    "type": "Person",
-    "familyName": "Cambon",
-    "givenName": "Jesse"
-  },
-  "copyrightHolder": {
-    "id": "https://orcid.org/0000-0001-8457-4658",
-    "type": "Person",
-    "email": "diego.hernangomezherrero@gmail.com",
-    "familyName": "Hernangómez",
-    "givenName": "Diego"
-  },
+  "contributor": {},
+  "copyrightHolder": [
+    {
+      "id": "https://orcid.org/0000-0001-8457-4658",
+      "type": "Person",
+      "email": "diego.hernangomezherrero@gmail.com",
+      "familyName": "Hernangómez",
+      "givenName": "Diego"
+    },
+    {
+      "type": "Organization",
+      "name": "OpenStreetMap contributors"
+    }
+  ],
   "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This\n    is a lite version of the package 'tidygeocoder'.",
   "funder": {},
   "license": "https://spdx.org/licenses/MIT",

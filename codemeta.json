@@ -30,14 +30,7 @@
       "@id": "https://orcid.org/0000-0001-8457-4658"
     }
   ],
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Jesse",
-      "familyName": "Cambon",
-      "@id": "https://orcid.org/0000-0001-6854-1514"
-    }
-  ],
+  "contributor": {},
   "copyrightHolder": [
     {
       "@type": "Person",
@@ -45,6 +38,10 @@
       "familyName": "Hernangómez",
       "email": "diego.hernangomezherrero@gmail.com",
       "@id": "https://orcid.org/0000-0001-8457-4658"
+    },
+    {
+      "@type": "Organization",
+      "name": "OpenStreetMap contributors"
     }
   ],
   "funder": {},
