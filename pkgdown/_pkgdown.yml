@@ -29,6 +29,7 @@ reference:
   - geo_lite_sf
   - reverse_geo_lite_sf
   - geo_amenity_sf
+  - bbox_to_poly
 - title: Misc
   desc: Other objects included in the package
   contents:
