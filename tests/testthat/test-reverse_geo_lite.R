@@ -14,4 +14,8 @@ test_that("Checking query", {
   expect_equal(nrow(reverse_geo_lite(0, 40,
     custom_query = list(zoom = 0)
   )), 1)
+
+  expect_equal(nrow(reverse_geo_lite(0, 40,
+    custom_query = list(extratags = 1)
+  )), 1)
 })

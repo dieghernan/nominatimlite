@@ -27,4 +27,9 @@ test_that("Checking query", {
     "pub",
     custom_query = list(countrycode = "es")
   )), 1)
+  expect_equal(nrow(geo_amenity_sf(
+    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+    "pub",
+    custom_query = list(extratags = 1)
+  )), 1)
 })

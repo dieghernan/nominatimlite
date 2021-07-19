@@ -13,4 +13,7 @@ test_that("Checking query", {
   expect_equal(nrow(geo_lite("Madrid",
     custom_query = list(countrycode = "es")
   )), 1)
+  expect_equal(nrow(geo_lite("Madrid",
+    custom_query = list(extratags = 1)
+  )), 1)
 })

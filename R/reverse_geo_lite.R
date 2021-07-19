@@ -174,7 +174,7 @@ reverse_geo_lite_single <- function(lat_cap,
 
   # Hack to overcome problems with address and boundingbox
   for (i in seq_len(length(result_init))) {
-    if (names(result_init)[i] == "address") {
+    if (names(result_init)[i] %in% c("address", "extratags")) {
       result <- dplyr::bind_cols(result, tibble::as_tibble(result_init[i][[1]]))
     } else if (names(result_init)[i] == "boundingbox") {
       result_init[i] <- list(result_init[[i]])
