@@ -1,33 +1,48 @@
 {
   "@context": "https://schema.org",
-  "type": "SoftwareSourceCode",
-  "author": {
-    "id": "https://orcid.org/0000-0001-8457-4658"
-  },
-  "codeRepository": "https://github.com/dieghernan/nominatimlite",
-  "contributor": {},
-  "copyrightHolder": [
+  "@graph": [
     {
-      "id": "https://orcid.org/0000-0001-8457-4658",
-      "type": "Person",
-      "email": "diego.hernangomezherrero@gmail.com",
-      "familyName": "Hernangómez",
-      "givenName": "Diego"
+      "type": "SoftwareSourceCode",
+      "author": {
+        "id": "https://orcid.org/0000-0001-8457-4658"
+      },
+      "codeRepository": "https://github.com/dieghernan/nominatimlite",
+      "contributor": {},
+      "copyrightHolder": [
+        {
+          "id": "https://orcid.org/0000-0001-8457-4658",
+          "type": "Person",
+          "email": "diego.hernangomezherrero@gmail.com",
+          "familyName": "Hernangómez",
+          "givenName": "Diego"
+        },
+        {
+          "type": "Organization",
+          "name": "OpenStreetMap contributors"
+        }
+      ],
+      "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This\n    is a lite version of the package 'tidygeocoder'.",
+      "funder": {},
+      "license": "https://spdx.org/licenses/MIT",
+      "name": "nominatimlite: Interface with 'Nominatim' API Service",
+      "programmingLanguage": {
+        "type": "ComputerLanguage",
+        "name": "R",
+        "url": "https://r-project.org"
+      },
+      "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+      "version": "0.0.1"
     },
     {
-      "type": "Organization",
-      "name": "OpenStreetMap contributors"
+      "id": "https://doi.org/10.5281/zenodo.5113195",
+      "type": "SoftwareSourceCode",
+      "author": {
+        "type": "Person",
+        "familyName": "Hernangómez",
+        "givenName": "Diego"
+      },
+      "description": "R package version ",
+      "name": "nominatimlite: "
     }
-  ],
-  "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This\n    is a lite version of the package 'tidygeocoder'.",
-  "funder": {},
-  "license": "https://spdx.org/licenses/MIT",
-  "name": "nominatimlite: Interface with 'Nominatim' API Service",
-  "programmingLanguage": {
-    "type": "ComputerLanguage",
-    "name": "R",
-    "url": "https://r-project.org"
-  },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
-  "version": "0.0.1"
+  ]
 }

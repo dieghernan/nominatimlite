@@ -189,5 +189,24 @@
     "geocoding",
     "openstreetmaps",
     "nominatim"
+  ],
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2021",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Diego",
+          "familyName": "Hernangómez"
+        }
+      ],
+      "name": "nominatimlite: ",
+      "identifier": "10.5281/zenodo.5113195",
+      "url": "https://dieghernan.github.io/nominatimlite/",
+      "description": "R package version ",
+      "@id": "https://doi.org/10.5281/zenodo.5113195",
+      "sameAs": "https://doi.org/10.5281/zenodo.5113195"
+    }
   ]
 }
