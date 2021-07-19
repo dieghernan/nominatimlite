@@ -122,6 +122,12 @@ reverse_geo_lite_sf <- function(lat,
   all_res <- NULL
 
   for (i in seq_len(length(long_cap))) {
+  
+    if(i > 1) {
+      Sys.sleep(1)
+    }
+    
+    
     res_single <- reverse_geo_lite_sf_single(
       lat_cap[i],
       long_cap[i],

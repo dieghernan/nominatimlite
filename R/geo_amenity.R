@@ -83,6 +83,11 @@ geo_amenity <- function(bbox,
   all_res <- NULL
 
   for (i in seq_len(length(amenity))) {
+  
+    if(i > 1) {
+      Sys.sleep(1)
+    }
+    
     res_single <- geo_amenity_single(
       bbox = bbox,
       amenity = amenity[i],
