@@ -171,6 +171,12 @@ geo_amenity_sf_single <- function(bbox,
   result_out <- data.frame(query = amenity)
 
   df_sf <- tibble::as_tibble(sf::st_drop_geometry(sfobj))
+
+  # Rename original address
+
+  names(df_sf) <-
+    gsub("address", "osm.address", names(df_sf))
+
   names(df_sf) <- gsub("display_name", "address", names(df_sf))
 
   if (return_addresses || full_results) {
