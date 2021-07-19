@@ -11,7 +11,10 @@ Authors@R:
       person(given = "Jesse",
              family = "Cambon",
              role = "ctb",
-             comment = c(ORCID = "0000-0001-6854-1514")))
+             comment = c(ORCID = "0000-0001-6854-1514")),
+      person(given = "OpenStreetMap contributors",
+             role = "cph",
+             comment = "for the data."))
 Description: Lite interface for getting data from 'OSM' service
     'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This
     is a lite version of the package 'tidygeocoder'.

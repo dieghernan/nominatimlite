@@ -23,12 +23,14 @@ reference:
   - geo_lite
   - reverse_geo_lite
   - geo_amenity
+  - geo_address_lookup
 - title: Get spatial objects
   desc: These functions return `sf` objects
   contents:
   - geo_lite_sf
   - reverse_geo_lite_sf
   - geo_amenity_sf
+  - geo_address_lookup_sf
   - bbox_to_poly
 - title: Misc
   desc: Other objects included in the package
