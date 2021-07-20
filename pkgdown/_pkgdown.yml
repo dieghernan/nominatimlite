@@ -37,6 +37,3 @@ reference:
   contents:
   - osm_amenities
 
-development:
-  mode: auto
-
