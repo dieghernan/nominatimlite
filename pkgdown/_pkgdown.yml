@@ -13,8 +13,8 @@ home:
 authors:
   Diego Hernangómez:
     href: 'https://dieghernan.github.io/'
-  OpenStreetMap contributors:
-    href: 'https://www.openstreetmap.org/copyright'
+  Jesse Cambon:
+    href: 'https://jessecambon.github.io/'
 
 reference:
 - title: Geocoding and reverse geocoding
@@ -36,3 +36,6 @@ reference:
   desc: Other objects included in the package
   contents:
   - osm_amenities
+
+development:
+  mode: auto

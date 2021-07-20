@@ -1,5 +1,9 @@
 test_that("Returning empty query", {
   expect_warning(reverse_geo_lite(200, 200))
+  expect_warning(reverse_geo_lite(
+    lat = c(0, 90),
+    long = c(40, 90)
+  ))
 })
 
 test_that("Returning error", {

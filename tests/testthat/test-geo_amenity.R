@@ -9,7 +9,7 @@ test_that("Returning empty query", {
 test_that("Checking query", {
   expect_equal(ncol(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
-    "pub"
+    c("pub", "restaurant"),
   )), 4)
   expect_gt(ncol(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),

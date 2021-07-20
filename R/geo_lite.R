@@ -61,11 +61,10 @@ geo_lite <- function(address,
   all_res <- NULL
 
   for (i in seq_len(length(address))) {
-  
-    if(i > 1) {
+    if (i > 1) {
       Sys.sleep(1)
     }
-  
+
     res_single <- geo_lite_single(
       address = address[i],
       lat,

@@ -4,7 +4,7 @@ test_that("Returning empty query", {
 
 
 test_that("Checking query", {
-  expect_equal(ncol(geo_lite("Madrid")), 4)
+  expect_equal(ncol(geo_lite(c("Madrid", "Barcelona"))), 4)
   expect_gt(ncol(geo_lite("Madrid", full_results = TRUE)), 4)
   expect_gt(nrow(geo_lite("Madrid",
     limit = 10,
