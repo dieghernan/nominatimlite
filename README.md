@@ -31,6 +31,9 @@ available on CRAN.
 
 It also allows to load spatial objects using the `sf` package.
 
+Full site with examples and vignettes on
+<https://dieghernan.github.io/nominatimlite>
+
 ## Why `nominatimlite`?
 
 Since `tidygecoder` is much more complete, providing access to several
