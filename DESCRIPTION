@@ -12,9 +12,9 @@ Authors@R:
              role = "cph",
              comment = "for the data."))
 Description: Lite interface for getting data from 'OSM' service
-    'Nominatim' <https://nominatim.org/release-docs/latest/>. Geocodes and
-    reverse geocodes addresses and coordinates, search for amenities and
-    return spatial objects on 'sf' format.
+    'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
+    coordinates from addresses, find places near a set of coordinates,
+    search for amenities and return spatial objects on 'sf' format.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite
@@ -31,7 +31,8 @@ Suggests:
     ggplot2 (>= 3.0),
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    tidygeocoder
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

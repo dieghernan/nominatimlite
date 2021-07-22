@@ -9,9 +9,9 @@
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Lite interface for getting data from 'OSM' service
-    'Nominatim' <https://nominatim.org/release-docs/latest/>. Geocodes and
-    reverse geocodes addresses and coordinates, search for amenities and
-    return spatial objects on 'sf' format.
+    'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
+    coordinates from addresses, find places near a set of coordinates,
+    search for amenities and return spatial objects on 'sf' format.
 }
 \seealso{
 Useful links:
