@@ -60,7 +60,7 @@ equivalences on terms of zoom:\tabular{rl}{
 }
 \examples{
 reverse_geo_lite(lat = 40.75728, long = -73.98586)
-
+\donttest{
 # Several coordinates
 reverse_geo_lite(
   lat = c(40.75728, 55.95335),
@@ -75,6 +75,7 @@ reverse_geo_lite(
   verbose = TRUE,
   full_results = TRUE
 )
+}
 }
 \seealso{
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}

@@ -21,7 +21,7 @@
           "name": "OpenStreetMap contributors"
         }
       ],
-      "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This\n    is a lite version of the package 'tidygeocoder'.",
+      "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract\n    coordinates from addresses, find places near a set of coordinates,\n    search for amenities and return spatial objects on 'sf' format.",
       "funder": {},
       "license": "https://spdx.org/licenses/MIT",
       "name": "nominatimlite: Interface with 'Nominatim' API Service",
@@ -31,7 +31,7 @@
         "url": "https://r-project.org"
       },
       "runtimePlatform": "R version 4.1.0 (2021-05-18)",
-      "version": "0.0.1"
+      "version": "0.0.1.9000"
     },
     {
       "id": "https://doi.org/10.5281/zenodo.5113195",

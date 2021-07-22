@@ -41,7 +41,7 @@
 #'
 #' @examples
 #' reverse_geo_lite(lat = 40.75728, long = -73.98586)
-#'
+#' \donttest{
 #' # Several coordinates
 #' reverse_geo_lite(
 #'   lat = c(40.75728, 55.95335),
@@ -56,6 +56,7 @@
 #'   verbose = TRUE,
 #'   full_results = TRUE
 #' )
+#' }
 #' @export
 #'
 #' @seealso [tidygeocoder::reverse_geo()]

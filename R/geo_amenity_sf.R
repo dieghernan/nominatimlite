@@ -41,7 +41,7 @@
 #'
 #' ggplot(rest_pub) +
 #'   geom_sf()
-#'
+#' \donttest{
 #' # Hospital as polygon
 #'
 #' hosp <- geo_amenity_sf(bbox,
@@ -51,6 +51,7 @@
 #'
 #' ggplot(hosp) +
 #'   geom_sf()
+#' }
 #' @export
 geo_amenity_sf <- function(bbox,
                            amenity,

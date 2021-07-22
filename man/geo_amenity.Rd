@@ -76,6 +76,7 @@ geo_amenity(
   bbox = bbox,
   amenity = "restaurant"
 )
+\donttest{
 
 # Several amenities
 geo_amenity(
@@ -90,6 +91,7 @@ geo_amenity(
   limit = 10,
   strict = TRUE
 )
+}
 }
 \seealso{
 \link{osm_amenities}

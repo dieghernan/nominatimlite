@@ -23,10 +23,6 @@ search [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
 generate synthetic addresses of OSM points (reverse geocoding).
 
-This package is derived of the much more mature and complete `tidygeocoder`
-package by Jesse Cambon ([link](https://jessecambon.github.io/tidygeocoder/)),
-that it is available on CRAN.
-
 It also allows to load spatial objects using the `sf` package.
 
 Full site with examples and vignettes on
@@ -35,11 +31,18 @@ Full site with examples and vignettes on
 
 ## Why `nominatimlite`?
 
-Since `tidygecoder` is much more complete, providing access to several geocoder
-services as Mapbox, TomTom or Google, the downloading method is based on `curl`.
-In some cases, `curl` could not be available, so `nominatimlite` uses an
-approach to overcome this limitation.
+The main goal of `nominatimlite` is to access the Nominatim API avoiding
+the dependency on `curl`. In some situations, `curl` may not be available
+or accessible, so `nominatimlite` uses base functions to overcome this 
+limitation.
 
+There are other packages much more complete and mature than `nominatimlite`,
+that presents the same features:
+
+- [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse Cambon.
+Allows to interface with Nominatim for geocoding and reverse geocoding.
+- [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great for
+downloading spatial data from OpenStreetMap.
 
 ## Installation
 

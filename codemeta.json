@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nominatimlite",
-  "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This\n    is a lite version of the package 'tidygeocoder'.",
+  "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract\n    coordinates from addresses, find places near a set of coordinates,\n    search for amenities and return spatial objects on 'sf' format.",
   "name": "nominatimlite: Interface with 'Nominatim' API Service",
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "relatedLink": [
@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.1",
+  "version": "0.0.1.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -109,7 +109,6 @@
       "@type": "SoftwareApplication",
       "identifier": "tidygeocoder",
       "name": "tidygeocoder",
-      "version": ">= 1.0.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -177,6 +176,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
@@ -188,7 +192,11 @@
     "r-package",
     "geocoding",
     "openstreetmaps",
-    "nominatim"
+    "nominatim",
+    "rstats",
+    "r",
+    "spatial",
+    "api"
   ],
   "citation": [
     {

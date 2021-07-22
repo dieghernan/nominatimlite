@@ -83,7 +83,7 @@ rest_pub <- geo_amenity_sf(bbox,
 
 ggplot(rest_pub) +
   geom_sf()
-
+\donttest{
 # Hospital as polygon
 
 hosp <- geo_amenity_sf(bbox,
@@ -93,6 +93,7 @@ hosp <- geo_amenity_sf(bbox,
 
 ggplot(hosp) +
   geom_sf()
+}
 }
 \seealso{
 \link{geo_amenity}, \link{osm_amenities}

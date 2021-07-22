@@ -54,7 +54,7 @@ pentagon <- geo_lite_sf("Pentagon")
 
 ggplot(pentagon) +
   geom_sf()
-
+\donttest{
 pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 
 ggplot(pentagon_poly) +
@@ -78,6 +78,7 @@ Starbucks <- geo_lite_sf("Starbucks, New York",
 
 ggplot(Starbucks) +
   geom_sf()
+}
 }
 \seealso{
 \code{\link[=geo_lite]{geo_lite()}}

@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' geo_lite("Madrid, Spain")
-#'
+#' \donttest{
 #' # Several addresses
 #' geo_lite(c("Madrid", "Barcelona"))
 #'
@@ -31,6 +31,7 @@
 #'   custom_query = list(countrycodes = "US"),
 #'   full_results = TRUE
 #' )
+#' }
 #' @export
 #'
 #' @seealso [tidygeocoder::geo()]

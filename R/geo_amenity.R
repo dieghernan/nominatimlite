@@ -43,6 +43,7 @@
 #'   bbox = bbox,
 #'   amenity = "restaurant"
 #' )
+#' \donttest{
 #'
 #' # Several amenities
 #' geo_amenity(
@@ -57,6 +58,7 @@
 #'   limit = 10,
 #'   strict = TRUE
 #' )
+#' }
 #' @seealso [nominatimlite::osm_amenities]
 #' @export
 geo_amenity <- function(bbox,

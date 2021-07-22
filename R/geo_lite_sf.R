@@ -24,7 +24,7 @@
 #'
 #' ggplot(pentagon) +
 #'   geom_sf()
-#'
+#' \donttest{
 #' pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 #'
 #' ggplot(pentagon_poly) +
@@ -48,6 +48,7 @@
 #'
 #' ggplot(Starbucks) +
 #'   geom_sf()
+#' }
 #' @export
 #'
 #' @seealso [geo_lite()]
