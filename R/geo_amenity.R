@@ -15,6 +15,9 @@
 #'   [nominatimlite::osm_amenities].
 #' @param custom_query API-specific parameters to be used.
 #'   See [nominatimlite::geo_lite()].
+#' @param strict Logical TRUE/FALSE. Force the results to be included inside
+#' the `bbox`. Note that Nominatim default behaviour may return results located
+#' outside the provided bounding box.
 #'
 #' @inheritParams geo_lite
 #'
@@ -47,11 +50,12 @@
 #'   amenity = c("restaurant", "pub")
 #' )
 #'
-#' # Increase limit
+#' # Increase limit and use with strict
 #' geo_amenity(
 #'   bbox = bbox,
 #'   amenity = c("restaurant", "pub"),
-#'   limit = 10
+#'   limit = 10,
+#'   strict = TRUE
 #' )
 #' @seealso [nominatimlite::osm_amenities]
 #' @export
@@ -63,7 +67,8 @@ geo_amenity <- function(bbox,
                         full_results = FALSE,
                         return_addresses = TRUE,
                         verbose = FALSE,
-                        custom_query = list()) {
+                        custom_query = list(),
+                        strict = FALSE) {
   amenity <- unique(amenity)
 
   # nocov start
@@ -100,6 +105,16 @@ geo_amenity <- function(bbox,
     )
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
+
+  if (strict) {
+    strict <- all_res[lat] >= bbox[2] &
+      all_res[lat] <= bbox[4] &
+      all_res[long] >= bbox[1] &
+      all_res[long] <= bbox[3]
+    all_res <- all_res[strict, ]
+  }
+
+
 
   return(all_res)
 }

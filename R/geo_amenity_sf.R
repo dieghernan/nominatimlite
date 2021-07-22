@@ -59,7 +59,8 @@ geo_amenity_sf <- function(bbox,
                            return_addresses = TRUE,
                            verbose = FALSE,
                            custom_query = list(),
-                           polygon = FALSE) {
+                           polygon = FALSE,
+                           strict = FALSE) {
   amenity <- unique(amenity)
 
   # nocov start
@@ -94,6 +95,12 @@ geo_amenity_sf <- function(bbox,
       polygon
     )
     all_res <- dplyr::bind_rows(all_res, res_single)
+  }
+
+  if (strict) {
+    bbox_sf <- bbox_to_poly(bbox)
+    strict <- sf::st_covered_by(all_res, bbox_sf, sparse = FALSE)
+    all_res <- all_res[strict, ]
   }
 
   return(all_res)

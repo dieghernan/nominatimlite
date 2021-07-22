@@ -50,7 +50,7 @@
 #'   lon = Coliseum$lon,
 #'   polygon = TRUE
 #' )
-#'
+#' \donttest{
 #' ggplot(Col_sf) +
 #'   geom_sf()
 #'
@@ -77,6 +77,7 @@
 #'
 #' ggplot(County_sf) +
 #'   geom_sf()
+#' }
 #' @export
 #'
 #' @seealso [reverse_geo_lite()]

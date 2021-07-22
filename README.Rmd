@@ -48,7 +48,7 @@ that it is available on CRAN.
 It also allows to load spatial objects using the `sf` package.
 
 Full site with examples and vignettes on
-<https://dieghernan.github.io/nominatimlite>
+<https://dieghernan.github.io/nominatimlite/>
 
 
 ## Why `nominatimlite`?
@@ -140,17 +140,20 @@ With `nominatimlite` you can extract spatial objects easily:
 
 ```{r McDonalds}
 
-# Extract some points - McDonalds in Los Angeles
+# Extract some points - McDonalds in California
 
-McDonalds <- geo_lite_sf("McDonalds, Los Angeles, CA",
-  limit = 20,
+LA <- geo_lite_sf("California", polygon = TRUE)
+
+McDonalds <- geo_lite_sf("McDonalds, California",
+  limit = 50,
   custom_query = list(countrycodes = "us")
 )
 
 library(ggplot2)
 
-ggplot(McDonalds) +
-  geom_sf()
+ggplot(LA) +
+  geom_sf() +
+  geom_sf(data = McDonalds, col="red")
 ```
 
 You can also extract polygons using the option `polygon = TRUE`:

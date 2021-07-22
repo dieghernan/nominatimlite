@@ -13,7 +13,8 @@ geo_amenity(
   full_results = FALSE,
   return_addresses = TRUE,
   verbose = FALSE,
-  custom_query = list()
+  custom_query = list(),
+  strict = FALSE
 )
 }
 \arguments{
@@ -43,6 +44,10 @@ return_addresses to FALSE does not prevent this.}
 
 \item{custom_query}{API-specific parameters to be used.
 See \code{\link[=geo_lite]{geo_lite()}}.}
+
+\item{strict}{Logical TRUE/FALSE. Force the results to be included inside
+the \code{bbox}. Note that Nominatim default behaviour may return results located
+outside the provided bounding box.}
 }
 \value{
 A \code{tibble} with the results.
@@ -78,11 +83,12 @@ geo_amenity(
   amenity = c("restaurant", "pub")
 )
 
-# Increase limit
+# Increase limit and use with strict
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub"),
-  limit = 10
+  limit = 10,
+  strict = TRUE
 )
 }
 \seealso{

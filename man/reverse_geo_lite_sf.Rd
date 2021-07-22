@@ -34,8 +34,8 @@ most services return the input coordinates with \code{full_results = TRUE} and s
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (ie. \code{list(zoom = 3)}). See Details.}
 
-\item{polygon}{Logical \code{TRUE/FALSE}. Wheter to return only spatial points (
-\code{FALSE}) or potentialy other shapes as polygons or lines (\code{TRUE}).}
+\item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
+\code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
 }
 \value{
 A \code{sf} object with the results.
@@ -74,7 +74,7 @@ Col_sf <- reverse_geo_lite_sf(
   lon = Coliseum$lon,
   polygon = TRUE
 )
-
+\donttest{
 ggplot(Col_sf) +
   geom_sf()
 
@@ -101,6 +101,7 @@ County_sf <- reverse_geo_lite_sf(
 
 ggplot(County_sf) +
   geom_sf()
+}
 }
 \seealso{
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}

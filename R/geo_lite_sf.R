@@ -5,8 +5,8 @@
 #' spatial object.
 #'
 #'
-#' @param polygon Logical `TRUE/FALSE`. Wheter to return only spatial points (
-#'   `FALSE`) or potentialy other shapes as polygons or lines (`TRUE`).
+#' @param polygon Logical `TRUE/FALSE`. Whether to return only spatial points (
+#'   `FALSE`) or potentially other shapes as polygons or lines (`TRUE`).
 #'
 #' @inheritParams geo_lite
 #'

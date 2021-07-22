@@ -31,10 +31,10 @@ return_addresses to FALSE does not prevent this.}
 \item{verbose}{if TRUE then detailed logs are output to the console}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \code{list(countrycode = "US")}). See Details.}
+list (i.e. \code{list(countrycode = "US")}). See Details.}
 
-\item{polygon}{Logical \code{TRUE/FALSE}. Wheter to return only spatial points (
-\code{FALSE}) or potentialy other shapes as polygons or lines (\code{TRUE}).}
+\item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
+\code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
 }
 \value{
 A \code{sf} object with the results.

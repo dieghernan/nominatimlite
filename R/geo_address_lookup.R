@@ -15,6 +15,8 @@
 #'
 #' @seealso [geo_lite()]
 #'
+#' @return A `tibble` with the results.
+#'
 #' @examples
 #'
 #' ids <- geo_address_lookup(

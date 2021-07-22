@@ -9,8 +9,9 @@
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Lite interface for getting data from 'OSM' service
-    'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This
-    is a lite version of the package 'tidygeocoder'.
+    'Nominatim' <https://nominatim.org/release-docs/latest/>. Geocodes and
+    reverse geocodes addresses and coordinates, search for amenities and
+    return spatial objects on 'sf' format.
 }
 \seealso{
 Useful links:

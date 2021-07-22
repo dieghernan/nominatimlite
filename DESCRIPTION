@@ -12,8 +12,9 @@ Authors@R:
              role = "cph",
              comment = "for the data."))
 Description: Lite interface for getting data from 'OSM' service
-    'Nominatim'.  See <https://nominatim.org/release-docs/latest/>. This
-    is a lite version of the package 'tidygeocoder'.
+    'Nominatim' <https://nominatim.org/release-docs/latest/>. Geocodes and
+    reverse geocodes addresses and coordinates, search for amenities and
+    return spatial objects on 'sf' format.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite
@@ -24,13 +25,13 @@ Imports:
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),
     sf (>= 0.9),
-    tibble (>= 3.0.3)
+    tibble (>= 3.0.3),
+    utils
 Suggests: 
     ggplot2 (>= 3.0),
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0),
-    tidygeocoder (>= 1.0.3)
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

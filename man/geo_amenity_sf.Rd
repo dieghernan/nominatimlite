@@ -12,7 +12,8 @@ geo_amenity_sf(
   return_addresses = TRUE,
   verbose = FALSE,
   custom_query = list(),
-  polygon = FALSE
+  polygon = FALSE,
+  strict = FALSE
 )
 }
 \arguments{
@@ -39,8 +40,12 @@ return_addresses to FALSE does not prevent this.}
 \item{custom_query}{API-specific parameters to be used.
 See \code{\link[=geo_lite]{geo_lite()}}.}
 
-\item{polygon}{Logical \code{TRUE/FALSE}. Wheter to return only spatial points (
-\code{FALSE}) or potentialy other shapes as polygons or lines (\code{TRUE}).}
+\item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
+\code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
+
+\item{strict}{Logical TRUE/FALSE. Force the results to be included inside
+the \code{bbox}. Note that Nominatim default behaviour may return results located
+outside the provided bounding box.}
 }
 \value{
 A \code{sf} object with the results.
