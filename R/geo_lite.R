@@ -10,7 +10,7 @@
 #' @param limit	maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
 #' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (i.e. `list(countrycode = "US")`). See Details.
+#'   list (i.e. `list(countrycodes = "US")`). See Details.
 #'
 #' @inheritParams tidygeocoder::geo
 #'
@@ -21,8 +21,10 @@
 #' @return A `tibble` with the results.
 #'
 #' @examples
-#' geo_lite("Madrid, Spain")
+#'
 #' \donttest{
+#' geo_lite("Madrid, Spain")
+#' 
 #' # Several addresses
 #' geo_lite(c("Madrid", "Barcelona"))
 #'

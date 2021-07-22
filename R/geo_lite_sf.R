@@ -17,6 +17,7 @@
 #' @return A `sf` object with the results.
 #'
 #' @examples
+#' \donttest{
 #' # Map - Points
 #' library(ggplot2)
 #' pentagon <- geo_lite_sf("Pentagon")
@@ -24,7 +25,7 @@
 #'
 #' ggplot(pentagon) +
 #'   geom_sf()
-#' \donttest{
+#' 
 #' pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 #'
 #' ggplot(pentagon_poly) +

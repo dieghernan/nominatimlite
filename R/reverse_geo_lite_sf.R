@@ -39,6 +39,7 @@
 #' @return A `sf` object with the results.
 #'
 #' @examples
+#' \donttest{
 #' library(ggplot2)
 #'
 #'
@@ -50,7 +51,7 @@
 #'   lon = Coliseum$lon,
 #'   polygon = TRUE
 #' )
-#' \donttest{
+#' 
 #' ggplot(Col_sf) +
 #'   geom_sf()
 #'

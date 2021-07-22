@@ -22,6 +22,7 @@
 #' @seealso [geo_amenity], [nominatimlite::osm_amenities]
 #'
 #' @examples
+#' \donttest{
 #' # Madrid, Spain
 #'
 #' library(ggplot2)
@@ -41,7 +42,7 @@
 #'
 #' ggplot(rest_pub) +
 #'   geom_sf()
-#' \donttest{
+#' 
 #' # Hospital as polygon
 #'
 #' hosp <- geo_amenity_sf(bbox,
