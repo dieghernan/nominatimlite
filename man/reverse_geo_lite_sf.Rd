@@ -63,6 +63,7 @@ equivalences on terms of zoom:\tabular{rl}{
 }
 }
 \examples{
+\donttest{
 library(ggplot2)
 
 
@@ -74,7 +75,7 @@ Col_sf <- reverse_geo_lite_sf(
   lon = Coliseum$lon,
   polygon = TRUE
 )
-\donttest{
+
 ggplot(Col_sf) +
   geom_sf()
 

@@ -36,7 +36,7 @@ return_addresses to FALSE does not prevent this.}
 \item{verbose}{if TRUE then detailed logs are output to the console}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(countrycode = "US")}). See Details.}
+list (i.e. \code{list(countrycodes = "US")}). See Details.}
 }
 \value{
 A \code{tibble} with the results.

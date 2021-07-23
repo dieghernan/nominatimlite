@@ -64,6 +64,7 @@ For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}.
 }
 \examples{
+\donttest{
 # Madrid, Spain
 
 library(ggplot2)
@@ -83,7 +84,7 @@ rest_pub <- geo_amenity_sf(bbox,
 
 ggplot(rest_pub) +
   geom_sf()
-\donttest{
+
 # Hospital as polygon
 
 hosp <- geo_amenity_sf(bbox,

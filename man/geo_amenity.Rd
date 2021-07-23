@@ -66,6 +66,7 @@ For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}.
 }
 \examples{
+\donttest{
 # Times Square, NY, USA
 bbox <- c(
   -73.9894467311, 40.75573629,
@@ -76,7 +77,6 @@ geo_amenity(
   bbox = bbox,
   amenity = "restaurant"
 )
-\donttest{
 
 # Several amenities
 geo_amenity(

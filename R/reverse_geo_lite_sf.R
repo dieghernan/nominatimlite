@@ -51,7 +51,7 @@
 #'   lon = Coliseum$lon,
 #'   polygon = TRUE
 #' )
-#' 
+#'
 #' ggplot(Col_sf) +
 #'   geom_sf()
 #'

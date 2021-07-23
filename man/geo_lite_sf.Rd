@@ -30,7 +30,7 @@ If FALSE then only longitude and latitude are returned from the geocoder service
 \item{verbose}{if TRUE then detailed logs are output to the console}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(countrycode = "US")}). See Details.}
+list (i.e. \code{list(countrycodes = "US")}). See Details.}
 
 \item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
 \code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
@@ -47,6 +47,7 @@ See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
+\donttest{
 # Map - Points
 library(ggplot2)
 pentagon <- geo_lite_sf("Pentagon")
@@ -54,7 +55,7 @@ pentagon <- geo_lite_sf("Pentagon")
 
 ggplot(pentagon) +
   geom_sf()
-\donttest{
+
 pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 
 ggplot(pentagon_poly) +

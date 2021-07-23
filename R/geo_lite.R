@@ -21,10 +21,9 @@
 #' @return A `tibble` with the results.
 #'
 #' @examples
-#'
 #' \donttest{
 #' geo_lite("Madrid, Spain")
-#' 
+#'
 #' # Several addresses
 #' geo_lite(c("Madrid", "Barcelona"))
 #'

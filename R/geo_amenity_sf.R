@@ -42,7 +42,7 @@
 #'
 #' ggplot(rest_pub) +
 #'   geom_sf()
-#' 
+#'
 #' # Hospital as polygon
 #'
 #' hosp <- geo_amenity_sf(bbox,

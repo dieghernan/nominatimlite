@@ -113,6 +113,9 @@ geo_amenity <- function(bbox,
       all_res[lat] <= bbox[4] &
       all_res[long] >= bbox[1] &
       all_res[long] <= bbox[3]
+
+    strict <- as.logical(strict)
+
     all_res <- all_res[strict, ]
   }
 

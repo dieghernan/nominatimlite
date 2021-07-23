@@ -25,7 +25,7 @@
 #'
 #' ggplot(pentagon) +
 #'   geom_sf()
-#' 
+#'
 #' pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 #'
 #' ggplot(pentagon_poly) +
