@@ -179,7 +179,7 @@ geo_lite_sf_single <- function(address,
 
   # If full
   if (full_results) {
-    rest_cols <- df_sf[, !names(df_sf) %in% c("address")]
+    rest_cols <- df_sf[, !names(df_sf) %in% "address"]
     result_out <- cbind(result_out, rest_cols)
   }
 
