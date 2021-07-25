@@ -15,15 +15,7 @@ jobs:
       
       - name: Query dependencies
         run: |
-          install.packages('remotes')
-          install.packages('devtools')
-          install.packages('urlchecker')
-          install.packages('styler')
-          install.packages('roxygen2')
-          install.packages('codemetar')
-          install.packages('jsonld')
-          install.packages('ragg')
-          install.packages('usethis')
+          install.packages(c('remotes', 'devtools', 'urlchecker', 'styler', 'roxygen2', 'codemetar', 'jsonld', 'ragg', .'usethis'))
           
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
