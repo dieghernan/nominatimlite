@@ -10,12 +10,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@v1
-      - uses: r-lib/actions/setup-pandoc@v1
+      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-pandoc@master
       
       - name: Query dependencies
         run: |
-          install.packages(c('remotes', 'devtools', 'urlchecker', 'styler', 'roxygen2', 'codemetar', 'jsonld', 'ragg', .'usethis'))
+          install.packages(c('remotes', 'devtools', 'urlchecker', 'styler', 'roxygen2', 'codemetar', 'jsonld', 'ragg', 'usethis'))
           
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
