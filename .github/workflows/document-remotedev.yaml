@@ -17,6 +17,7 @@ jobs:
         run: |
           install.packages('remotes')
           install.packages('devtools')
+          install.packages('urlchecker')
           install.packages('styler')
           install.packages('roxygen2')
           install.packages('codemetar')
@@ -37,6 +38,9 @@ jobs:
           
       - name: Install package
         run: Rscript -e 'devtools::install()'
+        
+      - name: Url checker
+        run: Rscript -e 'urlchecker::url_update()'
         
       - name: Description
         run: Rscript -e 'usethis::use_tidy_description()'
