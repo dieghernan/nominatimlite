@@ -196,7 +196,11 @@
     "rstats",
     "r",
     "spatial",
-    "api"
+    "api",
+    "openstreetmap",
+    "reverse-geocoding",
+    "shapefile",
+    "address"
   ],
   "citation": [
     {
