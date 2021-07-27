@@ -60,11 +60,12 @@ Alternatively, you can install `nominatimlite` using the
 ``` r
 # Enable this universe
 options(repos = c(
-    dieghernan = 'https://dieghernan.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+  dieghernan = "https://dieghernan.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
 
 
-install.packages('nominatimlite')
+install.packages("nominatimlite")
 ```
 
 ## Usage
