@@ -67,14 +67,14 @@ downloading spatial data from OpenStreetMap.
 
 You can install the developing version of `nominatimlite` with:
 
-``` r
+```{r, eval=FALSE}
 devtools::install_github("dieghernan/nominatimlite")
 ```
 
 Alternatively, you can install `nominatimlite` using the
 [r-universe](https://dieghernan.r-universe.dev/ui#builds):
 
-``` r
+```{r, eval=FALSE}
 # Enable this universe
 options(repos = c(
     dieghernan = 'https://dieghernan.r-universe.dev',
