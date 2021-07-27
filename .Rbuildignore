@@ -13,3 +13,6 @@
 ^pkgdown$
 ^data-raw$
 ^rosm.cache$
+^\.github$
+^_pkgdown\.yaml$
+^_pkgdown\.yml$
