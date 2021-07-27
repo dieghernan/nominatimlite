@@ -23,7 +23,7 @@ jobs:
           install.packages('remotes')
           install.packages('devtools')
           remotes::install_cran("rcmdcheck")
-          install.packages("pkgdown", type = "binary", dependencies = TRUE)
+          install.packages("pkgdown", dependencies = TRUE)
           
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
