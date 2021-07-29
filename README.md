@@ -40,10 +40,10 @@ overcome this limitation.
 There are other packages much more complete and mature than
 `nominatimlite`, that presents the same features:
 
--   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by
+  - [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by
     Jesse Cambon. Allows to interface with Nominatim for geocoding and
     reverse geocoding.
--   [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham.
+  - [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham.
     Great for downloading spatial data from OpenStreetMap.
 
 ## Installation
@@ -97,11 +97,11 @@ Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                                                                                                                |
-|:-------------------------------------------|---------:|-----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  -87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       |
+| query                                      | latitude |   longitude | address                                                                                                                                                |
+| :----------------------------------------- | -------: | ----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  \-77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | \-122.40279 | Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States |
+| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  \-87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `reverse_geo_lite()` function. The
@@ -117,11 +117,11 @@ reverse <- reverse_geo_lite(
 )
 ```
 
-| address\_found                                                                                                                                         |      lat |        lon |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               | 38.89770 |  -77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States | 37.79520 | -122.40279 |
-| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       | 41.87887 |  -87.63591 |
+| address\_found                                                                                                                                         |      lat |         lon |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------- | -------: | ----------: |
+| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               | 38.89770 |  \-77.03655 |
+| Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States | 37.79520 | \-122.40279 |
+| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       | 41.87887 |  \-87.63591 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
@@ -132,6 +132,7 @@ the parameters available.
 With `nominatimlite` you can extract spatial objects easily:
 
 ``` r
+
 # Extract some points - McDonalds in California
 
 LA <- geo_lite_sf("California", polygon = TRUE)
@@ -153,6 +154,7 @@ ggplot(LA) +
 You can also extract polygons using the option `polygon = TRUE`:
 
 ``` r
+
 pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 
 ggplot(pentagon_poly) +
