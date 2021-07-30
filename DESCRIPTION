@@ -24,7 +24,7 @@ Depends:
 Imports: 
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),
-    sf (>= 0.9),
+    sf (>= 0.9.0),
     tibble (>= 3.0.3),
     utils
 Suggests: 
