@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.1.9001",
+  "version": "0.0.1.9010",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -59,7 +59,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.0",
+      "version": ">= 3.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -184,10 +184,10 @@
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
-  "fileSize": "169.661KB",
+  "fileSize": "169.418KB",
   "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://codecov.io/gh/dieghernan/nominatimlite"],
   "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
-  "developmentStatus": "https://www.repostatus.org/#concept",
+  "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": [
     "r-package",
     "geocoding",

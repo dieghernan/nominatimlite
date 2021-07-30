@@ -36,36 +36,52 @@ the dependency on `curl`. In some situations, `curl` may not be available
 or accessible, so `nominatimlite` uses base functions to overcome this 
 limitation.
 
+## Recommended packages
 There are other packages much more complete and mature than `nominatimlite`,
-that presents the same features:
+that presents similar features:
 
 - [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse Cambon.
-Allows to interface with Nominatim for geocoding and reverse geocoding.
+Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse geocoding.
 - [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great for
-downloading spatial data from OpenStreetMap.
-
-## Installation
-
-You can install the developing version of `nominatimlite` with:
-
-``` r
-devtools::install_github("dieghernan/nominatimlite")
-```
-
-Alternatively, you can install `nominatimlite` using the
-[r-universe](https://dieghernan.r-universe.dev/ui#builds):
-
-``` r
-# Enable this universe
-options(repos = c(
-    dieghernan = 'https://dieghernan.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
-
-
-install.packages('nominatimlite')
-```
+downloading spatial data from OpenStreetMap, via the [Overpass
+API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
 ## Usage
+
+### `sf` objects
+
+With `nominatimlite` you can extract spatial objects easily:
+
+```{r McDonalds}
+library(nominatimlite)
+
+# Extract some points - McDonalds in California
+
+LA <- geo_lite_sf("California", polygon = TRUE)
+
+McDonalds <- geo_lite_sf("McDonalds, California",
+  limit = 50,
+  custom_query = list(countrycodes = "us")
+)
+
+library(ggplot2)
+
+ggplot(LA) +
+  geom_sf() +
+  geom_sf(data = McDonalds, col = "red")
+```
+
+You can also extract polygons using the option `polygon = TRUE`:
+
+```{r penta }
+
+pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
+
+ggplot(pentagon_poly) +
+  geom_sf()
+```
+
+
 
 ### Geocoding and reverse geocoding
 
@@ -76,7 +92,6 @@ function:
 
 ```{r example}
 library(tibble)
-library(nominatimlite)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
@@ -118,35 +133,3 @@ knitr::kable(reverse)
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
 parameters available.
-
-### Spatial objects
-
-With `nominatimlite` you can extract spatial objects easily:
-
-```{r McDonalds}
-
-# Extract some points - McDonalds in California
-
-LA <- geo_lite_sf("California", polygon = TRUE)
-
-McDonalds <- geo_lite_sf("McDonalds, California",
-  limit = 50,
-  custom_query = list(countrycodes = "us")
-)
-
-library(ggplot2)
-
-ggplot(LA) +
-  geom_sf() +
-  geom_sf(data = McDonalds, col = "red")
-```
-
-You can also extract polygons using the option `polygon = TRUE`:
-
-```{r penta }
-
-pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
-
-ggplot(pentagon_poly) +
-  geom_sf()
-```

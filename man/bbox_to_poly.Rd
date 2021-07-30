@@ -37,7 +37,7 @@ library(ggplot2)
 
 ggplot(bbox_GER_sf) +
   geom_sf()
-
+\donttest{
 # Extract the bounding box of a sf object
 Texas <- geo_lite_sf("Texas", polygon = TRUE)
 bbox <- sf::st_bbox(Texas)
@@ -49,6 +49,7 @@ bbox_Texas <- bbox_to_poly(bbox)
 ggplot(bbox_Texas) +
   geom_sf(col = "red") +
   geom_sf(data = Texas)
+}
 }
 \seealso{
 \code{\link[=geo_amenity]{geo_amenity()}}, \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}}

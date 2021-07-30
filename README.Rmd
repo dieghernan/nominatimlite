@@ -27,9 +27,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://codecov.io/gh/dieghernan/nominatimlite)
 [![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/)
-[![Project Status: Concept – Minimal or no implementation has been done yet, or
-the repository is only intended to be a limited example, demo, or
-proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5113195-blue)](https://doi.org/10.5281/zenodo.5113195)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/nominatimlite/badge)](https://www.codefactor.io/repository/github/dieghernan/nominatimlite)
 
@@ -55,13 +53,15 @@ the dependency on `curl`. In some situations, `curl` may not be available
 or accessible, so `nominatimlite` uses base functions to overcome this 
 limitation.
 
+## Recommended packages
 There are other packages much more complete and mature than `nominatimlite`,
-that presents the same features:
+that presents similar features:
 
 - [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse Cambon.
-Allows to interface with Nominatim for geocoding and reverse geocoding.
+Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse geocoding.
 - [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great for
-downloading spatial data from OpenStreetMap.
+downloading spatial data from OpenStreetMap, via the [Overpass
+API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
 ## Installation
 
@@ -87,6 +87,41 @@ install.packages("nominatimlite")
 
 ## Usage
 
+### `sf` objects
+
+With `nominatimlite` you can extract spatial objects easily:
+
+```{r McDonalds}
+library(nominatimlite)
+
+# Extract some points - McDonalds in California
+
+LA <- geo_lite_sf("California", polygon = TRUE)
+
+McDonalds <- geo_lite_sf("McDonalds, California",
+  limit = 50,
+  custom_query = list(countrycodes = "us")
+)
+
+library(ggplot2)
+
+ggplot(LA) +
+  geom_sf() +
+  geom_sf(data = McDonalds, col = "red")
+```
+
+You can also extract polygons using the option `polygon = TRUE`:
+
+```{r penta }
+
+pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
+
+ggplot(pentagon_poly) +
+  geom_sf()
+```
+
+
+
 ### Geocoding and reverse geocoding
 
 *Note: examples adapted from `tidygeocoder` package*
@@ -96,7 +131,6 @@ function:
 
 ```{r example}
 library(tibble)
-library(nominatimlite)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
@@ -138,35 +172,3 @@ knitr::kable(reverse)
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
 parameters available.
-
-### Spatial objects
-
-With `nominatimlite` you can extract spatial objects easily:
-
-```{r McDonalds}
-
-# Extract some points - McDonalds in California
-
-LA <- geo_lite_sf("California", polygon = TRUE)
-
-McDonalds <- geo_lite_sf("McDonalds, California",
-  limit = 50,
-  custom_query = list(countrycodes = "us")
-)
-
-library(ggplot2)
-
-ggplot(LA) +
-  geom_sf() +
-  geom_sf(data = McDonalds, col = "red")
-```
-
-You can also extract polygons using the option `polygon = TRUE`:
-
-```{r penta }
-
-pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
-
-ggplot(pentagon_poly) +
-  geom_sf()
-```

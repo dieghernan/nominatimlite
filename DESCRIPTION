@@ -1,7 +1,7 @@
 Type: Package
 Package: nominatimlite
 Title: Interface with 'Nominatim' API Service
-Version: 0.0.1.9001
+Version: 0.0.1.9010
 Authors@R: 
     c(person(given = "Diego",
              family = "Hernangómez",
@@ -28,7 +28,7 @@ Imports:
     tibble (>= 3.0.3),
     utils
 Suggests: 
-    ggplot2 (>= 3.0),
+    ggplot2 (>= 3.0.0),
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
