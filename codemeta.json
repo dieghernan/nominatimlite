@@ -82,6 +82,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "osmdata",
+      "name": "osmdata",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=osmdata"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -184,7 +196,7 @@
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
-  "fileSize": "169.448KB",
+  "fileSize": "169.468KB",
   "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://codecov.io/gh/dieghernan/nominatimlite"],
   "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
   "developmentStatus": "https://www.repostatus.org/#active",
