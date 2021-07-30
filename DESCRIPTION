@@ -30,6 +30,7 @@ Imports:
 Suggests: 
     ggplot2 (>= 3.0.0),
     knitr,
+    osmdata,
     rmarkdown,
     testthat (>= 3.0.0),
     tidygeocoder
