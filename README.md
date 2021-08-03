@@ -164,3 +164,29 @@ reverse <- reverse_geo_lite(
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
 the parameters available.
+
+## Citation
+
+If you need a citation, use:
+
+``` r
+citation("nominatimlite")
+#> 
+#> To cite the 'nominatimlite' package in publications use:
+#> 
+#>   Hernangómez, D (2021). nominatimlite: Interface with 'Nominatim' API
+#>   Service. R package version 0.0.1.9010.
+#>   http://doi.org/10.5281/zenodo.5113195. Package url:
+#>   https://dieghernan.github.io/nominatimlite/
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {nominatimlite: Interface with 'Nominatim' API Service},
+#>     author = {Diego Hernangómez},
+#>     year = {2021},
+#>     note = {R package version 0.0.1.9010},
+#>     url = {https://dieghernan.github.io/nominatimlite/},
+#>     doi = {10.5281/zenodo.5113195},
+#>   }
+```

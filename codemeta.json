@@ -196,7 +196,7 @@
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
-  "fileSize": "169.487KB",
+  "fileSize": "170.167KB",
   "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://codecov.io/gh/dieghernan/nominatimlite"],
   "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
   "developmentStatus": "https://www.repostatus.org/#active",
