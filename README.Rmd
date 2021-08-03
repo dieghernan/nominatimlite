@@ -172,3 +172,11 @@ knitr::kable(reverse)
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
 parameters available.
+
+## Citation
+
+If you need a citation, use:
+
+```{r}
+citation("nominatimlite")
+```
