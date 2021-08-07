@@ -1,17 +1,11 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nominatimlite",
   "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract\n    coordinates from addresses, find places near a set of coordinates,\n    search for amenities and return spatial objects on 'sf' format.",
   "name": "nominatimlite: Interface with 'Nominatim' API Service",
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
-  "relatedLink": [
-    "https://dieghernan.github.io/geocoderlite/",
-    "https://dieghernan.github.io/nominatimlite/"
-  ],
+  "relatedLink": "https://dieghernan.github.io/nominatimlite/",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.0.1.9010",
@@ -30,7 +24,6 @@
       "@id": "https://orcid.org/0000-0001-8457-4658"
     }
   ],
-  "contributor": {},
   "copyrightHolder": [
     {
       "@type": "Person",
@@ -44,7 +37,6 @@
       "name": "OpenStreetMap contributors"
     }
   ],
-  "funder": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -130,14 +122,14 @@
       "sameAs": "https://CRAN.R-project.org/package=tidygeocoder"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.6.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
@@ -150,7 +142,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
@@ -163,7 +155,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -176,7 +168,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -189,31 +181,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
-    }
-  ],
-  "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
-  "fileSize": "170.167KB",
-  "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://codecov.io/gh/dieghernan/nominatimlite"],
-  "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
-  "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": [
-    "r-package",
-    "geocoding",
-    "openstreetmaps",
-    "nominatim",
-    "rstats",
-    "r",
-    "spatial",
-    "api",
-    "openstreetmap",
-    "reverse-geocoding",
-    "shapefile",
-    "address"
-  ],
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "292.619KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
