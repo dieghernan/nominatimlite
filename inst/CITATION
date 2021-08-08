@@ -1,7 +1,6 @@
 citHeader("To cite the 'nominatimlite' package in publications use:")
 
 year = format(Sys.time(), "%Y")
-vers = paste('R package version', meta$Version)
 url = 'https://dieghernan.github.io/nominatimlite/'
 
 citEntry(
@@ -9,8 +8,7 @@ citEntry(
   title = paste('nominatimlite:', meta$Title),
   author = "Diego Hernangómez",
   year = year,
-  note = vers,
   url = url,
   doi = '10.5281/zenodo.5113195',
-  textVersion = paste0('Hernangómez, D (', year, '). nominatimlite: ', meta$Title, '. ', vers, '. http://doi.org/10.5281/zenodo.5113195. Package url: ', url)
+  textVersion = paste0('Hernangómez, D (', year, '). nominatimlite: Interface with Nominatim API Service. http://doi.org/10.5281/zenodo.5113195. Package url: ', url)
 )
