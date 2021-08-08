@@ -174,9 +174,8 @@ citation("nominatimlite")
 #> 
 #> To cite the 'nominatimlite' package in publications use:
 #> 
-#>   Hernangómez, D (2021). nominatimlite: Interface with 'Nominatim' API
-#>   Service. R package version 0.0.1.9010.
-#>   http://doi.org/10.5281/zenodo.5113195. Package url:
+#>   Hernangómez, D (2021). nominatimlite: Interface with Nominatim API
+#>   Service. http://doi.org/10.5281/zenodo.5113195. Package url:
 #>   https://dieghernan.github.io/nominatimlite/
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -185,7 +184,6 @@ citation("nominatimlite")
 #>     title = {nominatimlite: Interface with 'Nominatim' API Service},
 #>     author = {Diego Hernangómez},
 #>     year = {2021},
-#>     note = {R package version 0.0.1.9010},
 #>     url = {https://dieghernan.github.io/nominatimlite/},
 #>     doi = {10.5281/zenodo.5113195},
 #>   }
