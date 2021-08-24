@@ -188,7 +188,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "290.057KB",
+  "fileSize": "290.845KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -200,7 +200,7 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "nominatimlite: ",
+      "name": "nominatimlite: Interface with Nominatim API Service",
       "identifier": "10.5281/zenodo.5113195",
       "url": "https://dieghernan.github.io/nominatimlite/",
       "@id": "https://doi.org/10.5281/zenodo.5113195",

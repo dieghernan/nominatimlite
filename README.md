@@ -181,7 +181,7 @@ citation("nominatimlite")
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {nominatimlite: Interface with 'Nominatim' API Service},
+#>     title = {nominatimlite: Interface with Nominatim API Service},
 #>     author = {Diego Hernangómez},
 #>     year = {2021},
 #>     url = {https://dieghernan.github.io/nominatimlite/},
