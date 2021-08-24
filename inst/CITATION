@@ -5,7 +5,7 @@ url = 'https://dieghernan.github.io/nominatimlite/'
 
 citEntry(
   entry = 'manual',
-  title = paste('nominatimlite:', meta$Title),
+  title = paste('nominatimlite:', "Interface with Nominatim API Service"),
   author = "Diego Hernangómez",
   year = year,
   url = url,
