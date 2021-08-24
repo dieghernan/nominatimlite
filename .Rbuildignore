@@ -17,3 +17,4 @@
 ^_pkgdown\.yaml$
 ^_pkgdown\.yml$
 ^revdep$
+^CITATION\.cff$
