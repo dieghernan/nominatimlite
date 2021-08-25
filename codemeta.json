@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
   "author": [
     {
       "@type": "Person",
@@ -188,7 +188,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "292.619KB",
+  "fileSize": "290.845KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -200,10 +200,9 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "nominatimlite: ",
+      "name": "nominatimlite: Interface with Nominatim API Service",
       "identifier": "10.5281/zenodo.5113195",
       "url": "https://dieghernan.github.io/nominatimlite/",
-      "description": "R package version ",
       "@id": "https://doi.org/10.5281/zenodo.5113195",
       "sameAs": "https://doi.org/10.5281/zenodo.5113195"
     }
