@@ -21,10 +21,10 @@ test_that("Checking query", {
 
 test_that("Checking geometry type", {
   expect_true(
-    sf::st_geometry_type(geo_lite_sf("Madrid")) == "POINT"
+    sf::st_geometry_type(geo_lite_sf("Pentagon")) == "POINT"
   )
   expect_false(
-    sf::st_geometry_type(geo_lite_sf("Madrid",
+    sf::st_geometry_type(geo_lite_sf("Pentagon",
       polygon = TRUE
     )) == "POINT"
   )
