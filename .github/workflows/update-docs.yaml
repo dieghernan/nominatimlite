@@ -29,13 +29,8 @@ jobs:
             devtools
             rcmdcheck
             pkgdown
+            dieghernan/pkgdev
           needs: website
-      
-
-      - name: Install pkgdev
-        run: |
-          devtools::install_github('dieghernan/pkgdev', dependencies = TRUE)
-        shell: Rscript {0}
 
       - name: Install package
         run: |
