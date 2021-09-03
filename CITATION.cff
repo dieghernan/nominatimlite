@@ -1,21 +1,21 @@
 cff-version: 1.2.0
-message: "To cite package 'nominatimlite' in publications use:"
-authors:
-- family-names: "Hernangómez"
-  given-names: "Diego"
-  orcid: "https://orcid.org/0000-0001-8457-4658"
-title: "nominatimlite"
-doi: 10.5281/zenodo.5113195
-repository-code: "https://github.com/dieghernan/nominatimlite"
-url: https://dieghernan.github.io/nominatimlite/
+message: If you use this software, please cite it using these metadata.
+type: software
 license: MIT
-abstract: "Lite interface for getting data from OSM service Nominatim"
-preferred-citation:
-  authors:
-    - family-names: Hernangómez
-      given-names: Diego
-      orcid: https://orcid.org/0000-0001-8457-4658
-  title: "nominatimlite: Interface with Nominatim API Service"
-  type: software
-  url: https://dieghernan.github.io/nominatimlite/
-  doi: 10.5281/zenodo.5113195
+title: 'nominatimlite: Interface with ''Nominatim'' API Service'
+version: 0.0.1.9010
+abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
+  Extract coordinates from addresses, find places near a set of coordinates, search
+  for amenities and return spatial objects on 'sf' format.
+authors:
+- family-names: Hernangómez
+  given-names: Diego
+  email: diego.hernangomezherrero@gmail.com
+  orcid: https://orcid.org/0000-0001-8457-4658
+repository-code: https://github.com/dieghernan/nominatimlite
+url: https://dieghernan.github.io/nominatimlite/
+contact:
+- family-names: Hernangómez
+  given-names: Diego
+  email: diego.hernangomezherrero@gmail.com
+  orcid: https://orcid.org/0000-0001-8457-4658
