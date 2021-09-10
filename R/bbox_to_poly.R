@@ -11,7 +11,10 @@
 #'
 #' @return A `sf` object
 #'
-#' @seealso [geo_amenity()], [sf::st_as_sfc()]
+#' @seealso [sf::st_as_sfc()]
+#'
+#' @family spatial
+#' @family amenity
 #'
 #' @details
 #'

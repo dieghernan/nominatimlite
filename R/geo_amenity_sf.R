@@ -19,7 +19,8 @@
 #' For a full list of valid amenities see
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity>.
 #'
-#' @seealso [geo_amenity], [nominatimlite::osm_amenities]
+#' @family spatial
+#' @family amenity
 #'
 #' @examples
 #' \donttest{

@@ -35,7 +35,8 @@
 #' }
 #' @export
 #'
-#' @seealso [tidygeocoder::geo()]
+#' @seealso [geo_lite_sf()], [tidygeocoder::geo()]
+#' @family geocoding
 geo_lite <- function(address,
                      lat = "lat",
                      long = "lon",

@@ -82,7 +82,7 @@
 #' @export
 #'
 #' @seealso [reverse_geo_lite()]
-
+#' @family spatial
 reverse_geo_lite_sf <- function(lat,
                                 long,
                                 address = "address",

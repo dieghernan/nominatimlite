@@ -61,7 +61,8 @@
 #' }
 #' @export
 #'
-#' @seealso [tidygeocoder::reverse_geo()]
+#' @seealso [reverse_geo_lite_sf()], [tidygeocoder::reverse_geo()]
+#' @family geocoding
 reverse_geo_lite <- function(lat,
                              long,
                              address = "address",

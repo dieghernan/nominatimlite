@@ -13,7 +13,8 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @seealso [geo_address_lookup()], [geo_lite_sf()]
+#' @family spatial
+#' @family lookup
 #'
 #' @examples
 #'

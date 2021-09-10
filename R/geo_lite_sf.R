@@ -53,6 +53,7 @@
 #' @export
 #'
 #' @seealso [geo_lite()]
+#' @family spatial
 
 geo_lite_sf <- function(address,
                         limit = 1,

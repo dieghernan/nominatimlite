@@ -4,8 +4,11 @@
 #' Database with the list of amenities available on OpenStreetMap.
 #'
 #'
+#' @family datasets
+#' @family amenity
+#'
 #' @encoding UTF-8
-
+#'
 #'
 #' @name osm_amenities
 #'

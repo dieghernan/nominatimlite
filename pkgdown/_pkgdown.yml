@@ -20,20 +20,13 @@ reference:
 - title: Geocoding and reverse geocoding
   desc: These functions return `tibbles`
   contents:
-  - geo_lite
-  - reverse_geo_lite
-  - geo_amenity
-  - geo_address_lookup
+  - has_concept("geocoding")
 - title: Get spatial objects
   desc: These functions return `sf` objects
   contents:
-  - geo_lite_sf
-  - reverse_geo_lite_sf
-  - geo_amenity_sf
-  - geo_address_lookup_sf
-  - bbox_to_poly
+  - has_concept("spatial")
 - title: Misc
   desc: Other objects included in the package
   contents:
-  - osm_amenities
+  - has_concept("dataset")
 

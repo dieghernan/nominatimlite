@@ -23,6 +23,9 @@
 #'
 #' @return A `tibble` with the results.
 #'
+#' @family datasets
+#' @family amenity
+#'
 #' @details
 #'
 #' Bounding boxes can be located using different online tools, as
