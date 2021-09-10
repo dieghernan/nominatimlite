@@ -29,4 +29,7 @@ reference:
   desc: Other objects included in the package
   contents:
   - has_concept("dataset")
+  title: About the package
+  contents:
+  - nominatimlite-package
 
