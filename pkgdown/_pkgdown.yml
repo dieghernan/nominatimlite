@@ -21,15 +21,18 @@ reference:
   desc: These functions return `tibbles`
   contents:
   - has_concept("geocoding")
+  
 - title: Get spatial objects
   desc: These functions return `sf` objects
   contents:
   - has_concept("spatial")
+  
 - title: Misc
   desc: Other objects included in the package
   contents:
-  - has_concept("dataset")
-  title: About the package
+  - has_concept("datasets")
+  
+- title: About the package
   contents:
   - nominatimlite-package
 
