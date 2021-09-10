@@ -100,7 +100,6 @@ ggplot(LA) +
 You can also extract polygons using the option `polygon = TRUE`:
 
 ``` r
-
 pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
 
 ggplot(pentagon_poly) +

@@ -128,3 +128,14 @@ amenities <- nominatimlite::osm_amenities
 
 amenities
 }
+\seealso{
+Other datasets: 
+\code{\link{geo_amenity}()}
+
+Other amenity: 
+\code{\link{bbox_to_poly}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_amenity}()}
+}
+\concept{amenity}
+\concept{datasets}

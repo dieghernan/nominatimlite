@@ -1,9 +1,10 @@
 cff-version: 1.2.0
-message: If you use this software, please cite it using these metadata.
+message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
 version: 0.0.1.9010
+doi: 10.5281/zenodo.5113195
 abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
   Extract coordinates from addresses, find places near a set of coordinates, search
   for amenities and return spatial objects on 'sf' format.
@@ -12,6 +13,15 @@ authors:
   given-names: Diego
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
+preferred-citation:
+  authors:
+  - family-names: Hernangómez
+    given-names: Diego
+  title: 'nominatimlite: Interface with Nominatim API Service'
+  year: '2021'
+  url: https://dieghernan.github.io/nominatimlite/
+  doi: 10.5281/zenodo.5113195
+  type: manual
 repository-code: https://github.com/dieghernan/nominatimlite
 url: https://dieghernan.github.io/nominatimlite/
 contact:

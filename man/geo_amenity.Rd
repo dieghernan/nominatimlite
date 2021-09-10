@@ -95,4 +95,14 @@ geo_amenity(
 }
 \seealso{
 \link{osm_amenities}
+
+Other datasets: 
+\code{\link{osm_amenities}}
+
+Other amenity: 
+\code{\link{bbox_to_poly}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{osm_amenities}}
 }
+\concept{amenity}
+\concept{datasets}

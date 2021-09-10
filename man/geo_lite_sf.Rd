@@ -83,4 +83,11 @@ ggplot(Starbucks) +
 }
 \seealso{
 \code{\link[=geo_lite]{geo_lite()}}
+
+Other spatial: 
+\code{\link{bbox_to_poly}()},
+\code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{reverse_geo_lite_sf}()}
 }
+\concept{spatial}

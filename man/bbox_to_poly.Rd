@@ -52,5 +52,18 @@ ggplot(bbox_Texas) +
 }
 }
 \seealso{
-\code{\link[=geo_amenity]{geo_amenity()}}, \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}}
+\code{\link[sf:st_as_sfc]{sf::st_as_sfc()}}
+
+Other spatial: 
+\code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{reverse_geo_lite_sf}()}
+
+Other amenity: 
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_amenity}()},
+\code{\link{osm_amenities}}
 }
+\concept{amenity}
+\concept{spatial}

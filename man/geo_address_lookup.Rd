@@ -58,5 +58,12 @@ ids <- geo_address_lookup(
 ids
 }
 \seealso{
-\code{\link[=geo_lite]{geo_lite()}}
+Other geocoding: 
+\code{\link{geo_lite}()},
+\code{\link{reverse_geo_lite}()}
+
+Other lookup: 
+\code{\link{geo_address_lookup_sf}()}
 }
+\concept{geocoding}
+\concept{lookup}

@@ -62,5 +62,10 @@ geo_lite(c("Madrid", "Barcelona"),
 }
 }
 \seealso{
-\code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
+\code{\link[=geo_lite_sf]{geo_lite_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
+
+Other geocoding: 
+\code{\link{geo_address_lookup}()},
+\code{\link{reverse_geo_lite}()}
 }
+\concept{geocoding}

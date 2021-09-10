@@ -71,5 +71,14 @@ ggplot(NotreDame_poly) +
   geom_sf()
 }
 \seealso{
-\code{\link[=geo_address_lookup]{geo_address_lookup()}}, \code{\link[=geo_lite_sf]{geo_lite_sf()}}
+Other spatial: 
+\code{\link{bbox_to_poly}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{reverse_geo_lite_sf}()}
+
+Other lookup: 
+\code{\link{geo_address_lookup}()}
 }
+\concept{lookup}
+\concept{spatial}

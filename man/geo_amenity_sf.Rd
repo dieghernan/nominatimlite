@@ -97,5 +97,16 @@ ggplot(hosp) +
 }
 }
 \seealso{
-\link{geo_amenity}, \link{osm_amenities}
+Other spatial: 
+\code{\link{bbox_to_poly}()},
+\code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{reverse_geo_lite_sf}()}
+
+Other amenity: 
+\code{\link{bbox_to_poly}()},
+\code{\link{geo_amenity}()},
+\code{\link{osm_amenities}}
 }
+\concept{amenity}
+\concept{spatial}

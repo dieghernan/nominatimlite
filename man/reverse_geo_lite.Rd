@@ -80,5 +80,10 @@ reverse_geo_lite(
 }
 }
 \seealso{
-\code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
+
+Other geocoding: 
+\code{\link{geo_address_lookup}()},
+\code{\link{geo_lite}()}
 }
+\concept{geocoding}
