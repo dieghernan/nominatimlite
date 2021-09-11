@@ -11,6 +11,10 @@ test_that("Returning error", {
   expect_error(reverse_geo_lite("a", "a"))
 })
 
+test_that("Data format", {
+  expect_true(is.data.frame(reverse_geo_lite(0, 0)))
+  expect_false(inherits(reverse_geo_lite(0, 0), "sf")) # this is _not_ a _sf function
+})
 
 test_that("Checking query", {
   expect_equal(ncol(reverse_geo_lite(0, 0)), 3)
@@ -22,4 +26,5 @@ test_that("Checking query", {
   expect_equal(nrow(reverse_geo_lite(0, 40,
     custom_query = list(extratags = 1)
   )), 1)
+
 })

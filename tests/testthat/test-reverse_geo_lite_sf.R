@@ -11,6 +11,10 @@ test_that("Returning error", {
   expect_error(reverse_geo_lite_sf("a", "a"))
 })
 
+test_that("Data format", {
+  expect_true(is.data.frame(reverse_geo_lite_sf(0, 0)))
+  expect_s3_class(reverse_geo_lite_sf(0, 0), "sf")
+})
 
 test_that("Checking query", {
   expect_equal(ncol(reverse_geo_lite_sf(0, 0)), 4)
@@ -26,4 +30,5 @@ test_that("Checking query", {
     polygon = TRUE,
     custom_query = list(extratags = 1)
   )), 1)
+
 })

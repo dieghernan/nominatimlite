@@ -5,6 +5,16 @@ test_that("Returning empty query", {
   ))
 })
 
+test_that("Data format", {
+  expect_true(is.data.frame(geo_amenity(
+    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+    c("pub", "restaurant"),
+  )))
+  expect_false(inherits(geo_amenity(
+    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+    c("pub", "restaurant"),
+  ), "sf")) # this is _not_ a _sf function
+})
 
 test_that("Checking query", {
   expect_equal(ncol(geo_amenity(
@@ -37,4 +47,5 @@ test_that("Checking query", {
     limit = 1,
     strict = TRUE
   )), 2)
+
 })

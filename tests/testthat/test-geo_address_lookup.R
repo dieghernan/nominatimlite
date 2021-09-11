@@ -2,6 +2,10 @@ test_that("Returning empty query", {
   expect_warning(geo_address_lookup("xbzbzbzoa aiaia", "R"))
 })
 
+test_that("Data format", {
+  expect_true(is.data.frame(geo_address_lookup(34633854, "W")))
+  expect_false(inherits(geo_address_lookup(34633854, "W"), "sf")) # this is _not_ a _sf function
+})
 
 test_that("Checking query", {
   expect_equal(ncol(geo_address_lookup(34633854, "W")), 4)
@@ -13,4 +17,5 @@ test_that("Checking query", {
   expect_equal(nrow(geo_address_lookup(34633854, "W",
     custom_query = list(countrycode = "us")
   )), 1)
+
 })
