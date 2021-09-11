@@ -96,7 +96,6 @@ geo_amenity(
 \seealso{
 \link{osm_amenities}
 
-
 Other amenity: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity_sf}()},
