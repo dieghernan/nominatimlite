@@ -96,8 +96,6 @@ geo_amenity(
 \seealso{
 \link{osm_amenities}
 
-Other datasets: 
-\code{\link{osm_amenities}}
 
 Other amenity: 
 \code{\link{bbox_to_poly}()},
@@ -105,4 +103,3 @@ Other amenity:
 \code{\link{osm_amenities}}
 }
 \concept{amenity}
-\concept{datasets}

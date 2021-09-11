@@ -23,7 +23,6 @@
 #'
 #' @return A `tibble` with the results.
 #'
-#' @family datasets
 #' @family amenity
 #'
 #' @details
