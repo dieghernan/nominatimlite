@@ -2,6 +2,11 @@ test_that("Returning empty query", {
   expect_warning(geo_lite("xbzbzbzoa aiaia"))
 })
 
+test_that("Data format", {
+  expect_true(is.data.frame(geo_lite("Madrid")))
+  expect_false(inherits(geo_lite("Madrid"), "sf")) # this is _not_ a _sf function
+})
+
 
 test_that("Checking query", {
   expect_equal(ncol(geo_lite(c("Madrid", "Barcelona"))), 4)
