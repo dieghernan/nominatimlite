@@ -110,15 +110,13 @@ ggplot(pentagon_poly) +
 <img src="man/figures/README-penta-1.png" width="100%" />
 
 ``` r
-ohio_point <- geo_lite_sf("Ohio, USA") # default - a point
-
+dayton <- geo_lite_sf("Dayton, OH") # default - a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
-
 ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line
 
 ggplot() +
   geom_sf(data = ohio_state) +
-  geom_sf(data = ohio_point, color = "red", pch = 4) +
+  geom_sf(data = dayton, color = "red", pch = 4) +
   geom_sf(data = ohio_river, color = "blue")
 ```
 
