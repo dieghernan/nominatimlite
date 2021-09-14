@@ -5,8 +5,8 @@
 #' spatial object.
 #'
 #'
-#' @param polygon Logical `TRUE/FALSE`. Whether to return only spatial points (
-#'   `FALSE`) or potentially other shapes as polygons or lines (`TRUE`).
+#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial points (
+#'   `TRUE`) or potentially other shapes as polygons or lines (`FALSE`).
 #'
 #' @inheritParams geo_lite
 #'
@@ -26,7 +26,7 @@
 #' ggplot(pentagon) +
 #'   geom_sf()
 #'
-#' pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
+#' pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
 #'
 #' ggplot(pentagon_poly) +
 #'   geom_sf()
@@ -35,7 +35,7 @@
 #'
 #' Madrid <- geo_lite_sf("Madrid",
 #'   limit = 2,
-#'   polygon = TRUE, full_results = TRUE
+#'   points_only = FALSE, full_results = TRUE
 #' )
 #'
 #'
@@ -61,7 +61,7 @@ geo_lite_sf <- function(address,
                         full_results = FALSE,
                         verbose = FALSE,
                         custom_query = list(),
-                        polygon = FALSE) {
+                        points_only = TRUE) {
   address <- unique(address)
 
   # nocov start
@@ -92,7 +92,7 @@ geo_lite_sf <- function(address,
       full_results,
       verbose,
       custom_query,
-      polygon
+      points_only
     )
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
@@ -109,7 +109,7 @@ geo_lite_sf_single <- function(address,
                                full_results = FALSE,
                                verbose = FALSE,
                                custom_query = list(),
-                               polygon = FALSE) {
+                               points_only = TRUE) {
   api <- "https://nominatim.openstreetmap.org/search?q="
 
   # Replace spaces with +
@@ -118,7 +118,7 @@ geo_lite_sf_single <- function(address,
   # Compose url
   url <- paste0(api, address2, "&format=geojson&limit=", limit)
 
-  if (isTRUE(polygon)) {
+  if (!isTRUE(points_only)) {
     url <- paste0(url, "&polygon_geojson=1")
   }
 

@@ -22,12 +22,12 @@ test_that("Checking query", {
     full_results = TRUE
   )), 4)
   expect_equal(nrow(reverse_geo_lite_sf(0, 40,
-    polygon = TRUE,
+    points_only = FALSE,
     custom_query = list(zoom = 0)
   )), 1)
 
   expect_equal(nrow(reverse_geo_lite_sf(0, 40,
-    polygon = TRUE,
+    points_only = FALSE,
     custom_query = list(extratags = 1)
   )), 1)
 

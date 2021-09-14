@@ -39,7 +39,7 @@ ggplot(bbox_GER_sf) +
   geom_sf()
 \donttest{
 # Extract the bounding box of a sf object
-Texas <- geo_lite_sf("Texas", polygon = TRUE)
+Texas <- geo_lite_sf("Texas", points_only = FALSE)
 bbox <- sf::st_bbox(Texas)
 
 bbox

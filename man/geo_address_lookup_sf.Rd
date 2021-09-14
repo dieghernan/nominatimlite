@@ -11,7 +11,7 @@ geo_address_lookup_sf(
   return_addresses = TRUE,
   verbose = FALSE,
   custom_query = list(),
-  polygon = FALSE
+  points_only = TRUE
 )
 }
 \arguments{
@@ -33,8 +33,8 @@ return_addresses to FALSE does not prevent this.}
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (i.e. \code{list(countrycodes = "US")}). See Details.}
 
-\item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
+\code{TRUE}) or potentially other shapes as polygons or lines (\code{FALSE}).}
 }
 \value{
 A \code{sf} object with the results.
@@ -64,7 +64,7 @@ ggplot(NotreDame) +
 NotreDame_poly <- geo_address_lookup_sf(
   osm_ids = c(201611261),
   type = c("W"),
-  polygon = TRUE
+  points_only = FALSE
 )
 
 ggplot(NotreDame_poly) +

@@ -11,7 +11,7 @@ geo_lite_sf(
   full_results = FALSE,
   verbose = FALSE,
   custom_query = list(),
-  polygon = FALSE
+  points_only = TRUE
 )
 }
 \arguments{
@@ -32,8 +32,8 @@ If FALSE then only longitude and latitude are returned from the geocoder service
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (i.e. \code{list(countrycodes = "US")}). See Details.}
 
-\item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
+\code{TRUE}) or potentially other shapes as polygons or lines (\code{FALSE}).}
 }
 \value{
 A \code{sf} object with the results.
@@ -56,7 +56,7 @@ pentagon <- geo_lite_sf("Pentagon")
 ggplot(pentagon) +
   geom_sf()
 
-pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
+pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
 
 ggplot(pentagon_poly) +
   geom_sf()
@@ -65,7 +65,7 @@ ggplot(pentagon_poly) +
 
 Madrid <- geo_lite_sf("Madrid",
   limit = 2,
-  polygon = TRUE, full_results = TRUE
+  points_only = FALSE, full_results = TRUE
 )
 
 

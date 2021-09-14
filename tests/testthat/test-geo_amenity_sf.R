@@ -25,7 +25,7 @@ test_that("Checking query", {
   expect_gt(ncol(geo_amenity_sf(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
     "pub", full_results = TRUE,
-    polygon = TRUE
+    points_only = FALSE
   )), 3)
   expect_gt(nrow(geo_amenity_sf(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),

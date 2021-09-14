@@ -48,7 +48,7 @@
 #'
 #' hosp <- geo_amenity_sf(bbox,
 #'   "hospital",
-#'   polygon = TRUE
+#'   points_only = FALSE
 #' )
 #'
 #' ggplot(hosp) +
@@ -62,7 +62,7 @@ geo_amenity_sf <- function(bbox,
                            return_addresses = TRUE,
                            verbose = FALSE,
                            custom_query = list(),
-                           polygon = FALSE,
+                           points_only = TRUE,
                            strict = FALSE) {
   amenity <- unique(amenity)
 
@@ -95,7 +95,7 @@ geo_amenity_sf <- function(bbox,
       return_addresses,
       verbose,
       custom_query,
-      polygon
+      points_only
     )
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
@@ -120,7 +120,7 @@ geo_amenity_sf_single <- function(bbox,
                                   return_addresses = TRUE,
                                   verbose = FALSE,
                                   custom_query = list(),
-                                  polygon = FALSE) {
+                                  points_only = TRUE) {
   bbox_txt <- paste0(bbox, collapse = ",")
 
 
@@ -138,7 +138,7 @@ geo_amenity_sf_single <- function(bbox,
     url <- paste0(url, "&addressdetails=1")
   }
 
-  if (isTRUE(polygon)) {
+  if (!isTRUE(points_only)) {
     url <- paste0(url, "&polygon_geojson=1")
   }
 

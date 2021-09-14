@@ -96,7 +96,7 @@ library(nominatimlite)
 
 # Extract some points - McDonalds in California
 
-LA <- geo_lite_sf("California", polygon = TRUE)
+LA <- geo_lite_sf("California", points_only = FALSE)
 
 McDonalds <- geo_lite_sf("McDonalds, California",
   limit = 50,
@@ -110,17 +110,31 @@ ggplot(LA) +
   geom_sf(data = McDonalds, col = "red")
 ```
 
-You can also extract polygons using the option `polygon = TRUE`:
+You can also extract polygon and line objects (as provided by the Nominatim API) using the option `points_only = FALSE`:
 
 ```{r penta }
 
-pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
+pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE) # a building - a polygon
 
 ggplot(pentagon_poly) +
   geom_sf()
 ```
 
+```{r line-object}
 
+
+ohio_point <- geo_lite_sf("Ohio, USA") # default - a point
+
+ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
+
+ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line
+
+ggplot() +
+  geom_sf(data = ohio_state) +
+  geom_sf(data = ohio_point, color = "red", pch = 4) +
+  geom_sf(data = ohio_river, color = "blue")
+
+```
 
 ### Geocoding and reverse geocoding
 

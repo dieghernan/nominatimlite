@@ -33,7 +33,7 @@
 #' NotreDame_poly <- geo_address_lookup_sf(
 #'   osm_ids = c(201611261),
 #'   type = c("W"),
-#'   polygon = TRUE
+#'   points_only = FALSE
 #' )
 #'
 #' ggplot(NotreDame_poly) +
@@ -45,7 +45,7 @@ geo_address_lookup_sf <- function(osm_ids,
                                   return_addresses = TRUE,
                                   verbose = FALSE,
                                   custom_query = list(),
-                                  polygon = FALSE) {
+                                  points_only = TRUE) {
   api <- "https://nominatim.openstreetmap.org/lookup?"
 
   # Prepare nodes
@@ -54,7 +54,7 @@ geo_address_lookup_sf <- function(osm_ids,
   # Compose url
   url <- paste0(api, "osm_ids=", nodes, "&format=geojson")
 
-  if (isTRUE(polygon)) {
+  if (!isTRUE(points_only)) {
     url <- paste0(url, "&polygon_geojson=1")
   }
 
