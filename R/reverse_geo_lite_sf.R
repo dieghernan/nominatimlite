@@ -49,7 +49,7 @@
 #' Col_sf <- reverse_geo_lite_sf(
 #'   lat = Coliseum$lat,
 #'   lon = Coliseum$lon,
-#'   polygon = TRUE
+#'   points_only = FALSE
 #' )
 #'
 #' ggplot(Col_sf) +
@@ -61,7 +61,7 @@
 #'   lat = Coliseum$lat,
 #'   lon = Coliseum$lon,
 #'   custom_query = list(zoom = 10),
-#'   polygon = TRUE
+#'   points_only = FALSE
 #' )
 #'
 #' ggplot(Rome_sf) +
@@ -73,7 +73,7 @@
 #'   lat = Coliseum$lat,
 #'   lon = Coliseum$lon,
 #'   custom_query = list(zoom = 8),
-#'   polygon = TRUE
+#'   points_only = FALSE
 #' )
 #'
 #' ggplot(County_sf) +
@@ -90,7 +90,7 @@ reverse_geo_lite_sf <- function(lat,
                                 return_coords = TRUE,
                                 verbose = FALSE,
                                 custom_query = list(),
-                                polygon = FALSE) {
+                                points_only = TRUE) {
 
   # Check inputs
 
@@ -137,7 +137,7 @@ reverse_geo_lite_sf <- function(lat,
       return_coords,
       verbose,
       custom_query,
-      polygon
+      points_only
     )
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
@@ -155,7 +155,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
                                        return_coords = TRUE,
                                        verbose = TRUE,
                                        custom_query = list(),
-                                       polygon = TRUE) {
+                                       points_only = FALSE) {
   api <- "https://nominatim.openstreetmap.org/reverse?"
 
   url <- paste0(
@@ -166,7 +166,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
     "&format=geojson"
   )
 
-  if (isTRUE(polygon)) {
+  if (!isTRUE(points_only)) {
     url <- paste0(url, "&polygon_geojson=1")
   }
 

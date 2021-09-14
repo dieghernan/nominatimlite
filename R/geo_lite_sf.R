@@ -4,9 +4,17 @@
 #' This function allows you to geocode addresses and return the corresponding
 #' spatial object.
 #'
+#' The parameter `points_only` specifies whether the function results will be points (all Nominatim results are guaranteed to have at least point geometry) or possibly other spatial objects.
 #'
-#' @param polygon Logical `TRUE/FALSE`. Whether to return only spatial points (
-#'   `FALSE`) or potentially other shapes as polygons or lines (`TRUE`).
+#' Note that the type of geometry returned in case of \code{points_only = FALSE} will depend on the object being geocoded:
+#'
+#'   * administrative areas, major buildings and the like will be returned as polygons
+#'   * rivers, roads and their like as lines
+#'   * amenities may be points even in case of a \code{points_only = FALSE} call
+#'
+#' The function is vectorized, allowing for multiple addresses to be geocoded; in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+#'
+#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`, which is the default) or potentially other shapes as provided by the Nominatim API (`FALSE`).
 #'
 #' @inheritParams geo_lite
 #'
@@ -26,7 +34,7 @@
 #' ggplot(pentagon) +
 #'   geom_sf()
 #'
-#' pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
+#' pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
 #'
 #' ggplot(pentagon_poly) +
 #'   geom_sf()
@@ -35,7 +43,7 @@
 #'
 #' Madrid <- geo_lite_sf("Madrid",
 #'   limit = 2,
-#'   polygon = TRUE, full_results = TRUE
+#'   points_only = FALSE, full_results = TRUE
 #' )
 #'
 #'
@@ -61,7 +69,7 @@ geo_lite_sf <- function(address,
                         full_results = FALSE,
                         verbose = FALSE,
                         custom_query = list(),
-                        polygon = FALSE) {
+                        points_only = TRUE) {
   address <- unique(address)
 
   # nocov start
@@ -92,7 +100,7 @@ geo_lite_sf <- function(address,
       full_results,
       verbose,
       custom_query,
-      polygon
+      points_only
     )
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
@@ -109,7 +117,7 @@ geo_lite_sf_single <- function(address,
                                full_results = FALSE,
                                verbose = FALSE,
                                custom_query = list(),
-                               polygon = FALSE) {
+                               points_only = TRUE) {
   api <- "https://nominatim.openstreetmap.org/search?q="
 
   # Replace spaces with +
@@ -118,7 +126,7 @@ geo_lite_sf_single <- function(address,
   # Compose url
   url <- paste0(api, address2, "&format=geojson&limit=", limit)
 
-  if (isTRUE(polygon)) {
+  if (!isTRUE(points_only)) {
     url <- paste0(url, "&polygon_geojson=1")
   }
 

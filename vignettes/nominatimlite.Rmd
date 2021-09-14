@@ -57,7 +57,7 @@ library(nominatimlite)
 
 # Extract some points - McDonalds in California
 
-LA <- geo_lite_sf("California", polygon = TRUE)
+LA <- geo_lite_sf("California", points_only = FALSE)
 
 McDonalds <- geo_lite_sf("McDonalds, California",
   limit = 50,
@@ -71,11 +71,11 @@ ggplot(LA) +
   geom_sf(data = McDonalds, col = "red")
 ```
 
-You can also extract polygons using the option `polygon = TRUE`:
+You can also extract polygon and line objects (if available) using the option `points_only = FALSE`:
 
 ```{r penta }
 
-pentagon_poly <- geo_lite_sf("Pentagon", polygon = TRUE)
+pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
 
 ggplot(pentagon_poly) +
   geom_sf()

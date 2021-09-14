@@ -12,7 +12,7 @@ reverse_geo_lite_sf(
   return_coords = TRUE,
   verbose = FALSE,
   custom_query = list(),
-  polygon = FALSE
+  points_only = TRUE
 )
 }
 \arguments{
@@ -34,8 +34,7 @@ most services return the input coordinates with \code{full_results = TRUE} and s
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (ie. \code{list(zoom = 3)}). See Details.}
 
-\item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (\code{TRUE}, which is the default) or potentially other shapes as provided by the Nominatim API (\code{FALSE}).}
 }
 \value{
 A \code{sf} object with the results.
@@ -73,7 +72,7 @@ Coliseum <- geo_lite("Coliseo, Rome, Italy")
 Col_sf <- reverse_geo_lite_sf(
   lat = Coliseum$lat,
   lon = Coliseum$lon,
-  polygon = TRUE
+  points_only = FALSE
 )
 
 ggplot(Col_sf) +
@@ -85,7 +84,7 @@ Rome_sf <- reverse_geo_lite_sf(
   lat = Coliseum$lat,
   lon = Coliseum$lon,
   custom_query = list(zoom = 10),
-  polygon = TRUE
+  points_only = FALSE
 )
 
 ggplot(Rome_sf) +
@@ -97,7 +96,7 @@ County_sf <- reverse_geo_lite_sf(
   lat = Coliseum$lat,
   lon = Coliseum$lon,
   custom_query = list(zoom = 8),
-  polygon = TRUE
+  points_only = FALSE
 )
 
 ggplot(County_sf) +

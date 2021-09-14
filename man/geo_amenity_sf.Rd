@@ -12,7 +12,7 @@ geo_amenity_sf(
   return_addresses = TRUE,
   verbose = FALSE,
   custom_query = list(),
-  polygon = FALSE,
+  points_only = TRUE,
   strict = FALSE
 )
 }
@@ -40,8 +40,7 @@ return_addresses to FALSE does not prevent this.}
 \item{custom_query}{API-specific parameters to be used.
 See \code{\link[=geo_lite]{geo_lite()}}.}
 
-\item{polygon}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{FALSE}) or potentially other shapes as polygons or lines (\code{TRUE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (\code{TRUE}, which is the default) or potentially other shapes as provided by the Nominatim API (\code{FALSE}).}
 
 \item{strict}{Logical TRUE/FALSE. Force the results to be included inside
 the \code{bbox}. Note that Nominatim default behaviour may return results located
@@ -89,7 +88,7 @@ ggplot(rest_pub) +
 
 hosp <- geo_amenity_sf(bbox,
   "hospital",
-  polygon = TRUE
+  points_only = FALSE
 )
 
 ggplot(hosp) +

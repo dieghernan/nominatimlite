@@ -27,6 +27,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Jindra Lacko [contributor, reviewer]
   \item OpenStreetMap contributors (for the data.) [copyright holder]
 }
 

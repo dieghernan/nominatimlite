@@ -30,7 +30,7 @@ test_that("Checking geometry type", {
   )
   expect_true(
     sf::st_geometry_type(geo_lite_sf("Pentagon",
-      polygon = TRUE
+      points_only = FALSE
     )) == "POLYGON"
   )
 
