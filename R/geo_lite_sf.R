@@ -4,9 +4,17 @@
 #' This function allows you to geocode addresses and return the corresponding
 #' spatial object.
 #'
+#' The parameter `points_only` specifies whether the function results will be points (all Nominatim results are guaranteed to have at least point geometry) or possibly other spatial objects.
 #'
-#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial points (
-#'   `TRUE`) or potentially other shapes as polygons or lines (`FALSE`).
+#' Note that the type of geometry returned in case of \code{points_only = FALSE} will depend on the object being geocoded:
+#'
+#'   * administrative areas, major buildings and the like will be returned as polygons
+#'   * rivers, roads and their like as lines
+#'   * amenities may be points even in case of a \code{points_only = FALSE} call
+#'
+#' The function is vectorized, allowing for multiple addresses to be geocoded; in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+#'
+#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`, which is the default) or potentially other shapes as provided by the Nominatim API (`FALSE`).
 #'
 #' @inheritParams geo_lite
 #'

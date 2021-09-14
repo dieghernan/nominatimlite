@@ -32,8 +32,7 @@ If FALSE then only longitude and latitude are returned from the geocoder service
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (i.e. \code{list(countrycodes = "US")}). See Details.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{TRUE}) or potentially other shapes as polygons or lines (\code{FALSE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (\code{TRUE}, which is the default) or potentially other shapes as provided by the Nominatim API (\code{FALSE}).}
 }
 \value{
 A \code{sf} object with the results.
@@ -41,6 +40,17 @@ A \code{sf} object with the results.
 \description{
 This function allows you to geocode addresses and return the corresponding
 spatial object.
+
+The parameter \code{points_only} specifies whether the function results will be points (all Nominatim results are guaranteed to have at least point geometry) or possibly other spatial objects.
+
+Note that the type of geometry returned in case of \code{points_only = FALSE} will depend on the object being geocoded:
+\itemize{
+\item administrative areas, major buildings and the like will be returned as polygons
+\item rivers, roads and their like as lines
+\item amenities may be points even in case of a \code{points_only = FALSE} call
+}
+
+The function is vectorized, allowing for multiple addresses to be geocoded; in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

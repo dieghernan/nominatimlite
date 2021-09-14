@@ -33,8 +33,7 @@ return_addresses to FALSE does not prevent this.}
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (i.e. \code{list(countrycodes = "US")}). See Details.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{TRUE}) or potentially other shapes as polygons or lines (\code{FALSE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (\code{TRUE}, which is the default) or potentially other shapes as provided by the Nominatim API (\code{FALSE}).}
 }
 \value{
 A \code{sf} object with the results.

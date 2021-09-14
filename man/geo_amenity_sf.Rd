@@ -40,8 +40,7 @@ return_addresses to FALSE does not prevent this.}
 \item{custom_query}{API-specific parameters to be used.
 See \code{\link[=geo_lite]{geo_lite()}}.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{TRUE}) or potentially other shapes as polygons or lines (\code{FALSE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (\code{TRUE}, which is the default) or potentially other shapes as provided by the Nominatim API (\code{FALSE}).}
 
 \item{strict}{Logical TRUE/FALSE. Force the results to be included inside
 the \code{bbox}. Note that Nominatim default behaviour may return results located

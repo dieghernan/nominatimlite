@@ -34,8 +34,7 @@ most services return the input coordinates with \code{full_results = TRUE} and s
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (ie. \code{list(zoom = 3)}). See Details.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (
-\code{TRUE}) or potentially other shapes as polygons or lines (\code{FALSE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (\code{TRUE}, which is the default) or potentially other shapes as provided by the Nominatim API (\code{FALSE}).}
 }
 \value{
 A \code{sf} object with the results.
