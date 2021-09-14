@@ -21,7 +21,6 @@ test_that("Checking query", {
   expect_equal(nrow(geo_lite_sf("Madrid",
     custom_query = list(extratags = 1)
   )), 1)
-
 })
 
 test_that("Checking geometry type", {
@@ -33,5 +32,4 @@ test_that("Checking geometry type", {
       points_only = FALSE
     )) == "POLYGON"
   )
-
 })

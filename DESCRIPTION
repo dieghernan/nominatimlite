@@ -10,7 +10,7 @@ Authors@R:
              comment = c(ORCID = "0000-0001-8457-4658")),
       person(given = "Jindra",
              family = "Lacko",
-             role = c("ctb", "rev")),       
+             role = c("ctb", "rev")),
       person(given = "OpenStreetMap contributors",
              role = "cph",
              comment = "for the data."))

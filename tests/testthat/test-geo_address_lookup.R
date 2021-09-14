@@ -17,5 +17,4 @@ test_that("Checking query", {
   expect_equal(nrow(geo_address_lookup(34633854, "W",
     custom_query = list(countrycode = "us")
   )), 1)
-
 })

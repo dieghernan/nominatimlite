@@ -131,7 +131,6 @@ ggplot() +
   geom_sf(data = ohio_state) +
   geom_sf(data = dayton, color = "red", pch = 4) +
   geom_sf(data = ohio_river, color = "blue")
-
 ```
 
 ### Geocoding and reverse geocoding

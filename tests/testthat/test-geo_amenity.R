@@ -47,5 +47,4 @@ test_that("Checking query", {
     limit = 1,
     strict = TRUE
   )), 2)
-
 })

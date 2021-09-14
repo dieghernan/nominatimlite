@@ -24,6 +24,13 @@
       "@id": "https://orcid.org/0000-0001-8457-4658"
     }
   ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Jindra",
+      "familyName": "Lacko"
+    }
+  ],
   "copyrightHolder": [
     {
       "@type": "Person",
@@ -188,7 +195,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "187.403KB",
+  "fileSize": "213.56KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

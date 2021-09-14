@@ -30,5 +30,4 @@ test_that("Checking query", {
     points_only = FALSE,
     custom_query = list(extratags = 1)
   )), 1)
-
 })
