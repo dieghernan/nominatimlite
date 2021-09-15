@@ -4,7 +4,6 @@
 \alias{geo_address_lookup}
 \title{Query the address and other details of one or multiple OSM objects}
 \usage{
-\donttest{
 geo_address_lookup(
   osm_ids,
   type,
@@ -15,7 +14,6 @@ geo_address_lookup(
   verbose = FALSE,
   custom_query = list()
 )
-}
 }
 \arguments{
 \item{osm_ids}{vector of OSM identifiers (\code{c(00000, 11111, 22222)}).}
