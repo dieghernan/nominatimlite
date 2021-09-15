@@ -163,8 +163,20 @@ geo_amenity_sf_single <- function(bbox,
 
   json <- tempfile(fileext = ".geojson")
 
-  download.file(url, json, mode = "wb", quiet = isFALSE(verbose))
+  res <- tryCatch(
+    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
+    warning = function(e) {
+      return(NULL)
+    },
+    error = function(e) {
+      return(NULL)
+    }
+  )
 
+  if (is.null(res)) {
+    message(url, " not reachable. Returning NULL.")
+    return(NULL)
+  }
 
   sfobj <- sf::st_read(json,
     stringsAsFactors = FALSE,

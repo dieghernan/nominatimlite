@@ -65,8 +65,20 @@ geo_address_lookup <- function(osm_ids,
 
   json <- tempfile(fileext = ".json")
 
-  download.file(url, json, mode = "wb", quiet = isFALSE(verbose))
+  res <- tryCatch(
+    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
+    warning = function(e) {
+      return(NULL)
+    },
+    error = function(e) {
+      return(NULL)
+    }
+  )
 
+  if (is.null(res)) {
+    message(url, " not reachable. Returning NULL.")
+    return(NULL)
+  }
 
   result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 

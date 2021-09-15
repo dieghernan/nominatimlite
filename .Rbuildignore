@@ -18,3 +18,4 @@
 ^_pkgdown\.yml$
 ^revdep$
 ^CITATION\.cff$
+^vignettes/nominatimlite\.Rmd\.orig$

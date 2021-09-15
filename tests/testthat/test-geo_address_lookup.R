@@ -1,13 +1,16 @@
 test_that("Returning empty query", {
+  skip_if_offline()
   expect_warning(geo_address_lookup("xbzbzbzoa aiaia", "R"))
 })
 
 test_that("Data format", {
+  skip_if_offline()
   expect_true(is.data.frame(geo_address_lookup(34633854, "W")))
   expect_false(inherits(geo_address_lookup(34633854, "W"), "sf")) # this is _not_ a _sf function
 })
 
 test_that("Checking query", {
+  skip_if_offline()
   expect_equal(ncol(geo_address_lookup(34633854, "W")), 4)
   expect_gt(ncol(geo_address_lookup(34633854, "W", full_results = TRUE)), 4)
   expect_equal(nrow(geo_address_lookup(34633854, "W",

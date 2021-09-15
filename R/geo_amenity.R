@@ -178,8 +178,20 @@ geo_amenity_single <- function(bbox,
 
   json <- tempfile(fileext = ".json")
 
-  download.file(url, json, mode = "wb", quiet = isFALSE(verbose))
+  res <- tryCatch(
+    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
+    warning = function(e) {
+      return(NULL)
+    },
+    error = function(e) {
+      return(NULL)
+    }
+  )
 
+  if (is.null(res)) {
+    message(url, " not reachable. Returning NULL.")
+    return(NULL)
+  }
   result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
   if (nrow(result) > 0) {

@@ -163,7 +163,20 @@ reverse_geo_lite_single <- function(lat_cap,
 
   json <- tempfile(fileext = ".json")
 
-  download.file(url, json, mode = "wb", quiet = isFALSE(verbose))
+  res <- tryCatch(
+    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
+    warning = function(e) {
+      return(NULL)
+    },
+    error = function(e) {
+      return(NULL)
+    }
+  )
+
+  if (is.null(res)) {
+    message(url, " not reachable. Returning NULL.")
+    return(NULL)
+  }
 
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
 

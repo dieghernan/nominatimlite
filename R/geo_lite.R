@@ -123,8 +123,20 @@ geo_lite_single <- function(address,
   # Download
 
   json <- tempfile(fileext = ".json")
+  res <- tryCatch(
+    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
+    warning = function(e) {
+      return(NULL)
+    },
+    error = function(e) {
+      return(NULL)
+    }
+  )
 
-  download.file(url, json, mode = "wb", quiet = isFALSE(verbose))
+  if (is.null(res)) {
+    message(url, " not reachable. Returning NULL.")
+    return(NULL)
+  }
 
   result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 

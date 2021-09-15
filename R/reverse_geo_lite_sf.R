@@ -191,7 +191,21 @@ reverse_geo_lite_sf_single <- function(lat_cap,
 
   json <- tempfile(fileext = ".geojson")
 
-  download.file(url, json, mode = "wb", quiet = isFALSE(verbose))
+  res <- tryCatch(
+    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
+    warning = function(e) {
+      return(NULL)
+    },
+    error = function(e) {
+      return(NULL)
+    }
+  )
+
+  if (is.null(res)) {
+    message(url, " not reachable. Returning NULL.")
+    return(NULL)
+  }
+
   sfobj <- tryCatch(
     sf::st_read(
       json,
