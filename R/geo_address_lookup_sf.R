@@ -17,7 +17,7 @@
 #' @family lookup
 #'
 #' @examples
-#'
+#' \donttest{
 #' # Notre Dame Cathedral, Paris
 #'
 #' NotreDame <- geo_address_lookup_sf(
@@ -38,6 +38,7 @@
 #'
 #' ggplot(NotreDame_poly) +
 #'   geom_sf()
+#' }
 #' @export
 geo_address_lookup_sf <- function(osm_ids,
                                   type,

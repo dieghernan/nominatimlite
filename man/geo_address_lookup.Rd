@@ -49,13 +49,14 @@ See \url{https://nominatim.org/release-docs/develop/api/Lookup/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
-
+\donttest{
 ids <- geo_address_lookup(
   osm_ids = c(46240148, 34633854),
   type = c("W"),
 )
 
 ids
+}
 }
 \seealso{
 Other geocoding: 

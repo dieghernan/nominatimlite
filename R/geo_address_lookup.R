@@ -19,13 +19,14 @@
 #' @return A `tibble` with the results.
 #'
 #' @examples
-#'
+#' \donttest{
 #' ids <- geo_address_lookup(
 #'   osm_ids = c(46240148, 34633854),
 #'   type = c("W"),
 #' )
 #'
 #' ids
+#' }
 #' @export
 
 geo_address_lookup <- function(osm_ids,
