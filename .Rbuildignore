@@ -19,3 +19,4 @@
 ^revdep$
 ^CITATION\.cff$
 ^vignettes/nominatimlite\.Rmd\.orig$
+^cran-comments\.md$

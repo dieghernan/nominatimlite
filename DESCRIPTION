@@ -1,7 +1,7 @@
 Type: Package
 Package: nominatimlite
 Title: Interface with 'Nominatim' API Service
-Version: 0.0.1.9010
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Diego",
              family = "Hernangómez",
