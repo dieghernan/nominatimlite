@@ -52,7 +52,7 @@ parameters to be passed to \code{custom_query}.
 \donttest{
 ids <- geo_address_lookup(
   osm_ids = c(46240148, 34633854),
-  type = c("W"),
+  type = c(“W”),
 )
 
 ids
