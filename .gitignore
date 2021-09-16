@@ -36,3 +36,5 @@ rosm.cache
 docs
 docs/
 revdep
+CRAN-RELEASE
+cran-comments.md
