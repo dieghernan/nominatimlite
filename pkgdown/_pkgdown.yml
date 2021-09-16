@@ -13,25 +13,30 @@ home:
 authors:
   Diego Hernangómez:
     href: 'https://dieghernan.github.io/'
+  Jindra Lacko:
+    href: 'https://www.jla-data.net/'
   OpenStreetMap contributors:
     href: 'https://www.openstreetmap.org/copyright'
+
+development:
+  mode: auto
 
 reference:
 - title: Geocoding and reverse geocoding
   desc: These functions return `tibbles`
   contents:
   - has_concept("geocoding")
-  
+
 - title: Get spatial objects
   desc: These functions return `sf` objects
   contents:
   - has_concept("spatial")
-  
+
 - title: Misc
   desc: Other objects included in the package
   contents:
   - has_concept("datasets")
-  
+
 - title: About the package
   contents:
   - nominatimlite-package

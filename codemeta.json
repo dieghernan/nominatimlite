@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nominatimlite",
-  "description": "Lite interface for getting data from 'OSM' service\n    'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract\n    coordinates from addresses, find places near a set of coordinates,\n    search for amenities and return spatial objects on 'sf' format.",
+  "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.",
   "name": "nominatimlite: Interface with 'Nominatim' API Service",
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "relatedLink": "https://dieghernan.github.io/nominatimlite/",
@@ -15,6 +15,12 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -195,7 +201,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "272.218KB",
+  "fileSize": "182.49KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

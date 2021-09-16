@@ -5,6 +5,11 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
+[![CRAN
+results](https://cranchecks.info/badges/worst/nominatimlite)](https://cran.r-project.org/web/checks/check_results_nominatimlite.html)
+[![Downloads](https://cranlogs.r-pkg.org/badges/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://codecov.io/gh/dieghernan/nominatimlite)
 [![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/)
@@ -41,14 +46,21 @@ overcome this limitation.
 There are other packages much more complete and mature than
 `nominatimlite`, that presents similar features:
 
-  - [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by
+-   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by
     Jesse Cambon. Allows to interface with Nominatim, Google, TomTom,
     Mapbox, etc. for geocoding and reverse geocoding.
-  - [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham.
+-   [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham.
     Great for downloading spatial data from OpenStreetMap, via the
     [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
 ## Installation
+
+Install `nominatimlite` from
+[**CRAN**](https://CRAN.R-project.org/package=nominatimlite):
+
+``` r
+install.packages("nominatimlite")
+```
 
 You can install the developing version of `nominatimlite` with:
 
@@ -148,11 +160,11 @@ Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |   longitude | address                                                                                                                                                |
-| :----------------------------------------- | -------: | ----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  \-77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | \-122.40279 | Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  \-87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       |
+| query                                      | latitude |  longitude | address                                                                                                                                                |
+|:-------------------------------------------|---------:|-----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States |
+| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  -87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `reverse_geo_lite()` function. The
@@ -168,11 +180,11 @@ reverse <- reverse_geo_lite(
 )
 ```
 
-| address\_found                                                                                                                                         |      lat |         lon |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------- | -------: | ----------: |
-| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               | 38.89770 |  \-77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States | 37.79520 | \-122.40279 |
-| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       | 41.87887 |  \-87.63591 |
+| address\_found                                                                                                                                         |      lat |        lon |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
+| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               | 38.89770 |  -77.03655 |
+| Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States | 37.79520 | -122.40279 |
+| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       | 41.87887 |  -87.63591 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
