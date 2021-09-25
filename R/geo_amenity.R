@@ -24,7 +24,7 @@
 #' @return A `tibble` with the results.
 #'
 #' @family amenity
-#'
+#' @family geocoding
 #' @details
 #'
 #' Bounding boxes can be located using different online tools, as
@@ -61,7 +61,7 @@
 #'   strict = TRUE
 #' )
 #' }
-#' @seealso [nominatimlite::osm_amenities]
+#' 
 #' @export
 geo_amenity <- function(bbox,
                         amenity,
