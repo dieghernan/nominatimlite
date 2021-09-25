@@ -84,6 +84,7 @@ reverse_geo_lite(
 
 Other geocoding: 
 \code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity}()},
 \code{\link{geo_lite}()}
 }
 \concept{geocoding}

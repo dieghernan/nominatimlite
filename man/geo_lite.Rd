@@ -66,6 +66,7 @@ geo_lite(c("Madrid", "Barcelona"),
 
 Other geocoding: 
 \code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity}()},
 \code{\link{reverse_geo_lite}()}
 }
 \concept{geocoding}

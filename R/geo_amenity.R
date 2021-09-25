@@ -61,7 +61,7 @@
 #'   strict = TRUE
 #' )
 #' }
-#' 
+#'
 #' @export
 geo_amenity <- function(bbox,
                         amenity,

@@ -60,6 +60,7 @@ ids
 }
 \seealso{
 Other geocoding: 
+\code{\link{geo_amenity}()},
 \code{\link{geo_lite}()},
 \code{\link{reverse_geo_lite}()}
 

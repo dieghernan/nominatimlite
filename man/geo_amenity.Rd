@@ -92,13 +92,18 @@ geo_amenity(
   strict = TRUE
 )
 }
+
 }
 \seealso{
-\link{osm_amenities}
-
 Other amenity: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{osm_amenities}}
+
+Other geocoding: 
+\code{\link{geo_address_lookup}()},
+\code{\link{geo_lite}()},
+\code{\link{reverse_geo_lite}()}
 }
 \concept{amenity}
+\concept{geocoding}
