@@ -92,8 +92,9 @@ geo_address_lookup_sf <- function(osm_ids,
   )
 
   if (is.null(res)) {
-    message(url, " not reachable. Returning NULL.")
-    return(NULL)
+    message(url, " not reachable.", nodes, call. = FALSE)
+    result_out <- data.frame(query = paste0(type, osm_ids))
+    return(result_out)
   }
   sfobj <- sf::st_read(json,
     stringsAsFactors = FALSE,
@@ -103,7 +104,7 @@ geo_address_lookup_sf <- function(osm_ids,
   # Check if null and return
 
   if (length(names(sfobj)) == 1) {
-    warning("No results for query ", nodes, call. = FALSE)
+    message("No results for query ", nodes, call. = FALSE)
     result_out <- data.frame(query = paste0(type, osm_ids))
     return(result_out)
   }

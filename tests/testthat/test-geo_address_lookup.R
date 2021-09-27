@@ -1,6 +1,12 @@
 test_that("Returning empty query", {
-  skip_if_offline()
-  expect_warning(geo_address_lookup("xbzbzbzoa aiaia", "R"))
+  obj <- expect_message(geo_address_lookup("xbzbzbzoa aiaia", "R"))
+
+  expect_true(ncol(obj) == 3)
+  expect_true(nrow(obj) == 1)
+
+  expect_equal(obj$query, "Rxbzbzbzoa aiaia")
+  expect_true(is.na(obj$lat))
+  expect_true(is.na(obj$lon))
 })
 
 test_that("Data format", {
