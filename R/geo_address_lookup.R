@@ -66,7 +66,7 @@ geo_address_lookup <- function(osm_ids,
 
   json <- tempfile(fileext = ".json")
 
-# nocov start
+  # nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {

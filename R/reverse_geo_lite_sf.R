@@ -191,7 +191,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
 
   json <- tempfile(fileext = ".geojson")
 
-# nocov start
+  # nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {
@@ -206,7 +206,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
     message(url, " not reachable. Returning NULL.")
     return(NULL)
   }
-# nocov end
+  # nocov end
 
 
   sfobj <- tryCatch(

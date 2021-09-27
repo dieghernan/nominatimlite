@@ -179,7 +179,7 @@ geo_amenity_single <- function(bbox,
   json <- tempfile(fileext = ".json")
 
 
-# nocov start
+  # nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {

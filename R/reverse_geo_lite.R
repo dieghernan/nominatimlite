@@ -163,7 +163,7 @@ reverse_geo_lite_single <- function(lat_cap,
 
   json <- tempfile(fileext = ".json")
 
-# nocov start
+  # nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {
@@ -178,7 +178,7 @@ reverse_geo_lite_single <- function(lat_cap,
     message(url, " not reachable. Returning NULL.")
     return(NULL)
   }
-  
+
   # nocov end
 
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)

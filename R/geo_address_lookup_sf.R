@@ -80,7 +80,7 @@ geo_address_lookup_sf <- function(osm_ids,
   # Download
 
   json <- tempfile(fileext = ".geojson")
- 
+
   # nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
@@ -97,8 +97,8 @@ geo_address_lookup_sf <- function(osm_ids,
     result_out <- data.frame(query = paste0(type, osm_ids))
     return(result_out)
   }
-  # nocov end 
-  
+  # nocov end
+
   sfobj <- sf::st_read(json,
     stringsAsFactors = FALSE,
     quiet = isFALSE(verbose)
