@@ -2,7 +2,6 @@ Type: Package
 Package: nominatimlite
 Title: Interface with 'Nominatim' API Service
 Version: 0.1.0.9000
-Copyright: Data (c) OpenStreetMap contributors, ODbL 1.0. <https://www.openstreetmap.org/copyright>
 Authors@R: 
     c(person(given = "Diego",
              family = "Hernangómez",
@@ -41,6 +40,8 @@ Suggests:
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
+Copyright: Data (c) OpenStreetMap contributors, ODbL 1.0.
+    <https://www.openstreetmap.org/copyright>
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
