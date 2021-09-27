@@ -19,9 +19,6 @@ authors:
   OpenStreetMap contributors:
     href: 'https://www.openstreetmap.org/copyright'
 
-development:
-  mode: auto
-
 reference:
 - title: Geocoding and reverse geocoding
   desc: These functions return `tibbles`
