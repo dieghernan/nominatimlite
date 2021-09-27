@@ -178,6 +178,8 @@ geo_amenity_single <- function(bbox,
 
   json <- tempfile(fileext = ".json")
 
+
+# nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {
@@ -194,6 +196,8 @@ geo_amenity_single <- function(bbox,
     names(result_out) <- c("query", lat, long)
     return(result_out)
   }
+  # nocov end
+
   result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
   if (nrow(result) > 0) {

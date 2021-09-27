@@ -66,6 +66,7 @@ geo_address_lookup <- function(osm_ids,
 
   json <- tempfile(fileext = ".json")
 
+# nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {
@@ -82,6 +83,7 @@ geo_address_lookup <- function(osm_ids,
     names(result_out) <- c("query", lat, long)
     return(result_out)
   }
+  # nocov end
 
   result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 

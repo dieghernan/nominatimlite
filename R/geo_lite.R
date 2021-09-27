@@ -123,6 +123,8 @@ geo_lite_single <- function(address,
   # Download
 
   json <- tempfile(fileext = ".json")
+  
+  # nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {
@@ -137,6 +139,8 @@ geo_lite_single <- function(address,
     message(url, " not reachable. Returning NULL.")
     return(NULL)
   }
+# nocov end
+
 
   result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 

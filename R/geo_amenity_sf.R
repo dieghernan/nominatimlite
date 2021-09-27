@@ -163,6 +163,7 @@ geo_amenity_sf_single <- function(bbox,
 
   json <- tempfile(fileext = ".geojson")
 
+# nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {
@@ -178,6 +179,8 @@ geo_amenity_sf_single <- function(bbox,
     result_out <- data.frame(query = amenity)
     return(result_out)
   }
+  
+# nocov end
 
   sfobj <- sf::st_read(json,
     stringsAsFactors = FALSE,

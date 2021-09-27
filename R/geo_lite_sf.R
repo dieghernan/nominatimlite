@@ -152,6 +152,7 @@ geo_lite_sf_single <- function(address,
 
   json <- tempfile(fileext = ".geojson")
 
+# nocov start
   res <- tryCatch(
     download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
     warning = function(e) {
@@ -166,6 +167,8 @@ geo_lite_sf_single <- function(address,
     message(url, " not reachable. Returning NULL.")
     return(NULL)
   }
+  # nocov end
+  
   sfobj <- sf::st_read(json,
     stringsAsFactors = FALSE,
     quiet = isFALSE(verbose)
