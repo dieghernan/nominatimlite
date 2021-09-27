@@ -189,8 +189,10 @@ geo_amenity_single <- function(bbox,
   )
 
   if (is.null(res)) {
-    message(url, " not reachable. Returning NULL.")
-    return(NULL)
+    message(url, " not reachable.", call. = FALSE)
+    result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
+    names(result_out) <- c("query", lat, long)
+    return(result_out)
   }
   result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
@@ -205,7 +207,7 @@ geo_amenity_single <- function(bbox,
   names(result) <- nmes
 
   if (nrow(result) == 0) {
-    warning("No results for query ", amenity, call. = FALSE)
+    message("No results for query ", amenity, call. = FALSE)
     result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(result_out)
