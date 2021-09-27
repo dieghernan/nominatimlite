@@ -4,7 +4,7 @@ test_that("Returning empty query", {
   expect_true(ncol(obj) == 1)
   expect_true(nrow(obj) == 1)
 
-  expect_equal(obj$query, "Rxbzbzbzoa aiaia")
+  expect_true(obj$query == "Rxbzbzbzoa aiaia")
 })
 
 test_that("Data format", {

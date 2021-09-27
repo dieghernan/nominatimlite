@@ -4,7 +4,7 @@ test_that("Returning empty query", {
   expect_true(ncol(obj) == 3)
   expect_true(nrow(obj) == 1)
 
-  expect_equal(obj$query, "Rxbzbzbzoa aiaia")
+  expect_true(obj$query == "Rxbzbzbzoa aiaia")
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 })
