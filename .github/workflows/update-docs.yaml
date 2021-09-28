@@ -11,9 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-pandoc@v1
+      - uses: r-lib/actions/setup-pandoc@master
 
-      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-r@master
         with:
           use-public-rspm: true
 
@@ -24,13 +24,13 @@ jobs:
         run: |
           sudo apt-get install -y libv8-dev
 
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@master
         with:
           cache-version: 3
           extra-packages: |
             devtools
             rcmdcheck
-            pkgdown
+            r-lib/pkgdown
             dieghernan/pkgdev
             tidyverse
             scales
@@ -41,7 +41,7 @@ jobs:
         run: |
 
           pkgdev::update_docs()
-          
+
           testthat::test_local()
 
         shell: Rscript {0}
@@ -54,13 +54,7 @@ jobs:
           git commit -m 'Update docs with pkgdev' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
 
-      - name: Check
-        env:
-          _R_CHECK_CRAN_INCOMING_: false
-        run: |
-          options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
+      - uses: r-lib/actions/check-r-package@master
 
       - name: Show testthat output
         if: always()

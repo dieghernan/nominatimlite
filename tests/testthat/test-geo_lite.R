@@ -1,6 +1,12 @@
 test_that("Returning empty query", {
-  skip_if_offline()
-  expect_warning(geo_lite("xbzbzbzoa aiaia"))
+  obj <- expect_message(geo_lite("xbzbzbzoa aiaia"))
+
+  expect_true(ncol(obj) == 3)
+  expect_true(nrow(obj) == 1)
+
+  expect_true(obj$query == "xbzbzbzoa aiaia")
+  expect_true(is.na(obj$lat))
+  expect_true(is.na(obj$lon))
 })
 
 test_that("Data format", {

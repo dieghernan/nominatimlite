@@ -136,8 +136,10 @@ geo_lite_single <- function(address,
   )
 
   if (is.null(res)) {
-    message(url, " not reachable. Returning NULL.")
-    return(NULL)
+    message(url, " not reachable.")
+    result_out <- tibble::tibble(query = address, a = NA, b = NA)
+    names(result_out) <- c("query", lat, long)
+    return(result_out)
   }
   # nocov end
 
@@ -155,7 +157,7 @@ geo_lite_single <- function(address,
   names(result) <- nmes
 
   if (nrow(result) == 0) {
-    warning("No results for query ", address, call. = FALSE)
+    message("No results for query ", address, call. = FALSE)
     result_out <- tibble::tibble(query = address, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(result_out)

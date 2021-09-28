@@ -1,5 +1,11 @@
 url: 'https://dieghernan.github.io/nominatimlite'
+
+navbar:
+  type: dark
+  bg: dark
+
 template:
+  bootstrap: 4
   params:
     bootswatch: flatly
     ganalytics: G-5SLV8G8QD4

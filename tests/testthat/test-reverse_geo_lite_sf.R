@@ -1,10 +1,8 @@
 test_that("Returning empty query", {
-  skip_if_offline()
-  expect_warning(reverse_geo_lite_sf(200, 200))
-  expect_warning(reverse_geo_lite_sf(
-    lat = c(0, 90),
-    long = c(40, 90)
-  ))
+  obj <- expect_message(reverse_geo_lite_sf(200, 200))
+
+  expect_true(nrow(obj) == 1)
+  expect_true(all(is.na(obj$address)))
 })
 
 test_that("Returning error", {

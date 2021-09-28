@@ -203,8 +203,10 @@ reverse_geo_lite_sf_single <- function(lat_cap,
   )
 
   if (is.null(res)) {
-    message(url, " not reachable. Returning NULL.")
-    return(NULL)
+    message(url, " not reachable.")
+    result_out <- tibble::tibble(ad = NA)
+    names(result_out) <- address
+    return(result_out)
   }
   # nocov end
 
@@ -227,7 +229,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
 
   # Handle errors
   if (!"sf" %in% class(sfobj)) {
-    warning("No results for query lon=",
+    message("No results for query lon=",
       long_cap,
       ", lat=",
       lat_cap,
