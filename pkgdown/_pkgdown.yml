@@ -2,7 +2,7 @@ url: 'https://dieghernan.github.io/nominatimlite'
 
 navbar:
   type: dark
-  bg: dark
+  bg: primary
 
 template:
   bootstrap: 4
