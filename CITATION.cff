@@ -8,7 +8,7 @@ message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
-version: 0.1.0.9000
+version: 0.1.1
 doi: 10.5281/zenodo.5113195
 abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
   Extract coordinates from addresses, find places near a set of coordinates, search
@@ -20,13 +20,14 @@ authors:
   orcid: https://orcid.org/0000-0001-8457-4658
 preferred-citation:
   type: manual
-  title: 'nominatimlite: Interface with Nominatim API Service'
+  title: 'nominatimlite: Interface with ''Nominatim'' API Service'
   authors:
   - family-names: Hernangómez
     given-names: Diego
   year: '2021'
-  url: https://dieghernan.github.io/nominatimlite/
+  version: 0.1.1
   doi: 10.5281/zenodo.5113195
+  url: https://dieghernan.github.io/nominatimlite/
 repository: https://CRAN.R-project.org/package=nominatimlite
 repository-code: https://github.com/dieghernan/nominatimlite
 url: https://dieghernan.github.io/nominatimlite/
@@ -35,3 +36,16 @@ contact:
   given-names: Diego
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
+keywords:
+- r
+- geocoding
+- openstreetmap
+- address
+- nominatim
+- reverse-geocoding
+- rstats
+- shapefile
+- r-package
+- spatial
+- cran
+- api-wrapper

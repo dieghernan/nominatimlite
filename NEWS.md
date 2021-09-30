@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.1.1
 
 -  Adapt tests to **CRAN** checks.
 

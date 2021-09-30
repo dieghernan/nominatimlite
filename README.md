@@ -17,7 +17,6 @@ results](https://cranchecks.info/badges/worst/nominatimlite)](https://cran.r-pro
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5113195-blue)](https://doi.org/10.5281/zenodo.5113195)
-[![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/nominatimlite/badge)](https://www.codefactor.io/repository/github/dieghernan/nominatimlite)
 [![status](https://tinyverse.netlify.com/badge/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 
 <!-- badges: end -->
@@ -47,10 +46,10 @@ overcome this limitation.
 There are other packages much more complete and mature than
 `nominatimlite`, that presents similar features:
 
-  - [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by
+-   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by
     Jesse Cambon. Allows to interface with Nominatim, Google, TomTom,
     Mapbox, etc. for geocoding and reverse geocoding.
-  - [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham.
+-   [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham.
     Great for downloading spatial data from OpenStreetMap, via the
     [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
@@ -161,11 +160,11 @@ Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |   longitude | address                                                                                                                                                |
-| :----------------------------------------- | -------: | ----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  \-77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | \-122.40279 | Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  \-87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       |
+| query                                      | latitude |  longitude | address                                                                                                                                                |
+|:-------------------------------------------|---------:|-----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States |
+| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  -87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `reverse_geo_lite()` function. The
@@ -181,11 +180,11 @@ reverse <- reverse_geo_lite(
 )
 ```
 
-| address\_found                                                                                                                                         |      lat |         lon |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------- | -------: | ----------: |
-| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               | 38.89770 |  \-77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States | 37.79520 | \-122.40279 |
-| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       | 41.87887 |  \-87.63591 |
+| address\_found                                                                                                                                         |      lat |        lon |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
+| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                               | 38.89770 |  -77.03655 |
+| Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States | 37.79520 | -122.40279 |
+| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                       | 41.87887 |  -87.63591 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
@@ -200,17 +199,20 @@ citation("nominatimlite")
 #> 
 #> To cite the 'nominatimlite' package in publications use:
 #> 
-#>   Hernangómez, D (2021). nominatimlite: Interface with Nominatim API
-#>   Service. http://doi.org/10.5281/zenodo.5113195. Package url:
-#>   https://dieghernan.github.io/nominatimlite/
+#> Hernangómez D (2021). _nominatimlite: Interface with 'Nominatim' API
+#> Service_. doi: 10.5281/zenodo.5113195 (URL:
+#> https://doi.org/10.5281/zenodo.5113195), R package version 0.1.1, <URL:
+#> https://dieghernan.github.io/nominatimlite/>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {nominatimlite: Interface with Nominatim API Service},
-#>     author = {Diego Hernangómez},
+#>     title = {nominatimlite: Interface with 'Nominatim' API Service},
 #>     year = {2021},
-#>     url = {https://dieghernan.github.io/nominatimlite/},
+#>     note = {R package version 0.1.1},
+#>     version = {0.1.1},
+#>     author = {Diego Hernangómez},
 #>     doi = {10.5281/zenodo.5113195},
+#>     url = {https://dieghernan.github.io/nominatimlite/},
 #>   }
 ```

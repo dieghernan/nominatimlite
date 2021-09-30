@@ -1,19 +1,14 @@
 Type: Package
 Package: nominatimlite
 Title: Interface with 'Nominatim' API Service
-Version: 0.1.0.9000
-Authors@R: 
-    c(person(given = "Diego",
-             family = "Hernangómez",
-             role = c("aut", "cre", "cph"),
-             email = "diego.hernangomezherrero@gmail.com",
-             comment = c(ORCID = "0000-0001-8457-4658")),
-      person(given = "Jindra",
-             family = "Lacko",
-             role = c("ctb", "rev")),
-      person(given = "OpenStreetMap contributors",
-             role = "cph",
-             comment = "for the data."))
+Version: 0.1.1
+Authors@R: c(
+    person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0001-8457-4658")),
+    person("Jindra", "Lacko", role = c("ctb", "rev")),
+    person("OpenStreetMap contributors", role = "cph",
+           comment = "for the data.")
+  )
 Description: Lite interface for getting data from 'OSM' service
     'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
     coordinates from addresses, find places near a set of coordinates,
@@ -40,9 +35,14 @@ Suggests:
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
+Config/testthat/parallel: true
 Copyright: Data (c) OpenStreetMap contributors, ODbL 1.0.
     <https://www.openstreetmap.org/copyright>
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+X-schema.org-applicationCategory: cartography
+X-schema.org-keywords: r, geocoding, openstreetmap, address, nominatim,
+    reverse-geocoding, rstats, shapefile, r-package, spatial, cran,
+    api-wrapper
