@@ -26,6 +26,7 @@ Bounding boxes can be located using different online tools, as
 \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 }
 \examples{
+\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 # bounding box of Germany
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
@@ -50,6 +51,7 @@ ggplot(bbox_Texas) +
   geom_sf(col = "red") +
   geom_sf(data = Texas)
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}}

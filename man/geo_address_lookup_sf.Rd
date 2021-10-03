@@ -47,6 +47,7 @@ See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
+\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 # Notre Dame Cathedral, Paris
 
@@ -69,6 +70,7 @@ NotreDame_poly <- geo_address_lookup_sf(
 ggplot(NotreDame_poly) +
   geom_sf()
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other spatial: 

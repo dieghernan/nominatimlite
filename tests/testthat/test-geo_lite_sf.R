@@ -16,7 +16,7 @@ test_that("Data format", {
 test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
-  
+
   expect_equal(ncol(geo_lite_sf(c("Madrid", "Barcelona"))), 3)
   expect_gt(ncol(geo_lite_sf("Madrid", full_results = TRUE)), 3)
   expect_gt(nrow(geo_lite_sf("Madrid",
@@ -33,6 +33,7 @@ test_that("Checking query", {
 })
 
 test_that("Checking geometry type", {
+  skip_if_api_server()
   skip_if_offline()
   expect_true(
     sf::st_geometry_type(geo_lite_sf("Pentagon")) == "POINT"

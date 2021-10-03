@@ -38,7 +38,7 @@
 #'
 #' @return A `sf` object with the results.
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' library(ggplot2)
 #'

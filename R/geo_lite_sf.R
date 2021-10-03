@@ -24,7 +24,7 @@
 #'
 #' @return A `sf` object with the results.
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' # Map - Points
 #' library(ggplot2)

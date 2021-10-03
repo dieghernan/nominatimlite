@@ -39,7 +39,7 @@
 #'
 #' @return A `tibble` with the results.
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #'
 #' reverse_geo_lite(lat = 40.75728, long = -73.98586)

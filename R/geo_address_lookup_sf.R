@@ -16,7 +16,7 @@
 #' @family spatial
 #' @family lookup
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' # Notre Dame Cathedral, Paris
 #'

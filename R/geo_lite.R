@@ -20,7 +20,7 @@
 #'
 #' @return A `tibble` with the results.
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' geo_lite("Madrid, Spain")
 #'

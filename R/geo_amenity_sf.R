@@ -22,7 +22,7 @@
 #' @family spatial
 #' @family amenity
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' # Madrid, Spain
 #'

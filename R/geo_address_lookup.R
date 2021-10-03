@@ -18,7 +18,7 @@
 #'
 #' @return A `tibble` with the results.
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' ids <- geo_address_lookup(
 #'   osm_ids = c(46240148, 34633854),

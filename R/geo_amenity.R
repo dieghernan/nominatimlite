@@ -34,7 +34,7 @@
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity>.
 #'
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' # Times Square, NY, USA
 #' bbox <- c(

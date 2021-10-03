@@ -20,7 +20,7 @@ test_that("Data format", {
 test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
-  
+
   expect_equal(ncol(geo_lite(c("Madrid", "Barcelona"))), 4)
   expect_gt(ncol(geo_lite("Madrid", full_results = TRUE)), 4)
   expect_gt(nrow(geo_lite("Madrid",

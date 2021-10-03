@@ -49,6 +49,7 @@ See \url{https://nominatim.org/release-docs/develop/api/Lookup/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
+\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 ids <- geo_address_lookup(
   osm_ids = c(46240148, 34633854),
@@ -57,6 +58,7 @@ ids <- geo_address_lookup(
 
 ids
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other geocoding: 
