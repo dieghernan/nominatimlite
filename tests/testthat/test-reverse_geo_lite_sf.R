@@ -1,6 +1,8 @@
 test_that("Returning empty query", {
   obj <- expect_message(reverse_geo_lite_sf(200, 200))
 
+  skip_if_api_server()
+
   expect_true(nrow(obj) == 1)
   expect_true(all(is.na(obj$address)))
 })

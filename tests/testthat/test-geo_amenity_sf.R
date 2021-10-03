@@ -4,6 +4,8 @@ test_that("Returning empty query", {
     amenity = "xbzbzbzoa aiaia"
   ))
 
+  skip_if_api_server()
+  
   expect_true(nrow(obj) == 1)
   expect_true(ncol(obj) == 1)
   expect_true(obj$query == "xbzbzbzoa aiaia")

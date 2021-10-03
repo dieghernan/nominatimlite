@@ -36,6 +36,7 @@ nominatim_check_access <- function() {
 }
 
 skip_if_api_server <- function() {
+  # nocov start
   if (nominatim_check_access()) {
     return(invisible(TRUE))
   }
@@ -44,4 +45,5 @@ skip_if_api_server <- function() {
     testthat::skip("Nominatim API not reachable")
   }
   return(invisible())
+  # nocov end
 }
