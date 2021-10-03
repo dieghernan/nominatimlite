@@ -11,7 +11,7 @@
 #' @examples
 #'
 #' nominatim_check_access()
-#' @keyword internal
+#' @keywords internal
 #' @export
 nominatim_check_access <- function() {
   url <- paste0(
@@ -33,4 +33,15 @@ nominatim_check_access <- function() {
     return(TRUE)
   }
   # nocov end
+}
+
+skip_if_api_server <- function() {
+  if (nominatim_check_access()) {
+    return(invisible(TRUE))
+  }
+  
+  if (requireNamespace("testthat", quietly = TRUE)) {
+    testthat::skip("Nominatim API not reachable")
+  }
+  return(invisible())
 }
