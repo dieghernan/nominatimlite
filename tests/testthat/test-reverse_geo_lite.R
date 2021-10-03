@@ -6,13 +6,17 @@ test_that("Returning empty query", {
 })
 
 test_that("Returning error", {
+  skip_if_api_server()
   skip_if_offline()
+  
   expect_error(reverse_geo_lite(0, c(2, 3)))
   expect_error(reverse_geo_lite("a", "a"))
 })
 
 test_that("Data format", {
+  skip_if_api_server()
   skip_if_offline()
+  
   expect_true(is.data.frame(reverse_geo_lite(0, 0)))
   expect_false(inherits(reverse_geo_lite(0, 0), "sf")) # this is _not_ a _sf function
 })

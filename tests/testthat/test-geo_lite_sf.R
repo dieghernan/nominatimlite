@@ -7,13 +7,16 @@ test_that("Returning empty query", {
 })
 
 test_that("Data format", {
+  skip_if_api_server()
   skip_if_offline()
   expect_true(is.data.frame(geo_lite_sf("Madrid")))
   expect_s3_class(geo_lite_sf("Madrid"), "sf")
 })
 
 test_that("Checking query", {
+  skip_if_api_server()
   skip_if_offline()
+  
   expect_equal(ncol(geo_lite_sf(c("Madrid", "Barcelona"))), 3)
   expect_gt(ncol(geo_lite_sf("Madrid", full_results = TRUE)), 3)
   expect_gt(nrow(geo_lite_sf("Madrid",

@@ -6,7 +6,9 @@ test_that("Returning empty query", {
 })
 
 test_that("Returning error", {
+  skip_if_api_server()
   skip_if_offline()
+  
   expect_error(reverse_geo_lite_sf(0, c(2, 3)))
   expect_error(reverse_geo_lite_sf("a", "a"))
 })
@@ -18,7 +20,9 @@ test_that("Data format", {
 })
 
 test_that("Checking query", {
+  skip_if_api_server()
   skip_if_offline()
+  
   expect_equal(ncol(reverse_geo_lite_sf(0, 0)), 4)
   expect_gt(ncol(reverse_geo_lite_sf(0, 0,
     full_results = TRUE
