@@ -20,7 +20,8 @@ test_that("Data format", {
   skip_if_offline()
 
   expect_true(is.data.frame(reverse_geo_lite(0, 0)))
-  expect_false(inherits(reverse_geo_lite(0, 0), "sf")) # this is _not_ a _sf function
+  expect_false(inherits(reverse_geo_lite(0, 0), "sf")) 
+  # this is _not_ a _sf function
 })
 
 test_that("Checking query", {
@@ -36,4 +37,12 @@ test_that("Checking query", {
   expect_equal(nrow(reverse_geo_lite(0, 40,
     custom_query = list(extratags = 1)
   )), 1)
+  
+  # Several coordinates
+  sev <- reverse_geo_lite(
+            lat = c(40.75728, 55.95335),
+            long = c(-73.98586, -3.188375)
+          )
+          
+  expect_equal(nrow(sev), 2)
 })

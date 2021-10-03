@@ -39,4 +39,12 @@ test_that("Checking query", {
     points_only = FALSE,
     custom_query = list(extratags = 1)
   )), 1)
+  
+  # Several coordinates
+  sev <- reverse_geo_lite_sf(
+            lat = c(40.75728, 55.95335),
+            long = c(-73.98586, -3.188375)
+          )
+          
+  expect_equal(nrow(sev), 2)
 })
