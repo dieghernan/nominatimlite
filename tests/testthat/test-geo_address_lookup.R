@@ -1,7 +1,9 @@
 test_that("Returning empty query", {
-  obj <- expect_message(geo_address_lookup("xbzbzbzoa aiaia", "R"))
+  expect_message(geo_address_lookup("xbzbzbzoa aiaia", "R"))
   
   skip_if_api_server()
+  
+  obj <- geo_address_lookup("xbzbzbzoa aiaia", "R")
 
   expect_true(ncol(obj) == 3)
   expect_true(nrow(obj) == 1)
