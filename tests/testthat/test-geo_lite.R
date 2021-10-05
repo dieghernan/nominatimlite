@@ -9,8 +9,7 @@ test_that("Returning empty query", {
   expect_true(nrow(obj) == 1)
 
   expect_true(obj$query == "xbzbzbzoa aiaia")
-  expect_true(is.na(obj$lat))
-  expect_true(is.na(obj$lon))
+  
 })
 
 test_that("Data format", {
