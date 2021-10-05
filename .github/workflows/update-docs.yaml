@@ -28,13 +28,9 @@ jobs:
         with:
           cache-version: 3
           extra-packages: |
-            devtools
             rcmdcheck
-            r-lib/pkgdown
+            dieghernan/pkgdown
             dieghernan/pkgdev
-            tidyverse
-            scales
-            reactable
           needs: website
 
       - name: Update docs
