@@ -34,7 +34,7 @@
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity>.
 #'
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' # Times Square, NY, USA
 #' bbox <- c(
@@ -191,7 +191,7 @@ geo_amenity_single <- function(bbox,
   )
 
   if (is.null(res)) {
-    message(url, " not reachable.", call. = FALSE)
+    message(url, " not reachable.")
     result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(result_out)
@@ -211,7 +211,7 @@ geo_amenity_single <- function(bbox,
   names(result) <- nmes
 
   if (nrow(result) == 0) {
-    message("No results for query ", amenity, call. = FALSE)
+    message("No results for query ", amenity)
     result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(result_out)

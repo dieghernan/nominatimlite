@@ -20,7 +20,7 @@
 #'
 #' @return A `tibble` with the results.
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #' \donttest{
 #' geo_lite("Madrid, Spain")
 #'
@@ -157,7 +157,7 @@ geo_lite_single <- function(address,
   names(result) <- nmes
 
   if (nrow(result) == 0) {
-    message("No results for query ", address, call. = FALSE)
+    message("No results for query ", address)
     result_out <- tibble::tibble(query = address, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(result_out)

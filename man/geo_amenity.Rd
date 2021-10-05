@@ -66,6 +66,7 @@ For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}.
 }
 \examples{
+\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 # Times Square, NY, USA
 bbox <- c(
@@ -92,7 +93,7 @@ geo_amenity(
   strict = TRUE
 )
 }
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other amenity: 

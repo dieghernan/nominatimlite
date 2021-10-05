@@ -59,6 +59,7 @@ equivalences on terms of zoom:\tabular{rl}{
 }
 }
 \examples{
+\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 
 reverse_geo_lite(lat = 40.75728, long = -73.98586)
@@ -78,6 +79,7 @@ reverse_geo_lite(
   full_results = TRUE
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}

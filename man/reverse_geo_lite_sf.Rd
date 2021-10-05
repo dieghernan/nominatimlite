@@ -62,6 +62,7 @@ equivalences on terms of zoom:\tabular{rl}{
 }
 }
 \examples{
+\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 library(ggplot2)
 
@@ -102,6 +103,7 @@ County_sf <- reverse_geo_lite_sf(
 ggplot(County_sf) +
   geom_sf()
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}

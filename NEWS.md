@@ -1,3 +1,9 @@
+# nominatimlite (development version)
+
+-  New internal: `nominatim_check_access()`.
+
+-  Adapt tests to `testthat` v3.1.0.
+
 # nominatimlite 0.1.1
 
 -  Adapt tests to **CRAN** checks.

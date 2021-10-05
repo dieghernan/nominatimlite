@@ -63,6 +63,7 @@ For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}.
 }
 \examples{
+\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 # Madrid, Spain
 
@@ -94,6 +95,7 @@ hosp <- geo_amenity_sf(bbox,
 ggplot(hosp) +
   geom_sf()
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other spatial: 

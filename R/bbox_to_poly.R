@@ -21,7 +21,7 @@
 #' Bounding boxes can be located using different online tools, as
 #' [Bounding Box Tool](https://boundingbox.klokantech.com/).
 #'
-#' @examples
+#' @examplesIf nominatim_check_access()
 #'
 #' # bounding box of Germany
 #' bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
