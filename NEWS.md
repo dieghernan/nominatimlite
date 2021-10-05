@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.1.2
 
 -  New internal: `nominatim_check_access()`.
 
