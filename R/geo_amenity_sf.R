@@ -175,7 +175,7 @@ geo_amenity_sf_single <- function(bbox,
   )
 
   if (is.null(res)) {
-    message(url, " not reachable.", call. = FALSE)
+    message(url, " not reachable.")
     result_out <- data.frame(query = amenity)
     return(result_out)
   }
@@ -191,7 +191,7 @@ geo_amenity_sf_single <- function(bbox,
   # Check if null and return
 
   if (length(names(sfobj)) == 1) {
-    message("No results for query ", amenity, call. = FALSE)
+    message("No results for query ", amenity)
     result_out <- data.frame(query = amenity)
     return(result_out)
   }

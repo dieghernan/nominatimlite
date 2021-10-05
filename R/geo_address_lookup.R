@@ -78,7 +78,7 @@ geo_address_lookup <- function(osm_ids,
   )
 
   if (is.null(res)) {
-    message(url, " not reachable.", nodes, call. = FALSE)
+    message(url, " not reachable.", nodes)
     result_out <- tibble::tibble(query = paste0(type, osm_ids), a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(result_out)
@@ -98,7 +98,7 @@ geo_address_lookup <- function(osm_ids,
   names(result) <- nmes
 
   if (nrow(result) == 0) {
-    message("No results for query ", nodes, call. = FALSE)
+    message("No results for query ", nodes)
     result_out <- tibble::tibble(query = paste0(type, osm_ids), a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(result_out)

@@ -178,7 +178,7 @@ geo_lite_sf_single <- function(address,
   # Check if null and return
 
   if (length(names(sfobj)) == 1) {
-    message("No results for query ", address, call. = FALSE)
+    message("No results for query ", address)
     result_out <- data.frame(query = address)
     return(result_out)
   }

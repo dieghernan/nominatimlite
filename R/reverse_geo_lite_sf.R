@@ -232,8 +232,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
     message("No results for query lon=",
       long_cap,
       ", lat=",
-      lat_cap,
-      call. = FALSE
+      lat_cap
     )
     result_out <- tibble::tibble(ad = NA)
     names(result_out) <- address
