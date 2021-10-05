@@ -11,7 +11,6 @@ test_that("Returning empty query", {
     amenity = "xbzbzbzoa aiaia"
   )
 
-  expect_true(ncol(obj) == 3)
   expect_true(nrow(obj) == 1)
 
   expect_true(obj$query == "xbzbzbzoa aiaia")

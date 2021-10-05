@@ -6,7 +6,6 @@ test_that("Returning empty query", {
   obj <- geo_lite_sf("xbzbzbzoa aiaia")
 
   expect_true(nrow(obj) == 1)
-  expect_true(ncol(obj) == 1)
   expect_true(obj$query == "xbzbzbzoa aiaia")
 })
 

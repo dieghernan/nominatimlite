@@ -4,7 +4,6 @@ test_that("Returning empty query", {
   
   obj <- geo_address_lookup_sf("xbzbzbzoa aiaia", "R")
   
-  expect_true(ncol(obj) == 1)
   expect_true(nrow(obj) == 1)
 
   expect_true(obj$query == "Rxbzbzbzoa aiaia")
