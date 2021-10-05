@@ -71,6 +71,7 @@ You can also extract polygon and line objects (if available) using the option `p
 
 
 ```r
+
 pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
 
 ggplot(pentagon_poly) +

@@ -1,14 +1,13 @@
 test_that("Returning empty query", {
   expect_message(geo_lite("xbzbzbzoa aiaia"))
-  
+
   skip_if_api_server()
-  
+
   obj <- geo_lite("xbzbzbzoa aiaia")
 
   expect_true(nrow(obj) == 1)
 
   expect_true(obj$query == "xbzbzbzoa aiaia")
-  
 })
 
 test_that("Data format", {

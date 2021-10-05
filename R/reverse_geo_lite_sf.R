@@ -229,7 +229,8 @@ reverse_geo_lite_sf_single <- function(lat_cap,
 
   # Handle errors
   if (!"sf" %in% class(sfobj)) {
-    message("No results for query lon=",
+    message(
+      "No results for query lon=",
       long_cap,
       ", lat=",
       lat_cap
