@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://dieghernan.github.io/nominatimlite/404.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/articles/nominatimlite.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/authors.html</loc>
+  </url>
+  <url>
     <loc>https://dieghernan.github.io/nominatimlite/index.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/news/index.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.html</loc>
@@ -25,6 +46,9 @@
     <loc>https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.html</loc>
   </url>
   <url>
+    <loc>https://dieghernan.github.io/nominatimlite/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/nominatim_check_access.html</loc>
   </url>
   <url>
@@ -38,8 +62,5 @@
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/articles/nominatimlite.html</loc>
   </url>
 </urlset>
