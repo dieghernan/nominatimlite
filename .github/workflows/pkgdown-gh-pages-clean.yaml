@@ -21,7 +21,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@master
         with:
           extra-packages: |
-            r-lib/pkgdown
+            dieghernan/pkgdown
           needs: website
 
       - name: Deploy package
