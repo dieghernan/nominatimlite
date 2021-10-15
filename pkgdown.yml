@@ -3,7 +3,7 @@ pkgdown: 1.9000.9000.9000
 pkgdown_sha: 0bdae151df6e15132d5805526da308e3eaf487cd
 articles:
   nominatimlite: nominatimlite.html
-last_built: 2021-10-15T16:38Z
+last_built: 2021-10-15T20:26Z
 urls:
   reference: https://dieghernan.github.io/nominatimlite/reference
   article: https://dieghernan.github.io/nominatimlite/articles

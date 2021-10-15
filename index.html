@@ -149,15 +149,13 @@
 <p><img src="reference/figures/README-McDonalds-1.png" width="100%"></p>
 <p>You can also extract polygon and line objects (as provided by the Nominatim API) using the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">pentagon_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pentagon"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span>
+<code class="sourceCode R"><span class="va">pentagon_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pentagon"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pentagon_poly</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-penta-1.png" width="100%"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-
 <span class="va">dayton</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Dayton, OH"</span><span class="op">)</span> <span class="co"># default - a point</span>
 <span class="va">ohio_state</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a US state - a polygon</span>
 <span class="va">ohio_river</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio river"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a river - a line</span>
@@ -189,10 +187,10 @@
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
 <table class="table">
 <colgroup>
-<col width="19%">
-<col width="3%">
+<col width="20%">
+<col width="4%">
 <col width="5%">
-<col width="71%">
+<col width="69%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">query</th>
@@ -229,8 +227,8 @@
 <span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="88%">
-<col width="4%">
+<col width="87%">
+<col width="5%">
 <col width="6%">
 </colgroup>
 <thead><tr class="header">
