@@ -1,3 +1,7 @@
+# nominatimlite (development version)
+
+-  Skip API query tests on CRAN to avoid false positives.
+
 # nominatimlite 0.1.2
 
 -  New internal: `nominatim_check_access()`.

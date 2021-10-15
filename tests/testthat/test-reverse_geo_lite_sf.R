@@ -2,6 +2,7 @@ test_that("Returning empty query", {
   expect_message(reverse_geo_lite_sf(200, 200))
 
   skip_if_api_server()
+  skip_on_cran()
 
   obj <- reverse_geo_lite_sf(200, 200)
 
@@ -12,6 +13,7 @@ test_that("Returning empty query", {
 test_that("Returning error", {
   skip_if_api_server()
   skip_if_offline()
+  skip_on_cran()
 
   expect_error(reverse_geo_lite_sf(0, c(2, 3)))
   expect_error(reverse_geo_lite_sf("a", "a"))
@@ -20,6 +22,8 @@ test_that("Returning error", {
 test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
+  skip_on_cran()
+  
   expect_true(is.data.frame(reverse_geo_lite_sf(0, 0)))
   expect_s3_class(reverse_geo_lite_sf(0, 0), "sf")
 })
@@ -27,6 +31,7 @@ test_that("Data format", {
 test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
+  skip_on_cran()
 
   expect_equal(ncol(reverse_geo_lite_sf(0, 0)), 4)
   expect_gt(ncol(reverse_geo_lite_sf(0, 0,

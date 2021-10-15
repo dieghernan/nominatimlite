@@ -2,6 +2,7 @@ test_that("Returning empty query", {
   expect_message(geo_lite("xbzbzbzoa aiaia"))
 
   skip_if_api_server()
+  skip_on_cran()
 
   obj <- geo_lite("xbzbzbzoa aiaia")
 
@@ -13,6 +14,8 @@ test_that("Returning empty query", {
 test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
+  skip_on_cran()
+  
   expect_true(is.data.frame(geo_lite("Madrid")))
   expect_false(inherits(geo_lite("Madrid"), "sf")) # this is _not_ a _sf function
 })
@@ -21,6 +24,7 @@ test_that("Data format", {
 test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
+  skip_on_cran()
 
   expect_equal(ncol(geo_lite(c("Madrid", "Barcelona"))), 4)
   expect_gt(ncol(geo_lite("Madrid", full_results = TRUE)), 4)
