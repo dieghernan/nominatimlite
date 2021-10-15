@@ -14,6 +14,8 @@ test_that("Returning empty query", {
 test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
+  skip_on_cran()
+
   expect_true(is.data.frame(geo_address_lookup(34633854, "W")))
   expect_false(inherits(geo_address_lookup(34633854, "W"), "sf")) # this is _not_ a _sf function
 })

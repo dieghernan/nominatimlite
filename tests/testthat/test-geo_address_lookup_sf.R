@@ -14,6 +14,7 @@ test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
   skip_on_cran()
+
   expect_true(is.data.frame(geo_address_lookup_sf(34633854, "W")))
   expect_s3_class(geo_address_lookup_sf(34633854, "W"), "sf")
 })
@@ -22,6 +23,7 @@ test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
   skip_on_cran()
+
   expect_equal(ncol(geo_address_lookup_sf(34633854, "W")), 3)
   expect_gt(ncol(geo_address_lookup_sf(34633854, "W", full_results = TRUE)), 3)
   expect_equal(nrow(geo_address_lookup_sf(34633854, "W",
