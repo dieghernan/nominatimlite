@@ -11,7 +11,7 @@ status](https://www.r-pkg.org/badges/version/nominatimlite)](https://CRAN.R-proj
 results](https://cranchecks.info/badges/worst/nominatimlite)](https://cran.r-project.org/web/checks/check_results_nominatimlite.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
-[![codecov](https://app.codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
+[![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
 [![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
