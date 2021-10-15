@@ -4,11 +4,11 @@
   "identifier": "nominatimlite",
   "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.",
   "name": "nominatimlite: Interface with 'Nominatim' API Service",
-  "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "relatedLink": "https://dieghernan.github.io/nominatimlite/",
+  "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.2",
+  "version": "0.1.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -203,7 +203,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper"],
-  "fileSize": "278.74KB",
+  "fileSize": "279.492KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -218,7 +218,7 @@
       "name": "nominatimlite: Interface with 'Nominatim' API Service",
       "identifier": "10.5281/zenodo.5113195",
       "url": "https://dieghernan.github.io/nominatimlite/",
-      "description": "R package version 0.1.2",
+      "description": "R package version 0.1.2.9000",
       "@id": "https://doi.org/10.5281/zenodo.5113195",
       "sameAs": "https://doi.org/10.5281/zenodo.5113195"
     }

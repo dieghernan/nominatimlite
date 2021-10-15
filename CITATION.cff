@@ -8,7 +8,7 @@ message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
-version: 0.1.2
+version: 0.1.2.9000
 doi: 10.5281/zenodo.5113195
 abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
   Extract coordinates from addresses, find places near a set of coordinates, search
@@ -25,7 +25,7 @@ preferred-citation:
   - family-names: Hernangómez
     given-names: Diego
   year: '2021'
-  version: 0.1.2
+  version: 0.1.2.9000
   doi: 10.5281/zenodo.5113195
   url: https://dieghernan.github.io/nominatimlite/
 repository: https://CRAN.R-project.org/package=nominatimlite

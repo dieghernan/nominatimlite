@@ -23,7 +23,7 @@ test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
   skip_on_cran()
-  
+
   expect_true(is.data.frame(reverse_geo_lite_sf(0, 0)))
   expect_s3_class(reverse_geo_lite_sf(0, 0), "sf")
 })

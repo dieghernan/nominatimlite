@@ -14,7 +14,7 @@ test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
   skip_on_cran()
-  
+
   expect_true(is.data.frame(geo_lite_sf("Madrid")))
   expect_s3_class(geo_lite_sf("Madrid"), "sf")
 })
@@ -43,7 +43,7 @@ test_that("Checking geometry type", {
   skip_if_api_server()
   skip_if_offline()
   skip_on_cran()
-  
+
   expect_true(
     sf::st_geometry_type(geo_lite_sf("Pentagon")) == "POINT"
   )

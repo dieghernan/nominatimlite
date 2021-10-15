@@ -11,7 +11,7 @@ status](https://www.r-pkg.org/badges/version/nominatimlite)](https://CRAN.R-proj
 results](https://cranchecks.info/badges/worst/nominatimlite)](https://cran.r-project.org/web/checks/check_results_nominatimlite.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
-[![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://codecov.io/gh/dieghernan/nominatimlite)
+[![codecov](https://app.codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
 [![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -204,16 +204,16 @@ citation("nominatimlite")
 #> 
 #> Hernangómez D (2021). _nominatimlite: Interface with 'Nominatim' API
 #> Service_. doi: 10.5281/zenodo.5113195 (URL:
-#> https://doi.org/10.5281/zenodo.5113195), R package version 0.1.2, <URL:
-#> https://dieghernan.github.io/nominatimlite/>.
+#> https://doi.org/10.5281/zenodo.5113195), R package version 0.1.2.9000,
+#> <URL: https://dieghernan.github.io/nominatimlite/>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
 #>     title = {nominatimlite: Interface with 'Nominatim' API Service},
 #>     year = {2021},
-#>     note = {R package version 0.1.2},
-#>     version = {0.1.2},
+#>     note = {R package version 0.1.2.9000},
+#>     version = {0.1.2.9000},
 #>     author = {Diego Hernangómez},
 #>     doi = {10.5281/zenodo.5113195},
 #>     url = {https://dieghernan.github.io/nominatimlite/},

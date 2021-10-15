@@ -15,7 +15,7 @@ test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
   skip_on_cran()
-  
+
   expect_true(is.data.frame(geo_lite("Madrid")))
   expect_false(inherits(geo_lite("Madrid"), "sf")) # this is _not_ a _sf function
 })
