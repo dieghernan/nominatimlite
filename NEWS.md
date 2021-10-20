@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.1.3
 
 -  Skip API query tests on CRAN to avoid false positives.
 

@@ -21,19 +21,22 @@ geo_address_lookup_sf(
 Possible values are node ("N"), way ("W") or relation ("R"). If a single
 value is provided it would be recycled.#'}
 
-\item{full_results}{returns all data from the geocoder service if TRUE.
-If FALSE then only longitude and latitude are returned from the geocoder service.}
+\item{full_results}{returns all available data from the geocoding service if TRUE.
+If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
 
 \item{return_addresses}{return input addresses with results if TRUE. Note that
 most services return the input addresses with \code{full_results = TRUE} and setting
 return_addresses to FALSE does not prevent this.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console}
+\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
+permanently with \code{options(tidygeocoder.verbose = TRUE)}}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (i.e. \code{list(countrycodes = "US")}). See Details.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial points (\code{TRUE}, which is the default) or potentially other shapes as provided by the Nominatim API (\code{FALSE}).}
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
+points (\code{TRUE}, which is the default) or potentially other shapes as
+provided by the Nominatim API (\code{FALSE}).}
 }
 \value{
 A \code{sf} object with the results.

@@ -1,8 +1,5 @@
 ---
 output: github_document
-editor_options: 
-  markdown: 
-    wrap: 80
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -20,9 +17,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# nominatimlite <img src="man/figures/logo.png" align="right" width="120"/>
+# nominatimlite <a href='https://dieghernan.github.io/nominatimlite/'><img src='man/figures/logo.png' align="right" height="139" /></a>
+
 
 <!-- badges: start -->
+
 [![CRAN
 status](https://www.r-pkg.org/badges/version/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 [![CRAN
@@ -31,7 +30,9 @@ results](https://cranchecks.info/badges/worst/nominatimlite)](https://cran.r-pro
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
 [![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and
+is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5113195-blue)](https://doi.org/10.5281/zenodo.5113195)
 [![status](https://tinyverse.netlify.com/badge/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 
@@ -49,23 +50,23 @@ It also allows to load spatial objects using the `sf` package.
 Full site with examples and vignettes on
 <https://dieghernan.github.io/nominatimlite/>
 
-
 ## Why `nominatimlite`?
 
-The main goal of `nominatimlite` is to access the Nominatim API avoiding
-the dependency on `curl`. In some situations, `curl` may not be available
-or accessible, so `nominatimlite` uses base functions to overcome this 
-limitation.
+The main goal of `nominatimlite` is to access the Nominatim API avoiding the
+dependency on `curl`. In some situations, `curl` may not be available or
+accessible, so `nominatimlite` uses base functions to overcome this limitation.
 
 ## Recommended packages
+
 There are other packages much more complete and mature than `nominatimlite`,
 that presents similar features:
 
-- [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse Cambon.
-Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse geocoding.
-- [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great for
-downloading spatial data from OpenStreetMap, via the [Overpass
-API](https://wiki.openstreetmap.org/wiki/Overpass_API).
+-   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse
+    Cambon. Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for
+    geocoding and reverse geocoding.
+-   [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great for
+    downloading spatial data from OpenStreetMap, via the [Overpass
+    API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
 ## Installation
 
@@ -121,7 +122,8 @@ ggplot(LA) +
   geom_sf(data = McDonalds, col = "red")
 ```
 
-You can also extract polygon and line objects (as provided by the Nominatim API) using the option `points_only = FALSE`:
+You can also extract polygon and line objects (as provided by the Nominatim API)
+using the option `points_only = FALSE`:
 
 ```{r penta }
 
@@ -197,8 +199,6 @@ parameters available.
 
 ## Citation
 
-If you need a citation, use:
-
-```{r}
+```{r echo=FALSE, results='asis'}
 citation("nominatimlite")
 ```

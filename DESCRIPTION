@@ -1,13 +1,11 @@
 Type: Package
 Package: nominatimlite
 Title: Interface with 'Nominatim' API Service
-Version: 0.1.2.9000
+Version: 0.1.3
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
-    person("Jindra", "Lacko", role = c("ctb", "rev")),
-    person("OpenStreetMap contributors", role = "cph",
-           comment = "for the data.")
+    person("Jindra", "Lacko", role = c("ctb", "rev"))
   )
 Description: Lite interface for getting data from 'OSM' service
     'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
@@ -36,7 +34,7 @@ VignetteBuilder:
     knitr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
-Copyright: Data (c) OpenStreetMap contributors, ODbL 1.0.
+Copyright: Data © OpenStreetMap contributors, ODbL 1.0.
     <https://www.openstreetmap.org/copyright>
 Encoding: UTF-8
 LazyData: true

@@ -5,7 +5,7 @@ navbar:
   bg: primary
 
 template:
-  bootstrap: 4
+  bootstrap: 5
   params:
     bootswatch: flatly
     ganalytics: G-5SLV8G8QD4
@@ -13,6 +13,9 @@ template:
     twitter:
       creator: "@dhernangomez"
       card: summary_large_image
+
+repo:
+  branch: main
 
 home:
   title: nominatimlite | Connection with OSM Nominatim API
@@ -22,8 +25,6 @@ authors:
     href: 'https://dieghernan.github.io/'
   Jindra Lacko:
     href: 'https://www.jla-data.net/'
-  OpenStreetMap contributors:
-    href: 'https://www.openstreetmap.org/copyright'
 
 reference:
 - title: Geocoding and reverse geocoding

@@ -17,7 +17,8 @@ test_that("Data format", {
   skip_on_cran()
 
   expect_true(is.data.frame(geo_lite("Madrid")))
-  expect_false(inherits(geo_lite("Madrid"), "sf")) # this is _not_ a _sf function
+  expect_false(inherits(geo_lite("Madrid"), "sf"))
+  # this is _not_ a _sf function
 })
 
 

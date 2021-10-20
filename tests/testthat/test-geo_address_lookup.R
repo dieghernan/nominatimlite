@@ -17,7 +17,8 @@ test_that("Data format", {
   skip_on_cran()
 
   expect_true(is.data.frame(geo_address_lookup(34633854, "W")))
-  expect_false(inherits(geo_address_lookup(34633854, "W"), "sf")) # this is _not_ a _sf function
+  expect_false(inherits(geo_address_lookup(34633854, "W"), "sf"))
+  # this is _not_ a _sf function
 })
 
 test_that("Checking query", {

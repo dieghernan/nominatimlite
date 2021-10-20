@@ -25,14 +25,15 @@ geo_lite(
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{returns all data from the geocoder service if TRUE.
-If FALSE then only longitude and latitude are returned from the geocoder service.}
+\item{full_results}{returns all available data from the geocoding service if TRUE.
+If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
 
 \item{return_addresses}{return input addresses with results if TRUE. Note that
 most services return the input addresses with \code{full_results = TRUE} and setting
 return_addresses to FALSE does not prevent this.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console}
+\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
+permanently with \code{options(tidygeocoder.verbose = TRUE)}}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (i.e. \code{list(countrycodes = "US")}). See Details.}

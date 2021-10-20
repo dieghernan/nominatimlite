@@ -1,6 +1,5 @@
 CMD
 Cambon
-CodeFactor
 DOI
 Geocode
 Geocodes
@@ -8,6 +7,7 @@ Geocoding
 Mapbox
 McDonalds
 Nominatim
+Nominatim’
 ORCID
 OSM
 OpenStreetMap
@@ -22,6 +22,7 @@ centre
 codecov
 de
 dieghernan
+doi
 geocode
 geocoded
 geocoder
@@ -34,6 +35,7 @@ ie
 io
 lon
 nominatim
+nominatimlite’
 osm
 penta
 stripclub
@@ -41,3 +43,4 @@ swingerclub
 theatre
 townhall
 vectorized
+zenodo
