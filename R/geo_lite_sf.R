@@ -96,10 +96,6 @@ geo_lite_sf <- function(address,
   all_res <- NULL
 
   for (i in seq_len(length(address))) {
-    if (i > 1) {
-      Sys.sleep(1)
-    }
-
     res_single <- geo_lite_sf_single(
       address = address[i],
       limit,
@@ -159,21 +155,15 @@ geo_lite_sf_single <- function(address,
 
   json <- tempfile(fileext = ".geojson")
 
-  # nocov start
-  res <- tryCatch(
-    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
-    warning = function(e) {
-      return(NULL)
-    },
-    error = function(e) {
-      return(NULL)
-    }
-  )
+  res <- api_call(url, json, quiet = isFALSE(verbose))
 
-  if (is.null(res)) {
+
+  # nocov start
+
+  if (isFALSE(res)) {
     message(url, " not reachable.")
     result_out <- data.frame(query = address)
-    return(result_out)
+    return(invisible(result_out))
   }
   # nocov end
 
@@ -187,7 +177,7 @@ geo_lite_sf_single <- function(address,
   if (length(names(sfobj)) == 1) {
     message("No results for query ", address)
     result_out <- data.frame(query = address)
-    return(result_out)
+    return(invisible(result_out))
   }
 
   # Prepare output

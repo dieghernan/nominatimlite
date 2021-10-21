@@ -124,11 +124,6 @@ reverse_geo_lite_sf <- function(lat,
   all_res <- NULL
 
   for (i in seq_len(length(long_cap))) {
-    if (i > 1) {
-      Sys.sleep(1)
-    }
-
-
     res_single <- reverse_geo_lite_sf_single(
       lat_cap[i],
       long_cap[i],
@@ -191,22 +186,15 @@ reverse_geo_lite_sf_single <- function(lat_cap,
 
   json <- tempfile(fileext = ".geojson")
 
-  # nocov start
-  res <- tryCatch(
-    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
-    warning = function(e) {
-      return(NULL)
-    },
-    error = function(e) {
-      return(NULL)
-    }
-  )
+  res <- api_call(url, json, quiet = isFALSE(verbose))
 
-  if (is.null(res)) {
+
+  # nocov start
+  if (isFALSE(res)) {
     message(url, " not reachable.")
     result_out <- tibble::tibble(ad = NA)
     names(result_out) <- address
-    return(result_out)
+    return(invisible(result_out))
   }
   # nocov end
 
@@ -243,7 +231,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
       result_out <- cbind(result_out, coords)
     }
 
-    return(result_out)
+    return(invisible(result_out))
   }
 
   # Prepare output

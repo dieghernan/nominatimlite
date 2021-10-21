@@ -14,8 +14,15 @@ Check if R has access to resources at
 \url{https://nominatim.openstreetmap.org}.
 }
 \examples{
-
+\donttest{
 nominatim_check_access()
 }
-\concept{helper}
+}
+\seealso{
+\url{https://nominatim.org/release-docs/latest/api/Status/}
+
+Other api_management: 
+\code{\link{api_call}()}
+}
+\concept{api_management}
 \keyword{internal}

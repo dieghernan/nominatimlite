@@ -92,10 +92,6 @@ geo_amenity <- function(bbox,
   all_res <- NULL
 
   for (i in seq_len(length(amenity))) {
-    if (i > 1) {
-      Sys.sleep(1)
-    }
-
     res_single <- geo_amenity_single(
       bbox = bbox,
       amenity = amenity[i],
@@ -179,22 +175,15 @@ geo_amenity_single <- function(bbox,
   json <- tempfile(fileext = ".json")
 
 
-  # nocov start
-  res <- tryCatch(
-    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
-    warning = function(e) {
-      return(NULL)
-    },
-    error = function(e) {
-      return(NULL)
-    }
-  )
 
-  if (is.null(res)) {
+  res <- api_call(url, json, isFALSE(verbose))
+
+  # nocov start
+  if (isFALSE(res)) {
     message(url, " not reachable.")
     result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
-    return(result_out)
+    return(invisible(result_out))
   }
   # nocov end
 
@@ -214,7 +203,7 @@ geo_amenity_single <- function(bbox,
     message("No results for query ", amenity)
     result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
-    return(result_out)
+    return(invisible(result_out))
   }
 
   # Rename

@@ -1,6 +1,6 @@
 #' Check access to Nominatim API
 #'
-#' @concept helper
+#' @family api_management
 #'
 #' @description
 #' Check if R has access to resources at
@@ -8,29 +8,33 @@
 #'
 #' @return a logical.
 #'
-#' @examples
+#' @seealso
+#' <https://nominatim.org/release-docs/latest/api/Status/>
 #'
+#' @examples
+#' \donttest{
 #' nominatim_check_access()
+#' }
 #' @keywords internal
 #' @export
 nominatim_check_access <- function() {
-  url <- paste0(
-    "https://nominatim.openstreetmap.org/search?q=",
-    "Madrid&format=json&limit=1"
-  )
-  # nocov start
-  access <-
-    tryCatch(
-      download.file(url, destfile = tempfile(), quiet = TRUE),
-      warning = function(e) {
-        return(FALSE)
-      }
-    )
+  url <- "https://nominatim.openstreetmap.org/status.php?format=json"
+  destfile <- tempfile(fileext = ".json")
 
-  if (isFALSE(access)) {
+  api_res <- api_call(url, destfile, TRUE)
+
+  # nocov start
+  if (isFALSE(api_res)) {
     return(FALSE)
-  } else {
+  }
+  # nocov end
+  result <- tibble::as_tibble(jsonlite::fromJSON(destfile, flatten = TRUE))
+
+  # nocov start
+  if (result$status == 0 || result$message == "OK") {
     return(TRUE)
+  } else {
+    return(FALSE)
   }
   # nocov end
 }
@@ -45,5 +49,63 @@ skip_if_api_server <- function() {
     testthat::skip("Nominatim API not reachable")
   }
   return(invisible())
+  # nocov end
+}
+
+
+#' Helper function for centralize API queries
+#'
+#' @description
+#' A wrapper of [utils::download.file()]. On warning on error it will
+#' retry the call. Requests are adjusted to the rate of 1 query per second.
+#'
+#' See [Nominatim Usage
+#' Policy](https://operations.osmfoundation.org/policies/nominatim/).
+#'
+#' @family api_management
+#'
+#' @inheritParams utils::download.file
+#' @return A logical `TRUE/FALSE`
+#'
+#' @keywords internal
+#'
+api_call <- function(url, destfile, quiet) {
+  # nocov start
+  dwn_res <-
+    tryCatch(
+      download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+      warning = function(e) {
+        return(FALSE)
+      },
+      error = function(e) {
+        return(FALSE)
+      }
+    )
+  # nocov end
+  # Always sleep to make 1 call per sec
+  Sys.sleep(1)
+
+  # nocov start
+  if (isFALSE(dwn_res)) {
+    if (isFALSE(quiet)) message("Retrying query")
+    Sys.sleep(1)
+
+    dwn_res <-
+      tryCatch(
+        download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+        warning = function(e) {
+          return(FALSE)
+        },
+        error = function(e) {
+          return(FALSE)
+        }
+      )
+  }
+
+  if (isFALSE(dwn_res)) {
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
   # nocov end
 }

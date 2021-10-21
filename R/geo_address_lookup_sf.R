@@ -81,21 +81,13 @@ geo_address_lookup_sf <- function(osm_ids,
 
   json <- tempfile(fileext = ".geojson")
 
-  # nocov start
-  res <- tryCatch(
-    download.file(url, json, mode = "wb", quiet = isFALSE(verbose)),
-    warning = function(e) {
-      return(NULL)
-    },
-    error = function(e) {
-      return(NULL)
-    }
-  )
+  res <- api_call(url, json, quiet = isFALSE(verbose))
 
-  if (is.null(res)) {
-    message(url, " not reachable.", nodes)
+  # nocov start
+  if (isFALSE(res)) {
+    message(url, " not reachable.")
     result_out <- data.frame(query = paste0(type, osm_ids))
-    return(result_out)
+    return(invisible(result_out))
   }
   # nocov end
 
@@ -109,7 +101,7 @@ geo_address_lookup_sf <- function(osm_ids,
   if (length(names(sfobj)) == 1) {
     message("No results for query ", nodes)
     result_out <- data.frame(query = paste0(type, osm_ids))
-    return(result_out)
+    return(invisible(result_out))
   }
 
 
