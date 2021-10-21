@@ -200,5 +200,13 @@ parameters available.
 ## Citation
 
 ```{r echo=FALSE, results='asis'}
-citation("nominatimlite")
+print(citation("nominatimlite"), bibtex = FALSE)
 ```
+
+
+A BibTeX entry for LaTeX users is 
+
+```{r echo=FALSE}
+toBibtex(citation("nominatimlite"))
+```
+

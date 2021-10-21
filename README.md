@@ -202,7 +202,12 @@ Service*. doi: 10.5281/zenodo.5113195 (URL:
 
 A BibTeX entry for LaTeX users is
 
-@Manual{, title = {nominatimlite: Interface with ‘Nominatim’ API
-Service}, year = {2021}, note = {R package version 0.1.3}, version =
-{0.1.3}, author = {Diego Hernangómez}, doi = {10.5281/zenodo.5113195},
-url = {<https://dieghernan.github.io/nominatimlite/>}, }
+    #> @Manual{,
+    #>   title = {nominatimlite: Interface with 'Nominatim' API Service},
+    #>   year = {2021},
+    #>   note = {R package version 0.1.3},
+    #>   version = {0.1.3},
+    #>   author = {Diego Hernangómez},
+    #>   doi = {10.5281/zenodo.5113195},
+    #>   url = {https://dieghernan.github.io/nominatimlite/},
+    #> }
