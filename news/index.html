@@ -52,7 +52,9 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.3" id="nominatimlite-013">nominatimlite 0.1.3<a class="anchor" aria-label="anchor" href="#nominatimlite-013"></a></h2>
-<ul><li>Skip API query tests on CRAN to avoid false positives.</li>
+<ul><li><p>Skip API query tests on CRAN to avoid false positives.</p></li>
+<li><p>Centralize API queries on (internal) function <code><a href="../reference/api_call.html">api_call()</a></code>.</p></li>
+<li><p>Queries fully honors now the <a href="https://operations.osmfoundation.org/policies/nominatim/" class="external-link">Nominatim Usage Policy</a>. Queries may be slower now.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="nominatimlite-012">nominatimlite 0.1.2<a class="anchor" aria-label="anchor" href="#nominatimlite-012"></a></h2><p class="text-muted">CRAN release: 2021-10-07</p>
@@ -65,14 +67,14 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="nominatimlite-010">nominatimlite 0.1.0<a class="anchor" aria-label="anchor" href="#nominatimlite-010"></a></h2><p class="text-muted">CRAN release: 2021-09-16</p>
-<ul><li>
-<strong>CRAN</strong> release.</li>
-<li>Adjust query rate limits to Nominatim policy.</li>
-<li>New <code>strict</code> argument on <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code>.</li>
-<li>Parameter <code>polygon</code> changed to <code>points_only</code> (<a href="https://github.com/dieghernan/nominatimlite/issues/8" class="external-link">#8</a>) thanks to
+<ul><li><p><strong>CRAN</strong> release.</p></li>
+<li><p>Adjust query rate limits to Nominatim policy.</p></li>
+<li><p>New <code>strict</code> argument on <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code>.</p></li>
+<li>
+<p>Parameter <code>polygon</code> changed to <code>points_only</code> (<a href="https://github.com/dieghernan/nominatimlite/issues/8" class="external-link">#8</a>) thanks to</p>
 <ol class="example" style="list-style-type: decimal"><li>
 </li></ol></li>
-<li>Package now falls gracefully if url not reachable.</li>
+<li><p>Package now falls gracefully if url not reachable.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="nominatimlite-001">nominatimlite 0.0.1<a class="anchor" aria-label="anchor" href="#nominatimlite-001"></a></h2>
