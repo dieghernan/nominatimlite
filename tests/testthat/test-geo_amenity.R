@@ -4,8 +4,8 @@ test_that("Returning empty query", {
     amenity = "xbzbzbzoa aiaia"
   ))
 
-  skip_if_api_server()
   skip_on_cran()
+  skip_if_api_server()
 
   obj <- geo_amenity_sf(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -18,9 +18,10 @@ test_that("Returning empty query", {
 })
 
 test_that("Data format", {
+  skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-  skip_on_cran()
+
 
   expect_true(is.data.frame(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -33,9 +34,10 @@ test_that("Data format", {
 })
 
 test_that("Checking query", {
+  skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-  skip_on_cran()
+
 
   expect_equal(ncol(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),

@@ -1,8 +1,8 @@
 test_that("Returning empty query", {
   expect_message(reverse_geo_lite(200, 200))
 
-  skip_if_api_server()
   skip_on_cran()
+  skip_if_api_server()
 
   obj <- reverse_geo_lite(200, 200)
 
@@ -11,18 +11,20 @@ test_that("Returning empty query", {
 })
 
 test_that("Returning error", {
+  skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-  skip_on_cran()
+
 
   expect_error(reverse_geo_lite(0, c(2, 3)))
   expect_error(reverse_geo_lite("a", "a"))
 })
 
 test_that("Data format", {
+  skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-  skip_on_cran()
+
 
   expect_true(is.data.frame(reverse_geo_lite(0, 0)))
   expect_false(inherits(reverse_geo_lite(0, 0), "sf"))
@@ -30,9 +32,10 @@ test_that("Data format", {
 })
 
 test_that("Checking query", {
+  skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-  skip_on_cran()
+
 
   expect_equal(ncol(reverse_geo_lite(0, 0)), 3)
   expect_gt(ncol(reverse_geo_lite(0, 0, full_results = TRUE)), 3)

@@ -1,8 +1,8 @@
 test_that("Returning empty query", {
   expect_message(geo_address_lookup("xbzbzbzoa aiaia", "R"))
 
-  skip_if_api_server()
   skip_on_cran()
+  skip_if_api_server()
 
   obj <- geo_address_lookup("xbzbzbzoa aiaia", "R")
 
@@ -12,9 +12,10 @@ test_that("Returning empty query", {
 })
 
 test_that("Data format", {
+  skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-  skip_on_cran()
+
 
   expect_true(is.data.frame(geo_address_lookup(34633854, "W")))
   expect_false(inherits(geo_address_lookup(34633854, "W"), "sf"))
@@ -22,9 +23,10 @@ test_that("Data format", {
 })
 
 test_that("Checking query", {
+  skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-  skip_on_cran()
+
 
   expect_equal(ncol(geo_address_lookup(34633854, "W")), 4)
   expect_gt(ncol(geo_address_lookup(34633854, "W", full_results = TRUE)), 4)
