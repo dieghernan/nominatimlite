@@ -125,9 +125,9 @@ geo_amenity_sf_single <- function(bbox,
   url <- paste0(
     api, "viewbox=",
     bbox_txt,
-    "&amenity=",
+    "&q=[",
     amenity,
-    "&format=geojson&limit=", limit
+    "]&format=geojson&limit=", limit
   )
 
   if (full_results) {

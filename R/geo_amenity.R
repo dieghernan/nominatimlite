@@ -143,9 +143,9 @@ geo_amenity_single <- function(bbox,
   url <- paste0(
     api, "viewbox=",
     bbox_txt,
-    "&amenity=",
+    "&q=[",
     amenity,
-    "&format=json&limit=", limit
+    "]&format=json&limit=", limit
   )
 
   if (full_results) {

@@ -1,3 +1,7 @@
+# nominatimlite (development version)
+
+-   Fix issues with `geo_amenity()` and `geo_amenity_sf()`.
+
 # nominatimlite 0.1.3
 
 -   Skip API query tests on CRAN to avoid false positives.
