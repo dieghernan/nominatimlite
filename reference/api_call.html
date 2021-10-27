@@ -19,7 +19,7 @@ See Nominatim Usage Policy."><meta property="og:image" content="https://dieghern
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.4</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -49,10 +49,10 @@ See Nominatim Usage Policy."><meta property="og:image" content="https://dieghern
 </nav><div class="container template-reference-topic" id="container">
 <div class="row">
   <div class="col-md-9 contents">
-    <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
-    <h1>Helper function for centralize API queries</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/R/nominatim_check_access.R" class="external-link"><code>R/nominatim_check_access.R</code></a></small>
-    <div class="d-none name"><code>api_call.Rd</code></div>
+    <div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Helper function for centralize API queries</h1>
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/R/nominatim_check_access.R" class="external-link"><code>R/nominatim_check_access.R</code></a></small>
+      <div class="d-none name"><code>api_call.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
@@ -65,22 +65,21 @@ retry the call. Requests are adjusted to the rate of 1 query per second.</p>
     <pre class="sourceCode r"><code><span class="fu">api_call</span><span class="op">(</span><span class="va">url</span>, <span class="va">destfile</span>, <span class="va">quiet</span><span class="op">)</span></code></pre>
     </div>
 
-    <div class="ref-arguments section level2">
+    <div id="ref-sections">
+    <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt id="ref-argument-url">url</dt>
-      <dd><p>a <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></code> string (or longer vector e.g.,
+    <dl><dt>url</dt>
+<dd><p>a <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></code> string (or longer vector e.g.,
     for the <code>"libcurl"</code> method) naming the URL of a resource to be
     downloaded.</p></dd>
-      <dt id="ref-argument-destfile">destfile</dt>
-      <dd><p>a character string (or vector, see the <code>url</code>
+<dt>destfile</dt>
+<dd><p>a character string (or vector, see the <code>url</code>
     argument) with the file path where the downloaded file is to be
     saved.  Tilde-expansion is performed.</p></dd>
-      <dt id="ref-argument-quiet">quiet</dt>
-      <dd><p>If <code>TRUE</code>, suppress status messages (if any), and
+<dt>quiet</dt>
+<dd><p>If <code>TRUE</code>, suppress status messages (if any), and
     the progress bar.</p></dd>
-    </dl></div>
-
-    <div id="ref-sections">
+</dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A logical <code>TRUE/FALSE</code></p>

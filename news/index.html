@@ -15,7 +15,7 @@
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.4</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -45,13 +45,17 @@
 </nav><div class="container template-news" id="container">
 <div class="row">
   <div class="col-md-9 contents">
-    <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
-      <h1 data-toc-skip>Changelog <small></small></h1>
+    <div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Changelog <small></small></h1>
       <small>Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.3" id="nominatimlite-013">nominatimlite 0.1.3<a class="anchor" aria-label="anchor" href="#nominatimlite-013"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.4" id="nominatimlite-014">nominatimlite 0.1.4<a class="anchor" aria-label="anchor" href="#nominatimlite-014"></a></h2>
+<ul><li>Fix issues with <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code>.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.3" id="nominatimlite-013">nominatimlite 0.1.3<a class="anchor" aria-label="anchor" href="#nominatimlite-013"></a></h2><p class="text-muted">CRAN release: 2021-10-21</p>
 <ul><li>Skip API query tests on CRAN to avoid false positives.</li>
 <li>Centralize API queries on (internal) function <code><a href="../reference/api_call.html">api_call()</a></code>.</li>
 <li>Queries fully honors now the <a href="https://operations.osmfoundation.org/policies/nominatim/" class="external-link">Nominatim Usage Policy</a>. Queries may be slower now.</li>

@@ -15,7 +15,7 @@
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.4</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -45,10 +45,10 @@
 </nav><div class="container template-reference-topic" id="container">
 <div class="row">
   <div class="col-md-9 contents">
-    <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
-    <h1>Create a bounding box <code>sf</code> object</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/R/bbox_to_poly.R" class="external-link"><code>R/bbox_to_poly.R</code></a></small>
-    <div class="d-none name"><code>bbox_to_poly.Rd</code></div>
+    <div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Create a bounding box <code>sf</code> object</h1>
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/R/bbox_to_poly.R" class="external-link"><code>R/bbox_to_poly.R</code></a></small>
+      <div class="d-none name"><code>bbox_to_poly.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
@@ -59,19 +59,18 @@
     <pre class="sourceCode r"><code><span class="fu">bbox_to_poly</span><span class="op">(</span>bbox <span class="op">=</span> <span class="cn">NA</span>, xmin <span class="op">=</span> <span class="cn">NA</span>, ymin <span class="op">=</span> <span class="cn">NA</span>, xmax <span class="op">=</span> <span class="cn">NA</span>, ymax <span class="op">=</span> <span class="cn">NA</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></code></pre>
     </div>
 
-    <div class="ref-arguments section level2">
-    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt id="ref-argument-bbox">bbox</dt>
-      <dd><p>numeric vector of 4 elements representing the coordinates of the
-bounding box. Values should be <code>c(xmin, ymin, xmax, ymax)</code></p></dd>
-      <dt id="ref-argument-xmin, ymin, xmax, ymax">xmin, ymin, xmax, ymax</dt>
-      <dd><p>alternatively, you can use these named parameters
-instead of <code>bbox</code></p></dd>
-      <dt id="ref-argument-crs">crs</dt>
-      <dd><p>coordinate reference system, something suitable as input to <a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></p></dd>
-    </dl></div>
-
     <div id="ref-sections">
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+    <dl><dt>bbox</dt>
+<dd><p>numeric vector of 4 elements representing the coordinates of the
+bounding box. Values should be <code>c(xmin, ymin, xmax, ymax)</code></p></dd>
+<dt>xmin, ymin, xmax, ymax</dt>
+<dd><p>alternatively, you can use these named parameters
+instead of <code>bbox</code></p></dd>
+<dt>crs</dt>
+<dd><p>coordinate reference system, something suitable as input to <a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></p></dd>
+</dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>sf</code> object</p>

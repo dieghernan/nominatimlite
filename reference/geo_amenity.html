@@ -21,7 +21,7 @@ a bounding box in the form of (&amp;lt;min_latitude&amp;gt;, &amp;lt;min_longitu
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.4</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -51,10 +51,10 @@ a bounding box in the form of (&amp;lt;min_latitude&amp;gt;, &amp;lt;min_longitu
 </nav><div class="container template-reference-topic" id="container">
 <div class="row">
   <div class="col-md-9 contents">
-    <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
-    <h1>Geocode amenities</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/R/geo_amenity.R" class="external-link"><code>R/geo_amenity.R</code></a></small>
-    <div class="d-none name"><code>geo_amenity.Rd</code></div>
+    <div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Geocode amenities</h1>
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/R/geo_amenity.R" class="external-link"><code>R/geo_amenity.R</code></a></small>
+      <div class="d-none name"><code>geo_amenity.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
@@ -79,43 +79,42 @@ a bounding box in the form of (&lt;min_latitude&gt;, &lt;min_longitude&gt;,
 <span class="op">)</span></code></pre>
     </div>
 
-    <div class="ref-arguments section level2">
+    <div id="ref-sections">
+    <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt id="ref-argument-bbox">bbox</dt>
-      <dd><p>A numeric vector of latitude and longitude (&lt;min_latitude&gt;,
+    <dl><dt>bbox</dt>
+<dd><p>A numeric vector of latitude and longitude (&lt;min_latitude&gt;,
 &lt;min_longitude&gt;, &lt;max_latitude&gt;, &lt;max_longitude&gt;) that restrict the search
 area. See Details.</p></dd>
-      <dt id="ref-argument-amenity">amenity</dt>
-      <dd><p>A character of a vector of character with the amenities to be
+<dt>amenity</dt>
+<dd><p>A character of a vector of character with the amenities to be
 geolocated (i.e. <code>c("pub", "restaurant")</code>). See Details or
 <a href="osm_amenities.html">osm_amenities</a>.</p></dd>
-      <dt id="ref-argument-lat">lat</dt>
-      <dd><p>latitude column name (i.e. <code>"lat"</code>).</p></dd>
-      <dt id="ref-argument-long">long</dt>
-      <dd><p>longitude column name (i.e. <code>"long"</code>).</p></dd>
-      <dt id="ref-argument-limit">limit</dt>
-      <dd><p>maximum number of results to return per input address. Note
+<dt>lat</dt>
+<dd><p>latitude column name (i.e. <code>"lat"</code>).</p></dd>
+<dt>long</dt>
+<dd><p>longitude column name (i.e. <code>"long"</code>).</p></dd>
+<dt>limit</dt>
+<dd><p>maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.</p></dd>
-      <dt id="ref-argument-full_results">full_results</dt>
-      <dd><p>returns all available data from the geocoding service if TRUE.
+<dt>full_results</dt>
+<dd><p>returns all available data from the geocoding service if TRUE.
 If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.</p></dd>
-      <dt id="ref-argument-return_addresses">return_addresses</dt>
-      <dd><p>return input addresses with results if TRUE. Note that
+<dt>return_addresses</dt>
+<dd><p>return input addresses with results if TRUE. Note that
 most services return the input addresses with <code>full_results = TRUE</code> and setting
 return_addresses to FALSE does not prevent this.</p></dd>
-      <dt id="ref-argument-verbose">verbose</dt>
-      <dd><p>if TRUE then detailed logs are output to the console. FALSE is default. Can be set
+<dt>verbose</dt>
+<dd><p>if TRUE then detailed logs are output to the console. FALSE is default. Can be set
 permanently with <code>options(tidygeocoder.verbose = TRUE)</code></p></dd>
-      <dt id="ref-argument-custom_query">custom_query</dt>
-      <dd><p>API-specific parameters to be used.
+<dt>custom_query</dt>
+<dd><p>API-specific parameters to be used.
 See <code><a href="geo_lite.html">geo_lite()</a></code>.</p></dd>
-      <dt id="ref-argument-strict">strict</dt>
-      <dd><p>Logical TRUE/FALSE. Force the results to be included inside
+<dt>strict</dt>
+<dd><p>Logical TRUE/FALSE. Force the results to be included inside
 the <code>bbox</code>. Note that Nominatim default behaviour may return results located
 outside the provided bounding box.</p></dd>
-    </dl></div>
-
-    <div id="ref-sections">
+</dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>tibble</code> with the results.</p>
@@ -156,7 +155,7 @@ outside the provided bounding box.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query        lat   lon address                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bond45, West 45th Street, Times Square, Manhattan, New…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Sardi's, 234, West 44th Street, Theater District, Manh…</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Several amenities</span></span>
 <span class="r-in"><span class="fu">geo_amenity</span><span class="op">(</span></span>
@@ -166,8 +165,8 @@ outside the provided bounding box.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query        lat   lon address                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bond45, West 45th Street, Times Square, Manhattan, New…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Times Square, Manha…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Sardi's, 234, West 44th Street, Theater District, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Perfect Pint, 123, West 45th Street, Times Square, Man…</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Increase limit and use with strict</span></span>
 <span class="r-in"><span class="fu">geo_amenity</span><span class="op">(</span></span>
@@ -176,25 +175,26 @@ outside the provided bounding box.</p></dd>
 <span class="r-in">  limit <span class="op">=</span> <span class="fl">10</span>,</span>
 <span class="r-in">  strict <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    query        lat   lon address                                               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Sardi's, 234, West 44th Street, Theater District, Man…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bond45, West 45th Street, Times Square, Manhattan, Ne…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Chevys, 259, West 42nd Street, Theater District, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Applebee's, 234, West 42nd Street, Theater District, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Planet Hollywood, 1540, Broadway, Times Square, Manha…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bubba Gump Shrimp Co., 1501, Broadway, Times Square, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Carmine's, 200, West 44th Street, Theater District, M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Carmine's, 200, West 44th Street, Theater District, M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> The Lambs Club, West 44th Street, Theater District, M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Hard Rock Cafe, 1501, Broadway, Times Square, Manhatt…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Haru Sushi, 229, West 43rd Street, Theater District, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Tony's, 147, West 43rd Street, Theater District, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Chevys, 259, West 42nd Street, Theater District, Manh…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Dallas BBQ, 241, West 42nd Street, Theater District, …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> bella vita tranttoria, 211, West 43rd Street, Theater…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Virgil's Real BBQ, 152, West 44th Street, Theater Dis…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Times Square, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Applebee's, 234, West 42nd Street, Theater District, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Jimmy's Corner, 140, West 44th Street, Theater Distri…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Perfect Pint, 123, West 45th Street, Times Square, Ma…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O'Lunney's, 145, West 45th Street, Times Square, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Jimmy's Corner, 140, West 44th Street, Theater Distri…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O’Brien’s, 134, West 46th Street, Times Square, Manha…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O'Lunney's, 145, West 45th Street, Times Square, Manh…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> BXL Cafe, 125, West 43rd Street, Theater District, Ma…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O’Brien’s, 134, West 46th Street, Midtown, Times Squa…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Times Square, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Dave &amp; Buster’s, 234, West 42nd Street, Theater Distr…</span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
