@@ -65,7 +65,7 @@ ggplot(LA) +
   geom_sf(data = McDonalds, col = "red")
 ```
 
-![plot of chunk McDonalds](McDonalds-1.png)
+<img src="McDonalds-1.png" title="McDonalds restaurants in California" alt="McDonalds restaurants in California"  />
 
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
@@ -79,7 +79,7 @@ ggplot(pentagon_poly) +
   geom_sf()
 ```
 
-![plot of chunk penta](penta-1.png)
+<img src="penta-1.png" title="The Pentagon" alt="The Pentagon"  />
 
 ### Geocoding and reverse geocoding
 
