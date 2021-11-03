@@ -29,7 +29,7 @@ jobs:
           cache-version: 3
           extra-packages: |
             rcmdcheck
-            dieghernan/pkgdown
+            r-lib/pkgdown
             dieghernan/pkgdev
           needs: website
 
