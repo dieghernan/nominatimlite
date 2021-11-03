@@ -9,7 +9,7 @@
 
   gtag('config', 'G-5SLV8G8QD4');
 </script></head><body>
-    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
+    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
@@ -32,7 +32,7 @@
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off"></form>
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
   <a class="external-link nav-link" href="https://github.com/dieghernan/nominatimlite/" aria-label="github">
@@ -56,6 +56,7 @@
     </div>
 
     <div class="ref-usage section level2 sourceCode">
+    <h2>Usage</h2>
     <pre class="sourceCode r"><code><span class="fu">bbox_to_poly</span><span class="op">(</span>bbox <span class="op">=</span> <span class="cn">NA</span>, xmin <span class="op">=</span> <span class="cn">NA</span>, ymin <span class="op">=</span> <span class="cn">NA</span>, xmax <span class="op">=</span> <span class="cn">NA</span>, ymax <span class="op">=</span> <span class="cn">NA</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></code></pre>
     </div>
 
@@ -108,7 +109,7 @@ instead of <code>bbox</code></p></dd>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bbox_GER_sf</span><span class="op">)</span> <span class="op">+</span></span>
 <span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-plt"><img src="bbox_to_poly-1.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="bbox_to_poly-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="co"># Extract the bounding box of a sf object</span></span>
 <span class="r-in"><span class="va">Texas</span> <span class="op">&lt;-</span> <span class="fu"><a href="geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Texas"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -123,13 +124,13 @@ instead of <code>bbox</code></p></dd>
 <span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bbox_Texas</span><span class="op">)</span> <span class="op">+</span></span>
 <span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
 <span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Texas</span><span class="op">)</span></span>
-<span class="r-plt"><img src="bbox_to_poly-2.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="bbox_to_poly-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
   </div>
   <div class="col-md-3" id="pkgdown-sidebar">
-    <nav id="toc"><h2 data-toc-skip>Contents</h2>
+    <nav id="toc"><h2>On this page</h2>
     </nav></div>
 </div>
 
