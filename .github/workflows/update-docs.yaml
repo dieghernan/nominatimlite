@@ -17,13 +17,6 @@ jobs:
         with:
           use-public-rspm: true
 
-      # This is needed for workflows running on
-      # ubuntu-20.04 or later
-      - name: Install V8
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install -y libv8-dev
-
       - uses: r-lib/actions/setup-r-dependencies@master
         with:
           cache-version: 3
@@ -31,6 +24,8 @@ jobs:
             rcmdcheck
             r-lib/pkgdown
             dieghernan/pkgdev
+            V8
+            magick
           needs: website
 
       - name: Update docs
