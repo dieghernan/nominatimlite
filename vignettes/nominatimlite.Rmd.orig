@@ -1,6 +1,8 @@
 ---
 title: "Get started with nominatimlite"
 output: rmarkdown::html_vignette
+desc: >
+  Quick examples showing what `nominatimlite` can do for you.
 vignette: >
   %\VignetteIndexEntry{Get started with nominatimlite}
   %\VignetteEngine{knitr::rmarkdown}
