@@ -1,9 +1,9 @@
 pandoc: 2.7.3
 pkgdown: 1.9000.9000.9000
-pkgdown_sha: e72fc30f333dc4f50f3f9d1f274fc29d67e34974
+pkgdown_sha: 349e1afec6356ed309ce19b671d08c28035a7322
 articles:
   nominatimlite: nominatimlite.html
-last_built: 2021-11-23T17:53Z
+last_built: 2021-11-24T19:53Z
 urls:
   reference: https://dieghernan.github.io/nominatimlite/reference
   article: https://dieghernan.github.io/nominatimlite/articles
