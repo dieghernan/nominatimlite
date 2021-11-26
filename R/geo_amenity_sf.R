@@ -93,8 +93,8 @@ geo_amenity_sf <- function(bbox,
 
       res_single <- dplyr::filter(
         all_res,
-        query == amenity[i],
-        nmlite_first == 1
+        .data$query == amenity[i],
+        .data$nmlite_first == 1
       )
       res_single$nmlite_first <- 0
     } else {
@@ -115,7 +115,7 @@ geo_amenity_sf <- function(bbox,
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
 
-  all_res <- dplyr::select(all_res, -nmlite_first)
+  all_res <- dplyr::select(all_res, -.data$nmlite_first)
 
   if (strict) {
     bbox_sf <- bbox_to_poly(bbox)

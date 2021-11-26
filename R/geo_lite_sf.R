@@ -107,8 +107,8 @@ geo_lite_sf <- function(address,
 
       res_single <- dplyr::filter(
         all_res,
-        query == address_par[i],
-        nmlite_first == 1
+        .data$query == address_par[i],
+        .data$nmlite_first == 1
       )
       res_single$nmlite_first <- 0
     } else {
@@ -127,7 +127,7 @@ geo_lite_sf <- function(address,
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
 
-  all_res <- dplyr::select(all_res, -nmlite_first)
+  all_res <- dplyr::select(all_res, -.data$nmlite_first)
 
   return(all_res)
 }

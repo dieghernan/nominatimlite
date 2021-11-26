@@ -20,6 +20,7 @@ Depends:
 Imports: 
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),
+    rlang (>= 0.4.9),
     sf (>= 0.9.0),
     tibble (>= 3.0.3),
     utils

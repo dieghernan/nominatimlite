@@ -91,23 +91,23 @@ With `nominatimlite` you can extract spatial objects easily:
 ``` r
 library(nominatimlite)
 
-# Extract some points - McDonalds in California
+# Extract some points - Pizza Hut in California
 
-LA <- geo_lite_sf("California", points_only = FALSE)
+CA <- geo_lite_sf("California", points_only = FALSE)
 
-McDonalds <- geo_lite_sf("McDonalds, California",
+pizzahut <- geo_lite_sf("Pizza Hut, California",
   limit = 50,
   custom_query = list(countrycodes = "us")
 )
 
 library(ggplot2)
 
-ggplot(LA) +
+ggplot(CA) +
   geom_sf() +
-  geom_sf(data = McDonalds, col = "red")
+  geom_sf(data = pizzahut, col = "red")
 ```
 
-<img src="man/figures/README-McDonalds-1.png" width="100%" />
+<img src="man/figures/README-pizzahut-1.png" width="100%" />
 
 You can also extract polygon and line objects (as provided by the
 Nominatim API) using the option `points_only = FALSE`:
