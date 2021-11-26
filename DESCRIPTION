@@ -1,7 +1,7 @@
 Type: Package
 Package: nominatimlite
 Title: Interface with 'Nominatim' API Service
-Version: 0.1.4
+Version: 0.1.4.9000
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
@@ -20,6 +20,7 @@ Depends:
 Imports: 
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),
+    rlang (>= 0.4.9),
     sf (>= 0.9.0),
     tibble (>= 3.0.3),
     utils

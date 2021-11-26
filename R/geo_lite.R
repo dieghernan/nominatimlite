@@ -45,8 +45,7 @@ geo_lite <- function(address,
                      return_addresses = TRUE,
                      verbose = FALSE,
                      custom_query = list()) {
-  address <- unique(address)
-
+  address_par <- address
   # nocov start
 
   if (limit > 50) {
@@ -63,19 +62,41 @@ geo_lite <- function(address,
   # Loop
   all_res <- NULL
 
-  for (i in seq_len(length(address))) {
-    res_single <- geo_lite_single(
-      address = address[i],
-      lat,
-      long,
-      limit,
-      full_results,
-      return_addresses,
-      verbose,
-      custom_query
-    )
+  for (i in seq_len(length(address_par))) {
+    # Check if we have already launched the query
+    if (address_par[i] %in% all_res$query) {
+      if (verbose) {
+        message(
+          address_par[i],
+          " already cached.\n",
+          "Skipping download."
+        )
+      }
+
+      res_single <- dplyr::filter(
+        all_res,
+        .data$query == address_par[i],
+        .data$nmlite_first == 1
+      )
+      res_single$nmlite_first <- 0
+    } else {
+      res_single <- geo_lite_single(
+        address = address[i],
+        lat,
+        long,
+        limit,
+        full_results,
+        return_addresses,
+        verbose,
+        custom_query
+      )
+      # Add index
+      res_single <- dplyr::bind_cols(res_single, nmlite_first = 1)
+    }
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
+
+  all_res <- dplyr::select(all_res, -.data$nmlite_first)
 
   return(all_res)
 }

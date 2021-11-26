@@ -6,7 +6,7 @@
 \usage{
 geo_address_lookup(
   osm_ids,
-  type,
+  type = c("N", "W", "R"),
   lat = "lat",
   long = "lon",
   full_results = FALSE,
@@ -20,7 +20,7 @@ geo_address_lookup(
 
 \item{type}{vector of the type of the OSM type associated to each \code{osm_ids}.
 Possible values are node ("N"), way ("W") or relation ("R"). If a single
-value is provided it would be recycled.#'}
+value is provided it would be recycled.}
 
 \item{lat}{latitude column name (i.e. \code{"lat"}).}
 

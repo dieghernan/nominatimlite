@@ -6,7 +6,7 @@
 \usage{
 geo_address_lookup_sf(
   osm_ids,
-  type,
+  type = c("N", "W", "R"),
   full_results = FALSE,
   return_addresses = TRUE,
   verbose = FALSE,
@@ -19,7 +19,7 @@ geo_address_lookup_sf(
 
 \item{type}{vector of the type of the OSM type associated to each \code{osm_ids}.
 Possible values are node ("N"), way ("W") or relation ("R"). If a single
-value is provided it would be recycled.#'}
+value is provided it would be recycled.}
 
 \item{full_results}{returns all available data from the geocoding service if TRUE.
 If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}

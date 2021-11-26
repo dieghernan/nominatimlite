@@ -69,4 +69,11 @@ test_that("Checking query", {
     limit = 1,
     strict = TRUE
   )), 2)
+
+  expect_equal(nrow(geo_amenity(
+    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+    c("pub", "pub"),
+    limit = 1,
+    verbose = TRUE
+  )), 2)
 })

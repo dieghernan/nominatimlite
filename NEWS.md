@@ -1,3 +1,5 @@
+# nominatimlite (development version)
+
 # nominatimlite 0.1.4
 
 -   Fix issues with `geo_amenity()` and `geo_amenity_sf()`.
