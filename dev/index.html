@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.0.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.0.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="nominatimlite | Connection with OSM Nominatim API">
 <meta property="og:description" content="Lite interface for getting data from OpenStreetMap Nominatim service.">
@@ -36,13 +36,13 @@
 </script>
 </head>
 <body>
-    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
+    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     <a class="navbar-brand me-2" href="index.html">nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.3.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.4.9000</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,7 @@
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Search" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search..." autocomplete="off">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
       <ul class="navbar-nav">
@@ -113,7 +113,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"nominatimlite"</span><span class="op">)</span></code></pre></div>
 <p>You can install the developing version of <code>nominatimlite</code> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dieghernan/nominatimlite"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dieghernan/nominatimlite"</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, you can install <code>nominatimlite</code> using the <a href="https://dieghernan.r-universe.dev/ui#builds" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Enable this universe</span>
@@ -136,32 +136,30 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/nominatimlite/">nominatimlite</a></span><span class="op">)</span>
 
-<span class="co"># Extract some points - McDonalds in California</span>
+<span class="co"># Extract some points - Pizza Hut in California</span>
 
-<span class="va">LA</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"California"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">CA</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"California"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="va">McDonalds</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"McDonalds, California"</span>,
+<span class="va">pizzahut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pizza Hut, California"</span>,
   limit <span class="op">=</span> <span class="fl">50</span>,
   custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>countrycodes <span class="op">=</span> <span class="st">"us"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">LA</span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CA</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">McDonalds</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-McDonalds-1.png" width="100%"></p>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pizzahut</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-pizzahut-1.png" width="100%"></p>
 <p>You can also extract polygon and line objects (as provided by the Nominatim API) using the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">pentagon_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pentagon"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span>
+<code class="sourceCode R"><span class="va">pentagon_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pentagon"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pentagon_poly</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-penta-1.png" width="100%"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-
 <span class="va">dayton</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Dayton, OH"</span><span class="op">)</span> <span class="co"># default - a point</span>
 <span class="va">ohio_state</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a US state - a polygon</span>
 <span class="va">ohio_river</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio river"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a river - a line</span>
@@ -193,10 +191,10 @@
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
 <table class="table">
 <colgroup>
-<col width="19%">
-<col width="3%">
+<col width="20%">
+<col width="4%">
 <col width="5%">
-<col width="71%">
+<col width="69%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">query</th>
@@ -233,8 +231,8 @@
 <span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="88%">
-<col width="4%">
+<col width="87%">
+<col width="5%">
 <col width="6%">
 </colgroup>
 <thead><tr class="header">
@@ -267,16 +265,16 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>To cite the ‘nominatimlite’ package in publications use:</p>
-<p>Hernangómez D (2021). <em>nominatimlite: Interface with ‘Nominatim’ API Service</em>. doi: 10.5281/zenodo.5113195 (URL: <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>), R package version 0.1.3.9000, &lt;URL: <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a>&gt;.</p>
+<p>Hernangómez D (2021). <em>nominatimlite: Interface with ‘Nominatim’ API Service</em>. doi: 10.5281/zenodo.5113195 (URL: <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>), &lt;URL: <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a>&gt;.</p>
 <p>A BibTeX entry for LaTeX users is</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#&gt; @Manual{,</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt;   title = {nominatimlite: Interface with 'Nominatim' API Service},</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;   year = {2021},</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;   note = {R package version 0.1.3.9000},</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;   version = {0.1.3.9000},</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;   author = {Diego Hernangómez},</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;   doi = {10.5281/zenodo.5113195},</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt;   url = {https://dieghernan.github.io/nominatimlite/},</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;   author = {Diego Hernangómez},</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;   year = {2021},</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;   version = {0.1.4.9000},</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;   doi = {10.5281/zenodo.5113195},</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;   url = {https://dieghernan.github.io/nominatimlite/},</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt;   abstract = {Lite interface for getting data from 'OSM' service 'Nominatim' &lt;https://nominatim.org/release-docs/latest/&gt;. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.},</span></span>
 <span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; }</span></span></code></pre></div>
 </div>
 </div>
@@ -313,7 +311,7 @@
 <ul class="list-unstyled">
 <li>
 <a href="https://dieghernan.github.io/" class="external-link">Diego Hernangómez</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0001-8457-4658" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">More on authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
