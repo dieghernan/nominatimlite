@@ -73,8 +73,6 @@ geo_amenity <- function(bbox,
                         verbose = FALSE,
                         custom_query = list(),
                         strict = FALSE) {
-  amenity <- unique(amenity)
-
   # nocov start
 
   if (limit > 50) {
@@ -92,19 +90,42 @@ geo_amenity <- function(bbox,
   all_res <- NULL
 
   for (i in seq_len(length(amenity))) {
-    res_single <- geo_amenity_single(
-      bbox = bbox,
-      amenity = amenity[i],
-      lat,
-      long,
-      limit,
-      full_results,
-      return_addresses,
-      verbose,
-      custom_query
-    )
+    # Check if we have already launched the query
+    if (amenity[i] %in% all_res$query) {
+      if (verbose) {
+        message(
+          amenity[i],
+          " already cached.\n",
+          "Skipping download."
+        )
+      }
+
+      res_single <- dplyr::filter(
+        all_res,
+        query == amenity[i],
+        nmlite_first == 1
+      )
+      res_single$nmlite_first <- 0
+    } else {
+      res_single <- geo_amenity_single(
+        bbox = bbox,
+        amenity = amenity[i],
+        lat,
+        long,
+        limit,
+        full_results,
+        return_addresses,
+        verbose,
+        custom_query
+      )
+      # Add index
+      res_single <- dplyr::bind_cols(res_single, nmlite_first = 1)
+    }
+
     all_res <- dplyr::bind_rows(all_res, res_single)
   }
+
+  all_res <- dplyr::select(all_res, -nmlite_first)
 
   if (strict) {
     strict <- all_res[lat] >= bbox[2] &
