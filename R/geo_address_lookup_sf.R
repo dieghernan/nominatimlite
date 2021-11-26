@@ -41,7 +41,7 @@
 #' }
 #' @export
 geo_address_lookup_sf <- function(osm_ids,
-                                  type,
+                                  type = c("N", "W", "R"),
                                   full_results = FALSE,
                                   return_addresses = TRUE,
                                   verbose = FALSE,
