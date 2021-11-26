@@ -39,6 +39,12 @@ test_that("Checking query", {
   expect_equal(nrow(geo_lite_sf("Madrid",
     custom_query = list(extratags = 1)
   )), 1)
+
+  expect_equal(nrow(geo_lite_sf(
+    c("Pentagon", "Pentagon"),
+    limit = 1,
+    verbose = TRUE
+  )), 2)
 })
 
 test_that("Checking geometry type", {
