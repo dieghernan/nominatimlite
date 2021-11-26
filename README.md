@@ -206,7 +206,7 @@ A BibTeX entry for LaTeX users is
     #>   title = {nominatimlite: Interface with 'Nominatim' API Service},
     #>   author = {Diego Hernangómez},
     #>   year = {2021},
-    #>   version = {0.1.4.9000},
+    #>   version = {0.1.5},
     #>   doi = {10.5281/zenodo.5113195},
     #>   url = {https://dieghernan.github.io/nominatimlite/},
     #>   abstract = {Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.},
