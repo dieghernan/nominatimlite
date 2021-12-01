@@ -22,7 +22,7 @@ jobs:
           cache-version: 3
           extra-packages: |
             rcmdcheck
-            r-lib/pkgdown
+            pkgdown
             dieghernan/pkgdev
             V8
             magick
