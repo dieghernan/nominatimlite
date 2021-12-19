@@ -23,11 +23,11 @@ jobs:
         with:
           cache-version: 3
           extra-packages: |
-            rcmdcheck
-            pkgdown
+            any::rcmdcheck
+            any::pkgdown
             dieghernan/pkgdev
-            V8
-            magick
+            any::V8
+            any::magick
           needs: website
 
       - name: Update docs
