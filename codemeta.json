@@ -4,7 +4,7 @@
   "identifier": "nominatimlite",
   "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.",
   "name": "nominatimlite: Interface with 'Nominatim' API Service",
-  "relatedLink": "https://dieghernan.github.io/nominatimlite/",
+  "relatedLink": ["https://dieghernan.github.io/nominatimlite/", "https://CRAN.R-project.org/package=nominatimlite"],
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -211,8 +211,8 @@
     "SystemRequirements": null
   },
   "applicationCategory": "cartography",
-  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper"],
-  "fileSize": "303.144KB",
+  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api"],
+  "fileSize": "303.117KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -230,5 +230,8 @@
       "@id": "https://doi.org/10.5281/zenodo.5113195",
       "sameAs": "https://doi.org/10.5281/zenodo.5113195"
     }
-  ]
+  ],
+  "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
+  "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/nominatimlite"],
+  "developmentStatus": "https://www.repostatus.org/#active"
 }
