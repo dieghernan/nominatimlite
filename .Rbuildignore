@@ -21,3 +21,4 @@
 ^vignettes/nominatimlite\.Rmd\.orig$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^CRAN-SUBMISSION$

@@ -211,8 +211,8 @@
     "SystemRequirements": null
   },
   "applicationCategory": "cartography",
-  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api"],
-  "fileSize": "303.204KB",
+  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
+  "fileSize": "303.547KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -231,7 +231,6 @@
       "sameAs": "https://doi.org/10.5281/zenodo.5113195"
     }
   ],
-  "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/nominatimlite"],
   "developmentStatus": "https://www.repostatus.org/#active"

@@ -38,3 +38,5 @@ docs/
 revdep
 CRAN-RELEASE
 cran-comments.md
+CRAN-SUBMISSION
+.github/pkg.lock
