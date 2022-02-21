@@ -33,8 +33,6 @@ jobs:
           - {os: ubuntu-20.04, r: 'release'}
           - {os: ubuntu-20.04, r: 'devel'}
           - {os: ubuntu-20.04, r: 'oldrel'}
-          - {os: ubuntu-20.04, r: '3.6'}
-          - {os: ubuntu-18.04, r: '3.6'} # ancient, but has PROJ 4.9.3 (i.e. less than 6 - like SOLARIS)
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
