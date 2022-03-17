@@ -194,6 +194,18 @@ reverse_geo_lite_sf_single <- function(lat_cap,
     message(url, " not reachable.")
     result_out <- tibble::tibble(ad = NA)
     names(result_out) <- address
+
+    coords <- data.frame(lat = lat_cap, lon = long_cap)
+
+    geometry <- sf::st_as_sf(coords, coords = c("lon", "lat"), crs = 4326)
+    geometry <- sf::st_geometry(geometry)
+
+    if (return_coords) {
+      result_out <- dplyr::bind_cols(result_out, coords)
+    }
+
+    result_out <- sf::st_sf(result_out, geometry)
+
     return(invisible(result_out))
   }
   # nocov end
@@ -226,10 +238,16 @@ reverse_geo_lite_sf_single <- function(lat_cap,
     result_out <- tibble::tibble(ad = NA)
     names(result_out) <- address
 
+    coords <- data.frame(lat = lat_cap, lon = long_cap)
+
+    geometry <- sf::st_as_sf(coords, coords = c("lon", "lat"), crs = 4326)
+    geometry <- sf::st_geometry(geometry)
+
     if (return_coords) {
-      coords <- data.frame(lat = lat_cap, lon = long_cap)
-      result_out <- cbind(result_out, coords)
+      result_out <- dplyr::bind_cols(result_out, coords)
     }
+
+    result_out <- sf::st_sf(result_out, geometry)
 
     return(invisible(result_out))
   }

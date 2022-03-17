@@ -181,6 +181,11 @@ reverse_geo_lite_single <- function(lat_cap,
     )
     result_out <- tibble::tibble(ad = NA)
     names(result_out) <- address
+
+    if (return_coords) {
+      result_out$lat <- as.double(lat_cap)
+      result_out$lon <- as.double(long_cap)
+    }
     return(invisible(result_out))
   }
 

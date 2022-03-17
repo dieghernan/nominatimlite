@@ -38,7 +38,7 @@ test_that("Checking query", {
 
 
   expect_equal(ncol(reverse_geo_lite(0, 0)), 3)
-  expect_gt(ncol(reverse_geo_lite(0, 0, full_results = TRUE)), 3)
+  expect_equal(ncol(reverse_geo_lite(0, 0, return_coords = FALSE)), 1)
   expect_equal(nrow(reverse_geo_lite(0, 40,
     custom_query = list(zoom = 0)
   )), 1)
