@@ -15,19 +15,21 @@ a bounding box in the form of (&amp;lt;min_latitude&amp;gt;, &amp;lt;min_longitu
 
   gtag('config', 'G-5SLV8G8QD4');
 </script></head><body>
-    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.4.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.5.9000</small>
 
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../articles/nominatimlite.html">Get started</a>
 </li>
@@ -47,11 +49,12 @@ a bounding box in the form of (&amp;lt;min_latitude&amp;gt;, &amp;lt;min_longitu
   </a>
 </li>
       </ul></div>
+
+    
   </div>
-</nav><div class="container template-reference-topic" id="container">
+</nav><div class="container template-reference-topic">
 <div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Geocode amenities</h1>
       <small class="dont-index">Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/R/geo_amenity.R" class="external-link"><code>R/geo_amenity.R</code></a></small>
       <div class="d-none name"><code>geo_amenity.Rd</code></div>
@@ -64,9 +67,9 @@ a bounding box in the form of (&lt;min_latitude&gt;, &lt;min_longitude&gt;,
 &lt;max_latitude&gt;, &lt;max_longitude&gt;).</p>
     </div>
 
-    <div class="ref-usage section level2 sourceCode">
-    <h2>Usage</h2>
-    <pre class="sourceCode r"><code><span class="fu">geo_amenity</span><span class="op">(</span>
+    <div class="section level2">
+    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">geo_amenity</span><span class="op">(</span>
   <span class="va">bbox</span>,
   <span class="va">amenity</span>,
   lat <span class="op">=</span> <span class="st">"lat"</span>,
@@ -77,10 +80,9 @@ a bounding box in the form of (&lt;min_latitude&gt;, &lt;min_longitude&gt;,
   verbose <span class="op">=</span> <span class="cn">FALSE</span>,
   custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
   strict <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre>
+<span class="op">)</span></code></pre></div>
     </div>
 
-    <div id="ref-sections">
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>bbox</dt>
@@ -138,11 +140,10 @@ outside the provided bounding box.</p></dd>
 <code><a href="geo_lite.html">geo_lite</a>()</code>,
 <code><a href="reverse_geo_lite.html">reverse_geo_lite</a>()</code></p></div>
     </div>
-    </div>
 
-    <div id="examples">
-    <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="co"># Times Square, NY, USA</span></span>
 <span class="r-in"><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span class="r-in">  <span class="op">-</span><span class="fl">73.9894467311</span>, <span class="fl">40.75573629</span>,</span>
@@ -167,7 +168,7 @@ outside the provided bounding box.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query        lat   lon address                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Applebee's, 234, West 42nd Street, Theater District, M…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Theater District, M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O’Brien’s, 134, West 46th Street, Theater District, Ma…</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Increase limit and use with strict</span></span>
 <span class="r-in"><span class="fu">geo_amenity</span><span class="op">(</span></span>
@@ -176,34 +177,30 @@ outside the provided bounding box.</p></dd>
 <span class="r-in">  limit <span class="op">=</span> <span class="fl">10</span>,</span>
 <span class="r-in">  strict <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    query        lat   lon address                                               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Sardi's, 234, West 44th Street, Theater District, Man…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Applebee's, 234, West 42nd Street, Theater District, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Tony's, 147, West 43rd Street, Theater District, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bond45, West 45th Street, Theater District, Manhattan…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Dallas BBQ, 241, West 42nd Street, Theater District, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Carmine's, 200, West 44th Street, Theater District, M…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> bella vita tranttoria, 211, West 43rd Street, Theater…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Guy’s American Kitchen &amp; Bar, 220, West 44th Street, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Brooklyn Diner, 155, West 43rd Street, Theater Distri…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Planet Hollywood, 1540, Broadway, Theater District, M…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Theater District, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O’Brien’s, 134, West 46th Street, Theater District, M…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Perfect Pint, 123, West 45th Street, Theater District…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Jimmy's Corner, 140, West 44th Street, Theater Distri…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O'Lunney's, 145, West 45th Street, Theater District, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> BXL Cafe, 125, West 43rd Street, Theater District, Ma…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Dave &amp; Buster’s, 234, West 42nd Street, Theater Distr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Virgil's Real BBQ, 152, West 44th Street, Theater Dis…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Dallas BBQ, 241, West 42nd Street, Theater District, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> bella vita tranttoria, 211, West 43rd Street, Theater…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Tony's, 147, West 43rd Street, Theater District, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Planet Hollywood, 1540, Broadway, Theater District, M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Brooklyn Diner, 155, West 43rd Street, Theater Distri…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Burger &amp; Lobster, West 42nd Street, Theater District,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> The Lambs Club, West 44th Street, Theater District, M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O’Brien’s, 134, West 46th Street, Theater District, M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Jimmy's Corner, 140, West 44th Street, Theater Distri…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> BXL Cafe, 125, West 43rd Street, Theater District, Ma…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Theater District, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Perfect Pint, 123, West 45th Street, Theater District…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O'Lunney's, 145, West 45th Street, Theater District, …</span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
-  </div>
-  <div class="col-md-3" id="pkgdown-sidebar">
-    <nav id="toc"><h2>On this page</h2>
-    </nav></div>
-</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
@@ -211,7 +208,7 @@ outside the provided bounding box.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer></div>

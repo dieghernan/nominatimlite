@@ -9,19 +9,21 @@
 
   gtag('config', 'G-5SLV8G8QD4');
 </script></head><body>
-    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.4.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.5.9000</small>
 
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../articles/nominatimlite.html">Get started</a>
 </li>
@@ -41,18 +43,24 @@
   </a>
 </li>
       </ul></div>
+
+    
   </div>
-</nav><div class="container template-news" id="container">
+</nav><div class="container template-news">
 <div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
       <small>Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="nominatimlite-development-version">nominatimlite (development version)<a class="anchor" aria-label="anchor" href="#nominatimlite-development-version"></a></h2>
-</div>
+<ul><li>Improve results when there is no response of the API.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.5" id="nominatimlite-015">nominatimlite 0.1.5<a class="anchor" aria-label="anchor" href="#nominatimlite-015"></a></h2><p class="text-muted">CRAN release: 2021-11-26</p>
+<ul><li>Avoid de-duplication on results.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.4" id="nominatimlite-014">nominatimlite 0.1.4<a class="anchor" aria-label="anchor" href="#nominatimlite-014"></a></h2><p class="text-muted">CRAN release: 2021-10-28</p>
 <ul><li>Fix issues with <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code>.</li>
@@ -65,8 +73,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="nominatimlite-012">nominatimlite 0.1.2<a class="anchor" aria-label="anchor" href="#nominatimlite-012"></a></h2><p class="text-muted">CRAN release: 2021-10-07</p>
-<ul><li><p>New internal: <code><a href="../reference/nominatim_check_access.html">nominatim_check_access()</a></code>.</p></li>
-<li><p>Adapt tests to <code>testthat</code> v3.1.0.</p></li>
+<ul><li>New internal: <code><a href="../reference/nominatim_check_access.html">nominatim_check_access()</a></code>.</li>
+<li>Adapt tests to <code>testthat</code> v3.1.0.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="nominatimlite-011">nominatimlite 0.1.1<a class="anchor" aria-label="anchor" href="#nominatimlite-011"></a></h2><p class="text-muted">CRAN release: 2021-09-30</p>
@@ -74,23 +82,19 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="nominatimlite-010">nominatimlite 0.1.0<a class="anchor" aria-label="anchor" href="#nominatimlite-010"></a></h2><p class="text-muted">CRAN release: 2021-09-16</p>
-<ul><li><p><strong>CRAN</strong> release.</p></li>
-<li><p>Adjust query rate limits to Nominatim policy.</p></li>
-<li><p>New <code>strict</code> argument on <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code>.</p></li>
-<li><p>Parameter <code>polygon</code> changed to <code>points_only</code> <a href="https://github.com/dieghernan/nominatimlite/issues/8" class="external-link">#8</a> thanks to <a href="https://github.com/jlacko" class="external-link">@jlacko</a>.</p></li>
-<li><p>Package now falls gracefully if url not reachable.</p></li>
+<ul><li>
+<strong>CRAN</strong> release.</li>
+<li>Adjust query rate limits to Nominatim policy.</li>
+<li>New <code>strict</code> argument on <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code>.</li>
+<li>Parameter <code>polygon</code> changed to <code>points_only</code> <a href="https://github.com/dieghernan/nominatimlite/issues/8" class="external-link">#8</a> thanks to <a href="https://github.com/jlacko" class="external-link">@jlacko</a>.</li>
+<li>Package now falls gracefully if url not reachable.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="nominatimlite-001">nominatimlite 0.0.1<a class="anchor" aria-label="anchor" href="#nominatimlite-001"></a></h2>
 <ul><li>Initial version of the package</li>
 </ul></div>
-  </div>
-
-  <div class="col-md-3" id="pkgdown-sidebar">
-    <nav id="toc"><h2>On this page</h2>
-    </nav></div>
-
-</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
@@ -98,7 +102,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer></div>

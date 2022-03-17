@@ -36,19 +36,21 @@
 </script>
 </head>
 <body>
-    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
     <a class="navbar-brand me-2" href="index.html">nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.4.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.5.9000</small>
 
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="articles/nominatimlite.html">Get started</a>
@@ -73,11 +75,12 @@
 </li>
       </ul>
 </div>
+
+    
   </div>
-</nav><div class="container template-home" id="container">
+</nav><div class="container template-home">
 <div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
+  <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
 <img src="logo.png" class="logo" alt=""><h1 id="nominatimlite-">nominatimlite 
 <a class="anchor" aria-label="anchor" href="#nominatimlite-"></a>
@@ -191,10 +194,10 @@
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
 <table class="table">
 <colgroup>
-<col width="20%">
-<col width="4%">
+<col width="24%">
 <col width="5%">
-<col width="69%">
+<col width="6%">
+<col width="63%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">query</th>
@@ -213,13 +216,13 @@
 <td align="left">600 Montgomery St, San Francisco, CA 94111</td>
 <td align="right">37.79520</td>
 <td align="right">-122.40279</td>
-<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States</td>
+<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, California, 94111, United States</td>
 </tr>
 <tr class="odd">
 <td align="left">233 S Wacker Dr, Chicago, IL 60606</td>
-<td align="right">41.87535</td>
-<td align="right">-87.63576</td>
-<td align="left">South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
+<td align="right">41.87887</td>
+<td align="right">-87.63591</td>
+<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
 </tr>
 </tbody>
 </table>
@@ -231,9 +234,9 @@
 <span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="87%">
-<col width="5%">
-<col width="6%">
+<col width="83%">
+<col width="7%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">address_found</th>
@@ -247,14 +250,14 @@
 <td align="right">-77.03655</td>
 </tr>
 <tr class="even">
-<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States</td>
+<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, California, 94111, United States</td>
 <td align="right">37.79520</td>
 <td align="right">-122.40279</td>
 </tr>
 <tr class="odd">
-<td align="left">South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
-<td align="right">41.87535</td>
-<td align="right">-87.63576</td>
+<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
+<td align="right">41.87887</td>
+<td align="right">-87.63591</td>
 </tr>
 </tbody>
 </table>
@@ -265,23 +268,20 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>To cite the ‘nominatimlite’ package in publications use:</p>
-<p>Hernangómez D (2021). <em>nominatimlite: Interface with ‘Nominatim’ API Service</em>. doi: 10.5281/zenodo.5113195 (URL: <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>), &lt;URL: <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a>&gt;.</p>
+<p>Hernangómez D (2022). <em>nominatimlite: Interface with ‘Nominatim’ API Service</em>. doi: 10.5281/zenodo.5113195 (URL: <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>), &lt;URL: <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a>&gt;.</p>
 <p>A BibTeX entry for LaTeX users is</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#&gt; @Manual{,</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt;   title = {nominatimlite: Interface with 'Nominatim' API Service},</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;   author = {Diego Hernangómez},</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;   year = {2021},</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;   version = {0.1.4.9000},</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;   doi = {10.5281/zenodo.5113195},</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;   url = {https://dieghernan.github.io/nominatimlite/},</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt;   abstract = {Lite interface for getting data from 'OSM' service 'Nominatim' &lt;https://nominatim.org/release-docs/latest/&gt;. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.},</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; }</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {nominatimlite<span class="sc">:</span> Interface with <span class="st">'Nominatim'</span> API Service},</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">1</span>.<span class="fl">5.9000</span>},</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.5113195</span>},</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>nominatimlite<span class="sc">/</span>},</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> getting data from <span class="st">'OSM'</span> service <span class="st">'Nominatim'</span> <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>nominatim.org<span class="sc">/</span>release<span class="sc">-</span>docs<span class="sc">/</span>latest<span class="sc">/</span><span class="er">&gt;</span>. Extract coordinates from addresses, find places near a set of coordinates, search <span class="cf">for</span> amenities and return spatial objects on <span class="st">'sf'</span> format.},</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3" id="pkgdown-sidebar">
-<div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=nominatimlite" class="external-link">View on CRAN</a></li>
@@ -302,7 +302,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing nominatimlite</a></li>
+<li><a href="authors.html#citation">Citing nominatimlite</a></li>
 </ul>
 </div>
 
@@ -330,7 +330,7 @@
 </ul>
 </div>
 
-  </div>
+  </aside>
 </div>
 
 
@@ -341,7 +341,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer>

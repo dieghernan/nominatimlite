@@ -36,19 +36,21 @@
 </script>
 </head>
 <body>
-    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.4.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.5.9000</small>
 
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="active nav-item">
   <a class="nav-link" href="../articles/nominatimlite.html">Get started</a>
@@ -73,11 +75,16 @@
 </li>
       </ul>
 </div>
+
+    
   </div>
-</nav><div class="container template-article" id="container">
-<script src="nominatimlite_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header">
+</nav><div class="container template-article">
+
+
+
+
+<div class="row">
+  <main id="main"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get started with nominatimlite</h1>
             
       
@@ -164,10 +171,10 @@
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
 <table class="table">
 <colgroup>
-<col width="20%">
-<col width="4%">
+<col width="24%">
 <col width="5%">
-<col width="70%">
+<col width="6%">
+<col width="64%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">query</th>
@@ -186,13 +193,13 @@
 <td align="left">600 Montgomery St, San Francisco, CA 94111</td>
 <td align="right">37.79520</td>
 <td align="right">-122.40279</td>
-<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States</td>
+<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, California, 94111, United States</td>
 </tr>
 <tr class="odd">
 <td align="left">233 S Wacker Dr, Chicago, IL 60606</td>
-<td align="right">41.87535</td>
-<td align="right">-87.63576</td>
-<td align="left">South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
+<td align="right">41.87887</td>
+<td align="right">-87.63591</td>
+<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
 </tr>
 </tbody>
 </table>
@@ -204,9 +211,9 @@
 <span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="88%">
-<col width="5%">
+<col width="84%">
 <col width="6%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">address_found</th>
@@ -220,26 +227,22 @@
 <td align="right">-77.03655</td>
 </tr>
 <tr class="even">
-<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, San Francisco City and County, San Francisco, California, 94111, United States</td>
+<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, California, 94111, United States</td>
 <td align="right">37.79520</td>
 <td align="right">-122.40279</td>
 </tr>
 <tr class="odd">
-<td align="left">South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
-<td align="right">41.87535</td>
-<td align="right">-87.63576</td>
+<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
+<td align="right">41.87887</td>
+<td align="right">-87.63591</td>
 </tr>
 </tbody>
 </table>
 <p>For more advance users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim docs</a> to check the parameters available.</p>
 </div>
 </div>
-  </div>
-  <div class="col-md-3" id="pkgdown-sidebar">
-    <nav id="toc"><h2>On this page</h2>
-    </nav>
-</div>
-  
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
@@ -251,7 +254,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer>
