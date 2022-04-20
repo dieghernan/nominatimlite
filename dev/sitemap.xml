@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://dieghernan.github.io/nominatimlite/dev/articles/index.html</loc>
   </url>
   <url>
@@ -17,6 +11,12 @@
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/dev/index.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/dev/news/index.html</loc>
@@ -49,10 +49,10 @@
     <loc>https://dieghernan.github.io/nominatimlite/dev/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatim_check_access.html</loc>
+    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatimlite-package.html</loc>
   </url>
   <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatimlite-package.html</loc>
+    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatim_check_access.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.html</loc>
