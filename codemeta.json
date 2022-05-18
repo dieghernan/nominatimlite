@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.3 (2022-03-10)",
+  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -211,8 +211,8 @@
     "SystemRequirements": null
   },
   "applicationCategory": "cartography",
-  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper"],
-  "fileSize": "215.187KB",
+  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
+  "fileSize": "411.004KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -232,6 +232,7 @@
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
+  "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/nominatimlite"],
   "developmentStatus": "https://www.repostatus.org/#active"
 }

@@ -6,9 +6,9 @@
 \alias{nominatimlite-package}
 \title{nominatimlite: Interface with 'Nominatim' API Service}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.
+Lite interface for getting data from 'OSM' service 'Nominatim' \url{https://nominatim.org/release-docs/latest/}. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.
 }
 \seealso{
 Useful links:

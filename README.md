@@ -196,9 +196,9 @@ the parameters available.
 To cite the ‘nominatimlite’ package in publications use:
 
 Hernangómez D (2022). *nominatimlite: Interface with ‘Nominatim’ API
-Service*. doi: 10.5281/zenodo.5113195 (URL:
-<https://doi.org/10.5281/zenodo.5113195>), \<URL:
-<https://dieghernan.github.io/nominatimlite/>\>.
+Service*. <doi:10.5281/zenodo.5113195>
+<https://doi.org/10.5281/zenodo.5113195>,
+<https://dieghernan.github.io/nominatimlite/>.
 
 A BibTeX entry for LaTeX users is
 

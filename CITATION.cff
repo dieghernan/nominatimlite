@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.1
+# CITATION file created with {cffr} R package, v0.2.2
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -288,3 +288,4 @@ references:
     email: possenriede+r@gmail.com
     orcid: https://orcid.org/0000-0002-6738-9845
   year: '2022'
+  url: https://CRAN.R-project.org/package=tidygeocoder

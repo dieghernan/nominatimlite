@@ -67,7 +67,7 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-![plot of chunk pizzahut](pizzahut-1.png)
+![plot of chunk pizzahut](./pizzahut-1.png)
 
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
@@ -81,7 +81,7 @@ ggplot(pentagon_poly) +
   geom_sf()
 ```
 
-<img src="penta-1.png" title="The Pentagon" alt="The Pentagon"  />
+<img src="./penta-1.png" title="The Pentagon" alt="The Pentagon"  />
 
 ### Geocoding and reverse geocoding
 
