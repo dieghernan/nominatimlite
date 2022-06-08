@@ -42,7 +42,7 @@
     
     <a class="navbar-brand me-2" href="index.html">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,9 +86,7 @@
 </h1>
 </div>
 <!-- badges: start -->
-
-<!-- badges: end -->
-<p>The goal of <code>nominatimlite</code> is to provide a light interface for geocoding addresses, based on the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>. <strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of OSM points (reverse geocoding).</p>
+<!-- badges: end --><p>The goal of <code>nominatimlite</code> is to provide a light interface for geocoding addresses, based on the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>. <strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of OSM points (reverse geocoding).</p>
 <p>It also allows to load spatial objects using the <code>sf</code> package.</p>
 <p>Full site with examples and vignettes on <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
 <div class="section level2">
@@ -155,15 +153,13 @@
 <p><img src="reference/figures/README-pizzahut-1.png" width="100%"></p>
 <p>You can also extract polygon and line objects (as provided by the Nominatim API) using the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">pentagon_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pentagon"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span>
+<code class="sourceCode R"><span class="va">pentagon_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pentagon"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pentagon_poly</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-penta-1.png" width="100%"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-
 <span class="va">dayton</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Dayton, OH"</span><span class="op">)</span> <span class="co"># default - a point</span>
 <span class="va">ohio_state</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a US state - a polygon</span>
 <span class="va">ohio_river</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio river"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a river - a line</span>
@@ -196,9 +192,9 @@
 <table class="table">
 <colgroup>
 <col width="24%">
-<col width="4%">
+<col width="5%">
 <col width="6%">
-<col width="64%">
+<col width="63%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">query</th>
@@ -235,8 +231,8 @@
 <span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="85%">
-<col width="6%">
+<col width="83%">
+<col width="7%">
 <col width="8%">
 </colgroup>
 <thead><tr class="header">
@@ -269,16 +265,16 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>To cite the ‘nominatimlite’ package in publications use:</p>
-<p>Hernangómez D (2022). <em>nominatimlite: Interface with ‘Nominatim’ API Service</em>. doi: 10.5281/zenodo.5113195 (URL: <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>), &lt;URL: <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a>&gt;.</p>
+<p>Hernangomez D (2022). <em>nominatimlite: Interface with Nominatim API Service</em>. <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>, <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
 <p>A BibTeX entry for LaTeX users is</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{,</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>nominatimlite,</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {nominatimlite<span class="sc">:</span> Interface with <span class="st">'Nominatim'</span> API Service},</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">1.5</span>},</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">1.6</span>},</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.5113195</span>},</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>nominatimlite<span class="sc">/</span>},</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> getting data from <span class="st">'OSM'</span> service <span class="st">'Nominatim'</span> <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>nominatim.org<span class="sc">/</span>release<span class="sc">-</span>docs<span class="sc">/</span>latest<span class="sc">/</span><span class="er">&gt;</span>. Extract coordinates from addresses, find places near a set of coordinates, search <span class="cf">for</span> amenities and return spatial objects on <span class="st">'sf'</span> format.},</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> getting data from OSM service Nominatim <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>nominatim.org<span class="sc">/</span>release<span class="sc">-</span>docs<span class="sc">/</span>latest<span class="sc">/</span><span class="er">&gt;</span>. Extract coordinates from addresses, find places near a set of coordinates, search <span class="cf">for</span> amenities and return spatial objects on sf format.},</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
@@ -342,7 +338,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>
