@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.1.6
 
 -  Improve results when there is no response of the API.
 

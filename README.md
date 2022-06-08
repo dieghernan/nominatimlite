@@ -195,19 +195,18 @@ the parameters available.
 
 To cite the ‘nominatimlite’ package in publications use:
 
-Hernangómez D (2022). *nominatimlite: Interface with ‘Nominatim’ API
-Service*. <doi:10.5281/zenodo.5113195>
-<https://doi.org/10.5281/zenodo.5113195>,
-<https://dieghernan.github.io/nominatimlite/>.
+Hernangomez D (2022). *nominatimlite: Interface with Nominatim API
+Service*. <https://doi.org/10.5281/zenodo.5113195>,
+<https://dieghernan.github.io/nominatimlite/>
 
 A BibTeX entry for LaTeX users is
 
-    @Manual{,
+    @Manual{R-nominatimlite,
       title = {nominatimlite: Interface with 'Nominatim' API Service},
       author = {Diego Hernangómez},
       year = {2022},
-      version = {0.1.5.9000},
+      version = {0.1.6},
       doi = {10.5281/zenodo.5113195},
       url = {https://dieghernan.github.io/nominatimlite/},
-      abstract = {Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.},
+      abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on sf format.},
     }

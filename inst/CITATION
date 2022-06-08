@@ -1,5 +1,7 @@
 year <- format(Sys.time(), "%Y")
 abs <- trimws(gsub("\\s+", " ", meta$Description))
+abs <- gsub("'", "", abs)
+
 
 bibentry(
   "Manual",
@@ -7,8 +9,12 @@ bibentry(
   title = paste("nominatimlite:", meta$Title),
   author = person("Diego", "Hernangómez"),
   year = year,
+  key = "R-nominatimlite",
   version = meta$Version,
   doi = "10.5281/zenodo.5113195",
   url = unlist(strsplit(meta$URL, ","))[1],
-  abstract = abs
+  abstract = abs,
+  textVersion = paste0("Hernangomez D (",year,"). _nominatimlite: ",
+    gsub("'", "", meta$Title),"_. <https://doi.org/10.5281/zenodo.5113195>, <",
+    unlist(strsplit(meta$URL, ","))[1],">")
 )
