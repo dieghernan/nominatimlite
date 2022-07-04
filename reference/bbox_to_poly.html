@@ -60,7 +60,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">bbox_to_poly</span><span class="op">(</span>bbox <span class="op">=</span> <span class="cn">NA</span>, xmin <span class="op">=</span> <span class="cn">NA</span>, ymin <span class="op">=</span> <span class="cn">NA</span>, xmax <span class="op">=</span> <span class="cn">NA</span>, ymax <span class="op">=</span> <span class="cn">NA</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bbox_to_poly</span><span class="op">(</span>bbox <span class="op">=</span> <span class="cn">NA</span>, xmin <span class="op">=</span> <span class="cn">NA</span>, ymin <span class="op">=</span> <span class="cn">NA</span>, xmax <span class="op">=</span> <span class="cn">NA</span>, ymax <span class="op">=</span> <span class="cn">NA</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,15 +68,22 @@
     <dl><dt>bbox</dt>
 <dd><p>numeric vector of 4 elements representing the coordinates of the
 bounding box. Values should be <code>c(xmin, ymin, xmax, ymax)</code></p></dd>
+
+
 <dt>xmin, ymin, xmax, ymax</dt>
 <dd><p>alternatively, you can use these named parameters
 instead of <code>bbox</code></p></dd>
+
+
 <dt>crs</dt>
 <dd><p>coordinate reference system, something suitable as input to <a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code>sf</code> object</p>
+    
+
+<p>A <code>sf</code> object</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -99,34 +106,34 @@ instead of <code>bbox</code></p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># bounding box of Germany</span></span>
-<span class="r-in"><span class="va">bbox_GER</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5.86631529</span>, <span class="fl">47.27011137</span>, <span class="fl">15.04193189</span>, <span class="fl">55.09916098</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">bbox_GER_sf</span> <span class="op">&lt;-</span> <span class="fu">bbox_to_poly</span><span class="op">(</span><span class="va">bbox_GER</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bbox_GER_sf</span><span class="op">)</span> <span class="op">+</span></span>
-<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># bounding box of Germany</span></span></span>
+<span class="r-in"><span><span class="va">bbox_GER</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5.86631529</span>, <span class="fl">47.27011137</span>, <span class="fl">15.04193189</span>, <span class="fl">55.09916098</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">bbox_GER_sf</span> <span class="op">&lt;-</span> <span class="fu">bbox_to_poly</span><span class="op">(</span><span class="va">bbox_GER</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bbox_GER_sf</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="bbox_to_poly-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="co"># Extract the bounding box of a sf object</span></span>
-<span class="r-in"><span class="va">Texas</span> <span class="op">&lt;-</span> <span class="fu"><a href="geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Texas"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">Texas</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">bbox</span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># Extract the bounding box of a sf object</span></span></span>
+<span class="r-in"><span><span class="va">Texas</span> <span class="op">&lt;-</span> <span class="fu"><a href="geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Texas"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">Texas</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">bbox</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       xmin       ymin       xmax       ymax </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -106.64585   25.83706  -93.50782   36.50045 </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">bbox_Texas</span> <span class="op">&lt;-</span> <span class="fu">bbox_to_poly</span><span class="op">(</span><span class="va">bbox</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bbox_Texas</span><span class="op">)</span> <span class="op">+</span></span>
-<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
-<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Texas</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">bbox_Texas</span> <span class="op">&lt;-</span> <span class="fu">bbox_to_poly</span><span class="op">(</span><span class="va">bbox</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bbox_Texas</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Texas</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="bbox_to_poly-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -138,7 +145,7 @@ instead of <code>bbox</code></p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>
