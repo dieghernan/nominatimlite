@@ -75,13 +75,14 @@ You can also extract polygon and line objects (if available) using the option
 
 ```r
 
-pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
-ggplot(pentagon_poly) +
+ggplot(sol_poly) +
   geom_sf()
 ```
 
-<img src="./penta-1.png" alt="The Pentagon"  />
+<img src="./sol-1.png" alt="The Statue of Liberty"  />
+
 
 ### Geocoding and reverse geocoding
 

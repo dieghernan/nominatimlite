@@ -69,16 +69,19 @@ parameters to be passed to \code{custom_query}.
 \donttest{
 # Map - Points
 library(ggplot2)
-pentagon <- geo_lite_sf("Pentagon")
 
+string <- "Statue of Liberty, NY, USA"
+sol <- geo_lite_sf(string)
 
-ggplot(pentagon) +
+ggplot(sol) +
   geom_sf()
 
-pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
+sol_poly <- geo_lite_sf(string, points_only = FALSE)
 
-ggplot(pentagon_poly) +
-  geom_sf()
+ggplot(sol_poly) +
+  geom_sf() +
+  geom_sf(data = sol, color = "red")
+
 
 # Several results
 

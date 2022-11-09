@@ -125,11 +125,11 @@ ggplot(CA) +
 You can also extract polygon and line objects (as provided by the Nominatim API)
 using the option `points_only = FALSE`:
 
-```{r penta }
+```{r statue_liberty }
 
-pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE) # a building - a polygon
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
 
-ggplot(pentagon_poly) +
+ggplot(sol_poly) +
   geom_sf()
 ```
 

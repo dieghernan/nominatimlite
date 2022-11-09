@@ -78,13 +78,15 @@ ggplot(CA) +
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
 
-```{r penta, fig.alt="The Pentagon"}
+```{r sol, fig.alt="The Statue of Liberty"}
 
-pentagon_poly <- geo_lite_sf("Pentagon", points_only = FALSE)
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
-ggplot(pentagon_poly) +
+ggplot(sol_poly) +
   geom_sf()
+
 ```
+
 
 ### Geocoding and reverse geocoding
 
