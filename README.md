@@ -46,12 +46,12 @@ overcome this limitation.
 There are other packages much more complete and mature than
 `nominatimlite`, that presents similar features:
 
--   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by
-    Jesse Cambon. Allows to interface with Nominatim, Google, TomTom,
-    Mapbox, etc. for geocoding and reverse geocoding.
--   [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham.
-    Great for downloading spatial data from OpenStreetMap, via the
-    [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
+- [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse
+  Cambon. Allows to interface with Nominatim, Google, TomTom, Mapbox,
+  etc. for geocoding and reverse geocoding.
+- [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great
+  for downloading spatial data from OpenStreetMap, via the [Overpass
+  API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
 ## Installation
 
@@ -113,6 +113,7 @@ You can also extract polygon and line objects (as provided by the
 Nominatim API) using the option `points_only = FALSE`:
 
 ``` r
+
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
 
 ggplot(sol_poly) +
@@ -122,6 +123,7 @@ ggplot(sol_poly) +
 <img src="man/figures/README-statue_liberty-1.png" width="100%" />
 
 ``` r
+
 
 dayton <- geo_lite_sf("Dayton, OH") # default - a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
