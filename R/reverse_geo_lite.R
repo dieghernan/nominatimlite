@@ -70,7 +70,6 @@ reverse_geo_lite <- function(lat,
                              return_coords = TRUE,
                              verbose = FALSE,
                              custom_query = list()) {
-
   # Check inputs
 
   if (!is.numeric(lat) || !is.numeric(long)) {

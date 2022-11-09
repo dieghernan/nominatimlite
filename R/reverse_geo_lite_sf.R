@@ -91,7 +91,6 @@ reverse_geo_lite_sf <- function(lat,
                                 verbose = FALSE,
                                 custom_query = list(),
                                 points_only = TRUE) {
-
   # Check inputs
 
   if (!is.numeric(lat) || !is.numeric(long)) {

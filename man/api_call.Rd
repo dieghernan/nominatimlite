@@ -7,7 +7,7 @@
 api_call(url, destfile, quiet)
 }
 \arguments{
-\item{url}{a \code{\link{character}} string (or longer vector e.g.,
+\item{url}{a \code{\link{character}} string (or longer vector
     for the \code{"libcurl"} method) naming the URL of a resource to be
     downloaded.}
 
