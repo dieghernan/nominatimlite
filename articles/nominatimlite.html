@@ -93,23 +93,38 @@
 
     
     
-<p>The goal of <code>nominatimlite</code> is to provide a light interface for geocoding addresses, based on the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>. <strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of OSM points (reverse geocoding).</p>
-<p>It also allows to load spatial objects using the <code>sf</code> package.</p>
+<p>The goal of <code>nominatimlite</code> is to provide a light
+interface for geocoding addresses, based on the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>.
+<strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and
+address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of
+OSM points (reverse geocoding).</p>
+<p>It also allows to load spatial objects using the <code>sf</code>
+package.</p>
 <p>Full site with examples and vignettes on <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
 <div class="section level2">
 <h2 id="why-nominatimlite">Why <code>nominatimlite</code>?<a class="anchor" aria-label="anchor" href="#why-nominatimlite"></a>
 </h2>
-<p>The main goal of <code>nominatimlite</code> is to access the Nominatim API avoiding the dependency on <code>curl</code>. In some situations, <code>curl</code> may not be available or accessible, so <code>nominatimlite</code> uses base functions to overcome this limitation.</p>
+<p>The main goal of <code>nominatimlite</code> is to access the
+Nominatim API avoiding the dependency on <code>curl</code>. In some
+situations, <code>curl</code> may not be available or accessible, so
+<code>nominatimlite</code> uses base functions to overcome this
+limitation.</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
 </h2>
-<p>There are other packages much more complete and mature than <code>nominatimlite</code>, that presents similar features:</p>
+<p>There are other packages much more complete and mature than
+<code>nominatimlite</code>, that presents similar features:</p>
 <ul>
 <li>
-<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><code>tidygeocoder</code></a> by Jesse Cambon. Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse geocoding.</li>
+<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><code>tidygeocoder</code></a>
+by Jesse Cambon. Allows to interface with Nominatim, Google, TomTom,
+Mapbox, etc. for geocoding and reverse geocoding.</li>
 <li>
-<a href="https://docs.ropensci.org/osmdata/" class="external-link"><code>osmdata</code></a> by Mark Padgham. Great for downloading spatial data from OpenStreetMap, via the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" class="external-link">Overpass API</a>.</li>
+<a href="https://docs.ropensci.org/osmdata/" class="external-link"><code>osmdata</code></a> by
+Mark Padgham. Great for downloading spatial data from OpenStreetMap, via
+the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" class="external-link">Overpass
+API</a>.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -119,7 +134,8 @@
 <h3 id="sf-objects">
 <code>sf</code> objects<a class="anchor" aria-label="anchor" href="#sf-objects"></a>
 </h3>
-<p>With <code>nominatimlite</code> you can extract spatial objects easily:</p>
+<p>With <code>nominatimlite</code> you can extract spatial objects
+easily:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/nominatimlite/">nominatimlite</a></span><span class="op">)</span></span>
 <span></span>
@@ -140,20 +156,23 @@
 <div class="figure">
 <img src="pizzahut-1.png" alt=""><p class="caption">plot of chunk pizzahut</p>
 </div>
-<p>You can also extract polygon and line objects (if available) using the option <code>points_only = FALSE</code>:</p>
+<p>You can also extract polygon and line objects (if available) using
+the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">pentagon_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pentagon"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pentagon_poly</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="penta-1.png" title="The Pentagon" alt="The Pentagon"></p>
+<p><img src="penta-1.png" alt="The Pentagon"></p>
 </div>
 <div class="section level3">
 <h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
 </h3>
-<p><em>Note: examples adapted from <code>tidygeocoder</code> package</em></p>
-<p>In this first example we will geocode a few addresses using the <code><a href="../reference/geo_lite.html">geo_lite()</a></code> function:</p>
+<p><em>Note: examples adapted from <code>tidygeocoder</code>
+package</em></p>
+<p>In this first example we will geocode a few addresses using the
+<code><a href="../reference/geo_lite.html">geo_lite()</a></code> function:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></span>
 <span></span>
@@ -167,13 +186,15 @@
 <span></span>
 <span><span class="co"># geocode the addresses</span></span>
 <span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite.html">geo_lite</a></span><span class="op">(</span><span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>, lat <span class="op">=</span> <span class="st">"latitude"</span>, long <span class="op">=</span> <span class="st">"longitude"</span><span class="op">)</span></span></code></pre></div>
-<p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
+<p>Only latitude and longitude are returned from the geocoder service in
+this example, but <code>full_results = TRUE</code> can be used to return
+all of the data from the geocoder service.</p>
 <table class="table">
 <colgroup>
-<col width="24%">
+<col width="21%">
+<col width="4%">
 <col width="5%">
-<col width="6%">
-<col width="64%">
+<col width="68%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">query</th>
@@ -186,23 +207,33 @@
 <td align="left">1600 Pennsylvania Ave NW, Washington, DC</td>
 <td align="right">38.89770</td>
 <td align="right">-77.03655</td>
-<td align="left">White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States</td>
+<td align="left">White House, 1600, Pennsylvania Avenue Northwest,
+Washington, District of Columbia, 20500, United States</td>
 </tr>
 <tr class="even">
 <td align="left">600 Montgomery St, San Francisco, CA 94111</td>
 <td align="right">37.79520</td>
 <td align="right">-122.40279</td>
-<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, California, 94111, United States</td>
+<td align="left">Transamerica Pyramid, 600, Montgomery Street, Financial
+District, San Francisco, CAL Fire Northern Region, California, 94111,
+United States</td>
 </tr>
 <tr class="odd">
 <td align="left">233 S Wacker Dr, Chicago, IL 60606</td>
 <td align="right">41.87887</td>
 <td align="right">-87.63591</td>
-<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
+<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row,
+Loop, Chicago, Cook County, Illinois, 60606, United States</td>
 </tr>
 </tbody>
 </table>
-<p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> function. The arguments are similar to the <code><a href="../reference/geo_lite.html">geo_lite()</a></code> function, but now we specify the input data columns with the <code>lat</code> and <code>long</code> arguments. The dataset used here is from the geocoder query above. The single line address is returned in a column named by the <code>address</code>.</p>
+<p>To perform reverse geocoding (obtaining addresses from geographic
+coordinates), we can use the <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> function.
+The arguments are similar to the <code><a href="../reference/geo_lite.html">geo_lite()</a></code> function, but
+now we specify the input data columns with the <code>lat</code> and
+<code>long</code> arguments. The dataset used here is from the geocoder
+query above. The single line address is returned in a column named by
+the <code>address</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
 <span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>, long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
@@ -210,9 +241,9 @@
 <span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="84%">
+<col width="87%">
+<col width="5%">
 <col width="6%">
-<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">address_found</th>
@@ -221,23 +252,28 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States</td>
+<td align="left">White House, 1600, Pennsylvania Avenue Northwest,
+Washington, District of Columbia, 20500, United States</td>
 <td align="right">38.89770</td>
 <td align="right">-77.03655</td>
 </tr>
 <tr class="even">
-<td align="left">Transamerica Pyramid, 600, Montgomery Street, Chinatown, San Francisco, California, 94111, United States</td>
+<td align="left">Transamerica Pyramid, 600, Montgomery Street, Financial
+District, San Francisco, CAL Fire Northern Region, California, 94111,
+United States</td>
 <td align="right">37.79520</td>
 <td align="right">-122.40279</td>
 </tr>
 <tr class="odd">
-<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States</td>
+<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row,
+Loop, Chicago, Cook County, Illinois, 60606, United States</td>
 <td align="right">41.87887</td>
 <td align="right">-87.63591</td>
 </tr>
 </tbody>
 </table>
-<p>For more advance users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim docs</a> to check the parameters available.</p>
+<p>For more advance users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim
+docs</a> to check the parameters available.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
