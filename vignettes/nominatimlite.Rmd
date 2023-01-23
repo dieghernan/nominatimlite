@@ -74,7 +74,6 @@ You can also extract polygon and line objects (if available) using the option
 
 
 ```r
-
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
 ggplot(sol_poly) +

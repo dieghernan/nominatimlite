@@ -127,7 +127,6 @@ You can also extract polygon and line objects (as provided by the Nominatim API)
 using the option `points_only = FALSE`:
 
 ```{r statue_liberty }
-
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
 
 ggplot(sol_poly) +
@@ -135,8 +134,6 @@ ggplot(sol_poly) +
 ```
 
 ```{r line-object}
-
-
 dayton <- geo_lite_sf("Dayton, OH") # default - a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
 ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line

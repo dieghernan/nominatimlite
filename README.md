@@ -113,7 +113,6 @@ You can also extract polygon and line objects (as provided by the
 Nominatim API) using the option `points_only = FALSE`:
 
 ``` r
-
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
 
 ggplot(sol_poly) +
@@ -123,8 +122,6 @@ ggplot(sol_poly) +
 <img src="man/figures/README-statue_liberty-1.png" width="100%" />
 
 ``` r
-
-
 dayton <- geo_lite_sf("Dayton, OH") # default - a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
 ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line
@@ -197,7 +194,7 @@ the parameters available.
 
 To cite the ‘nominatimlite’ package in publications use:
 
-Hernangomez D (2022). nominatimlite: Interface with Nominatim API
+Hernangomez D (2023). nominatimlite: Interface with Nominatim API
 Service. <https://doi.org/10.5281/zenodo.5113195>,
 <https://dieghernan.github.io/nominatimlite/>
 
@@ -206,7 +203,7 @@ A BibTeX entry for LaTeX users is
     @Manual{R-nominatimlite,
       title = {nominatimlite: Interface with 'Nominatim' API Service},
       author = {Diego Hernangómez},
-      year = {2022},
+      year = {2023},
       version = {0.1.6},
       doi = {10.5281/zenodo.5113195},
       url = {https://dieghernan.github.io/nominatimlite/},
