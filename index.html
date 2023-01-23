@@ -115,7 +115,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"nominatimlite"</span><span class="op">)</span></span></code></pre></div>
 <p>You can install the developing version of <code>nominatimlite</code> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dieghernan/nominatimlite"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dieghernan/nominatimlite"</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can install <code>nominatimlite</code> using the <a href="https://dieghernan.r-universe.dev/ui#builds" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Enable this universe</span></span>
@@ -155,16 +155,13 @@
 <p><img src="reference/figures/README-pizzahut-1.png" width="100%"></p>
 <p>You can also extract polygon and line objects (as provided by the Nominatim API) using the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">sol_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Statue of Liberty, NY, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span></span>
+<code class="sourceCode R"><span><span class="va">sol_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Statue of Liberty, NY, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sol_poly</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-statue_liberty-1.png" width="100%"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span></span>
-<span><span class="va">dayton</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Dayton, OH"</span><span class="op">)</span> <span class="co"># default - a point</span></span>
+<code class="sourceCode R"><span><span class="va">dayton</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Dayton, OH"</span><span class="op">)</span> <span class="co"># default - a point</span></span>
 <span><span class="va">ohio_state</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a US state - a polygon</span></span>
 <span><span class="va">ohio_river</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio river"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a river - a line</span></span>
 <span></span>
@@ -269,12 +266,12 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>To cite the ‘nominatimlite’ package in publications use:</p>
-<p>Hernangomez D (2022). nominatimlite: Interface with Nominatim API Service. <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>, <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
+<p>Hernangomez D (2023). nominatimlite: Interface with Nominatim API Service. <a href="https://doi.org/10.5281/zenodo.5113195" class="external-link uri">https://doi.org/10.5281/zenodo.5113195</a>, <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
 <p>A BibTeX entry for LaTeX users is</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>nominatimlite,</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {nominatimlite<span class="sc">:</span> Interface with <span class="st">'Nominatim'</span> API Service},</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2023</span>},</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">1.6</span>},</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.5113195</span>},</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>nominatimlite<span class="sc">/</span>},</span>

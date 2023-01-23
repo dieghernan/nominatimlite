@@ -159,8 +159,7 @@ easily:</p>
 <p>You can also extract polygon and line objects (if available) using
 the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">sol_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Statue of Liberty, NY, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sol_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Statue of Liberty, NY, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sol_poly</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
