@@ -69,7 +69,7 @@ devtools::install_github("dieghernan/nominatimlite")
 ```
 
 Alternatively, you can install `nominatimlite` using the
-[r-universe](https://dieghernan.r-universe.dev/ui#builds):
+[r-universe](http://dieghernan.r-universe.dev/ui/):
 
 ``` r
 # Enable this universe
