@@ -35,8 +35,9 @@ inst/doc
 rosm.cache
 docs
 docs/
-revdep
 CRAN-RELEASE
 cran-comments.md
 CRAN-SUBMISSION
 .github/pkg.lock
+.Rproj.user
+.Rdata
