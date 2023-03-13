@@ -22,3 +22,6 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
+^pkgdown\.yaml$
+^pkgdown\.yml$
+^\.imgbotconfig$
