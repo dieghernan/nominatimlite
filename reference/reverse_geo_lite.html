@@ -141,7 +141,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   address                                                              lat   lon</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, 7th Avenue, Times Square, Manhattan, New York Count…  40.8 -<span style="color: #BB0000;">74.0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, West 44th Street, Theater District, Manhattan, New …  40.8 -<span style="color: #BB0000;">74.0</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several coordinates</span></span></span>
 <span class="r-in"><span><span class="fu">reverse_geo_lite</span><span class="op">(</span></span></span>
@@ -151,7 +151,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   address                                                             lat    lon</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, 7th Avenue, Times Square, Manhattan, New York Coun…  40.8 -<span style="color: #BB0000;">74.0</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, West 44th Street, Theater District, Manhattan, New…  40.8 -<span style="color: #BB0000;">74.0</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> East End, Waterloo Place, Waterloo Place, Greenside, New Town/Br…  56.0  -<span style="color: #BB0000;">3.19</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># With options: zoom to country</span></span></span>
@@ -163,12 +163,11 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><t
 <span class="r-in"><span>  full_results <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   address     lat     lon place…¹ licence osm_t…² osm_id country count…³ bound…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> United S…  39.8 -<span style="color: #BB0000;">100.</span>    2.98<span style="color: #949494;">e</span>8 Data ©… relati… <span style="text-decoration: underline;">148</span>838 United… us      &lt;chr&gt;  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> United K…  54.7   -<span style="color: #BB0000;">3.28</span>  2.98<span style="color: #949494;">e</span>8 Data ©… relati…  <span style="text-decoration: underline;">62</span>149 United… gb      &lt;chr&gt;  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​place_id, ²​osm_type, ³​country_code,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​boundingbox</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   address      lat     lon place_id licence osm_type osm_id country country_code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> United St…  39.8 -<span style="color: #BB0000;">100.</span>     2.98<span style="color: #949494;">e</span>8 Data ©… relation <span style="text-decoration: underline;">148</span>838 United… us          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> United Ki…  54.7   -<span style="color: #BB0000;">3.28</span>   2.98<span style="color: #949494;">e</span>8 Data ©… relation  <span style="text-decoration: underline;">62</span>149 United… gb          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: boundingbox &lt;list&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
