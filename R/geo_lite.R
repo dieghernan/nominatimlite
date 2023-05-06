@@ -146,14 +146,14 @@ geo_lite_single <- function(address,
   # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- tibble::tibble(query = address, a = NA, b = NA)
+    result_out <- dplyr::tibble(query = address, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(invisible(result_out))
   }
   # nocov end
 
 
-  result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
+  result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
   if (nrow(result) > 0) {
     result$lat <- as.double(result$lat)
@@ -167,7 +167,7 @@ geo_lite_single <- function(address,
 
   if (nrow(result) == 0) {
     message("No results for query ", address)
-    result_out <- tibble::tibble(query = address, a = NA, b = NA)
+    result_out <- dplyr::tibble(query = address, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(invisible(result_out))
   }
@@ -179,7 +179,7 @@ geo_lite_single <- function(address,
 
 
   # Prepare output
-  result_out <- tibble::tibble(query = address)
+  result_out <- dplyr::tibble(query = address)
 
 
   # Output
@@ -197,7 +197,7 @@ geo_lite_single <- function(address,
     result_out <- cbind(result_out, rest_cols)
   }
 
-  result_out <- tibble::as_tibble(result_out)
+  result_out <- dplyr::as_tibble(result_out)
 
   return(result_out)
 }

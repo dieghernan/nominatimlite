@@ -109,7 +109,7 @@ geo_address_lookup_sf <- function(osm_ids,
 
   result_out <- data.frame(query = paste0(type, osm_ids))
 
-  df_sf <- tibble::as_tibble(sf::st_drop_geometry(sfobj))
+  df_sf <- dplyr::as_tibble(sf::st_drop_geometry(sfobj))
 
   # Rename original address
 

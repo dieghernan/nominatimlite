@@ -208,7 +208,7 @@ geo_lite_sf_single <- function(address,
 
   result_out <- data.frame(query = address)
 
-  df_sf <- tibble::as_tibble(sf::st_drop_geometry(sfobj))
+  df_sf <- dplyr::as_tibble(sf::st_drop_geometry(sfobj))
 
   # Rename original address
 

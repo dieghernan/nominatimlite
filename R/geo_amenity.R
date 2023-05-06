@@ -202,13 +202,13 @@ geo_amenity_single <- function(bbox,
   # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
+    result_out <- dplyr::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(invisible(result_out))
   }
   # nocov end
 
-  result <- tibble::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
+  result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
   if (nrow(result) > 0) {
     result$lat <- as.double(result$lat)
@@ -222,7 +222,7 @@ geo_amenity_single <- function(bbox,
 
   if (nrow(result) == 0) {
     message("No results for query ", amenity)
-    result_out <- tibble::tibble(query = amenity, a = NA, b = NA)
+    result_out <- dplyr::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(invisible(result_out))
   }
@@ -234,7 +234,7 @@ geo_amenity_single <- function(bbox,
 
 
   # Prepare output
-  result_out <- tibble::tibble(query = amenity)
+  result_out <- dplyr::tibble(query = amenity)
 
 
   # Output
@@ -252,7 +252,7 @@ geo_amenity_single <- function(bbox,
     result_out <- cbind(result_out, rest_cols)
   }
 
-  result_out <- tibble::as_tibble(result_out)
+  result_out <- dplyr::as_tibble(result_out)
 
 
   return(result_out)

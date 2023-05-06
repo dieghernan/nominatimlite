@@ -19,7 +19,7 @@
 #'
 #' ```{r, echo=FALSE}
 #'
-#' t <- tibble::tribble(
+#' t <- dplyr::tribble(
 #'  ~zoom, ~address_detail,
 #'  3, "country",
 #'  5, "state",
@@ -191,7 +191,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
   # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- tibble::tibble(ad = NA)
+    result_out <- dplyr::tibble(ad = NA)
     names(result_out) <- address
 
     coords <- data.frame(lat = lat_cap, lon = long_cap)
@@ -234,7 +234,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
       ", lat=",
       lat_cap
     )
-    result_out <- tibble::tibble(ad = NA)
+    result_out <- dplyr::tibble(ad = NA)
     names(result_out) <- address
 
     coords <- data.frame(lat = lat_cap, lon = long_cap)
@@ -252,7 +252,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
   }
 
   # Prepare output
-  df_sf <- tibble::as_tibble(sf::st_drop_geometry(sfobj))
+  df_sf <- dplyr::as_tibble(sf::st_drop_geometry(sfobj))
 
   # Rename original address
 

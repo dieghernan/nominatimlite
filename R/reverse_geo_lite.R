@@ -20,7 +20,7 @@
 #'
 #' ```{r, echo=FALSE}
 #'
-#' t <- tibble::tribble(
+#' t <- dplyr::tribble(
 #'  ~zoom, ~address_detail,
 #'  3, "country",
 #'  5, "state",
@@ -164,7 +164,7 @@ reverse_geo_lite_single <- function(lat_cap,
   # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- tibble::tibble(ad = NA)
+    result_out <- dplyr::tibble(ad = NA)
     names(result_out) <- address
     return(invisible(result_out))
   }
@@ -178,7 +178,7 @@ reverse_geo_lite_single <- function(lat_cap,
       "No results for query lon=",
       long_cap, ", lat=", lat_cap
     )
-    result_out <- tibble::tibble(ad = NA)
+    result_out <- dplyr::tibble(ad = NA)
     names(result_out) <- address
 
     if (return_coords) {
@@ -194,13 +194,13 @@ reverse_geo_lite_single <- function(lat_cap,
   # Hack to overcome problems with address and boundingbox
   for (i in seq_len(length(result_init))) {
     if (names(result_init)[i] %in% c("address", "extratags")) {
-      result <- dplyr::bind_cols(result, tibble::as_tibble(result_init[i][[1]]))
+      result <- dplyr::bind_cols(result, dplyr::as_tibble(result_init[i][[1]]))
     } else if (names(result_init)[i] == "boundingbox") {
       result_init[i] <- list(result_init[[i]])
-      r <- tibble::tibble(boundingbox = unname(result_init[i]))
+      r <- dplyr::tibble(boundingbox = unname(result_init[i]))
       result <- dplyr::bind_cols(result, r)
     } else {
-      result <- dplyr::bind_cols(result, tibble::as_tibble(result_init[i]))
+      result <- dplyr::bind_cols(result, dplyr::as_tibble(result_init[i]))
     }
   }
 
@@ -229,7 +229,7 @@ reverse_geo_lite_single <- function(lat_cap,
     result_out <- cbind(result_out, rest_cols)
   }
 
-  result_out <- tibble::as_tibble(result_out)
+  result_out <- dplyr::as_tibble(result_out)
 
   return(result_out)
 }

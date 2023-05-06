@@ -209,7 +209,7 @@ geo_amenity_sf_single <- function(bbox,
   # Prepare output
   result_out <- data.frame(query = amenity)
 
-  df_sf <- tibble::as_tibble(sf::st_drop_geometry(sfobj))
+  df_sf <- dplyr::as_tibble(sf::st_drop_geometry(sfobj))
 
   # Rename original address
 

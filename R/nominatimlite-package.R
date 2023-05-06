@@ -9,5 +9,4 @@ NULL
 
 # import stuffs
 #' @importFrom utils download.file
-#' @importFrom rlang .data
 NULL
