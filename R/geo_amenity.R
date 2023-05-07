@@ -82,7 +82,8 @@ geo_amenity <- function(bbox,
   }
 
 
-  # Dedupe
+  # Dedupe for query
+  init_am <- dplyr::tibble(query = amenity)
   amenity <- unique(amenity)
 
   all_res <- lapply(amenity, function(x) {
@@ -100,6 +101,7 @@ geo_amenity <- function(bbox,
   })
 
   all_res <- dplyr::bind_rows(all_res)
+  all_res <- dplyr::left_join(init_am, all_res, by = "query")
 
   if (strict) {
     strict <- all_res[lat] >= bbox[2] &

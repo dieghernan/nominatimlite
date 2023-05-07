@@ -118,13 +118,27 @@ geo_address_lookup_sf <- function(osm_ids,
   }
 
   # Prepare output
+  if ("address" %in% names(sfobj)) {
+    add <- as.character(sfobj$address)
+
+    newadd <- lapply(add, function(x) {
+      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
+      dplyr::as_tibble(df)
+    })
+    newadd <- dplyr::bind_rows(newadd)
+
+    newsfobj <- sfobj
+    newsfobj <- sfobj[, setdiff(names(sfobj), "address")]
+    sfobj <- dplyr::bind_cols(newsfobj, newadd)
+  }
+
   result_out <- dplyr::tibble(
     query = paste0(type, osm_ids),
     osm_id = osm_ids
   )
 
   # More renames
-  names(sfobj) <- gsub("address", "osm.address", names(sfobj))
+  names(sfobj) <- gsub("address.", "", names(sfobj))
   names(sfobj) <- gsub("namedetails.", "", names(sfobj))
   names(sfobj) <- gsub("display_name", "address", names(sfobj))
 
@@ -139,18 +153,17 @@ geo_address_lookup_sf <- function(osm_ids,
 
 
   df_sf <- sf::st_drop_geometry(sf_clean)
+  df_sf <- dplyr::as_tibble(df_sf)
 
-  out_cols <- c("query")
+  out_cols <- "query"
 
   if (return_addresses) out_cols <- c(out_cols, "address")
   if (full_results) out_cols <- c(out_cols, "address", names(df_sf))
 
-
-
-  df_sf <- dplyr::as_tibble(df_sf[, out_cols])
+  out_cols <- unique(out_cols)
+  out <- df_sf[, out_cols]
 
   # Construct final object
-  out <- dplyr::as_tibble(df_sf)
   thegeom <- sf::st_geometry(sfobj)
   thegeom <- sf::st_make_valid(thegeom)
   out$geometry <- sf::st_as_text(thegeom)

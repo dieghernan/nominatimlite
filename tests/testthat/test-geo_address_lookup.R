@@ -1,4 +1,4 @@
-test_that("Returning empty query", {
+test_that("Returning not reachable", {
   expect_message(geo_address_lookup("xbzbzbzoa aiaia", "R"))
 
   skip_on_cran()
@@ -16,7 +16,7 @@ test_that("Returning empty query", {
 })
 
 
-test_that("Returning Empty", {
+test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
@@ -40,8 +40,6 @@ test_that("Data format", {
 
   expect_s3_class(out, "tbl")
   expect_false(inherits(out, "sf"))
-
-  # this is _not_ a _sf function
 })
 
 test_that("Checking query", {

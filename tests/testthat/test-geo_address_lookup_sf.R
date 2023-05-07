@@ -104,3 +104,22 @@ test_that("Handle several", {
 
   expect_identical(as.vector(several$query), paste0(vector_type, vector_ids)[2])
 })
+
+
+test_that("Verify names", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+  # Ok
+  vector_ids <- c(146656, 240109189)
+  vector_type <- c("R", "N")
+  several <- geo_address_lookup_sf(vector_ids, vector_type,
+    full_results = TRUE
+  )
+
+  expect_identical(names(several), unique(names(several)))
+
+  # Do I have dups by any chance?
+  expect_false(any(grepl("\\.[0-9]$", names(several))))
+})

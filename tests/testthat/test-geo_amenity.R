@@ -1,4 +1,4 @@
-test_that("Non-reachable", {
+test_that("Returning not reachable", {
   expect_message(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
     amenity = "xbzbzbzoa aiaia"
@@ -17,7 +17,7 @@ test_that("Non-reachable", {
   expect_true(obj$query == "xbzbzbzoa aiaia")
 })
 
-test_that("Returning Empty", {
+test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
@@ -63,14 +63,39 @@ test_that("Checking query", {
   ), "50 results")
 
 
-  expect_equal(ncol(geo_amenity(
+  expect_identical(names(obj), c("query", "lat", "lon", "address"))
+
+  obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
-    c("pub", "restaurant"),
-  )), 4)
-  expect_gt(ncol(geo_amenity(
+    "pub",
+    long = "ong", lat = "at",
+    full_results = FALSE,
+    return_addresses = FALSE
+  )
+  expect_identical(names(obj), c("query", "at", "ong"))
+
+  obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
-    "pub", full_results = TRUE
-  )), 4)
+    "pub",
+    long = "ong", lat = "at",
+    full_results = FALSE,
+    return_addresses = TRUE
+  )
+
+  expect_identical(names(obj), c("query", "at", "ong", "address"))
+
+  obj <- geo_amenity(
+    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+    "pub",
+    long = "ong", lat = "at",
+    full_results = TRUE,
+    return_addresses = FALSE
+  )
+
+  expect_identical(names(obj)[1:4], c("query", "at", "ong", "address"))
+  expect_gt(ncol(obj), 4)
+
+
   expect_gt(nrow(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
     "pub",
@@ -87,6 +112,7 @@ test_that("Checking query", {
     "pub",
     custom_query = list(extratags = 1)
   )), 1)
+
   expect_lt(nrow(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
     "pub",
@@ -94,9 +120,19 @@ test_that("Checking query", {
     strict = TRUE
   )), 2)
 
-  expect_equal(nrow(geo_amenity(
+  # Dupes
+  dup <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
-    c("pub", "pub"),
-    limit = 1,
-  )), 1)
+    rep(c("pub", "restaurant"), 50),
+    limit = 1
+  )
+
+  expect_equal(nrow(dup), 100)
+  expect_equal(as.character(dup$query), rep(c("pub", "restaurant"), 50))
+
+  # Check deduping
+  dedup <- dplyr::distinct(dup)
+
+  expect_equal(nrow(dedup), 2)
+  expect_equal(as.character(dedup$query), rep(c("pub", "restaurant"), 1))
 })
