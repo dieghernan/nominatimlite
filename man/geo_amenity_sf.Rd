@@ -17,12 +17,12 @@ geo_amenity_sf(
 )
 }
 \arguments{
-\item{bbox}{A numeric vector of latitude and longitude (<min_latitude>,
-<min_longitude>, <max_latitude>, <max_longitude>) that restrict the search
-area. See Details.}
+\item{bbox}{A numeric vector of latitude and longitude
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)} that
+restrict the search area. See \strong{Details}.}
 
 \item{amenity}{A character of a vector of character with the amenities to be
-geolocated (i.e. \code{c("pub", "restaurant")}). See Details or
+geolocated (i.e. \code{c("pub", "restaurant")}). See \strong{Details} and
 \link{osm_amenities}.}
 
 \item{limit}{maximum number of results to return per input address. Note
@@ -45,8 +45,8 @@ See \code{\link[=geo_lite]{geo_lite()}}.}
 points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}).}
 
-\item{strict}{Logical TRUE/FALSE. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behaviour may return results located
+\item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
+the \code{bbox}. Note that Nominatim default behavior may return results located
 outside the provided bounding box.}
 }
 \value{
@@ -107,7 +107,7 @@ Other spatial:
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 
-Other amenity: 
+Search amenities: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity}()},
 \code{\link{osm_amenities}}

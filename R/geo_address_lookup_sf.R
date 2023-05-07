@@ -1,8 +1,10 @@
-#' Get spatial objects from OSM ids
+#' Address Lookup API for OSM objects in Spatial Format
 #'
 #' @description
-#' This function allows you to extract the spatial objects for specific
-#' OSM objects.
+#' The lookup API allows to query the address and other details of one or
+#' multiple OSM objects like node, way or relation. This function returns the
+#' spatial object associated with the query, see [geo_address_lookup()] for
+#' retrieving the data in tabular format.
 #'
 #' @return A `sf` object with the results.
 #'
@@ -10,7 +12,7 @@
 #' @inheritParams geo_lite_sf
 #'
 #' @details
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
+#' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
 #' @family spatial
@@ -20,24 +22,25 @@
 #' \donttest{
 #' # Notre Dame Cathedral, Paris
 #'
-#' NotreDame <- geo_address_lookup_sf(
-#'   osm_ids = c(201611261),
-#'   type = c("W")
-#' )
+#' NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 #'
 #' library(ggplot2)
 #'
 #' ggplot(NotreDame) +
 #'   geom_sf()
 #'
-#' NotreDame_poly <- geo_address_lookup_sf(
-#'   osm_ids = c(201611261),
-#'   type = c("W"),
+#' NotreDame_poly <- geo_address_lookup_sf(201611261,
+#'   type = "W",
 #'   points_only = FALSE
 #' )
 #'
 #' ggplot(NotreDame_poly) +
 #'   geom_sf()
+#'
+#' # It is vectorized
+#'
+#' several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
+#' several
 #' }
 #' @export
 geo_address_lookup_sf <- function(osm_ids,
@@ -47,6 +50,7 @@ geo_address_lookup_sf <- function(osm_ids,
                                   verbose = FALSE,
                                   custom_query = list(),
                                   points_only = TRUE) {
+  # Step 1: Download ----
   api <- "https://nominatim.openstreetmap.org/lookup?"
 
   # Prepare nodes
@@ -83,53 +87,73 @@ geo_address_lookup_sf <- function(osm_ids,
 
   res <- api_call(url, json, quiet = isFALSE(verbose))
 
-  # nocov start
+  # Step 2: Read and parse results ----
+  # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
     result_out <- data.frame(query = paste0(type, osm_ids))
+    result_out$geometry <- "POINT EMPTY"
+    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
+      wkt = "geometry",
+      crs = 4326
+    )
     return(invisible(result_out))
   }
-  # nocov end
 
   sfobj <- sf::st_read(json,
     stringsAsFactors = FALSE,
     quiet = isFALSE(verbose)
   )
 
-  # Check if null and return
-
+  # Empty query
   if (length(names(sfobj)) == 1) {
     message("No results for query ", nodes)
     result_out <- data.frame(query = paste0(type, osm_ids))
+    result_out$geometry <- "POINT EMPTY"
+    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
+      wkt = "geometry",
+      crs = 4326
+    )
     return(invisible(result_out))
   }
 
-
   # Prepare output
+  result_out <- dplyr::tibble(
+    query = paste0(type, osm_ids),
+    osm_id = osm_ids
+  )
 
-  result_out <- data.frame(query = paste0(type, osm_ids))
+  # More renames
+  names(sfobj) <- gsub("address", "osm.address", names(sfobj))
+  names(sfobj) <- gsub("namedetails.", "", names(sfobj))
+  names(sfobj) <- gsub("display_name", "address", names(sfobj))
 
-  df_sf <- dplyr::as_tibble(sf::st_drop_geometry(sfobj))
+  # Keep only same results
 
-  # Rename original address
+  sf_clean <- dplyr::inner_join(sfobj, result_out, by = "osm_id")
 
-  names(df_sf) <-
-    gsub("address", "osm.address", names(df_sf))
-
-  names(df_sf) <- gsub("display_name", "address", names(df_sf))
-
-
-  if (return_addresses || full_results) {
-    disp_name <- df_sf["address"]
-    result_out <- cbind(result_out, disp_name)
+  # Warning in lost rows
+  if (all(nrow(sf_clean) < nrow(result_out), verbose)) {
+    warning("Some ids may not have produced results. Check the final object")
   }
 
-  # If full
-  if (full_results) {
-    rest_cols <- df_sf[, !names(df_sf) %in% "address"]
-    result_out <- cbind(result_out, rest_cols)
-  }
 
-  result_out <- sf::st_sf(result_out, geometry = sf::st_geometry(sfobj))
+  df_sf <- sf::st_drop_geometry(sf_clean)
+
+  out_cols <- c("query")
+
+  if (return_addresses) out_cols <- c(out_cols, "address")
+  if (full_results) out_cols <- c(out_cols, "address", names(df_sf))
+
+
+
+  df_sf <- dplyr::as_tibble(df_sf[, out_cols])
+
+  # Construct final object
+  out <- dplyr::as_tibble(df_sf)
+  thegeom <- sf::st_geometry(sfobj)
+  thegeom <- sf::st_make_valid(thegeom)
+  out$geometry <- sf::st_as_text(thegeom)
+  result_out <- sf::st_as_sf(out, wkt = "geometry", crs = 4326)
   return(result_out)
 }

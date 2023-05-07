@@ -1,42 +1,66 @@
-test_that("Returning empty query", {
+test_that("Non-reachable", {
   expect_message(geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
     amenity = "xbzbzbzoa aiaia"
-  ))
+  ), "not reachable")
 
   skip_on_cran()
   skip_if_api_server()
 
-  obj <- geo_amenity_sf(
+  expect_message(obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
     amenity = "xbzbzbzoa aiaia"
-  )
+  ))
 
   expect_true(nrow(obj) == 1)
-
+  expect_s3_class(obj, "tbl")
   expect_true(obj$query == "xbzbzbzoa aiaia")
 })
+
+test_that("Returning Empty", {
+  skip_on_cran()
+  skip_if_api_server()
+
+
+  expect_message(
+    obj <- geo_amenity(
+      bbox = c(-88.1446, 41.5022, -87.4854, 41.8795),
+      amenity = "grit_bin"
+    ),
+    "No results"
+  )
+
+
+  expect_true(nrow(obj) == 1)
+  expect_true(obj$query == "grit_bin")
+  expect_s3_class(obj, "tbl")
+})
+
 
 test_that("Data format", {
   skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
 
+  obj <- geo_amenity(
+    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+    c("pub", "restaurant"),
+  )
 
-  expect_true(is.data.frame(geo_amenity(
-    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
-    c("pub", "restaurant"),
-  )))
-  expect_false(inherits(geo_amenity(
-    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
-    c("pub", "restaurant"),
-  ), "sf")) # this is _not_ a _sf function
+  expect_s3_class(obj, "tbl")
+  expect_false(inherits(obj, "sf"))
 })
 
 test_that("Checking query", {
   skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
+
+  expect_message(obj <- geo_amenity(
+    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+    c("pub", "restaurant"),
+    limit = 51
+  ), "50 results")
 
 
   expect_equal(ncol(geo_amenity(
@@ -74,6 +98,5 @@ test_that("Checking query", {
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
     c("pub", "pub"),
     limit = 1,
-    verbose = TRUE
-  )), 2)
+  )), 1)
 })

@@ -2,21 +2,20 @@
 #'
 #' @description
 #' This function search amenities as defined by OpenStreetMap on a restricted
-#' area defined by
-#' a bounding box in the form of (<min_latitude>, <min_longitude>,
-#' <max_latitude>, <max_longitude>).
+#' area defined by a bounding box in the form of
+#' `(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)`.
 #'
 #'
-#' @param bbox A numeric vector of latitude and longitude (<min_latitude>,
-#'   <min_longitude>, <max_latitude>, <max_longitude>) that restrict the search
-#'   area. See Details.
+#' @param bbox A numeric vector of latitude and longitude
+#'   `(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)` that
+#'   restrict the search area. See **Details**.
 #' @param amenity A character of a vector of character with the amenities to be
-#'   geolocated (i.e. `c("pub", "restaurant")`). See Details or
+#'   geolocated (i.e. `c("pub", "restaurant")`). See **Details** and
 #'   [nominatimlite::osm_amenities].
 #' @param custom_query API-specific parameters to be used.
 #'   See [nominatimlite::geo_lite()].
-#' @param strict Logical TRUE/FALSE. Force the results to be included inside
-#' the `bbox`. Note that Nominatim default behaviour may return results located
+#' @param strict Logical `TRUE/FALSE`. Force the results to be included inside
+#' the `bbox`. Note that Nominatim default behavior may return results located
 #' outside the provided bounding box.
 #'
 #' @inheritParams geo_lite
@@ -73,8 +72,6 @@ geo_amenity <- function(bbox,
                         verbose = FALSE,
                         custom_query = list(),
                         strict = FALSE) {
-  # nocov start
-
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
@@ -84,48 +81,25 @@ geo_amenity <- function(bbox,
     limit <- min(50, limit)
   }
 
-  # nocov end
 
-  # Loop
-  all_res <- NULL
+  # Dedupe
+  amenity <- unique(amenity)
 
-  for (i in seq_len(length(amenity))) {
-    # Check if we have already launched the query
-    if (amenity[i] %in% all_res$query) {
-      if (verbose) {
-        message(
-          amenity[i],
-          " already cached.\n",
-          "Skipping download."
-        )
-      }
+  all_res <- lapply(amenity, function(x) {
+    geo_amenity_single(
+      bbox = bbox,
+      amenity = x,
+      lat,
+      long,
+      limit,
+      full_results,
+      return_addresses,
+      verbose,
+      custom_query
+    )
+  })
 
-      res_single <- dplyr::filter(
-        all_res,
-        .data$query == amenity[i],
-        .data$nmlite_first == 1
-      )
-      res_single$nmlite_first <- 0
-    } else {
-      res_single <- geo_amenity_single(
-        bbox = bbox,
-        amenity = amenity[i],
-        lat,
-        long,
-        limit,
-        full_results,
-        return_addresses,
-        verbose,
-        custom_query
-      )
-      # Add index
-      res_single <- dplyr::bind_cols(res_single, nmlite_first = 1)
-    }
-
-    all_res <- dplyr::bind_rows(all_res, res_single)
-  }
-
-  all_res <- dplyr::select(all_res, -.data$nmlite_first)
+  all_res <- dplyr::bind_rows(all_res)
 
   if (strict) {
     strict <- all_res[lat] >= bbox[2] &
@@ -199,14 +173,12 @@ geo_amenity_single <- function(bbox,
 
   res <- api_call(url, json, isFALSE(verbose))
 
-  # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
     result_out <- dplyr::tibble(query = amenity, a = NA, b = NA)
     names(result_out) <- c("query", lat, long)
     return(invisible(result_out))
   }
-  # nocov end
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
@@ -234,26 +206,17 @@ geo_amenity_single <- function(bbox,
 
 
   # Prepare output
-  result_out <- dplyr::tibble(query = amenity)
+  result_out <- result
+  result_out$query <- amenity
 
+  # Output cols
+  out_cols <- c("query", lat, long)
 
-  # Output
-  result_out <- cbind(result_out, result[lat], result[long])
+  if (return_addresses) out_cols <- c(out_cols, "address")
+  if (full_results) out_cols <- c(out_cols, "address", names(result))
 
-  if (return_addresses || full_results) {
-    disp_name <- result["address"]
-    result_out <- cbind(result_out, disp_name)
-  }
+  out_cols <- unique(out_cols)
 
-
-  # If full
-  if (full_results) {
-    rest_cols <- result[, !names(result) %in% c(long, lat, "address")]
-    result_out <- cbind(result_out, rest_cols)
-  }
-
-  result_out <- dplyr::as_tibble(result_out)
-
-
+  result_out <- dplyr::as_tibble(result_out[, out_cols])
   return(result_out)
 }

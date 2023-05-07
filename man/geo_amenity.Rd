@@ -18,12 +18,12 @@ geo_amenity(
 )
 }
 \arguments{
-\item{bbox}{A numeric vector of latitude and longitude (<min_latitude>,
-<min_longitude>, <max_latitude>, <max_longitude>) that restrict the search
-area. See Details.}
+\item{bbox}{A numeric vector of latitude and longitude
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)} that
+restrict the search area. See \strong{Details}.}
 
 \item{amenity}{A character of a vector of character with the amenities to be
-geolocated (i.e. \code{c("pub", "restaurant")}). See Details or
+geolocated (i.e. \code{c("pub", "restaurant")}). See \strong{Details} and
 \link{osm_amenities}.}
 
 \item{lat}{latitude column name (i.e. \code{"lat"}).}
@@ -46,8 +46,8 @@ permanently with \code{options(tidygeocoder.verbose = TRUE)}}
 \item{custom_query}{API-specific parameters to be used.
 See \code{\link[=geo_lite]{geo_lite()}}.}
 
-\item{strict}{Logical TRUE/FALSE. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behaviour may return results located
+\item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
+the \code{bbox}. Note that Nominatim default behavior may return results located
 outside the provided bounding box.}
 }
 \value{
@@ -55,9 +55,8 @@ A \code{tibble} with the results.
 }
 \description{
 This function search amenities as defined by OpenStreetMap on a restricted
-area defined by
-a bounding box in the form of (<min_latitude>, <min_longitude>,
-<max_latitude>, <max_longitude>).
+area defined by a bounding box in the form of
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}.
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -97,7 +96,7 @@ geo_amenity(
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other amenity: 
+Search amenities: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{osm_amenities}}

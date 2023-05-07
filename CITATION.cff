@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.4.1
+# CITATION file created with {cffr} R package, v0.5.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
-version: 0.1.6
+version: 0.1.6.9000
 doi: 10.5281/zenodo.5113195
 abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
   Extract coordinates from addresses, find places near a set of coordinates, search
@@ -27,7 +27,7 @@ preferred-citation:
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
   year: '2023'
-  version: 0.1.6
+  version: 0.1.6.9000
   doi: 10.5281/zenodo.5113195
   url: https://dieghernan.github.io/nominatimlite/
   abstract: Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>.
@@ -108,21 +108,6 @@ references:
   year: '2023'
   version: '>= 1.7.0'
 - type: software
-  title: rlang
-  abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
-  notes: Imports
-  url: https://rlang.r-lib.org
-  repository: https://CRAN.R-project.org/package=rlang
-  authors:
-  - family-names: Henry
-    given-names: Lionel
-    email: lionel@rstudio.com
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@rstudio.com
-  year: '2023'
-  version: '>= 0.4.9'
-- type: software
   title: sf
   abstract: 'sf: Simple Features for R'
   notes: Imports
@@ -135,22 +120,6 @@ references:
     orcid: https://orcid.org/0000-0001-8049-7069
   year: '2023'
   version: '>= 0.9.0'
-- type: software
-  title: tibble
-  abstract: 'tibble: Simple Data Frames'
-  notes: Imports
-  url: https://tibble.tidyverse.org/
-  repository: https://CRAN.R-project.org/package=tibble
-  authors:
-  - family-names: Müller
-    given-names: Kirill
-    email: kirill@cynkra.com
-    orcid: https://orcid.org/0000-0002-1416-3412
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@rstudio.com
-  year: '2023'
-  version: '>= 3.0.3'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -240,35 +209,38 @@ references:
   authors:
   - family-names: Allaire
     given-names: JJ
-    email: jj@rstudio.com
+    email: jj@posit.co
   - family-names: Xie
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
   - family-names: McPherson
     given-names: Jonathan
-    email: jonathan@rstudio.com
+    email: jonathan@posit.co
   - family-names: Luraschi
     given-names: Javier
-    email: javier@rstudio.com
   - family-names: Ushey
     given-names: Kevin
-    email: kevin@rstudio.com
+    email: kevin@posit.co
   - family-names: Atkins
     given-names: Aron
-    email: aron@rstudio.com
+    email: aron@posit.co
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   - family-names: Cheng
     given-names: Joe
-    email: joe@rstudio.com
+    email: joe@posit.co
   - family-names: Chang
     given-names: Winston
-    email: winston@rstudio.com
+    email: winston@posit.co
   - family-names: Iannone
     given-names: Richard
-    email: rich@rstudio.com
+    email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
   year: '2023'
 - type: software
@@ -280,7 +252,7 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   year: '2023'
   version: '>= 3.0.0'
 - type: software

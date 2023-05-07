@@ -16,7 +16,7 @@ instead of \code{bbox}}
 \item{crs}{coordinate reference system, something suitable as input to \link[sf]{st_crs}}
 }
 \value{
-A \code{sf} object
+A \code{sfc} object of class \code{POLYGON}.
 }
 \description{
 Create a \code{sf} polygon object from the coordinates of a bounding box
@@ -62,7 +62,7 @@ Other spatial:
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 
-Other amenity: 
+Search amenities: 
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_amenity}()},
 \code{\link{osm_amenities}}

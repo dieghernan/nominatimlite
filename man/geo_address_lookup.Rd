@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_address_lookup.R
 \name{geo_address_lookup}
 \alias{geo_address_lookup}
-\title{Query the address and other details of one or multiple OSM objects}
+\title{Address Lookup API for OSM objects}
 \usage{
 geo_address_lookup(
   osm_ids,
@@ -19,8 +19,8 @@ geo_address_lookup(
 \item{osm_ids}{vector of OSM identifiers (\code{c(00000, 11111, 22222)}).}
 
 \item{type}{vector of the type of the OSM type associated to each \code{osm_ids}.
-Possible values are node ("N"), way ("W") or relation ("R"). If a single
-value is provided it would be recycled.}
+Possible values are node (\code{"N"}), way (\code{"W"}) or relation (\code{"R"}). If a
+single value is provided it would be recycled.}
 
 \item{lat}{latitude column name (i.e. \code{"lat"}).}
 
@@ -40,10 +40,13 @@ permanently with \code{options(tidygeocoder.verbose = TRUE)}}
 list (i.e. \code{list(countrycodes = "US")}). See Details.}
 }
 \value{
-A \code{tibble} with the results.
+A \code{tibble} with the results found by the query.
 }
 \description{
-Geocodes addresses for OSM objects, identified with the OSM Id.
+The lookup API allows to query the address and other details of one or
+multiple OSM objects like node, way or relation. This function returns the
+data associated with the query, see \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for
+retrieving the data as a spatial object.
 }
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Lookup/} for additional
@@ -52,12 +55,12 @@ parameters to be passed to \code{custom_query}.
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-ids <- geo_address_lookup(
-  osm_ids = c(46240148, 34633854),
-  type = c("W"),
-)
+ids <- geo_address_lookup(osm_ids = c(46240148, 34633854), type = "W")
 
 ids
+
+several <- geo_address_lookup(c(146656, 240109189), type = c("R", "N"))
+several
 }
 \dontshow{\}) # examplesIf}
 }
@@ -67,7 +70,7 @@ Other geocoding:
 \code{\link{geo_lite}()},
 \code{\link{reverse_geo_lite}()}
 
-Other lookup: 
+Address Lookup API: 
 \code{\link{geo_address_lookup_sf}()}
 }
 \concept{geocoding}

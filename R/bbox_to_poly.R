@@ -9,7 +9,7 @@
 #'
 #' @inheritParams sf::st_sf
 #'
-#' @return A `sf` object
+#' @return A `sfc` object of class `POLYGON`.
 #'
 #' @seealso [sf::st_as_sfc()]
 #'

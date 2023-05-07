@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_address_lookup_sf.R
 \name{geo_address_lookup_sf}
 \alias{geo_address_lookup_sf}
-\title{Get spatial objects from OSM ids}
+\title{Address Lookup API for OSM objects in Spatial Format}
 \usage{
 geo_address_lookup_sf(
   osm_ids,
@@ -18,8 +18,8 @@ geo_address_lookup_sf(
 \item{osm_ids}{vector of OSM identifiers (\code{c(00000, 11111, 22222)}).}
 
 \item{type}{vector of the type of the OSM type associated to each \code{osm_ids}.
-Possible values are node ("N"), way ("W") or relation ("R"). If a single
-value is provided it would be recycled.}
+Possible values are node (\code{"N"}), way (\code{"W"}) or relation (\code{"R"}). If a
+single value is provided it would be recycled.}
 
 \item{full_results}{returns all available data from the geocoding service if TRUE.
 If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
@@ -42,11 +42,13 @@ provided by the Nominatim API (\code{FALSE}).}
 A \code{sf} object with the results.
 }
 \description{
-This function allows you to extract the spatial objects for specific
-OSM objects.
+The lookup API allows to query the address and other details of one or
+multiple OSM objects like node, way or relation. This function returns the
+spatial object associated with the query, see \code{\link[=geo_address_lookup]{geo_address_lookup()}} for
+retrieving the data in tabular format.
 }
 \details{
-See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
+See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
@@ -54,24 +56,25 @@ parameters to be passed to \code{custom_query}.
 \donttest{
 # Notre Dame Cathedral, Paris
 
-NotreDame <- geo_address_lookup_sf(
-  osm_ids = c(201611261),
-  type = c("W")
-)
+NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 
 library(ggplot2)
 
 ggplot(NotreDame) +
   geom_sf()
 
-NotreDame_poly <- geo_address_lookup_sf(
-  osm_ids = c(201611261),
-  type = c("W"),
+NotreDame_poly <- geo_address_lookup_sf(201611261,
+  type = "W",
   points_only = FALSE
 )
 
 ggplot(NotreDame_poly) +
   geom_sf()
+
+# It is vectorized
+
+several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
+several
 }
 \dontshow{\}) # examplesIf}
 }
@@ -82,7 +85,7 @@ Other spatial:
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 
-Other lookup: 
+Address Lookup API: 
 \code{\link{geo_address_lookup}()}
 }
 \concept{lookup}
