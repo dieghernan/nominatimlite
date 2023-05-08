@@ -89,12 +89,15 @@ longitudes must be between -180 and 180.</p>
 
 
 <dt>address</dt>
-<dd><p>name of the address column (in the output data)</p></dd>
+<dd><p>character with single line address
+(<code>"1600 Pennsylvania Ave NW, Washington"</code>) or a vector of addresses
+(<code>c("Madrid", "Barcelona")</code>).</p></dd>
 
 
 <dt>full_results</dt>
-<dd><p>returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only a single address column is returned from the geocoding service.</p></dd>
+<dd><p>returns all available data from the API service.
+If <code>FALSE</code> (default) only address columns are returned. See also
+<code>return_addresses</code>.</p></dd>
 
 
 <dt>return_coords</dt>
@@ -104,19 +107,18 @@ most services return the input coordinates with <code>full_results = TRUE</code>
 
 
 <dt>verbose</dt>
-<dd><p>if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with <code>options(tidygeocoder.verbose = TRUE)</code></p></dd>
+<dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
 
 
 <dt>custom_query</dt>
-<dd><p>API-specific parameters to be used, passed as a named
-list (ie. <code>list(zoom = 3)</code>). See Details.</p></dd>
+<dd><p>A named list with API-specific parameters to be used
+(i.e. <code>list(countrycodes = "US")</code>). See <strong>Details</strong>.</p></dd>
 
 
 <dt>points_only</dt>
 <dd><p>Logical <code>TRUE/FALSE</code>. Whether to return only spatial
 points (<code>TRUE</code>, which is the default) or potentially other shapes as
-provided by the Nominatim API (<code>FALSE</code>).</p></dd>
+provided by the Nominatim API (<code>FALSE</code>). See <strong>About Geometry Types</strong>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -129,12 +131,36 @@ provided by the Nominatim API (<code>FALSE</code>).</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>See <a href="https://nominatim.org/release-docs/develop/api/Reverse/" class="external-link">https://nominatim.org/release-docs/develop/api/Reverse/</a> for additional
 parameters to be passed to <code>custom_query</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="about-zooming">About Zooming<a class="anchor" aria-label="anchor" href="#about-zooming"></a></h2>
+    
+
+
 <p>Use the option <code>custom_query = list(zoom = 3)</code> to adjust the output. Some
 equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><td>address_detail</td></tr><tr><td>3</td><td>country</td></tr><tr><td>5</td><td>state</td></tr><tr><td>8</td><td>county</td></tr><tr><td>10</td><td>city</td></tr><tr><td>14</td><td>suburb</td></tr><tr><td>16</td><td>major streets</td></tr><tr><td>17</td><td>major and minor streets</td></tr><tr><td>18</td><td>building</td></tr></table></div>
     <div class="section level2">
+    <h2 id="about-geometry-types">About Geometry Types<a class="anchor" aria-label="anchor" href="#about-geometry-types"></a></h2>
+    
+
+
+<p>The parameter <code>points_only</code> specifies whether the function results will be
+points (all Nominatim results are guaranteed to have at least point
+geometry) or possibly other spatial objects.</p>
+<p>Note that the type of geometry returned in case of <code>points_only = FALSE</code>
+will depend on the object being geocoded:</p><ul><li><p>administrative areas, major buildings and the like will be
+returned as polygons</p></li>
+<li><p>rivers, roads and their like as lines</p></li>
+<li><p>amenities may be points even in case of a <code>points_only = FALSE</code> call</p></li>
+</ul><p>The function is vectorized, allowing for multiple addresses to be geocoded;
+in case of <code>points_only = FALSE</code>  multiple geometry types may be returned.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="reverse_geo_lite.html">reverse_geo_lite()</a></code></p>
-<p>Other spatial: 
+<p>Reverse geocoding coordinates: 
+<code><a href="reverse_geo_lite.html">reverse_geo_lite</a>()</code></p>
+<p>Get spatial (`sf`) objects: 
 <code><a href="bbox_to_poly.html">bbox_to_poly</a>()</code>,
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
 <code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,

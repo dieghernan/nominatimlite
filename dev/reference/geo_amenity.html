@@ -114,19 +114,17 @@ that each query returns a maximum of 50 results.</p></dd>
 
 
 <dt>full_results</dt>
-<dd><p>returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.</p></dd>
+<dd><p>returns all available data from the API service.
+If <code>FALSE</code> (default) only latitude, longitude and address columns are
+returned. See also <code>return_addresses</code>.</p></dd>
 
 
 <dt>return_addresses</dt>
-<dd><p>return input addresses with results if TRUE. Note that
-most services return the input addresses with <code>full_results = TRUE</code> and setting
-return_addresses to FALSE does not prevent this.</p></dd>
+<dd><p>return input addresses with results if <code>TRUE</code>.</p></dd>
 
 
 <dt>verbose</dt>
-<dd><p>if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with <code>options(tidygeocoder.verbose = TRUE)</code></p></dd>
+<dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
 
 
 <dt>custom_query</dt>
@@ -155,14 +153,17 @@ outside the provided bounding box.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Search amenities: 
+    <div class="dont-index"><p><code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code></p>
+<p>Search amenities: 
 <code><a href="bbox_to_poly.html">bbox_to_poly</a>()</code>,
 <code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
 <code><a href="osm_amenities.html">osm_amenities</a></code></p>
-<p>Other geocoding: 
+<p>Geocoding strings: 
+<code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
 <code><a href="geo_address_lookup.html">geo_address_lookup</a>()</code>,
-<code><a href="geo_lite.html">geo_lite</a>()</code>,
-<code><a href="reverse_geo_lite.html">reverse_geo_lite</a>()</code></p></div>
+<code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
+<code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code>,
+<code><a href="geo_lite.html">geo_lite</a>()</code></p></div>
     </div>
 
     <div class="section level2">
