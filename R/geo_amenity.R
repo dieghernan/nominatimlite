@@ -24,6 +24,7 @@
 #'
 #' @return A `tibble` with the results.
 #'
+#' @seealso [geo_amenity_sf()]
 #' @family amenity
 #' @family geocoding
 #' @details

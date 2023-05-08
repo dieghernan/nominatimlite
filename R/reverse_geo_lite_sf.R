@@ -5,36 +5,15 @@
 #' of coordinates (lat, long). Latitudes must be between -90 and 90 and
 #' longitudes must be between -180 and 180.
 #'
-#'
-#' @inheritParams reverse_geo_lite
 #' @inheritParams geo_lite_sf
+#' @inheritParams reverse_geo_lite
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
-#' equivalences on terms of zoom:
-#'
-#'
-#' ```{r, echo=FALSE}
-#'
-#' t <- dplyr::tribble(
-#'  ~zoom, ~address_detail,
-#'  3, "country",
-#'  5, "state",
-#'  8, "county",
-#'  10, "city",
-#'  14, "suburb",
-#'  16, "major streets",
-#'  17, "major and minor streets",
-#'  18, "building"
-#'  )
-#'
-#' knitr::kable(t)
-#'
-#'
-#' ```
+#' @inheritSection  reverse_geo_lite  About Zooming
+#' @inheritSection  geo_lite_sf  About Geometry Types
 #'
 #' @return A `sf` object with the results.
 #'
@@ -82,6 +61,7 @@
 #' @export
 #'
 #' @seealso [reverse_geo_lite()]
+#' @family reverse
 #' @family spatial
 reverse_geo_lite_sf <- function(lat,
                                 long,

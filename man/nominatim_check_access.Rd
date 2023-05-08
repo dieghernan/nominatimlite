@@ -21,7 +21,7 @@ nominatim_check_access()
 \seealso{
 \url{https://nominatim.org/release-docs/latest/api/Status/}
 
-Other api_management: 
+API Management: 
 \code{\link{api_call}()}
 }
 \concept{api_management}

@@ -14,6 +14,8 @@
 #' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
+#' @section About Zooming:
+#'
 #' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
 #' equivalences on terms of zoom:
 #'
@@ -62,7 +64,8 @@
 #' @export
 #'
 #' @seealso [reverse_geo_lite_sf()], [tidygeocoder::reverse_geo()]
-#' @family geocoding
+#' @family reverse
+#'
 reverse_geo_lite <- function(lat,
                              long,
                              address = "address",

@@ -45,6 +45,9 @@ between -180 and 180.
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Reverse/} for additional
 parameters to be passed to \code{custom_query}.
+}
+\section{About Zooming}{
+
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
 equivalences on terms of zoom:\tabular{rl}{
@@ -59,6 +62,7 @@ equivalences on terms of zoom:\tabular{rl}{
    18 \tab building \cr
 }
 }
+
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -85,9 +89,7 @@ reverse_geo_lite(
 \seealso{
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
 
-Other geocoding: 
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_lite}()}
+Reverse geocoding coordinates: 
+\code{\link{reverse_geo_lite_sf}()}
 }
-\concept{geocoding}
+\concept{reverse}

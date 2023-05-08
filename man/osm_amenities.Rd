@@ -135,7 +135,7 @@ amenities <- nominatimlite::osm_amenities
 amenities
 }
 \seealso{
-Search amenities:
+Search amenities: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_amenity}()}

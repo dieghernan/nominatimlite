@@ -20,24 +20,26 @@ reverse_geo_lite_sf(
 
 \item{long}{longitude values (input data)}
 
-\item{address}{name of the address column (in the output data)}
+\item{address}{character with single line address
+(\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
+(\code{c("Madrid", "Barcelona")}).}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only a single address column is returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only address columns are returned. See also
+\code{return_addresses}.}
 
 \item{return_coords}{return input coordinates with results if TRUE. Note that
 most services return the input coordinates with \code{full_results = TRUE} and setting
 \code{return_coords} to FALSE does not prevent this.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \code{list(zoom = 3)}). See Details.}
+\item{custom_query}{A named list with API-specific parameters to be used
+(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}).}
+provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
 A \code{sf} object with the results.
@@ -50,6 +52,9 @@ longitudes must be between -180 and 180.
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Reverse/} for additional
 parameters to be passed to \code{custom_query}.
+}
+\section{About Zooming}{
+
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
 equivalences on terms of zoom:\tabular{rl}{
@@ -64,6 +69,27 @@ equivalences on terms of zoom:\tabular{rl}{
    18 \tab building \cr
 }
 }
+
+\section{About Geometry Types}{
+
+
+The parameter \code{points_only} specifies whether the function results will be
+points (all Nominatim results are guaranteed to have at least point
+geometry) or possibly other spatial objects.
+
+Note that the type of geometry returned in case of \code{points_only = FALSE}
+will depend on the object being geocoded:
+\itemize{
+\item administrative areas, major buildings and the like will be
+returned as polygons
+\item rivers, roads and their like as lines
+\item amenities may be points even in case of a \code{points_only = FALSE} call
+}
+
+The function is vectorized, allowing for multiple addresses to be geocoded;
+in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+}
+
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -111,10 +137,14 @@ ggplot(County_sf) +
 \seealso{
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}
 
-Other spatial: 
+Reverse geocoding coordinates: 
+\code{\link{reverse_geo_lite}()}
+
+Get spatial (`sf`) objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()}
 }
+\concept{reverse}
 \concept{spatial}

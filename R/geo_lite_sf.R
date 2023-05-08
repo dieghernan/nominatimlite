@@ -1,8 +1,27 @@
-#' Get spatial objects through geocoding
+#' Address Search API for OSM objects in Spatial format
 #'
 #' @description
 #' This function allows you to geocode addresses and return the corresponding
-#' spatial object.
+#' spatial object. This
+#' function returns the spatial object associated with the query, see
+#' [geo_lite_sf()] for retrieving the data in `tibble` format.
+#'
+#'
+#' @param full_results returns all available data from the API service.
+#'    If `FALSE` (default) only address columns are returned. See also
+#'    `return_addresses`.
+#'
+#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
+#' points (`TRUE`, which is the default) or potentially other shapes as
+#' provided by the Nominatim API (`FALSE`). See **About Geometry Types**.
+#'
+#' @inheritParams geo_lite
+#'
+#' @details
+#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
+#' parameters to be passed to `custom_query`.
+#'
+#' @section About Geometry Types:
 #'
 #' The parameter `points_only` specifies whether the function results will be
 #' points (all Nominatim results are guaranteed to have at least point
@@ -18,16 +37,6 @@
 #'
 #' The function is vectorized, allowing for multiple addresses to be geocoded;
 #' in case of `points_only = FALSE`  multiple geometry types may be returned.
-#'
-#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
-#' points (`TRUE`, which is the default) or potentially other shapes as
-#' provided by the Nominatim API (`FALSE`).
-#'
-#' @inheritParams geo_lite
-#'
-#' @details
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
 #'
 #' @return A `sf` object with the results.
 #'
@@ -70,7 +79,7 @@
 #' }
 #' @export
 #'
-#' @seealso [geo_lite()]
+#' @family geocoding
 #' @family spatial
 
 geo_lite_sf <- function(address,

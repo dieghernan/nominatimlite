@@ -7,8 +7,8 @@
 #' function returns the spatial object associated with the query, see
 #' [geo_amenity()] for retrieving the data in `tibble` format.
 #'
-#' @inheritParams geo_amenity
 #' @inheritParams geo_lite_sf
+#' @inheritParams geo_amenity
 #'
 #' @return A `sf` object with the results.
 #'
@@ -20,8 +20,12 @@
 #' For a full list of valid amenities see
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity>.
 #'
-#' @family spatial
+#' @inheritSection  geo_lite_sf  About Geometry Types
+#'
+#' @seealso [geo_amenity()]
 #' @family amenity
+#' @family geocoding
+#' @family spatial
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{

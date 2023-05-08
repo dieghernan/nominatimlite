@@ -1,18 +1,25 @@
-#' Geocode addresses
+#' Address Search API for OSM objects
 #'
 #' @description
-#' Geocodes addresses given as character values.
+#' Geocodes addresses given as character values. This
+#' function returns the data associated with the query, see [geo_lite_sf()]
+#' for retrieving the data as a spatial object (`sf` format).
 #'
-#' @param address single line address (i.e. `"1600 Pennsylvania Ave NW,
-#'   Washington"`) or a vector of addresses (`c("Madrid", "Barcelona")`).
+#' @param address character with single line address
+#'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+#'   (`c("Madrid", "Barcelona")`).
 #' @param lat	latitude column name (i.e. `"lat"`).
 #' @param long	longitude column name (i.e. `"long"`).
 #' @param limit	maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
-#' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (i.e. `list(countrycodes = "US")`). See Details.
+#' @param full_results returns all available data from the API service.
+#'    If `FALSE` (default) only latitude, longitude and address columns are
+#'    returned. See also `return_addresses`.
+#' @param return_addresses return input addresses with results if `TRUE`.
+#' @param verbose if `TRUE` then detailed logs are output to the console.
+#' @param custom_query A named list with API-specific parameters to be used
+#'   (i.e. `list(countrycodes = "US")`). See **Details**.
 #'
-#' @inheritParams tidygeocoder::geo
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
@@ -45,9 +52,6 @@ geo_lite <- function(address,
                      return_addresses = TRUE,
                      verbose = FALSE,
                      custom_query = list()) {
-  address_par <- address
-  # nocov start
-
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
@@ -57,46 +61,27 @@ geo_lite <- function(address,
     limit <- min(50, limit)
   }
 
-  # nocov end
 
-  # Loop
-  all_res <- NULL
 
-  for (i in seq_len(length(address_par))) {
-    # Check if we have already launched the query
-    if (address_par[i] %in% all_res$query) {
-      if (verbose) {
-        message(
-          address_par[i],
-          " already cached.\n",
-          "Skipping download."
-        )
-      }
+  # Dedupe for query
+  init_ad <- dplyr::tibble(query = address)
+  address <- unique(address)
 
-      res_single <- dplyr::filter(
-        all_res,
-        .data$query == address_par[i],
-        .data$nmlite_first == 1
-      )
-      res_single$nmlite_first <- 0
-    } else {
-      res_single <- geo_lite_single(
-        address = address[i],
-        lat,
-        long,
-        limit,
-        full_results,
-        return_addresses,
-        verbose,
-        custom_query
-      )
-      # Add index
-      res_single <- dplyr::bind_cols(res_single, nmlite_first = 1)
-    }
-    all_res <- dplyr::bind_rows(all_res, res_single)
-  }
+  all_res <- lapply(address, function(x) {
+    geo_lite_single(
+      address = x,
+      lat,
+      long,
+      limit,
+      full_results,
+      return_addresses,
+      verbose,
+      custom_query
+    )
+  })
 
-  all_res <- dplyr::select(all_res, -.data$nmlite_first)
+  all_res <- dplyr::bind_rows(all_res)
+  all_res <- dplyr::left_join(init_ad, all_res, by = "query")
 
   return(all_res)
 }
@@ -159,12 +144,14 @@ geo_lite_single <- function(address,
     result$lat <- as.double(result$lat)
     result$lon <- as.double(result$lon)
   }
+  # Renamings
   nmes <- names(result)
   nmes[nmes == "lat"] <- lat
   nmes[nmes == "lon"] <- long
 
   names(result) <- nmes
 
+  # Empty query
   if (nrow(result) == 0) {
     message("No results for query ", address)
     result_out <- dplyr::tibble(query = address, a = NA, b = NA)
@@ -172,32 +159,23 @@ geo_lite_single <- function(address,
     return(invisible(result_out))
   }
 
-  # Rename
+  # More renames
   names(result) <- gsub("address.", "", names(result))
   names(result) <- gsub("namedetails.", "", names(result))
   names(result) <- gsub("display_name", "address", names(result))
 
-
-  # Prepare output
-  result_out <- dplyr::tibble(query = address)
+  result$query <- address
 
 
-  # Output
-  result_out <- cbind(result_out, result[lat], result[long])
+  # Output cols
+  out_cols <- c("query", lat, long)
 
-  if (return_addresses || full_results) {
-    disp_name <- result["address"]
-    result_out <- cbind(result_out, disp_name)
-  }
+  if (return_addresses) out_cols <- c(out_cols, "address")
+  if (full_results) out_cols <- c(out_cols, "address", names(result))
 
+  out_cols <- unique(out_cols)
 
-  # If full
-  if (full_results) {
-    rest_cols <- result[, !names(result) %in% c(long, lat, "address")]
-    result_out <- cbind(result_out, rest_cols)
-  }
-
-  result_out <- dplyr::as_tibble(result_out)
+  result_out <- dplyr::as_tibble(result[, out_cols])
 
   return(result_out)
 }

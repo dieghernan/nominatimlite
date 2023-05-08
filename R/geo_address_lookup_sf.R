@@ -8,15 +8,19 @@
 #'
 #' @return A `sf` object with the results.
 #'
-#' @inheritParams geo_address_lookup
 #' @inheritParams geo_lite_sf
+#' @inheritParams geo_address_lookup
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @family spatial
+#' @inheritSection  geo_lite_sf  About Geometry Types
+#'
+#' @seealso [geo_address_lookup()]
 #' @family lookup
+#' @family geocoding
+#' @family spatial
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{

@@ -30,18 +30,25 @@ authors:
     href: 'https://www.jla-data.net/'
 
 reference:
-- title: Geocoding and reverse geocoding
-  desc: These functions return `tibbles`
+- title: Geocoding
+  desc: These functions search an address or reference and return coordinates.
   contents:
   - has_concept("geocoding")
 
+
+- title: Reverse geocoding
+  desc: These functions search coordinates and returns information of places on
+    that coordinates.
+  contents:
+  - has_concept("reverse")
+
 - title: Get spatial objects
-  desc: These functions return `sf` objects
+  desc: These functions return `sf` objects.
   contents:
   - has_concept("spatial")
 
-- title: Misc
-  desc: Other objects included in the package
+- title: Datasets
+  desc: Helper datasets.
   contents:
   - has_concept("datasets")
 

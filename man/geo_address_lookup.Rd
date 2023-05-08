@@ -26,18 +26,16 @@ single value is provided it would be recycled.}
 
 \item{long}{longitude column name (i.e. \code{"long"}).}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only latitude, longitude and address columns are
+returned. See also \code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if TRUE. Note that
-most services return the input addresses with \code{full_results = TRUE} and setting
-return_addresses to FALSE does not prevent this.}
+\item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(countrycodes = "US")}). See Details.}
+\item{custom_query}{A named list with API-specific parameters to be used
+(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 }
 \value{
 A \code{tibble} with the results found by the query.
@@ -65,13 +63,17 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other geocoding: 
-\code{\link{geo_amenity}()},
-\code{\link{geo_lite}()},
-\code{\link{reverse_geo_lite}()}
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 
 Address Lookup API: 
 \code{\link{geo_address_lookup_sf}()}
+
+Geocoding strings: 
+\code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite}()}
 }
 \concept{geocoding}
 \concept{lookup}

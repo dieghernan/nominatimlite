@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite.R
 \name{geo_lite}
 \alias{geo_lite}
-\title{Geocode addresses}
+\title{Address Search API for OSM objects}
 \usage{
 geo_lite(
   address,
@@ -16,7 +16,9 @@ geo_lite(
 )
 }
 \arguments{
-\item{address}{single line address (i.e. \code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses (\code{c("Madrid", "Barcelona")}).}
+\item{address}{character with single line address
+(\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
+(\code{c("Madrid", "Barcelona")}).}
 
 \item{lat}{latitude column name (i.e. \code{"lat"}).}
 
@@ -25,24 +27,24 @@ geo_lite(
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only latitude, longitude and address columns are
+returned. See also \code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if TRUE. Note that
-most services return the input addresses with \code{full_results = TRUE} and setting
-return_addresses to FALSE does not prevent this.}
+\item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(countrycodes = "US")}). See Details.}
+\item{custom_query}{A named list with API-specific parameters to be used
+(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 }
 \value{
 A \code{tibble} with the results.
 }
 \description{
-Geocodes addresses given as character values.
+Geocodes addresses given as character values. This
+function returns the data associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}}
+for retrieving the data as a spatial object (\code{sf} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
@@ -67,9 +69,11 @@ geo_lite(c("Madrid", "Barcelona"),
 \seealso{
 \code{\link[=geo_lite_sf]{geo_lite_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
-Other geocoding: 
+Geocoding strings: 
+\code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_amenity}()},
-\code{\link{reverse_geo_lite}()}
+\code{\link{geo_lite_sf}()}
 }
 \concept{geocoding}

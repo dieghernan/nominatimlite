@@ -21,22 +21,20 @@ geo_address_lookup_sf(
 Possible values are node (\code{"N"}), way (\code{"W"}) or relation (\code{"R"}). If a
 single value is provided it would be recycled.}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only address columns are returned. See also
+\code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if TRUE. Note that
-most services return the input addresses with \code{full_results = TRUE} and setting
-return_addresses to FALSE does not prevent this.}
+\item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(countrycodes = "US")}). See Details.}
+\item{custom_query}{A named list with API-specific parameters to be used
+(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}).}
+provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
 A \code{sf} object with the results.
@@ -51,6 +49,26 @@ retrieving the data in \code{tibble} format.
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
 parameters to be passed to \code{custom_query}.
 }
+\section{About Geometry Types}{
+
+
+The parameter \code{points_only} specifies whether the function results will be
+points (all Nominatim results are guaranteed to have at least point
+geometry) or possibly other spatial objects.
+
+Note that the type of geometry returned in case of \code{points_only = FALSE}
+will depend on the object being geocoded:
+\itemize{
+\item administrative areas, major buildings and the like will be
+returned as polygons
+\item rivers, roads and their like as lines
+\item amenities may be points even in case of a \code{points_only = FALSE} call
+}
+
+The function is vectorized, allowing for multiple addresses to be geocoded;
+in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+}
+
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -79,14 +97,24 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other spatial: 
+\code{\link[=geo_address_lookup]{geo_address_lookup()}}
+
+Address Lookup API: 
+\code{\link{geo_address_lookup}()}
+
+Geocoding strings: 
+\code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite}()}
+
+Get spatial (`sf`) objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
-
-Address Lookup API: 
-\code{\link{geo_address_lookup}()}
 }
+\concept{geocoding}
 \concept{lookup}
 \concept{spatial}

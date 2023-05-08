@@ -16,8 +16,9 @@
 #' See <https://nominatim.org/release-docs/develop/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @family geocoding
+#' @seealso [geo_address_lookup_sf()]
 #' @family lookup
+#' @family geocoding
 #'
 #' @return A `tibble` with the results found by the query.
 #'

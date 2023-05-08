@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite_sf.R
 \name{geo_lite_sf}
 \alias{geo_lite_sf}
-\title{Get spatial objects through geocoding}
+\title{Address Search API for OSM objects in Spatial format}
 \usage{
 geo_lite_sf(
   address,
@@ -15,34 +15,43 @@ geo_lite_sf(
 )
 }
 \arguments{
-\item{address}{single line address (i.e. \code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses (\code{c("Madrid", "Barcelona")}).}
+\item{address}{character with single line address
+(\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
+(\code{c("Madrid", "Barcelona")}).}
 
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{return_addresses}{return input addresses with results if TRUE. Note that
-most services return the input addresses with \code{full_results = TRUE} and setting
-return_addresses to FALSE does not prevent this.}
+\item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only address columns are returned. See also
+\code{return_addresses}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(countrycodes = "US")}). See Details.}
+\item{custom_query}{A named list with API-specific parameters to be used
+(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}).}
+provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
 A \code{sf} object with the results.
 }
 \description{
 This function allows you to geocode addresses and return the corresponding
-spatial object.
+spatial object. This
+function returns the spatial object associated with the query, see
+\code{\link[=geo_lite_sf]{geo_lite_sf()}} for retrieving the data in \code{tibble} format.
+}
+\details{
+See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
+parameters to be passed to \code{custom_query}.
+}
+\section{About Geometry Types}{
+
 
 The parameter \code{points_only} specifies whether the function results will be
 points (all Nominatim results are guaranteed to have at least point
@@ -60,10 +69,7 @@ returned as polygons
 The function is vectorized, allowing for multiple addresses to be geocoded;
 in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 }
-\details{
-See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
-parameters to be passed to \code{custom_query}.
-}
+
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -105,12 +111,18 @@ ggplot(Starbucks) +
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=geo_lite]{geo_lite()}}
+Geocoding strings: 
+\code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_lite}()}
 
-Other spatial: 
+Get spatial (`sf`) objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 }
+\concept{geocoding}
 \concept{spatial}
