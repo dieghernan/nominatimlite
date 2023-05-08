@@ -55,8 +55,14 @@ showtext_auto()
 map <- ggplot(mad) +
   geom_sf(fill = "#2c3e50", col = "white") +
   geom_sf(data = r, col = "#f39c12", linewidth = 0.05) +
-  geom_sf_text(data = p1, aes(label = label), size = 10.5, col = "white", family = "lato") +
-  geom_sf_text(data = p2, aes(label = label), size = 10.5, col = "#f39c12", family = "lato") +
+  geom_sf_text(
+    data = p1, aes(label = label), size = 10.5, col = "white",
+    family = "lato"
+  ) +
+  geom_sf_text(
+    data = p2, aes(label = label), size = 10.5, col = "#f39c12",
+    family = "lato"
+  ) +
   theme_void() +
   coord_sf(xlim = c(-432731.6, -375817))
 

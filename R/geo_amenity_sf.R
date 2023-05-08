@@ -64,16 +64,15 @@ geo_amenity_sf <- function(bbox,
       "Nominatim provides 50 results as a maximum. ",
       "Your query may be incomplete"
     ))
-
     limit <- min(50, limit)
   }
 
 
   # Dedupe for query
-  init_am <- dplyr::tibble(query = amenity)
-  amenity <- unique(amenity)
+  init_key <- dplyr::tibble(query = amenity)
+  key <- unique(amenity)
 
-  all_res <- lapply(amenity, function(x) {
+  all_res <- lapply(key, function(x) {
     geo_amenity_sf_single(
       bbox = bbox,
       amenity = x,
@@ -89,8 +88,8 @@ geo_amenity_sf <- function(bbox,
   all_res <- dplyr::bind_rows(all_res)
 
   # Handle dupes in sf
-  if (!identical(as.character(init_am$query), amenity)) {
-    all_res <- dplyr::left_join(init_am, all_res, by = "query")
+  if (!identical(as.character(init_key$query), key)) {
+    all_res <- dplyr::left_join(init_key, all_res, by = "query")
 
     # Convert back to sf
     all_res <- sf::st_as_sf(all_res, sf_column_name = "geometry", crs = 4326)
@@ -117,116 +116,68 @@ geo_amenity_sf_single <- function(bbox,
                                   verbose = FALSE,
                                   custom_query = list(),
                                   points_only = TRUE) {
+  # Step 1: Download ----
   bbox_txt <- paste0(bbox, collapse = ",")
-
-
   api <- "https://nominatim.openstreetmap.org/search?"
 
   url <- paste0(
-    api, "viewbox=",
-    bbox_txt,
-    "&q=[",
-    amenity,
+    api, "viewbox=", bbox_txt, "&q=[", amenity,
     "]&format=geojson&limit=", limit
   )
 
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
 
-  if (!isTRUE(points_only)) {
-    url <- paste0(url, "&polygon_geojson=1")
-  }
+  if (full_results) url <- paste0(url, "&addressdetails=1")
+  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
+  if (!"bounded" %in% names(custom_query)) url <- paste0(url, "&bounded=1")
 
-  if (length(custom_query) > 0) {
-    opts <- NULL
-    for (i in seq_len(length(custom_query))) {
-      nlist <- names(custom_query)[i]
-      val <- paste0(custom_query[[i]], collapse = ",")
+  # Add options
+  url <- add_custom_query(custom_query, url)
 
-
-      opts <- paste0(opts, "&", nlist, "=", val)
-    }
-
-    url <- paste0(url, opts)
-  }
-
-  if (!"bounded" %in% names(custom_query)) {
-    url <- paste0(url, "&bounded=1")
-  }
-
-  # Download
-
+  # Download to temp file
   json <- tempfile(fileext = ".geojson")
+  res <- api_call(url, json, quiet = isFALSE(verbose))
 
-  res <- api_call(url, json, isFALSE(verbose))
+  # Step 2: Read and parse results ----
+
+  # Keep a tbl with the query
+  tbl_query <- dplyr::tibble(query = amenity)
+
+  # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- data.frame(query = amenity)
-    result_out$geometry <- "POINT EMPTY"
-    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
-      wkt = "geometry",
-      crs = 4326
-    )
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
 
+  # Read
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-
-  # Check if null and return
-
+  # Empty query
   if (length(names(sfobj)) == 1) {
     message("No results for query ", amenity)
-    result_out <- data.frame(query = amenity)
-    result_out$geometry <- "POINT EMPTY"
-    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
-      wkt = "geometry",
-      crs = 4326
-    )
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
 
-  # Prepare output
-  if ("address" %in% names(sfobj)) {
-    add <- as.character(sfobj$address)
-
-    newadd <- lapply(add, function(x) {
-      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
-      dplyr::as_tibble(df)
-    })
-    newadd <- dplyr::bind_rows(newadd)
-
-    newsfobj <- sfobj
-    newsfobj <- sfobj[, setdiff(names(sfobj), "address")]
-    sfobj <- dplyr::bind_cols(newsfobj, newadd)
-  }
-
-  # Rename
-  names(sfobj) <- gsub("address.", "", names(sfobj))
-  names(sfobj) <- gsub("namedetails.", "", names(sfobj))
-  names(sfobj) <- gsub("display_name", "address", names(sfobj))
 
   # Prepare output
-  sfobj$query <- amenity
+
+  # Unnest address
+  sfobj <- unnest_sf(sfobj)
 
 
-  df_sf <- sf::st_drop_geometry(sfobj)
-  df_sf <- dplyr::as_tibble(df_sf)
 
-  # Output cols
-  out_cols <- "query"
+  # Prepare output
+  sf_clean <- sfobj
+  sf_clean$query <- amenity
 
-  if (return_addresses) out_cols <- c(out_cols, "address")
-  if (full_results) out_cols <- c(out_cols, "address", names(df_sf))
+  # Keep names
+  result_out <- keep_names(sf_clean, return_addresses, full_results,
+    colstokeep = "query"
+  )
 
-  out_cols <- unique(out_cols)
-  out <- df_sf[, out_cols]
+  # Attach as tibble
+  result_out <- sf_to_tbl(result_out)
 
-  # Construct final object
-  thegeom <- sf::st_geometry(sfobj)
-  thegeom <- sf::st_make_valid(thegeom)
-  out$geometry <- sf::st_as_text(thegeom)
-  result_out <- sf::st_as_sf(out, wkt = "geometry", crs = 4326)
-  return(result_out)
+  result_out
 }

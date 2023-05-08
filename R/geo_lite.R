@@ -57,17 +57,15 @@ geo_lite <- function(address,
       "Nominatim provides 50 results as a maximum. ",
       "Your query may be incomplete"
     ))
-
     limit <- min(50, limit)
   }
 
 
-
   # Dedupe for query
-  init_ad <- dplyr::tibble(query = address)
-  address <- unique(address)
+  init_key <- dplyr::tibble(query = address)
+  key <- unique(address)
 
-  all_res <- lapply(address, function(x) {
+  all_res <- lapply(key, function(x) {
     geo_lite_single(
       address = x,
       lat,
@@ -81,7 +79,7 @@ geo_lite <- function(address,
   })
 
   all_res <- dplyr::bind_rows(all_res)
-  all_res <- dplyr::left_join(init_ad, all_res, by = "query")
+  all_res <- dplyr::left_join(init_key, all_res, by = "query")
 
   return(all_res)
 }
@@ -97,6 +95,7 @@ geo_lite_single <- function(address,
                             return_addresses = TRUE,
                             verbose = FALSE,
                             custom_query = list()) {
+  # Step 1: Download ----
   api <- "https://nominatim.openstreetmap.org/search?q="
 
   # Replace spaces with +
@@ -105,46 +104,34 @@ geo_lite_single <- function(address,
   # Compose url
   url <- paste0(api, address2, "&format=json&limit=", limit)
 
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
+  if (full_results) url <- paste0(url, "&addressdetails=1")
 
-  if (length(custom_query) > 0) {
-    opts <- NULL
-    for (i in seq_len(length(custom_query))) {
-      nlist <- names(custom_query)[i]
-      val <- paste0(custom_query[[i]], collapse = ",")
+  # Add options
+  url <- add_custom_query(custom_query, url)
 
-
-      opts <- paste0(opts, "&", nlist, "=", val)
-    }
-
-    url <- paste0(url, "&", opts)
-  }
-
-  # Download
-
+  # Download to temp file
   json <- tempfile(fileext = ".json")
+  res <- api_call(url, json, isFALSE(verbose))
 
-  res <- api_call(url, json, quiet = isFALSE(verbose))
+  # Step 2: Read and parse results ----
+
+  # Keep a tbl with the query
+  tbl_query <- dplyr::tibble(query = address)
+
 
   # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- dplyr::tibble(query = address, a = NA, b = NA)
-    names(result_out) <- c("query", lat, long)
-    return(invisible(result_out))
+    message(url, " not reachable.")
+    out <- empty_tbl(tbl_query, lat, long)
+    return(invisible(out))
   }
   # nocov end
 
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
-  if (nrow(result) > 0) {
-    result$lat <- as.double(result$lat)
-    result$lon <- as.double(result$lon)
-  }
-  # Renamings
+  # Rename lat and lon
   nmes <- names(result)
   nmes[nmes == "lat"] <- lat
   nmes[nmes == "lon"] <- long
@@ -154,28 +141,26 @@ geo_lite_single <- function(address,
   # Empty query
   if (nrow(result) == 0) {
     message("No results for query ", address)
-    result_out <- dplyr::tibble(query = address, a = NA, b = NA)
-    names(result_out) <- c("query", lat, long)
-    return(invisible(result_out))
+    out <- empty_tbl(tbl_query, lat, long)
+    return(invisible(out))
   }
 
-  # More renames
-  names(result) <- gsub("address.", "", names(result))
-  names(result) <- gsub("namedetails.", "", names(result))
-  names(result) <- gsub("display_name", "address", names(result))
 
-  result$query <- address
+  # Coords as double
+  result[lat] <- as.double(result[[lat]])
+  result[long] <- as.double(result[[long]])
 
+  # Add query
+  result_clean <- result
+  result_clean$query <- address
 
-  # Output cols
-  out_cols <- c("query", lat, long)
+  # Keep names
+  result_out <- keep_names(result_clean, return_addresses, full_results,
+    colstokeep = c("query", lat, long)
+  )
 
-  if (return_addresses) out_cols <- c(out_cols, "address")
-  if (full_results) out_cols <- c(out_cols, "address", names(result))
+  # As tibble
+  result_out <- dplyr::as_tibble(result_out)
 
-  out_cols <- unique(out_cols)
-
-  result_out <- dplyr::as_tibble(result[, out_cols])
-
-  return(result_out)
+  result_out
 }

@@ -13,6 +13,26 @@ test_that("Returning not reachable", {
 
   expect_true(obj$query == "Rxbzbzbzoa aiaia")
   expect_s3_class(obj, "tbl")
+  expect_identical(names(obj), c("query", "lat", "lon"))
+  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
+  == c("character", rep("numeric", 2))))
+  expect_true(is.na(obj$lat))
+  expect_true(is.na(obj$lon))
+
+
+  expect_message(
+    obj_renamed <- geo_address_lookup("xbzbzbzoa aiaia", "R",
+      lat = "lata",
+      long = "longa"
+    ),
+    "not reachable"
+  )
+
+  expect_identical(names(obj_renamed), c("query", "lata", "longa"))
+
+  names(obj_renamed) <- names(obj)
+
+  expect_identical(obj, obj_renamed)
 })
 
 
@@ -29,6 +49,26 @@ test_that("Returning empty query", {
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "N34633854")
   expect_s3_class(obj, "tbl")
+  expect_identical(names(obj), c("query", "lat", "lon"))
+  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
+  == c("character", rep("numeric", 2))))
+  expect_true(is.na(obj$lat))
+  expect_true(is.na(obj$lon))
+
+
+  expect_message(
+    obj_renamed <- geo_address_lookup(34633854, "N",
+      lat = "lata",
+      long = "longa"
+    ),
+    "No results for query"
+  )
+
+  expect_identical(names(obj_renamed), c("query", "lata", "longa"))
+
+  names(obj_renamed) <- names(obj)
+
+  expect_identical(obj, obj_renamed)
 })
 
 test_that("Data format", {

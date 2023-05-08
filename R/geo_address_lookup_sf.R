@@ -63,111 +63,66 @@ geo_address_lookup_sf <- function(osm_ids,
   # Compose url
   url <- paste0(api, "osm_ids=", nodes, "&format=geojson")
 
-  if (!isTRUE(points_only)) {
-    url <- paste0(url, "&polygon_geojson=1")
-  }
+  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
+  if (full_results) url <- paste0(url, "&addressdetails=1")
 
 
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
+  # Add options
+  url <- add_custom_query(custom_query, url)
 
-  if (length(custom_query) > 0) {
-    opts <- NULL
-    for (i in seq_len(length(custom_query))) {
-      nlist <- names(custom_query)[i]
-      val <- paste0(custom_query[[i]], collapse = ",")
-
-
-      opts <- paste0(opts, "&", nlist, "=", val)
-    }
-
-    url <- paste0(url, "&", opts)
-  }
-
-  # Download
-
+  # Download to temp file
   json <- tempfile(fileext = ".geojson")
-
   res <- api_call(url, json, quiet = isFALSE(verbose))
 
   # Step 2: Read and parse results ----
+
+  # Keep a tbl with the query
+  tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
+
   # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- data.frame(query = paste0(type, osm_ids))
-    result_out$geometry <- "POINT EMPTY"
-    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
-      wkt = "geometry",
-      crs = 4326
-    )
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
 
+  # Read
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
   # Empty query
   if (length(names(sfobj)) == 1) {
     message("No results for query ", nodes)
-    result_out <- data.frame(query = paste0(type, osm_ids))
-    result_out$geometry <- "POINT EMPTY"
-    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
-      wkt = "geometry",
-      crs = 4326
-    )
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
 
   # Prepare output
-  if ("address" %in% names(sfobj)) {
-    add <- as.character(sfobj$address)
 
-    newadd <- lapply(add, function(x) {
-      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
-      dplyr::as_tibble(df)
-    })
-    newadd <- dplyr::bind_rows(newadd)
+  # Unnest address
+  sfobj <- unnest_sf(sfobj)
 
-    newsfobj <- sfobj
-    newsfobj <- sfobj[, setdiff(names(sfobj), "address")]
-    sfobj <- dplyr::bind_cols(newsfobj, newadd)
-  }
 
-  result_out <- dplyr::tibble(
+  # In this function we need to re-create tbl_query
+  tbl_query <- dplyr::tibble(
     query = paste0(type, osm_ids),
     osm_id = osm_ids
   )
 
-  # More renames
-  names(sfobj) <- gsub("address.", "", names(sfobj))
-  names(sfobj) <- gsub("namedetails.", "", names(sfobj))
-  names(sfobj) <- gsub("display_name", "address", names(sfobj))
-
   # Keep only same results
-
-  sf_clean <- dplyr::inner_join(sfobj, result_out, by = "osm_id")
+  sf_clean <- dplyr::inner_join(sfobj, tbl_query, by = "osm_id")
 
   # Warning in lost rows
-  if (all(nrow(sf_clean) < nrow(result_out), verbose)) {
+  if (all(nrow(sf_clean) < nrow(tbl_query), verbose)) {
     warning("Some ids may not have produced results. Check the final object")
   }
 
+  # Keep names
+  result_out <- keep_names(sf_clean, return_addresses, full_results,
+    colstokeep = "query"
+  )
 
-  df_sf <- sf::st_drop_geometry(sf_clean)
-  df_sf <- dplyr::as_tibble(df_sf)
+  # Attach as tibble
+  result_out <- sf_to_tbl(result_out)
 
-  out_cols <- "query"
-
-  if (return_addresses) out_cols <- c(out_cols, "address")
-  if (full_results) out_cols <- c(out_cols, "address", names(df_sf))
-
-  out_cols <- unique(out_cols)
-  out <- df_sf[, out_cols]
-
-  # Construct final object
-  thegeom <- sf::st_geometry(sfobj)
-  thegeom <- sf::st_make_valid(thegeom)
-  out$geometry <- sf::st_as_text(thegeom)
-  result_out <- sf::st_as_sf(out, wkt = "geometry", crs = 4326)
-  return(result_out)
+  result_out
 }

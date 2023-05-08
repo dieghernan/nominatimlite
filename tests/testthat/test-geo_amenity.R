@@ -13,8 +13,29 @@ test_that("Returning not reachable", {
   ))
 
   expect_true(nrow(obj) == 1)
-  expect_s3_class(obj, "tbl")
   expect_true(obj$query == "xbzbzbzoa aiaia")
+  expect_s3_class(obj, "tbl")
+  expect_identical(names(obj), c("query", "lat", "lon"))
+  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
+  == c("character", rep("numeric", 2))))
+  expect_true(is.na(obj$lat))
+  expect_true(is.na(obj$lon))
+
+  expect_message(
+    obj_renamed <- geo_amenity(
+      bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+      amenity = "xbzbzbzoa aiaia",
+      lat = "lata",
+      long = "longa"
+    ),
+    "not reachable"
+  )
+
+  expect_identical(names(obj_renamed), c("query", "lata", "longa"))
+
+  names(obj_renamed) <- names(obj)
+
+  expect_identical(obj, obj_renamed)
 })
 
 test_that("Returning empty query", {
@@ -34,6 +55,27 @@ test_that("Returning empty query", {
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "grit_bin")
   expect_s3_class(obj, "tbl")
+  expect_identical(names(obj), c("query", "lat", "lon"))
+  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
+  == c("character", rep("numeric", 2))))
+  expect_true(is.na(obj$lat))
+  expect_true(is.na(obj$lon))
+
+  expect_message(
+    obj_renamed <- geo_amenity(
+      bbox = c(-88.1446, 41.5022, -87.4854, 41.8795),
+      amenity = "grit_bin",
+      lat = "lata",
+      long = "longa"
+    ),
+    "No results"
+  )
+
+  expect_identical(names(obj_renamed), c("query", "lata", "longa"))
+
+  names(obj_renamed) <- names(obj)
+
+  expect_identical(obj, obj_renamed)
 })
 
 

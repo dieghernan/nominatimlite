@@ -69,16 +69,15 @@ geo_amenity <- function(bbox,
       "Nominatim provides 50 results as a maximum. ",
       "Your query may be incomplete"
     ))
-
     limit <- min(50, limit)
   }
 
 
   # Dedupe for query
-  init_am <- dplyr::tibble(query = amenity)
-  amenity <- unique(amenity)
+  init_key <- dplyr::tibble(query = amenity)
+  key <- unique(amenity)
 
-  all_res <- lapply(amenity, function(x) {
+  all_res <- lapply(key, function(x) {
     geo_amenity_single(
       bbox = bbox,
       amenity = x,
@@ -93,7 +92,7 @@ geo_amenity <- function(bbox,
   })
 
   all_res <- dplyr::bind_rows(all_res)
-  all_res <- dplyr::left_join(init_am, all_res, by = "query")
+  all_res <- dplyr::left_join(init_key, all_res, by = "query")
 
   if (strict) {
     strict <- all_res[lat] >= bbox[2] &
@@ -124,93 +123,69 @@ geo_amenity_single <- function(bbox,
                                return_addresses = TRUE,
                                verbose = FALSE,
                                custom_query = list()) {
+  # Step 1: Download ----
   bbox_txt <- paste0(bbox, collapse = ",")
-
 
   api <- "https://nominatim.openstreetmap.org/search?"
 
   url <- paste0(
-    api, "viewbox=",
-    bbox_txt,
-    "&q=[",
-    amenity,
+    api, "viewbox=", bbox_txt, "&q=[", amenity,
     "]&format=json&limit=", limit
   )
 
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
+  if (full_results) url <- paste0(url, "&addressdetails=1")
+  if (!"bounded" %in% names(custom_query)) url <- paste0(url, "&bounded=1")
 
+  # Add options
+  url <- add_custom_query(custom_query, url)
 
-  if (length(custom_query) > 0) {
-    opts <- NULL
-    for (i in seq_len(length(custom_query))) {
-      nlist <- names(custom_query)[i]
-      val <- paste0(custom_query[[i]], collapse = ",")
-
-
-      opts <- paste0(opts, "&", nlist, "=", val)
-    }
-
-    url <- paste0(url, opts)
-  }
-
-  if (!"bounded" %in% names(custom_query)) {
-    url <- paste0(url, "&bounded=1")
-  }
-
-  # Download
-
+  # Download to temp file
   json <- tempfile(fileext = ".json")
-
-
-
   res <- api_call(url, json, isFALSE(verbose))
 
+  # Step 2: Read and parse results ----
+
+  # Keep a tbl with the query
+  tbl_query <- dplyr::tibble(query = amenity)
+
+  # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- dplyr::tibble(query = amenity, a = NA, b = NA)
-    names(result_out) <- c("query", lat, long)
-    return(invisible(result_out))
+    out <- empty_tbl(tbl_query, lat, long)
+    return(invisible(out))
   }
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
-  if (nrow(result) > 0) {
-    result$lat <- as.double(result$lat)
-    result$lon <- as.double(result$lon)
-  }
+  # Rename lat and lon
   nmes <- names(result)
   nmes[nmes == "lat"] <- lat
   nmes[nmes == "lon"] <- long
 
   names(result) <- nmes
 
+  # Empty query
   if (nrow(result) == 0) {
     message("No results for query ", amenity)
-    result_out <- dplyr::tibble(query = amenity, a = NA, b = NA)
-    names(result_out) <- c("query", lat, long)
-    return(invisible(result_out))
+    out <- empty_tbl(tbl_query, lat, long)
+    return(invisible(out))
   }
 
-  # Rename
-  names(result) <- gsub("address.", "", names(result))
-  names(result) <- gsub("namedetails.", "", names(result))
-  names(result) <- gsub("display_name", "address", names(result))
+  # Coords as double
+  result[lat] <- as.double(result[[lat]])
+  result[long] <- as.double(result[[long]])
 
+  # Add query
+  result_clean <- result
+  result_clean$query <- amenity
 
-  # Prepare output
-  result_out <- result
-  result_out$query <- amenity
+  # Keep names
+  result_out <- keep_names(result_clean, return_addresses, full_results,
+    colstokeep = c("query", lat, long)
+  )
 
-  # Output cols
-  out_cols <- c("query", lat, long)
+  # As tibble
+  result_out <- dplyr::as_tibble(result_out)
 
-  if (return_addresses) out_cols <- c(out_cols, "address")
-  if (full_results) out_cols <- c(out_cols, "address", names(result))
-
-  out_cols <- unique(out_cols)
-
-  result_out <- dplyr::as_tibble(result_out[, out_cols])
-  return(result_out)
+  result_out
 }
