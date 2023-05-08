@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_amenity_sf.R
 \name{geo_amenity_sf}
 \alias{geo_amenity_sf}
-\title{Get spatial objects of amenities}
+\title{Geocode amenities in Spatial format}
 \usage{
 geo_amenity_sf(
   bbox,
@@ -54,9 +54,10 @@ A \code{sf} object with the results.
 }
 \description{
 This function search amenities as defined by OpenStreetMap on a restricted
-area defined by
-a bounding box in the form of (<min_latitude>, <min_longitude>,
-<max_latitude>, <max_longitude>).
+area defined by a bounding box in the form of
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
+function returns the spatial object associated with the query, see
+\code{\link[=geo_amenity]{geo_amenity()}} for retrieving the data in \code{tibble} format.
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -72,28 +73,18 @@ For a full list of valid amenities see
 
 library(ggplot2)
 
-bbox <- c(
-  -3.888954, 40.311977,
-  -3.517916, 40.643729
-)
+bbox <- c(-3.888954, 40.311977, -3.517916, 40.643729)
 
 # Restaurants and pubs
 
-rest_pub <- geo_amenity_sf(bbox,
-  c("restaurant", "pub"),
-  limit = 50
-)
-
+rest_pub <- geo_amenity_sf(bbox, c("restaurant", "pub"), limit = 50)
 
 ggplot(rest_pub) +
   geom_sf()
 
 # Hospital as polygon
 
-hosp <- geo_amenity_sf(bbox,
-  "hospital",
-  points_only = FALSE
-)
+hosp <- geo_amenity_sf(bbox, "hospital", points_only = FALSE)
 
 ggplot(hosp) +
   geom_sf()

@@ -4,7 +4,7 @@
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
 #' data associated with the query, see [geo_address_lookup_sf()] for
-#' retrieving the data as a spatial object.
+#' retrieving the data as a spatial object (`sf` format).
 #'
 #' @param osm_ids vector of OSM identifiers (`c(00000, 11111, 22222)`).
 #' @param type vector of the type of the OSM type associated to each `osm_ids`.

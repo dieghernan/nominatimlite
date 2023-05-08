@@ -1,10 +1,11 @@
-#' Get spatial objects of amenities
+#' Geocode amenities in Spatial format
 #'
 #' @description
 #' This function search amenities as defined by OpenStreetMap on a restricted
-#' area defined by
-#' a bounding box in the form of (<min_latitude>, <min_longitude>,
-#' <max_latitude>, <max_longitude>).
+#' area defined by a bounding box in the form of
+#' `(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)`. This
+#' function returns the spatial object associated with the query, see
+#' [geo_amenity()] for retrieving the data in `tibble` format.
 #'
 #' @inheritParams geo_amenity
 #' @inheritParams geo_lite_sf
@@ -28,28 +29,18 @@
 #'
 #' library(ggplot2)
 #'
-#' bbox <- c(
-#'   -3.888954, 40.311977,
-#'   -3.517916, 40.643729
-#' )
+#' bbox <- c(-3.888954, 40.311977, -3.517916, 40.643729)
 #'
 #' # Restaurants and pubs
 #'
-#' rest_pub <- geo_amenity_sf(bbox,
-#'   c("restaurant", "pub"),
-#'   limit = 50
-#' )
-#'
+#' rest_pub <- geo_amenity_sf(bbox, c("restaurant", "pub"), limit = 50)
 #'
 #' ggplot(rest_pub) +
 #'   geom_sf()
 #'
 #' # Hospital as polygon
 #'
-#' hosp <- geo_amenity_sf(bbox,
-#'   "hospital",
-#'   points_only = FALSE
-#' )
+#' hosp <- geo_amenity_sf(bbox, "hospital", points_only = FALSE)
 #'
 #' ggplot(hosp) +
 #'   geom_sf()
@@ -64,8 +55,6 @@ geo_amenity_sf <- function(bbox,
                            custom_query = list(),
                            points_only = TRUE,
                            strict = FALSE) {
-  # nocov start
-
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
@@ -75,47 +64,33 @@ geo_amenity_sf <- function(bbox,
     limit <- min(50, limit)
   }
 
-  # nocov end
 
-  # Loop
-  all_res <- NULL
+  # Dedupe for query
+  init_am <- dplyr::tibble(query = amenity)
+  amenity <- unique(amenity)
 
-  for (i in seq_len(length(amenity))) {
-    # Check if we have already launched the query
-    if (amenity[i] %in% all_res$query) {
-      if (verbose) {
-        message(
-          amenity[i],
-          " already cached.\n",
-          "Skipping download."
-        )
-      }
+  all_res <- lapply(amenity, function(x) {
+    geo_amenity_sf_single(
+      bbox = bbox,
+      amenity = x,
+      limit,
+      full_results,
+      return_addresses,
+      verbose,
+      custom_query,
+      points_only
+    )
+  })
 
-      res_single <- dplyr::filter(
-        all_res,
-        .data$query == amenity[i],
-        .data$nmlite_first == 1
-      )
-      res_single$nmlite_first <- 0
-    } else {
-      res_single <- geo_amenity_sf_single(
-        bbox = bbox,
-        amenity = amenity[i],
-        limit,
-        full_results,
-        return_addresses,
-        verbose,
-        custom_query,
-        points_only
-      )
-      # Add index
-      res_single <- dplyr::bind_cols(res_single, nmlite_first = 1)
-    }
+  all_res <- dplyr::bind_rows(all_res)
 
-    all_res <- dplyr::bind_rows(all_res, res_single)
+  # Handle dupes in sf
+  if (!identical(as.character(init_am$query), amenity)) {
+    all_res <- dplyr::left_join(init_am, all_res, by = "query")
+
+    # Convert back to sf
+    all_res <- sf::st_as_sf(all_res, sf_column_name = "geometry", crs = 4326)
   }
-
-  all_res <- dplyr::select(all_res, -.data$nmlite_first)
 
   if (strict) {
     bbox_sf <- bbox_to_poly(bbox)
@@ -181,20 +156,18 @@ geo_amenity_sf_single <- function(bbox,
   json <- tempfile(fileext = ".geojson")
 
   res <- api_call(url, json, isFALSE(verbose))
-
-  # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
     result_out <- data.frame(query = amenity)
+    result_out$geometry <- "POINT EMPTY"
+    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
+      wkt = "geometry",
+      crs = 4326
+    )
     return(invisible(result_out))
   }
 
-  # nocov end
-
-  sfobj <- sf::st_read(json,
-    stringsAsFactors = FALSE,
-    quiet = isFALSE(verbose)
-  )
+  sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
 
   # Check if null and return
@@ -202,33 +175,54 @@ geo_amenity_sf_single <- function(bbox,
   if (length(names(sfobj)) == 1) {
     message("No results for query ", amenity)
     result_out <- data.frame(query = amenity)
+    result_out$geometry <- "POINT EMPTY"
+    result_out <- sf::st_as_sf(dplyr::as_tibble(result_out),
+      wkt = "geometry",
+      crs = 4326
+    )
     return(invisible(result_out))
   }
 
+  # Prepare output
+  if ("address" %in% names(sfobj)) {
+    add <- as.character(sfobj$address)
+
+    newadd <- lapply(add, function(x) {
+      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
+      dplyr::as_tibble(df)
+    })
+    newadd <- dplyr::bind_rows(newadd)
+
+    newsfobj <- sfobj
+    newsfobj <- sfobj[, setdiff(names(sfobj), "address")]
+    sfobj <- dplyr::bind_cols(newsfobj, newadd)
+  }
+
+  # Rename
+  names(sfobj) <- gsub("address.", "", names(sfobj))
+  names(sfobj) <- gsub("namedetails.", "", names(sfobj))
+  names(sfobj) <- gsub("display_name", "address", names(sfobj))
 
   # Prepare output
-  result_out <- data.frame(query = amenity)
+  sfobj$query <- amenity
 
-  df_sf <- dplyr::as_tibble(sf::st_drop_geometry(sfobj))
 
-  # Rename original address
+  df_sf <- sf::st_drop_geometry(sfobj)
+  df_sf <- dplyr::as_tibble(df_sf)
 
-  names(df_sf) <-
-    gsub("address", "osm.address", names(df_sf))
+  # Output cols
+  out_cols <- "query"
 
-  names(df_sf) <- gsub("display_name", "address", names(df_sf))
+  if (return_addresses) out_cols <- c(out_cols, "address")
+  if (full_results) out_cols <- c(out_cols, "address", names(df_sf))
 
-  if (return_addresses || full_results) {
-    disp_name <- df_sf["address"]
-    result_out <- cbind(result_out, disp_name)
-  }
+  out_cols <- unique(out_cols)
+  out <- df_sf[, out_cols]
 
-  # If full
-  if (full_results) {
-    rest_cols <- df_sf[, !names(df_sf) %in% "address"]
-    result_out <- cbind(result_out, rest_cols)
-  }
-
-  result_out <- sf::st_sf(result_out, geometry = sf::st_geometry(sfobj))
+  # Construct final object
+  thegeom <- sf::st_geometry(sfobj)
+  thegeom <- sf::st_make_valid(thegeom)
+  out$geometry <- sf::st_as_text(thegeom)
+  result_out <- sf::st_as_sf(out, wkt = "geometry", crs = 4326)
   return(result_out)
 }

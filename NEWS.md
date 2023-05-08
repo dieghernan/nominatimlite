@@ -1,8 +1,18 @@
 # nominatimlite (development version)
 
+-   **rlang** and **tibble** are not explicitly required. Conversions to tibble
+    happens with `dplyr::tibble()`.
+-   The data attributes of `sf` objects are returned now as `tibble`, for easy
+    printing in console.
+-   Improvements in code and tests.
+-   Now `sf` objects can handle correctly nested fields provided in the json
+    response (for example, the nested address field provided by the API). This
+    is consistent also with the results provided by the non-spatial functions,
+    were unnesting was already handled correctly.
+
 # nominatimlite 0.1.6
 
--  Improve results when there is no response of the API.
+-   Improve results when there is no response of the API.
 
 # nominatimlite 0.1.5
 

@@ -3,7 +3,9 @@
 #' @description
 #' This function search amenities as defined by OpenStreetMap on a restricted
 #' area defined by a bounding box in the form of
-#' `(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)`.
+#' `(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)`. This
+#' function returns the data associated with the query, see [geo_amenity_sf()]
+#' for retrieving the data as a spatial object (`sf` format).
 #'
 #'
 #' @param bbox A numeric vector of latitude and longitude
@@ -36,27 +38,16 @@
 #' @examplesIf nominatim_check_access()
 #' \donttest{
 #' # Times Square, NY, USA
-#' bbox <- c(
-#'   -73.9894467311, 40.75573629,
-#'   -73.9830630737, 40.75789245
-#' )
+#' bbox <- c(-73.9894467311, 40.75573629, -73.9830630737, 40.75789245)
 #'
-#' geo_amenity(
-#'   bbox = bbox,
-#'   amenity = "restaurant"
-#' )
+#' geo_amenity(bbox = bbox, amenity = "restaurant")
 #'
 #' # Several amenities
-#' geo_amenity(
-#'   bbox = bbox,
-#'   amenity = c("restaurant", "pub")
-#' )
+#' geo_amenity(bbox = bbox, amenity = c("restaurant", "pub"))
 #'
 #' # Increase limit and use with strict
 #' geo_amenity(
-#'   bbox = bbox,
-#'   amenity = c("restaurant", "pub"),
-#'   limit = 10,
+#'   bbox = bbox, amenity = c("restaurant", "pub"), limit = 10,
 #'   strict = TRUE
 #' )
 #' }

@@ -6,7 +6,13 @@
 \alias{osm_amenities}
 \title{OpenStreetMap amenity database}
 \format{
-A \code{tibble} with the amenities and the corresponding category
+A \code{tibble} with with
+100 rows and
+fields:
+\describe{
+\item{category}{The category of the amenity}
+\item{amenity}{The name of the amenity}
+}
 }
 \source{
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}
@@ -129,7 +135,7 @@ amenities <- nominatimlite::osm_amenities
 amenities
 }
 \seealso{
-Search amenities: 
+Search amenities:
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_amenity}()}

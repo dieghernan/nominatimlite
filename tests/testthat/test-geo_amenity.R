@@ -119,6 +119,12 @@ test_that("Checking query", {
     limit = 1,
     strict = TRUE
   )), 2)
+})
+
+test_that("Dedupe", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
 
   # Dupes
   dup <- geo_amenity(

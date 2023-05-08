@@ -27,12 +27,16 @@ geocodes
 geocoding
 geolocated
 ie
+json
 lon
 nominatimlite’
 osm
 pizzahut
+rlang
 stripclub
 swingerclub
 theatre
+tibble
 townhall
+unnesting
 vectorized

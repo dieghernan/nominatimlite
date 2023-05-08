@@ -56,7 +56,9 @@ A \code{tibble} with the results.
 \description{
 This function search amenities as defined by OpenStreetMap on a restricted
 area defined by a bounding box in the form of
-\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}.
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
+function returns the data associated with the query, see \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
+for retrieving the data as a spatial object (\code{sf} format).
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -69,27 +71,16 @@ For a full list of valid amenities see
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 # Times Square, NY, USA
-bbox <- c(
-  -73.9894467311, 40.75573629,
-  -73.9830630737, 40.75789245
-)
+bbox <- c(-73.9894467311, 40.75573629, -73.9830630737, 40.75789245)
 
-geo_amenity(
-  bbox = bbox,
-  amenity = "restaurant"
-)
+geo_amenity(bbox = bbox, amenity = "restaurant")
 
 # Several amenities
-geo_amenity(
-  bbox = bbox,
-  amenity = c("restaurant", "pub")
-)
+geo_amenity(bbox = bbox, amenity = c("restaurant", "pub"))
 
 # Increase limit and use with strict
 geo_amenity(
-  bbox = bbox,
-  amenity = c("restaurant", "pub"),
-  limit = 10,
+  bbox = bbox, amenity = c("restaurant", "pub"), limit = 10,
   strict = TRUE
 )
 }

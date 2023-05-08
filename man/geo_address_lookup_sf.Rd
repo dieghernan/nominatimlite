@@ -45,7 +45,7 @@ A \code{sf} object with the results.
 The lookup API allows to query the address and other details of one or
 multiple OSM objects like node, way or relation. This function returns the
 spatial object associated with the query, see \code{\link[=geo_address_lookup]{geo_address_lookup()}} for
-retrieving the data in tabular format.
+retrieving the data in \code{tibble} format.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional

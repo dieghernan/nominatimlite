@@ -4,7 +4,7 @@
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
 #' spatial object associated with the query, see [geo_address_lookup()] for
-#' retrieving the data in tabular format.
+#' retrieving the data in `tibble` format.
 #'
 #' @return A `sf` object with the results.
 #'
@@ -100,10 +100,7 @@ geo_address_lookup_sf <- function(osm_ids,
     return(invisible(result_out))
   }
 
-  sfobj <- sf::st_read(json,
-    stringsAsFactors = FALSE,
-    quiet = isFALSE(verbose)
-  )
+  sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
   # Empty query
   if (length(names(sfobj)) == 1) {
