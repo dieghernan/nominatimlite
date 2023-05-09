@@ -2,7 +2,7 @@
 #'
 #' @description
 #' This function allows you to geocode addresses and return the corresponding
-#' spatial object. This function returns the (\pkg{sf}) spatial object
+#' spatial object. This function returns the \pkg{sf} spatial object
 #' associated with the query, see [geo_lite_sf()] for retrieving the data in
 #' `tibble` format.
 #'

@@ -54,7 +54,7 @@ A \code{sf} object with the results.
 This function search amenities as defined by OpenStreetMap on a restricted
 area defined by a bounding box in the form of
 \verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
-function returns the (\pkg{sf}) spatial object associated with the query, see
+function returns the \pkg{sf} spatial object associated with the query, see
 \code{\link[=geo_amenity]{geo_amenity()}} for retrieving the data in \code{tibble} format.
 }
 \details{

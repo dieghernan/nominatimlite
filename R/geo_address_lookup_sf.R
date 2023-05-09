@@ -3,7 +3,7 @@
 #' @description
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
-#' (\pkg{sf}) spatial object associated with the query, see
+#' \pkg{sf} spatial object associated with the query, see
 #' [geo_address_lookup()] for retrieving the data in `tibble` format.
 #'
 #' @return A `sf` object with the results.

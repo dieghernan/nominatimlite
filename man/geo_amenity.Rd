@@ -57,7 +57,7 @@ area defined by a bounding box in the form of
 \verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
 function returns the \code{tibble} associated with the query, see
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
-(((\pkg{sf}) format).
+(\pkg{sf} format).
 }
 \details{
 Bounding boxes can be located using different online tools, as

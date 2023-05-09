@@ -6,7 +6,7 @@
 #' `(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)`. This
 #' function returns the `tibble` associated with the query, see
 #' [geo_amenity_sf()] for retrieving the data as a spatial object
-#' (((\pkg{sf}) format).
+#' (\pkg{sf} format).
 #'
 #'
 #' @param bbox A numeric vector of latitude and longitude

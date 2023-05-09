@@ -5,7 +5,7 @@
 #' between `[-90, 90]` and longitudes between `[-180, 180]`. This
 #' function returns the `tibble` associated with the query, see
 #' [reverse_geo_lite_sf()] for retrieving the data as a spatial object
-#' ((\pkg{sf}) format).
+#' (\pkg{sf}) format).
 #'
 #' @param lat  latitude values in numeric format. Must be in the range
 #'   `[-90, 90]`.
@@ -136,7 +136,7 @@ reverse_geo_lite <- function(lat,
   )
 
   # Final clean
-  all_res <- all_res[, -c(1:2)]
+  all_res <- all_res[, -c(1, 2)]
   return(all_res)
 }
 

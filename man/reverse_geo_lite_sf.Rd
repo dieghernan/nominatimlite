@@ -45,7 +45,7 @@ A \code{sf} object with the results.
 \description{
 Generates an address from a latitude and longitude. Latitudes must be
 between \verb{[-90, 90]} and longitudes between \verb{[-180, 180]}. This function
-returns the (\pkg{sf}) spatial object associated with the query, see
+returns the \pkg{sf} spatial object associated with the query, see
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in \code{tibble} format.
 }
 \details{
