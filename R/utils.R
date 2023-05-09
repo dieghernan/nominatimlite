@@ -115,18 +115,23 @@ empty_sf <- function(x) {
   x <- dplyr::as_tibble(x)
   x$geometry <- "POINT EMPTY"
 
-  out <- sf::st_as_sf(x, wkt = "geometry", crs = 4326)
+  out <- sf::st_as_sf(x, wkt = "geometry", crs = sf::st_crs(4326))
 
   out
 }
 
 sf_to_tbl <- function(x) {
-  out <- sf::st_drop_geometry(x)
-  out <- dplyr::as_tibble(out)
-  thegeom <- sf::st_geometry(x)
-  out$geometry <- sf::st_as_text(thegeom)
-  result_out <- sf::st_as_sf(out, wkt = "geometry", crs = 4326)
-  result_out <- sf::st_make_valid(result_out)
+  if (all(!inherits(x, "tbl"), inherits(x, "sf"))) {
+    # If not, just add the same class
+    template <- class(empty_sf(dplyr::tibble(a = 1)))
+    class(x) <- template
+  }
+
+  # Reorder columns - geom in geometry, it is sticky so even if
+  # not select would be kept in the last position
+  x <- x[, setdiff(names(x), "geometry")]
+
+  result_out <- sf::st_make_valid(x)
 
   result_out
 }
@@ -149,6 +154,47 @@ unnest_sf <- function(x) {
   newsfobj <- x
   newsfobj <- x[, setdiff(names(x), "address")]
   x <- dplyr::bind_cols(newsfobj, newadd)
+
+  x <- sf_to_tbl(x)
+  x
+}
+
+
+unnest_sf_reverse <- function(x) {
+  # Unnest
+  if ("address" %in% names(x)) {
+    # Need to unnest
+    add <- as.character(x$address)
+    newadd <- lapply(add, function(x) {
+      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
+      dplyr::as_tibble(df)
+    })
+
+    newadd <- dplyr::bind_rows(newadd)[1, ]
+
+    newsfobj <- x
+    newsfobj <- x[, setdiff(names(x), "address")]
+    x <- dplyr::bind_cols(newsfobj, newadd)
+  }
+
+  if ("extratags" %in% names(x)) {
+    # Need to unnest
+    xtra <- as.character(x$extratags)
+
+    newxtra <- lapply(xtra, function(x) {
+      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
+      dplyr::as_tibble(df)
+    })
+
+    newxtra <- dplyr::bind_rows(newxtra)[1, ]
+
+    newsfobj <- x
+    newsfobj <- x[, setdiff(names(x), "extratags")]
+    x <- dplyr::bind_cols(newsfobj, newxtra)
+  }
+
+
+  x <- sf_to_tbl(x)
 
   x
 }

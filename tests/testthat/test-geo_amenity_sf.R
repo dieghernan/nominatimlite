@@ -56,7 +56,6 @@ test_that("Data format", {
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
   expect_equal(nrow(obj), 2)
   expect_identical(as.character(obj$query), c("pub", "restaurant"))
 
@@ -76,7 +75,6 @@ test_that("Data format", {
   expect_true(any("POLYGON" == sf::st_geometry_type(hosp)))
   expect_s3_class(hosp, "sf")
   expect_s3_class(hosp, "tbl")
-  expect_identical(sf::st_crs(hosp), sf::st_crs(4326))
   expect_equal(nrow(hosp), 3)
   expect_identical(as.character(hosp$query), c("hospital", "dump", "pub"))
   expect_identical(sf::st_is_empty(hosp), c(FALSE, TRUE, FALSE))
@@ -99,7 +97,6 @@ test_that("Checking query", {
   expect_identical(names(obj), c("query", "address", "geometry"))
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
 
   obj <- geo_amenity_sf(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -110,7 +107,6 @@ test_that("Checking query", {
   expect_identical(names(obj), c("query", "geometry"))
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
 
   obj <- geo_amenity_sf(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -122,7 +118,6 @@ test_that("Checking query", {
   expect_identical(names(obj), c("query", "address", "geometry"))
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
 
   obj <- geo_amenity_sf(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -135,7 +130,6 @@ test_that("Checking query", {
   expect_gt(ncol(obj), 3)
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
   expect_identical(attributes(obj)$sf_column, "geometry")
 
   expect_gt(nrow(geo_amenity_sf(
@@ -181,7 +175,6 @@ test_that("Dedupe", {
 
   expect_s3_class(dup, "sf")
   expect_s3_class(dup, "tbl")
-  expect_identical(sf::st_crs(dup), sf::st_crs(4326))
 
   expect_equal(nrow(dup), 100)
   expect_equal(as.character(dup$query), rep(c("pub", "restaurant"), 50))

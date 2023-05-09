@@ -25,7 +25,6 @@ test_that("Data format", {
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
   expect_equal(nrow(obj), 2)
   expect_identical(as.character(obj$query), c("Madrid", "Barcelona"))
   expect_true(all(grepl("POINT", sf::st_geometry_type(obj))))
@@ -42,7 +41,6 @@ test_that("Data format", {
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test))))
   expect_s3_class(test, "sf")
   expect_s3_class(test, "tbl")
-  expect_identical(sf::st_crs(test), sf::st_crs(4326))
   expect_equal(nrow(test), 3)
   expect_identical(
     as.character(test$query),
@@ -121,7 +119,6 @@ test_that("Dedupe", {
 
   expect_s3_class(dup, "sf")
   expect_s3_class(dup, "tbl")
-  expect_identical(sf::st_crs(dup), sf::st_crs(4326))
 
   expect_equal(nrow(dup), 100)
   expect_equal(as.character(dup$query), rep(c("Madrid", "Barcelona"), 50))

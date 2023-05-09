@@ -117,17 +117,18 @@ geo_lite_sf <- function(address,
 
   all_res <- dplyr::bind_rows(all_res)
 
-  # Reorder columns - geom in geometry, it is sticky so even if
-  # not select would be kept in the last position
-
-  all_res <- all_res[, setdiff(names(all_res), "geometry")]
+  all_res <- sf_to_tbl(all_res)
 
   # Handle dupes in sf
   if (!identical(as.character(init_key$query), key)) {
-    all_res <- dplyr::left_join(init_key, all_res, by = "query")
+    # Join with indexes
+    template <- sf::st_drop_geometry(all_res)[, "query"]
+    template$rindex <- seq_len(nrow(template))
+    getrows <- dplyr::left_join(init_key, template, by = "query")
 
-    # Convert back to sf
-    all_res <- sf::st_as_sf(all_res, sf_column_name = "geometry", crs = 4326)
+    # Select rows
+    all_res <- all_res[as.integer(getrows$rindex), ]
+    all_res <- sf_to_tbl(all_res)
   }
 
   return(all_res)

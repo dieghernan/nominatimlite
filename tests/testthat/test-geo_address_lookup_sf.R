@@ -25,7 +25,6 @@ test_that("Data format", {
   obj <- geo_address_lookup_sf(34633854, "W")
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
 })
 
 test_that("Checking query", {

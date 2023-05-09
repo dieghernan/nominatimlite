@@ -160,11 +160,11 @@ Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                                                                                                     |
-|:-------------------------------------------|---------:|-----------:|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                    |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, CAL Fire Northern Region, California, 94111, United States |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  -87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                            |
+| query                                      | latitude |  longitude | address                                                                                                           |
+|:-------------------------------------------|---------:|-----------:|:------------------------------------------------------------------------------------------------------------------|
+| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States          |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States |
+| 233 S Wacker Dr, Chicago, IL 60606         | 41.87887 |  -87.63591 | Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States  |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `reverse_geo_lite()` function. The
@@ -180,11 +180,11 @@ reverse <- reverse_geo_lite(
 )
 ```
 
-| address_found                                                                                                                               |      lat |        lon |
-|:--------------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                    | 38.89770 |  -77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, CAL Fire Northern Region, California, 94111, United States | 37.79520 | -122.40279 |
-| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                            | 41.87887 |  -87.63591 |
+| address_found                                                                                                     |      lat |        lon |
+|:------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
+| White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States          | 38.89770 |  -77.03655 |
+| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States | 37.79520 | -122.40279 |
+| Willis Tower, West Adams Street, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States        | 41.87874 |  -87.63602 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
