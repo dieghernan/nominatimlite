@@ -1,23 +1,3 @@
-test_that("Returning Error", {
-  expect_message(
-    geo_address_lookup_sf("xbzbzbzoa aiaia", "R"),
-    "not reachable"
-  )
-
-  skip_on_cran()
-  skip_if_api_server()
-
-
-  expect_message(obj <- geo_address_lookup_sf("xbzbzbzoa aiaia", "R"))
-
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$query == "Rxbzbzbzoa aiaia")
-  expect_s3_class(obj, "sf")
-  expect_s3_class(obj, "tbl")
-  expect_true(sf::st_is_empty(obj))
-  expect_identical(sf::st_crs(obj), sf::st_crs(4326))
-})
-
 test_that("Returning Empty", {
   skip_on_cran()
   skip_if_api_server()

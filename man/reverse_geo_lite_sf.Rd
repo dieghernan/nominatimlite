@@ -2,7 +2,7 @@
 % Please edit documentation in R/reverse_geo_lite_sf.R
 \name{reverse_geo_lite_sf}
 \alias{reverse_geo_lite_sf}
-\title{Get spatial objects through reverse geocoding}
+\title{Reverse Geocoding API for OSM objects in Spatial format}
 \usage{
 reverse_geo_lite_sf(
   lat,
@@ -16,26 +16,24 @@ reverse_geo_lite_sf(
 )
 }
 \arguments{
-\item{lat}{latitude values (input data)}
+\item{lat}{latitude values in numeric format. Must be in the range
+\verb{[-90, 90]}.}
 
-\item{long}{longitude values (input data)}
+\item{long}{longitude values in numeric format. Must be in the range
+\verb{[-180, 180]}.}
 
-\item{address}{character with single line address
-(\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
-(\code{c("Madrid", "Barcelona")}).}
+\item{address}{address column name in the output data (default  \code{"address"}).}
 
 \item{full_results}{returns all available data from the API service.
-If \code{FALSE} (default) only address columns are returned. See also
-\code{return_addresses}.}
+If \code{FALSE} (default) only latitude, longitude and address columns are
+returned. See also \code{return_addresses}.}
 
-\item{return_coords}{return input coordinates with results if TRUE. Note that
-most services return the input coordinates with \code{full_results = TRUE} and setting
-\code{return_coords} to FALSE does not prevent this.}
+\item{return_coords}{return input coordinates with results if \code{TRUE}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{API-specific parameters to be used, passed as a named
+list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
@@ -45,9 +43,10 @@ provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.
 A \code{sf} object with the results.
 }
 \description{
-This function allows you extract the spatial object located on a known pair
-of coordinates (lat, long). Latitudes must be between -90 and 90 and
-longitudes must be between -180 and 180.
+Generates an address from a latitude and longitude. Latitudes must be
+between \verb{[-90, 90]} and longitudes between \verb{[-180, 180]}. This function
+returns the (\pkg{sf}) spatial object associated with the query, see
+\code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in \code{tibble} format.
 }
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Reverse/} for additional

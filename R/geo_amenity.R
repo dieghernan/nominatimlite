@@ -4,8 +4,9 @@
 #' This function search amenities as defined by OpenStreetMap on a restricted
 #' area defined by a bounding box in the form of
 #' `(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)`. This
-#' function returns the data associated with the query, see [geo_amenity_sf()]
-#' for retrieving the data as a spatial object (`sf` format).
+#' function returns the `tibble` associated with the query, see
+#' [geo_amenity_sf()] for retrieving the data as a spatial object
+#' (((\pkg{sf}) format).
 #'
 #'
 #' @param bbox A numeric vector of latitude and longitude
@@ -74,6 +75,7 @@ geo_amenity <- function(bbox,
 
 
   # Dedupe for query
+  amenity <- as.character(amenity)
   init_key <- dplyr::tibble(query = amenity)
   key <- unique(amenity)
 

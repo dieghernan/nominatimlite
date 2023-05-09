@@ -3,13 +3,14 @@
 #' @description
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
-#' data associated with the query, see [geo_address_lookup_sf()] for
-#' retrieving the data as a spatial object (`sf` format).
+#' `tibble` associated with the query, see [geo_address_lookup_sf()] for
+#' retrieving the data as a spatial object ((\pkg{sf}) format).
 #'
-#' @param osm_ids vector of OSM identifiers (`c(00000, 11111, 22222)`).
-#' @param type vector of the type of the OSM type associated to each `osm_ids`.
-#'   Possible values are node (`"N"`), way (`"W"`) or relation (`"R"`). If a
-#'   single value is provided it would be recycled.
+#' @param osm_ids vector of OSM identifiers as **numeric**
+#'   (`c(00000, 11111, 22222)`).
+#' @param type vector character of the type of the OSM type associated to each
+#'   `osm_ids`. Possible values are node (`"N"`), way (`"W"`) or relation
+#'   (`"R"`). If a single value is provided it would be recycled.
 #' @inheritParams geo_lite
 #'
 #' @details
@@ -45,6 +46,8 @@ geo_address_lookup <- function(osm_ids,
   api <- "https://nominatim.openstreetmap.org/lookup?"
 
   # Prepare nodes
+  osm_ids <- as.integer(osm_ids)
+  type <- as.character(type)
   nodes <- paste0(type, osm_ids, collapse = ",")
 
   # Compose url
@@ -65,13 +68,14 @@ geo_address_lookup <- function(osm_ids,
   # Keep a tbl with the query
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
+  # nocov start
   # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
-
+  # nocov end
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
 

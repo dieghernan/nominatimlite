@@ -9,6 +9,8 @@
     response (for example, the nested address field provided by the API). This
     is consistent also with the results provided by the non-spatial functions,
     were unnesting was already handled correctly.
+-   Improvements on the output of `reverse_geo_lite()` and
+    `reverse_geo_lite_sf()` when the API returns nested lists.
 
 # nominatimlite 0.1.6
 

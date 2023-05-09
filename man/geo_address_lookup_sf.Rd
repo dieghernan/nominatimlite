@@ -15,11 +15,12 @@ geo_address_lookup_sf(
 )
 }
 \arguments{
-\item{osm_ids}{vector of OSM identifiers (\code{c(00000, 11111, 22222)}).}
+\item{osm_ids}{vector of OSM identifiers as \strong{numeric}
+(\code{c(00000, 11111, 22222)}).}
 
-\item{type}{vector of the type of the OSM type associated to each \code{osm_ids}.
-Possible values are node (\code{"N"}), way (\code{"W"}) or relation (\code{"R"}). If a
-single value is provided it would be recycled.}
+\item{type}{vector character of the type of the OSM type associated to each
+\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}) or relation
+(\code{"R"}). If a single value is provided it would be recycled.}
 
 \item{full_results}{returns all available data from the API service.
 If \code{FALSE} (default) only address columns are returned. See also
@@ -42,8 +43,8 @@ A \code{sf} object with the results.
 \description{
 The lookup API allows to query the address and other details of one or
 multiple OSM objects like node, way or relation. This function returns the
-spatial object associated with the query, see \code{\link[=geo_address_lookup]{geo_address_lookup()}} for
-retrieving the data in \code{tibble} format.
+(\pkg{sf}) spatial object associated with the query, see
+\code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \code{tibble} format.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional

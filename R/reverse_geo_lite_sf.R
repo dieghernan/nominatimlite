@@ -1,12 +1,13 @@
-#' Get spatial objects through reverse geocoding
+#' Reverse Geocoding API for OSM objects in Spatial format
 #'
 #' @description
-#' This function allows you extract the spatial object located on a known pair
-#' of coordinates (lat, long). Latitudes must be between -90 and 90 and
-#' longitudes must be between -180 and 180.
+#' Generates an address from a latitude and longitude. Latitudes must be
+#' between `[-90, 90]` and longitudes between `[-180, 180]`. This function
+#' returns the (\pkg{sf}) spatial object associated with the query, see
+#' [reverse_geo_lite()] for retrieving the data in `tibble` format.
 #'
-#' @inheritParams geo_lite_sf
 #' @inheritParams reverse_geo_lite
+#' @inheritParams geo_lite_sf
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional

@@ -43,7 +43,7 @@ reference:
   - has_concept("reverse")
 
 - title: Get spatial objects
-  desc: These functions return `sf` objects.
+  desc: These functions return <code>sf</code> objects.
   contents:
   - has_concept("spatial")
 

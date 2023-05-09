@@ -19,7 +19,7 @@ instead of \code{bbox}}
 A \code{sfc} object of class \code{POLYGON}.
 }
 \description{
-Create a \code{sf} polygon object from the coordinates of a bounding box
+Create a \pkg{sf} polygon object from the coordinates of a bounding box
 }
 \details{
 Bounding boxes can be located using different online tools, as

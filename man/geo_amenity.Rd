@@ -26,9 +26,9 @@ restrict the search area. See \strong{Details}.}
 geolocated (i.e. \code{c("pub", "restaurant")}). See \strong{Details} and
 \link{osm_amenities}.}
 
-\item{lat}{latitude column name (i.e. \code{"lat"}).}
+\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
 
-\item{long}{longitude column name (i.e. \code{"long"}).}
+\item{long}{longitude column name in the output data (default  \code{"long"}).}
 
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
@@ -55,8 +55,9 @@ A \code{tibble} with the results.
 This function search amenities as defined by OpenStreetMap on a restricted
 area defined by a bounding box in the form of
 \verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
-function returns the data associated with the query, see \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
-for retrieving the data as a spatial object (\code{sf} format).
+function returns the \code{tibble} associated with the query, see
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
+(((\pkg{sf}) format).
 }
 \details{
 Bounding boxes can be located using different online tools, as

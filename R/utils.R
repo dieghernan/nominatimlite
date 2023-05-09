@@ -44,6 +44,21 @@ keep_names <- function(x, return_addresses, full_results,
   return(out)
 }
 
+keep_names_rev <- function(x, address = "address", return_coords = FALSE,
+                           full_results = FALSE,
+                           colstokeep = address) {
+  names(x) <- gsub("display_name", address, names(x))
+
+  out_cols <- colstokeep
+  if (return_coords) out_cols <- c(out_cols, "lat", "lon")
+  if (full_results) out_cols <- c(out_cols, "lat", "lon", names(x))
+
+  out_cols <- unique(out_cols)
+  out <- x[, out_cols]
+
+  return(out)
+}
+
 # tibble helpers ----
 
 empty_tbl <- function(x, lat, lon) {
@@ -57,6 +72,44 @@ empty_tbl <- function(x, lat, lon) {
   x
 }
 
+empty_tbl_rev <- function(x, address) {
+  init_nm <- names(x)
+  x <- dplyr::as_tibble(x)
+  x$n <- as.character(NA)
+
+  names(x) <- c(init_nm, address)
+
+  # Reorder
+  x <- x[, c(address, init_nm)]
+
+  x
+}
+
+
+unnest_reverse <- function(x) {
+  # Unnest fields
+
+  lngths <- vapply(x, length, FUN.VALUE = numeric(1))
+  endobj <- dplyr::as_tibble(x[lngths == 1])
+
+  # OSM address
+  if ("address" %in% names(lngths)) {
+    ad <- dplyr::as_tibble(x$address)[1, ]
+    endobj <- dplyr::bind_cols(endobj, ad)
+  }
+
+  if ("extratags" %in% names(lngths)) {
+    xtra <- dplyr::as_tibble(x$extratags)[1, ]
+    endobj <- dplyr::bind_cols(endobj, xtra)
+  }
+
+  if ("boundingbox" %in% names(lngths)) {
+    bb <- dplyr::tibble(boundingbox = list(as.double(x$boundingbox)))
+    endobj <- dplyr::bind_cols(endobj, bb)
+  }
+
+  endobj
+}
 # sf helpers----
 empty_sf <- function(x) {
   x <- dplyr::as_tibble(x)

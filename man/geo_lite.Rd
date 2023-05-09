@@ -20,9 +20,9 @@ geo_lite(
 (\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
 (\code{c("Madrid", "Barcelona")}).}
 
-\item{lat}{latitude column name (i.e. \code{"lat"}).}
+\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
 
-\item{long}{longitude column name (i.e. \code{"long"}).}
+\item{long}{longitude column name in the output data (default  \code{"long"}).}
 
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
@@ -43,8 +43,8 @@ A \code{tibble} with the results.
 }
 \description{
 Geocodes addresses given as character values. This
-function returns the data associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}}
-for retrieving the data as a spatial object (\code{sf} format).
+function returns the \code{tibble} associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}}
+for retrieving the data as a spatial object ((\pkg{sf}) format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

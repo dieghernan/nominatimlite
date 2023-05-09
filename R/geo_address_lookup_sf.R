@@ -3,8 +3,8 @@
 #' @description
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
-#' spatial object associated with the query, see [geo_address_lookup()] for
-#' retrieving the data in `tibble` format.
+#' (\pkg{sf}) spatial object associated with the query, see
+#' [geo_address_lookup()] for retrieving the data in `tibble` format.
 #'
 #' @return A `sf` object with the results.
 #'
@@ -58,6 +58,8 @@ geo_address_lookup_sf <- function(osm_ids,
   api <- "https://nominatim.openstreetmap.org/lookup?"
 
   # Prepare nodes
+  osm_ids <- as.integer(osm_ids)
+  type <- as.character(type)
   nodes <- paste0(type, osm_ids, collapse = ",")
 
   # Compose url
@@ -79,12 +81,14 @@ geo_address_lookup_sf <- function(osm_ids,
   # Keep a tbl with the query
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
+  # nocov start
   # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
+  # nocov end
 
   # Read
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)

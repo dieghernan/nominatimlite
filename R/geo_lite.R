@@ -2,14 +2,14 @@
 #'
 #' @description
 #' Geocodes addresses given as character values. This
-#' function returns the data associated with the query, see [geo_lite_sf()]
-#' for retrieving the data as a spatial object (`sf` format).
+#' function returns the `tibble` associated with the query, see [geo_lite_sf()]
+#' for retrieving the data as a spatial object ((\pkg{sf}) format).
 #'
 #' @param address character with single line address
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
 #'   (`c("Madrid", "Barcelona")`).
-#' @param lat	latitude column name (i.e. `"lat"`).
-#' @param long	longitude column name (i.e. `"long"`).
+#' @param lat	latitude column name in the output data (default  `"lat"`).
+#' @param long	longitude column name in the output data (default  `"long"`).
 #' @param limit	maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
 #' @param full_results returns all available data from the API service.
@@ -121,7 +121,6 @@ geo_lite_single <- function(address,
 
   # nocov start
   if (isFALSE(res)) {
-    message(url, " not reachable.")
     message(url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
