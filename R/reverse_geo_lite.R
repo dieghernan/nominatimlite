@@ -124,14 +124,14 @@ reverse_geo_lite <- function(lat,
       custom_query
     )
 
-    res_single <- dplyr::bind_cols(res_single, rw[, c(1:2)])
+    res_single <- dplyr::bind_cols(res_single, rw[, c(1, 2)])
 
     res_single
   })
 
 
   all_res <- dplyr::bind_rows(all_res)
-  all_res <- dplyr::left_join(init_key[, 1:2], all_res,
+  all_res <- dplyr::left_join(init_key[, c(1, 2)], all_res,
     by = c("lat_key_int", "long_key_int")
   )
 
