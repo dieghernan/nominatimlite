@@ -1,8 +1,27 @@
-#' Get spatial objects through geocoding
+#' Address Search API for OSM objects in Spatial format
 #'
 #' @description
 #' This function allows you to geocode addresses and return the corresponding
-#' spatial object.
+#' spatial object. This function returns the \pkg{sf} spatial object
+#' associated with the query, see [geo_lite_sf()] for retrieving the data in
+#' `tibble` format.
+#'
+#'
+#' @param full_results returns all available data from the API service.
+#'    If `FALSE` (default) only address columns are returned. See also
+#'    `return_addresses`.
+#'
+#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
+#' points (`TRUE`, which is the default) or potentially other shapes as
+#' provided by the Nominatim API (`FALSE`). See **About Geometry Types**.
+#'
+#' @inheritParams geo_lite
+#'
+#' @details
+#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
+#' parameters to be passed to `custom_query`.
+#'
+#' @section About Geometry Types:
 #'
 #' The parameter `points_only` specifies whether the function results will be
 #' points (all Nominatim results are guaranteed to have at least point
@@ -18,16 +37,6 @@
 #'
 #' The function is vectorized, allowing for multiple addresses to be geocoded;
 #' in case of `points_only = FALSE`  multiple geometry types may be returned.
-#'
-#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
-#' points (`TRUE`, which is the default) or potentially other shapes as
-#' provided by the Nominatim API (`FALSE`).
-#'
-#' @inheritParams geo_lite
-#'
-#' @details
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
 #'
 #' @return A `sf` object with the results.
 #'
@@ -70,7 +79,7 @@
 #' }
 #' @export
 #'
-#' @seealso [geo_lite()]
+#' @family geocoding
 #' @family spatial
 
 geo_lite_sf <- function(address,
@@ -80,57 +89,47 @@ geo_lite_sf <- function(address,
                         verbose = FALSE,
                         custom_query = list(),
                         points_only = TRUE) {
-  address_par <- address
-  # nocov start
-
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
       "Your query may be incomplete"
     ))
-
     limit <- min(50, limit)
   }
 
-  # nocov end
+
+  # Dedupe for query
+  init_key <- dplyr::tibble(query = address)
+  key <- unique(address)
 
   # Loop
-  all_res <- NULL
+  all_res <- lapply(key, function(x) {
+    geo_lite_sf_single(
+      address = x,
+      limit,
+      return_addresses,
+      full_results,
+      verbose,
+      custom_query,
+      points_only
+    )
+  })
 
-  for (i in seq_len(length(address_par))) {
-    # Check if we have already launched the query
-    if (address_par[i] %in% all_res$query) {
-      if (verbose) {
-        message(
-          address_par[i],
-          " already cached.\n",
-          "Skipping download."
-        )
-      }
+  all_res <- dplyr::bind_rows(all_res)
 
-      res_single <- dplyr::filter(
-        all_res,
-        .data$query == address_par[i],
-        .data$nmlite_first == 1
-      )
-      res_single$nmlite_first <- 0
-    } else {
-      res_single <- geo_lite_sf_single(
-        address = address_par[i],
-        limit,
-        return_addresses,
-        full_results,
-        verbose,
-        custom_query,
-        points_only
-      )
-      # Add index
-      res_single <- dplyr::bind_cols(res_single, nmlite_first = 1)
-    }
-    all_res <- dplyr::bind_rows(all_res, res_single)
+  all_res <- sf_to_tbl(all_res)
+
+  # Handle dupes in sf
+  if (!identical(as.character(init_key$query), key)) {
+    # Join with indexes
+    template <- sf::st_drop_geometry(all_res)[, "query"]
+    template$rindex <- seq_len(nrow(template))
+    getrows <- dplyr::left_join(init_key, template, by = "query")
+
+    # Select rows
+    all_res <- all_res[as.integer(getrows$rindex), ]
+    all_res <- sf_to_tbl(all_res)
   }
-
-  all_res <- dplyr::select(all_res, -.data$nmlite_first)
 
   return(all_res)
 }
@@ -145,6 +144,7 @@ geo_lite_sf_single <- function(address,
                                verbose = FALSE,
                                custom_query = list(),
                                points_only = TRUE) {
+  # Step 1: Download ----
   api <- "https://nominatim.openstreetmap.org/search?q="
 
   # Replace spaces with +
@@ -153,82 +153,57 @@ geo_lite_sf_single <- function(address,
   # Compose url
   url <- paste0(api, address2, "&format=geojson&limit=", limit)
 
-  if (!isTRUE(points_only)) {
-    url <- paste0(url, "&polygon_geojson=1")
-  }
+  if (full_results) url <- paste0(url, "&addressdetails=1")
+  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
 
+  # Add options
+  url <- add_custom_query(custom_query, url)
 
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
-
-  if (length(custom_query) > 0) {
-    opts <- NULL
-    for (i in seq_len(length(custom_query))) {
-      nlist <- names(custom_query)[i]
-      val <- paste0(custom_query[[i]], collapse = ",")
-
-
-      opts <- paste0(opts, "&", nlist, "=", val)
-    }
-
-    url <- paste0(url, "&", opts)
-  }
-
-  # Download
-
+  # Download to temp file
   json <- tempfile(fileext = ".geojson")
+  res <- api_call(url, json, isFALSE(verbose))
 
-  res <- api_call(url, json, quiet = isFALSE(verbose))
+  # Step 2: Read and parse results ----
 
+  # Keep a tbl with the query
+  tbl_query <- dplyr::tibble(query = address)
 
   # nocov start
-
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- data.frame(query = address)
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
   # nocov end
 
-  sfobj <- sf::st_read(json,
-    stringsAsFactors = FALSE,
-    quiet = isFALSE(verbose)
-  )
+  # Read
+  sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-  # Check if null and return
-
+  # Empty query
   if (length(names(sfobj)) == 1) {
     message("No results for query ", address)
-    result_out <- data.frame(query = address)
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
 
   # Prepare output
 
-  result_out <- data.frame(query = address)
-
-  df_sf <- tibble::as_tibble(sf::st_drop_geometry(sfobj))
-
-  # Rename original address
-
-  names(df_sf) <-
-    gsub("address", "osm.address", names(df_sf))
-
-  names(df_sf) <- gsub("display_name", "address", names(df_sf))
+  # Unnest address
+  sfobj <- unnest_sf(sfobj)
 
 
-  if (return_addresses || full_results) {
-    disp_name <- df_sf["address"]
-    result_out <- cbind(result_out, disp_name)
-  }
 
-  # If full
-  if (full_results) {
-    rest_cols <- df_sf[, !names(df_sf) %in% "address"]
-    result_out <- cbind(result_out, rest_cols)
-  }
+  # Prepare output
+  sf_clean <- sfobj
+  sf_clean$query <- address
 
-  result_out <- sf::st_sf(result_out, geometry = sf::st_geometry(sfobj))
-  return(result_out)
+  # Keep names
+  result_out <- keep_names(sf_clean, return_addresses, full_results,
+    colstokeep = "query"
+  )
+
+  # Attach as tibble
+  result_out <- sf_to_tbl(result_out)
+
+  result_out
 }

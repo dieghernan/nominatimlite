@@ -1,18 +1,28 @@
-#' Reverse geocode coordinates
+#' Reverse Geocoding API for OSM objects
 #'
 #' @description
-#' Reverse geocodes geographic coordinates (latitude and longitude) given as
-#' numeric values. Latitudes must be between -90 and 90 and longitudes must be
-#' between -180 and 180.
+#' Generates an address from a latitude and longitude. Latitudes must be
+#' between `[-90, 90]` and longitudes between `[-180, 180]`. This
+#' function returns the `tibble` associated with the query, see
+#' [reverse_geo_lite_sf()] for retrieving the data as a spatial object
+#' (\pkg{sf}) format).
 #'
+#' @param lat  latitude values in numeric format. Must be in the range
+#'   `[-90, 90]`.
+#' @param long  longitude values in numeric format. Must be in the range
+#'   `[-180, 180]`.
+#' @param address address column name in the output data (default  `"address"`).
+#' @param return_coords	return input coordinates with results if `TRUE`.
 #' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (ie. `list(zoom = 3)`). See Details.
+#'   list (ie. `list(zoom = 3)`). See **Details**.
 #'
-#' @inheritParams tidygeocoder::reverse_geo
+#' @inheritParams geo_lite
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
+#'
+#' @section About Zooming:
 #'
 #' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
 #' equivalences on terms of zoom:
@@ -20,7 +30,7 @@
 #'
 #' ```{r, echo=FALSE}
 #'
-#' t <- tibble::tribble(
+#' t <- dplyr::tribble(
 #'  ~zoom, ~address_detail,
 #'  3, "country",
 #'  5, "state",
@@ -45,24 +55,23 @@
 #' reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #'
 #' # Several coordinates
-#' reverse_geo_lite(
-#'   lat = c(40.75728, 55.95335),
-#'   long = c(-73.98586, -3.188375)
+#' reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
+#'
+#' # With options: zoom to country level
+#' sev <- reverse_geo_lite(
+#'   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
+#'   custom_query = list(zoom = 0, extratags = 1),
+#'   verbose = TRUE, full_results = TRUE
 #' )
 #'
-#' # With options: zoom to country
-#' reverse_geo_lite(
-#'   lat = c(40.75728, 55.95335),
-#'   long = c(-73.98586, -3.188375),
-#'   custom_query = list(zoom = 0),
-#'   verbose = TRUE,
-#'   full_results = TRUE
-#' )
+#' dplyr::glimpse(sev)
 #' }
+#'
 #' @export
 #'
 #' @seealso [reverse_geo_lite_sf()], [tidygeocoder::reverse_geo()]
-#' @family geocoding
+#' @family reverse
+#'
 reverse_geo_lite <- function(lat,
                              long,
                              address = "address",
@@ -71,7 +80,6 @@ reverse_geo_lite <- function(lat,
                              verbose = FALSE,
                              custom_query = list()) {
   # Check inputs
-
   if (!is.numeric(lat) || !is.numeric(long)) {
     stop("lat and long must be numeric")
   }
@@ -81,39 +89,54 @@ reverse_geo_lite <- function(lat,
   }
 
   # Lat
-  lat_cap <- pmin(lat, 90)
-  lat_cap <- pmax(lat_cap, -90)
+  lat_cap <- pmax(pmin(lat, 90), -90)
 
-
-  if (!all(lat_cap == lat)) {
+  if (!identical(lat_cap, lat)) {
     message("latitudes have been restricted to [-90, 90]")
   }
 
   # Lon
-  long_cap <- pmin(long, 180)
-  long_cap <- pmax(long_cap, -180)
-
+  long_cap <- pmax(pmin(long, 180), -180)
 
   if (!all(long_cap == long)) {
     message("longitudes have been restricted to [-180, 180]")
   }
 
-  # Loop
-  all_res <- NULL
 
-  for (i in seq_len(length(long_cap))) {
+  # Dedupe for query using data frame
+
+  init_key <- dplyr::tibble(
+    lat_key_int = lat, long_key_int = long,
+    lat_cap_int = lat_cap, long_cap_int = long_cap
+  )
+  key <- dplyr::distinct(init_key)
+
+
+  all_res <- lapply(seq_len(nrow(key)), function(x) {
+    rw <- key[x, ]
     res_single <- reverse_geo_lite_single(
-      lat_cap[i],
-      long_cap[i],
+      as.double(rw$lat_cap_int),
+      as.double(rw$long_cap_int),
       address,
       full_results,
       return_coords,
       verbose,
       custom_query
     )
-    all_res <- dplyr::bind_rows(all_res, res_single)
-  }
 
+    res_single <- dplyr::bind_cols(res_single, rw[, c(1, 2)])
+
+    res_single
+  })
+
+
+  all_res <- dplyr::bind_rows(all_res)
+  all_res <- dplyr::left_join(init_key[, c(1, 2)], all_res,
+    by = c("lat_key_int", "long_key_int")
+  )
+
+  # Final clean
+  all_res <- all_res[, -c(1, 2)]
   return(all_res)
 }
 
@@ -126,110 +149,63 @@ reverse_geo_lite_single <- function(lat_cap,
                                     return_coords = TRUE,
                                     verbose = TRUE,
                                     custom_query = list()) {
+  # Step 1: Download ----
   api <- "https://nominatim.openstreetmap.org/reverse?"
 
-  url <- paste0(
-    api, "lat=",
-    lat_cap,
-    "&lon=",
-    long_cap,
-    "&format=json"
-  )
-
+  # Compose url
+  url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=json")
 
   if (isFALSE(full_results)) {
     url <- paste0(url, "&addressdetails=0")
+  } else {
+    url <- paste0(url, "&addressdetails=1")
   }
 
-  if (length(custom_query) > 0) {
-    opts <- NULL
-    for (i in seq_len(length(custom_query))) {
-      nlist <- names(custom_query)[i]
-      val <- paste0(custom_query[[i]], collapse = ",")
+  # Add options
+  url <- add_custom_query(custom_query, url)
 
-
-      opts <- paste0(opts, "&", nlist, "=", val)
-    }
-
-    url <- paste0(url, opts)
-  }
-
-  # Download
-
+  # Download to temp file
   json <- tempfile(fileext = ".json")
+  res <- api_call(url, json, isFALSE(verbose))
 
-  res <- api_call(url, json, quiet = isFALSE(verbose))
+  # Step 2: Read and parse results ----
+  tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
+
 
 
   # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- tibble::tibble(ad = NA)
-    names(result_out) <- address
-    return(invisible(result_out))
+    out <- empty_tbl(tbl_query, address)
+    return(invisible(out))
   }
-
   # nocov end
 
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
 
+  # Empty query
   if ("error" %in% names(result_init)) {
     message(
       "No results for query lon=",
       long_cap, ", lat=", lat_cap
     )
-    result_out <- tibble::tibble(ad = NA)
-    names(result_out) <- address
-
-    if (return_coords) {
-      result_out$lat <- as.double(lat_cap)
-      result_out$lon <- as.double(long_cap)
-    }
-    return(invisible(result_out))
+    out <- empty_tbl_rev(tbl_query, address)
+    return(invisible(out))
   }
 
 
-  result <- NULL
-
-  # Hack to overcome problems with address and boundingbox
-  for (i in seq_len(length(result_init))) {
-    if (names(result_init)[i] %in% c("address", "extratags")) {
-      result <- dplyr::bind_cols(result, tibble::as_tibble(result_init[i][[1]]))
-    } else if (names(result_init)[i] == "boundingbox") {
-      result_init[i] <- list(result_init[[i]])
-      r <- tibble::tibble(boundingbox = unname(result_init[i]))
-      result <- dplyr::bind_cols(result, r)
-    } else {
-      result <- dplyr::bind_cols(result, tibble::as_tibble(result_init[i]))
-    }
-  }
-
+  # Unnnest fields
+  result <- unnest_reverse(result_init)
 
   result$lat <- as.double(result$lat)
   result$lon <- as.double(result$lon)
 
-  nmes <- names(result)
-  nmes[nmes == "display_name"] <- address
-
-  names(result) <- nmes
-
-  # Prepare output
-  result_out <- result[address]
-
-
-
-  if (return_coords || full_results) {
-    disp_coords <- result[c("lat", "lon")]
-    result_out <- cbind(result_out, disp_coords)
-  }
-
-  # If full
-  if (full_results) {
-    rest_cols <- result[, !names(result) %in% c(address, "lon", "lat")]
-    result_out <- cbind(result_out, rest_cols)
-  }
-
-  result_out <- tibble::as_tibble(result_out)
+  # Keep names
+  result_out <- keep_names_rev(result,
+    address = address,
+    return_coords = return_coords,
+    full_results = full_results
+  )
 
   return(result_out)
 }

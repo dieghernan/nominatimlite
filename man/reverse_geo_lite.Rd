@@ -2,7 +2,7 @@
 % Please edit documentation in R/reverse_geo_lite.R
 \name{reverse_geo_lite}
 \alias{reverse_geo_lite}
-\title{Reverse geocode coordinates}
+\title{Reverse Geocoding API for OSM objects}
 \usage{
 reverse_geo_lite(
   lat,
@@ -15,36 +15,41 @@ reverse_geo_lite(
 )
 }
 \arguments{
-\item{lat}{latitude values (input data)}
+\item{lat}{latitude values in numeric format. Must be in the range
+\verb{[-90, 90]}.}
 
-\item{long}{longitude values (input data)}
+\item{long}{longitude values in numeric format. Must be in the range
+\verb{[-180, 180]}.}
 
-\item{address}{name of the address column (in the output data)}
+\item{address}{address column name in the output data (default  \code{"address"}).}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only a single address column is returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only latitude, longitude and address columns are
+returned. See also \code{return_addresses}.}
 
-\item{return_coords}{return input coordinates with results if TRUE. Note that
-most services return the input coordinates with \code{full_results = TRUE} and setting
-\code{return_coords} to FALSE does not prevent this.}
+\item{return_coords}{return input coordinates with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \code{list(zoom = 3)}). See Details.}
+list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
 }
 \value{
 A \code{tibble} with the results.
 }
 \description{
-Reverse geocodes geographic coordinates (latitude and longitude) given as
-numeric values. Latitudes must be between -90 and 90 and longitudes must be
-between -180 and 180.
+Generates an address from a latitude and longitude. Latitudes must be
+between \verb{[-90, 90]} and longitudes between \verb{[-180, 180]}. This
+function returns the \code{tibble} associated with the query, see
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} for retrieving the data as a spatial object
+(\pkg{sf}) format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Reverse/} for additional
 parameters to be passed to \code{custom_query}.
+}
+\section{About Zooming}{
+
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
 equivalences on terms of zoom:\tabular{rl}{
@@ -59,6 +64,7 @@ equivalences on terms of zoom:\tabular{rl}{
    18 \tab building \cr
 }
 }
+
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -66,28 +72,23 @@ equivalences on terms of zoom:\tabular{rl}{
 reverse_geo_lite(lat = 40.75728, long = -73.98586)
 
 # Several coordinates
-reverse_geo_lite(
-  lat = c(40.75728, 55.95335),
-  long = c(-73.98586, -3.188375)
+reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
+
+# With options: zoom to country level
+sev <- reverse_geo_lite(
+  lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
+  custom_query = list(zoom = 0, extratags = 1),
+  verbose = TRUE, full_results = TRUE
 )
 
-# With options: zoom to country
-reverse_geo_lite(
-  lat = c(40.75728, 55.95335),
-  long = c(-73.98586, -3.188375),
-  custom_query = list(zoom = 0),
-  verbose = TRUE,
-  full_results = TRUE
-)
+dplyr::glimpse(sev)
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
 
-Other geocoding: 
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_lite}()}
+Reverse geocoding coordinates: 
+\code{\link{reverse_geo_lite_sf}()}
 }
-\concept{geocoding}
+\concept{reverse}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_address_lookup.R
 \name{geo_address_lookup}
 \alias{geo_address_lookup}
-\title{Query the address and other details of one or multiple OSM objects}
+\title{Address Lookup API for OSM objects}
 \usage{
 geo_address_lookup(
   osm_ids,
@@ -16,34 +16,36 @@ geo_address_lookup(
 )
 }
 \arguments{
-\item{osm_ids}{vector of OSM identifiers (\code{c(00000, 11111, 22222)}).}
+\item{osm_ids}{vector of OSM identifiers as \strong{numeric}
+(\code{c(00000, 11111, 22222)}).}
 
-\item{type}{vector of the type of the OSM type associated to each \code{osm_ids}.
-Possible values are node ("N"), way ("W") or relation ("R"). If a single
-value is provided it would be recycled.}
+\item{type}{vector character of the type of the OSM type associated to each
+\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}) or relation
+(\code{"R"}). If a single value is provided it would be recycled.}
 
-\item{lat}{latitude column name (i.e. \code{"lat"}).}
+\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
 
-\item{long}{longitude column name (i.e. \code{"long"}).}
+\item{long}{longitude column name in the output data (default  \code{"long"}).}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only latitude, longitude and address columns are
+returned. See also \code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if TRUE. Note that
-most services return the input addresses with \code{full_results = TRUE} and setting
-return_addresses to FALSE does not prevent this.}
+\item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(countrycodes = "US")}). See Details.}
+\item{custom_query}{A named list with API-specific parameters to be used
+(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 }
 \value{
-A \code{tibble} with the results.
+A \code{tibble} with the results found by the query.
 }
 \description{
-Geocodes addresses for OSM objects, identified with the OSM Id.
+The lookup API allows to query the address and other details of one or
+multiple OSM objects like node, way or relation. This function returns the
+\code{tibble} associated with the query, see \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for
+retrieving the data as a spatial object (\pkg{sf} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Lookup/} for additional
@@ -52,23 +54,27 @@ parameters to be passed to \code{custom_query}.
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-ids <- geo_address_lookup(
-  osm_ids = c(46240148, 34633854),
-  type = c("W"),
-)
+ids <- geo_address_lookup(osm_ids = c(46240148, 34633854), type = "W")
 
 ids
+
+several <- geo_address_lookup(c(146656, 240109189), type = c("R", "N"))
+several
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other geocoding: 
-\code{\link{geo_amenity}()},
-\code{\link{geo_lite}()},
-\code{\link{reverse_geo_lite}()}
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 
-Other lookup: 
+Address Lookup API: 
 \code{\link{geo_address_lookup_sf}()}
+
+Geocoding strings: 
+\code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite}()}
 }
 \concept{geocoding}
 \concept{lookup}

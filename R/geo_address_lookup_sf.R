@@ -1,43 +1,50 @@
-#' Get spatial objects from OSM ids
+#' Address Lookup API for OSM objects in Spatial Format
 #'
 #' @description
-#' This function allows you to extract the spatial objects for specific
-#' OSM objects.
+#' The lookup API allows to query the address and other details of one or
+#' multiple OSM objects like node, way or relation. This function returns the
+#' \pkg{sf} spatial object associated with the query, see
+#' [geo_address_lookup()] for retrieving the data in `tibble` format.
 #'
 #' @return A `sf` object with the results.
 #'
-#' @inheritParams geo_address_lookup
 #' @inheritParams geo_lite_sf
+#' @inheritParams geo_address_lookup
 #'
 #' @details
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
+#' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @family spatial
+#' @inheritSection  geo_lite_sf  About Geometry Types
+#'
+#' @seealso [geo_address_lookup()]
 #' @family lookup
+#' @family geocoding
+#' @family spatial
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
 #' # Notre Dame Cathedral, Paris
 #'
-#' NotreDame <- geo_address_lookup_sf(
-#'   osm_ids = c(201611261),
-#'   type = c("W")
-#' )
+#' NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 #'
 #' library(ggplot2)
 #'
 #' ggplot(NotreDame) +
 #'   geom_sf()
 #'
-#' NotreDame_poly <- geo_address_lookup_sf(
-#'   osm_ids = c(201611261),
-#'   type = c("W"),
+#' NotreDame_poly <- geo_address_lookup_sf(201611261,
+#'   type = "W",
 #'   points_only = FALSE
 #' )
 #'
 #' ggplot(NotreDame_poly) +
 #'   geom_sf()
+#'
+#' # It is vectorized
+#'
+#' several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
+#' several
 #' }
 #' @export
 geo_address_lookup_sf <- function(osm_ids,
@@ -47,89 +54,79 @@ geo_address_lookup_sf <- function(osm_ids,
                                   verbose = FALSE,
                                   custom_query = list(),
                                   points_only = TRUE) {
+  # Step 1: Download ----
   api <- "https://nominatim.openstreetmap.org/lookup?"
 
   # Prepare nodes
+  osm_ids <- as.integer(osm_ids)
+  type <- as.character(type)
   nodes <- paste0(type, osm_ids, collapse = ",")
 
   # Compose url
   url <- paste0(api, "osm_ids=", nodes, "&format=geojson")
 
-  if (!isTRUE(points_only)) {
-    url <- paste0(url, "&polygon_geojson=1")
-  }
+  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
+  if (full_results) url <- paste0(url, "&addressdetails=1")
 
 
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
+  # Add options
+  url <- add_custom_query(custom_query, url)
 
-  if (length(custom_query) > 0) {
-    opts <- NULL
-    for (i in seq_len(length(custom_query))) {
-      nlist <- names(custom_query)[i]
-      val <- paste0(custom_query[[i]], collapse = ",")
-
-
-      opts <- paste0(opts, "&", nlist, "=", val)
-    }
-
-    url <- paste0(url, "&", opts)
-  }
-
-  # Download
-
+  # Download to temp file
   json <- tempfile(fileext = ".geojson")
-
   res <- api_call(url, json, quiet = isFALSE(verbose))
 
+  # Step 2: Read and parse results ----
+
+  # Keep a tbl with the query
+  tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
+
   # nocov start
+  # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    result_out <- data.frame(query = paste0(type, osm_ids))
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
   # nocov end
 
-  sfobj <- sf::st_read(json,
-    stringsAsFactors = FALSE,
-    quiet = isFALSE(verbose)
-  )
+  # Read
+  sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-  # Check if null and return
-
+  # Empty query
   if (length(names(sfobj)) == 1) {
     message("No results for query ", nodes)
-    result_out <- data.frame(query = paste0(type, osm_ids))
-    return(invisible(result_out))
+    out <- empty_sf(tbl_query)
+    return(invisible(out))
   }
-
 
   # Prepare output
 
-  result_out <- data.frame(query = paste0(type, osm_ids))
-
-  df_sf <- tibble::as_tibble(sf::st_drop_geometry(sfobj))
-
-  # Rename original address
-
-  names(df_sf) <-
-    gsub("address", "osm.address", names(df_sf))
-
-  names(df_sf) <- gsub("display_name", "address", names(df_sf))
+  # Unnest address
+  sfobj <- unnest_sf(sfobj)
 
 
-  if (return_addresses || full_results) {
-    disp_name <- df_sf["address"]
-    result_out <- cbind(result_out, disp_name)
+  # In this function we need to re-create tbl_query
+  tbl_query <- dplyr::tibble(
+    query = paste0(type, osm_ids),
+    osm_id = osm_ids
+  )
+
+  # Keep only same results
+  sf_clean <- dplyr::inner_join(sfobj, tbl_query, by = "osm_id")
+
+  # Warning in lost rows
+  if (all(nrow(sf_clean) < nrow(tbl_query), verbose)) {
+    warning("Some ids may not have produced results. Check the final object")
   }
 
-  # If full
-  if (full_results) {
-    rest_cols <- df_sf[, !names(df_sf) %in% "address"]
-    result_out <- cbind(result_out, rest_cols)
-  }
+  # Keep names
+  result_out <- keep_names(sf_clean, return_addresses, full_results,
+    colstokeep = "query"
+  )
 
-  result_out <- sf::st_sf(result_out, geometry = sf::st_geometry(sfobj))
-  return(result_out)
+  # Attach as tibble
+  result_out <- sf_to_tbl(result_out)
+
+  result_out
 }

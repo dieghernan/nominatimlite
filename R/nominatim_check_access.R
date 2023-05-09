@@ -28,7 +28,7 @@ nominatim_check_access <- function() {
     return(FALSE)
   }
   # nocov end
-  result <- tibble::as_tibble(jsonlite::fromJSON(destfile, flatten = TRUE))
+  result <- dplyr::as_tibble(jsonlite::fromJSON(destfile, flatten = TRUE))
 
   # nocov start
   if (result$status == 0 || result$message == "OK") {

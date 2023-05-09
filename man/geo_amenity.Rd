@@ -18,36 +18,34 @@ geo_amenity(
 )
 }
 \arguments{
-\item{bbox}{A numeric vector of latitude and longitude (<min_latitude>,
-<min_longitude>, <max_latitude>, <max_longitude>) that restrict the search
-area. See Details.}
+\item{bbox}{A numeric vector of latitude and longitude
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)} that
+restrict the search area. See \strong{Details}.}
 
 \item{amenity}{A character of a vector of character with the amenities to be
-geolocated (i.e. \code{c("pub", "restaurant")}). See Details or
+geolocated (i.e. \code{c("pub", "restaurant")}). See \strong{Details} and
 \link{osm_amenities}.}
 
-\item{lat}{latitude column name (i.e. \code{"lat"}).}
+\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
 
-\item{long}{longitude column name (i.e. \code{"long"}).}
+\item{long}{longitude column name in the output data (default  \code{"long"}).}
 
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only latitude, longitude and address columns are
+returned. See also \code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if TRUE. Note that
-most services return the input addresses with \code{full_results = TRUE} and setting
-return_addresses to FALSE does not prevent this.}
+\item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
 \item{custom_query}{API-specific parameters to be used.
 See \code{\link[=geo_lite]{geo_lite()}}.}
 
-\item{strict}{Logical TRUE/FALSE. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behaviour may return results located
+\item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
+the \code{bbox}. Note that Nominatim default behavior may return results located
 outside the provided bounding box.}
 }
 \value{
@@ -55,9 +53,11 @@ A \code{tibble} with the results.
 }
 \description{
 This function search amenities as defined by OpenStreetMap on a restricted
-area defined by
-a bounding box in the form of (<min_latitude>, <min_longitude>,
-<max_latitude>, <max_longitude>).
+area defined by a bounding box in the form of
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
+function returns the \code{tibble} associated with the query, see
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
+(\pkg{sf} format).
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -70,42 +70,35 @@ For a full list of valid amenities see
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 # Times Square, NY, USA
-bbox <- c(
-  -73.9894467311, 40.75573629,
-  -73.9830630737, 40.75789245
-)
+bbox <- c(-73.9894467311, 40.75573629, -73.9830630737, 40.75789245)
 
-geo_amenity(
-  bbox = bbox,
-  amenity = "restaurant"
-)
+geo_amenity(bbox = bbox, amenity = "restaurant")
 
 # Several amenities
-geo_amenity(
-  bbox = bbox,
-  amenity = c("restaurant", "pub")
-)
+geo_amenity(bbox = bbox, amenity = c("restaurant", "pub"))
 
 # Increase limit and use with strict
 geo_amenity(
-  bbox = bbox,
-  amenity = c("restaurant", "pub"),
-  limit = 10,
+  bbox = bbox, amenity = c("restaurant", "pub"), limit = 10,
   strict = TRUE
 )
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other amenity: 
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
+
+Search amenities: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{osm_amenities}}
 
-Other geocoding: 
+Geocoding strings: 
+\code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_address_lookup}()},
-\code{\link{geo_lite}()},
-\code{\link{reverse_geo_lite}()}
+\code{\link{geo_amenity_sf}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite}()}
 }
 \concept{amenity}
 \concept{geocoding}

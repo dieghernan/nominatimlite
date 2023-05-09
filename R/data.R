@@ -14,7 +14,14 @@
 #'
 #' @docType data
 #'
-#' @format A `tibble` with the amenities and the corresponding category
+#' @format A `tibble` with with
+#' `r prettyNum(nrow(nominatimlite::osm_amenities), big.mark=",")` rows and
+#' fields:
+#' \describe{
+#'   \item{category}{The category of the amenity}
+#'   \item{amenity}{The name of the amenity}
+#' }
+#'
 #'
 #' @details
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_amenity_sf.R
 \name{geo_amenity_sf}
 \alias{geo_amenity_sf}
-\title{Get spatial objects of amenities}
+\title{Geocode amenities in Spatial format}
 \usage{
 geo_amenity_sf(
   bbox,
@@ -17,36 +17,34 @@ geo_amenity_sf(
 )
 }
 \arguments{
-\item{bbox}{A numeric vector of latitude and longitude (<min_latitude>,
-<min_longitude>, <max_latitude>, <max_longitude>) that restrict the search
-area. See Details.}
+\item{bbox}{A numeric vector of latitude and longitude
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)} that
+restrict the search area. See \strong{Details}.}
 
 \item{amenity}{A character of a vector of character with the amenities to be
-geolocated (i.e. \code{c("pub", "restaurant")}). See Details or
+geolocated (i.e. \code{c("pub", "restaurant")}). See \strong{Details} and
 \link{osm_amenities}.}
 
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only latitude and longitude columns are returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only address columns are returned. See also
+\code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if TRUE. Note that
-most services return the input addresses with \code{full_results = TRUE} and setting
-return_addresses to FALSE does not prevent this.}
+\item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used.
-See \code{\link[=geo_lite]{geo_lite()}}.}
+\item{custom_query}{A named list with API-specific parameters to be used
+(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}).}
+provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 
-\item{strict}{Logical TRUE/FALSE. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behaviour may return results located
+\item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
+the \code{bbox}. Note that Nominatim default behavior may return results located
 outside the provided bounding box.}
 }
 \value{
@@ -54,9 +52,10 @@ A \code{sf} object with the results.
 }
 \description{
 This function search amenities as defined by OpenStreetMap on a restricted
-area defined by
-a bounding box in the form of (<min_latitude>, <min_longitude>,
-<max_latitude>, <max_longitude>).
+area defined by a bounding box in the form of
+\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
+function returns the \pkg{sf} spatial object associated with the query, see
+\code{\link[=geo_amenity]{geo_amenity()}} for retrieving the data in \code{tibble} format.
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -65,6 +64,26 @@ Bounding boxes can be located using different online tools, as
 For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}.
 }
+\section{About Geometry Types}{
+
+
+The parameter \code{points_only} specifies whether the function results will be
+points (all Nominatim results are guaranteed to have at least point
+geometry) or possibly other spatial objects.
+
+Note that the type of geometry returned in case of \code{points_only = FALSE}
+will depend on the object being geocoded:
+\itemize{
+\item administrative areas, major buildings and the like will be
+returned as polygons
+\item rivers, roads and their like as lines
+\item amenities may be points even in case of a \code{points_only = FALSE} call
+}
+
+The function is vectorized, allowing for multiple addresses to be geocoded;
+in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+}
+
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -72,28 +91,18 @@ For a full list of valid amenities see
 
 library(ggplot2)
 
-bbox <- c(
-  -3.888954, 40.311977,
-  -3.517916, 40.643729
-)
+bbox <- c(-3.888954, 40.311977, -3.517916, 40.643729)
 
 # Restaurants and pubs
 
-rest_pub <- geo_amenity_sf(bbox,
-  c("restaurant", "pub"),
-  limit = 50
-)
-
+rest_pub <- geo_amenity_sf(bbox, c("restaurant", "pub"), limit = 50)
 
 ggplot(rest_pub) +
   geom_sf()
 
 # Hospital as polygon
 
-hosp <- geo_amenity_sf(bbox,
-  "hospital",
-  points_only = FALSE
-)
+hosp <- geo_amenity_sf(bbox, "hospital", points_only = FALSE)
 
 ggplot(hosp) +
   geom_sf()
@@ -101,16 +110,26 @@ ggplot(hosp) +
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other spatial: 
+\code{\link[=geo_amenity]{geo_amenity()}}
+
+Search amenities: 
+\code{\link{bbox_to_poly}()},
+\code{\link{geo_amenity}()},
+\code{\link{osm_amenities}}
+
+Geocoding strings: 
+\code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite}()}
+
+Get spatial (`sf`) objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
-
-Other amenity: 
-\code{\link{bbox_to_poly}()},
-\code{\link{geo_amenity}()},
-\code{\link{osm_amenities}}
 }
 \concept{amenity}
+\concept{geocoding}
 \concept{spatial}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/reverse_geo_lite_sf.R
 \name{reverse_geo_lite_sf}
 \alias{reverse_geo_lite_sf}
-\title{Get spatial objects through reverse geocoding}
+\title{Reverse Geocoding API for OSM objects in Spatial format}
 \usage{
 reverse_geo_lite_sf(
   lat,
@@ -16,40 +16,44 @@ reverse_geo_lite_sf(
 )
 }
 \arguments{
-\item{lat}{latitude values (input data)}
+\item{lat}{latitude values in numeric format. Must be in the range
+\verb{[-90, 90]}.}
 
-\item{long}{longitude values (input data)}
+\item{long}{longitude values in numeric format. Must be in the range
+\verb{[-180, 180]}.}
 
-\item{address}{name of the address column (in the output data)}
+\item{address}{address column name in the output data (default  \code{"address"}).}
 
-\item{full_results}{returns all available data from the geocoding service if TRUE.
-If FALSE (default) then only a single address column is returned from the geocoding service.}
+\item{full_results}{returns all available data from the API service.
+If \code{FALSE} (default) only latitude, longitude and address columns are
+returned. See also \code{return_addresses}.}
 
-\item{return_coords}{return input coordinates with results if TRUE. Note that
-most services return the input coordinates with \code{full_results = TRUE} and setting
-\code{return_coords} to FALSE does not prevent this.}
+\item{return_coords}{return input coordinates with results if \code{TRUE}.}
 
-\item{verbose}{if TRUE then detailed logs are output to the console. FALSE is default. Can be set
-permanently with \code{options(tidygeocoder.verbose = TRUE)}}
+\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \code{list(zoom = 3)}). See Details.}
+list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}).}
+provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
 A \code{sf} object with the results.
 }
 \description{
-This function allows you extract the spatial object located on a known pair
-of coordinates (lat, long). Latitudes must be between -90 and 90 and
-longitudes must be between -180 and 180.
+Generates an address from a latitude and longitude. Latitudes must be
+between \verb{[-90, 90]} and longitudes between \verb{[-180, 180]}. This function
+returns the \pkg{sf} spatial object associated with the query, see
+\code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in \code{tibble} format.
 }
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Reverse/} for additional
 parameters to be passed to \code{custom_query}.
+}
+\section{About Zooming}{
+
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
 equivalences on terms of zoom:\tabular{rl}{
@@ -64,6 +68,27 @@ equivalences on terms of zoom:\tabular{rl}{
    18 \tab building \cr
 }
 }
+
+\section{About Geometry Types}{
+
+
+The parameter \code{points_only} specifies whether the function results will be
+points (all Nominatim results are guaranteed to have at least point
+geometry) or possibly other spatial objects.
+
+Note that the type of geometry returned in case of \code{points_only = FALSE}
+will depend on the object being geocoded:
+\itemize{
+\item administrative areas, major buildings and the like will be
+returned as polygons
+\item rivers, roads and their like as lines
+\item amenities may be points even in case of a \code{points_only = FALSE} call
+}
+
+The function is vectorized, allowing for multiple addresses to be geocoded;
+in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+}
+
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -111,10 +136,14 @@ ggplot(County_sf) +
 \seealso{
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}
 
-Other spatial: 
+Reverse geocoding coordinates: 
+\code{\link{reverse_geo_lite}()}
+
+Get spatial (`sf`) objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()}
 }
+\concept{reverse}
 \concept{spatial}

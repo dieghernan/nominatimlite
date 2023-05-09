@@ -1,6 +1,8 @@
 #' Create a bounding box `sf` object
 #'
-#' Create a `sf` polygon object from the coordinates of a bounding box
+#' @description
+#'
+#' Create a \pkg{sf} polygon object from the coordinates of a bounding box
 #'
 #' @param bbox numeric vector of 4 elements representing the coordinates of the
 #'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`
@@ -9,7 +11,7 @@
 #'
 #' @inheritParams sf::st_sf
 #'
-#' @return A `sf` object
+#' @return A `sfc` object of class `POLYGON`.
 #'
 #' @seealso [sf::st_as_sfc()]
 #'

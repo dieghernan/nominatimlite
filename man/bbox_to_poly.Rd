@@ -16,10 +16,10 @@ instead of \code{bbox}}
 \item{crs}{coordinate reference system, something suitable as input to \link[sf]{st_crs}}
 }
 \value{
-A \code{sf} object
+A \code{sfc} object of class \code{POLYGON}.
 }
 \description{
-Create a \code{sf} polygon object from the coordinates of a bounding box
+Create a \pkg{sf} polygon object from the coordinates of a bounding box
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -56,13 +56,13 @@ ggplot(bbox_Texas) +
 \seealso{
 \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}}
 
-Other spatial: 
+Get spatial (`sf`) objects: 
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 
-Other amenity: 
+Search amenities: 
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_amenity}()},
 \code{\link{osm_amenities}}
