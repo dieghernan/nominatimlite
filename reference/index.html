@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,9 +53,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a></h2>
+      <h2 id="geocoding">Geocoding<a class="anchor" aria-label="anchor" href="#geocoding"></a></h2>
       
-      <p class="section-desc"></p><p>These functions return <code>tibbles</code></p>
+      <p class="section-desc"></p><p>These functions search an address or reference and return coordinates.</p>
 
       
     </div><div id="" class="section level2">
@@ -67,7 +67,12 @@
           
           <code><a href="geo_address_lookup.html">geo_address_lookup()</a></code> 
         </dt>
-        <dd>Query the address and other details of one or multiple OSM objects</dd>
+        <dd>Address Lookup API for OSM objects</dd>
+      </dl><dl><dt>
+          
+          <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code> 
+        </dt>
+        <dd>Address Lookup API for OSM objects in Spatial Format</dd>
       </dl><dl><dt>
           
           <code><a href="geo_amenity.html">geo_amenity()</a></code> 
@@ -75,18 +80,44 @@
         <dd>Geocode amenities</dd>
       </dl><dl><dt>
           
+          <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code> 
+        </dt>
+        <dd>Geocode amenities in Spatial format</dd>
+      </dl><dl><dt>
+          
           <code><a href="geo_lite.html">geo_lite()</a></code> 
         </dt>
-        <dd>Geocode addresses</dd>
+        <dd>Address Search API for OSM objects</dd>
       </dl><dl><dt>
+          
+          <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code> 
+        </dt>
+        <dd>Address Search API for OSM objects in Spatial format</dd>
+      </dl></div><div class="section level2">
+      <h2 id="reverse-geocoding">Reverse geocoding<a class="anchor" aria-label="anchor" href="#reverse-geocoding"></a></h2>
+      
+      <p class="section-desc"></p><p>These functions search coordinates and returns information of places on that coordinates.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="reverse_geo_lite.html">reverse_geo_lite()</a></code> 
         </dt>
-        <dd>Reverse geocode coordinates</dd>
+        <dd>Reverse Geocoding API for OSM objects</dd>
+      </dl><dl><dt>
+          
+          <code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code> 
+        </dt>
+        <dd>Reverse Geocoding API for OSM objects in Spatial format</dd>
       </dl></div><div class="section level2">
       <h2 id="get-spatial-objects">Get spatial objects<a class="anchor" aria-label="anchor" href="#get-spatial-objects"></a></h2>
       
-      <p class="section-desc"></p><p>These functions return <code>sf</code> objects</p>
+      <p class="section-desc"></p><p>These functions return <code>sf</code> objects.</p>
 
       
     </div><div id="" class="section level2">
@@ -103,26 +134,26 @@
           
           <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code> 
         </dt>
-        <dd>Get spatial objects from OSM ids</dd>
+        <dd>Address Lookup API for OSM objects in Spatial Format</dd>
       </dl><dl><dt>
           
           <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code> 
         </dt>
-        <dd>Get spatial objects of amenities</dd>
+        <dd>Geocode amenities in Spatial format</dd>
       </dl><dl><dt>
           
           <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code> 
         </dt>
-        <dd>Get spatial objects through geocoding</dd>
+        <dd>Address Search API for OSM objects in Spatial format</dd>
       </dl><dl><dt>
           
           <code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code> 
         </dt>
-        <dd>Get spatial objects through reverse geocoding</dd>
+        <dd>Reverse Geocoding API for OSM objects in Spatial format</dd>
       </dl></div><div class="section level2">
-      <h2 id="misc">Misc<a class="anchor" aria-label="anchor" href="#misc"></a></h2>
+      <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a></h2>
       
-      <p class="section-desc"></p><p>Other objects included in the package</p>
+      <p class="section-desc"></p><p>Helper datasets.</p>
 
       
     </div><div id="" class="section level2">
