@@ -40,16 +40,19 @@ ggplot(bbox_GER_sf) +
   geom_sf()
 \donttest{
 # Extract the bounding box of a sf object
-Texas <- geo_lite_sf("Texas", points_only = FALSE)
-bbox <- sf::st_bbox(Texas)
+sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
+
+sfobj
+
+bbox <- sf::st_bbox(sfobj)
 
 bbox
 
-bbox_Texas <- bbox_to_poly(bbox)
+bbox_sfobj <- bbox_to_poly(bbox)
 
-ggplot(bbox_Texas) +
-  geom_sf(col = "red") +
-  geom_sf(data = Texas)
+ggplot(bbox_sfobj) +
+  geom_sf(fill = "lightblue", alpha = 0.5) +
+  geom_sf(data = sfobj, fill = "wheat")
 }
 \dontshow{\}) # examplesIf}
 }

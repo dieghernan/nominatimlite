@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.2.0
 
 -   **rlang** and **tibble** are not explicitly required. Conversions to tibble
     happens with `dplyr::tibble()`.
