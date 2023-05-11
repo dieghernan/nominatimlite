@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   nominatimlite: nominatimlite.html
-last_built: 2023-05-10T16:42Z
+last_built: 2023-05-11T07:15Z
 urls:
   reference: https://dieghernan.github.io/nominatimlite/reference
   article: https://dieghernan.github.io/nominatimlite/articles
