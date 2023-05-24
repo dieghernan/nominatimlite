@@ -129,14 +129,13 @@ reverse <- reverse_geo_lite(
   lat = lat_longs$latitude, long = lat_longs$longitude,
   address = "address_found"
 )
+#> Error in empty_tbl(tbl_query, address): argument "lon" is missing, with no default
 ```
 
 
-|address_found                                                                                                                               |      lat|        lon|
-|:-------------------------------------------------------------------------------------------------------------------------------------------|--------:|----------:|
-|White House, 1600, Pennsylvania Avenue Northwest, Washington, District of Columbia, 20500, United States                                    | 38.89770|  -77.03655|
-|Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, CAL Fire Northern Region, California, 94111, United States | 37.79520| -122.40279|
-|Willis Tower, 233, South Wacker Drive, Printer's Row, Loop, Chicago, Cook County, Illinois, 60606, United States                            | 41.87887|  -87.63591|
+```
+#> Error in eval(expr, envir, enclos): object 'reverse' not found
+```
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
