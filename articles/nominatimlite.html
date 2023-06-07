@@ -154,7 +154,9 @@ easily:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pizzahut</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="pizzahut-1.png" alt=""><p class="caption">plot of chunk pizzahut</p>
+<img src="pizzahut-1.png" alt="Pizza Hut in California"><p class="caption">
+plot of chunk pizzahut
+</p>
 </div>
 <p>You can also extract polygon and line objects (if available) using
 the option <code>points_only = FALSE</code>:</p>
@@ -163,7 +165,11 @@ the option <code>points_only = FALSE</code>:</p>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sol_poly</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="sol-1.png" alt="The Statue of Liberty"></p>
+<div class="figure">
+<img src="sol-1.png" alt="The Statue of Liberty"><p class="caption">
+plot of chunk sol
+</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
@@ -219,8 +225,8 @@ United States</td>
 </tr>
 <tr class="odd">
 <td align="left">233 S Wacker Dr, Chicago, IL 60606</td>
-<td align="right">41.87887</td>
-<td align="right">-87.63591</td>
+<td align="right">41.87874</td>
+<td align="right">-87.63596</td>
 <td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row,
 Loop, Chicago, Cook County, Illinois, 60606, United States</td>
 </tr>
@@ -237,9 +243,40 @@ the <code>address</code>.</p>
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
 <span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>, long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
 <span>  address <span class="op">=</span> <span class="st">"address_found"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in empty_tbl(tbl_query, address): argument "lon" is missing, with no default</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'reverse' not found</span></span></code></pre>
+<span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="87%">
+<col width="5%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">address_found</th>
+<th align="right">lat</th>
+<th align="right">lon</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">White House, 1600, Pennsylvania Avenue Northwest,
+Washington, District of Columbia, 20500, United States</td>
+<td align="right">38.89770</td>
+<td align="right">-77.03655</td>
+</tr>
+<tr class="even">
+<td align="left">Transamerica Pyramid, 600, Montgomery Street, Financial
+District, San Francisco, CAL Fire Northern Region, California, 94111,
+United States</td>
+<td align="right">37.79520</td>
+<td align="right">-122.40279</td>
+</tr>
+<tr class="odd">
+<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row,
+Loop, Chicago, Cook County, Illinois, 60606, United States</td>
+<td align="right">41.87874</td>
+<td align="right">-87.63596</td>
+</tr>
+</tbody>
+</table>
 <p>For more advance users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim
 docs</a> to check the parameters available.</p>
 </div>
