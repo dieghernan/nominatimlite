@@ -57,7 +57,7 @@ that presents similar features:
 
 With `nominatimlite` you can extract spatial objects easily:
 
-```{r pizzahut, fig.alt="Pizza Hut in California"}
+```{r pizzahut, fig.alt="Pizza Hut in California", fig.cap="Pizza Hut in California"}
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
@@ -79,7 +79,7 @@ ggplot(CA) +
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
 
-```{r sol, fig.alt="The Statue of Liberty"}
+```{r sol, fig.alt="The Statue of Liberty", fig.cap="The Statue of Liberty"}
 
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
