@@ -57,7 +57,7 @@ that presents similar features:
 
 With `nominatimlite` you can extract spatial objects easily:
 
-```{r pizzahut}
+```{r pizzahut, fig.alt="Pizza Hut in California"}
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
