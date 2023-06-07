@@ -237,40 +237,9 @@ the <code>address</code>.</p>
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
 <span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>, long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
 <span>  address <span class="op">=</span> <span class="st">"address_found"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="87%">
-<col width="5%">
-<col width="6%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">address_found</th>
-<th align="right">lat</th>
-<th align="right">lon</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">White House, 1600, Pennsylvania Avenue Northwest,
-Washington, District of Columbia, 20500, United States</td>
-<td align="right">38.89770</td>
-<td align="right">-77.03655</td>
-</tr>
-<tr class="even">
-<td align="left">Transamerica Pyramid, 600, Montgomery Street, Financial
-District, San Francisco, CAL Fire Northern Region, California, 94111,
-United States</td>
-<td align="right">37.79520</td>
-<td align="right">-122.40279</td>
-</tr>
-<tr class="odd">
-<td align="left">Willis Tower, 233, South Wacker Drive, Printer’s Row,
-Loop, Chicago, Cook County, Illinois, 60606, United States</td>
-<td align="right">41.87887</td>
-<td align="right">-87.63591</td>
-</tr>
-</tbody>
-</table>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in empty_tbl(tbl_query, address): argument "lon" is missing, with no default</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'reverse' not found</span></span></code></pre>
 <p>For more advance users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim
 docs</a> to check the parameters available.</p>
 </div>
