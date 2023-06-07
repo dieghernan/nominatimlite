@@ -69,7 +69,7 @@ ggplot(CA) +
 
 <div class="figure">
 <img src="./pizzahut-1.png" alt="Pizza Hut in California"  />
-<p class="caption">plot of chunk pizzahut</p>
+<p class="caption">Pizza Hut in California</p>
 </div>
 
 You can also extract polygon and line objects (if available) using the option
@@ -85,7 +85,7 @@ ggplot(sol_poly) +
 
 <div class="figure">
 <img src="./sol-1.png" alt="The Statue of Liberty"  />
-<p class="caption">plot of chunk sol</p>
+<p class="caption">The Statue of Liberty</p>
 </div>
 
 
