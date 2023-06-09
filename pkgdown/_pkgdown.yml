@@ -6,8 +6,8 @@ navbar:
 
 template:
   bootstrap: 5
+  package: gitdevr
   params:
-    bootswatch: flatly
     ganalytics: G-5SLV8G8QD4
   opengraph:
     twitter:
