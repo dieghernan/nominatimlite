@@ -198,7 +198,7 @@ parameters available.
 ## Citation
 
 ```{r echo=FALSE, results='asis'}
-print(citation("nominatimlite"), bibtex = FALSE)
+print(citation("nominatimlite"), style = "html")
 ```
 
 
