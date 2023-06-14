@@ -186,7 +186,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "280.104KB",
+  "fileSize": "280.108KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -198,7 +198,7 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "nominatimlite: Interface with 'Nominatim' API Service",
+      "name": "{nominatimlite}: Interface with {Nominatim} {API} Service",
       "identifier": "10.5281/zenodo.5113195",
       "url": "https://dieghernan.github.io/nominatimlite/",
       "@id": "https://doi.org/10.5281/zenodo.5113195",

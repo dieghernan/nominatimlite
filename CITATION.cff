@@ -20,7 +20,7 @@ authors:
   orcid: https://orcid.org/0000-0001-8457-4658
 preferred-citation:
   type: manual
-  title: 'nominatimlite: Interface with ''Nominatim'' API Service'
+  title: 'nominatimlite: Interface with Nominatim API Service'
   authors:
   - family-names: Hernangómez
     given-names: Diego

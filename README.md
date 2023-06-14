@@ -194,14 +194,15 @@ the parameters available.
 
 To cite the ‘nominatimlite’ package in publications use:
 
-Hernangomez D (2023). nominatimlite: Interface with Nominatim API
-Service. <https://doi.org/10.5281/zenodo.5113195>,
-<https://dieghernan.github.io/nominatimlite/>
+Hernangómez D (2023). *nominatimlite: Interface with Nominatim API
+Service*. <doi:10.5281/zenodo.5113195>
+<https://doi.org/10.5281/zenodo.5113195>,
+<https://dieghernan.github.io/nominatimlite/>.
 
 A BibTeX entry for LaTeX users is
 
     @Manual{R-nominatimlite,
-      title = {nominatimlite: Interface with 'Nominatim' API Service},
+      title = {{nominatimlite}: Interface with {Nominatim} {API} Service},
       author = {Diego Hernangómez},
       year = {2023},
       version = {0.2.0},
