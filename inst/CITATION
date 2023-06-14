@@ -2,21 +2,19 @@ year <- format(Sys.time(), "%Y")
 abs <- trimws(gsub("\\s+", " ", meta$Description))
 abs <- gsub("'", "", abs)
 doi <- "10.5281/zenodo.5113195"
+title <- gsub("'", "", meta$Title, fixed = TRUE)
+title <- gsub("Nominatim", "{Nominatim}", title, fixed = TRUE)
+title <- gsub("API", "{API}", title, fixed = TRUE)
 
 bibentry(
   "Manual",
   header = "To cite the 'nominatimlite' package in publications use:",
-  title = paste("nominatimlite:", meta$Title),
+  title = paste("{nominatimlite}:", title),
   author = person("Diego", "Hernangómez"),
   year = year,
   key = "R-nominatimlite",
   version = meta$Version,
   doi = doi,
   url = unlist(strsplit(meta$URL, ","))[1],
-  abstract = abs,
-  textVersion = paste0(
-    "Hernangomez D (", year, "). nominatimlite: ",
-    gsub("'", "", meta$Title), ". <https://doi.org/", doi, ">, <",
-    unlist(strsplit(meta$URL, ","))[1], ">"
-  )
+  abstract = abs
 )
