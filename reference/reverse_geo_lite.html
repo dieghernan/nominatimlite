@@ -155,11 +155,8 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><t
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several coordinates</span></span></span>
 <span class="r-in"><span><span class="fu">reverse_geo_lite</span><span class="op">(</span>lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span>, long <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   address                                                             lat    lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, Broadway, Times Square, Manhattan, New York County…  40.8 -<span style="color: #BB0000;">74.0</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> East End, Waterloo Place, Waterloo Place, Greenside, New Town/Br…  56.0  -<span style="color: #BB0000;">3.19</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://nominatim.openstreetmap.org/reverse?lat=40.75728&amp;lon=-73.98586&amp;format=json&amp;addressdetails=0 not reachable.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in empty_tbl(tbl_query, address):</span> argument "lon" is missing, with no default</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># With options: zoom to country level</span></span></span>
 <span class="r-in"><span><span class="va">sev</span> <span class="op">&lt;-</span> <span class="fu">reverse_geo_lite</span><span class="op">(</span></span></span>
