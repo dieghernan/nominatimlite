@@ -59,7 +59,7 @@ ggplot(bbox_sfobj) +
 \seealso{
 \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}}
 
-Get spatial (`sf`) objects: 
+Get spatial (\code{sf}) objects: 
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},

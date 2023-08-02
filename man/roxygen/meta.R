@@ -4,7 +4,7 @@ list(
     amenity = "Search amenities: ",
     geocoding = "Geocoding strings: ",
     reverse = "Reverse geocoding coordinates: ",
-    spatial = "Get spatial (`sf`) objects: ",
+    spatial = "Get spatial (\\code{sf}) objects: ",
     api_management = "API Management: "
   )
 )
