@@ -18,7 +18,7 @@ reverse_geo_lite() for retrieving the data in tibble format."><meta property="og
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
       <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" class="d-inline-block me-1">
@@ -65,8 +65,8 @@ reverse_geo_lite() for retrieving the data in tibble format."><meta property="og
     <div class="ref-description section level2">
     <p>Generates an address from a latitude and longitude. Latitudes must be
 between <code>[-90, 90]</code> and longitudes between <code>[-180, 180]</code>. This function
-returns the <span class="pkg">sf</span> spatial object associated with the query, see
-<code><a href="reverse_geo_lite.html">reverse_geo_lite()</a></code> for retrieving the data in <code>tibble</code> format.</p>
+returns the <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> spatial object associated with the query, see
+<code><a href="reverse_geo_lite.html">reverse_geo_lite()</a></code> for retrieving the data in <a href="https://CRAN.R-project.org/package=tibble" class="external-link"><span class="pkg">tibble</span></a> format.</p>
     </div>
 
     <div class="section level2">
@@ -141,7 +141,7 @@ parameters to be passed to <code>custom_query</code>.</p>
 
 
 <p>Use the option <code>custom_query = list(zoom = 3)</code> to adjust the output. Some
-equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><td>address_detail</td></tr><tr><td>3</td><td>country</td></tr><tr><td>5</td><td>state</td></tr><tr><td>8</td><td>county</td></tr><tr><td>10</td><td>city</td></tr><tr><td>14</td><td>suburb</td></tr><tr><td>16</td><td>major streets</td></tr><tr><td>17</td><td>major and minor streets</td></tr><tr><td>18</td><td>building</td></tr></table></div>
+equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoom</strong></td><td><strong>address_detail</strong></td></tr><tr><td>3</td><td>country</td></tr><tr><td>5</td><td>state</td></tr><tr><td>8</td><td>county</td></tr><tr><td>10</td><td>city</td></tr><tr><td>14</td><td>suburb</td></tr><tr><td>16</td><td>major streets</td></tr><tr><td>17</td><td>major and minor streets</td></tr><tr><td>18</td><td>building</td></tr></table></div>
     <div class="section level2">
     <h2 id="about-geometry-types">About Geometry Types<a class="anchor" aria-label="anchor" href="#about-geometry-types"></a></h2>
     
