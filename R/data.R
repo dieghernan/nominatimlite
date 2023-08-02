@@ -3,12 +3,10 @@
 #' @description
 #' Database with the list of amenities available on OpenStreetMap.
 #'
-#'
 #' @family datasets
 #' @family amenity
 #'
 #' @encoding UTF-8
-#'
 #'
 #' @name osm_amenities
 #'
@@ -22,14 +20,13 @@
 #'   \item{amenity}{The name of the amenity}
 #' }
 #'
-#'
 #' @details
 #'
 #' ```{r, echo=FALSE}
 #'
 #' t <- nominatimlite::osm_amenities
 #'
-#' knitr::kable(t)
+#' knitr::kable(t, col.names = c("**category**", "**amenity**"))
 #'
 #'
 #' ```

@@ -16,8 +16,10 @@ test_that("Returning not reachable", {
   expect_true(obj$query == "xbzbzbzoa aiaia")
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "lat", "lon"))
-  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
-  == c("character", rep("numeric", 2))))
+  expect_true(all(
+    vapply(obj, class, FUN.VALUE = character(1))
+    == c("character", rep("numeric", 2))
+  ))
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
@@ -56,8 +58,10 @@ test_that("Returning empty query", {
   expect_true(obj$query == "grit_bin")
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "lat", "lon"))
-  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
-  == c("character", rep("numeric", 2))))
+  expect_true(all(
+    vapply(obj, class, FUN.VALUE = character(1))
+    == c("character", rep("numeric", 2))
+  ))
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 

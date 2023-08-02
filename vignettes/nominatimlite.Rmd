@@ -9,6 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<!-- nominatimlite.Rmd is generated from nominatimlite.Rmd.orig. Please edit that file -->
+
 
 
 The goal of `nominatimlite` is to provide a light interface for geocoding
@@ -67,10 +69,7 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-<div class="figure">
-<img src="./pizzahut-1.png" alt="Pizza Hut in California"  />
-<p class="caption">Pizza Hut in California</p>
-</div>
+![Pizza Hut in California](../man/figures/README-pizzahut-1.png)
 
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
@@ -83,11 +82,7 @@ ggplot(sol_poly) +
   geom_sf()
 ```
 
-<div class="figure">
-<img src="./sol-1.png" alt="The Statue of Liberty"  />
-<p class="caption">The Statue of Liberty</p>
-</div>
-
+![The Statue of Liberty](../man/figures/README-statue_liberty-1.png)
 
 ### Geocoding and reverse geocoding
 

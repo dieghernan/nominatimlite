@@ -2,7 +2,7 @@
 #'
 #' @description
 #'
-#' Create a \pkg{sf} polygon object from the coordinates of a bounding box
+#' Create a \CRANpkg{sf} polygon object from the coordinates of a bounding box
 #'
 #' @param bbox numeric vector of 4 elements representing the coordinates of the
 #'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`
@@ -52,13 +52,7 @@
 #'   geom_sf(data = sfobj, fill = "wheat")
 #' }
 #' @export
-
-
-bbox_to_poly <- function(bbox = NA,
-                         xmin = NA,
-                         ymin = NA,
-                         xmax = NA,
-                         ymax = NA,
+bbox_to_poly <- function(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA,
                          crs = 4326) {
   if (!anyNA(bbox) && length(bbox) != 4) {
     stop(
@@ -68,7 +62,6 @@ bbox_to_poly <- function(bbox = NA,
   }
 
   # If no bbox check x and y values
-
   if (anyNA(bbox)) {
     bbox <- as.double(c(xmin, ymin, xmax, ymax))
 
@@ -76,8 +69,6 @@ bbox_to_poly <- function(bbox = NA,
       stop("xmin, ymin, xmax, ymax can't be NA, if bbox is not provided")
     }
   }
-
-
 
   bbox_double <- as.double(bbox)
   names(bbox_double) <- c("xmin", "ymin", "xmax", "ymax")

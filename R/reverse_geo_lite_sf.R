@@ -3,8 +3,8 @@
 #' @description
 #' Generates an address from a latitude and longitude. Latitudes must be
 #' between `[-90, 90]` and longitudes between `[-180, 180]`. This function
-#' returns the \pkg{sf} spatial object associated with the query, see
-#' [reverse_geo_lite()] for retrieving the data in `tibble` format.
+#' returns the \CRANpkg{sf} spatial object associated with the query, see
+#' [reverse_geo_lite()] for retrieving the data in \CRANpkg{tibble} format.
 #'
 #' @inheritParams reverse_geo_lite
 #' @inheritParams geo_lite_sf

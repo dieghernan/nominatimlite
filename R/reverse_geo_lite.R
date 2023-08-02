@@ -3,9 +3,9 @@
 #' @description
 #' Generates an address from a latitude and longitude. Latitudes must be
 #' between `[-90, 90]` and longitudes between `[-180, 180]`. This
-#' function returns the `tibble` associated with the query, see
+#' function returns the \CRANpkg{tibble} associated with the query, see
 #' [reverse_geo_lite_sf()] for retrieving the data as a spatial object
-#' (\pkg{sf}) format).
+#' (\CRANpkg{sf}) format).
 #'
 #' @param lat  latitude values in numeric format. Must be in the range
 #'   `[-90, 90]`.
@@ -42,7 +42,7 @@
 #'  18, "building"
 #'  )
 #'
-#' knitr::kable(t)
+#' knitr::kable(t, col.names = paste0("**", names(t), "**"))
 #'
 #'
 #' ```

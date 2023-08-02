@@ -11,8 +11,10 @@ test_that("Returning empty query", {
   expect_true(obj$query == "xbzbzbzoa aiaia")
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "lat", "lon"))
-  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
-  == c("character", rep("numeric", 2))))
+  expect_true(all(
+    vapply(obj, class, FUN.VALUE = character(1))
+    == c("character", rep("numeric", 2))
+  ))
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
@@ -50,9 +52,11 @@ test_that("Checking query", {
   skip_if_offline()
 
 
-  expect_message(obj <- geo_lite(c("Madrid", "Barcelona"),
-    limit = 51
-  ), "50 results")
+  expect_message(
+    obj <- geo_lite(c("Madrid", "Barcelona"),
+      limit = 51
+    ), "50 results"
+  )
 
 
   expect_identical(names(obj), c("query", "lat", "lon", "address"))
@@ -83,18 +87,24 @@ test_that("Checking query", {
   expect_gt(ncol(obj), 4)
 
 
-  expect_gt(nrow(geo_lite("Madrid",
-    limit = 10,
-    custom_query = list(countrycode = "es")
-  )), 4)
+  expect_gt(
+    nrow(geo_lite("Madrid",
+      limit = 10,
+      custom_query = list(countrycode = "es")
+    )), 4
+  )
 
-  expect_equal(nrow(geo_lite("Madrid",
-    custom_query = list(countrycode = "es")
-  )), 1)
+  expect_equal(
+    nrow(geo_lite("Madrid",
+      custom_query = list(countrycode = "es")
+    )), 1
+  )
 
-  expect_equal(nrow(geo_lite("Madrid",
-    custom_query = list(extratags = 1)
-  )), 1)
+  expect_equal(
+    nrow(geo_lite("Madrid",
+      custom_query = list(extratags = 1)
+    )), 1
+  )
 })
 
 test_that("Dedupe", {
@@ -103,10 +113,12 @@ test_that("Dedupe", {
   skip_if_offline()
 
   # Dupes
-  expect_silent(dup <- geo_lite(rep(c("Pentagon", "Barcelona"), 50),
-    limit = 1,
-    verbose = FALSE
-  ))
+  expect_silent(
+    dup <- geo_lite(rep(c("Pentagon", "Barcelona"), 50),
+      limit = 1,
+      verbose = FALSE
+    )
+  )
 
   expect_equal(nrow(dup), 100)
   expect_equal(as.character(dup$query), rep(c("Pentagon", "Barcelona"), 50))

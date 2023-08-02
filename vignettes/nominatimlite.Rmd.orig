@@ -9,6 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<!-- nominatimlite.Rmd is generated from nominatimlite.Rmd.orig. Please edit that file -->
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -19,6 +21,7 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE
 )
+library(nominatimlite)
 ```
 
 The goal of `nominatimlite` is to provide a light interface for geocoding
@@ -57,7 +60,7 @@ that presents similar features:
 
 With `nominatimlite` you can extract spatial objects easily:
 
-```{r pizzahut, fig.alt="Pizza Hut in California", fig.cap="Pizza Hut in California"}
+```{r pizzahut, eval=FALSE}
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
@@ -76,10 +79,12 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
+![Pizza Hut in California](../man/figures/README-pizzahut-1.png)
+
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
 
-```{r sol, fig.alt="The Statue of Liberty", fig.cap="The Statue of Liberty"}
+```{r sol, eval=FALSE}
 
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
@@ -88,6 +93,7 @@ ggplot(sol_poly) +
 
 ```
 
+![The Statue of Liberty](../man/figures/README-statue_liberty-1.png)
 
 ### Geocoding and reverse geocoding
 

@@ -55,9 +55,11 @@ test_that("Checking query", {
   skip_if_offline()
 
 
-  expect_message(obj <- geo_lite_sf(c("Madrid", "Barcelona"),
-    limit = 51
-  ), "50 results")
+  expect_message(
+    obj <- geo_lite_sf(c("Madrid", "Barcelona"),
+      limit = 51
+    ), "50 results"
+  )
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
@@ -92,18 +94,24 @@ test_that("Checking query", {
   expect_gt(ncol(obj), 4)
 
 
-  expect_gt(nrow(geo_lite_sf("Madrid",
-    limit = 10,
-    custom_query = list(countrycode = "es")
-  )), 4)
+  expect_gt(
+    nrow(geo_lite_sf("Madrid",
+      limit = 10,
+      custom_query = list(countrycode = "es")
+    )), 4
+  )
 
-  expect_equal(nrow(geo_lite_sf("Madrid",
-    custom_query = list(countrycode = "es")
-  )), 1)
+  expect_equal(
+    nrow(geo_lite_sf("Madrid",
+      custom_query = list(countrycode = "es")
+    )), 1
+  )
 
-  expect_equal(nrow(geo_lite_sf("Madrid",
-    custom_query = list(extratags = 1)
-  )), 1)
+  expect_equal(
+    nrow(geo_lite_sf("Madrid",
+      custom_query = list(extratags = 1)
+    )), 1
+  )
 })
 
 test_that("Dedupe", {

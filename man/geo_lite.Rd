@@ -43,8 +43,9 @@ A \code{tibble} with the results.
 }
 \description{
 Geocodes addresses given as character values. This
-function returns the \code{tibble} associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}}
-for retrieving the data as a spatial object (\pkg{sf} format).
+function returns the \CRANpkg{tibble} associated with the query, see
+\code{\link[=geo_lite_sf]{geo_lite_sf()}} for retrieving the data as a spatial object
+(\CRANpkg{sf} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

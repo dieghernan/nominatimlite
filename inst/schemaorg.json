@@ -1,0 +1,51 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "type": "SoftwareSourceCode",
+      "author": {
+        "id": "https://orcid.org/0000-0001-8457-4658"
+      },
+      "codeRepository": "https://github.com/dieghernan/nominatimlite",
+      "contributor": {
+        "id": "https://orcid.org/0000-0002-0375-5156",
+        "type": "Person",
+        "familyName": "Lacko",
+        "givenName": "Jindra"
+      },
+      "copyrightHolder": {
+        "id": "https://orcid.org/0000-0001-8457-4658",
+        "type": "Person",
+        "email": "diego.hernangomezherrero@gmail.com",
+        "familyName": "Hernangómez",
+        "givenName": "Diego"
+      },
+      "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.",
+      "license": "https://spdx.org/licenses/MIT",
+      "name": "nominatimlite: Interface with 'Nominatim' API Service",
+      "programmingLanguage": {
+        "type": "ComputerLanguage",
+        "name": "R",
+        "url": "https://r-project.org"
+      },
+      "provider": {
+        "id": "https://cran.r-project.org",
+        "type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "runtimePlatform": "R version 4.3.1 (2023-06-16)",
+      "version": "0.2.0"
+    },
+    {
+      "id": "https://doi.org/10.5281/zenodo.5113195",
+      "type": "SoftwareSourceCode",
+      "author": {
+        "type": "Person",
+        "familyName": "Hernangómez",
+        "givenName": "Diego"
+      },
+      "name": "{nominatimlite}: Interface with {Nominatim} {API} Service"
+    }
+  ]
+}

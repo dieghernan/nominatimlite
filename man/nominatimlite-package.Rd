@@ -24,7 +24,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Jindra Lacko [contributor, reviewer]
+  \item Jindra Lacko (\href{https://orcid.org/0000-0002-0375-5156}{ORCID}) [contributor, reviewer]
 }
 
 }

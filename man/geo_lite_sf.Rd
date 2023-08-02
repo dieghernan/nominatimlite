@@ -42,9 +42,9 @@ A \code{sf} object with the results.
 }
 \description{
 This function allows you to geocode addresses and return the corresponding
-spatial object. This function returns the \pkg{sf} spatial object
+spatial object. This function returns the \CRANpkg{sf} spatial object
 associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for retrieving the data in
-\code{tibble} format.
+\CRANpkg{tibble} format.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

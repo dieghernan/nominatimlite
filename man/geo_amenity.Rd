@@ -55,9 +55,9 @@ A \code{tibble} with the results.
 This function search amenities as defined by OpenStreetMap on a restricted
 area defined by a bounding box in the form of
 \verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
-function returns the \code{tibble} associated with the query, see
+function returns the \CRANpkg{tibble} associated with the query, see
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
-(\pkg{sf} format).
+(\CRANpkg{sf} format).
 }
 \details{
 Bounding boxes can be located using different online tools, as

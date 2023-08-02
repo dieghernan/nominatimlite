@@ -22,7 +22,7 @@ Database with the list of amenities available on OpenStreetMap.
 }
 \details{
 \tabular{ll}{
-   category \tab amenity \cr
+   \strong{category} \tab \strong{amenity} \cr
    Sustenance \tab bar \cr
    Sustenance \tab biergarten \cr
    Sustenance \tab cafe \cr

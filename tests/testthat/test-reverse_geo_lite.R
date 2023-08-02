@@ -44,8 +44,10 @@ test_that("Returning empty query", {
   expect_true(obj$lon == 179.9999)
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("address", "lat", "lon"))
-  expect_true(all(vapply(obj, class, FUN.VALUE = character(1))
-  == c("character", rep("numeric", 2))))
+  expect_true(all(
+    vapply(obj, class, FUN.VALUE = character(1))
+    == c("character", rep("numeric", 2))
+  ))
   expect_true(is.na(obj$address))
 
   expect_message(

@@ -2,8 +2,9 @@
 #'
 #' @description
 #' Geocodes addresses given as character values. This
-#' function returns the `tibble` associated with the query, see [geo_lite_sf()]
-#' for retrieving the data as a spatial object (\pkg{sf} format).
+#' function returns the \CRANpkg{tibble} associated with the query, see
+#' [geo_lite_sf()] for retrieving the data as a spatial object
+#' (\CRANpkg{sf} format).
 #'
 #' @param address character with single line address
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses

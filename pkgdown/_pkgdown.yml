@@ -1,9 +1,5 @@
 url: 'https://dieghernan.github.io/nominatimlite'
 
-navbar:
-  type: dark
-  bg: primary
-
 template:
   bootstrap: 5
   package: gitdevr

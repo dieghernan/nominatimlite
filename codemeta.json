@@ -34,7 +34,8 @@
     {
       "@type": "Person",
       "givenName": "Jindra",
-      "familyName": "Lacko"
+      "familyName": "Lacko",
+      "@id": "https://orcid.org/0000-0002-0375-5156"
     }
   ],
   "copyrightHolder": [
@@ -186,7 +187,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "280.025KB",
+  "fileSize": "251.165KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

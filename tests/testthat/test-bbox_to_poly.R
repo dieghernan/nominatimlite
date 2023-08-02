@@ -21,8 +21,11 @@ test_that("Bbox", {
       ymax = 4
     )
   ) == c(1, 3, 2, 4)))
-  expect_false(sf::st_crs(bbox_to_poly(c(1, 2, 3, 4))) ==
-    sf::st_crs(bbox_to_poly(c(1, 2, 3, 4), crs = 3857)))
+
+  crsa <- sf::st_crs(bbox_to_poly(c(1, 2, 3, 4)))
+  crsb <- sf::st_crs(bbox_to_poly(c(1, 2, 3, 4), crs = 3857))
+
+  expect_false(identical(crsa, crsb))
 })
 
 test_that("Format output", {
