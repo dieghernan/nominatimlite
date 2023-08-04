@@ -79,7 +79,7 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-![Pizza Hut in California](../man/figures/README-pizzahut-1.png)
+![Pizza Hut in California](../man/figures/README-pizzahut-1.png){width="100%"}
 
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
@@ -93,7 +93,7 @@ ggplot(sol_poly) +
 
 ```
 
-![The Statue of Liberty](../man/figures/README-statue_liberty-1.png)
+![The Statue of Liberty](../man/figures/README-statue_liberty-1.png){width="100%"}
 
 ### Geocoding and reverse geocoding
 
