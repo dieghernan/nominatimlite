@@ -97,15 +97,19 @@ bbox <- c(-3.888954, 40.311977, -3.517916, 40.643729)
 
 rest_pub <- geo_amenity_sf(bbox, c("restaurant", "pub"), limit = 50)
 
-ggplot(rest_pub) +
-  geom_sf()
+if (any(!sf::st_is_empty(rest_pub))) {
+  ggplot(rest_pub) +
+    geom_sf()
+}
 
 # Hospital as polygon
 
 hosp <- geo_amenity_sf(bbox, "hospital", points_only = FALSE)
 
-ggplot(hosp) +
-  geom_sf()
+if (any(!sf::st_is_empty(hosp))) {
+  ggplot(hosp) +
+    geom_sf()
+}
 }
 \dontshow{\}) # examplesIf}
 }

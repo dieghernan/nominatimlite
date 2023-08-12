@@ -1,10 +1,10 @@
 CMD
 Cambon
+CodeFactor
 DOI
 Geocode
 Geocodes
 Geocoding
-Hernangomez
 Mapbox
 Nominatim
 ORCID
@@ -28,9 +28,8 @@ geolocated
 ie
 json
 lon
-nominatimlite’
 osm
-pizzahut
+osmdata
 rlang
 stripclub
 swingerclub

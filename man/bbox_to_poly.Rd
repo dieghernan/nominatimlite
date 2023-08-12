@@ -44,15 +44,18 @@ sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj
 
-bbox <- sf::st_bbox(sfobj)
+# Need at least one non-empty object
+if (any(!sf::st_is_empty(sfobj))) {
+  bbox <- sf::st_bbox(sfobj)
 
-bbox
+  bbox
 
-bbox_sfobj <- bbox_to_poly(bbox)
+  bbox_sfobj <- bbox_to_poly(bbox)
 
-ggplot(bbox_sfobj) +
-  geom_sf(fill = "lightblue", alpha = 0.5) +
-  geom_sf(data = sfobj, fill = "wheat")
+  ggplot(bbox_sfobj) +
+    geom_sf(fill = "lightblue", alpha = 0.5) +
+    geom_sf(data = sfobj, fill = "wheat")
+}
 }
 \dontshow{\}) # examplesIf}
 }

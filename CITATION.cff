@@ -8,7 +8,7 @@ message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
-version: 0.2.0
+version: 0.2.0.9000
 doi: 10.5281/zenodo.5113195
 abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
   Extract coordinates from addresses, find places near a set of coordinates, search
@@ -27,7 +27,7 @@ preferred-citation:
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
   year: '2023'
-  version: 0.2.0
+  version: 0.2.0.9000
   doi: 10.5281/zenodo.5113195
   url: https://dieghernan.github.io/nominatimlite/
   abstract: Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>.
@@ -178,27 +178,6 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2023'
-- type: software
-  title: osmdata
-  abstract: 'osmdata: Import ''OpenStreetMap'' Data as Simple Features or Spatial
-    Objects'
-  notes: Suggests
-  url: https://docs.ropensci.org/osmdata/
-  repository: https://CRAN.R-project.org/package=osmdata
-  authors:
-  - family-names: Padgham
-    given-names: Mark
-    email: mark.padgham@email.com
-  - family-names: Rudis
-    given-names: Bob
-  - family-names: Lovelace
-    given-names: Robin
-  - family-names: Salmon
-    given-names: Maëlle
-  - family-names: Maspons
-    given-names: Joan
-    orcid: https://orcid.org/0000-0003-2286-8727
   year: '2023'
 - type: software
   title: rmarkdown

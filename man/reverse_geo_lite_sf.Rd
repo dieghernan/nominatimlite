@@ -104,8 +104,10 @@ Col_sf <- reverse_geo_lite_sf(
   points_only = FALSE
 )
 
-ggplot(Col_sf) +
-  geom_sf()
+if (any(!sf::st_is_empty(Col_sf))) {
+  ggplot(Col_sf) +
+    geom_sf()
+}
 
 # City of Rome - Zoom 10
 
@@ -116,20 +118,10 @@ Rome_sf <- reverse_geo_lite_sf(
   points_only = FALSE
 )
 
-ggplot(Rome_sf) +
-  geom_sf()
-
-# County - Zoom 8
-
-County_sf <- reverse_geo_lite_sf(
-  lat = Coliseum$lat,
-  lon = Coliseum$lon,
-  custom_query = list(zoom = 8),
-  points_only = FALSE
-)
-
-ggplot(County_sf) +
-  geom_sf()
+if (any(!sf::st_is_empty(Rome_sf))) {
+  ggplot(Rome_sf) +
+    geom_sf()
+}
 }
 \dontshow{\}) # examplesIf}
 }
