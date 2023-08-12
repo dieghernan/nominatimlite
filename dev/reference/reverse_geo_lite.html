@@ -16,15 +16,17 @@ reverse_geo_lite_sf() for retrieving the data as a spatial object
   gtag('js', new Date());
 
   gtag('config', 'G-5SLV8G8QD4');
-</script></head><body>
+</script><!-- fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&amp;family=Inter:wght@100..900&amp;family=Inter+Tight:wght@100..900&amp;display=swap" rel="stylesheet"><!-- gitdevr tweaks --><link href="../BS5/gitdevr.css" rel="stylesheet"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
-    <a class="navbar-brand me-2" href="../index.html">nominatimlite</a>
+    <a class="navbar-brand me-2" href="../index.html">
+      <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" class="d-inline-block me-1">
+      nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.6.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.2.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,9 +67,9 @@ reverse_geo_lite_sf() for retrieving the data as a spatial object
     <div class="ref-description section level2">
     <p>Generates an address from a latitude and longitude. Latitudes must be
 between <code>[-90, 90]</code> and longitudes between <code>[-180, 180]</code>. This
-function returns the <code>tibble</code> associated with the query, see
+function returns the <a href="https://CRAN.R-project.org/package=tibble" class="external-link"><span class="pkg">tibble</span></a> associated with the query, see
 <code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code> for retrieving the data as a spatial object
-(<span class="pkg">sf</span>) format).</p>
+(<a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a>) format).</p>
     </div>
 
     <div class="section level2">
@@ -135,7 +137,7 @@ parameters to be passed to <code>custom_query</code>.</p>
 
 
 <p>Use the option <code>custom_query = list(zoom = 3)</code> to adjust the output. Some
-equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><td>address_detail</td></tr><tr><td>3</td><td>country</td></tr><tr><td>5</td><td>state</td></tr><tr><td>8</td><td>county</td></tr><tr><td>10</td><td>city</td></tr><tr><td>14</td><td>suburb</td></tr><tr><td>16</td><td>major streets</td></tr><tr><td>17</td><td>major and minor streets</td></tr><tr><td>18</td><td>building</td></tr></table></div>
+equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoom</strong></td><td><strong>address_detail</strong></td></tr><tr><td>3</td><td>country</td></tr><tr><td>5</td><td>state</td></tr><tr><td>8</td><td>county</td></tr><tr><td>10</td><td>city</td></tr><tr><td>14</td><td>suburb</td></tr><tr><td>16</td><td>major streets</td></tr><tr><td>17</td><td>major and minor streets</td></tr><tr><td>18</td><td>building</td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code>, <code><a href="https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html" class="external-link">tidygeocoder::reverse_geo()</a></code></p>
@@ -224,7 +226,8 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td>zoom</td><t
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> using the <a href="https://dieghernan.github.io/gitdevr/" class="external-link">gitdevr</a> template.</p>
 </div>
 
     </footer></div>
