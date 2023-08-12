@@ -22,32 +22,37 @@
 #' \donttest{
 #' library(ggplot2)
 #'
+#' # Coliseum coords
+#' col_lon <- 12.49309
+#' col_lat <- 41.89026
 #'
-#' Coliseum <- geo_lite("Coliseo, Rome, Italy")
-#'
-#' # Coliseum
-#' Col_sf <- reverse_geo_lite_sf(
-#'   lat = Coliseum$lat,
-#'   lon = Coliseum$lon,
+#' # Coliseum as polygon
+#' col_sf <- reverse_geo_lite_sf(
+#'   lat = col_lat,
+#'   lon = col_lon,
 #'   points_only = FALSE
 #' )
 #'
-#' if (any(!sf::st_is_empty(Col_sf))) {
-#'   ggplot(Col_sf) +
+#' dplyr::glimpse(col_sf)
+#'
+#' if (any(!sf::st_is_empty(col_sf))) {
+#'   ggplot(col_sf) +
 #'     geom_sf()
 #' }
 #'
-#' # City of Rome - Zoom 10
+#' # City of Rome - same coords with zoom 10
 #'
-#' Rome_sf <- reverse_geo_lite_sf(
-#'   lat = Coliseum$lat,
-#'   lon = Coliseum$lon,
+#' rome_sf <- reverse_geo_lite_sf(
+#'   lat = col_lat,
+#'   lon = col_lon,
 #'   custom_query = list(zoom = 10),
 #'   points_only = FALSE
 #' )
 #'
-#' if (any(!sf::st_is_empty(Rome_sf))) {
-#'   ggplot(Rome_sf) +
+#' dplyr::glimpse(rome_sf)
+#'
+#' if (any(!sf::st_is_empty(rome_sf))) {
+#'   ggplot(rome_sf) +
 #'     geom_sf()
 #' }
 #' }

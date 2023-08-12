@@ -7,6 +7,8 @@ vignette: >
   %\VignetteIndexEntry{Get started with nominatimlite}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: references.bib
+link-citations: true
 ---
 
 <!-- nominatimlite.Rmd is generated from nominatimlite.Rmd.orig. Please edit that file -->
@@ -47,10 +49,10 @@ accessible, so `nominatimlite` uses base functions to overcome this limitation.
 There are other packages much more complete and mature than `nominatimlite`,
 that presents similar features:
 
--   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse
-    Cambon. Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for
-    geocoding and reverse geocoding.
--   [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great for
+-   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/)
+    [@R-tidygeocoder]. Allows to interface with Nominatim, Google, TomTom,
+    Mapbox, etc. for geocoding and reverse geocoding.
+-   [`osmdata`](https://docs.ropensci.org/osmdata/) [@R-osmdata]. Great for
     downloading spatial data from OpenStreetMap, via the [Overpass
     API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
@@ -93,7 +95,8 @@ ggplot(sol_poly) +
 
 ```
 
-![The Statue of Liberty](../man/figures/README-statue_liberty-1.png){width="100%"}
+![The Statue of
+Liberty](../man/figures/README-statue_liberty-1.png){width="100%"}
 
 ### Geocoding and reverse geocoding
 
@@ -145,3 +148,5 @@ knitr::kable(reverse)
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the
 parameters available.
+
+## References

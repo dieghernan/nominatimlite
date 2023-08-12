@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nominatimlite <a href='https://dieghernan.github.io/nominatimlite/'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# nominatimlite <a href='https://dieghernan.github.io/nominatimlite/'><img src="man/figures/logo.png" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -47,11 +47,13 @@ overcome this limitation.
 There are other packages much more complete and mature than
 `nominatimlite`, that presents similar features:
 
-- [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) by Jesse
-  Cambon. Allows to interface with Nominatim, Google, TomTom, Mapbox,
-  etc. for geocoding and reverse geocoding.
-- [`osmdata`](https://docs.ropensci.org/osmdata/) by Mark Padgham. Great
-  for downloading spatial data from OpenStreetMap, via the [Overpass
+- [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) ([Cambon
+  et al. 2021](#ref-R-tidygeocoder)). Allows to interface with
+  Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse
+  geocoding.
+- [`osmdata`](https://docs.ropensci.org/osmdata/) ([Padgham et al.
+  2017](#ref-R-osmdata)). Great for downloading spatial data from
+  OpenStreetMap, via the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
 ## Installation
@@ -210,3 +212,26 @@ A BibTeX entry for LaTeX users is
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on sf format.},
     }
+
+## References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-R-tidygeocoder" class="csl-entry">
+
+Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
+Possenriede. 2021. “<span class="nocase">tidygeocoder</span>: An R
+Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
+<https://doi.org/10.21105/joss.03544>.
+
+</div>
+
+<div id="ref-R-osmdata" class="csl-entry">
+
+Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
+“<span class="nocase">osmdata</span>.” *Journal of Open Source Software*
+2 (14): 305. <https://doi.org/10.21105/joss.00305>.
+
+</div>
+
+</div>
