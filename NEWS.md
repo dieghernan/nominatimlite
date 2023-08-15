@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.2.1
 
 -   Remove **osmdata** from Suggests.
 -   Fix examples.
