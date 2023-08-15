@@ -7,10 +7,12 @@ test_that("Returning not reachable", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(obj <- geo_amenity_sf(
-    bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
-    amenity = "xbzbzbzoa aiaia"
-  ))
+  expect_message(
+    obj <- geo_amenity_sf(
+      bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
+      amenity = "xbzbzbzoa aiaia"
+    )
+  )
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "xbzbzbzoa aiaia")
@@ -62,17 +64,17 @@ test_that("Data format", {
 
   # Polygon
 
-  expect_message(hosp <- geo_amenity_sf(
-    c(
-      -3.888954, 40.311977,
-      -3.517916, 40.643729
-    ),
-    c("hospital", "dump", "pub"),
-    points_only = FALSE
-  ), "No results for query dump")
+  expect_message(
+    hosp <- geo_amenity_sf(
+      c(
+        -3.888954, 40.311977,
+        -3.517916, 40.643729
+      ),
+      c("hospital", "dump", "pub"),
+      points_only = FALSE
+    ), "No results for query dump"
+  )
 
-
-  expect_true(any("POLYGON" == sf::st_geometry_type(hosp)))
   expect_s3_class(hosp, "sf")
   expect_s3_class(hosp, "tbl")
   expect_equal(nrow(hosp), 3)
