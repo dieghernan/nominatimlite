@@ -4,15 +4,6 @@
     <loc>https://dieghernan.github.io/nominatimlite/404.html</loc>
   </url>
   <url>
-    <loc>https://dieghernan.github.io/nominatimlite/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://dieghernan.github.io/nominatimlite/articles/index.html</loc>
   </url>
   <url>
@@ -22,7 +13,16 @@
     <loc>https://dieghernan.github.io/nominatimlite/authors.html</loc>
   </url>
   <url>
+    <loc>https://dieghernan.github.io/nominatimlite/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>https://dieghernan.github.io/nominatimlite/index.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/LICENSE.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/news/index.html</loc>
@@ -55,10 +55,10 @@
     <loc>https://dieghernan.github.io/nominatimlite/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://dieghernan.github.io/nominatimlite/reference/nominatim_check_access.html</loc>
+    <loc>https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.html</loc>
   </url>
   <url>
-    <loc>https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.html</loc>
+    <loc>https://dieghernan.github.io/nominatimlite/reference/nominatim_check_access.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/osm_amenities.html</loc>
