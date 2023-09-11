@@ -181,14 +181,14 @@ outside the provided bounding box.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query        lat   lon address                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Sardi's, 234, West 44th Street, Theater District, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Amor Loco, 134, West 46th Street, Times Square, Manhat…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several amenities</span></span></span>
 <span class="r-in"><span><span class="fu">geo_amenity</span><span class="op">(</span>bbox <span class="op">=</span> <span class="va">bbox</span>, amenity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"restaurant"</span>, <span class="st">"pub"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query        lat   lon address                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Sardi's, 234, West 44th Street, Theater District, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Amor Loco, 134, West 46th Street, Times Square, Manhat…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Bar 54, 141, West 44th Street, Theater District, Manha…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Increase limit and use with strict</span></span></span>
@@ -201,20 +201,20 @@ outside the provided bounding box.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Sardi's, 234, West 44th Street, Theater District, Man…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Amor Loco, 134, West 46th Street, Times Square, Manha…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Dave &amp; Buster's, 234, West 42nd Street, Theater Distr…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Applebee's, 234, West 42nd Street, Theater District, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Planet Hollywood, 1540, Broadway, Times Square, Manha…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Haru Sushi, 229, West 43rd Street, Theater District, …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Brooklyn Deli, 1501, Broadway, Theater District, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Dallas BBQ, 241, West 42nd Street, Theater District, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Villa Fresh Italian Kitchen, 263, West 42nd Street, T…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Hard Rock Cafe, 1501, Broadway, Theater District, Man…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bubba Gump Shrimp Co., 1501, Broadway, Theater Distri…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Carmine's, 200, West 44th Street, Theater District, M…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> The Lambs Club, West 44th Street, Theater District, M…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Haru Sushi, 229, West 43rd Street, Theater District, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Guy’s American Kitchen &amp; Bar, 220, West 44th Street, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bond45, West 45th Street, Times Square, Manhattan, Ne…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Bar 54, 141, West 44th Street, Theater District, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> BXL Cafe, 125, West 43rd Street, Theater District, Ma…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O'Lunney's, 145, West 45th Street, Times Square, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Jimmy's Corner, 140, West 44th Street, Theater Distri…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Times Square, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Perfect Pint, 123, West 45th Street, Times Square, Ma…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Times Square, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Perfect Pint, 123, West 45th Street, Times Square, Ma…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> O'Lunney's, 145, West 45th Street, Times Square, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Jimmy's Corner, 140, West 44th Street, Theater Distri…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> BXL Cafe, 125, West 43rd Street, Theater District, Ma…</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
