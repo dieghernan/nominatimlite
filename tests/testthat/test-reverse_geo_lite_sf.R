@@ -28,7 +28,7 @@ test_that("Messages", {
   expect_true(sf::st_is_empty(obj))
   expect_identical(sf::st_crs(obj), sf::st_crs(4326))
 
-  expect_message(obj <- reverse_geo_lite_sf(200, 0))
+  expect_message(obj <- reverse_geo_lite_sf(200, 200))
   expect_true(nrow(obj) == 1)
   expect_true(obj$lat == 90)
   expect_true(is.na(obj$address))
