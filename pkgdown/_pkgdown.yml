@@ -10,9 +10,6 @@ template:
       creator: "@dhernangomez"
       card: summary_large_image
 
-development:
-  mode: auto
-
 repo:
   branch: main
 
@@ -42,11 +39,6 @@ reference:
   desc: These functions return <code>sf</code> objects.
   contents:
   - has_concept("spatial")
-
-- title: Datasets
-  desc: Helper datasets.
-  contents:
-  - has_concept("datasets")
 
 - title: About the package
   contents:

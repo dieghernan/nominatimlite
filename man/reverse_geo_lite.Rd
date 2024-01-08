@@ -11,6 +11,7 @@ reverse_geo_lite(
   full_results = FALSE,
   return_coords = TRUE,
   verbose = FALSE,
+  progressbar = TRUE,
   custom_query = list()
 )
 }
@@ -31,11 +32,14 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
+\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
+the progress of the function.}
+
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
 }
 \value{
-A \code{tibble} with the results.
+A \CRANpkg{tibble} with the results.
 }
 \description{
 Generates an address from a latitude and longitude. Latitudes must be

@@ -6,7 +6,7 @@
 #' \CRANpkg{sf} spatial object associated with the query, see
 #' [geo_address_lookup()] for retrieving the data in \CRANpkg{tibble} format.
 #'
-#' @return A `sf` object with the results.
+#' @return A \CRANpkg{sf} object with the results.
 #'
 #' @inheritParams geo_lite_sf
 #' @inheritParams geo_address_lookup

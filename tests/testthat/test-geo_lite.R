@@ -116,6 +116,7 @@ test_that("Dedupe", {
   expect_silent(
     dup <- geo_lite(rep(c("Pentagon", "Barcelona"), 50),
       limit = 1,
+      progressbar = FALSE,
       verbose = FALSE
     )
   )
@@ -128,4 +129,20 @@ test_that("Dedupe", {
 
   expect_equal(nrow(dedup), 2)
   expect_equal(as.character(dedup$query), rep(c("Pentagon", "Barcelona"), 1))
+})
+
+
+test_that("Progress bar", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+  # No pbar
+  expect_silent(geo_lite("Madrid"))
+  expect_silent(geo_lite("Madrid", progressbar = TRUE))
+
+  # Get a pbar
+  expect_output(aa <- geo_lite(c("Madrid", "Barcelona")), "1/2")
+
+  # Not
+  expect_silent(aa <- geo_lite(c("Madrid", "Barcelona"), progressbar = FALSE))
 })

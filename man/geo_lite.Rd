@@ -12,6 +12,7 @@ geo_lite(
   full_results = FALSE,
   return_addresses = TRUE,
   verbose = FALSE,
+  progressbar = TRUE,
   custom_query = list()
 )
 }
@@ -35,11 +36,14 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
+\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
+the progress of the function.}
+
 \item{custom_query}{A named list with API-specific parameters to be used
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 }
 \value{
-A \code{tibble} with the results.
+A \CRANpkg{tibble} with the results.
 }
 \description{
 Geocodes addresses given as character values. This
@@ -73,8 +77,6 @@ geo_lite(c("Madrid", "Barcelona"),
 Geocoding strings: 
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_address_lookup}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_amenity}()},
 \code{\link{geo_lite_sf}()}
 }
 \concept{geocoding}

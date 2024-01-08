@@ -2,7 +2,7 @@
 % Please edit documentation in R/bbox_to_poly.R
 \name{bbox_to_poly}
 \alias{bbox_to_poly}
-\title{Create a bounding box \code{sf} object}
+\title{Create a bounding box \CRANpkg{sf} object}
 \usage{
 bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 }
@@ -64,14 +64,7 @@ if (any(!sf::st_is_empty(sfobj))) {
 
 Get spatial (\code{sf}) objects: 
 \code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
-
-Search amenities: 
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_amenity}()},
-\code{\link{osm_amenities}}
 }
-\concept{amenity}
 \concept{spatial}

@@ -2,13 +2,13 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nominatimlite",
-  "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on 'sf' format.",
+  "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on 'sf' format.",
   "name": "nominatimlite: Interface with 'Nominatim' API Service",
   "relatedLink": ["https://dieghernan.github.io/nominatimlite/", "https://CRAN.R-project.org/package=nominatimlite"],
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.1",
+  "version": "0.2.1.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -155,6 +155,18 @@
     },
     "4": {
       "@type": "SoftwareApplication",
+      "identifier": "lifecycle",
+      "name": "lifecycle",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=lifecycle"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
       "version": ">= 0.9.0",
@@ -166,7 +178,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "5": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
@@ -175,11 +187,11 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "258.67KB",
+  "fileSize": "251.765KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2023",
+      "datePublished": "2024",
       "author": [
         {
           "@type": "Person",

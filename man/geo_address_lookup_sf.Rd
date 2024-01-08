@@ -38,7 +38,7 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \code{sf} object with the results.
+A \CRANpkg{sf} object with the results.
 }
 \description{
 The lookup API allows to query the address and other details of one or
@@ -111,14 +111,11 @@ Address Lookup API:
 
 Geocoding strings: 
 \code{\link{geo_address_lookup}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_amenity}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{geo_lite}()}
 
 Get spatial (\code{sf}) objects: 
 \code{\link{bbox_to_poly}()},
-\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 }

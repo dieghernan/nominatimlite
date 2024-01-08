@@ -10,7 +10,7 @@ nominatim_check_access()
 a logical.
 }
 \description{
-Check if R has access to resources at
+Check if \strong{R} has access to resources at
 \url{https://nominatim.openstreetmap.org}.
 }
 \examples{

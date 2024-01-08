@@ -11,6 +11,7 @@ reverse_geo_lite_sf(
   full_results = FALSE,
   return_coords = TRUE,
   verbose = FALSE,
+  progressbar = TRUE,
   custom_query = list(),
   points_only = TRUE
 )
@@ -32,6 +33,9 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
+\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
+the progress of the function.}
+
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
 
@@ -40,7 +44,7 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \code{sf} object with the results.
+A \CRANpkg{sf} object with the results.
 }
 \description{
 Generates an address from a latitude and longitude. Latitudes must be
@@ -139,7 +143,6 @@ Reverse geocoding coordinates:
 Get spatial (\code{sf}) objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()}
 }
 \concept{reverse}

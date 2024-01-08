@@ -47,7 +47,7 @@
 #'
 #' ```
 #'
-#' @return A `tibble` with the results.
+#' @return A \CRANpkg{tibble} with the results.
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -78,6 +78,7 @@ reverse_geo_lite <- function(lat,
                              full_results = FALSE,
                              return_coords = TRUE,
                              verbose = FALSE,
+                             progressbar = TRUE,
                              custom_query = list()) {
   # Check inputs
   if (!is.numeric(lat) || !is.numeric(long)) {
@@ -111,8 +112,22 @@ reverse_geo_lite <- function(lat,
   )
   key <- dplyr::distinct(init_key)
 
+  # Set progress bar
+  ntot <- nrow(key)
+  # Set progress bar if n > 1
+  progressbar <- all(progressbar, ntot > 1)
+  if (progressbar) {
+    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
+  }
 
-  all_res <- lapply(seq_len(nrow(key)), function(x) {
+  seql <- seq(1, ntot, 1)
+
+
+  all_res <- lapply(seql, function(x) {
+    if (progressbar) {
+      setTxtProgressBar(pb, x)
+      cat(paste0(" (", x, "/", ntot, ")  "))
+    }
     rw <- key[x, ]
     res_single <- reverse_geo_lite_single(
       as.double(rw$lat_cap_int),
@@ -128,7 +143,7 @@ reverse_geo_lite <- function(lat,
 
     res_single
   })
-
+  if (progressbar) close(pb)
 
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(init_key[, c(1, 2)], all_res,

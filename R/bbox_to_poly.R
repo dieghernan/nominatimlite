@@ -1,4 +1,4 @@
-#' Create a bounding box `sf` object
+#' Create a bounding box \CRANpkg{sf} object
 #'
 #' @description
 #'
@@ -16,7 +16,6 @@
 #' @seealso [sf::st_as_sfc()]
 #'
 #' @family spatial
-#' @family amenity
 #'
 #' @details
 #'

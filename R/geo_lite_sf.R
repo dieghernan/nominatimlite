@@ -38,7 +38,7 @@
 #' The function is vectorized, allowing for multiple addresses to be geocoded;
 #' in case of `points_only = FALSE`  multiple geometry types may be returned.
 #'
-#' @return A `sf` object with the results.
+#' @return A \CRANpkg{sf} object with the results.
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -82,6 +82,7 @@ geo_lite_sf <- function(address,
                         return_addresses = TRUE,
                         full_results = FALSE,
                         verbose = FALSE,
+                        progressbar = TRUE,
                         custom_query = list(),
                         points_only = TRUE) {
   if (limit > 50) {
@@ -97,10 +98,25 @@ geo_lite_sf <- function(address,
   init_key <- dplyr::tibble(query = address)
   key <- unique(address)
 
+  # Set progress bar
+  ntot <- length(key)
+  # Set progress bar if n > 1
+  progressbar <- all(progressbar, ntot > 1)
+  if (progressbar) {
+    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
+  }
+
+  seql <- seq(1, ntot, 1)
+
   # Loop
-  all_res <- lapply(key, function(x) {
+  all_res <- lapply(seql, function(x) {
+    ad <- key[x]
+    if (progressbar) {
+      setTxtProgressBar(pb, x)
+      cat(paste0(" (", x, "/", ntot, ")  "))
+    }
     geo_lite_sf_single(
-      address = x,
+      address = ad,
       limit,
       return_addresses,
       full_results,
@@ -109,6 +125,8 @@ geo_lite_sf <- function(address,
       points_only
     )
   })
+
+  if (progressbar) close(pb)
 
   all_res <- dplyr::bind_rows(all_res)
 

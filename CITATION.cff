@@ -8,11 +8,11 @@ message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
-version: 0.2.1
+version: 0.2.1.9000
 doi: 10.5281/zenodo.5113195
 abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
-  Extract coordinates from addresses, find places near a set of coordinates, search
-  for amenities and return spatial objects on 'sf' format.
+  Extract coordinates from addresses, find places near a set of coordinates and return
+  spatial objects on 'sf' format.
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -26,13 +26,13 @@ preferred-citation:
     given-names: Diego
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
-  year: '2023'
-  version: 0.2.1
+  year: '2024'
+  version: 0.2.1.9000
   doi: 10.5281/zenodo.5113195
   url: https://dieghernan.github.io/nominatimlite/
   abstract: Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>.
-    Extract coordinates from addresses, find places near a set of coordinates, search
-    for amenities and return spatial objects on sf format.
+    Extract coordinates from addresses, find places near a set of coordinates and
+    return spatial objects on sf format.
 repository: https://CRAN.R-project.org/package=nominatimlite
 repository-code: https://github.com/dieghernan/nominatimlite
 url: https://dieghernan.github.io/nominatimlite/
@@ -65,7 +65,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
   version: '>= 3.6.0'
@@ -92,7 +92,7 @@ references:
     given-names: Davis
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
-  year: '2023'
+  year: '2024'
   version: '>= 1.0.0'
 - type: software
   title: jsonlite
@@ -105,11 +105,26 @@ references:
     given-names: Jeroen
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2023'
+  year: '2024'
   identifiers:
   - type: url
     value: https://arxiv.org/abs/1403.2805
   version: '>= 1.7.0'
+- type: software
+  title: lifecycle
+  abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
+  notes: Imports
+  url: https://lifecycle.r-lib.org/
+  repository: https://CRAN.R-project.org/package=lifecycle
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2024'
 - type: software
   title: sf
   abstract: 'sf: Simple Features for R'
@@ -121,7 +136,7 @@ references:
     given-names: Edzer
     email: edzer.pebesma@uni-muenster.de
     orcid: https://orcid.org/0000-0001-8049-7069
-  year: '2023'
+  year: '2024'
   version: '>= 0.9.0'
 - type: software
   title: utils
@@ -131,7 +146,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -168,7 +183,7 @@ references:
   - family-names: Dunnington
     given-names: Dewey
     orcid: https://orcid.org/0000-0002-9415-4582
-  year: '2023'
+  year: '2024'
   version: '>= 3.0.0'
 - type: software
   title: knitr
@@ -181,7 +196,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2023'
+  year: '2024'
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -224,7 +239,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2023'
+  year: '2024'
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
@@ -235,7 +250,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2023'
+  year: '2024'
   version: '>= 3.0.0'
 - type: software
   title: tidygeocoder
@@ -260,4 +275,4 @@ references:
     given-names: Daniel
     email: possenriede+r@gmail.com
     orcid: https://orcid.org/0000-0002-6738-9845
-  year: '2023'
+  year: '2024'
