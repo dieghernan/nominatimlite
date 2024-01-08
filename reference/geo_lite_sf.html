@@ -24,7 +24,7 @@ tibble format."><meta property="og:image" content="https://dieghernan.github.io/
       <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" class="d-inline-block me-1">
       nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,6 +77,7 @@ associated with the query, see <code>geo_lite_sf()</code> for retrieving the dat
 <span>  return_addresses <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  full_results <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  points_only <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -109,6 +110,11 @@ If <code>FALSE</code> (default) only address columns are returned. See also
 <dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
 
 
+<dt>progressbar</dt>
+<dd><p>Logical. If <code>TRUE</code> displays a progress bar to indicate
+the progress of the function.</p></dd>
+
+
 <dt>custom_query</dt>
 <dd><p>A named list with API-specific parameters to be used
 (i.e. <code>list(countrycodes = "US")</code>). See <strong>Details</strong>.</p></dd>
@@ -124,7 +130,7 @@ provided by the Nominatim API (<code>FALSE</code>). See <strong>About Geometry T
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <code>sf</code> object with the results.</p>
+<p>A <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> object with the results.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -152,13 +158,10 @@ in case of <code>points_only = FALSE</code>  multiple geometry types may be retu
     <div class="dont-index"><p>Geocoding strings: 
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
 <code><a href="geo_address_lookup.html">geo_address_lookup</a>()</code>,
-<code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
-<code><a href="geo_amenity.html">geo_amenity</a>()</code>,
 <code><a href="geo_lite.html">geo_lite</a>()</code></p>
 <p>Get spatial (<code>sf</code>) objects: 
 <code><a href="bbox_to_poly.html">bbox_to_poly</a>()</code>,
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
-<code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
 <code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf</a>()</code></p></div>
     </div>
 
