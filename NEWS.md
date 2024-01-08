@@ -4,6 +4,12 @@
     `reverse_geo_lite()` and `reverse_geo_lite_sf()` to display progress in the
     console.
 
+## Deprecated
+
+-   `geo_amenity()` and `geo_amenity_sf()`, see
+    [Nominatim/issues/1311](https://github.com/osm-search/Nominatim/issues/1311).
+-   `nominatimlite::osm_amenities` data set deleted.
+
 # nominatimlite 0.2.1
 
 -   Remove **osmdata** from Suggests.

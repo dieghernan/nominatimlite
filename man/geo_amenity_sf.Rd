@@ -22,8 +22,7 @@ geo_amenity_sf(
 restrict the search area. See \strong{Details}.}
 
 \item{amenity}{A character of a vector of character with the amenities to be
-geolocated (i.e. \code{c("pub", "restaurant")}). See \strong{Details} and
-\link{osm_amenities}.}
+geolocated (i.e. \code{c("pub", "restaurant")}).}
 
 \item{limit}{maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
@@ -51,11 +50,10 @@ outside the provided bounding box.}
 A \CRANpkg{sf} object with the results.
 }
 \description{
-This function search amenities as defined by OpenStreetMap on a restricted
-area defined by a bounding box in the form of
-\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
-function returns the \CRANpkg{sf} spatial object associated with the query,
-see \code{\link[=geo_amenity]{geo_amenity()}} for retrieving the data in \CRANpkg{tibble} format.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This operation is not supported any more. Use
+\href{https://github.com/ropensci/osmdata}{\strong{osmdata}} instead.
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -84,56 +82,4 @@ The function is vectorized, allowing for multiple addresses to be geocoded;
 in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 }
 
-\examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
-# Madrid, Spain
-
-library(ggplot2)
-
-bbox <- c(-3.888954, 40.311977, -3.517916, 40.643729)
-
-# Restaurants and pubs
-
-rest_pub <- geo_amenity_sf(bbox, c("restaurant", "pub"), limit = 50)
-
-if (any(!sf::st_is_empty(rest_pub))) {
-  ggplot(rest_pub) +
-    geom_sf()
-}
-
-# Hospital as polygon
-
-hosp <- geo_amenity_sf(bbox, "hospital", points_only = FALSE)
-
-if (any(!sf::st_is_empty(hosp))) {
-  ggplot(hosp) +
-    geom_sf()
-}
-}
-\dontshow{\}) # examplesIf}
-}
-\seealso{
-\code{\link[=geo_amenity]{geo_amenity()}}
-
-Search amenities: 
-\code{\link{bbox_to_poly}()},
-\code{\link{geo_amenity}()},
-\code{\link{osm_amenities}}
-
-Geocoding strings: 
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite}()}
-
-Get spatial (\code{sf}) objects: 
-\code{\link{bbox_to_poly}()},
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{reverse_geo_lite_sf}()}
-}
-\concept{amenity}
-\concept{geocoding}
-\concept{spatial}
+\keyword{internal}

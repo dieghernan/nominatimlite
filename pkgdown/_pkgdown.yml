@@ -40,11 +40,6 @@ reference:
   contents:
   - has_concept("spatial")
 
-- title: Datasets
-  desc: Helper datasets.
-  contents:
-  - has_concept("datasets")
-
 - title: About the package
   contents:
   - nominatimlite-package

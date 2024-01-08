@@ -13,6 +13,8 @@ link-citations: true
 
 <!-- nominatimlite.Rmd is generated from nominatimlite.Rmd.orig. Please edit that file -->
 
+
+
 The goal of `nominatimlite` is to provide a light interface for geocoding
 addresses, based on the [Nominatim
 API](https://nominatim.org/release-docs/latest/). **Nominatim** is a tool to
@@ -49,7 +51,8 @@ that presents similar features:
 
 With `nominatimlite` you can extract spatial objects easily:
 
-``` r
+
+```r
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
@@ -73,7 +76,8 @@ ggplot(CA) +
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
 
-``` r
+
+```r
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
 ggplot(sol_poly) +
@@ -90,7 +94,8 @@ Liberty](../man/figures/README-statue_liberty-1.png){width="100%"}
 In this first example we will geocode a few addresses using the `geo_lite()`
 function:
 
-``` r
+
+```r
 library(tibble)
 
 # create a dataframe with addresses
@@ -103,26 +108,22 @@ some_addresses <- tribble(
 
 # geocode the addresses
 lat_longs <- geo_lite(some_addresses$addr, lat = "latitude", long = "longitude")
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33% (1/3)  
-  |                                                        
-  |=================================                 |  67% (2/3)  
-  |                                                        
-  |==================================================| 100% (3/3)
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33% (1/3)    |                                                          |=================================                 |  67% (2/3)    |                                                          |==================================================| 100% (3/3)
 ```
 
 Only latitude and longitude are returned from the geocoder service in this
 example, but `full_results = TRUE` can be used to return all of the data from
 the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                                                                           |
-|:-------------------------------------------|---------:|-----------:|:------------------------------------------------------------------------------------------------------------------|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States  |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79520 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87874 |  -87.63596 | Willis Tower, 233, South Wacker Drive, Printer's Row, Loop, Chicago, Cook County, Illinois, 60606, United States  |
+
+
+|query                                      | latitude|  longitude|address                                                                                                           |
+|:------------------------------------------|--------:|----------:|:-----------------------------------------------------------------------------------------------------------------|
+|1600 Pennsylvania Ave NW, Washington, DC   | 38.89770|  -77.03655|White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States  |
+|600 Montgomery St, San Francisco, CA 94111 | 37.79520| -122.40279|Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States |
+|233 S Wacker Dr, Chicago, IL 60606         | 41.87874|  -87.63596|Willis Tower, 233, South Wacker Drive, Printer's Row, Loop, Chicago, Cook County, Illinois, 60606, United States  |
+
+
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
 we can use the `reverse_geo_lite()` function. The arguments are similar to the
@@ -130,27 +131,24 @@ we can use the `reverse_geo_lite()` function. The arguments are similar to the
 and `long` arguments. The dataset used here is from the geocoder query above.
 The single line address is returned in a column named by the `address`.
 
-``` r
+
+```r
 reverse <- reverse_geo_lite(
   lat = lat_longs$latitude, long = lat_longs$longitude,
   address = "address_found"
 )
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33% (1/3)  
-  |                                                        
-  |=================================                 |  67% (2/3)  
-  |                                                        
-  |==================================================| 100% (3/3)
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33% (1/3)    |                                                          |=================================                 |  67% (2/3)    |                                                          |==================================================| 100% (3/3)
 ```
 
-| address_found                                                                                                     |      lat |        lon |
-|:------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States  | 38.89770 |  -77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States | 37.79520 | -122.40279 |
-| Willis Tower, 233, South Wacker Drive, Printer's Row, Loop, Chicago, Cook County, Illinois, 60606, United States  | 41.87874 |  -87.63596 |
+
+
+|address_found                                                                                                     |      lat|        lon|
+|:-----------------------------------------------------------------------------------------------------------------|--------:|----------:|
+|White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States  | 38.89770|  -77.03655|
+|Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States | 37.79520| -122.40279|
+|Willis Tower, 233, South Wacker Drive, Printer's Row, Loop, Chicago, Cook County, Illinois, 60606, United States  | 41.87874|  -87.63596|
+
+
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the

@@ -23,8 +23,7 @@ geo_amenity(
 restrict the search area. See \strong{Details}.}
 
 \item{amenity}{A character of a vector of character with the amenities to be
-geolocated (i.e. \code{c("pub", "restaurant")}). See \strong{Details} and
-\link{osm_amenities}.}
+geolocated (i.e. \code{c("pub", "restaurant")}).}
 
 \item{lat}{latitude column name in the output data (default  \code{"lat"}).}
 
@@ -41,8 +40,7 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used.
-See \code{\link[=geo_lite]{geo_lite()}}.}
+\item{custom_query}{API-specific parameters to be used.}
 
 \item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
 the \code{bbox}. Note that Nominatim default behavior may return results located
@@ -52,12 +50,10 @@ outside the provided bounding box.}
 A \CRANpkg{tibble} with the results.
 }
 \description{
-This function search amenities as defined by OpenStreetMap on a restricted
-area defined by a bounding box in the form of
-\verb{(<min_latitude>, <min_longitude>, <max_latitude>, <max_longitude>)}. This
-function returns the \CRANpkg{tibble} associated with the query, see
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
-(\CRANpkg{sf} format).
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This operation is not supported any more. Use
+\href{https://github.com/ropensci/osmdata}{\strong{osmdata}} instead.
 }
 \details{
 Bounding boxes can be located using different online tools, as
@@ -66,39 +62,7 @@ Bounding boxes can be located using different online tools, as
 For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}.
 }
-\examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
-# Times Square, NY, USA
-bbox <- c(-73.9894467311, 40.75573629, -73.9830630737, 40.75789245)
-
-geo_amenity(bbox = bbox, amenity = "restaurant")
-
-# Several amenities
-geo_amenity(bbox = bbox, amenity = c("restaurant", "pub"))
-
-# Increase limit and use with strict
-geo_amenity(
-  bbox = bbox, amenity = c("restaurant", "pub"), limit = 10,
-  strict = TRUE
-)
-}
-\dontshow{\}) # examplesIf}
-}
 \seealso{
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
-
-Search amenities: 
-\code{\link{bbox_to_poly}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{osm_amenities}}
-
-Geocoding strings: 
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite}()}
 }
-\concept{amenity}
-\concept{geocoding}
+\keyword{internal}

@@ -16,7 +16,6 @@
 #' @seealso [sf::st_as_sfc()]
 #'
 #' @family spatial
-#' @family amenity
 #'
 #' @details
 #'
