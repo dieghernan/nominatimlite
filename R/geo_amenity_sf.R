@@ -10,7 +10,7 @@
 #' @inheritParams geo_lite_sf
 #' @inheritParams geo_amenity
 #'
-#' @return A `sf` object with the results.
+#' @return A \CRANpkg{sf} object with the results.
 #'
 #' @details
 #'

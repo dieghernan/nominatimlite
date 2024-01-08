@@ -155,3 +155,20 @@ test_that("Verify names", {
   # Do I have dups by any chance?
   expect_false(any(grepl("\\.[0-9]$", names(several))))
 })
+
+test_that("Progress bar", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+  # No pbar
+  expect_silent(geo_lite_sf("Madrid"))
+  expect_silent(geo_lite_sf("Madrid", progressbar = TRUE))
+
+  # Get a pbar
+  expect_output(aa <- geo_lite_sf(c("Madrid", "Barcelona")), "1/2")
+
+  # Not
+  expect_silent(
+    aa <- geo_lite_sf(c("Madrid", "Barcelona"), progressbar = FALSE)
+  )
+})

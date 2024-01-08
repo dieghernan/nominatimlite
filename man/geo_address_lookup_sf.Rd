@@ -38,7 +38,7 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \code{sf} object with the results.
+A \CRANpkg{sf} object with the results.
 }
 \description{
 The lookup API allows to query the address and other details of one or

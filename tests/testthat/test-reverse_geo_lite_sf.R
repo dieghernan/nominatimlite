@@ -230,3 +230,22 @@ test_that("Dedupe", {
   expect_equal(nrow(dedup), 2)
   expect_equal(as.character(dedup$address), nms)
 })
+
+test_that("Progress bar", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+  lat <- c(40.75728, 55.95335)
+  long <- c(-73.98586, -3.188375)
+
+  # No pbar
+  expect_silent(reverse_geo_lite_sf(lat[1], long[1]))
+  expect_silent(reverse_geo_lite_sf(lat[1], long[1], progressbar = TRUE))
+
+  # Get a pbar
+  expect_output(aa <- reverse_geo_lite_sf(lat, long), "1/2")
+
+  # Not
+  expect_silent(aa <- reverse_geo_lite_sf(lat, long, progressbar = FALSE))
+})

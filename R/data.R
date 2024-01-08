@@ -12,7 +12,7 @@
 #'
 #' @docType data
 #'
-#' @format A `tibble` with with
+#' @format A \CRANpkg{tibble} with with
 #' `r prettyNum(nrow(nominatimlite::osm_amenities), big.mark=",")` rows and
 #' fields:
 #' \describe{

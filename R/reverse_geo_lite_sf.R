@@ -16,7 +16,7 @@
 #' @inheritSection  reverse_geo_lite  About Zooming
 #' @inheritSection  geo_lite_sf  About Geometry Types
 #'
-#' @return A `sf` object with the results.
+#' @return A \CRANpkg{sf} object with the results.
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -67,6 +67,7 @@ reverse_geo_lite_sf <- function(lat,
                                 full_results = FALSE,
                                 return_coords = TRUE,
                                 verbose = FALSE,
+                                progressbar = TRUE,
                                 custom_query = list(),
                                 points_only = TRUE) {
   # Check inputs
@@ -101,7 +102,22 @@ reverse_geo_lite_sf <- function(lat,
   )
   key <- dplyr::distinct(init_key)
 
-  all_res <- lapply(seq_len(nrow(key)), function(x) {
+  # Set progress bar
+  ntot <- nrow(key)
+  # Set progress bar if n > 1
+  progressbar <- all(progressbar, ntot > 1)
+  if (progressbar) {
+    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
+  }
+
+  seql <- seq(1, ntot, 1)
+
+
+  all_res <- lapply(seql, function(x) {
+    if (progressbar) {
+      setTxtProgressBar(pb, x)
+      cat(paste0(" (", x, "/", ntot, ")  "))
+    }
     rw <- key[x, ]
     res_single <- reverse_geo_lite_sf_single(
       as.double(rw$lat_cap_int),
@@ -118,6 +134,7 @@ reverse_geo_lite_sf <- function(lat,
 
     res_single
   })
+  if (progressbar) close(pb)
 
 
   all_res <- dplyr::bind_rows(all_res)

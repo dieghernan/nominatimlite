@@ -39,7 +39,7 @@ returned. See also \code{return_addresses}.}
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 }
 \value{
-A \code{tibble} with the results found by the query.
+A \CRANpkg{tibble} with the results found by the query.
 }
 \description{
 The lookup API allows to query the address and other details of one or

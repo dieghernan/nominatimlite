@@ -8,5 +8,5 @@
 NULL
 
 # import stuffs
-#' @importFrom utils download.file
+#' @importFrom utils download.file txtProgressBar setTxtProgressBar
 NULL

@@ -1,4 +1,4 @@
-#' Create a bounding box `sf` object
+#' Create a bounding box \CRANpkg{sf} object
 #'
 #' @description
 #'

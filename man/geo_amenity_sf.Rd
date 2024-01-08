@@ -48,7 +48,7 @@ the \code{bbox}. Note that Nominatim default behavior may return results located
 outside the provided bounding box.}
 }
 \value{
-A \code{sf} object with the results.
+A \CRANpkg{sf} object with the results.
 }
 \description{
 This function search amenities as defined by OpenStreetMap on a restricted

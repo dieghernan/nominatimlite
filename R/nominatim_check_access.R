@@ -3,7 +3,7 @@
 #' @family api_management
 #'
 #' @description
-#' Check if R has access to resources at
+#' Check if **R** has access to resources at
 #' <https://nominatim.openstreetmap.org>.
 #'
 #' @return a logical.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bbox_to_poly.R
 \name{bbox_to_poly}
 \alias{bbox_to_poly}
-\title{Create a bounding box \code{sf} object}
+\title{Create a bounding box \CRANpkg{sf} object}
 \usage{
 bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 }

@@ -21,7 +21,7 @@
 #' @family lookup
 #' @family geocoding
 #'
-#' @return A `tibble` with the results found by the query.
+#' @return A \CRANpkg{tibble} with the results found by the query.
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{

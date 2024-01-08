@@ -1,3 +1,9 @@
+# nominatimlite (development version)
+
+-   Add a `progressbar` parameter to `geo_lite()`, `geo_lite_sf()`,
+    `reverse_geo_lite()` and `reverse_geo_lite_sf()` to display progress in the
+    console.
+
 # nominatimlite 0.2.1
 
 -   Remove **osmdata** from Suggests.

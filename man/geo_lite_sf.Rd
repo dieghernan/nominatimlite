@@ -10,6 +10,7 @@ geo_lite_sf(
   return_addresses = TRUE,
   full_results = FALSE,
   verbose = FALSE,
+  progressbar = TRUE,
   custom_query = list(),
   points_only = TRUE
 )
@@ -30,6 +31,9 @@ If \code{FALSE} (default) only address columns are returned. See also
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
+\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
+the progress of the function.}
+
 \item{custom_query}{A named list with API-specific parameters to be used
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 
@@ -38,7 +42,7 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \code{sf} object with the results.
+A \CRANpkg{sf} object with the results.
 }
 \description{
 This function allows you to geocode addresses and return the corresponding

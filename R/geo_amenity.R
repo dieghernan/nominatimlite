@@ -23,7 +23,7 @@
 #'
 #' @inheritParams geo_lite
 #'
-#' @return A `tibble` with the results.
+#' @return A \CRANpkg{tibble} with the results.
 #'
 #' @seealso [geo_amenity_sf()]
 #' @family amenity

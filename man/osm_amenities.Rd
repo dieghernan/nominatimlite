@@ -6,7 +6,7 @@
 \alias{osm_amenities}
 \title{OpenStreetMap amenity database}
 \format{
-A \code{tibble} with with
+A \CRANpkg{tibble} with with
 100 rows and
 fields:
 \describe{

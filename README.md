@@ -156,6 +156,7 @@ some_addresses <- tribble(
 
 # geocode the addresses
 lat_longs <- geo_lite(some_addresses$addr, lat = "latitude", long = "longitude")
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33% (1/3)    |                                                          |=================================                 |  67% (2/3)    |                                                          |==================================================| 100% (3/3)
 ```
 
 Only latitude and longitude are returned from the geocoder service in
@@ -180,6 +181,7 @@ reverse <- reverse_geo_lite(
   lat = lat_longs$latitude, long = lat_longs$longitude,
   address = "address_found"
 )
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33% (1/3)    |                                                          |=================================                 |  67% (2/3)    |                                                          |==================================================| 100% (3/3)
 ```
 
 | address_found                                                                                                     |      lat |        lon |
@@ -195,7 +197,7 @@ the parameters available.
 ## Citation
 
 <p>
-Hernangómez D (2023). <em>nominatimlite: Interface with Nominatim API
+Hernangómez D (2024). <em>nominatimlite: Interface with Nominatim API
 Service</em>.
 <a href="https://doi.org/10.5281/zenodo.5113195">doi:10.5281/zenodo.5113195</a>,
 <a href="https://dieghernan.github.io/nominatimlite/">https://dieghernan.github.io/nominatimlite/</a>.
@@ -206,8 +208,8 @@ A BibTeX entry for LaTeX users is
     @Manual{R-nominatimlite,
       title = {{nominatimlite}: Interface with {Nominatim} {API} Service},
       author = {Diego Hernangómez},
-      year = {2023},
-      version = {0.2.1},
+      year = {2024},
+      version = {0.2.1.9000},
       doi = {10.5281/zenodo.5113195},
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates, search for amenities and return spatial objects on sf format.},
