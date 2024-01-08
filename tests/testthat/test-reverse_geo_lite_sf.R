@@ -214,7 +214,7 @@ test_that("Dedupe", {
   lats <- rep(c(40.75728, 55.95335), 50)
   longs <- rep(c(-73.98586, -3.188375), 50)
 
-  expect_silent(dup <- reverse_geo_lite_sf(lats, longs))
+  expect_silent(dup <- reverse_geo_lite_sf(lats, longs, progressbar = FALSE))
 
   expect_s3_class(dup, "sf")
   expect_s3_class(dup, "tbl")
