@@ -82,7 +82,6 @@ geo_lite <- function(address,
     ad <- key[x]
     if (progressbar) {
       setTxtProgressBar(pb, x)
-      cat(paste0(" (", x, "/", ntot, ")  "))
     }
     geo_lite_single(
       address = ad,

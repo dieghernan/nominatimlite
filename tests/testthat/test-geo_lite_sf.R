@@ -165,7 +165,7 @@ test_that("Progress bar", {
   expect_silent(geo_lite_sf("Madrid", progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- geo_lite_sf(c("Madrid", "Barcelona")), "1/2")
+  expect_output(aa <- geo_lite_sf(c("Madrid", "Barcelona")))
 
   # Not
   expect_silent(

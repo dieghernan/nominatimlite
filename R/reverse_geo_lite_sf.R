@@ -116,7 +116,6 @@ reverse_geo_lite_sf <- function(lat,
   all_res <- lapply(seql, function(x) {
     if (progressbar) {
       setTxtProgressBar(pb, x)
-      cat(paste0(" (", x, "/", ntot, ")  "))
     }
     rw <- key[x, ]
     res_single <- reverse_geo_lite_sf_single(

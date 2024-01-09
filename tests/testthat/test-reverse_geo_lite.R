@@ -223,7 +223,7 @@ test_that("Progress bar", {
   expect_silent(reverse_geo_lite(lat[1], long[1], progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- reverse_geo_lite(lat, long), "1/2")
+  expect_output(aa <- reverse_geo_lite(lat, long))
 
   # Not
   expect_silent(aa <- reverse_geo_lite(lat, long, progressbar = FALSE))
