@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -57,6 +57,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "arcgeocoder",
+      "name": "arcgeocoder",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=arcgeocoder"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
@@ -187,7 +199,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "246.956KB",
+  "fileSize": "251.108KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

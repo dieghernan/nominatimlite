@@ -1,17 +1,18 @@
 # Platform
 
-|field    |value                                                                 |
-|:--------|:---------------------------------------------------------------------|
-|version  |R version 4.3.2 (2023-10-31 ucrt)                                     |
-|os       |Windows Server 2022 x64 (build 20348)                                 |
-|system   |x86_64, mingw32                                                       |
-|ui       |RTerm                                                                 |
-|language |(EN)                                                                  |
-|collate  |English_United States.utf8                                            |
-|ctype    |English_United States.utf8                                            |
-|tz       |UTC                                                                   |
-|date     |2024-01-15                                                            |
-|pandoc   |2.19.2 @ C:\HOSTED~1\windows\pandoc\219~1.2\x64\PANDOC~1.2\pandoc.exe |
+|field    |value                                  |
+|:--------|:--------------------------------------|
+|version  |R version 4.3.2 (2023-10-31 ucrt)      |
+|os       |Windows 11 x64 (build 22621)           |
+|system   |x86_64, mingw32                        |
+|ui       |RStudio                                |
+|language |(EN)                                   |
+|collate  |Spanish_Spain.utf8                     |
+|ctype    |Spanish_Spain.utf8                     |
+|tz       |Europe/Madrid                          |
+|date     |2024-01-17                             |
+|rstudio  |2023.12.0+369 Ocean Storm (desktop)    |
+|pandoc   |2.19.2 @ C:\PROGRA~1\Pandoc\pandoc.exe |
 
 # Dependencies
 
@@ -42,7 +43,7 @@
 |units         |0.8-5  |0.8-5      |   |
 |utf8          |1.2.4  |1.2.4      |   |
 |vctrs         |0.6.5  |0.6.5      |   |
-|withr         |2.5.2  |2.5.2      |   |
+|withr         |3.0.0  |3.0.0      |   |
 |wk            |0.9.1  |0.9.1      |   |
 
 # Revdeps

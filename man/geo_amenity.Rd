@@ -47,20 +47,32 @@ the \code{bbox}. Note that Nominatim default behavior may return results located
 outside the provided bounding box.}
 }
 \value{
-A \CRANpkg{tibble} with the results.
+An error.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
 This operation is not supported any more. Use
-\href{https://github.com/ropensci/osmdata}{\strong{osmdata}} instead.
+\code{\link[arcgeocoder:arc_geo_categories]{arcgeocoder::arc_geo_categories()}} instead.
 }
-\details{
-Bounding boxes can be located using different online tools, as
-\href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
+\examples{
+\donttest{
+#' # Madrid, Spain
 
-For a full list of valid amenities see
-\url{https://wiki.openstreetmap.org/wiki/Key:amenity}.
+library(arcgeocoder)
+library(ggplot2)
+
+bbox <- c(-3.888954, 40.311977, -3.517916, 40.643729)
+
+# Food
+rest_pub <- arc_geo_categories(
+  bbox = bbox, category = "Bakery,Bar or Pub",
+  full_results = TRUE,
+  limit = 50
+)
+
+rest_pub
+}
 }
 \seealso{
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}

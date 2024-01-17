@@ -4,7 +4,7 @@
 #' `r lifecycle::badge("deprecated")`
 #'
 #' This operation is not supported any more. Use
-#' [**osmdata**](https://github.com/ropensci/osmdata) instead.
+#' [arcgeocoder::arc_geo_categories()] instead.
 #'
 #'
 #' @param bbox A numeric vector of latitude and longitude
@@ -19,21 +19,30 @@
 #'
 #' @inheritParams geo_lite
 #'
-#' @return A \CRANpkg{tibble} with the results.
+#' @return An error.
 #'
 #' @seealso [geo_amenity_sf()]
-#' @details
-#'
-#' Bounding boxes can be located using different online tools, as
-#' [Bounding Box Tool](https://boundingbox.klokantech.com/).
-#'
-#' For a full list of valid amenities see
-#' <https://wiki.openstreetmap.org/wiki/Key:amenity>.
-#'
-#'
 #' @keywords internal
 #'
 #' @export
+#' @examples
+#' \donttest{
+#' #' # Madrid, Spain
+#'
+#' library(arcgeocoder)
+#' library(ggplot2)
+#'
+#' bbox <- c(-3.888954, 40.311977, -3.517916, 40.643729)
+#'
+#' # Food
+#' rest_pub <- arc_geo_categories(
+#'   bbox = bbox, category = "Bakery,Bar or Pub",
+#'   full_results = TRUE,
+#'   limit = 50
+#' )
+#'
+#' rest_pub
+#' }
 geo_amenity <- function(bbox,
                         amenity,
                         lat = "lat",
@@ -46,6 +55,7 @@ geo_amenity <- function(bbox,
                         strict = FALSE) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_stop("0.3.0", "geo_amenity()",
+      with = "arcgeocoder::arc_geo_categories()",
       details = paste(
         "Operation not supported any",
         "more by the Nominatim API."

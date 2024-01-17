@@ -8,6 +8,7 @@
 
 -   `geo_amenity()` and `geo_amenity_sf()`, see
     [Nominatim/issues/1311](https://github.com/osm-search/Nominatim/issues/1311).
+    Use `arcgeocoder::arc_geo_categories()` as an alternative.
 -   `nominatimlite::osm_amenities` data set deleted.
 
 # nominatimlite 0.2.1
