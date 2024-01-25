@@ -111,8 +111,8 @@ Address Lookup API:
 
 Geocoding strings: 
 \code{\link{geo_address_lookup}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite}()}
+\code{\link{geo_lite}()},
+\code{\link{geo_lite_sf}()}
 
 Get spatial (\code{sf}) objects: 
 \code{\link{bbox_to_poly}()},

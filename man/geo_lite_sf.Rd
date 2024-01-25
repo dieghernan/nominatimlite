@@ -111,8 +111,8 @@ if (any(!sf::st_is_empty(Madrid))) {
 }
 \seealso{
 Geocoding strings: 
-\code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_address_lookup}()},
+\code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_lite}()}
 
 Get spatial (\code{sf}) objects: 
