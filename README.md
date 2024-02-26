@@ -236,7 +236,7 @@ Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
 <div id="ref-R-arcgeocoder" class="csl-entry">
 
 Hernangómez, Diego. 2024. *<span class="nocase">arcgeocoder</span>:
-Geocoding with the ArcGIS REST API Service* (version 0.1.0.9000).
+Geocoding with the ArcGIS REST API Service* (version 0.1.0).
 <https://doi.org/10.5281/zenodo.10495365>.
 
 </div>
