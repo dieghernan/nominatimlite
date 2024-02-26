@@ -1,4 +1,4 @@
-#' Address Lookup API for OSM objects
+#' Address lookup API for OSM elements
 #'
 #' @description
 #' The lookup API allows to query the address and other details of one or

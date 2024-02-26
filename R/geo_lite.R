@@ -1,12 +1,11 @@
-#' Address Search API for OSM objects
+#' Address search API for OSM elements
 #'
 #' @description
-#' Geocodes addresses given as character values. This
-#' function returns the \CRANpkg{tibble} associated with the query, see
-#' [geo_lite_sf()] for retrieving the data as a spatial object
-#' (\CRANpkg{sf} format).
+#' Geocodes addresses given as character values. This function returns the
+#' \CRANpkg{tibble} associated with the query, see [geo_lite_sf()] for
+#' retrieving the data as a spatial object (\CRANpkg{sf} format).
 #'
-#' @param address character with single line address
+#' @param address character with single line address, e.g.
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
 #'   (`c("Madrid", "Barcelona")`).
 #' @param lat	latitude column name in the output data (default  `"lat"`).
@@ -19,7 +18,7 @@
 #' @param return_addresses return input addresses with results if `TRUE`.
 #' @param verbose if `TRUE` then detailed logs are output to the console.
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
-#'  the progress of the function.
+#'   the progress of the function.
 #' @param custom_query A named list with API-specific parameters to be used
 #'   (i.e. `list(countrycodes = "US")`). See **Details**.
 #'

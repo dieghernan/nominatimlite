@@ -1,19 +1,22 @@
-#' Create a bounding box \CRANpkg{sf} object
+#' Coerce a bounding box to a `sfc` `POLYGON` object
 #'
 #' @description
 #'
-#' Create a \CRANpkg{sf} polygon object from the coordinates of a bounding box
+#' Create a [`sfc`][sf::st_sfc()] object from the coordinates of a
+#' bounding box.
 #'
 #' @param bbox numeric vector of 4 elements representing the coordinates of the
-#'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`
+#'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`.
 #' @param xmin,ymin,xmax,ymax alternatively, you can use these named parameters
-#'   instead of `bbox`
+#'   instead of `bbox`.
 #'
 #' @inheritParams sf::st_sf
 #'
-#' @return A `sfc` object of class `POLYGON`.
+#' @return A [`sfc`][sf::st_sfc()] object of class `POLYGON`.
 #'
-#' @seealso [sf::st_as_sfc()]
+#' @seealso
+#'
+#' [sf::st_as_sfc()] and [sf::st_sfc()].
 #'
 #' @family spatial
 #'

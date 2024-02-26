@@ -26,41 +26,48 @@ knitr::opts_chunk$set(
 library(nominatimlite)
 ```
 
-The goal of `nominatimlite` is to provide a light interface for geocoding
+The goal of **nominatimlite** is to provide a light interface for geocoding
 addresses, based on the [Nominatim
-API](https://nominatim.org/release-docs/latest/). **Nominatim** is a tool to
-search [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
-([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
-generate synthetic addresses of OSM points (reverse geocoding).
-
-It also allows to load spatial objects using the `sf` package.
+API](https://nominatim.org/release-docs/latest/). It also allows to load spatial
+objects using the **sf** package.
 
 Full site with examples and vignettes on
 <https://dieghernan.github.io/nominatimlite/>
 
-## Why `nominatimlite`?
+## What is Nominatim?
 
-The main goal of `nominatimlite` is to access the Nominatim API avoiding the
-dependency on `curl`. In some situations, `curl` may not be available or
-accessible, so `nominatimlite` uses base functions to overcome this limitation.
+**Nominatim** is a tool to search
+[OpenStreetMap](https://www.openstreetmap.org/) data by name and address
+([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
+generate synthetic addresses of OSM points (reverse geocoding).
+
+## Why **nominatimlite**?
+
+The main goal of **nominatimlite** is to access the Nominatim API avoiding the
+dependency on **curl**. In some situations, **curl** may not be available or
+accessible, so **nominatimlite** uses base functions to overcome this
+limitation.
 
 ## Recommended packages
 
-There are other packages much more complete and mature than `nominatimlite`,
+There are other packages much more complete and mature than **nominatimlite**,
 that presents similar features:
 
--   [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/)
-    [@R-tidygeocoder]. Allows to interface with Nominatim, Google, TomTom,
+-   [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
+    [@R-tidygeocoder]: Allows to interface with Nominatim, Google, TomTom,
     Mapbox, etc. for geocoding and reverse geocoding.
--   [`osmdata`](https://docs.ropensci.org/osmdata/) [@R-osmdata]. Great for
+-   [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Great for
     downloading spatial data from OpenStreetMap, via the [Overpass
     API](https://wiki.openstreetmap.org/wiki/Overpass_API).
+-   [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
+    [@R-arcgeocoder]: Lite interface for geocoding with the ArcGIS REST API
+    Service.
 
 ## Usage
 
 ### `sf` objects
 
-With `nominatimlite` you can extract spatial objects easily:
+With **nominatimlite** you can extract spatial objects easily:
 
 ```{r pizzahut, eval=FALSE}
 library(nominatimlite)
@@ -100,7 +107,7 @@ Liberty](../man/figures/README-statue_liberty-1.png){width="100%"}
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from `tidygeocoder` package*
+*Note: examples adapted from **tidygeocoder** package*
 
 In this first example we will geocode a few addresses using the `geo_lite()`
 function:

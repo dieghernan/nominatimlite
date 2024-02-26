@@ -1,9 +1,9 @@
-#' Address Lookup API for OSM objects in Spatial Format
+#' Address lookup API for OSM elements in \CRANpkg{sf} format
 #'
 #' @description
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
-#' \CRANpkg{sf} spatial object associated with the query, see
+#' spatial object associated with the query using \CRANpkg{sf}, see
 #' [geo_address_lookup()] for retrieving the data in \CRANpkg{tibble} format.
 #'
 #' @return A \CRANpkg{sf} object with the results.

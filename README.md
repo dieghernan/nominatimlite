@@ -22,43 +22,48 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-The goal of `nominatimlite` is to provide a light interface for
+The goal of **nominatimlite** is to provide a light interface for
 geocoding addresses, based on the [Nominatim
-API](https://nominatim.org/release-docs/latest/). **Nominatim** is a
-tool to search [OpenStreetMap](https://www.openstreetmap.org/) data by
-name and address
-([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
-and to generate synthetic addresses of OSM points (reverse geocoding).
-
-It also allows to load spatial objects using the `sf` package.
+API](https://nominatim.org/release-docs/latest/). It also allows to load
+spatial objects using the **sf** package.
 
 Full site with examples and vignettes on
 <https://dieghernan.github.io/nominatimlite/>
 
-## Why `nominatimlite`?
+## What is Nominatim?
 
-The main goal of `nominatimlite` is to access the Nominatim API avoiding
-the dependency on `curl`. In some situations, `curl` may not be
-available or accessible, so `nominatimlite` uses base functions to
-overcome this limitation.
+**Nominatim** is a tool to search
+[OpenStreetMap](https://www.openstreetmap.org/) data by name and address
+([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
+and to generate synthetic addresses of OSM points (reverse geocoding).
+
+## Why **nominatimlite**?
+
+The main goal of **nominatimlite** is to access the Nominatim API
+avoiding the dependency on **curl**. In some situations, **curl** may
+not be available or accessible, so **nominatimlite** uses base functions
+to overcome this limitation.
 
 ## Recommended packages
 
 There are other packages much more complete and mature than
-`nominatimlite`, that presents similar features:
+**nominatimlite**, that presents similar features:
 
-- [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) ([Cambon
-  et al. 2021](#ref-R-tidygeocoder)). Allows to interface with
+- [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
+  ([Cambon et al. 2021](#ref-R-tidygeocoder)): Allows to interface with
   Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse
   geocoding.
-- [`osmdata`](https://docs.ropensci.org/osmdata/) ([Padgham et al.
-  2017](#ref-R-osmdata)). Great for downloading spatial data from
+- [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
+  2017](#ref-R-osmdata)): Great for downloading spatial data from
   OpenStreetMap, via the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
+- [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
+  ([Hernangómez 2024](#ref-R-arcgeocoder)): Lite interface for geocoding
+  with the ArcGIS REST API Service.
 
 ## Installation
 
-Install `nominatimlite` from
+Install **nominatimlite** from
 [**CRAN**](https://CRAN.R-project.org/package=nominatimlite):
 
 ``` r
@@ -71,7 +76,7 @@ You can install the developing version of `nominatimlite` with:
 devtools::install_github("dieghernan/nominatimlite")
 ```
 
-Alternatively, you can install `nominatimlite` using the
+Alternatively, you can install **nominatimlite** using the
 [r-universe](https://dieghernan.r-universe.dev/nominatimlite):
 
 ``` r
@@ -88,7 +93,7 @@ install.packages("nominatimlite",
 
 ### `sf` objects
 
-With `nominatimlite` you can extract spatial objects easily:
+With **nominatimlite** you can extract spatial objects easily:
 
 ``` r
 library(nominatimlite)
@@ -138,7 +143,7 @@ ggplot() +
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from `tidygeocoder` package*
+*Note: examples adapted from **tidygeocoder** package*
 
 In this first example we will geocode a few addresses using the
 `geo_lite()` function:
@@ -225,6 +230,14 @@ Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
 Possenriede. 2021. “<span class="nocase">tidygeocoder</span>: An R
 Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
 <https://doi.org/10.21105/joss.03544>.
+
+</div>
+
+<div id="ref-R-arcgeocoder" class="csl-entry">
+
+Hernangómez, Diego. 2024. *<span class="nocase">arcgeocoder</span>:
+Geocoding with the ArcGIS REST API Service* (version 0.1.0.9000).
+<https://doi.org/10.5281/zenodo.10495365>.
 
 </div>
 

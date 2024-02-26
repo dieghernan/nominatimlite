@@ -1,6 +1,7 @@
-#' Reverse Geocoding API for OSM objects
+#' Reverse geocoding API for OSM elements
 #'
 #' @description
+#'
 #' Generates an address from a latitude and longitude. Latitudes must be
 #' between `[-90, 90]` and longitudes between `[-180, 180]`. This
 #' function returns the \CRANpkg{tibble} associated with the query, see
@@ -19,6 +20,7 @@
 #' @inheritParams geo_lite
 #'
 #' @details
+#'
 #' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'

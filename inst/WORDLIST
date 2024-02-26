@@ -1,3 +1,4 @@
+ArcGIS
 Belanger
 CMD
 Cambon
@@ -19,6 +20,7 @@ TomTom
 Transamerica
 al
 api
+arcgeocoder
 codecov
 de
 et
@@ -31,6 +33,7 @@ json
 lon
 osmdata
 rlang
+testthat
 tibble
 tidygeocoder
 unnesting

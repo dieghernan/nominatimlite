@@ -1,19 +1,19 @@
-#' Address Search API for OSM objects in Spatial format
+#' Address search API for OSM elements in \CRANpkg{sf} format
 #'
 #' @description
 #' This function allows you to geocode addresses and return the corresponding
-#' spatial object. This function returns the \CRANpkg{sf} spatial object
-#' associated with the query, see [geo_lite_sf()] for retrieving the data in
+#' spatial object. This function returns the spatial object associated with the
+#' query using \CRANpkg{sf}, see [geo_lite_sf()] for retrieving the data in
 #' \CRANpkg{tibble} format.
 #'
 #'
 #' @param full_results returns all available data from the API service.
-#'    If `FALSE` (default) only address columns are returned. See also
-#'    `return_addresses`.
+#'   If `FALSE` (default) only address columns are returned. See also
+#'   `return_addresses`.
 #'
 #' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
-#' points (`TRUE`, which is the default) or potentially other shapes as
-#' provided by the Nominatim API (`FALSE`). See **About Geometry Types**.
+#'   points (`TRUE`, which is the default) or potentially other shapes as
+#'   provided by the Nominatim API (`FALSE`). See **About Geometry Types**.
 #'
 #' @inheritParams geo_lite
 #'
@@ -30,10 +30,10 @@
 #' Note that the type of geometry returned in case of `points_only = FALSE`
 #' will depend on the object being geocoded:
 #'
-#'   * administrative areas, major buildings and the like will be
-#'     returned as polygons
-#'   * rivers, roads and their like as lines
-#'   * amenities may be points even in case of a `points_only = FALSE` call
+#'   * Administrative areas, major buildings and the like will be
+#'     returned as polygons.
+#'   * Rivers, roads and their like as lines.
+#'   * Amenities may be points even in case of a `points_only = FALSE` call.
 #'
 #' The function is vectorized, allowing for multiple addresses to be geocoded;
 #' in case of `points_only = FALSE`  multiple geometry types may be returned.

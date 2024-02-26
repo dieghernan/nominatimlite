@@ -1,13 +1,12 @@
-url: 'https://dieghernan.github.io/nominatimlite'
+url: https://dieghernan.github.io/nominatimlite
 
 template:
-  bootstrap: 5
   package: gitdevr
   params:
     ganalytics: G-5SLV8G8QD4
   opengraph:
     twitter:
-      creator: "@dhernangomez"
+      creator: '@dhernangomez'
       card: summary_large_image
 
 repo:
@@ -15,32 +14,26 @@ repo:
 
 home:
   title: nominatimlite | Connection with OSM Nominatim API
-  description: Lite interface for getting data from OpenStreetMap Nominatim service.
+  description: |
+    Lite interface for getting data from OpenStreetMap Nominatim service.
+
 authors:
   Diego Hernangómez:
-    href: 'https://dieghernan.github.io/'
+    href: https://dieghernan.github.io/
   Jindra Lacko:
-    href: 'https://www.jla-data.net/'
+    href: https://www.jla-data.net/
 
 reference:
 - title: Geocoding
   desc: These functions search an address or reference and return coordinates.
-  contents:
-  - has_concept("geocoding")
-
-
+  contents: has_concept("geocoding")
 - title: Reverse geocoding
-  desc: These functions search coordinates and returns information of places on
-    that coordinates.
-  contents:
-  - has_concept("reverse")
-
+  desc: These functions search coordinates and returns information of places on that
+    coordinates.
+  contents: has_concept("reverse")
 - title: Get spatial objects
-  desc: These functions return <code>sf</code> objects.
-  contents:
-  - has_concept("spatial")
-
+  desc: These functions return **sf** objects.
+  contents: has_concept("spatial")
 - title: About the package
-  contents:
-  - nominatimlite-package
+  contents: nominatimlite-package
 

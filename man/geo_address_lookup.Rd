@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_address_lookup.R
 \name{geo_address_lookup}
 \alias{geo_address_lookup}
-\title{Address Lookup API for OSM objects}
+\title{Address lookup API for OSM elements}
 \usage{
 geo_address_lookup(
   osm_ids,

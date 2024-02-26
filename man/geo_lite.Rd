@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite.R
 \name{geo_lite}
 \alias{geo_lite}
-\title{Address Search API for OSM objects}
+\title{Address search API for OSM elements}
 \usage{
 geo_lite(
   address,
@@ -17,7 +17,7 @@ geo_lite(
 )
 }
 \arguments{
-\item{address}{character with single line address
+\item{address}{character with single line address, e.g.
 (\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
 (\code{c("Madrid", "Barcelona")}).}
 
@@ -46,10 +46,9 @@ the progress of the function.}
 A \CRANpkg{tibble} with the results.
 }
 \description{
-Geocodes addresses given as character values. This
-function returns the \CRANpkg{tibble} associated with the query, see
-\code{\link[=geo_lite_sf]{geo_lite_sf()}} for retrieving the data as a spatial object
-(\CRANpkg{sf} format).
+Geocodes addresses given as character values. This function returns the
+\CRANpkg{tibble} associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
+retrieving the data as a spatial object (\CRANpkg{sf} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_address_lookup_sf.R
 \name{geo_address_lookup_sf}
 \alias{geo_address_lookup_sf}
-\title{Address Lookup API for OSM objects in Spatial Format}
+\title{Address lookup API for OSM elements in \CRANpkg{sf} format}
 \usage{
 geo_address_lookup_sf(
   osm_ids,
@@ -43,7 +43,7 @@ A \CRANpkg{sf} object with the results.
 \description{
 The lookup API allows to query the address and other details of one or
 multiple OSM objects like node, way or relation. This function returns the
-\CRANpkg{sf} spatial object associated with the query, see
+spatial object associated with the query using \CRANpkg{sf}, see
 \code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \CRANpkg{tibble} format.
 }
 \details{
@@ -60,10 +60,10 @@ geometry) or possibly other spatial objects.
 Note that the type of geometry returned in case of \code{points_only = FALSE}
 will depend on the object being geocoded:
 \itemize{
-\item administrative areas, major buildings and the like will be
-returned as polygons
-\item rivers, roads and their like as lines
-\item amenities may be points even in case of a \code{points_only = FALSE} call
+\item Administrative areas, major buildings and the like will be
+returned as polygons.
+\item Rivers, roads and their like as lines.
+\item Amenities may be points even in case of a \code{points_only = FALSE} call.
 }
 
 The function is vectorized, allowing for multiple addresses to be geocoded;
@@ -114,7 +114,7 @@ Geocoding strings:
 \code{\link{geo_lite}()},
 \code{\link{geo_lite_sf}()}
 
-Get spatial (\code{sf}) objects: 
+Get \CRANpkg{sf} objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}

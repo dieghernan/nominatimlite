@@ -2,7 +2,7 @@
 % Please edit documentation in R/reverse_geo_lite.R
 \name{reverse_geo_lite}
 \alias{reverse_geo_lite}
-\title{Reverse Geocoding API for OSM objects}
+\title{Reverse geocoding API for OSM elements}
 \usage{
 reverse_geo_lite(
   lat,
