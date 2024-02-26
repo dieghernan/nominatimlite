@@ -32,7 +32,7 @@ reference:
     coordinates.
   contents: has_concept("reverse")
 - title: Get spatial objects
-  desc: These functions return **sf** objects.
+  desc: These functions return \CRANpkg{sf} objects.
   contents: has_concept("spatial")
 - title: About the package
   contents: nominatimlite-package
