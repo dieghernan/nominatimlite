@@ -34,8 +34,8 @@
   gtag('config', 'G-5SLV8G8QD4');
 </script><!-- fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&amp;family=Inter:wght@100..900&amp;family=Inter+Tight:wght@100..900&amp;display=swap" rel="stylesheet">
-<!-- gitdevr tweaks --><link href="../BS5/gitdevr.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&amp;family=Inter:wght@100..900&amp;family=Inter+Tight:wght@100..900&amp;family=Quicksand:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+<!-- gitdevr tweaks --><link href="../BS5/gitdevr.min.css" rel="stylesheet">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -44,7 +44,7 @@
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
-      <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" class="d-inline-block me-1">
+      <img src="../favicon-32x32.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
@@ -99,39 +99,47 @@
     
     
 <!-- nominatimlite.Rmd is generated from nominatimlite.Rmd.orig. Please edit that file -->
-<p>The goal of <code>nominatimlite</code> is to provide a light
-interface for geocoding addresses, based on the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>.
-<strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and
-address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of
-OSM points (reverse geocoding).</p>
-<p>It also allows to load spatial objects using the <code>sf</code>
+<p>The goal of <strong>nominatimlite</strong> is to provide a light
+interface for geocoding addresses, based on the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>. It
+also allows to load spatial objects using the <strong>sf</strong>
 package.</p>
 <p>Full site with examples and vignettes on <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
 <div class="section level2">
-<h2 id="why-nominatimlite">Why <code>nominatimlite</code>?<a class="anchor" aria-label="anchor" href="#why-nominatimlite"></a>
+<h2 id="what-is-nominatim">What is Nominatim?<a class="anchor" aria-label="anchor" href="#what-is-nominatim"></a>
 </h2>
-<p>The main goal of <code>nominatimlite</code> is to access the
-Nominatim API avoiding the dependency on <code>curl</code>. In some
-situations, <code>curl</code> may not be available or accessible, so
-<code>nominatimlite</code> uses base functions to overcome this
+<p><strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and
+address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of
+OSM points (reverse geocoding).</p>
+</div>
+<div class="section level2">
+<h2 id="why-nominatimlite">Why <strong>nominatimlite</strong>?<a class="anchor" aria-label="anchor" href="#why-nominatimlite"></a>
+</h2>
+<p>The main goal of <strong>nominatimlite</strong> is to access the
+Nominatim API avoiding the dependency on <strong>curl</strong>. In some
+situations, <strong>curl</strong> may not be available or accessible, so
+<strong>nominatimlite</strong> uses base functions to overcome this
 limitation.</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
 </h2>
 <p>There are other packages much more complete and mature than
-<code>nominatimlite</code>, that presents similar features:</p>
+<strong>nominatimlite</strong>, that presents similar features:</p>
 <ul>
 <li>
-<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><code>tidygeocoder</code></a>
-<span class="citation">(<a href="#ref-R-tidygeocoder" role="doc-biblioref">Cambon et al. 2021</a>)</span>. Allows to interface
+<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><strong>tidygeocoder</strong></a>
+<span class="citation">(<a href="#ref-R-tidygeocoder" role="doc-biblioref">Cambon et al. 2021</a>)</span>: Allows to interface
 with Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse
 geocoding.</li>
 <li>
-<a href="https://docs.ropensci.org/osmdata/" class="external-link"><code>osmdata</code></a> <span class="citation">(<a href="#ref-R-osmdata" role="doc-biblioref">Padgham
-et al. 2017</a>)</span>. Great for downloading spatial data from
-OpenStreetMap, via the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" class="external-link">Overpass
+<a href="https://docs.ropensci.org/osmdata/" class="external-link"><strong>osmdata</strong></a>
+<span class="citation">(<a href="#ref-R-osmdata" role="doc-biblioref">Padgham et al. 2017</a>)</span>: Great for
+downloading spatial data from OpenStreetMap, via the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" class="external-link">Overpass
 API</a>.</li>
+<li>
+<a href="https://dieghernan.github.io/arcgeocoder/" class="external-link"><strong>arcgeocoder</strong></a>
+<span class="citation">(<a href="#ref-R-arcgeocoder" role="doc-biblioref">Hernangómez 2024</a>)</span>: Lite interface for
+geocoding with the ArcGIS REST API Service.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -141,7 +149,7 @@ API</a>.</li>
 <h3 id="sf-objects">
 <code>sf</code> objects<a class="anchor" aria-label="anchor" href="#sf-objects"></a>
 </h3>
-<p>With <code>nominatimlite</code> you can extract spatial objects
+<p>With <strong>nominatimlite</strong> you can extract spatial objects
 easily:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/nominatimlite/">nominatimlite</a></span><span class="op">)</span></span>
@@ -177,7 +185,7 @@ the option <code>points_only = FALSE</code>:</p>
 <div class="section level3">
 <h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
 </h3>
-<p><em>Note: examples adapted from <code>tidygeocoder</code>
+<p><em>Note: examples adapted from <strong>tidygeocoder</strong>
 package</em></p>
 <p>In this first example we will geocode a few addresses using the
 <code><a href="../reference/geo_lite.html">geo_lite()</a></code> function:</p>
@@ -307,6 +315,11 @@ Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
 Possenriede. 2021. <span>“<span class="nocase">tidygeocoder</span>: An
 <span>R</span> Package for Geocoding.”</span> <em>Journal of Open Source
 Software</em> 6 (65): 3544. <a href="https://doi.org/10.21105/joss.03544" class="external-link">https://doi.org/10.21105/joss.03544</a>.
+</div>
+<div id="ref-R-arcgeocoder" class="csl-entry">
+Hernangómez, Diego. 2024. <em><span class="nocase">arcgeocoder</span>:
+Geocoding with the <span>ArcGIS</span> <span>REST</span>
+<span>API</span> Service</em> (version 0.1.0.9000). <a href="https://doi.org/10.5281/zenodo.10495365" class="external-link">https://doi.org/10.5281/zenodo.10495365</a>.
 </div>
 <div id="ref-R-osmdata" class="csl-entry">
 Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
