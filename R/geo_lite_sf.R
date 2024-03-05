@@ -83,6 +83,7 @@ geo_lite_sf <- function(address,
                         full_results = FALSE,
                         verbose = FALSE,
                         progressbar = TRUE,
+                        nominatim_server = 'https://nominatim.openstreetmap.org/',
                         custom_query = list(),
                         points_only = TRUE) {
   if (limit > 50) {
@@ -121,7 +122,8 @@ geo_lite_sf <- function(address,
       full_results,
       verbose,
       custom_query,
-      points_only
+      points_only,
+      nominatim_server = nominatim_server
     )
   })
 
@@ -154,10 +156,15 @@ geo_lite_sf_single <- function(address,
                                return_addresses = TRUE,
                                full_results = FALSE,
                                verbose = FALSE,
+                               nominatim_server = 'https://nominatim.openstreetmap.org/',
                                custom_query = list(),
                                points_only = TRUE) {
-  # Step 1: Download ----
-  api <- "https://nominatim.openstreetmap.org/search?q="
+  # First build the api address. If the passed nominatim_server does not end
+  # with a trailing forward-slash, add one
+  if (substr(nominatim_server, nchar(nominatim_server), nchar(nominatim_server)) != "/") {
+    nominatim_server <- paste0(nominatim_server, "/")
+  }
+  api <- paste0(nominatim_server, "lookup?")
 
   # Replace spaces with +
   address2 <- gsub(" ", "+", address)
