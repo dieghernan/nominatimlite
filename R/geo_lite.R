@@ -53,6 +53,7 @@ geo_lite <- function(address,
                      full_results = FALSE,
                      return_addresses = TRUE,
                      verbose = FALSE,
+                     nominatim_server = 'https://nominatim.openstreetmap.org/',
                      progressbar = TRUE,
                      custom_query = list()) {
   if (limit > 50) {
@@ -90,6 +91,7 @@ geo_lite <- function(address,
       full_results,
       return_addresses,
       verbose,
+      nominatim_server = nominatim_server,
       custom_query
     )
   })
@@ -118,7 +120,7 @@ geo_lite_single <- function(address,
   if (substr(nominatim_server, nchar(nominatim_server), nchar(nominatim_server)) != "/") {
     nominatim_server <- paste0(nominatim_server, "/")
   }
-  api <- paste0(nominatim_server, "lookup?")
+  api <- paste0(nominatim_server, "search.php?q=")
 
   # Replace spaces with +
   address2 <- gsub(" ", "+", address)

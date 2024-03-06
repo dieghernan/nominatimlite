@@ -173,7 +173,7 @@ reverse_geo_lite_single <- function(lat_cap,
   if (substr(nominatim_server, nchar(nominatim_server), nchar(nominatim_server)) != "/") {
     nominatim_server <- paste0(nominatim_server, "/")
   }
-  api <- paste0(nominatim_server, "lookup?")
+  api <- paste0(nominatim_server, "reverse?")
 
   # Compose url
   url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=json")
