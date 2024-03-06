@@ -172,8 +172,6 @@ geo_lite_sf_single <- function(address,
   # Compose url
   url <- paste0(api, address2, "&format=geojson&limit=", limit)
 
-  print(url)
-
   if (full_results) url <- paste0(url, "&addressdetails=1")
   if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
 
