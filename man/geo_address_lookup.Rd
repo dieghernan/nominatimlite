@@ -12,6 +12,7 @@ geo_address_lookup(
   full_results = FALSE,
   return_addresses = TRUE,
   verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 )
 }
@@ -34,6 +35,8 @@ returned. See also \code{return_addresses}.}
 \item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+
+\item{nominatim_server}{The URL of the Nominatim server to use. Defaults to https://nominatim.openstreetmap.org/}
 
 \item{custom_query}{A named list with API-specific parameters to be used
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}

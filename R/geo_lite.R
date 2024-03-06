@@ -17,6 +17,7 @@
 #'    returned. See also `return_addresses`.
 #' @param return_addresses return input addresses with results if `TRUE`.
 #' @param verbose if `TRUE` then detailed logs are output to the console.
+#' @param nominatim_server The URL of the Nominatim server to use. Defaults to https://nominatim.openstreetmap.org/
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'   the progress of the function.
 #' @param custom_query A named list with API-specific parameters to be used
