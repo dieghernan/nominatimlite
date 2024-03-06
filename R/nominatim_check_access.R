@@ -17,10 +17,13 @@
 #' }
 #' @keywords internal
 #' @export
-nominatim_check_access <- function(nominatim_server = 'https://nominatim.openstreetmap.org/') {
+nominatim_check_access <- function(
+    nominatim_server = "https://nominatim.openstreetmap.org/"
+) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  if (substr(nominatim_server, nchar(nominatim_server), nchar(nominatim_server)) != "/") {
+  if (substr(nominatim_server, nchar(nominatim_server),
+             nchar(nominatim_server)) != "/") {
     nominatim_server <- paste0(nominatim_server, "/")
   }
   url <- paste0(nominatim_server, "status.php?format=json")

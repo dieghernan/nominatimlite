@@ -41,12 +41,14 @@ geo_address_lookup <- function(osm_ids,
                                full_results = FALSE,
                                return_addresses = TRUE,
                                verbose = FALSE,
-                               nominatim_server = 'https://nominatim.openstreetmap.org/',
+                               nominatim_server =
+                                 "https://nominatim.openstreetmap.org/",
                                custom_query = list()) {
   # Step 1: Download ----
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  if (substr(nominatim_server, nchar(nominatim_server), nchar(nominatim_server)) != "/") {
+  if (substr(nominatim_server, nchar(nominatim_server),
+             nchar(nominatim_server)) != "/") {
     nominatim_server <- paste0(nominatim_server, "/")
   }
   api <- paste0(nominatim_server, "lookup?")

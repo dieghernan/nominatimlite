@@ -17,7 +17,8 @@
 #'    returned. See also `return_addresses`.
 #' @param return_addresses return input addresses with results if `TRUE`.
 #' @param verbose if `TRUE` then detailed logs are output to the console.
-#' @param nominatim_server The URL of the Nominatim server to use. Defaults to https://nominatim.openstreetmap.org/
+#' @param nominatim_server The URL of the Nominatim server to use.
+#'    Defaults to https://nominatim.openstreetmap.org/
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'   the progress of the function.
 #' @param custom_query A named list with API-specific parameters to be used
@@ -54,7 +55,7 @@ geo_lite <- function(address,
                      full_results = FALSE,
                      return_addresses = TRUE,
                      verbose = FALSE,
-                     nominatim_server = 'https://nominatim.openstreetmap.org/',
+                     nominatim_server = "https://nominatim.openstreetmap.org/",
                      progressbar = TRUE,
                      custom_query = list()) {
   if (limit > 50) {
@@ -114,11 +115,13 @@ geo_lite_single <- function(address,
                             full_results = TRUE,
                             return_addresses = TRUE,
                             verbose = FALSE,
-                            nominatim_server = 'https://nominatim.openstreetmap.org/',
+                            nominatim_server =
+                              "https://nominatim.openstreetmap.org/",
                             custom_query = list()) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  if (substr(nominatim_server, nchar(nominatim_server), nchar(nominatim_server)) != "/") {
+  if (substr(nominatim_server, nchar(nominatim_server),
+             nchar(nominatim_server)) != "/") {
     nominatim_server <- paste0(nominatim_server, "/")
   }
   api <- paste0(nominatim_server, "search.php?q=")

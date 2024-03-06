@@ -80,7 +80,8 @@ reverse_geo_lite <- function(lat,
                              full_results = FALSE,
                              return_coords = TRUE,
                              verbose = FALSE,
-                             nominatim_server = 'https://nominatim.openstreetmap.org/',
+                             nominatim_server =
+                               "https://nominatim.openstreetmap.org/",
                              progressbar = TRUE,
                              custom_query = list()) {
   # Check inputs
@@ -166,11 +167,13 @@ reverse_geo_lite_single <- function(lat_cap,
                                     full_results = FALSE,
                                     return_coords = TRUE,
                                     verbose = TRUE,
-                                    nominatim_server = 'https://nominatim.openstreetmap.org/',
+                                    nominatim_server =
+                                      "https://nominatim.openstreetmap.org/",
                                     custom_query = list()) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  if (substr(nominatim_server, nchar(nominatim_server), nchar(nominatim_server)) != "/") {
+  if (substr(nominatim_server, nchar(nominatim_server),
+             nchar(nominatim_server)) != "/") {
     nominatim_server <- paste0(nominatim_server, "/")
   }
   api <- paste0(nominatim_server, "reverse?")
