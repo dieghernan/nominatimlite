@@ -1,7 +1,7 @@
 # nominatimlite (development version)
 
--   It is possible to use **nominatimlite** with local serves (#42
-    \@alexwhitedatamine).
+-   It is possible to use **nominatimlite** with local server thanks to the
+    new argument `nominatim_server` (#42 \@alexwhitedatamine).
 
 # nominatimlite 0.3.0
 
