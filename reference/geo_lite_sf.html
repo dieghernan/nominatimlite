@@ -24,7 +24,7 @@ tibble format."><meta property="og:image" content="https://dieghernan.github.io/
       <img src="../favicon-32x32.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,6 +78,7 @@ query using <a href="https://CRAN.R-project.org/package=sf" class="external-link
 <span>  full_results <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  nominatim_server <span class="op">=</span> <span class="st">"https://nominatim.openstreetmap.org/"</span>,</span>
 <span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  points_only <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -113,6 +114,11 @@ If <code>FALSE</code> (default) only address columns are returned. See also
 <dt>progressbar</dt>
 <dd><p>Logical. If <code>TRUE</code> displays a progress bar to indicate
 the progress of the function.</p></dd>
+
+
+<dt>nominatim_server</dt>
+<dd><p>The URL of the Nominatim server to use.
+Defaults to <code>"https://nominatim.openstreetmap.org/"</code>.</p></dd>
 
 
 <dt>custom_query</dt>
