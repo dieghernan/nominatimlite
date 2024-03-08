@@ -4,7 +4,9 @@
 \alias{nominatim_check_access}
 \title{Check access to Nominatim API}
 \usage{
-nominatim_check_access()
+nominatim_check_access(
+  nominatim_server = "https://nominatim.openstreetmap.org/"
+)
 }
 \value{
 a logical.

@@ -11,6 +11,7 @@ reverse_geo_lite_sf(
   full_results = FALSE,
   return_coords = TRUE,
   verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
   progressbar = TRUE,
   custom_query = list(),
   points_only = TRUE
@@ -32,6 +33,8 @@ returned. See also \code{return_addresses}.}
 \item{return_coords}{return input coordinates with results if \code{TRUE}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+
+\item{nominatim_server}{The URL of the Nominatim server to use. Defaults to https://nominatim.openstreetmap.org/}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
