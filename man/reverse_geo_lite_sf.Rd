@@ -34,7 +34,8 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{nominatim_server}{The URL of the Nominatim server to use. Defaults to https://nominatim.openstreetmap.org/}
+\item{nominatim_server}{The URL of the Nominatim server to use.
+Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}

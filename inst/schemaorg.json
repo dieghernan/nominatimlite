@@ -7,12 +7,19 @@
         "id": "https://orcid.org/0000-0001-8457-4658"
       },
       "codeRepository": "https://github.com/dieghernan/nominatimlite",
-      "contributor": {
-        "id": "https://orcid.org/0000-0002-0375-5156",
-        "type": "Person",
-        "familyName": "Lacko",
-        "givenName": "Jindra"
-      },
+      "contributor": [
+        {
+          "id": "https://orcid.org/0000-0002-0375-5156",
+          "type": "Person",
+          "familyName": "Lacko",
+          "givenName": "Jindra"
+        },
+        {
+          "type": "Person",
+          "familyName": "White",
+          "givenName": "Alex"
+        }
+      ],
       "copyrightHolder": {
         "id": "https://orcid.org/0000-0001-8457-4658",
         "type": "Person",
@@ -34,8 +41,8 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "runtimePlatform": "R version 4.3.2 (2023-10-31)",
-      "version": "0.2.1.9000"
+      "runtimePlatform": "R version 4.3.3 (2024-02-29 ucrt)",
+      "version": "0.3.0.9000"
     },
     {
       "id": "https://doi.org/10.5281/zenodo.5113195",

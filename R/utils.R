@@ -59,6 +59,13 @@ keep_names_rev <- function(x, address = "address", return_coords = FALSE,
   return(out)
 }
 
+prepare_api_url <- function(
+    nominatim_server = "https://nominatim.openstreetmap.org/",
+    entry) {
+  api <- paste0(gsub("/$", "", nominatim_server), "/", entry)
+  api
+}
+
 # tibble helpers ----
 
 empty_tbl <- function(x, lat, lon) {

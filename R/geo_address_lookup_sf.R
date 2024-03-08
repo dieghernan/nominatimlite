@@ -64,11 +64,7 @@ geo_address_lookup_sf <- function(osm_ids,
                                   points_only = TRUE) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  if (substr(nominatim_server, nchar(nominatim_server),
-             nchar(nominatim_server)) != "/") {
-    nominatim_server <- paste0(nominatim_server, "/")
-  }
-  api <- paste0(nominatim_server, "lookup?")
+  api <- prepare_api_url(nominatim_server, "lookup?")
 
   # Prepare nodes
   osm_ids <- as.integer(osm_ids)

@@ -121,15 +121,16 @@ reverse_geo_lite_sf <- function(lat,
       setTxtProgressBar(pb, x)
     }
     rw <- key[x, ]
+
     res_single <- reverse_geo_lite_sf_single(
-      as.double(rw$lat_cap_int),
-      as.double(rw$long_cap_int),
-      address,
-      full_results,
-      return_coords,
-      verbose,
-      custom_query,
-      points_only,
+      lat_cap = as.double(rw$lat_cap_int),
+      long_cap = as.double(rw$long_cap_int),
+      address = address,
+      full_results = full_results,
+      return_coords = return_coords,
+      verbose = verbose,
+      custom_query = custom_query,
+      points_only = points_only,
       nominatim_server = nominatim_server
     )
 
@@ -181,11 +182,7 @@ reverse_geo_lite_sf_single <- function(lat_cap,
                                        points_only = FALSE) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  if (substr(nominatim_server, nchar(nominatim_server),
-             nchar(nominatim_server)) != "/") {
-    nominatim_server <- paste0(nominatim_server, "/")
-  }
-  api <- paste0(nominatim_server, "reverse?")
+  api <- prepare_api_url(nominatim_server, "reverse?")
 
   # Compose url
   url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=geojson")

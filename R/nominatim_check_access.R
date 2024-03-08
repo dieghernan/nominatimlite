@@ -18,24 +18,18 @@
 #' @keywords internal
 #' @export
 nominatim_check_access <- function(
-  nominatim_server = "https://nominatim.openstreetmap.org/"
-) {
+    nominatim_server = "https://nominatim.openstreetmap.org/") {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  if (substr(nominatim_server, nchar(nominatim_server),
-             nchar(nominatim_server)) != "/") {
-    nominatim_server <- paste0(nominatim_server, "/")
-  }
-  url <- paste0(nominatim_server, "status.php?format=json")
+  url <- prepare_api_url(nominatim_server, "status.php?format=json")
   destfile <- tempfile(fileext = ".json")
 
   api_res <- api_call(url, destfile, TRUE)
 
-  # nocov start
   if (isFALSE(api_res)) {
     return(FALSE)
   }
-  # nocov end
+
   result <- dplyr::as_tibble(jsonlite::fromJSON(destfile, flatten = TRUE))
 
   # nocov start
@@ -77,43 +71,28 @@ skip_if_api_server <- function() {
 #'
 #' @keywords internal
 #'
-api_call <- function(url, destfile, quiet) {
-  # nocov start
-  dwn_res <-
-    tryCatch(
+api_call <- function(url, destfile = tempfile(fileext = ".json"), quiet) {
+  dwn_res <- suppressWarnings(
+    try(
       download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
-      warning = function(e) {
-        return(FALSE)
-      },
-      error = function(e) {
-        return(FALSE)
-      }
+      silent = TRUE
     )
-  # nocov end
+  )
   # Always sleep to make 1 call per sec
   Sys.sleep(1)
 
-  # nocov start
-  if (isFALSE(dwn_res)) {
-    if (isFALSE(quiet)) message("Retrying query")
-    Sys.sleep(1)
-
-    dwn_res <-
-      tryCatch(
-        download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
-        warning = function(e) {
-          return(FALSE)
-        },
-        error = function(e) {
-          return(FALSE)
-        }
-      )
-  }
-
-  if (isFALSE(dwn_res)) {
-    return(FALSE)
-  } else {
+  if (!inherits(dwn_res, "try-error")) {
     return(TRUE)
   }
-  # nocov end
+  if (isFALSE(quiet)) message("Retrying query")
+  Sys.sleep(1)
+
+  dwn_res <- suppressWarnings(
+    try(
+      download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+      silent = TRUE
+    )
+  )
+
+  !inherits(dwn_res, "try-error")
 }

@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0",
+  "version": "0.3.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
+  "runtimePlatform": "R version 4.3.3 (2024-02-29 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -36,6 +36,11 @@
       "givenName": "Jindra",
       "familyName": "Lacko",
       "@id": "https://orcid.org/0000-0002-0375-5156"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Alex",
+      "familyName": "White"
     }
   ],
   "copyrightHolder": [
@@ -199,7 +204,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "184.319KB",
+  "fileSize": "188.206KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
