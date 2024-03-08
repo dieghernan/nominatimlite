@@ -1,3 +1,8 @@
+# nominatimlite (development version)
+
+-   It is possible to use **nominatimlite** with local serves (#42
+    \@alexwhitedatamine).
+
 # nominatimlite 0.3.0
 
 -   Add a `progressbar` parameter to `geo_lite()`, `geo_lite_sf()`,

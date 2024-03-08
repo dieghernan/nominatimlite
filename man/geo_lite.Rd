@@ -12,6 +12,7 @@ geo_lite(
   full_results = FALSE,
   return_addresses = TRUE,
   verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
   progressbar = TRUE,
   custom_query = list()
 )
@@ -35,6 +36,9 @@ returned. See also \code{return_addresses}.}
 \item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+
+\item{nominatim_server}{The URL of the Nominatim server to use.
+Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}

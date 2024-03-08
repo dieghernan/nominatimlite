@@ -4,7 +4,7 @@
 \alias{api_call}
 \title{Helper function for centralize API queries}
 \usage{
-api_call(url, destfile, quiet)
+api_call(url, destfile = tempfile(fileext = ".json"), quiet)
 }
 \arguments{
 \item{url}{a \code{\link{character}} string (or longer vector

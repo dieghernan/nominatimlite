@@ -80,6 +80,8 @@ reverse_geo_lite <- function(lat,
                              full_results = FALSE,
                              return_coords = TRUE,
                              verbose = FALSE,
+                             nominatim_server =
+                               "https://nominatim.openstreetmap.org/",
                              progressbar = TRUE,
                              custom_query = list()) {
   # Check inputs
@@ -131,13 +133,14 @@ reverse_geo_lite <- function(lat,
     }
     rw <- key[x, ]
     res_single <- reverse_geo_lite_single(
-      as.double(rw$lat_cap_int),
-      as.double(rw$long_cap_int),
-      address,
-      full_results,
-      return_coords,
-      verbose,
-      custom_query
+      lat_cap = as.double(rw$lat_cap_int),
+      long_cap = as.double(rw$long_cap_int),
+      address = address,
+      full_results = full_results,
+      return_coords = return_coords,
+      verbose = verbose,
+      custom_query = custom_query,
+      nominatim_server = nominatim_server
     )
 
     res_single <- dplyr::bind_cols(res_single, rw[, c(1, 2)])
@@ -164,9 +167,12 @@ reverse_geo_lite_single <- function(lat_cap,
                                     full_results = FALSE,
                                     return_coords = TRUE,
                                     verbose = TRUE,
+                                    nominatim_server =
+                                      "https://nominatim.openstreetmap.org/",
                                     custom_query = list()) {
-  # Step 1: Download ----
-  api <- "https://nominatim.openstreetmap.org/reverse?"
+  # First build the api address. If the passed nominatim_server does not end
+  # with a trailing forward-slash, add one
+  api <- prepare_api_url(nominatim_server, "reverse?")
 
   # Compose url
   url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=json")

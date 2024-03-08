@@ -58,10 +58,13 @@ geo_address_lookup_sf <- function(osm_ids,
                                   full_results = FALSE,
                                   return_addresses = TRUE,
                                   verbose = FALSE,
+                                  nominatim_server =
+                                    "https://nominatim.openstreetmap.org/",
                                   custom_query = list(),
                                   points_only = TRUE) {
-  # Step 1: Download ----
-  api <- "https://nominatim.openstreetmap.org/lookup?"
+  # First build the api address. If the passed nominatim_server does not end
+  # with a trailing forward-slash, add one
+  api <- prepare_api_url(nominatim_server, "lookup?")
 
   # Prepare nodes
   osm_ids <- as.integer(osm_ids)

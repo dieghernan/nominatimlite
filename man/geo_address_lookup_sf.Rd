@@ -10,6 +10,7 @@ geo_address_lookup_sf(
   full_results = FALSE,
   return_addresses = TRUE,
   verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list(),
   points_only = TRUE
 )
@@ -29,6 +30,9 @@ If \code{FALSE} (default) only address columns are returned. See also
 \item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+
+\item{nominatim_server}{The URL of the Nominatim server to use.
+Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list with API-specific parameters to be used
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
