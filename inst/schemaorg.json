@@ -20,13 +20,19 @@
           "givenName": "Alex"
         }
       ],
-      "copyrightHolder": {
-        "id": "https://orcid.org/0000-0001-8457-4658",
-        "type": "Person",
-        "email": "diego.hernangomezherrero@gmail.com",
-        "familyName": "Hernangómez",
-        "givenName": "Diego"
-      },
+      "copyrightHolder": [
+        {
+          "id": "https://orcid.org/0000-0001-8457-4658",
+          "type": "Person",
+          "email": "diego.hernangomezherrero@gmail.com",
+          "familyName": "Hernangómez",
+          "givenName": "Diego"
+        },
+        {
+          "type": "Organization",
+          "name": "OpenStreetMap"
+        }
+      ],
       "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on 'sf' format.",
       "license": "https://spdx.org/licenses/MIT",
       "name": "nominatimlite: Interface with 'Nominatim' API Service",

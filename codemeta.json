@@ -50,6 +50,10 @@
       "familyName": "Hernangómez",
       "email": "diego.hernangomezherrero@gmail.com",
       "@id": "https://orcid.org/0000-0001-8457-4658"
+    },
+    {
+      "@type": "Organization",
+      "name": "OpenStreetMap"
     }
   ],
   "maintainer": [
@@ -204,7 +208,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "190.637KB",
+  "fileSize": "190.793KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
