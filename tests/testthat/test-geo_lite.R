@@ -88,7 +88,7 @@ test_that("Checking query", {
 
 
   expect_gt(
-    nrow(geo_lite("Burger King",
+    nrow(geo_lite("Catedral",
       limit = 10,
       custom_query = list(countrycode = "ES")
     )), 4

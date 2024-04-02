@@ -163,7 +163,7 @@ geo_lite_sf_single <- function(address,
                                points_only = TRUE) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
-  api <- prepare_api_url(nominatim_server, "search.php?q=")
+  api <- prepare_api_url(nominatim_server, "search?q=")
 
   # Replace spaces with +
   address2 <- gsub(" ", "+", address)
