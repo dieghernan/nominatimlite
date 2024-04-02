@@ -8,7 +8,7 @@ Authors@R: c(
     person("Jindra", "Lacko", role = c("ctb", "rev"),
            comment = c(ORCID = "0000-0002-0375-5156")),
     person("Alex", "White", role = "ctb"),
-    person("OpenStreetMap", role = "cph", comment = "For the data"))
+    person("OpenStreetMap", role = "cph", comment = ("For the data"))
   )
 Description: Lite interface for getting data from 'OSM' service
     'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
