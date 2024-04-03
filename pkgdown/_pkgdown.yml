@@ -26,7 +26,7 @@ authors:
     href: https://www.openstreetmap.org/copyright/
     html: >
       "<img src='https://wiki.openstreetmap.org/w/images/6/6f/Made_with.svg'
-      width='150' alt='OpenStreetMap' style='margin-bottom: 3px;'">"
+      width='150' alt='OpenStreetMap' style='margin-bottom: 3px;'>"
 reference:
 - title: Geocoding
   desc: >
