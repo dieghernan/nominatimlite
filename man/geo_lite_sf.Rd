@@ -119,12 +119,12 @@ if (any(!sf::st_is_empty(Madrid))) {
 \seealso{
 \code{\link[=geo_lite]{geo_lite()}}.
 
-Geocoding strings: 
+Geocoding: 
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_lite}()}
 
-Get \CRANpkg{sf} objects: 
+Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{reverse_geo_lite_sf}()}

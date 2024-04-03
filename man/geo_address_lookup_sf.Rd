@@ -114,12 +114,12 @@ several
 Address Lookup API: 
 \code{\link{geo_address_lookup}()}
 
-Geocoding strings: 
+Geocoding: 
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_lite}()},
 \code{\link{geo_lite_sf}()}
 
-Get \CRANpkg{sf} objects: 
+Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}

@@ -145,7 +145,7 @@ if (any(!sf::st_is_empty(rome_sf))) {
 Reverse geocoding coordinates: 
 \code{\link{reverse_geo_lite}()}
 
-Get \CRANpkg{sf} objects: 
+Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_lite_sf}()}

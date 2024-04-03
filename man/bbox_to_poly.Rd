@@ -61,7 +61,7 @@ if (any(!sf::st_is_empty(sfobj))) {
 \seealso{
 \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}} and \code{\link[sf:sfc]{sf::st_sfc()}}.
 
-Get \CRANpkg{sf} objects: 
+Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
