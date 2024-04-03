@@ -28,7 +28,7 @@ Data extracted on \strong{03 April 2024}.
 
 data("osm_amenities")
 
-amenities
+osm_amenities
 }
 \concept{amenity}
 \concept{datasets}

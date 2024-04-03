@@ -105,9 +105,6 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
-  identifiers:
-  - type: url
-    value: https://arxiv.org/abs/1403.2805
   version: '>= 1.7.0'
 - type: software
   title: lifecycle
@@ -266,6 +263,21 @@ references:
     email: hadley@posit.co
   year: '2024'
   version: '>= 3.0.0'
+- type: software
+  title: tibble
+  abstract: 'tibble: Simple Data Frames'
+  notes: Suggests
+  url: https://tibble.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=tibble
+  authors:
+  - family-names: Müller
+    given-names: Kirill
+    email: kirill@cynkra.com
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2024'
 - type: software
   title: tidygeocoder
   abstract: 'tidygeocoder: Geocoding Made Easy'

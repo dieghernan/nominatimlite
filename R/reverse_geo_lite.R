@@ -203,7 +203,7 @@ reverse_geo_lite_single <- function(lat_cap,
 
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    out <- empty_tbl(tbl_query, address)
+    out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
 

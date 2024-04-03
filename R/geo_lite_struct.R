@@ -1,6 +1,6 @@
 geo_lite_struct <- function(
     amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
-    country = NULL, postalcode = NULL, lat = "lat", long = "lon", limit = 50,
+    country = NULL, postalcode = NULL, lat = "lat", long = "lon", limit = 1,
     full_results = FALSE, return_addresses = TRUE, verbose = FALSE,
     nominatim_server = "https://nominatim.openstreetmap.org/",
     custom_query = list()) {
@@ -27,14 +27,11 @@ geo_lite_struct <- function(
     if (is.null(x)) {
       return(NA_character_)
     }
-
     a_char <- as.character(x)
-    # Replace spaces with +
-    a_char <- gsub(" ", "+", a_char)
     a_char
   })
 
-  tbl_query <- tibble::as_tibble(pars)
+  tbl_query <- dplyr::as_tibble(pars)
   names(tbl_query) <- paste0("q_", names(tbl_query))
 
   if (all(is.na(pars))) {
@@ -42,6 +39,11 @@ geo_lite_struct <- function(
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
+
+  # Paste +
+  pars <- lapply(pars, function(x) {
+    gsub(" ", "+", x)
+  })
 
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
@@ -84,7 +86,7 @@ geo_lite_struct <- function(
 
   # Empty query
   if (nrow(result) == 0) {
-    message("No results for query ")
+    message("No results for query")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }

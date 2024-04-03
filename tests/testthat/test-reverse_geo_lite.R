@@ -228,3 +228,17 @@ test_that("Progress bar", {
   # Not
   expect_silent(aa <- reverse_geo_lite(lat, long, progressbar = FALSE))
 })
+test_that("Fail", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+  # KO
+  expect_snapshot(several <- reverse_geo_lite(
+    40.75728, -73.98,
+    full_results = TRUE,
+    nominatim_server = "https://xyz.com/"
+  ))
+
+  expect_true(is.na(several$address))
+})

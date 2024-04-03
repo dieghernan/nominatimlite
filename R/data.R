@@ -31,5 +31,5 @@
 #'
 #' data("osm_amenities")
 #'
-#' amenities
+#' osm_amenities
 NULL
