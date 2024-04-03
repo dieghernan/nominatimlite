@@ -4,6 +4,14 @@ add_custom_query <- function(custom_query = list(), url) {
     return(url)
   }
 
+  custom_query <- lapply(custom_query, function(x) {
+    if (is.logical(x)) {
+      x <- ifelse(isTRUE(x), 1, 0)
+    }
+    x <- paste0(x, collapse = ",")
+    x
+  })
+
   opts <- paste0(names(custom_query), "=", custom_query, collapse = "&")
 
   end_url <- paste0(url, "&", opts)

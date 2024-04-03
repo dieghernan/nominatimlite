@@ -17,20 +17,20 @@ geo_lite_sf(
 )
 }
 \arguments{
-\item{address}{character with single line address, e.g.
+\item{address}{\code{character} with single line address, e.g.
 (\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
 (\code{c("Madrid", "Barcelona")}).}
 
-\item{limit}{maximum number of results to return per input address. Note
+\item{limit}{Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{return_addresses}{return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{full_results}{returns all available data from the API service.
+\item{full_results}{Returns all available data from the API service.
 If \code{FALSE} (default) only address columns are returned. See also
 \code{return_addresses}.}
 
-\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}

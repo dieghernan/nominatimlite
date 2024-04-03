@@ -156,7 +156,7 @@ test_that("Check unnesting", {
     lat = c(40.75728, 55.95335),
     long = c(-73.98586, -3.188375),
     full_results = TRUE,
-    custom_query = list(extratags = 1)
+    custom_query = list(extratags = TRUE)
   )
 
   expect_s3_class(sev, "tbl")

@@ -10,18 +10,18 @@
 #'
 #' @family geocoding
 #'
-#' @param address character with single line address, e.g.
+#' @param address `character` with single line address, e.g.
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
 #'   (`c("Madrid", "Barcelona")`).
-#' @param lat	latitude column name in the output data (default  `"lat"`).
-#' @param long	longitude column name in the output data (default  `"long"`).
-#' @param limit	maximum number of results to return per input address. Note
+#' @param lat	Latitude column name in the output data (default  `"lat"`).
+#' @param long Longitude column name in the output data (default  `"long"`).
+#' @param limit	Maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
-#' @param full_results returns all available data from the API service.
+#' @param full_results Returns all available data from the API service.
 #'    If `FALSE` (default) only latitude, longitude and address columns are
 #'    returned. See also `return_addresses`.
-#' @param return_addresses return input addresses with results if `TRUE`.
-#' @param verbose if `TRUE` then detailed logs are output to the console.
+#' @param return_addresses Return input addresses with results if `TRUE`.
+#' @param verbose If `TRUE` then detailed logs are output to the console.
 #' @param nominatim_server The URL of the Nominatim server to use.
 #'    Defaults to `"https://nominatim.openstreetmap.org/"`.
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
@@ -153,13 +153,11 @@ geo_lite_single <- function(address,
   tbl_query <- dplyr::tibble(query = address)
 
 
-  # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
-  # nocov end
 
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))

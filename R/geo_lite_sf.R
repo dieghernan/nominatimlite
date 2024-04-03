@@ -13,10 +13,9 @@
 #' @family geocoding
 #' @family spatial
 #'
-#' @param full_results returns all available data from the API service.
+#' @param full_results Returns all available data from the API service.
 #'   If `FALSE` (default) only address columns are returned. See also
 #'   `return_addresses`.
-#'
 #' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
 #'   points (`TRUE`, which is the default) or potentially other shapes as
 #'   provided by the Nominatim API (`FALSE`). See **About Geometry Types**.
@@ -195,13 +194,11 @@ geo_lite_sf_single <- function(address,
   # Keep a tbl with the query
   tbl_query <- dplyr::tibble(query = address)
 
-  # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
-  # nocov end
 
   # Read
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)

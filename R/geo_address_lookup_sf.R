@@ -97,14 +97,12 @@ geo_address_lookup_sf <- function(osm_ids,
   # Keep a tbl with the query
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
-  # nocov start
   # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
-  # nocov end
 
   # Read
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)

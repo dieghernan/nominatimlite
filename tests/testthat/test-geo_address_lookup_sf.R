@@ -39,7 +39,7 @@ test_that("Checking query", {
   expect_equal(
     nrow(geo_address_lookup_sf(34633854, "W",
       full_results = TRUE,
-      custom_query = list(extratags = 1)
+      custom_query = list(extratags = TRUE)
     )), 1
   )
   expect_equal(
@@ -109,4 +109,21 @@ test_that("Verify names", {
 
   # Do I have dups by any chance?
   expect_false(any(grepl("\\.[0-9]$", names(several))))
+})
+
+test_that("Fail", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+  # KO
+  vector_ids <- c(146656, 240109189)
+  vector_type <- c("R", "N")
+  expect_snapshot(several <- geo_address_lookup_sf(
+    vector_ids, vector_type,
+    full_results = TRUE,
+    nominatim_server = "https://xyz.com/"
+  ))
+
+  expect_true(all(sf::st_is_empty(several)))
 })

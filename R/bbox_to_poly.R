@@ -5,9 +5,9 @@
 #'
 #' @family spatial
 #'
-#' @param bbox numeric vector of 4 elements representing the coordinates of the
+#' @param bbox Numeric vector of 4 elements representing the coordinates of the
 #'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`.
-#' @param xmin,ymin,xmax,ymax alternatively, you can use these named parameters
+#' @param xmin,ymin,xmax,ymax Alternatively, you can use these named parameters
 #'   instead of `bbox`.
 #'
 #' @inheritParams sf::st_sf

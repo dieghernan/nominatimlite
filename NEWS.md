@@ -2,7 +2,17 @@
 
 -   It is possible to use **nominatimlite** with local server thanks to the new
     argument `nominatim_server` (#42 \@alexwhitedatamine).
+
 -   Adapt endpoints to **Nominatim v4.4.0** `[Python-only]`.
+
+-   `custom_query` argument can use vectors and `logical`:
+
+    ``` r
+    geo_lite(address = "New York", 
+             custom_query = list(addressdetails = TRUE,
+                                 viewbox = c(-60, -20, 60, 20))
+             )
+    ```
 
 # nominatimlite 0.3.0
 

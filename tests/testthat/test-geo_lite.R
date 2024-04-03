@@ -102,7 +102,7 @@ test_that("Checking query", {
 
   expect_equal(
     nrow(geo_lite("Madrid",
-      custom_query = list(extratags = 1)
+      custom_query = list(extratags = TRUE)
     )), 1
   )
 })
@@ -145,4 +145,18 @@ test_that("Progress bar", {
 
   # Not
   expect_silent(aa <- geo_lite(c("Madrid", "Barcelona"), progressbar = FALSE))
+})
+test_that("Fail", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+  # KO
+  expect_snapshot(several <- geo_lite(
+    "Madrid",
+    full_results = TRUE,
+    nominatim_server = "https://xyz.com/"
+  ))
+
+  expect_true(all(is.na(several[, 2:3])))
 })

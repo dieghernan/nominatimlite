@@ -42,6 +42,10 @@ reference:
     These functions return <a href="https://CRAN.R-project.org/package=sf"
     class="external-link"><span class="pkg">sf</span></a> objects.
   contents: has_concept("spatial")
+- title: Datasets
+  desc: Helper datasets.
+  contents:
+  - has_concept("datasets")
 - title: About the package
   contents: nominatimlite-package
 

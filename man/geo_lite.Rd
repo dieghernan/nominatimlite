@@ -18,24 +18,24 @@ geo_lite(
 )
 }
 \arguments{
-\item{address}{character with single line address, e.g.
+\item{address}{\code{character} with single line address, e.g.
 (\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
 (\code{c("Madrid", "Barcelona")}).}
 
-\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
+\item{lat}{Latitude column name in the output data (default  \code{"lat"}).}
 
-\item{long}{longitude column name in the output data (default  \code{"long"}).}
+\item{long}{Longitude column name in the output data (default  \code{"long"}).}
 
-\item{limit}{maximum number of results to return per input address. Note
+\item{limit}{Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{returns all available data from the API service.
+\item{full_results}{Returns all available data from the API service.
 If \code{FALSE} (default) only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
