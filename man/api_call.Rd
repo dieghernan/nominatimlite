@@ -19,7 +19,7 @@ api_call(url, destfile = tempfile(fileext = ".json"), quiet)
     the progress bar.}
 }
 \value{
-A logical \code{TRUE/FALSE}
+A logical \code{TRUE/FALSE}.
 }
 \description{
 A wrapper of \code{\link[utils:download.file]{utils::download.file()}}. On warning on error it will

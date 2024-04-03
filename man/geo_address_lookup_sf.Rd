@@ -42,13 +42,14 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \CRANpkg{sf} object with the results.
+A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
 The lookup API allows to query the address and other details of one or
 multiple OSM objects like node, way or relation. This function returns the
 spatial object associated with the query using \CRANpkg{sf}, see
-\code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \CRANpkg{tibble} format.
+\code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \code{\link[tibble:tibble]{tibble}}
+format.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
@@ -108,7 +109,7 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=geo_address_lookup]{geo_address_lookup()}}
+\code{\link[=geo_address_lookup]{geo_address_lookup()}}.
 
 Address Lookup API: 
 \code{\link{geo_address_lookup}()}

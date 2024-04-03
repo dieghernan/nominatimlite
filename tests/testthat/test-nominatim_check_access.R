@@ -13,7 +13,7 @@ test_that("api_url", {
   skip_if_api_server()
   url <- prepare_api_url(
     "https://nominatim.openstreetmap.org/",
-    "status.php?format=json"
+    "status?format=json"
   )
 
 

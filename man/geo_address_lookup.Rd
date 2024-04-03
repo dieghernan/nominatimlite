@@ -43,13 +43,14 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 }
 \value{
-A \CRANpkg{tibble} with the results found by the query.
+A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
 The lookup API allows to query the address and other details of one or
 multiple OSM objects like node, way or relation. This function returns the
-\CRANpkg{tibble} associated with the query, see \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for
-retrieving the data as a spatial object (\CRANpkg{sf} format).
+\code{\link[tibble:tibble]{tibble}} associated with the query, see
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as a spatial object
+(\code{\link[sf:sf]{sf}} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Lookup/} for additional
@@ -68,7 +69,7 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}.
 
 Address Lookup API: 
 \code{\link{geo_address_lookup_sf}()}

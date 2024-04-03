@@ -1,9 +1,14 @@
-#' Address search API for OSM elements
+#' Address search API for OSM elements (free-form query)
 #'
 #' @description
 #' Geocodes addresses given as character values. This function returns the
-#' \CRANpkg{tibble} associated with the query, see [geo_lite_sf()] for
-#' retrieving the data as a spatial object (\CRANpkg{sf} format).
+#' [`tibble`][tibble::tibble] associated with the query, see [geo_lite_sf()] for
+#' retrieving the data as a spatial object ([`sf`][sf::st_sf] format).
+#'
+#' This function correspond to the **free-form query** search described in the
+#' [API endpoint](https://nominatim.org/release-docs/develop/api/Search/).
+#'
+#' @family geocoding
 #'
 #' @param address character with single line address, e.g.
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
@@ -29,7 +34,16 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @return A \CRANpkg{tibble} with the results.
+#' @return
+#'
+#' ```{r child = "man/chunks/tibbleout.Rmd"}
+#' ```
+#'
+#'
+#' @seealso
+#' [geo_lite_sf()], [tidygeocoder::geo()].
+#'
+#' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -44,10 +58,6 @@
 #'   full_results = TRUE
 #' )
 #' }
-#' @export
-#'
-#' @seealso [geo_lite_sf()], [tidygeocoder::geo()]
-#' @family geocoding
 geo_lite <- function(address,
                      lat = "lat",
                      long = "lon",

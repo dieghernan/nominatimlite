@@ -2,7 +2,7 @@
 % Please edit documentation in R/bbox_to_poly.R
 \name{bbox_to_poly}
 \alias{bbox_to_poly}
-\title{Coerce a bounding box to a \code{sfc} \code{POLYGON} object}
+\title{Coerce a bounding box to a \code{\link[sf:sfc]{sfc}} \code{POLYGON} object}
 \usage{
 bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 }
@@ -19,12 +19,10 @@ instead of \code{bbox}.}
 A \code{\link[sf:sfc]{sfc}} object of class \code{POLYGON}.
 }
 \description{
-Create a \code{\link[sf:sfc]{sfc}} object from the coordinates of a
-bounding box.
+Create a \code{\link[sf:sfc]{sfc}} object from the coordinates of a bounding box.
 }
 \details{
-Bounding boxes can be located using different online tools, as
-\href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
+Bounding boxes can be located using different online tools, as \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 }
 \examples{
 \dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

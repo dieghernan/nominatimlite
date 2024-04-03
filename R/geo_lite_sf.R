@@ -1,11 +1,17 @@
-#' Address search API for OSM elements in \CRANpkg{sf} format
+#' Address search API for OSM elements in \CRANpkg{sf} format (free-form query)
 #'
 #' @description
 #' This function allows you to geocode addresses and return the corresponding
 #' spatial object. This function returns the spatial object associated with the
 #' query using \CRANpkg{sf}, see [geo_lite_sf()] for retrieving the data in
-#' \CRANpkg{tibble} format.
+#' [`tibble`][tibble::tibble] format.
 #'
+#' This function correspond to the **free-form query** search described in the
+#' [API endpoint](https://nominatim.org/release-docs/develop/api/Search/).
+#'
+#'
+#' @family geocoding
+#' @family spatial
 #'
 #' @param full_results returns all available data from the API service.
 #'   If `FALSE` (default) only address columns are returned. See also
@@ -38,7 +44,15 @@
 #' The function is vectorized, allowing for multiple addresses to be geocoded;
 #' in case of `points_only = FALSE`  multiple geometry types may be returned.
 #'
-#' @return A \CRANpkg{sf} object with the results.
+#' @return
+#'
+#' ```{r child = "man/chunks/sfout.Rmd"}
+#' ```
+#'
+#' @seealso
+#' [geo_lite()].
+#'
+#' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -62,7 +76,7 @@
 #' }
 #' # Several results
 #'
-#' Madrid <- geo_lite_sf("Madrid",
+#' Madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
 #'   limit = 2,
 #'   points_only = FALSE, full_results = TRUE
 #' )
@@ -72,11 +86,6 @@
 #'     geom_sf(fill = NA)
 #' }
 #' }
-#' @export
-#'
-#' @family geocoding
-#' @family spatial
-
 geo_lite_sf <- function(address,
                         limit = 1,
                         return_addresses = TRUE,

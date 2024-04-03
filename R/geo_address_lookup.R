@@ -3,25 +3,36 @@
 #' @description
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
-#' \CRANpkg{tibble} associated with the query, see [geo_address_lookup_sf()] for
-#' retrieving the data as a spatial object (\CRANpkg{sf} format).
+#' [`tibble`][tibble::tibble] associated with the query, see
+#' [geo_address_lookup_sf()] for retrieving the data as a spatial object
+#' ([`sf`][sf::st_sf] format).
+#'
+#' @family lookup
+#' @family geocoding
 #'
 #' @param osm_ids vector of OSM identifiers as **numeric**
 #'   (`c(00000, 11111, 22222)`).
 #' @param type vector character of the type of the OSM type associated to each
 #'   `osm_ids`. Possible values are node (`"N"`), way (`"W"`) or relation
 #'   (`"R"`). If a single value is provided it would be recycled.
+#'
 #' @inheritParams geo_lite
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/develop/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @seealso [geo_address_lookup_sf()]
-#' @family lookup
-#' @family geocoding
+#' @seealso
+#' [geo_address_lookup_sf()].
 #'
-#' @return A \CRANpkg{tibble} with the results found by the query.
+#'
+#' @return
+#'
+#' ```{r child = "man/chunks/tibbleout.Rmd"}
+#' ```
+#'
+#' @export
+#'
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -32,8 +43,6 @@
 #' several <- geo_address_lookup(c(146656, 240109189), type = c("R", "N"))
 #' several
 #' }
-#' @export
-
 geo_address_lookup <- function(osm_ids,
                                type = c("N", "W", "R"),
                                lat = "lat",

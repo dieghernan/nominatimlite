@@ -1,7 +1,8 @@
 # nominatimlite (development version)
 
--   It is possible to use **nominatimlite** with local server thanks to the
-    new argument `nominatim_server` (#42 \@alexwhitedatamine).
+-   It is possible to use **nominatimlite** with local server thanks to the new
+    argument `nominatim_server` (#42 \@alexwhitedatamine).
+-   Adapt endpoints to **Nominatim v4.4.0** `[Python-only]`.
 
 # nominatimlite 0.3.0
 
@@ -25,7 +26,7 @@
 
 -   **rlang** and **tibble** are not explicitly required. Conversions to tibble
     happens with `dplyr::tibble()`.
--   The data attributes of **sf** objects are returned now as tibble, for easy
+-   The data attributes of **sf** objects are returned now as `tibble`, for easy
     printing in console.
 -   Improvements in code and tests.
 -   Now **sf** objects can handle correctly nested fields provided in the json

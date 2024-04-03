@@ -1,22 +1,26 @@
 #' Check access to Nominatim API
 #'
-#' @family api_management
-#'
 #' @description
 #' Check if **R** has access to resources at
 #' <https://nominatim.openstreetmap.org>.
 #'
-#' @return a logical.
+#' @family api_management
+#' @keywords internal
+#'
+#' @return
+#' A logical `TRUE/FALSE`.
+#'
+#' @inheritParams geo_lite
 #'
 #' @seealso
-#' <https://nominatim.org/release-docs/latest/api/Status/>
+#' <https://nominatim.org/release-docs/latest/api/Status/>.
+#'
+#' @export
 #'
 #' @examples
 #' \donttest{
 #' nominatim_check_access()
 #' }
-#' @keywords internal
-#' @export
 nominatim_check_access <- function(
     nominatim_server = "https://nominatim.openstreetmap.org/") {
   # First build the api address. If the passed nominatim_server does not end
@@ -67,7 +71,9 @@ skip_if_api_server <- function() {
 #' @family api_management
 #'
 #' @inheritParams utils::download.file
-#' @return A logical `TRUE/FALSE`
+#'
+#' @return
+#' A logical `TRUE/FALSE`.
 #'
 #' @keywords internal
 #'

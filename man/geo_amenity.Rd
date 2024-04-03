@@ -23,7 +23,7 @@ This operation is not supported any more. Use
 }
 \examples{
 \donttest{
-#' # Madrid, Spain
+# Madrid, Spain
 
 library(arcgeocoder)
 library(ggplot2)

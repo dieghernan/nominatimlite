@@ -10,6 +10,7 @@ status](https://www.r-pkg.org/badges/version/nominatimlite)](https://CRAN.R-proj
 [![CRAN
 results](https://badges.cranchecks.info/worst/nominatimlite.svg)](https://cran.r-project.org/web/checks/check_results_nominatimlite.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
+[![Nominatim-version](https://img.shields.io/badge/Nominatim-%E2%89%A5_4.4.0-blue)](https://nominatim.org/release-docs/develop/api/Overview/)
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
 [![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/nominatimlite)
@@ -70,7 +71,7 @@ Install **nominatimlite** from
 install.packages("nominatimlite")
 ```
 
-You can install the developing version of `nominatimlite` with:
+You can install the developing version of **nominatimlite** with:
 
 ``` r
 devtools::install_github("dieghernan/nominatimlite")
@@ -222,8 +223,7 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-R-tidygeocoder" class="csl-entry">
 

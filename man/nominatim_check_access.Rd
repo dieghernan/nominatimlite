@@ -8,8 +8,12 @@ nominatim_check_access(
   nominatim_server = "https://nominatim.openstreetmap.org/"
 )
 }
+\arguments{
+\item{nominatim_server}{The URL of the Nominatim server to use.
+Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+}
 \value{
-a logical.
+A logical \code{TRUE/FALSE}.
 }
 \description{
 Check if \strong{R} has access to resources at
@@ -21,7 +25,7 @@ nominatim_check_access()
 }
 }
 \seealso{
-\url{https://nominatim.org/release-docs/latest/api/Status/}
+\url{https://nominatim.org/release-docs/latest/api/Status/}.
 
 API Management: 
 \code{\link{api_call}()}

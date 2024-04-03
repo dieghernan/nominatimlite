@@ -4,9 +4,12 @@
 #' The lookup API allows to query the address and other details of one or
 #' multiple OSM objects like node, way or relation. This function returns the
 #' spatial object associated with the query using \CRANpkg{sf}, see
-#' [geo_address_lookup()] for retrieving the data in \CRANpkg{tibble} format.
+#' [geo_address_lookup()] for retrieving the data in [`tibble`][tibble::tibble]
+#' format.
 #'
-#' @return A \CRANpkg{sf} object with the results.
+#' @family lookup
+#' @family geocoding
+#' @family spatial
 #'
 #' @inheritParams geo_lite_sf
 #' @inheritParams geo_address_lookup
@@ -17,10 +20,15 @@
 #'
 #' @inheritSection  geo_lite_sf  About Geometry Types
 #'
-#' @seealso [geo_address_lookup()]
-#' @family lookup
-#' @family geocoding
-#' @family spatial
+#' @return
+#'
+#' ```{r child = "man/chunks/sfout.Rmd"}
+#' ```
+#'
+#' @seealso
+#' [geo_address_lookup()].
+#'
+#' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -52,7 +60,6 @@
 #' several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 #' several
 #' }
-#' @export
 geo_address_lookup_sf <- function(osm_ids,
                                   type = c("N", "W", "R"),
                                   full_results = FALSE,

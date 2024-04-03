@@ -7,18 +7,19 @@
 #' [arcgeocoder::arc_geo_categories()] instead.
 #'
 #'
-#' @param bbox,... Deprecated
-#'
-#' @return An error.
-#'
 #' @keywords internal
 #' @name geo_amenity
 #' @rdname geo_amenity
 #'
+#' @param bbox,... Deprecated
+#'
+#' @return An error.
+#'
+#'
 #' @export
 #' @examples
 #' \donttest{
-#' #' # Madrid, Spain
+#' # Madrid, Spain
 #'
 #' library(arcgeocoder)
 #' library(ggplot2)

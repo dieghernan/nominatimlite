@@ -6,18 +6,17 @@ name: revdepcheck
 jobs:
   revdepcheck:
     runs-on: ${{ matrix.config.os }}
-
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
     strategy:
       fail-fast: false
       matrix:
         config:
-           #- {os: windows-latest, r: 'release'}
           - {os: windows-latest, r: 'release'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_BIOC_VERSION: "3.18"
+
     steps:
       - uses: actions/checkout@v4
 
@@ -36,10 +35,8 @@ jobs:
 
       - name: revdepcheck
         run: |
-
           revdepcheck::revdep_reset()
           revdepcheck::revdep_check(num_workers = 4)
-
         shell: Rscript {0}
 
       - name: Commit results

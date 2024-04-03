@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite.R
 \name{geo_lite}
 \alias{geo_lite}
-\title{Address search API for OSM elements}
+\title{Address search API for OSM elements (free-form query)}
 \usage{
 geo_lite(
   address,
@@ -47,12 +47,15 @@ the progress of the function.}
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 }
 \value{
-A \CRANpkg{tibble} with the results.
+A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
 Geocodes addresses given as character values. This function returns the
-\CRANpkg{tibble} associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
-retrieving the data as a spatial object (\CRANpkg{sf} format).
+\code{\link[tibble:tibble]{tibble}} associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
+retrieving the data as a spatial object (\code{\link[sf:sf]{sf}} format).
+
+This function correspond to the \strong{free-form query} search described in the
+\href{https://nominatim.org/release-docs/develop/api/Search/}{API endpoint}.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
@@ -75,7 +78,7 @@ geo_lite(c("Madrid", "Barcelona"),
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=geo_lite_sf]{geo_lite_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
+\code{\link[=geo_lite_sf]{geo_lite_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
 
 Geocoding strings: 
 \code{\link{geo_address_lookup}()},

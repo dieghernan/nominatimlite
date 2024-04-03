@@ -18,10 +18,10 @@ reverse_geo_lite(
 }
 \arguments{
 \item{lat}{latitude values in numeric format. Must be in the range
-\verb{[-90, 90]}.}
+\eqn{\left[-90, 90 \right]}.}
 
 \item{long}{longitude values in numeric format. Must be in the range
-\verb{[-180, 180]}.}
+\eqn{\left[-180, 180 \right]}.}
 
 \item{address}{address column name in the output data (default  \code{"address"}).}
 
@@ -43,14 +43,15 @@ the progress of the function.}
 list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
 }
 \value{
-A \CRANpkg{tibble} with the results.
+A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
 Generates an address from a latitude and longitude. Latitudes must be
-between \verb{[-90, 90]} and longitudes between \verb{[-180, 180]}. This
-function returns the \CRANpkg{tibble} associated with the query, see
+between \eqn{\left[-90, 90 \right]} and longitudes between
+\eqn{\left[-180, 180 \right]}. This function returns the
+\code{\link[tibble:tibble]{tibble}} associated with the query, see
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} for retrieving the data as a spatial object
-(\CRANpkg{sf}) format).
+(\code{\link[sf:sf]{sf}} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/develop/api/Reverse/} for additional
@@ -60,16 +61,16 @@ parameters to be passed to \code{custom_query}.
 
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
-equivalences on terms of zoom:\tabular{rl}{
+equivalences on terms of zoom:\tabular{ll}{
    \strong{zoom} \tab \strong{address_detail} \cr
-   3 \tab country \cr
-   5 \tab state \cr
-   8 \tab county \cr
-   10 \tab city \cr
-   14 \tab suburb \cr
-   16 \tab major streets \cr
-   17 \tab major and minor streets \cr
-   18 \tab building \cr
+   \code{3} \tab country \cr
+   \code{5} \tab state \cr
+   \code{8} \tab county \cr
+   \code{10} \tab city \cr
+   \code{14} \tab suburb \cr
+   \code{16} \tab major streets \cr
+   \code{17} \tab major and minor streets \cr
+   \code{18} \tab building \cr
 }
 }
 
@@ -94,7 +95,7 @@ dplyr::glimpse(sev)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}.
 
 Reverse geocoding coordinates: 
 \code{\link{reverse_geo_lite_sf}()}

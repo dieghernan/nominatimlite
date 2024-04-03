@@ -3,15 +3,18 @@
 #' @description
 #'
 #' Generates an address from a latitude and longitude. Latitudes must be
-#' between `[-90, 90]` and longitudes between `[-180, 180]`. This
-#' function returns the \CRANpkg{tibble} associated with the query, see
+#' between \eqn{\left[-90, 90 \right]} and longitudes between
+#' \eqn{\left[-180, 180 \right]}. This function returns the
+#' [`tibble`][tibble::tibble] associated with the query, see
 #' [reverse_geo_lite_sf()] for retrieving the data as a spatial object
-#' (\CRANpkg{sf}) format).
+#' ([`sf`][sf::st_sf] format).
+#'
+#' @family reverse
 #'
 #' @param lat  latitude values in numeric format. Must be in the range
-#'   `[-90, 90]`.
+#'   \eqn{\left[-90, 90 \right]}.
 #' @param long  longitude values in numeric format. Must be in the range
-#'   `[-180, 180]`.
+#'   \eqn{\left[-180, 180 \right]}.
 #' @param address address column name in the output data (default  `"address"`).
 #' @param return_coords	return input coordinates with results if `TRUE`.
 #' @param custom_query API-specific parameters to be used, passed as a named
@@ -34,14 +37,14 @@
 #'
 #' t <- dplyr::tribble(
 #'  ~zoom, ~address_detail,
-#'  3, "country",
-#'  5, "state",
-#'  8, "county",
-#'  10, "city",
-#'  14, "suburb",
-#'  16, "major streets",
-#'  17, "major and minor streets",
-#'  18, "building"
+#'  "`3`", "country",
+#'  "`5`", "state",
+#'  "`8`", "county",
+#'  "`10`", "city",
+#'  "`14`", "suburb",
+#'  "`16`", "major streets",
+#'  "`17`", "major and minor streets",
+#'  "`18`", "building"
 #'  )
 #'
 #' knitr::kable(t, col.names = paste0("**", names(t), "**"))
@@ -49,7 +52,16 @@
 #'
 #' ```
 #'
-#' @return A \CRANpkg{tibble} with the results.
+#' @return
+#'
+#' ```{r child = "man/chunks/tibbleout.Rmd"}
+#' ```
+#'
+#' @seealso
+#' [reverse_geo_lite_sf()], [tidygeocoder::reverse_geo()].
+#'
+#' @export
+#'
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -68,12 +80,6 @@
 #'
 #' dplyr::glimpse(sev)
 #' }
-#'
-#' @export
-#'
-#' @seealso [reverse_geo_lite_sf()], [tidygeocoder::reverse_geo()]
-#' @family reverse
-#'
 reverse_geo_lite <- function(lat,
                              long,
                              address = "address",

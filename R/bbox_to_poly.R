@@ -1,9 +1,9 @@
-#' Coerce a bounding box to a `sfc` `POLYGON` object
+#' Coerce a bounding box to a [`sfc`][sf::st_sfc] `POLYGON` object
 #'
 #' @description
+#' Create a [`sfc`][sf::st_sfc] object from the coordinates of a bounding box.
 #'
-#' Create a [`sfc`][sf::st_sfc()] object from the coordinates of a
-#' bounding box.
+#' @family spatial
 #'
 #' @param bbox numeric vector of 4 elements representing the coordinates of the
 #'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`.
@@ -12,18 +12,17 @@
 #'
 #' @inheritParams sf::st_sf
 #'
-#' @return A [`sfc`][sf::st_sfc()] object of class `POLYGON`.
+#' @return A [`sfc`][sf::st_sfc] object of class `POLYGON`.
 #'
 #' @seealso
-#'
 #' [sf::st_as_sfc()] and [sf::st_sfc()].
 #'
-#' @family spatial
 #'
 #' @details
+#' Bounding boxes can be located using different online tools, as [Bounding
+#' Box Tool](https://boundingbox.klokantech.com/).
 #'
-#' Bounding boxes can be located using different online tools, as
-#' [Bounding Box Tool](https://boundingbox.klokantech.com/).
+#' @export
 #'
 #' @examplesIf nominatim_check_access()
 #'
@@ -56,7 +55,6 @@
 #'     geom_sf(data = sfobj, fill = "wheat")
 #' }
 #' }
-#' @export
 bbox_to_poly <- function(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA,
                          crs = 4326) {
   if (!anyNA(bbox) && length(bbox) != 4) {

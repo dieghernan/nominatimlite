@@ -3,9 +3,14 @@
 #' @description
 #'
 #' Generates an address from a latitude and longitude. Latitudes must be
-#' between `[-90, 90]` and longitudes between `[-180, 180]`. This function
-#' returns the spatial object associated with the query using \CRANpkg{sf}, see
-#' [reverse_geo_lite()] for retrieving the data in \CRANpkg{tibble} format.
+#' between \eqn{\left[-90, 90 \right]} and longitudes between
+#' \eqn{\left[-180, 180 \right]}. This function returns the spatial object
+#' associated with the query using \CRANpkg{sf}, see [reverse_geo_lite()] for
+#' retrieving the data in [`tibble`][tibble::tibble] format.
+#'
+#' @family reverse
+#' @family spatial
+#'
 #'
 #' @inheritParams reverse_geo_lite
 #' @inheritParams geo_lite_sf
@@ -17,7 +22,15 @@
 #' @inheritSection  reverse_geo_lite  About Zooming
 #' @inheritSection  geo_lite_sf  About Geometry Types
 #'
-#' @return A \CRANpkg{sf} object with the results.
+#' @return
+#'
+#' ```{r child = "man/chunks/sfout.Rmd"}
+#' ```
+#'
+#' @export
+#'
+#' @seealso
+#' [reverse_geo_lite()].
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -57,11 +70,6 @@
 #'     geom_sf()
 #' }
 #' }
-#' @export
-#'
-#' @seealso [reverse_geo_lite()]
-#' @family reverse
-#' @family spatial
 reverse_geo_lite_sf <- function(lat,
                                 long,
                                 address = "address",

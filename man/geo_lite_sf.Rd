@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite_sf.R
 \name{geo_lite_sf}
 \alias{geo_lite_sf}
-\title{Address search API for OSM elements in \CRANpkg{sf} format}
+\title{Address search API for OSM elements in \CRANpkg{sf} format (free-form query)}
 \usage{
 geo_lite_sf(
   address,
@@ -46,13 +46,16 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \CRANpkg{sf} object with the results.
+A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
 This function allows you to geocode addresses and return the corresponding
 spatial object. This function returns the spatial object associated with the
 query using \CRANpkg{sf}, see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for retrieving the data in
-\CRANpkg{tibble} format.
+\code{\link[tibble:tibble]{tibble}} format.
+
+This function correspond to the \strong{free-form query} search described in the
+\href{https://nominatim.org/release-docs/develop/api/Search/}{API endpoint}.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
@@ -101,7 +104,7 @@ if (any(!sf::st_is_empty(sol_poly))) {
 }
 # Several results
 
-Madrid <- geo_lite_sf("Madrid",
+Madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
   limit = 2,
   points_only = FALSE, full_results = TRUE
 )
@@ -114,6 +117,8 @@ if (any(!sf::st_is_empty(Madrid))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
+\code{\link[=geo_lite]{geo_lite()}}.
+
 Geocoding strings: 
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
