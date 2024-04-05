@@ -7,6 +7,7 @@ DOI
 Geocode
 Geocodes
 Geocoding
+JSONV
 Mapbox
 Maëlle
 Nominatim
@@ -23,6 +24,7 @@ arcgeocoder
 codecov
 de
 et
+geo
 geocode
 geocoded
 geocoder

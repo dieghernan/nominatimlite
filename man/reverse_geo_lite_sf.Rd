@@ -148,7 +148,8 @@ Reverse geocoding coordinates:
 Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_lite_sf}()}
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite_struct_sf}()}
 }
 \concept{reverse}
 \concept{spatial}

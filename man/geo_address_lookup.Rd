@@ -77,7 +77,9 @@ Address Lookup API:
 Geocoding: 
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_lite}()},
-\code{\link{geo_lite_sf}()}
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite_struct}()},
+\code{\link{geo_lite_struct_sf}()}
 }
 \concept{geocoding}
 \concept{lookup}

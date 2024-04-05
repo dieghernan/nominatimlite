@@ -64,7 +64,7 @@ geo_address_lookup <- function(osm_ids,
   nodes <- paste0(type, osm_ids, collapse = ",")
 
   # Compose url
-  url <- paste0(api, "osm_ids=", nodes, "&format=json")
+  url <- paste0(api, "osm_ids=", nodes, "&format=jsonv2")
 
   if (full_results) url <- paste0(url, "&addressdetails=1")
 

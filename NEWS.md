@@ -1,14 +1,28 @@
 # nominatimlite (development version)
 
+-   New functions:
+
+    -   `geo_lite_struct()` and `geo_lite_struct_sf()` for performing structured
+        queries.
+
 -   It is possible to use **nominatimlite** with local server thanks to the new
     argument `nominatim_server` (#42 \@alexwhitedatamine).
 
 -   Adapt endpoints to **Nominatim v4.4.0** `[Python-only]`.
 
+-   `nominatimlite::osm_amenities` data set re-introduced, updated and with
+    additional description fields.
+
+-   API call for non-spatial function uses now JSONV2 format (`&format=jsonv2`).
+    This implies the following changes in the output:
+
+    -   `class` renamed to `category`.
+    -   additional field `place_rank` with the search rank of the object.
+
 -   `custom_query` argument can use vectors and `logical`:
 
     ``` r
-    geo_lite(address = "New York", 
+    geo_lite(address = "New York",
              custom_query = list(addressdetails = TRUE,
                                  viewbox = c(-60, -20, 60, 20))
              )

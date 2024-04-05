@@ -38,9 +38,9 @@ is_named <- function(x) {
 
 keep_names <- function(x, return_addresses, full_results,
                        colstokeep = "query") {
-  names(x) <- gsub("address.", "", names(x))
-  names(x) <- gsub("namedetails.", "", names(x))
-  names(x) <- gsub("display_name", "address", names(x))
+  names(x) <- gsub("address.", "", names(x), fixed = TRUE)
+  names(x) <- gsub("namedetails.", "", names(x), fixed = TRUE)
+  names(x) <- gsub("display_name", "address", names(x), fixed = TRUE)
 
   out_cols <- colstokeep
   if (return_addresses) out_cols <- c(out_cols, "address")

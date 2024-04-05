@@ -1,26 +1,20 @@
-#' Address search API for OSM elements (structured query)
+#' Address search API for OSM elements in \CRANpkg{sf} format (structured query)
 #'
 #' @description
-#' Geocodes addresses already split into components. This function returns the
-#' [`tibble`][tibble::tibble] associated with the query, see
-#' [geo_lite_struct_sf()] for retrieving the data as a spatial object
-#' ([`sf`][sf::st_sf] format).
+#' Geocodes addresses already split into components and return the corresponding
+#' spatial object. This function returns the spatial object associated with the
+#' query using \CRANpkg{sf}, see [geo_lite_struct()] for retrieving the data in
+#' [`tibble`][tibble::tibble] format.
 #'
 #' This function correspond to the **structured query** search described in the
 #' [API endpoint](https://nominatim.org/release-docs/develop/api/Search/). For
-#' performing a free-form search use [geo_lite()].
+#' performing a free-form search use [geo_lite_sf()].
 #'
 #' @family geocoding
+#' @family spatial
 #'
-#' @param amenity Name and/or type of POI, see also [geo_amenity].
-#' @param street House number and street name.
-#' @param city City.
-#' @param county County.
-#' @param state State.
-#' @param country Country.
-#' @param postalcode Postal Code.
-#' @inheritParams geo_lite
-#'
+#' @inheritParams geo_lite_struct
+#' @inheritParams geo_lite_sf
 #'
 #' @details
 #'
@@ -33,33 +27,46 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
+#' @inheritSection  geo_lite_sf  About Geometry Types
+#'
 #' @return
 #'
-#' ```{r child = "man/chunks/tibbleout.Rmd"}
+#' ```{r child = "man/chunks/sfout.Rmd"}
 #' ```
 #'
-#'
 #' @seealso
-#' [geo_lite_struct_sf()], [tidygeocoder::geo()].
+#' [geo_lite_struct()].
 #'
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' pl_mayor <- geo_lite_struct(
-#'   street = "Plaza Mayor", country = "Spain",
-#'   limit = 50, full_results = TRUE
+#' # Map
+#'
+#' pl_mayor <- geo_lite_struct_sf(
+#'   street = "Plaza Mayor",
+#'   county = "Comunidad de Madrid",
+#'   country = "Spain", limit = 50,
+#'   full_results = TRUE, verbose = TRUE
 #' )
 #'
+#' # Outline
+#' ccaa <- geo_lite_sf("Comunidad de Madrid, Spain", points_only = FALSE)
 #'
-#' dplyr::glimpse(pl_mayor)
+#' library(ggplot2)
+#'
+#' if (any(!sf::st_is_empty(pl_mayor), !sf::st_is_empty(ccaa))) {
+#'   ggplot(ccaa) +
+#'     geom_sf() +
+#'     geom_sf(data = pl_mayor, aes(shape = addresstype, color = addresstype))
 #' }
-geo_lite_struct <- function(
+#' }
+geo_lite_struct_sf <- function(
     amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
-    country = NULL, postalcode = NULL, lat = "lat", long = "lon", limit = 1,
-    full_results = FALSE, return_addresses = TRUE, verbose = FALSE,
+    country = NULL, postalcode = NULL, limit = 1, full_results = FALSE,
+    return_addresses = TRUE, verbose = FALSE,
     nominatim_server = "https://nominatim.openstreetmap.org/",
-    custom_query = list()) {
+    custom_query = list(), points_only = TRUE) {
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
@@ -92,7 +99,7 @@ geo_lite_struct <- function(
 
   if (all(is.na(pars))) {
     message("Nothing to search for.")
-    out <- empty_tbl(tbl_query, lat, long)
+    out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
@@ -105,9 +112,10 @@ geo_lite_struct <- function(
   # with a trailing forward-slash, add one
   api <- prepare_api_url(nominatim_server, "search?")
   # Compose url
-  url <- paste0(api, "format=jsonv2&limit=", limit)
+  url <- paste0(api, "format=geojson&limit=", limit)
 
   if (full_results) url <- paste0(url, "&addressdetails=1")
+  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
 
   # Clean and add options
   newopts <- c(pars, custom_query)
@@ -121,51 +129,49 @@ geo_lite_struct <- function(
   url <- add_custom_query(newopts, url)
 
   # Download to temp file
-  json <- tempfile(fileext = ".json")
+  json <- tempfile(fileext = ".geojson")
   res <- api_call(url, json, isFALSE(verbose))
 
   # Step 2: Read and parse results ----
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    out <- empty_tbl(tbl_query, lat, long)
+    out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
-
-  # Rename lat and lon
-  nmes <- names(result)
-  nmes[nmes == "lat"] <- lat
-  nmes[nmes == "lon"] <- long
-
-  names(result) <- nmes
+  # Read
+  sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
   # Empty query
-  if (nrow(result) == 0) {
+  if (length(names(sfobj)) == 1) {
     message("No results for query")
-    out <- empty_tbl(tbl_query, lat, long)
+    out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
+  # Prepare output
 
-  # Coords as double
-  result[lat] <- as.double(result[[lat]])
-  result[long] <- as.double(result[[long]])
+  # Unnest address
+  sfobj <- unnest_sf(sfobj)
 
 
-  # Add query
-  result_clean <- dplyr::bind_cols(
-    tbl_query[rep(1, nrow(result)), ],
-    result
+
+  # Prepare output
+  sf_clean <- sfobj
+
+  # Naming order
+  sf_clean <- dplyr::bind_cols(
+    sf_clean,
+    tbl_query[rep(1, nrow(sf_clean)), ]
   )
 
   # Keep names
-  result_out <- keep_names(result_clean, return_addresses, full_results,
-    colstokeep = c(names(tbl_query), lat, long)
+  result_out <- keep_names(sf_clean, return_addresses, full_results,
+    colstokeep = names(tbl_query)
   )
 
-  # As tibble
-  result_out <- dplyr::as_tibble(result_out)
+  # Attach as tibble
+  result_out <- sf_to_tbl(result_out)
 
   result_out
 }

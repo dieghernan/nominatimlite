@@ -3,7 +3,7 @@
 #' @description
 #' This function allows you to geocode addresses and return the corresponding
 #' spatial object. This function returns the spatial object associated with the
-#' query using \CRANpkg{sf}, see [geo_lite_sf()] for retrieving the data in
+#' query using \CRANpkg{sf}, see [geo_lite()] for retrieving the data in
 #' [`tibble`][tibble::tibble] format.
 #'
 #' This function correspond to the **free-form query** search described in the
@@ -75,13 +75,13 @@
 #' }
 #' # Several results
 #'
-#' Madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
+#' madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
 #'   limit = 2,
 #'   points_only = FALSE, full_results = TRUE
 #' )
 #'
-#' if (any(!sf::st_is_empty(Madrid))) {
-#'   ggplot(Madrid) +
+#' if (any(!sf::st_is_empty(madrid))) {
+#'   ggplot(madrid) +
 #'     geom_sf(fill = NA)
 #' }
 #' }

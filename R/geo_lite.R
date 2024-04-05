@@ -136,7 +136,7 @@ geo_lite_single <- function(address,
   address2 <- gsub(" ", "+", address)
 
   # Compose url
-  url <- paste0(api, address2, "&format=json&limit=", limit)
+  url <- paste0(api, address2, "&format=jsonv2&limit=", limit)
 
   if (full_results) url <- paste0(url, "&addressdetails=1")
 

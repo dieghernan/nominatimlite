@@ -64,6 +64,7 @@ if (any(!sf::st_is_empty(sfobj))) {
 Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_lite_sf}()},
+\code{\link{geo_lite_struct_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 }
 \concept{spatial}
