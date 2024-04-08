@@ -49,7 +49,7 @@ provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.
 A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
-This function allows you to geocode addresses and return the corresponding
+This function allows you to geocode addresses and returns the corresponding
 spatial object. This function returns the spatial object associated with the
 query using \CRANpkg{sf}, see \code{\link[=geo_lite]{geo_lite()}} for retrieving the data in
 \code{\link[tibble:tibble]{tibble}} format.
@@ -122,6 +122,8 @@ if (any(!sf::st_is_empty(madrid))) {
 Geocoding: 
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite}()},
 \code{\link{geo_lite_struct}()},
 \code{\link{geo_lite_struct_sf}()}
@@ -129,6 +131,7 @@ Geocoding:
 Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_struct_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 }

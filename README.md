@@ -74,7 +74,7 @@ install.packages("nominatimlite")
 You can install the developing version of **nominatimlite** with:
 
 ``` r
-devtools::install_github("dieghernan/nominatimlite")
+remotes::install_github("dieghernan/nominatimlite")
 ```
 
 Alternatively, you can install **nominatimlite** using the

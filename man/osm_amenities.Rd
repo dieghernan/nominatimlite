@@ -30,5 +30,10 @@ data("osm_amenities")
 
 osm_amenities
 }
+\seealso{
+Other amenity: 
+\code{\link{geo_amenity}()},
+\code{\link{geo_amenity_sf}()}
+}
 \concept{amenity}
 \concept{datasets}

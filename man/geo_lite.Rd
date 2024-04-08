@@ -83,6 +83,8 @@ geo_lite(c("Madrid", "Barcelona"),
 Geocoding: 
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{geo_lite_struct}()},
 \code{\link{geo_lite_struct_sf}()}

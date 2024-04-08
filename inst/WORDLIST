@@ -29,9 +29,11 @@ geocode
 geocoded
 geocoder
 geocoding
+geolocated
 ie
 json
 lon
+osm
 osmdata
 rlang
 testthat
@@ -39,3 +41,4 @@ tibble
 tidygeocoder
 unnesting
 vectorized
+viewbox

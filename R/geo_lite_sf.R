@@ -1,7 +1,7 @@
 #' Address search API for OSM elements in \CRANpkg{sf} format (free-form query)
 #'
 #' @description
-#' This function allows you to geocode addresses and return the corresponding
+#' This function allows you to geocode addresses and returns the corresponding
 #' spatial object. This function returns the spatial object associated with the
 #' query using \CRANpkg{sf}, see [geo_lite()] for retrieving the data in
 #' [`tibble`][tibble::tibble] format.

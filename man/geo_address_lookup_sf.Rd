@@ -116,6 +116,8 @@ Address Lookup API:
 
 Geocoding: 
 \code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{geo_lite_struct}()},
@@ -123,6 +125,7 @@ Geocoding:
 
 Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{bbox_to_poly}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},
 \code{\link{geo_lite_struct_sf}()},
 \code{\link{reverse_geo_lite_sf}()}

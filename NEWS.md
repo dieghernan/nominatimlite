@@ -4,6 +4,9 @@
 
     -   `geo_lite_struct()` and `geo_lite_struct_sf()` for performing structured
         queries.
+    -   Bring back `geo_amenity()` and `geo_amenity_sf()` as a wrapper of
+        `geo_lite_struct()` / `geo_lite_struct_sf(),` so now are more robust and
+        compatible with **sf** objects.
 
 -   It is possible to use **nominatimlite** with local server thanks to the new
     argument `nominatim_server` (#42 \@alexwhitedatamine).
