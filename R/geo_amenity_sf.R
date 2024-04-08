@@ -52,7 +52,7 @@
 #' if (any(!sf::st_is_empty(rest_pub))) {
 #'   ggplot(mad) +
 #'     geom_sf() +
-#'     geom_sf(data = rest_pub, aes(color = type, shape = type))
+#'     geom_sf(data = rest_pub, aes(color = query, shape = query))
 #' }
 #' }
 geo_amenity_sf <- function(
