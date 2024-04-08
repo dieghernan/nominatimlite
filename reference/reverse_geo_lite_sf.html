@@ -23,7 +23,7 @@ retrieving the data in tibble format."><meta property="og:image" content="https:
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
-      <img src="../favicon-32x32.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
+      <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
@@ -39,6 +39,12 @@ retrieving the data in tibble format."><meta property="og:image" content="https:
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/ex_leaflet.html">Example: nominatimlite and leaflet maps</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -91,31 +97,31 @@ retrieving the data in <code><a href="https://tibble.tidyverse.org/reference/tib
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>lat</dt>
-<dd><p>latitude values in numeric format. Must be in the range
+<dd><p>Latitude values in numeric format. Must be in the range
 \(\left[-90, 90 \right]\).</p></dd>
 
 
 <dt>long</dt>
-<dd><p>longitude values in numeric format. Must be in the range
+<dd><p>Longitude values in numeric format. Must be in the range
 \(\left[-180, 180 \right]\).</p></dd>
 
 
 <dt>address</dt>
-<dd><p>address column name in the output data (default  <code>"address"</code>).</p></dd>
+<dd><p>Address column name in the output data (default  <code>"address"</code>).</p></dd>
 
 
 <dt>full_results</dt>
-<dd><p>returns all available data from the API service.
+<dd><p>Returns all available data from the API service.
 If <code>FALSE</code> (default) only latitude, longitude and address columns are
 returned. See also <code>return_addresses</code>.</p></dd>
 
 
 <dt>return_coords</dt>
-<dd><p>return input coordinates with results if <code>TRUE</code>.</p></dd>
+<dd><p>Return input coordinates with results if <code>TRUE</code>.</p></dd>
 
 
 <dt>verbose</dt>
-<dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>If <code>TRUE</code> then detailed logs are output to the console.</p></dd>
 
 
 <dt>nominatim_server</dt>
@@ -181,7 +187,9 @@ in case of <code>points_only = FALSE</code>  multiple geometry types may be retu
 <p>Get <code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> objects: 
 <code><a href="bbox_to_poly.html">bbox_to_poly</a>()</code>,
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
-<code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code></p></div>
+<code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
+<code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code>,
+<code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf</a>()</code></p></div>
     </div>
 
     <div class="section level2">

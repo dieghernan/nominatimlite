@@ -23,7 +23,7 @@ geo_address_lookup_sf() for retrieving the data as a spatial object
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
-      <img src="../favicon-32x32.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
+      <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
@@ -39,6 +39,12 @@ geo_address_lookup_sf() for retrieving the data as a spatial object
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/ex_leaflet.html">Example: nominatimlite and leaflet maps</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -90,36 +96,36 @@ multiple OSM objects like node, way or relation. This function returns the
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>osm_ids</dt>
-<dd><p>vector of OSM identifiers as <strong>numeric</strong>
+<dd><p>Vector of OSM identifiers as <strong>numeric</strong>
 (<code>c(00000, 11111, 22222)</code>).</p></dd>
 
 
 <dt>type</dt>
-<dd><p>vector character of the type of the OSM type associated to each
+<dd><p>Vector character of the type of the OSM type associated to each
 <code>osm_ids</code>. Possible values are node (<code>"N"</code>), way (<code>"W"</code>) or relation
 (<code>"R"</code>). If a single value is provided it would be recycled.</p></dd>
 
 
 <dt>lat</dt>
-<dd><p>latitude column name in the output data (default  <code>"lat"</code>).</p></dd>
+<dd><p>Latitude column name in the output data (default  <code>"lat"</code>).</p></dd>
 
 
 <dt>long</dt>
-<dd><p>longitude column name in the output data (default  <code>"long"</code>).</p></dd>
+<dd><p>Longitude column name in the output data (default  <code>"long"</code>).</p></dd>
 
 
 <dt>full_results</dt>
-<dd><p>returns all available data from the API service.
+<dd><p>Returns all available data from the API service.
 If <code>FALSE</code> (default) only latitude, longitude and address columns are
 returned. See also <code>return_addresses</code>.</p></dd>
 
 
 <dt>return_addresses</dt>
-<dd><p>return input addresses with results if <code>TRUE</code>.</p></dd>
+<dd><p>Return input addresses with results if <code>TRUE</code>.</p></dd>
 
 
 <dt>verbose</dt>
-<dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>If <code>TRUE</code> then detailed logs are output to the console.</p></dd>
 
 
 <dt>nominatim_server</dt>
@@ -150,8 +156,12 @@ parameters to be passed to <code>custom_query</code>.</p>
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code></p>
 <p>Geocoding: 
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
+<code><a href="geo_amenity.html">geo_amenity</a>()</code>,
+<code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
 <code><a href="geo_lite.html">geo_lite</a>()</code>,
-<code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code></p></div>
+<code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code>,
+<code><a href="geo_lite_struct.html">geo_lite_struct</a>()</code>,
+<code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf</a>()</code></p></div>
     </div>
 
     <div class="section level2">

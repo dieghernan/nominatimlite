@@ -23,7 +23,7 @@ API endpoint."><meta property="og:image" content="https://dieghernan.github.io/n
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
-      <img src="../favicon-32x32.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
+      <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
@@ -39,6 +39,12 @@ API endpoint."><meta property="og:image" content="https://dieghernan.github.io/n
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/ex_leaflet.html">Example: nominatimlite and leaflet maps</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -91,36 +97,36 @@ retrieving the data as a spatial object (<code><a href="https://r-spatial.github
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>address</dt>
-<dd><p>character with single line address, e.g.
+<dd><p><code>character</code> with single line address, e.g.
 (<code>"1600 Pennsylvania Ave NW, Washington"</code>) or a vector of addresses
 (<code>c("Madrid", "Barcelona")</code>).</p></dd>
 
 
 <dt>lat</dt>
-<dd><p>latitude column name in the output data (default  <code>"lat"</code>).</p></dd>
+<dd><p>Latitude column name in the output data (default  <code>"lat"</code>).</p></dd>
 
 
 <dt>long</dt>
-<dd><p>longitude column name in the output data (default  <code>"long"</code>).</p></dd>
+<dd><p>Longitude column name in the output data (default  <code>"long"</code>).</p></dd>
 
 
 <dt>limit</dt>
-<dd><p>maximum number of results to return per input address. Note
+<dd><p>Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.</p></dd>
 
 
 <dt>full_results</dt>
-<dd><p>returns all available data from the API service.
+<dd><p>Returns all available data from the API service.
 If <code>FALSE</code> (default) only latitude, longitude and address columns are
 returned. See also <code>return_addresses</code>.</p></dd>
 
 
 <dt>return_addresses</dt>
-<dd><p>return input addresses with results if <code>TRUE</code>.</p></dd>
+<dd><p>Return input addresses with results if <code>TRUE</code>.</p></dd>
 
 
 <dt>verbose</dt>
-<dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>If <code>TRUE</code> then detailed logs are output to the console.</p></dd>
 
 
 <dt>nominatim_server</dt>
@@ -155,7 +161,11 @@ parameters to be passed to <code>custom_query</code>.</p>
 <p>Geocoding: 
 <code><a href="geo_address_lookup.html">geo_address_lookup</a>()</code>,
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
-<code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code></p></div>
+<code><a href="geo_amenity.html">geo_amenity</a>()</code>,
+<code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
+<code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code>,
+<code><a href="geo_lite_struct.html">geo_lite_struct</a>()</code>,
+<code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf</a>()</code></p></div>
     </div>
 
     <div class="section level2">
@@ -183,14 +193,15 @@ parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 24</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   query       lat    lon address    place_id licence osm_type osm_id class type </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Madrid     41.9  -<span style="color: #BB0000;">93.8</span> Madrid, B…   2.81<span style="color: #949494;">e</span>7 Data ©… relation 1.29<span style="color: #949494;">e</span>5 boun… admi…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Barcelona  37.7 -<span style="color: #BB0000;">121.</span>  Barcelona…   3.11<span style="color: #949494;">e</span>8 Data ©… node     9.63<span style="color: #949494;">e</span>9 place neig…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: place_rank &lt;int&gt;, importance &lt;dbl&gt;, ype &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   name &lt;chr&gt;, boundingbox &lt;list&gt;, village &lt;chr&gt;, county &lt;chr&gt;, state &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `ISO3166-2-lvl4` &lt;chr&gt;, country &lt;chr&gt;, country_code &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   neighbourhood &lt;chr&gt;, city &lt;chr&gt;, postcode &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   query       lat   lon address  place_id licence osm_type osm_id category type </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Madrid     41.9 -<span style="color: #BB0000;">93.8</span> Madrid,…   2.81<span style="color: #949494;">e</span>7 Data ©… relation 1.29<span style="color: #949494;">e</span>5 boundary admi…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Barcelona  35.6 -<span style="color: #BB0000;">94.5</span> Barcelo…   3.22<span style="color: #949494;">e</span>8 Data ©… node     1.51<span style="color: #949494;">e</span>8 place    haml…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: place_rank &lt;int&gt;, importance &lt;dbl&gt;, addresstype &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   name &lt;chr&gt;, display_name &lt;chr&gt;, address.village &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   address.county &lt;chr&gt;, address.state &lt;chr&gt;, `address.ISO3166-2-lvl4` &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   address.country &lt;chr&gt;, address.country_code &lt;chr&gt;, boundingbox &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   address.hamlet &lt;chr&gt;, address.postcode &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

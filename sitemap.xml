@@ -4,6 +4,9 @@
     <loc>https://dieghernan.github.io/nominatimlite/404.html</loc>
   </url>
   <url>
+    <loc>https://dieghernan.github.io/nominatimlite/articles/ex_leaflet.html</loc>
+  </url>
+  <url>
     <loc>https://dieghernan.github.io/nominatimlite/articles/index.html</loc>
   </url>
   <url>
@@ -43,10 +46,19 @@
     <loc>https://dieghernan.github.io/nominatimlite/reference/geo_amenity.html</loc>
   </url>
   <url>
+    <loc>https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.html</loc>
+  </url>
+  <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/geo_lite.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/index.html</loc>
@@ -56,6 +68,9 @@
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/nominatim_check_access.html</loc>
+  </url>
+  <url>
+    <loc>https://dieghernan.github.io/nominatimlite/reference/osm_amenities.html</loc>
   </url>
   <url>
     <loc>https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.html</loc>

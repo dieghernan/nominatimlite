@@ -15,7 +15,7 @@
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
-      <img src="../favicon-32x32.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
+      <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
@@ -31,6 +31,12 @@
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/ex_leaflet.html">Example: nominatimlite and leaflet maps</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -68,12 +74,12 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>bbox</dt>
-<dd><p>numeric vector of 4 elements representing the coordinates of the
+<dd><p>Numeric vector of 4 elements representing the coordinates of the
 bounding box. Values should be <code>c(xmin, ymin, xmax, ymax)</code>.</p></dd>
 
 
 <dt>xmin, ymin, xmax, ymax</dt>
-<dd><p>alternatively, you can use these named parameters
+<dd><p>Alternatively, you can use these named parameters
 instead of <code>bbox</code>.</p></dd>
 
 
@@ -96,7 +102,9 @@ instead of <code>bbox</code>.</p></dd>
     <div class="dont-index"><p><code><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html" class="external-link">sf::st_as_sfc()</a></code> and <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sf::st_sfc()</a></code>.</p>
 <p>Get <code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> objects: 
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf</a>()</code>,
+<code><a href="geo_amenity_sf.html">geo_amenity_sf</a>()</code>,
 <code><a href="geo_lite_sf.html">geo_lite_sf</a>()</code>,
+<code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf</a>()</code>,
 <code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf</a>()</code></p></div>
     </div>
 
