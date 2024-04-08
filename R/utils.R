@@ -32,7 +32,7 @@ is_named <- function(x) {
     return(FALSE)
   }
 
-  return(TRUE)
+  TRUE
 }
 
 
@@ -207,9 +207,6 @@ unnest_sf <- function(x) {
   x <- sf_to_tbl(x)
 
   x
-
-  # Unnest fields
-  need_un <- any(c("address", "extratags") %in% names(x))
 
   if (!("address" %in% names(x))) {
     return(x)
