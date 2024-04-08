@@ -16,20 +16,20 @@ geo_address_lookup_sf(
 )
 }
 \arguments{
-\item{osm_ids}{vector of OSM identifiers as \strong{numeric}
+\item{osm_ids}{Vector of OSM identifiers as \strong{numeric}
 (\code{c(00000, 11111, 22222)}).}
 
-\item{type}{vector character of the type of the OSM type associated to each
+\item{type}{Vector character of the type of the OSM type associated to each
 \code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}) or relation
 (\code{"R"}). If a single value is provided it would be recycled.}
 
-\item{full_results}{returns all available data from the API service.
+\item{full_results}{Returns all available data from the API service.
 If \code{FALSE} (default) only address columns are returned. See also
 \code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -116,12 +116,18 @@ Address Lookup API:
 
 Geocoding: 
 \code{\link{geo_address_lookup}()},
+\code{\link{geo_amenity}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite}()},
-\code{\link{geo_lite_sf}()}
+\code{\link{geo_lite_sf}()},
+\code{\link{geo_lite_struct}()},
+\code{\link{geo_lite_struct_sf}()}
 
 Get \code{\link[sf:sf]{sf}} objects: 
 \code{\link{bbox_to_poly}()},
+\code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},
+\code{\link{geo_lite_struct_sf}()},
 \code{\link{reverse_geo_lite_sf}()}
 }
 \concept{geocoding}

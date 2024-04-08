@@ -10,9 +10,9 @@
 #' @family lookup
 #' @family geocoding
 #'
-#' @param osm_ids vector of OSM identifiers as **numeric**
+#' @param osm_ids Vector of OSM identifiers as **numeric**
 #'   (`c(00000, 11111, 22222)`).
-#' @param type vector character of the type of the OSM type associated to each
+#' @param type Vector character of the type of the OSM type associated to each
 #'   `osm_ids`. Possible values are node (`"N"`), way (`"W"`) or relation
 #'   (`"R"`). If a single value is provided it would be recycled.
 #'
@@ -64,7 +64,7 @@ geo_address_lookup <- function(osm_ids,
   nodes <- paste0(type, osm_ids, collapse = ",")
 
   # Compose url
-  url <- paste0(api, "osm_ids=", nodes, "&format=json")
+  url <- paste0(api, "osm_ids=", nodes, "&format=jsonv2")
 
   if (full_results) url <- paste0(url, "&addressdetails=1")
 
@@ -81,14 +81,12 @@ geo_address_lookup <- function(osm_ids,
   # Keep a tbl with the query
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
-  # nocov start
   # If no response...
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
-  # nocov end
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
 

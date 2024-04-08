@@ -4,6 +4,14 @@ add_custom_query <- function(custom_query = list(), url) {
     return(url)
   }
 
+  custom_query <- lapply(custom_query, function(x) {
+    if (is.logical(x)) {
+      x <- ifelse(isTRUE(x), 1, 0)
+    }
+    x <- paste0(x, collapse = ",")
+    x
+  })
+
   opts <- paste0(names(custom_query), "=", custom_query, collapse = "&")
 
   end_url <- paste0(url, "&", opts)
@@ -24,15 +32,23 @@ is_named <- function(x) {
     return(FALSE)
   }
 
-  return(TRUE)
+  TRUE
 }
 
 
 keep_names <- function(x, return_addresses, full_results,
                        colstokeep = "query") {
-  names(x) <- gsub("address.", "", names(x))
-  names(x) <- gsub("namedetails.", "", names(x))
-  names(x) <- gsub("display_name", "address", names(x))
+  x$address <- x$display_name
+  if ("boundingbox" %in% names(x)) {
+    bbun <- lapply(x$boundingbox, function(y) {
+      unl <- unlist(y)
+      bb <- dplyr::tibble(boundingbox = list(as.double(unl)))
+      bb
+    })
+    bbun <- dplyr::bind_rows(bbun)
+    cln <- x[, names(x) != "boundingbox"]
+    x <- dplyr::bind_cols(cln, bbun)
+  }
 
   out_cols <- colstokeep
   if (return_addresses) out_cols <- c(out_cols, "address")
@@ -47,8 +63,10 @@ keep_names <- function(x, return_addresses, full_results,
 keep_names_rev <- function(x, address = "address", return_coords = FALSE,
                            full_results = FALSE,
                            colstokeep = address) {
-  names(x) <- gsub("display_name", address, names(x))
-
+  x$xxxyyyzzz <- x$display_name
+  nm <- names(x)
+  nm <- gsub("xxxyyyzzz", address, nm, fixed = TRUE)
+  names(x) <- nm
   out_cols <- colstokeep
   if (return_coords) out_cols <- c(out_cols, "lat", "lon")
   if (full_results) out_cols <- c(out_cols, "lat", "lon", names(x))
@@ -102,11 +120,14 @@ unnest_reverse <- function(x) {
   # OSM address
   if ("address" %in% names(lngths)) {
     ad <- dplyr::as_tibble(x$address)[1, ]
+    names(ad) <- paste0("address.", names(ad))
+
     endobj <- dplyr::bind_cols(endobj, ad)
   }
 
   if ("extratags" %in% names(lngths)) {
     xtra <- dplyr::as_tibble(x$extratags)[1, ]
+    names(xtra) <- paste0("extratags.", names(xtra))
     endobj <- dplyr::bind_cols(endobj, xtra)
   }
 
@@ -145,6 +166,48 @@ sf_to_tbl <- function(x) {
 
 unnest_sf <- function(x) {
   # Unnest
+  if ("address" %in% names(x)) {
+    # Need to unnest
+    add <- as.character(x$address)
+    newadd <- lapply(add, function(x) {
+      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
+      dplyr::as_tibble(df)
+    })
+
+    newadd <- dplyr::bind_rows(newadd)
+    names(newadd) <- paste0("address.", names(newadd))
+
+    newsfobj <- x
+    newsfobj <- x[, setdiff(names(x), "address")]
+    x <- dplyr::bind_cols(newsfobj, newadd)
+  }
+
+  if ("extratags" %in% names(x)) {
+    # Need to unnest
+    xtra <- as.character(x$extratags)
+
+    newxtra <- lapply(xtra, function(x) {
+      if (any(is.na(x), is.null(x))) {
+        return(dplyr::tibble(xxx_empty_remove = NA))
+      }
+      df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
+      dplyr::as_tibble(df)
+    })
+
+    newxtra <- dplyr::bind_rows(newxtra)
+    names(newxtra) <- paste0("extratags.", names(newxtra))
+
+    newsfobj <- x
+    newsfobj <- x[, setdiff(names(x), "extratags")]
+    x <- dplyr::bind_cols(newsfobj, newxtra)
+    x <- x[, setdiff(names(x), "extratags.xxx_empty_remove")]
+  }
+
+
+  x <- sf_to_tbl(x)
+
+  x
+
   if (!("address" %in% names(x))) {
     return(x)
   }
@@ -178,6 +241,7 @@ unnest_sf_reverse <- function(x) {
     })
 
     newadd <- dplyr::bind_rows(newadd)[1, ]
+    names(newadd) <- paste0("address.", names(newadd))
 
     newsfobj <- x
     newsfobj <- x[, setdiff(names(x), "address")]
@@ -194,6 +258,7 @@ unnest_sf_reverse <- function(x) {
     })
 
     newxtra <- dplyr::bind_rows(newxtra)[1, ]
+    names(newxtra) <- paste0("extratags.", names(newxtra))
 
     newsfobj <- x
     newsfobj <- x[, setdiff(names(x), "extratags")]

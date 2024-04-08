@@ -24,24 +24,27 @@ Depends:
 Imports: 
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),
-    lifecycle,
     sf (>= 0.9.0),
     utils
 Suggests: 
     arcgeocoder,
     ggplot2 (>= 3.0.0),
     knitr,
+    lifecycle,
     rmarkdown,
     testthat (>= 3.0.0),
+    tibble,
     tidygeocoder
 VignetteBuilder: 
     knitr
-Config/Needs/website: dieghernan/gitdevr, remotes, devtools, tidyverse
+Config/Needs/website: dieghernan/gitdevr, remotes, devtools, tidyverse,
+    leaflet, reactable, crosswalk, tidyr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Copyright: Data © OpenStreetMap contributors, ODbL 1.0.
     <https://www.openstreetmap.org/copyright>
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 X-schema.org-applicationCategory: cartography

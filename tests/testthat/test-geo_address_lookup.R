@@ -84,7 +84,7 @@ test_that("Checking query", {
   expect_equal(
     nrow(geo_address_lookup(34633854, "W",
       full_results = TRUE,
-      custom_query = list(extratags = 1)
+      custom_query = list(extratags = TRUE)
     )), 1
   )
 
@@ -124,4 +124,21 @@ test_that("Handle several", {
   expect_identical(names(several), c("query", "lat", "lon", "address"))
 
   expect_identical(as.vector(several$query), paste0(vector_type, vector_ids)[2])
+})
+
+test_that("Fail", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+  # KO
+  vector_ids <- c(146656, 240109189)
+  vector_type <- c("R", "N")
+  expect_snapshot(several <- geo_address_lookup(
+    vector_ids, vector_type,
+    full_results = TRUE,
+    nominatim_server = "https://xyz.com/"
+  ))
+
+  expect_true(all(is.na(several[, 2:3])))
 })

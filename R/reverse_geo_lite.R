@@ -11,12 +11,12 @@
 #'
 #' @family reverse
 #'
-#' @param lat  latitude values in numeric format. Must be in the range
+#' @param lat Latitude values in numeric format. Must be in the range
 #'   \eqn{\left[-90, 90 \right]}.
-#' @param long  longitude values in numeric format. Must be in the range
+#' @param long Longitude values in numeric format. Must be in the range
 #'   \eqn{\left[-180, 180 \right]}.
-#' @param address address column name in the output data (default  `"address"`).
-#' @param return_coords	return input coordinates with results if `TRUE`.
+#' @param address Address column name in the output data (default  `"address"`).
+#' @param return_coords	Return input coordinates with results if `TRUE`.
 #' @param custom_query API-specific parameters to be used, passed as a named
 #'   list (ie. `list(zoom = 3)`). See **Details**.
 #'
@@ -74,7 +74,7 @@
 #' # With options: zoom to country level
 #' sev <- reverse_geo_lite(
 #'   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
-#'   custom_query = list(zoom = 0, extratags = 1),
+#'   custom_query = list(zoom = 0, extratags = TRUE),
 #'   verbose = TRUE, full_results = TRUE
 #' )
 #'
@@ -181,7 +181,7 @@ reverse_geo_lite_single <- function(lat_cap,
   api <- prepare_api_url(nominatim_server, "reverse?")
 
   # Compose url
-  url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=json")
+  url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=jsonv2")
 
   if (isFALSE(full_results)) {
     url <- paste0(url, "&addressdetails=0")
@@ -201,13 +201,11 @@ reverse_geo_lite_single <- function(lat_cap,
 
 
 
-  # nocov start
   if (isFALSE(res)) {
     message(url, " not reachable.")
-    out <- empty_tbl(tbl_query, address)
+    out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
-  # nocov end
 
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
 

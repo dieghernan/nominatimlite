@@ -74,7 +74,7 @@ install.packages("nominatimlite")
 You can install the developing version of **nominatimlite** with:
 
 ``` r
-devtools::install_github("dieghernan/nominatimlite")
+remotes::install_github("dieghernan/nominatimlite")
 ```
 
 Alternatively, you can install **nominatimlite** using the
@@ -223,8 +223,7 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-R-tidygeocoder" class="csl-entry">
 

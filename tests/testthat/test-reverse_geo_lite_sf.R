@@ -186,7 +186,7 @@ test_that("Check unnesting", {
     lat = c(40.75728, 55.95335),
     long = c(-73.98586, -3.188375),
     full_results = TRUE,
-    custom_query = list(extratags = 1)
+    custom_query = list(extratags = TRUE)
   )
 
   expect_s3_class(sev, "tbl")
@@ -248,4 +248,18 @@ test_that("Progress bar", {
 
   # Not
   expect_silent(aa <- reverse_geo_lite_sf(lat, long, progressbar = FALSE))
+})
+test_that("Fail", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+  # KO
+  expect_snapshot(several <- reverse_geo_lite_sf(
+    40.75728, -73.98,
+    full_results = TRUE,
+    nominatim_server = "https://xyz.com/"
+  ))
+
+  expect_true(all(sf::st_is_empty(several)))
 })
