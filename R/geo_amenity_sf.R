@@ -114,15 +114,17 @@ geo_amenity_sf <- function(
 
   # Clean columns and names
   nm <- names(all_res)
-  nm[nm == "q_amenity"] <- "amenity"
+  nm[nm == "q_amenity"] <- "query"
   names(all_res) <- nm
   all_res <- all_res[, !grepl("^q_", nm)]
+  all_res <- sf_to_tbl(all_res)
 
   if (strict) {
     bbox_sf <- bbox_to_poly(bbox)
     int <- as.vector(sf::st_intersects(all_res, bbox_sf, sparse = FALSE))
     all_res <- all_res[int, ]
   }
+
 
   return(all_res)
 }

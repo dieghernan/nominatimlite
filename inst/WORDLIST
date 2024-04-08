@@ -4,6 +4,8 @@ CMD
 Cambon
 CodeFactor
 DOI
+Flaticon
+Freepik
 Geocode
 Geocodes
 Geocoding
@@ -21,7 +23,9 @@ Transamerica
 al
 api
 arcgeocoder
+browsable
 codecov
+crosstalk
 de
 et
 geo
@@ -35,6 +39,7 @@ json
 lon
 osm
 osmdata
+reactable
 rlang
 testthat
 tibble

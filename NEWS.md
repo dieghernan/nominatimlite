@@ -8,6 +8,9 @@
         `geo_lite_struct()` / `geo_lite_struct_sf(),` so now are more robust and
         compatible with **sf** objects.
 
+-   Improve unnesting of fields when requiring `extratags`, i.e.
+    `custom_query = list(extratags = TRUE)`.
+
 -   It is possible to use **nominatimlite** with local server thanks to the new
     argument `nominatim_server` (#42 \@alexwhitedatamine).
 

@@ -128,7 +128,7 @@ geo_amenity <- function(
 
   # Clean columns and names
   nm <- names(all_res)
-  nm[nm == "q_amenity"] <- "amenity"
+  nm[nm == "q_amenity"] <- "query"
   names(all_res) <- nm
   all_res <- all_res[, !grepl("^q_", nm)]
 

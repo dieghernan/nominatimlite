@@ -37,7 +37,8 @@ Suggests:
     tidygeocoder
 VignetteBuilder: 
     knitr
-Config/Needs/website: dieghernan/gitdevr, remotes, devtools, tidyverse
+Config/Needs/website: dieghernan/gitdevr, remotes, devtools, tidyverse,
+    leaflet, reactable, crosswalk, tidyr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Copyright: Data © OpenStreetMap contributors, ODbL 1.0.

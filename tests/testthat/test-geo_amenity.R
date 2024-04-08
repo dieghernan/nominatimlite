@@ -3,18 +3,18 @@ test_that("Progress bar", {
   skip_if_api_server()
   skip_if_offline()
 
-  bbox <- c(2.113482, 41.328553, 2.206866, 41.420785)
+  bbox <- c(-73.9894467311, 40.75573629, -73.9830630737, 40.75789245)
 
   # No pbar
-  expect_silent(geo_amenity(bbox, "school"))
-  expect_silent(geo_amenity(bbox, "school", progressbar = TRUE))
+  expect_silent(geo_amenity(bbox, "restaurant"))
+  expect_silent(geo_amenity(bbox, "restaurant", progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- geo_amenity(bbox, c("pub", "school")))
+  expect_output(aa <- geo_amenity(bbox, c("pub", "restaurant")))
 
   # Not
   expect_silent(aa <- geo_amenity(
-    bbox, c("pub", "school"),
+    bbox, c("pub", "restaurant"),
     progressbar = FALSE
   ))
 })
@@ -31,7 +31,7 @@ test_that("Checking query", {
   ), "50 results")
 
 
-  expect_identical(names(obj), c("amenity", "lat", "lon", "address"))
+  expect_identical(names(obj), c("query", "lat", "lon", "address"))
 
   obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -40,7 +40,7 @@ test_that("Checking query", {
     full_results = FALSE,
     return_addresses = FALSE
   )
-  expect_identical(names(obj), c("amenity", "at", "ong"))
+  expect_identical(names(obj), c("query", "at", "ong"))
 
   obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -50,7 +50,7 @@ test_that("Checking query", {
     return_addresses = TRUE
   )
 
-  expect_identical(names(obj), c("amenity", "at", "ong", "address"))
+  expect_identical(names(obj), c("query", "at", "ong", "address"))
 
   obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -60,7 +60,7 @@ test_that("Checking query", {
     return_addresses = FALSE
   )
 
-  expect_identical(names(obj)[1:4], c("amenity", "at", "ong", "address"))
+  expect_identical(names(obj)[1:4], c("query", "at", "ong", "address"))
   expect_gt(ncol(obj), 4)
 
 
