@@ -1,6 +1,7 @@
 url: https://dieghernan.github.io/nominatimlite
 
 template:
+  bootstrap: 5
   package: gitdevr
   params:
     ganalytics: G-5SLV8G8QD4
