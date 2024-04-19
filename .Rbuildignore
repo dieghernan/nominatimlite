@@ -30,3 +30,4 @@
 ^CONTRIBUTING\.md$
 ^Rplots\.pdf$
 ^vignettes/articles$
+^codecov\.yml$
