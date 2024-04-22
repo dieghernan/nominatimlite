@@ -12,6 +12,7 @@ results](https://badges.cranchecks.info/worst/nominatimlite.svg)](https://cran.r
 [![Downloads](https://cranlogs.r-pkg.org/badges/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 [![Nominatim-version](https://img.shields.io/badge/Nominatim-%E2%89%A5_4.4.0-blue)](https://nominatim.org/release-docs/develop/api/Overview/)
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
+[![R-hub](https://github.com/dieghernan/nominatimlite/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
 [![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/nominatimlite)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/nominatimlite/badge)](https://www.codefactor.io/repository/github/dieghernan/nominatimlite)
@@ -190,11 +191,11 @@ reverse <- reverse_geo_lite(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-| address_found                                                                                                     |      lat |        lon |
-|:------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States  | 38.89770 |  -77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States | 37.79520 | -122.40279 |
-| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States  | 41.87874 |  -87.63596 |
+| address_found                                                                                                                             |      lat |        lon |
+|:------------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
+| Zastava Sjedinjenih Američkih Država, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89772 |  -77.03655 |
+| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States                         | 37.79520 | -122.40279 |
+| West Adams Street, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                              | 41.87874 |  -87.63589 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check

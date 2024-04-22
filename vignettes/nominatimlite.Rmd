@@ -149,11 +149,11 @@ reverse <- reverse_geo_lite(
 
 
 
-|address_found                                                                                                     |      lat|        lon|
-|:-----------------------------------------------------------------------------------------------------------------|--------:|----------:|
-|White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States  | 38.89770|  -77.03655|
-|Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States | 37.79520| -122.40279|
-|Willis Tower, 233, South Wacker Drive, Printer's Row, Loop, Chicago, Cook County, Illinois, 60606, United States  | 41.87874|  -87.63596|
+|address_found                                                                                                                             |      lat|        lon|
+|:-----------------------------------------------------------------------------------------------------------------------------------------|--------:|----------:|
+|Zastava Sjedinjenih Američkih Država, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89772|  -77.03655|
+|Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States                         | 37.79520| -122.40279|
+|West Adams Street, Printer's Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                              | 41.87874|  -87.63589|
 
 
 
