@@ -5,7 +5,7 @@
     -   `geo_lite_struct()` and `geo_lite_struct_sf()` for performing structured
         queries.
     -   Bring back `geo_amenity()` and `geo_amenity_sf()` as a wrapper of
-        `geo_lite_struct()` / `geo_lite_struct_sf(),` so now are more robust and
+        `geo_lite_struct()` / `geo_lite_struct_sf()`, so now are more robust and
         compatible with **sf** objects.
 
 -   Improve unnesting of fields when requiring `extratags`, i.e.
