@@ -20,7 +20,7 @@ results](https://badges.cranchecks.info/worst/nominatimlite.svg)](https://cran.r
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5113195-blue)](https://doi.org/10.5281/zenodo.5113195)
-[![status](https://tinyverse.netlify.com/badge/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
+[![status](https://tinyverse.netlify.app/status/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 
 <!-- badges: end -->
 
@@ -191,11 +191,11 @@ reverse <- reverse_geo_lite(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-| address_found                                                                                                                             |      lat |        lon |
-|:------------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| Zastava Sjedinjenih Američkih Država, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89772 |  -77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States                         | 37.79520 | -122.40279 |
-| West Adams Street, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                                              | 41.87874 |  -87.63589 |
+| address_found                                                                                                                       |      lat |        lon |
+|:------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
+| Zastava Sjedinjenih Američkih Država, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20006, United States | 38.89772 |  -77.03655 |
+| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States                   | 37.79520 | -122.40279 |
+| Willis Tower, 233, South Wacker Drive, Printer’s Row, Loop, Chicago, Cook County, Illinois, 60606, United States                    | 41.87874 |  -87.63596 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
@@ -216,7 +216,7 @@ A BibTeX entry for LaTeX users is
       title = {{nominatimlite}: Interface with {Nominatim} {API} Service},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.3.0.9000},
+      version = {0.4.0},
       doi = {10.5281/zenodo.5113195},
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
