@@ -28,7 +28,7 @@ reverse_geo_lite_sf() for retrieving the data as a spatial object
       <img src="../apple-touch-icon-180x180.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,7 +174,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   address                                                              lat   lon</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, 7th Avenue, Manhattan Community Board 5, Manhattan,…  40.8 -<span style="color: #BB0000;">74.0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, West 45th Street, Manhattan Community Board 5, Manh…  40.8 -<span style="color: #BB0000;">74.0</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several coordinates</span></span></span>
 <span class="r-in"><span><span class="fu">reverse_geo_lite</span><span class="op">(</span>lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span>, long <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -182,7 +182,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   address                                                             lat    lon</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, 7th Avenue, Manhattan Community Board 5, Manhattan…  40.8 -<span style="color: #BB0000;">74.0</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Times Square, West 45th Street, Manhattan Community Board 5, Man…  40.8 -<span style="color: #BB0000;">74.0</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Edinburgh Distance Marker, Waterloo Place, Greenside, New Town/B…  56.0  -<span style="color: #BB0000;">3.19</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># With options: zoom to country level</span></span></span>
@@ -195,7 +195,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">sev</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "United States", "United King…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lat                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 39.78373, 54.70235</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lon                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -100.445882, -3.276575</span>
@@ -218,6 +218,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.wikipedia                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "en:United States", "en:Unite…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.population                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "331449281", "61792000"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.border_type                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "national", NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.abbr_name:en`                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "U.S.A", NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.capital_city                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Washington DC", NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.linked_place                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "country", "country"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.contact:website`              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.usa.gov", NA</span>
@@ -231,6 +232,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.country_code_fips              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "US", NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.old_short_name:ru`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "САСШ", NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.source:population`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "census.gov", "http://www.sta…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.alt_official_name:en`         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "The United States of America…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.not:official_name:vi`         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Hợp chủng quốc Hoa Kỳ;Hợp ch…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.country_code_iso3166_1_alpha_2 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "US", NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ boundingbox                              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;-14.76084, 71.58895, -180.00…</span>
