@@ -1,20 +1,22 @@
 year <- format(Sys.time(), "%Y")
 abs <- trimws(gsub("\\s+", " ", meta$Description))
 abs <- gsub("'", "", abs)
-doi <- "10.5281/zenodo.5113195"
 title <- gsub("'", "", meta$Title, fixed = TRUE)
 title <- gsub("Nominatim", "{Nominatim}", title, fixed = TRUE)
 title <- gsub("API", "{API}", title, fixed = TRUE)
+pkg <- trimws(meta$Package)
+doi <- paste0("10.32614/CRAN.package.", pkg)
 
 bibentry(
   "Manual",
-  header = "To cite the 'nominatimlite' package in publications use:",
-  title = paste("{nominatimlite}:", title),
-  author = person("Diego", "Hernangómez"),
-  year = year,
-  key = "R-nominatimlite",
-  version = meta$Version,
+  header = paste0("To cite '", pkg, "' in publications use:"),
+  title = paste0("{", pkg, "}: ", gsub("'", "", title)),
   doi = doi,
+  author = c(person("Diego", "Hernangómez")),
+  year = year,
+  version = meta$Version,
   url = unlist(strsplit(meta$URL, ","))[1],
-  abstract = abs
+  abstract = abs,
+  key = paste0("R-", pkg)
 )
+
