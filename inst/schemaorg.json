@@ -51,7 +51,7 @@
       "version": "0.4.0"
     },
     {
-      "id": "https://doi.org/10.5281/zenodo.5113195",
+      "id": "https://doi.org/10.32614/CRAN.package.nominatimlite",
       "type": "SoftwareSourceCode",
       "author": {
         "type": "Person",

@@ -19,7 +19,7 @@ results](https://badges.cranchecks.info/worst/nominatimlite.svg)](https://cran.r
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5113195-blue)](https://doi.org/10.5281/zenodo.5113195)
+[![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.nominatimlite-blue)](https://doi.org/10.32614/CRAN.package.nominatimlite)
 [![status](https://tinyverse.netlify.app/status/nominatimlite)](https://CRAN.R-project.org/package=nominatimlite)
 
 <!-- badges: end -->
@@ -206,7 +206,7 @@ the parameters available.
 <p>
 Hernangómez D (2024). <em>nominatimlite: Interface with Nominatim API
 Service</em>.
-<a href="https://doi.org/10.5281/zenodo.5113195">doi:10.5281/zenodo.5113195</a>,
+<a href="https://doi.org/10.32614/CRAN.package.nominatimlite">doi:10.32614/CRAN.package.nominatimlite</a>,
 <a href="https://dieghernan.github.io/nominatimlite/">https://dieghernan.github.io/nominatimlite/</a>.
 </p>
 
@@ -214,10 +214,10 @@ A BibTeX entry for LaTeX users is
 
     @Manual{R-nominatimlite,
       title = {{nominatimlite}: Interface with {Nominatim} {API} Service},
+      doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2024},
       version = {0.4.0},
-      doi = {10.5281/zenodo.5113195},
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
     }
