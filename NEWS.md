@@ -1,3 +1,9 @@
+# nominatimlite (development version)
+
+-   Fix input validation in `geo_address_lookup()` and `geo_address_lookup_sf()`
+    that crashes the function if the OSM ID is too long (#47 reported by
+    \@lshydro).
+
 # nominatimlite 0.4.0
 
 -   New functions:
