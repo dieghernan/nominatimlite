@@ -127,3 +127,33 @@ test_that("Fail", {
 
   expect_true(all(sf::st_is_empty(several)))
 })
+
+
+test_that("Integers #47", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+
+  vector_ids <- "9743343761"
+
+  several <- geo_address_lookup_sf(vector_ids)
+
+  # IDs should have the right string
+  comp <- unique(gsub("[^0-9]", "", several$query))
+
+  expect_identical(vector_ids, comp)
+
+
+  # With decimals
+  vector_ids2 <- 9743343761.34
+  several <- geo_address_lookup_sf(vector_ids2)
+
+  expect_identical(vector_ids, comp)
+
+  # With negatives
+  vector_ids3 <- -1 * vector_ids2
+  several <- geo_address_lookup_sf(vector_ids3)
+
+  expect_identical(vector_ids, comp)
+})

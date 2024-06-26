@@ -162,7 +162,7 @@ reverse_geo_lite_sf <- function(lat,
     ))
 
     # Select rows
-    all_res <- all_res[as.integer(getrows$rindex), ]
+    all_res <- all_res[as.double(getrows$rindex), ]
   }
 
   # Final cleanup

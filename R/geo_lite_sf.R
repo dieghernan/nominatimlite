@@ -150,7 +150,7 @@ geo_lite_sf <- function(address,
     getrows <- dplyr::left_join(init_key, template, by = "query")
 
     # Select rows
-    all_res <- all_res[as.integer(getrows$rindex), ]
+    all_res <- all_res[as.double(getrows$rindex), ]
     all_res <- sf_to_tbl(all_res)
   }
 

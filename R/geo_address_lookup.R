@@ -59,7 +59,8 @@ geo_address_lookup <- function(osm_ids,
   api <- prepare_api_url(nominatim_server, "lookup?")
 
   # Prepare nodes
-  osm_ids <- as.integer(osm_ids)
+  osm_ids <- as.numeric(osm_ids)
+  osm_ids <- floor(abs(osm_ids))
   type <- as.character(type)
   nodes <- paste0(type, osm_ids, collapse = ",")
 
