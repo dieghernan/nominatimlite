@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite.R
 \name{geo_lite}
 \alias{geo_lite}
-\title{Address search API for OSM elements (free-form query)}
+\title{Address search API (free-form query)}
 \usage{
 geo_lite(
   address,

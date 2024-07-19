@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite_sf.R
 \name{geo_lite_sf}
 \alias{geo_lite_sf}
-\title{Address search API for OSM elements in \CRANpkg{sf} format (free-form query)}
+\title{Address search API in \CRANpkg{sf} format (free-form query)}
 \usage{
 geo_lite_sf(
   address,

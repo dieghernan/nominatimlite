@@ -1,4 +1,4 @@
-#' Address search API for OSM elements in \CRANpkg{sf} format (structured query)
+#' Address search API in \CRANpkg{sf} format (structured query)
 #'
 #' @description
 #' Geocodes addresses already split into components and return the corresponding

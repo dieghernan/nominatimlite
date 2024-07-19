@@ -1,4 +1,4 @@
-#' Address search API for OSM elements (free-form query)
+#' Address search API (free-form query)
 #'
 #' @description
 #' Geocodes addresses given as character values. This function returns the

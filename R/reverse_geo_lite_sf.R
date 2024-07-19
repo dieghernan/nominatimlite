@@ -1,4 +1,4 @@
-#' Reverse geocoding API for OSM elements in \CRANpkg{sf} format
+#' Reverse geocoding API in \CRANpkg{sf} format
 #'
 #' @description
 #'

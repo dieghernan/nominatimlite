@@ -8,7 +8,7 @@ message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
-version: 0.4.0.9000
+version: 0.4.1
 doi: 10.32614/CRAN.package.nominatimlite
 abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
   Extract coordinates from addresses, find places near a set of coordinates and return
@@ -28,7 +28,7 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.nominatimlite
   year: '2024'
-  version: 0.4.0.9000
+  version: 0.4.1
   url: https://dieghernan.github.io/nominatimlite/
   abstract: Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>.
     Extract coordinates from addresses, find places near a set of coordinates and
@@ -105,9 +105,6 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
-  identifiers:
-  - type: url
-    value: https://arxiv.org/abs/1403.2805
   version: '>= 1.7.0'
 - type: software
   title: sf

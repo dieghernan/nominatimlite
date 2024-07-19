@@ -1,4 +1,4 @@
-#' Address search API for OSM elements in \CRANpkg{sf} format (free-form query)
+#' Address search API in \CRANpkg{sf} format (free-form query)
 #'
 #' @description
 #' This function allows you to geocode addresses and returns the corresponding

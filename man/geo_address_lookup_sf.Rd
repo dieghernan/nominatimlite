@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_address_lookup_sf.R
 \name{geo_address_lookup_sf}
 \alias{geo_address_lookup_sf}
-\title{Address lookup API for OSM elements in \CRANpkg{sf} format}
+\title{Address lookup API in \CRANpkg{sf} format}
 \usage{
 geo_address_lookup_sf(
   osm_ids,

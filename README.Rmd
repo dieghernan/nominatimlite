@@ -33,7 +33,6 @@ results](https://badges.cranchecks.info/worst/nominatimlite.svg)](https://cran.r
 [![R-CMD-check](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml)
 [![R-hub](https://github.com/dieghernan/nominatimlite/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
-[![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/nominatimlite)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/nominatimlite/badge)](https://www.codefactor.io/repository/github/dieghernan/nominatimlite)
 [![Project Status: Active -- The project has reached a stable, usable state and
 is being actively
@@ -95,8 +94,7 @@ You can install the developing version of **nominatimlite** with:
 remotes::install_github("dieghernan/nominatimlite")
 ```
 
-Alternatively, you can install **nominatimlite** using the
-[r-universe](https://dieghernan.r-universe.dev/nominatimlite):
+Alternatively, you can install **nominatimlite** using the **r-universe**:
 
 ```{r, eval=FALSE}
 # Install nominatimlite in R:
@@ -114,7 +112,7 @@ install.packages("nominatimlite",
 
 With **nominatimlite** you can extract spatial objects easily:
 
-```{r pizzahut}
+```{r pizzahut, fig.alt="Locations of Pizza Hut restaurants in California extracted with nominatimlite"}
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
@@ -136,14 +134,14 @@ ggplot(CA) +
 You can also extract polygon and line objects (as provided by the Nominatim API)
 using the option `points_only = FALSE`:
 
-```{r statue_liberty }
+```{r statue_liberty, fig.alt="Location of Statue of Liberty extracted with nominatimlite"}
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
 
 ggplot(sol_poly) +
   geom_sf()
 ```
 
-```{r line-object}
+```{r line-object, fig.alt="Different features named Ohio extracted with nominatimlite"}
 dayton <- geo_lite_sf("Dayton, OH") # default - a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
 ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line

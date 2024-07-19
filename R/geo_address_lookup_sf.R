@@ -1,4 +1,4 @@
-#' Address lookup API for OSM elements in \CRANpkg{sf} format
+#' Address lookup API in \CRANpkg{sf} format
 #'
 #' @description
 #' The lookup API allows to query the address and other details of one or

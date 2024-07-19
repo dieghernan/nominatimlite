@@ -2,7 +2,7 @@
 % Please edit documentation in R/reverse_geo_lite_sf.R
 \name{reverse_geo_lite_sf}
 \alias{reverse_geo_lite_sf}
-\title{Reverse geocoding API for OSM elements in \CRANpkg{sf} format}
+\title{Reverse geocoding API in \CRANpkg{sf} format}
 \usage{
 reverse_geo_lite_sf(
   lat,

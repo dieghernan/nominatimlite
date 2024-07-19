@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo_lite_struct.R
 \name{geo_lite_struct}
 \alias{geo_lite_struct}
-\title{Address search API for OSM elements (structured query)}
+\title{Address search API (structured query)}
 \usage{
 geo_lite_struct(
   amenity = NULL,

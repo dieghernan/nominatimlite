@@ -1,4 +1,4 @@
-#' Reverse geocoding API for OSM elements
+#' Reverse geocoding API
 #'
 #' @description
 #'

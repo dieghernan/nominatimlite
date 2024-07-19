@@ -1,4 +1,4 @@
-#' Address search API for OSM elements (structured query)
+#' Address search API (structured query)
 #'
 #' @description
 #' Geocodes addresses already split into components. This function returns the
