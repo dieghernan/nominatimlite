@@ -6,17 +6,17 @@ name: revdepcheck
 jobs:
   revdepcheck:
     runs-on: ${{ matrix.config.os }}
+
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
     strategy:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest, r: 'release'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      R_BIOC_VERSION: "3.18"
-
     steps:
       - uses: actions/checkout@v4
 
@@ -28,15 +28,33 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          cache-version: revdep
           extra-packages: |
             local::.
+            any::usethis
+            any::BiocManager
+            any::BiocVersion
+            any::devtools
+            any::remotes
             r-lib/revdepcheck
           needs: check
 
       - name: revdepcheck
         run: |
+
           revdepcheck::revdep_reset()
           revdepcheck::revdep_check(num_workers = 4)
+
+
+          revdepig <- c(
+            "checks", "library", "checks.noindex", "library.noindex",
+            "data.sqlite", "*.html" )
+
+          usethis::use_git_ignore(revdepig, directory = file.path(".", "revdep"))
+
+          # Ignore this also on build
+          usethis::use_build_ignore("revdep")
+
         shell: Rscript {0}
 
       - name: Commit results
