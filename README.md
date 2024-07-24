@@ -15,6 +15,7 @@ results](https://badges.cranchecks.info/worst/nominatimlite.svg)](https://cran.r
 [![R-hub](https://github.com/dieghernan/nominatimlite/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/nominatimlite/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/nominatimlite/branch/main/graph/badge.svg?token=jSZ4RIsj91)](https://app.codecov.io/gh/dieghernan/nominatimlite)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/nominatimlite/badge)](https://www.codefactor.io/repository/github/dieghernan/nominatimlite)
+[![r-universe](https://dieghernan.r-universe.dev/badges/nominatimlite)](https://dieghernan.r-universe.dev/nominatimlite)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -78,7 +79,7 @@ remotes::install_github("dieghernan/nominatimlite")
 ```
 
 Alternatively, you can install **nominatimlite** using the
-**r-universe**:
+[r-universe](https://dieghernan.r-universe.dev/nominatimlite):
 
 ``` r
 # Install nominatimlite in R:
