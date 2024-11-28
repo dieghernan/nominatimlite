@@ -38,7 +38,23 @@ jobs:
           covr::to_cobertura(cov)
         shell: Rscript {0}
 
-      - uses: codecov/codecov-action@v4
+      - name: Create Junit Report
+        if: always()
+        run: |
+          testthat::test_local(reporter = testthat::JunitReporter$new("./junit.xml"))
+        shell: Rscript {0}
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          # Fail if error if not on PR, or if on PR and token is given
+          fail_ci_if_error: ${{ github.event_name != 'pull_request' || secrets.CODECOV_TOKEN }}
+          file: ./junit.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v4
         with:
           # Fail if error if not on PR, or if on PR and token is given
           fail_ci_if_error: ${{ github.event_name != 'pull_request' || secrets.CODECOV_TOKEN }}
