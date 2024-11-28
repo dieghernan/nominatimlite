@@ -50,4 +50,4 @@ RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: cartography
 X-schema.org-keywords: r, geocoding, openstreetmap, address, nominatim,
     reverse-geocoding, rstats, shapefile, r-package, spatial, cran,
-    api-wrapper
+    api-wrapper, api, gis
