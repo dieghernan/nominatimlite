@@ -41,7 +41,8 @@ jobs:
       - name: Create Junit Report
         if: always()
         run: |
-          testthat::test_local(reporter = testthat::JunitReporter$new("./junit.xml"))
+          test_out <- path.expand(file.path(getwd(), "junit.xml"))
+          testthat::test_local(reporter = testthat::JunitReporter$new(test_out))
         shell: Rscript {0}
 
       - name: Upload test results to Codecov
