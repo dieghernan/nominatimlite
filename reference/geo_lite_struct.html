@@ -193,7 +193,7 @@ parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pl_mayor</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 31</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 43</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ q_amenity                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ q_street                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor", "Plaza Mayor", "Plaza Mayor", …</span>
@@ -204,20 +204,19 @@ parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ q_postalcode             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lat                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.41539, 40.96503, 41.65206, 36.65621, 36.65…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lon                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.7069974, -5.6640558, -4.7285484, -4.480330…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ address                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor, Túnel de la Plaza Mayor, Barrio…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 270939058, 270518370, 270013255, 273036660, 2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ address                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 270938992, 270518333, 270013255, 273036660, 2…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ licence                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Data © OpenStreetMap contributors, ODbL 1.0.…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_type                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "relation", "way", "way", "node", "node", "wa…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_id                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 16657232, 78180390, 24432960, 11715993300, 75…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ category                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "tourism", "highway", "tourism", "railway", "…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "attraction", "pedestrian", "attraction", "ha…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_rank               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 30, 26, 30, 30, 30, 26, 26, 30, 26, 26, 26, 3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ category                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "highway", "tourism", "tourism", "railway", "…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "pedestrian", "attraction", "attraction", "ha…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_rank               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 26, 30, 30, 30, 30, 26, 26, 30, 26, 26, 26, 3…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ importance               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.43955427, 0.37221179, 0.32357442, 0.2548236…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ addresstype              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "tourism", "road", "tourism", "railway", "rai…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ addresstype              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "road", "tourism", "tourism", "railway", "rai…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor", "Plaza Mayor", "Plaza Mayor", …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ display_name             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor, Túnel de la Plaza Mayor, Barrio…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ address.tourism          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor", NA, "Plaza Mayor", NA, NA, NA,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ address.road             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Túnel de la Plaza Mayor", "Plaza Mayor", "Ca…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ display_name             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ address.road             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor", "Plaza Mayor", "Calle de Ferra…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.neighbourhood    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Barrio de los Austrias", NA, NA, NA, NA, NA,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.quarter          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sol", NA, NA, NA, NA, "El Berrocal", NA, NA,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.city_district    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Centro", "Centro", NA, NA, NA, NA, NA, NA, N…</span>
@@ -227,6 +226,7 @@ parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.postcode         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "28012", "37002", "47001", "29140", "29140", …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "España", "España", "España", "España", "Espa…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.country_code     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "es", "es", "es", "es", "es", "es", "es", "es…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ address.tourism          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Plaza Mayor", "Plaza Mayor", NA, NA, NA,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.province         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Salamanca", "Valladolid", "Málaga", "Mál…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `address.ISO3166-2-lvl6` <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "ES-SA", "ES-VA", "ES-MA", "ES-MA", "ES-C…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address.suburb           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, "Plaza Mayor", NA, NA, NA, "San Loren…</span>
