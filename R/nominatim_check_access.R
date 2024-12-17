@@ -54,7 +54,7 @@ skip_if_api_server <- function() {
   if (requireNamespace("testthat", quietly = TRUE)) {
     testthat::skip("Nominatim API not reachable")
   }
-  return(invisible())
+  invisible()
   # nocov end
 }
 

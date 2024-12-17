@@ -1,3 +1,7 @@
+# nominatimlite (development version)
+
+-   Update documentation.
+
 # nominatimlite 0.4.1
 
 -   Fix input validation in `geo_address_lookup()` and `geo_address_lookup_sf()`
