@@ -224,6 +224,70 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+All contributions to this project are gratefully acknowledged using the
+[`allcontributors` package](https://github.com/ropensci/allcontributors)
+following the [all-contributors](https://allcontributors.org)
+specification. Contributions of any kind are welcome!
+
+### Code
+
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/dieghernan">
+<img src="https://avatars.githubusercontent.com/u/25656809?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/dieghernan/nominatimlite/commits?author=dieghernan">dieghernan</a>
+</td>
+<td align="center">
+<a href="https://github.com/actions-user">
+<img src="https://avatars.githubusercontent.com/u/65916846?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/dieghernan/nominatimlite/commits?author=actions-user">actions-user</a>
+</td>
+<td align="center">
+<a href="https://github.com/jlacko">
+<img src="https://avatars.githubusercontent.com/u/29260421?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/dieghernan/nominatimlite/commits?author=jlacko">jlacko</a>
+</td>
+<td align="center">
+<a href="https://github.com/alexwhitedatamine">
+<img src="https://avatars.githubusercontent.com/u/160436156?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/dieghernan/nominatimlite/commits?author=alexwhitedatamine">alexwhitedatamine</a>
+</td>
+<td align="center">
+<a href="https://github.com/ImgBotApp">
+<img src="https://avatars.githubusercontent.com/u/31427850?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/dieghernan/nominatimlite/commits?author=ImgBotApp">ImgBotApp</a>
+</td>
+</tr>
+</table>
+
+### Issues
+
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/lshydro">
+<img src="https://avatars.githubusercontent.com/u/35919005?u=4ce21d4b24e5926f43cb95b24bfd3fb257f3fb8f&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/dieghernan/nominatimlite/issues?q=is%3Aissue+author%3Alshydro">lshydro</a>
+</td>
+</tr>
+</table>
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 <div id="refs" class="references csl-bib-body hanging-indent"
 entry-spacing="0">
 
