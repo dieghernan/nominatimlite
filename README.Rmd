@@ -219,6 +219,9 @@ toBibtex(citation("nominatimlite"))
 
 ## References
 
+::: {#refs}
+:::
+
 ## Contributors
 
 
