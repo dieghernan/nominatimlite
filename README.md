@@ -224,6 +224,36 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+
+<div id="ref-R-tidygeocoder" class="csl-entry">
+
+Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
+Possenriede. 2021. “<span class="nocase">tidygeocoder</span>: An R
+Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
+<https://doi.org/10.21105/joss.03544>.
+
+</div>
+
+<div id="ref-R-arcgeocoder" class="csl-entry">
+
+Hernangómez, Diego. 2024. *<span class="nocase">arcgeocoder</span>:
+Geocoding with the ArcGIS REST API Service* (version 0.1.0).
+<https://doi.org/10.5281/zenodo.10495365>.
+
+</div>
+
+<div id="ref-R-osmdata" class="csl-entry">
+
+Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
+“<span class="nocase">osmdata</span>.” *Journal of Open Source Software*
+2 (14): 305. <https://doi.org/10.21105/joss.00305>.
+
+</div>
+
+</div>
+
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -287,33 +317,3 @@ specification. Contributions of any kind are welcome!
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
-
-<div id="ref-R-tidygeocoder" class="csl-entry">
-
-Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
-Possenriede. 2021. “<span class="nocase">tidygeocoder</span>: An R
-Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
-<https://doi.org/10.21105/joss.03544>.
-
-</div>
-
-<div id="ref-R-arcgeocoder" class="csl-entry">
-
-Hernangómez, Diego. 2024. *<span class="nocase">arcgeocoder</span>:
-Geocoding with the ArcGIS REST API Service* (version 0.1.0).
-<https://doi.org/10.5281/zenodo.10495365>.
-
-</div>
-
-<div id="ref-R-osmdata" class="csl-entry">
-
-Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
-“<span class="nocase">osmdata</span>.” *Journal of Open Source Software*
-2 (14): 305. <https://doi.org/10.21105/joss.00305>.
-
-</div>
-
-</div>
