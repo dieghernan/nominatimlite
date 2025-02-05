@@ -262,7 +262,7 @@ Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
 
 All contributions to this project are gratefully acknowledged using the
 [`allcontributors` package](https://github.com/ropensci/allcontributors)
-following the [all-contributors](https://allcontributors.org)
+following the [allcontributors](https://allcontributors.org)
 specification. Contributions of any kind are welcome!
 
 ### Code
@@ -276,12 +276,6 @@ specification. Contributions of any kind are welcome!
 <a href="https://github.com/dieghernan/nominatimlite/commits?author=dieghernan">dieghernan</a>
 </td>
 <td align="center">
-<a href="https://github.com/actions-user">
-<img src="https://avatars.githubusercontent.com/u/65916846?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/dieghernan/nominatimlite/commits?author=actions-user">actions-user</a>
-</td>
-<td align="center">
 <a href="https://github.com/jlacko">
 <img src="https://avatars.githubusercontent.com/u/29260421?v=4" width="100px;" alt=""/>
 </a><br>
@@ -292,12 +286,6 @@ specification. Contributions of any kind are welcome!
 <img src="https://avatars.githubusercontent.com/u/160436156?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/dieghernan/nominatimlite/commits?author=alexwhitedatamine">alexwhitedatamine</a>
-</td>
-<td align="center">
-<a href="https://github.com/ImgBotApp">
-<img src="https://avatars.githubusercontent.com/u/31427850?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/dieghernan/nominatimlite/commits?author=ImgBotApp">ImgBotApp</a>
 </td>
 </tr>
 </table>
