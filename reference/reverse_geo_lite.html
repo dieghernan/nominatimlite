@@ -178,7 +178,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">sev</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 52</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "United States", "United King…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lat                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 39.78373, 54.70235</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lon                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -100.445882, -3.276575</span>
@@ -202,7 +202,6 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.check_date                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2024-10-17", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.population                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "331449281", "61792000"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.border_type                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "national", <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.abbr_name:en`                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "U.S.A", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.capital_city                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Washington DC", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.driving_side                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "right", "left"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.linked_place                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "country", "country"</span>
@@ -212,12 +211,15 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.ISO3166-1:alpha3`             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "GBR"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.default_language               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "en", "en"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.ISO3166-1:numeric`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "840", "826"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.alt_short_name:en`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "US", <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.alt_short_name:en`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "US;USA", <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.alt_short_name:es`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "EUA", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.alt_short_name:pl`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "St. Zj.", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.country_code_fips              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "US", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.old_short_name:ru`            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "САСШ", <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.short_official_name            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "U.S.A.", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.alt_official_name:en`         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "The United States of America…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.not:official_name:vi`         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Hợp chủng quốc Hoa Kỳ;Hợp ch…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.short_official_name:en`       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "U.S.A.", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ extratags.country_code_iso3166_1_alpha_2 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "US", <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ boundingbox                              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;-14.76084, 71.58895, -180.00…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ `extratags.ref:gss`                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, "K02000001"</span>
