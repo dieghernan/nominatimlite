@@ -194,10 +194,10 @@ in case of <code>points_only = FALSE</code>  multiple geometry types may be retu
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">col_sf</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ address  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Colosseo, Piazza del Colosseo, Celio, Municipio Roma I, Roma…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ address  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Piazza del Colosseo, Celio, Municipio Roma I, Roma, Roma Cap…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lat      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 41.89026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lon      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 12.49309</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ geometry <span style="color: #949494; font-style: italic;">&lt;POLYGON [°]&gt;</span> POLYGON ((12.4913 41.89058,...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ geometry <span style="color: #949494; font-style: italic;">&lt;POLYGON [°]&gt;</span> POLYGON ((12.49095 41.88984...</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="op">!</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_query.html" class="external-link">st_is_empty</a></span><span class="op">(</span><span class="va">col_sf</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">col_sf</span><span class="op">)</span> <span class="op">+</span></span></span>
