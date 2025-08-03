@@ -220,7 +220,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "254.263KB",
+  "fileSize": "254.277KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -239,7 +239,7 @@
       "sameAs": "https://doi.org/10.32614/CRAN.package.nominatimlite"
     }
   ],
-  "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/dieghernan/nominatimlite/blob/main/NEWS.md",
   "readme": "https://github.com/dieghernan/nominatimlite/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/nominatimlite/actions/workflows/check-full.yaml", "https://github.com/dieghernan/nominatimlite/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/dieghernan/nominatimlite"],
   "developmentStatus": "https://www.repostatus.org/#active"
