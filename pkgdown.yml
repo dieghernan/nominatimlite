@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   articles/ex_leaflet: ex_leaflet.html
   nominatimlite: nominatimlite.html
-last_built: 2025-08-03T09:14Z
+last_built: 2025-08-27T20:40Z
 urls:
   reference: https://dieghernan.github.io/nominatimlite/reference
   article: https://dieghernan.github.io/nominatimlite/articles
