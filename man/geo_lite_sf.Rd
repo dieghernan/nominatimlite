@@ -82,7 +82,7 @@ in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 }
 
 \examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Map - Points
 library(ggplot2)
@@ -119,7 +119,7 @@ if (any(!sf::st_is_empty(madrid))) {
 \seealso{
 \code{\link[=geo_lite]{geo_lite()}}.
 
-Geocoding: 
+Geocoding:
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity}()},
@@ -128,7 +128,7 @@ Geocoding:
 \code{\link{geo_lite_struct}()},
 \code{\link{geo_lite_struct_sf}()}
 
-Get \code{\link[sf:sf]{sf}} objects: 
+Get \code{\link[sf:sf]{sf}} objects:
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},

@@ -25,7 +25,7 @@ Create a \code{\link[sf:sfc]{sfc}} object from the coordinates of a bounding box
 Bounding boxes can be located using different online tools, as \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 }
 \examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 
 # bounding box of Germany
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
@@ -61,7 +61,7 @@ if (any(!sf::st_is_empty(sfobj))) {
 \seealso{
 \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}} and \code{\link[sf:sfc]{sf::st_sfc()}}.
 
-Get \code{\link[sf:sf]{sf}} objects: 
+Get \code{\link[sf:sf]{sf}} objects:
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},
 \code{\link{geo_lite_sf}()},

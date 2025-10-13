@@ -62,7 +62,7 @@ See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 geo_lite("Madrid, Spain")
 
@@ -80,7 +80,7 @@ geo_lite(c("Madrid", "Barcelona"),
 \seealso{
 \code{\link[=geo_lite_sf]{geo_lite_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
 
-Geocoding: 
+Geocoding:
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity}()},

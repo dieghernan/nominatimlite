@@ -80,7 +80,7 @@ See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Times Square, NY, USA
 bbox <- c(
@@ -114,7 +114,7 @@ Other amenity:
 \code{\link{geo_amenity_sf}()},
 \code{\link{osm_amenities}}
 
-Geocoding: 
+Geocoding:
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},

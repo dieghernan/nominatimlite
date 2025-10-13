@@ -57,7 +57,7 @@ See \url{https://nominatim.org/release-docs/develop/api/Lookup/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 ids <- geo_address_lookup(osm_ids = c(46240148, 34633854), type = "W")
 
@@ -71,10 +71,10 @@ several
 \seealso{
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}.
 
-Address Lookup API: 
+Address Lookup API:
 \code{\link{geo_address_lookup_sf}()}
 
-Geocoding: 
+Geocoding:
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity}()},
 \code{\link{geo_amenity_sf}()},

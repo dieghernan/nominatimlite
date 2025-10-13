@@ -99,7 +99,7 @@ in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 }
 
 \examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 library(ggplot2)
 
@@ -142,10 +142,10 @@ if (any(!sf::st_is_empty(rome_sf))) {
 \seealso{
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}.
 
-Reverse geocoding coordinates: 
+Reverse geocoding coordinates:
 \code{\link{reverse_geo_lite}()}
 
-Get \code{\link[sf:sf]{sf}} objects: 
+Get \code{\link[sf:sf]{sf}} objects:
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},

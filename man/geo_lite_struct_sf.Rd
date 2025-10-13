@@ -100,7 +100,7 @@ in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 }
 
 \examples{
-\dontshow{if (nominatim_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Map
 
@@ -127,7 +127,7 @@ if (any(!sf::st_is_empty(pl_mayor), !sf::st_is_empty(ccaa))) {
 \seealso{
 \code{\link[=geo_lite_struct]{geo_lite_struct()}}.
 
-Geocoding: 
+Geocoding:
 \code{\link{geo_address_lookup}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity}()},
@@ -136,7 +136,7 @@ Geocoding:
 \code{\link{geo_lite_sf}()},
 \code{\link{geo_lite_struct}()}
 
-Get \code{\link[sf:sf]{sf}} objects: 
+Get \code{\link[sf:sf]{sf}} objects:
 \code{\link{bbox_to_poly}()},
 \code{\link{geo_address_lookup_sf}()},
 \code{\link{geo_amenity_sf}()},

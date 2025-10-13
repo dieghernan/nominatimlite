@@ -28,7 +28,7 @@ retry the call. Requests are adjusted to the rate of 1 query per second.
 See \href{https://operations.osmfoundation.org/policies/nominatim/}{Nominatim Usage Policy}.
 }
 \seealso{
-API Management: 
+API Management:
 \code{\link{nominatim_check_access}()}
 }
 \concept{api_management}
