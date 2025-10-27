@@ -56,11 +56,12 @@
 #' }
 #' }
 geo_amenity_sf <- function(
-    bbox, amenity, limit = 1, full_results = FALSE,
-    return_addresses = TRUE, verbose = FALSE,
-    nominatim_server = "https://nominatim.openstreetmap.org/",
-    progressbar = TRUE, custom_query = list(), strict = FALSE,
-    points_only = TRUE) {
+  bbox, amenity, limit = 1, full_results = FALSE,
+  return_addresses = TRUE, verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  progressbar = TRUE, custom_query = list(), strict = FALSE,
+  points_only = TRUE
+) {
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",

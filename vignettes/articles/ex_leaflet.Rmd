@@ -38,10 +38,8 @@ library(reactable)
 library(crosstalk)
 
 
-
 # Step 1: Eiffel Tower
 eiffel_tower <- geo_lite_sf("Eiffel Tower, Paris, France", points_only = FALSE)
-
 
 
 # Step 2: Coffee Shops and Restaurants nearby
@@ -84,7 +82,6 @@ leaf_icons <- icons(
 )
 
 
-
 # Step 3: Crosstalk object
 cf_bk_data <- cf_bk %>%
   select(
@@ -114,7 +111,6 @@ lmend <- leaflet(
     position = "topleft",
     options = layersControlOptions(collapsed = FALSE)
   )
-
 
 
 # Step 5: Reactable for filtering

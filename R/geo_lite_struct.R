@@ -55,11 +55,12 @@
 #' dplyr::glimpse(pl_mayor)
 #' }
 geo_lite_struct <- function(
-    amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
-    country = NULL, postalcode = NULL, lat = "lat", long = "lon", limit = 1,
-    full_results = FALSE, return_addresses = TRUE, verbose = FALSE,
-    nominatim_server = "https://nominatim.openstreetmap.org/",
-    custom_query = list()) {
+  amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
+  country = NULL, postalcode = NULL, lat = "lat", long = "lon", limit = 1,
+  full_results = FALSE, return_addresses = TRUE, verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list()
+) {
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",

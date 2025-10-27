@@ -62,11 +62,12 @@
 #' }
 #' }
 geo_lite_struct_sf <- function(
-    amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
-    country = NULL, postalcode = NULL, limit = 1, full_results = FALSE,
-    return_addresses = TRUE, verbose = FALSE,
-    nominatim_server = "https://nominatim.openstreetmap.org/",
-    custom_query = list(), points_only = TRUE) {
+  amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
+  country = NULL, postalcode = NULL, limit = 1, full_results = FALSE,
+  return_addresses = TRUE, verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list(), points_only = TRUE
+) {
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
@@ -153,7 +154,6 @@ geo_lite_struct_sf <- function(
 
   # Unnest address
   sfobj <- unnest_sf(sfobj)
-
 
 
   # Prepare output

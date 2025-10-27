@@ -216,7 +216,6 @@ geo_lite_sf_single <- function(address,
   sfobj <- unnest_sf(sfobj)
 
 
-
   # Prepare output
   sf_clean <- sfobj
   sf_clean$query <- address

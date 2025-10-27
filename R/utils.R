@@ -78,8 +78,9 @@ keep_names_rev <- function(x, address = "address", return_coords = FALSE,
 }
 
 prepare_api_url <- function(
-    nominatim_server = "https://nominatim.openstreetmap.org/",
-    entry) {
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  entry
+) {
   api <- paste0(gsub("/$", "", nominatim_server), "/", entry)
   api
 }

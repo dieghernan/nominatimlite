@@ -150,7 +150,6 @@ test_that("Check unnesting", {
   skip_if_offline()
 
 
-
   # Several coordinates
   sev <- reverse_geo_lite(
     lat = c(40.75728, 55.95335),

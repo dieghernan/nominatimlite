@@ -24,7 +24,6 @@ st_bbox(mad)
 ## Section----
 
 
-
 df1 <- data.frame(
   label = "nominatim",
   lon = -3.544387,
@@ -65,10 +64,6 @@ map <- ggplot(mad) +
   ) +
   theme_void() +
   coord_sf(xlim = c(-432731.6, -375817))
-
-
-
-
 
 
 sticker(map,
