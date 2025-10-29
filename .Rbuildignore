@@ -31,3 +31,5 @@
 ^Rplots\.pdf$
 ^vignettes/articles$
 ^codecov\.yml$
+^[.]?air[.]toml$
+^\.vscode$

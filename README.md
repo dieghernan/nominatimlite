@@ -170,11 +170,11 @@ Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                                                                                               |
-|:-------------------------------------------|---------:|-----------:|:--------------------------------------------------------------------------------------------------------------------------------------|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89770 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States of America |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States of America          |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87874 |  -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States of America  |
+| query | latitude | longitude | address |
+|:---|---:|---:|:---|
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States of America |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States of America |
+| 233 S Wacker Dr, Chicago, IL 60606 | 41.87874 | -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States of America |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `reverse_geo_lite()` function. The
@@ -191,11 +191,11 @@ reverse <- reverse_geo_lite(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-| address_found                                                                                                                         |      lat |        lon |
-|:--------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States of America | 38.89770 |  -77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States of America          | 37.79519 | -122.40279 |
-| Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States of America  | 41.87874 |  -87.63596 |
+| address_found | lat | lon |
+|:---|---:|---:|
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States of America | 38.89764 | -77.03655 |
+| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States of America | 37.79519 | -122.40279 |
+| Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States of America | 41.87874 | -87.63596 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
@@ -204,6 +204,7 @@ the parameters available.
 ## Citation
 
 <p>
+
 Hernangómez D (2025). <em>nominatimlite: Interface with Nominatim API
 Service</em>.
 <a href="https://doi.org/10.32614/CRAN.package.nominatimlite">doi:10.32614/CRAN.package.nominatimlite</a>,
@@ -257,7 +258,9 @@ Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 <!-- prettier-ignore-start -->
+
 <!-- markdownlint-disable -->
 
 All contributions to this project are gratefully acknowledged using the
@@ -268,40 +271,57 @@ specification. Contributions of any kind are welcome!
 ### Code
 
 <table class="table allctb-table">
+
 <tr>
+
 <td align="center">
+
 <a href="https://github.com/dieghernan">
 <img src="https://avatars.githubusercontent.com/u/25656809?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/dieghernan/nominatimlite/commits?author=dieghernan">dieghernan</a>
 </td>
+
 <td align="center">
+
 <a href="https://github.com/jlacko">
 <img src="https://avatars.githubusercontent.com/u/29260421?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/dieghernan/nominatimlite/commits?author=jlacko">jlacko</a>
 </td>
+
 <td align="center">
+
 <a href="https://github.com/alexwhitedatamine">
 <img src="https://avatars.githubusercontent.com/u/160436156?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/dieghernan/nominatimlite/commits?author=alexwhitedatamine">alexwhitedatamine</a>
 </td>
+
 </tr>
+
 </table>
 
 ### Issues
 
 <table class="table allctb-table">
+
 <tr>
+
 <td align="center">
+
 <a href="https://github.com/lshydro">
 <img src="https://avatars.githubusercontent.com/u/35919005?u=4ce21d4b24e5926f43cb95b24bfd3fb257f3fb8f&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/dieghernan/nominatimlite/issues?q=is%3Aissue+author%3Alshydro">lshydro</a>
 </td>
+
 </tr>
+
 </table>
+
 <!-- markdownlint-enable -->
+
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
