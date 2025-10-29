@@ -55,8 +55,14 @@
 #'     geom_sf(data = sfobj, fill = "wheat")
 #' }
 #' }
-bbox_to_poly <- function(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA,
-                         crs = 4326) {
+bbox_to_poly <- function(
+  bbox = NA,
+  xmin = NA,
+  ymin = NA,
+  xmax = NA,
+  ymax = NA,
+  crs = 4326
+) {
   if (!anyNA(bbox) && length(bbox) != 4) {
     stop(
       "bbox argument needs 4 elements. Provided value has ",

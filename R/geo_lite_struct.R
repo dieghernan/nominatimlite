@@ -55,9 +55,19 @@
 #' dplyr::glimpse(pl_mayor)
 #' }
 geo_lite_struct <- function(
-  amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
-  country = NULL, postalcode = NULL, lat = "lat", long = "lon", limit = 1,
-  full_results = FALSE, return_addresses = TRUE, verbose = FALSE,
+  amenity = NULL,
+  street = NULL,
+  city = NULL,
+  county = NULL,
+  state = NULL,
+  country = NULL,
+  postalcode = NULL,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
   nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 ) {
@@ -108,15 +118,20 @@ geo_lite_struct <- function(
   # Compose url
   url <- paste0(api, "format=jsonv2&limit=", limit)
 
-  if (full_results) url <- paste0(url, "&addressdetails=1")
+  if (full_results) {
+    url <- paste0(url, "&addressdetails=1")
+  }
 
   # Clean and add options
   newopts <- c(pars, custom_query)
 
-  logis <- vapply(newopts, function(x) {
-    any(is.na(x), is.null(x))
-  }, FUN.VALUE = logical(1))
-
+  logis <- vapply(
+    newopts,
+    function(x) {
+      any(is.na(x), is.null(x))
+    },
+    FUN.VALUE = logical(1)
+  )
 
   newopts <- newopts[!logis]
   url <- add_custom_query(newopts, url)
@@ -148,11 +163,9 @@ geo_lite_struct <- function(
     return(invisible(out))
   }
 
-
   # Coords as double
   result[lat] <- as.double(result[[lat]])
   result[long] <- as.double(result[[long]])
-
 
   # Add query
   result_clean <- dplyr::bind_cols(
@@ -161,7 +174,10 @@ geo_lite_struct <- function(
   )
 
   # Keep names
-  result_out <- keep_names(result_clean, return_addresses, full_results,
+  result_out <- keep_names(
+    result_clean,
+    return_addresses,
+    full_results,
     colstokeep = c(names(tbl_query), lat, long)
   )
 

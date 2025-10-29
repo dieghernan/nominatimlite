@@ -80,16 +80,17 @@
 #'
 #' dplyr::glimpse(sev)
 #' }
-reverse_geo_lite <- function(lat,
-                             long,
-                             address = "address",
-                             full_results = FALSE,
-                             return_coords = TRUE,
-                             verbose = FALSE,
-                             nominatim_server =
-                               "https://nominatim.openstreetmap.org/",
-                             progressbar = TRUE,
-                             custom_query = list()) {
+reverse_geo_lite <- function(
+  lat,
+  long,
+  address = "address",
+  full_results = FALSE,
+  return_coords = TRUE,
+  verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  progressbar = TRUE,
+  custom_query = list()
+) {
   # Check inputs
   if (!is.numeric(lat) || !is.numeric(long)) {
     stop("lat and long must be numeric")
@@ -113,12 +114,13 @@ reverse_geo_lite <- function(lat,
     message("longitudes have been restricted to [-180, 180]")
   }
 
-
   # Dedupe for query using data frame
 
   init_key <- dplyr::tibble(
-    lat_key_int = lat, long_key_int = long,
-    lat_cap_int = lat_cap, long_cap_int = long_cap
+    lat_key_int = lat,
+    long_key_int = long,
+    lat_cap_int = lat_cap,
+    long_cap_int = long_cap
   )
   key <- dplyr::distinct(init_key)
 
@@ -131,7 +133,6 @@ reverse_geo_lite <- function(lat,
   }
 
   seql <- seq(1, ntot, 1)
-
 
   all_res <- lapply(seql, function(x) {
     if (progressbar) {
@@ -153,10 +154,14 @@ reverse_geo_lite <- function(lat,
 
     res_single
   })
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
-  all_res <- dplyr::left_join(init_key[, c(1, 2)], all_res,
+  all_res <- dplyr::left_join(
+    init_key[, c(1, 2)],
+    all_res,
     by = c("lat_key_int", "long_key_int")
   )
 
@@ -167,15 +172,16 @@ reverse_geo_lite <- function(lat,
 
 #' @noRd
 #' @inheritParams reverse_geo_lite
-reverse_geo_lite_single <- function(lat_cap,
-                                    long_cap,
-                                    address = "address",
-                                    full_results = FALSE,
-                                    return_coords = TRUE,
-                                    verbose = TRUE,
-                                    nominatim_server =
-                                      "https://nominatim.openstreetmap.org/",
-                                    custom_query = list()) {
+reverse_geo_lite_single <- function(
+  lat_cap,
+  long_cap,
+  address = "address",
+  full_results = FALSE,
+  return_coords = TRUE,
+  verbose = TRUE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list()
+) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
   api <- prepare_api_url(nominatim_server, "reverse?")
@@ -199,7 +205,6 @@ reverse_geo_lite_single <- function(lat_cap,
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
-
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_tbl_rev(tbl_query, address)
@@ -212,12 +217,13 @@ reverse_geo_lite_single <- function(lat_cap,
   if ("error" %in% names(result_init)) {
     message(
       "No results for query lon=",
-      long_cap, ", lat=", lat_cap
+      long_cap,
+      ", lat=",
+      lat_cap
     )
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
-
 
   # Unnnest fields
   result <- unnest_reverse(result_init)
@@ -226,7 +232,8 @@ reverse_geo_lite_single <- function(lat_cap,
   result$lon <- as.double(result$lon)
 
   # Keep names
-  result_out <- keep_names_rev(result,
+  result_out <- keep_names_rev(
+    result,
     address = address,
     return_coords = return_coords,
     full_results = full_results

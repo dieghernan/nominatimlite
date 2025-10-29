@@ -2,7 +2,6 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-
   expect_message(
     obj <- geo_address_lookup(34633854, "N"),
     "No results for query"
@@ -19,9 +18,10 @@ test_that("Returning empty query", {
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
-
   expect_message(
-    obj_renamed <- geo_address_lookup(34633854, "N",
+    obj_renamed <- geo_address_lookup(
+      34633854,
+      "N",
       lat = "lata",
       long = "longa"
     ),
@@ -55,24 +55,32 @@ test_that("Checking query", {
 
   expect_identical(names(obj), c("query", "lat", "lon", "address"))
 
-  obj <- geo_address_lookup(34633854, "W",
-    long = "ong", lat = "at",
+  obj <- geo_address_lookup(
+    34633854,
+    "W",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = FALSE
   )
 
   expect_identical(names(obj), c("query", "at", "ong"))
 
-  obj <- geo_address_lookup(34633854, "W",
-    long = "ong", lat = "at",
+  obj <- geo_address_lookup(
+    34633854,
+    "W",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = TRUE
   )
   expect_identical(names(obj), c("query", "at", "ong", "address"))
 
-
-  obj <- geo_address_lookup(34633854, "W",
-    long = "ong", lat = "at",
+  obj <- geo_address_lookup(
+    34633854,
+    "W",
+    long = "ong",
+    lat = "at",
     full_results = TRUE,
     return_addresses = TRUE
   )
@@ -80,18 +88,23 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:4], c("query", "at", "ong", "address"))
   expect_gt(ncol(obj), 4)
 
-
   expect_equal(
-    nrow(geo_address_lookup(34633854, "W",
+    nrow(geo_address_lookup(
+      34633854,
+      "W",
       full_results = TRUE,
       custom_query = list(extratags = TRUE)
-    )), 1
+    )),
+    1
   )
 
   expect_equal(
-    nrow(geo_address_lookup(34633854, "W",
+    nrow(geo_address_lookup(
+      34633854,
+      "W",
       custom_query = list(countrycode = "us")
-    )), 1
+    )),
+    1
   )
 })
 
@@ -134,11 +147,14 @@ test_that("Fail", {
   # KO
   vector_ids <- c(146656, 240109189)
   vector_type <- c("R", "N")
-  expect_snapshot(several <- geo_address_lookup(
-    vector_ids, vector_type,
-    full_results = TRUE,
-    nominatim_server = "https://xyz.com/"
-  ))
+  expect_snapshot(
+    several <- geo_address_lookup(
+      vector_ids,
+      vector_type,
+      full_results = TRUE,
+      nominatim_server = "https://xyz.com/"
+    )
+  )
 
   expect_true(all(is.na(several[, 2:3])))
 })
@@ -149,7 +165,6 @@ test_that("Integers #47", {
   skip_if_api_server()
   skip_if_offline()
 
-
   vector_ids <- "9743343761"
 
   several <- geo_address_lookup(vector_ids)
@@ -158,7 +173,6 @@ test_that("Integers #47", {
   comp <- unique(gsub("[^0-9]", "", several$query))
 
   expect_identical(vector_ids, comp)
-
 
   # With decimals
   vector_ids2 <- 9743343761.34

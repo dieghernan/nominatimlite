@@ -91,7 +91,9 @@ api_call <- function(url, destfile = tempfile(fileext = ".json"), quiet) {
   if (!inherits(dwn_res, "try-error")) {
     return(TRUE)
   }
-  if (isFALSE(quiet)) message("Retrying query")
+  if (isFALSE(quiet)) {
+    message("Retrying query")
+  }
   Sys.sleep(1)
 
   dwn_res <- suppressWarnings(

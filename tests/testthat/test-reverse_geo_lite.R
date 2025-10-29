@@ -3,7 +3,6 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_error(
     reverse_geo_lite(0, c(2, 3)),
     "lat and long should have the same number"
@@ -18,7 +17,6 @@ test_that("Messages", {
   skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-
 
   expect_message(out <- reverse_geo_lite(0, 200))
   chk <- dplyr::tibble(lat = 0, lon = 180)
@@ -45,15 +43,13 @@ test_that("Returning empty query", {
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("address", "lat", "lon"))
   expect_true(all(
-    vapply(obj, class, FUN.VALUE = character(1))
-    == c("character", rep("numeric", 2))
+    vapply(obj, class, FUN.VALUE = character(1)) ==
+      c("character", rep("numeric", 2))
   ))
   expect_true(is.na(obj$address))
 
   expect_message(
-    obj_renamed <- reverse_geo_lite(89.999999, 179.9999,
-      address = "adddata"
-    ),
+    obj_renamed <- reverse_geo_lite(89.999999, 179.9999, address = "adddata"),
     "No results for"
   )
 
@@ -69,7 +65,6 @@ test_that("Data format", {
   skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-
 
   obj <- reverse_geo_lite(0, 0)
   expect_s3_class(obj, "tbl")
@@ -89,10 +84,11 @@ test_that("Checking query", {
   expect_identical(names(obj), c("address", "lat", "lon"))
 
   # Same with different zoom
-  obj_zoom <- reverse_geo_lite(40.4207414, -3.6687109,
+  obj_zoom <- reverse_geo_lite(
+    40.4207414,
+    -3.6687109,
     custom_query = list(zoom = 3)
   )
-
 
   expect_s3_class(obj_zoom, "tbl")
   expect_equal(nrow(obj_zoom), 1)
@@ -108,26 +104,29 @@ test_that("Checking query", {
   expect_s3_class(sev, "tbl")
 
   # Check opts
-  obj <- reverse_geo_lite(40.4207414, -3.6687109,
-    address = "addrs"
-  )
+  obj <- reverse_geo_lite(40.4207414, -3.6687109, address = "addrs")
 
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
 
   expect_identical(names(obj), c("addrs", "lat", "lon"))
 
-
   # Check opts
-  obj <- reverse_geo_lite(40.4207414, -3.6687109,
-    address = "addrs", return_coords = FALSE
+  obj <- reverse_geo_lite(
+    40.4207414,
+    -3.6687109,
+    address = "addrs",
+    return_coords = FALSE
   )
 
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), "addrs")
 
-  obj <- reverse_geo_lite(40.4207414, -3.6687109,
-    address = "addrs", return_coords = FALSE,
+  obj <- reverse_geo_lite(
+    40.4207414,
+    -3.6687109,
+    address = "addrs",
+    return_coords = FALSE,
     full_results = TRUE
   )
 
@@ -135,8 +134,11 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:3], c("addrs", "lat", "lon"))
   expect_gt(ncol(obj), 5)
 
-  obj2 <- reverse_geo_lite(40.4207414, -3.6687109,
-    address = "addrs", return_coords = TRUE,
+  obj2 <- reverse_geo_lite(
+    40.4207414,
+    -3.6687109,
+    address = "addrs",
+    return_coords = TRUE,
     full_results = TRUE
   )
 
@@ -149,7 +151,6 @@ test_that("Check unnesting", {
   skip_if_api_server()
   skip_if_offline()
 
-
   # Several coordinates
   sev <- reverse_geo_lite(
     lat = c(40.75728, 55.95335),
@@ -160,7 +161,6 @@ test_that("Check unnesting", {
 
   expect_s3_class(sev, "tbl")
   expect_equal(nrow(sev), 2)
-
 
   # Classes of all cols
 
@@ -233,11 +233,14 @@ test_that("Fail", {
   skip_if_offline()
 
   # KO
-  expect_snapshot(several <- reverse_geo_lite(
-    40.75728, -73.98,
-    full_results = TRUE,
-    nominatim_server = "https://xyz.com/"
-  ))
+  expect_snapshot(
+    several <- reverse_geo_lite(
+      40.75728,
+      -73.98,
+      full_results = TRUE,
+      nominatim_server = "https://xyz.com/"
+    )
+  )
 
   expect_true(is.na(several$address))
 })

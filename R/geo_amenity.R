@@ -70,10 +70,18 @@
 #' )
 #' }
 geo_amenity <- function(
-  bbox, amenity, lat = "lat", long = "lon", limit = 1, full_results = FALSE,
-  return_addresses = TRUE, verbose = FALSE,
+  bbox,
+  amenity,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
   nominatim_server = "https://nominatim.openstreetmap.org/",
-  progressbar = TRUE, custom_query = list(), strict = FALSE
+  progressbar = TRUE,
+  custom_query = list(),
+  strict = FALSE
 ) {
   if (limit > 50) {
     message(paste(
@@ -116,14 +124,20 @@ geo_amenity <- function(
     }
 
     geo_lite_struct(
-      amenity = ad, lat = lat, long = long, limit = limit,
+      amenity = ad,
+      lat = lat,
+      long = long,
+      limit = limit,
       full_results = full_results,
-      return_addresses = return_addresses, verbose = verbose,
+      return_addresses = return_addresses,
+      verbose = verbose,
       nominatim_server = nominatim_server,
       custom_query = custom_query
     )
   })
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
 

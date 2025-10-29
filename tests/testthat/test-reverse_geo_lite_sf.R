@@ -3,7 +3,6 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_error(
     reverse_geo_lite_sf(0, c(2, 3)),
     "lat and long should have the same number"
@@ -57,7 +56,9 @@ test_that("Returning empty query", {
   expect_true(is.na(obj$address))
 
   expect_message(
-    obj_renamed <- reverse_geo_lite_sf(89.999999, 179.9999,
+    obj_renamed <- reverse_geo_lite_sf(
+      89.999999,
+      179.9999,
       address = "adddata"
     ),
     "No results for"
@@ -77,7 +78,6 @@ test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
 
-
   obj <- reverse_geo_lite_sf(42, 3)
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
@@ -86,13 +86,15 @@ test_that("Data format", {
 
   # Polygon
 
-  expect_message(test <- reverse_geo_lite_sf(
-    c(42.34, 89.9999, 39.6777),
-    c(-3.474, -179.9999, -4.8383),
-    points_only = FALSE,
-    custom_query = list(zoom = 5)
-  ), "No results for query lon")
-
+  expect_message(
+    test <- reverse_geo_lite_sf(
+      c(42.34, 89.9999, 39.6777),
+      c(-3.474, -179.9999, -4.8383),
+      points_only = FALSE,
+      custom_query = list(zoom = 5)
+    ),
+    "No results for query lon"
+  )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test))))
   expect_s3_class(test, "sf")
@@ -115,10 +117,11 @@ test_that("Checking query", {
   expect_identical(names(obj), c("address", "lat", "lon", "geometry"))
 
   # Same with different zoom
-  obj_zoom <- reverse_geo_lite_sf(40.4207414, -3.6687109,
+  obj_zoom <- reverse_geo_lite_sf(
+    40.4207414,
+    -3.6687109,
     custom_query = list(zoom = 3)
   )
-
 
   expect_s3_class(obj_zoom, "tbl")
   expect_s3_class(obj_zoom, "sf")
@@ -137,9 +140,7 @@ test_that("Checking query", {
   expect_s3_class(sev, "sf")
 
   # Check opts
-  obj <- reverse_geo_lite_sf(40.4207414, -3.6687109,
-    address = "addrs"
-  )
+  obj <- reverse_geo_lite_sf(40.4207414, -3.6687109, address = "addrs")
 
   expect_s3_class(obj, "tbl")
   expect_s3_class(obj, "sf")
@@ -147,18 +148,23 @@ test_that("Checking query", {
 
   expect_identical(names(obj), c("addrs", "lat", "lon", "geometry"))
 
-
   # Check opts
-  obj <- reverse_geo_lite_sf(40.4207414, -3.6687109,
-    address = "addrs", return_coords = FALSE
+  obj <- reverse_geo_lite_sf(
+    40.4207414,
+    -3.6687109,
+    address = "addrs",
+    return_coords = FALSE
   )
 
   expect_s3_class(obj, "tbl")
   expect_s3_class(obj, "sf")
   expect_identical(names(obj), c("addrs", "geometry"))
 
-  obj <- reverse_geo_lite_sf(40.4207414, -3.6687109,
-    address = "addrs", return_coords = FALSE,
+  obj <- reverse_geo_lite_sf(
+    40.4207414,
+    -3.6687109,
+    address = "addrs",
+    return_coords = FALSE,
     full_results = TRUE
   )
 
@@ -167,8 +173,11 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:3], c("addrs", "lat", "lon"))
   expect_gt(ncol(obj), 5)
 
-  obj2 <- reverse_geo_lite_sf(40.4207414, -3.6687109,
-    address = "addrs", return_coords = TRUE,
+  obj2 <- reverse_geo_lite_sf(
+    40.4207414,
+    -3.6687109,
+    address = "addrs",
+    return_coords = TRUE,
     full_results = TRUE
   )
 
@@ -192,13 +201,9 @@ test_that("Check unnesting", {
   expect_s3_class(sev, "tbl")
   expect_equal(nrow(sev), 2)
 
-
   # Classes of all cols
 
-  colclass <- vapply(sf::st_drop_geometry(sev),
-    class,
-    FUN.VALUE = character(1)
-  )
+  colclass <- vapply(sf::st_drop_geometry(sev), class, FUN.VALUE = character(1))
 
   # Not lists
   expect_false(any(grepl("list", colclass)))
@@ -255,11 +260,14 @@ test_that("Fail", {
   skip_if_offline()
 
   # KO
-  expect_snapshot(several <- reverse_geo_lite_sf(
-    40.75728, -73.98,
-    full_results = TRUE,
-    nominatim_server = "https://xyz.com/"
-  ))
+  expect_snapshot(
+    several <- reverse_geo_lite_sf(
+      40.75728,
+      -73.98,
+      full_results = TRUE,
+      nominatim_server = "https://xyz.com/"
+    )
+  )
 
   expect_true(all(sf::st_is_empty(several)))
 })

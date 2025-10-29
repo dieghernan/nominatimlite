@@ -29,14 +29,15 @@ test_that("Data format", {
   expect_identical(as.character(obj$query), c("Madrid", "Barcelona"))
   expect_true(all(grepl("POINT", sf::st_geometry_type(obj))))
 
-
   # Polygon
 
-  expect_message(test <- geo_lite_sf(
-    c("Madrid", "ga hann xx kaa pa", "Barcelona"),
-    points_only = FALSE
-  ), "No results for query ga hann xx kaa pa")
-
+  expect_message(
+    test <- geo_lite_sf(
+      c("Madrid", "ga hann xx kaa pa", "Barcelona"),
+      points_only = FALSE
+    ),
+    "No results for query ga hann xx kaa pa"
+  )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test))))
   expect_s3_class(test, "sf")
@@ -54,63 +55,50 @@ test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_message(
-    obj <- geo_lite_sf(c("Madrid", "Barcelona"),
-      limit = 51
-    ), "50 results"
+    obj <- geo_lite_sf(c("Madrid", "Barcelona"), limit = 51),
+    "50 results"
   )
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "address", "geometry"))
 
-  obj <- geo_lite_sf("Madrid",
-    full_results = FALSE,
-    return_addresses = FALSE
-  )
+  obj <- geo_lite_sf("Madrid", full_results = FALSE, return_addresses = FALSE)
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "geometry"))
 
-
-  obj <- geo_lite_sf("Madrid",
-    full_results = FALSE,
-    return_addresses = TRUE
-  )
+  obj <- geo_lite_sf("Madrid", full_results = FALSE, return_addresses = TRUE)
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "address", "geometry"))
 
-  obj <- geo_lite_sf("Madrid",
-    full_results = TRUE,
-    return_addresses = FALSE
-  )
+  obj <- geo_lite_sf("Madrid", full_results = TRUE, return_addresses = FALSE)
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj)[1:2], c("query", "address"))
   expect_gt(ncol(obj), 4)
 
-
   expect_gt(
-    nrow(geo_lite_sf("Catedral",
+    nrow(geo_lite_sf(
+      "Catedral",
       limit = 10,
       custom_query = list(countrycode = "es")
-    )), 4
+    )),
+    4
   )
 
   expect_equal(
-    nrow(geo_lite_sf("Madrid",
-      custom_query = list(countrycode = "es")
-    )), 1
+    nrow(geo_lite_sf("Madrid", custom_query = list(countrycode = "es"))),
+    1
   )
 
   expect_equal(
-    nrow(geo_lite_sf("Madrid",
-      custom_query = list(extratags = TRUE)
-    )), 1
+    nrow(geo_lite_sf("Madrid", custom_query = list(extratags = TRUE))),
+    1
   )
 })
 
@@ -178,11 +166,13 @@ test_that("Fail", {
   skip_if_offline()
 
   # KO
-  expect_snapshot(several <- geo_lite_sf(
-    "madrid",
-    full_results = TRUE,
-    nominatim_server = "https://xyz.com/"
-  ))
+  expect_snapshot(
+    several <- geo_lite_sf(
+      "madrid",
+      full_results = TRUE,
+      nominatim_server = "https://xyz.com/"
+    )
+  )
 
   expect_true(all(sf::st_is_empty(several)))
 })

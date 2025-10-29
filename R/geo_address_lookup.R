@@ -43,16 +43,17 @@
 #' several <- geo_address_lookup(c(146656, 240109189), type = c("R", "N"))
 #' several
 #' }
-geo_address_lookup <- function(osm_ids,
-                               type = c("N", "W", "R"),
-                               lat = "lat",
-                               long = "lon",
-                               full_results = FALSE,
-                               return_addresses = TRUE,
-                               verbose = FALSE,
-                               nominatim_server =
-                                 "https://nominatim.openstreetmap.org/",
-                               custom_query = list()) {
+geo_address_lookup <- function(
+  osm_ids,
+  type = c("N", "W", "R"),
+  lat = "lat",
+  long = "lon",
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list()
+) {
   # Step 1: Download ----
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
@@ -67,7 +68,9 @@ geo_address_lookup <- function(osm_ids,
   # Compose url
   url <- paste0(api, "osm_ids=", nodes, "&format=jsonv2")
 
-  if (full_results) url <- paste0(url, "&addressdetails=1")
+  if (full_results) {
+    url <- paste0(url, "&addressdetails=1")
+  }
 
   # Add options
   url <- add_custom_query(custom_query, url)
@@ -75,7 +78,6 @@ geo_address_lookup <- function(osm_ids,
   # Download to temp file
   json <- tempfile(fileext = ".json")
   res <- api_call(url, json, isFALSE(verbose))
-
 
   # Step 2: Read and parse results ----
 
@@ -89,7 +91,6 @@ geo_address_lookup <- function(osm_ids,
     return(invisible(out))
   }
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
-
 
   # Rename lat and lon
   nmes <- names(result)
@@ -109,7 +110,6 @@ geo_address_lookup <- function(osm_ids,
   result[lat] <- as.double(result[[lat]])
   result[long] <- as.double(result[[long]])
 
-
   # In this function we need to re-create tbl_query
   tbl_query <- dplyr::tibble(
     query = paste0(type, osm_ids),
@@ -125,7 +125,10 @@ geo_address_lookup <- function(osm_ids,
   }
 
   # Keep names
-  result_out <- keep_names(result_clean, return_addresses, full_results,
+  result_out <- keep_names(
+    result_clean,
+    return_addresses,
+    full_results,
     colstokeep = c("query", lat, long)
   )
 

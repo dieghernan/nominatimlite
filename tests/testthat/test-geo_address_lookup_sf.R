@@ -2,7 +2,6 @@ test_that("Returning Empty", {
   skip_on_cran()
   skip_if_api_server()
 
-
   expect_message(
     obj <- geo_address_lookup_sf(34633854, "N"),
     "No results for query"
@@ -37,28 +36,40 @@ test_that("Checking query", {
   expect_equal(ncol(obj), 3)
   expect_gt(ncol(geo_address_lookup_sf(34633854, "W", full_results = TRUE)), 3)
   expect_equal(
-    nrow(geo_address_lookup_sf(34633854, "W",
+    nrow(geo_address_lookup_sf(
+      34633854,
+      "W",
       full_results = TRUE,
       custom_query = list(extratags = TRUE)
-    )), 1
+    )),
+    1
   )
   expect_equal(
-    nrow(geo_address_lookup_sf(34633854, "W",
+    nrow(geo_address_lookup_sf(
+      34633854,
+      "W",
       points_only = FALSE,
       custom_query = list(countrycode = "us")
-    )), 1
+    )),
+    1
   )
   expect_true(
-    sf::st_geometry_type(geo_address_lookup_sf(34633854, "W",
+    sf::st_geometry_type(geo_address_lookup_sf(
+      34633854,
+      "W",
       points_only = TRUE,
       custom_query = list(countrycode = "us")
-    )) == "POINT"
+    )) ==
+      "POINT"
   )
   expect_true(
-    sf::st_geometry_type(geo_address_lookup_sf(34633854, "W",
+    sf::st_geometry_type(geo_address_lookup_sf(
+      34633854,
+      "W",
       points_only = FALSE,
       custom_query = list(countrycode = "us")
-    )) == "POLYGON"
+    )) ==
+      "POLYGON"
   )
 })
 
@@ -101,9 +112,7 @@ test_that("Verify names", {
   # Ok
   vector_ids <- c(146656, 240109189)
   vector_type <- c("R", "N")
-  several <- geo_address_lookup_sf(vector_ids, vector_type,
-    full_results = TRUE
-  )
+  several <- geo_address_lookup_sf(vector_ids, vector_type, full_results = TRUE)
 
   expect_identical(names(several), unique(names(several)))
 
@@ -119,11 +128,14 @@ test_that("Fail", {
   # KO
   vector_ids <- c(146656, 240109189)
   vector_type <- c("R", "N")
-  expect_snapshot(several <- geo_address_lookup_sf(
-    vector_ids, vector_type,
-    full_results = TRUE,
-    nominatim_server = "https://xyz.com/"
-  ))
+  expect_snapshot(
+    several <- geo_address_lookup_sf(
+      vector_ids,
+      vector_type,
+      full_results = TRUE,
+      nominatim_server = "https://xyz.com/"
+    )
+  )
 
   expect_true(all(sf::st_is_empty(several)))
 })
@@ -134,7 +146,6 @@ test_that("Integers #47", {
   skip_if_api_server()
   skip_if_offline()
 
-
   vector_ids <- "9743343761"
 
   several <- geo_address_lookup_sf(vector_ids)
@@ -143,7 +154,6 @@ test_that("Integers #47", {
   comp <- unique(gsub("[^0-9]", "", several$query))
 
   expect_identical(vector_ids, comp)
-
 
   # With decimals
   vector_ids2 <- 9743343761.34

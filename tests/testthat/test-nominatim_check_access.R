@@ -16,7 +16,6 @@ test_that("api_url", {
     "status?format=json"
   )
 
-
   expect_silent(t <- api_call(url, quiet = TRUE))
   expect_true(t)
 })

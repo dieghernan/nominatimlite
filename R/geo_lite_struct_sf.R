@@ -62,11 +62,20 @@
 #' }
 #' }
 geo_lite_struct_sf <- function(
-  amenity = NULL, street = NULL, city = NULL, county = NULL, state = NULL,
-  country = NULL, postalcode = NULL, limit = 1, full_results = FALSE,
-  return_addresses = TRUE, verbose = FALSE,
+  amenity = NULL,
+  street = NULL,
+  city = NULL,
+  county = NULL,
+  state = NULL,
+  country = NULL,
+  postalcode = NULL,
+  limit = 1,
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
   nominatim_server = "https://nominatim.openstreetmap.org/",
-  custom_query = list(), points_only = TRUE
+  custom_query = list(),
+  points_only = TRUE
 ) {
   if (limit > 50) {
     message(paste(
@@ -115,16 +124,23 @@ geo_lite_struct_sf <- function(
   # Compose url
   url <- paste0(api, "format=geojson&limit=", limit)
 
-  if (full_results) url <- paste0(url, "&addressdetails=1")
-  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
+  if (full_results) {
+    url <- paste0(url, "&addressdetails=1")
+  }
+  if (!isTRUE(points_only)) {
+    url <- paste0(url, "&polygon_geojson=1")
+  }
 
   # Clean and add options
   newopts <- c(pars, custom_query)
 
-  logis <- vapply(newopts, function(x) {
-    any(is.na(x), is.null(x))
-  }, FUN.VALUE = logical(1))
-
+  logis <- vapply(
+    newopts,
+    function(x) {
+      any(is.na(x), is.null(x))
+    },
+    FUN.VALUE = logical(1)
+  )
 
   newopts <- newopts[!logis]
   url <- add_custom_query(newopts, url)
@@ -155,7 +171,6 @@ geo_lite_struct_sf <- function(
   # Unnest address
   sfobj <- unnest_sf(sfobj)
 
-
   # Prepare output
   sf_clean <- sfobj
 
@@ -166,7 +181,10 @@ geo_lite_struct_sf <- function(
   )
 
   # Keep names
-  result_out <- keep_names(sf_clean, return_addresses, full_results,
+  result_out <- keep_names(
+    sf_clean,
+    return_addresses,
+    full_results,
     colstokeep = names(tbl_query)
   )
 

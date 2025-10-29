@@ -12,17 +12,14 @@ test_that("Returning empty query", {
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "lat", "lon"))
   expect_true(all(
-    vapply(obj, class, FUN.VALUE = character(1))
-    == c("character", rep("numeric", 2))
+    vapply(obj, class, FUN.VALUE = character(1)) ==
+      c("character", rep("numeric", 2))
   ))
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
   expect_message(
-    obj_renamed <- geo_lite("xbzbzbzoa aiaia",
-      lat = "lata",
-      long = "longa"
-    ),
+    obj_renamed <- geo_lite("xbzbzbzoa aiaia", lat = "lata", long = "longa"),
     "No results for"
   )
 
@@ -51,34 +48,36 @@ test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_message(
-    obj <- geo_lite(c("Madrid", "Barcelona"),
-      limit = 51
-    ), "50 results"
+    obj <- geo_lite(c("Madrid", "Barcelona"), limit = 51),
+    "50 results"
   )
-
 
   expect_identical(names(obj), c("query", "lat", "lon", "address"))
 
-
-  obj <- geo_lite("Madrid",
-    long = "ong", lat = "at",
+  obj <- geo_lite(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = FALSE
   )
   expect_identical(names(obj), c("query", "at", "ong"))
 
-  obj <- geo_lite("Madrid",
-    long = "ong", lat = "at",
+  obj <- geo_lite(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = TRUE
   )
 
   expect_identical(names(obj), c("query", "at", "ong", "address"))
 
-  obj <- geo_lite("Madrid",
-    long = "ong", lat = "at",
+  obj <- geo_lite(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = TRUE,
     return_addresses = FALSE
   )
@@ -86,24 +85,23 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:4], c("query", "at", "ong", "address"))
   expect_gt(ncol(obj), 4)
 
-
   expect_gt(
-    nrow(geo_lite("Catedral",
+    nrow(geo_lite(
+      "Catedral",
       limit = 10,
       custom_query = list(countrycode = "ES")
-    )), 4
+    )),
+    4
   )
 
   expect_equal(
-    nrow(geo_lite("Madrid",
-      custom_query = list(countrycode = "es")
-    )), 1
+    nrow(geo_lite("Madrid", custom_query = list(countrycode = "es"))),
+    1
   )
 
   expect_equal(
-    nrow(geo_lite("Madrid",
-      custom_query = list(extratags = TRUE)
-    )), 1
+    nrow(geo_lite("Madrid", custom_query = list(extratags = TRUE))),
+    1
   )
 })
 
@@ -114,7 +112,8 @@ test_that("Dedupe", {
 
   # Dupes
   expect_silent(
-    dup <- geo_lite(rep(c("Pentagon", "Barcelona"), 50),
+    dup <- geo_lite(
+      rep(c("Pentagon", "Barcelona"), 50),
       limit = 1,
       progressbar = FALSE,
       verbose = FALSE
@@ -152,11 +151,13 @@ test_that("Fail", {
   skip_if_offline()
 
   # KO
-  expect_snapshot(several <- geo_lite(
-    "Madrid",
-    full_results = TRUE,
-    nominatim_server = "https://xyz.com/"
-  ))
+  expect_snapshot(
+    several <- geo_lite(
+      "Madrid",
+      full_results = TRUE,
+      nominatim_server = "https://xyz.com/"
+    )
+  )
 
   expect_true(all(is.na(several[, 2:3])))
 })

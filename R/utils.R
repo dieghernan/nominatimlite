@@ -36,8 +36,12 @@ is_named <- function(x) {
 }
 
 
-keep_names <- function(x, return_addresses, full_results,
-                       colstokeep = "query") {
+keep_names <- function(
+  x,
+  return_addresses,
+  full_results,
+  colstokeep = "query"
+) {
   x$address <- x$display_name
   if ("boundingbox" %in% names(x)) {
     bbun <- lapply(x$boundingbox, function(y) {
@@ -51,8 +55,12 @@ keep_names <- function(x, return_addresses, full_results,
   }
 
   out_cols <- colstokeep
-  if (return_addresses) out_cols <- c(out_cols, "address")
-  if (full_results) out_cols <- c(out_cols, "address", names(x))
+  if (return_addresses) {
+    out_cols <- c(out_cols, "address")
+  }
+  if (full_results) {
+    out_cols <- c(out_cols, "address", names(x))
+  }
 
   out_cols <- unique(out_cols)
   out <- x[, out_cols]
@@ -60,16 +68,24 @@ keep_names <- function(x, return_addresses, full_results,
   return(out)
 }
 
-keep_names_rev <- function(x, address = "address", return_coords = FALSE,
-                           full_results = FALSE,
-                           colstokeep = address) {
+keep_names_rev <- function(
+  x,
+  address = "address",
+  return_coords = FALSE,
+  full_results = FALSE,
+  colstokeep = address
+) {
   x$xxxyyyzzz <- x$display_name
   nm <- names(x)
   nm <- gsub("xxxyyyzzz", address, nm, fixed = TRUE)
   names(x) <- nm
   out_cols <- colstokeep
-  if (return_coords) out_cols <- c(out_cols, "lat", "lon")
-  if (full_results) out_cols <- c(out_cols, "lat", "lon", names(x))
+  if (return_coords) {
+    out_cols <- c(out_cols, "lat", "lon")
+  }
+  if (full_results) {
+    out_cols <- c(out_cols, "lat", "lon", names(x))
+  }
 
   out_cols <- unique(out_cols)
   out <- x[, out_cols]
@@ -204,7 +220,6 @@ unnest_sf <- function(x) {
     x <- x[, setdiff(names(x), "extratags.xxx_empty_remove")]
   }
 
-
   x <- sf_to_tbl(x)
 
   x
@@ -265,7 +280,6 @@ unnest_sf_reverse <- function(x) {
     newsfobj <- x[, setdiff(names(x), "extratags")]
     x <- dplyr::bind_cols(newsfobj, newxtra)
   }
-
 
   x <- sf_to_tbl(x)
 

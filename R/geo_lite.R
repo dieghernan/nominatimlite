@@ -58,16 +58,18 @@
 #'   full_results = TRUE
 #' )
 #' }
-geo_lite <- function(address,
-                     lat = "lat",
-                     long = "lon",
-                     limit = 1,
-                     full_results = FALSE,
-                     return_addresses = TRUE,
-                     verbose = FALSE,
-                     nominatim_server = "https://nominatim.openstreetmap.org/",
-                     progressbar = TRUE,
-                     custom_query = list()) {
+geo_lite <- function(
+  address,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  progressbar = TRUE,
+  custom_query = list()
+) {
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
@@ -75,7 +77,6 @@ geo_lite <- function(address,
     ))
     limit <- min(50, limit)
   }
-
 
   # Dedupe for query
   init_key <- dplyr::tibble(query = address)
@@ -107,7 +108,9 @@ geo_lite <- function(address,
       custom_query
     )
   })
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(init_key, all_res, by = "query")
@@ -118,16 +121,17 @@ geo_lite <- function(address,
 #' @noRd
 #' @inheritParams geo_lite
 
-geo_lite_single <- function(address,
-                            lat = "lat",
-                            long = "lon",
-                            limit = 1,
-                            full_results = TRUE,
-                            return_addresses = TRUE,
-                            verbose = FALSE,
-                            nominatim_server =
-                              "https://nominatim.openstreetmap.org/",
-                            custom_query = list()) {
+geo_lite_single <- function(
+  address,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = TRUE,
+  return_addresses = TRUE,
+  verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list()
+) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
   api <- prepare_api_url(nominatim_server, "search?q=")
@@ -138,7 +142,9 @@ geo_lite_single <- function(address,
   # Compose url
   url <- paste0(api, address2, "&format=jsonv2&limit=", limit)
 
-  if (full_results) url <- paste0(url, "&addressdetails=1")
+  if (full_results) {
+    url <- paste0(url, "&addressdetails=1")
+  }
 
   # Add options
   url <- add_custom_query(custom_query, url)
@@ -152,13 +158,11 @@ geo_lite_single <- function(address,
   # Keep a tbl with the query
   tbl_query <- dplyr::tibble(query = address)
 
-
   if (isFALSE(res)) {
     message(url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
-
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
@@ -176,7 +180,6 @@ geo_lite_single <- function(address,
     return(invisible(out))
   }
 
-
   # Coords as double
   result[lat] <- as.double(result[[lat]])
   result[long] <- as.double(result[[long]])
@@ -186,7 +189,10 @@ geo_lite_single <- function(address,
   result_clean$query <- address
 
   # Keep names
-  result_out <- keep_names(result_clean, return_addresses, full_results,
+  result_out <- keep_names(
+    result_clean,
+    return_addresses,
+    full_results,
     colstokeep = c("query", lat, long)
   )
 

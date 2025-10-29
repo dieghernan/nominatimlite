@@ -60,15 +60,16 @@
 #' several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 #' several
 #' }
-geo_address_lookup_sf <- function(osm_ids,
-                                  type = c("N", "W", "R"),
-                                  full_results = FALSE,
-                                  return_addresses = TRUE,
-                                  verbose = FALSE,
-                                  nominatim_server =
-                                    "https://nominatim.openstreetmap.org/",
-                                  custom_query = list(),
-                                  points_only = TRUE) {
+geo_address_lookup_sf <- function(
+  osm_ids,
+  type = c("N", "W", "R"),
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list(),
+  points_only = TRUE
+) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
   api <- prepare_api_url(nominatim_server, "lookup?")
@@ -82,9 +83,12 @@ geo_address_lookup_sf <- function(osm_ids,
   # Compose url
   url <- paste0(api, "osm_ids=", nodes, "&format=geojson")
 
-  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
-  if (full_results) url <- paste0(url, "&addressdetails=1")
-
+  if (!isTRUE(points_only)) {
+    url <- paste0(url, "&polygon_geojson=1")
+  }
+  if (full_results) {
+    url <- paste0(url, "&addressdetails=1")
+  }
 
   # Add options
   url <- add_custom_query(custom_query, url)
@@ -120,7 +124,6 @@ geo_address_lookup_sf <- function(osm_ids,
   # Unnest address
   sfobj <- unnest_sf(sfobj)
 
-
   # In this function we need to re-create tbl_query
   tbl_query <- dplyr::tibble(
     query = paste0(type, osm_ids),
@@ -136,7 +139,10 @@ geo_address_lookup_sf <- function(osm_ids,
   }
 
   # Keep names
-  result_out <- keep_names(sf_clean, return_addresses, full_results,
+  result_out <- keep_names(
+    sf_clean,
+    return_addresses,
+    full_results,
     colstokeep = "query"
   )
 

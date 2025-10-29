@@ -56,10 +56,16 @@
 #' }
 #' }
 geo_amenity_sf <- function(
-  bbox, amenity, limit = 1, full_results = FALSE,
-  return_addresses = TRUE, verbose = FALSE,
+  bbox,
+  amenity,
+  limit = 1,
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
   nominatim_server = "https://nominatim.openstreetmap.org/",
-  progressbar = TRUE, custom_query = list(), strict = FALSE,
+  progressbar = TRUE,
+  custom_query = list(),
+  strict = FALSE,
   points_only = TRUE
 ) {
   if (limit > 50) {
@@ -103,13 +109,19 @@ geo_amenity_sf <- function(
     }
 
     geo_lite_struct_sf(
-      amenity = ad, limit = limit, full_results = full_results,
-      return_addresses = return_addresses, verbose = verbose,
+      amenity = ad,
+      limit = limit,
+      full_results = full_results,
+      return_addresses = return_addresses,
+      verbose = verbose,
       nominatim_server = nominatim_server,
-      custom_query = custom_query, points_only = points_only
+      custom_query = custom_query,
+      points_only = points_only
     )
   })
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
 
@@ -125,7 +137,6 @@ geo_amenity_sf <- function(
     int <- as.vector(sf::st_intersects(all_res, bbox_sf, sparse = FALSE))
     all_res <- all_res[int, ]
   }
-
 
   return(all_res)
 }

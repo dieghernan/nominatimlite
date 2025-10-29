@@ -85,16 +85,17 @@
 #'     geom_sf(fill = NA)
 #' }
 #' }
-geo_lite_sf <- function(address,
-                        limit = 1,
-                        return_addresses = TRUE,
-                        full_results = FALSE,
-                        verbose = FALSE,
-                        progressbar = TRUE,
-                        nominatim_server =
-                          "https://nominatim.openstreetmap.org/",
-                        custom_query = list(),
-                        points_only = TRUE) {
+geo_lite_sf <- function(
+  address,
+  limit = 1,
+  return_addresses = TRUE,
+  full_results = FALSE,
+  verbose = FALSE,
+  progressbar = TRUE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list(),
+  points_only = TRUE
+) {
   if (limit > 50) {
     message(paste(
       "Nominatim provides 50 results as a maximum. ",
@@ -102,7 +103,6 @@ geo_lite_sf <- function(address,
     ))
     limit <- min(50, limit)
   }
-
 
   # Dedupe for query
   init_key <- dplyr::tibble(query = address)
@@ -136,7 +136,9 @@ geo_lite_sf <- function(address,
     )
   })
 
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
 
@@ -160,15 +162,16 @@ geo_lite_sf <- function(address,
 #' @noRd
 #' @inheritParams geo_lite
 
-geo_lite_sf_single <- function(address,
-                               limit = 1,
-                               return_addresses = TRUE,
-                               full_results = FALSE,
-                               verbose = FALSE,
-                               nominatim_server =
-                                 "https://nominatim.openstreetmap.org/",
-                               custom_query = list(),
-                               points_only = TRUE) {
+geo_lite_sf_single <- function(
+  address,
+  limit = 1,
+  return_addresses = TRUE,
+  full_results = FALSE,
+  verbose = FALSE,
+  nominatim_server = "https://nominatim.openstreetmap.org/",
+  custom_query = list(),
+  points_only = TRUE
+) {
   # First build the api address. If the passed nominatim_server does not end
   # with a trailing forward-slash, add one
   api <- prepare_api_url(nominatim_server, "search?q=")
@@ -179,8 +182,12 @@ geo_lite_sf_single <- function(address,
   # Compose url
   url <- paste0(api, address2, "&format=geojson&limit=", limit)
 
-  if (full_results) url <- paste0(url, "&addressdetails=1")
-  if (!isTRUE(points_only)) url <- paste0(url, "&polygon_geojson=1")
+  if (full_results) {
+    url <- paste0(url, "&addressdetails=1")
+  }
+  if (!isTRUE(points_only)) {
+    url <- paste0(url, "&polygon_geojson=1")
+  }
 
   # Add options
   url <- add_custom_query(custom_query, url)
@@ -215,13 +222,15 @@ geo_lite_sf_single <- function(address,
   # Unnest address
   sfobj <- unnest_sf(sfobj)
 
-
   # Prepare output
   sf_clean <- sfobj
   sf_clean$query <- address
 
   # Keep names
-  result_out <- keep_names(sf_clean, return_addresses, full_results,
+  result_out <- keep_names(
+    sf_clean,
+    return_addresses,
+    full_results,
     colstokeep = "query"
   )
 
