@@ -1,10 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.1.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
-  articles/ex_leaflet: ex_leaflet.html
+  articles/leaflet: leaflet.html
   nominatimlite: nominatimlite.html
-last_built: 2025-10-29T10:15Z
+last_built: 2025-11-22T01:18Z
 urls:
   reference: https://dieghernan.github.io/nominatimlite/reference
   article: https://dieghernan.github.io/nominatimlite/articles
