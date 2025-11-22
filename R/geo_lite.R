@@ -115,7 +115,7 @@ geo_lite <- function(
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(init_key, all_res, by = "query")
 
-  return(all_res)
+  all_res
 }
 
 #' @noRd

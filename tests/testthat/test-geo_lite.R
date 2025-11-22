@@ -155,7 +155,7 @@ test_that("Fail", {
     several <- geo_lite(
       "Madrid",
       full_results = TRUE,
-      nominatim_server = "https://xyz.com/"
+      nominatim_server = "https://api.jsonserver.io/"
     )
   )
 

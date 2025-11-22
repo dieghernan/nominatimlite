@@ -1,7 +1,7 @@
 # Fail
 
     Code
-      several <- geo_lite("Madrid", full_results = TRUE, nominatim_server = "https://xyz.com/")
+      several <- geo_lite("Madrid", full_results = TRUE, nominatim_server = "https://api.jsonserver.io/")
     Message
-      https://xyz.com/search?q=Madrid&format=jsonv2&limit=1&addressdetails=1 not reachable.
+      https://api.jsonserver.io/search?q=Madrid&format=jsonv2&limit=1&addressdetails=1 not reachable.
 

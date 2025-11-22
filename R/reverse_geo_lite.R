@@ -167,7 +167,7 @@ reverse_geo_lite <- function(
 
   # Final clean
   all_res <- all_res[, -c(1, 2)]
-  return(all_res)
+  all_res
 }
 
 #' @noRd
@@ -239,5 +239,5 @@ reverse_geo_lite_single <- function(
     full_results = full_results
   )
 
-  return(result_out)
+  result_out
 }

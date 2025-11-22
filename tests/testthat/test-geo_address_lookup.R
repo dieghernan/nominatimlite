@@ -152,7 +152,7 @@ test_that("Fail", {
       vector_ids,
       vector_type,
       full_results = TRUE,
-      nominatim_server = "https://xyz.com/"
+      nominatim_server = "https://api.jsonserver.io/"
     )
   )
 

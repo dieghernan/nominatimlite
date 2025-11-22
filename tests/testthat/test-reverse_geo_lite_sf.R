@@ -265,7 +265,7 @@ test_that("Fail", {
       40.75728,
       -73.98,
       full_results = TRUE,
-      nominatim_server = "https://xyz.com/"
+      nominatim_server = "https://api.jsonserver.io/"
     )
   )
 

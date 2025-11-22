@@ -177,7 +177,7 @@ test_that("Check unnesting", {
   expect_length(bb_l, 2)
 
   # Each object
-  for (i in seq_len(length(bb_l))) {
+  for (i in seq_along(bb_l)) {
     lc <- bb_l[[i]]
     expect_length(lc, 4)
     expect_true(is.numeric(lc))
@@ -238,7 +238,7 @@ test_that("Fail", {
       40.75728,
       -73.98,
       full_results = TRUE,
-      nominatim_server = "https://xyz.com/"
+      nominatim_server = "https://api.jsonserver.io/"
     )
   )
 

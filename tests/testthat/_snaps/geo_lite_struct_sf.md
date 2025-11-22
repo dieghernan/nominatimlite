@@ -1,7 +1,7 @@
 # Fail
 
     Code
-      several <- geo_lite_struct_sf("madrid", full_results = TRUE, nominatim_server = "https://xyz.com/")
+      several <- geo_lite_struct_sf("madrid", full_results = TRUE, nominatim_server = "https://api.jsonserver.io/")
     Message
-      https://xyz.com/search?format=geojson&limit=1&addressdetails=1&amenity=madrid not reachable.
+      https://api.jsonserver.io/search?format=geojson&limit=1&addressdetails=1&amenity=madrid not reachable.
 

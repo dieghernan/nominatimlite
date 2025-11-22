@@ -39,9 +39,9 @@ nominatim_check_access <- function(
 
   # nocov start
   if (result$status == 0 || result$message == "OK") {
-    return(TRUE)
+    TRUE
   } else {
-    return(FALSE)
+    FALSE
   }
   # nocov end
 }
@@ -77,6 +77,8 @@ skip_if_api_server <- function() {
 #' A logical `TRUE/FALSE`.
 #'
 #' @keywords internal
+#'
+#' @noRd
 #'
 api_call <- function(url, destfile = tempfile(fileext = ".json"), quiet) {
   dwn_res <- suppressWarnings(

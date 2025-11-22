@@ -1,11 +1,8 @@
-Američkih
 ArcGIS
 Belanger
 CMD
 Cambon
 CodeFactor
-DOI
-Država
 Flaticon
 Freepik
 Geocode
@@ -20,10 +17,8 @@ OSM
 Padgham
 Possenriede
 Rudis
-Sjedinjenih
 TomTom
 Transamerica
-Zastava
 al
 api
 arcgeocoder
@@ -31,6 +26,7 @@ browsable
 codecov
 crosstalk
 de
+doi
 et
 geocode
 geocoded
@@ -47,5 +43,4 @@ testthat
 tibble
 tidygeocoder
 unnesting
-vectorized
 viewbox

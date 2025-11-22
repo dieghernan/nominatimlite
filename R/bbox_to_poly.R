@@ -86,5 +86,5 @@ bbox_to_poly <- function(
   bbox_sf <- sf::st_as_sfc(bbox_double)
   sf::st_crs(bbox_sf) <- sf::st_crs(crs)
 
-  return(bbox_sf)
+  bbox_sf
 }

@@ -138,5 +138,5 @@ geo_amenity_sf <- function(
     all_res <- all_res[int, ]
   }
 
-  return(all_res)
+  all_res
 }

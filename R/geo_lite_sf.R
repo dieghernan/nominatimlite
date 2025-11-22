@@ -156,7 +156,7 @@ geo_lite_sf <- function(
     all_res <- sf_to_tbl(all_res)
   }
 
-  return(all_res)
+  all_res
 }
 
 #' @noRd

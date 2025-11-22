@@ -65,7 +65,7 @@ keep_names <- function(
   out_cols <- unique(out_cols)
   out <- x[, out_cols]
 
-  return(out)
+  out
 }
 
 keep_names_rev <- function(
@@ -90,7 +90,7 @@ keep_names_rev <- function(
   out_cols <- unique(out_cols)
   out <- x[, out_cols]
 
-  return(out)
+  out
 }
 
 prepare_api_url <- function(

@@ -1,5 +1,5 @@
 ---
-title: "Example: nominatimlite and leaflet maps"
+title: "nominatimlite and leaflet maps"
 subtitle: "Combine nominatimlite and leaflet maps"
 ---
 

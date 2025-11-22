@@ -147,7 +147,7 @@ test_that("Fail", {
     several <- geo_lite_struct(
       "Madrid",
       full_results = TRUE,
-      nominatim_server = "https://xyz.com/"
+      nominatim_server = "https://api.jsonserver.io/"
     )
   )
 

@@ -88,7 +88,8 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-![Locations of Pizza Hut in California](../man/figures/README-pizzahut-1.png){width="100%"}
+![Locations of Pizza Hut in
+California](../man/figures/README-pizzahut-1.png){width="100%"}
 
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:

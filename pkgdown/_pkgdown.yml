@@ -50,3 +50,9 @@ reference:
 - title: About the package
   contents: nominatimlite-package
 
+articles:
+- title: Examples
+  navbar: Examples
+  contents:
+  - articles/leaflet
+
