@@ -114,7 +114,7 @@ reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #> # A tibble: 1 × 3
 #>   address                                                              lat   lon
 #>   <chr>                                                              <dbl> <dbl>
-#> 1 Times Square, West 43rd Street, Theater District, Manhattan Commu…  40.8 -74.0
+#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York Co…  40.8 -74.0
 
 # Several coordinates
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
@@ -122,8 +122,8 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #> # A tibble: 2 × 3
 #>   address                                                             lat    lon
 #>   <chr>                                                             <dbl>  <dbl>
-#> 1 Times Square, West 43rd Street, Theater District, Manhattan Comm…  40.8 -74.0 
-#> 2 East End, Waterloo Place, Waterloo Place, Greenside, New Town/Br…  56.0  -3.19
+#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York C…  40.8 -74.0 
+#> 2 East End, Waterloo Place, Waterloo Place, Broughton, New Town/Br…  56.0  -3.19
 
 # With options: zoom to country level
 sev <- reverse_geo_lite(
@@ -136,7 +136,7 @@ sev <- reverse_geo_lite(
 dplyr::glimpse(sev)
 #> Rows: 2
 #> Columns: 52
-#> $ address                                  <chr> "United States of America", "…
+#> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
 #> $ place_id                                 <int> 46583304, 254352942
@@ -146,11 +146,11 @@ dplyr::glimpse(sev)
 #> $ category                                 <chr> "boundary", "boundary"
 #> $ type                                     <chr> "administrative", "administra…
 #> $ place_rank                               <int> 4, 4
-#> $ importance                               <dbl> 1.000000, 0.929957
+#> $ importance                               <dbl> 1.0000000, 0.9388534
 #> $ addresstype                              <chr> "country", "country"
-#> $ name                                     <chr> "United States of America", "…
-#> $ display_name                             <chr> "United States of America", "…
-#> $ address.country                          <chr> "United States of America", "…
+#> $ name                                     <chr> "United States", "United King…
+#> $ display_name                             <chr> "United States", "United King…
+#> $ address.country                          <chr> "United States", "United King…
 #> $ address.country_code                     <chr> "us", "gb"
 #> $ extratags.flag                           <chr> "https://upload.wikimedia.org…
 #> $ extratags.sqkm                           <chr> "9826675", "243610"

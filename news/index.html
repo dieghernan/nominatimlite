@@ -5,7 +5,7 @@
   gtag('js', new Date());
 
   gtag('config', 'G-5SLV8G8QD4');
-</script><!-- fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&amp;family=Inter:wght@100..900&amp;family=Inter+Tight:wght@100..900&amp;family=Quicksand:wght@300;400;500;700&amp;display=swap" rel="stylesheet"><!-- gitdevr tweaks --><link href="../BS5/gitdevr.min.css" rel="stylesheet"></head><body>
+</script><!-- fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&amp;family=Inter:wght@100..900&amp;family=Inter+Tight:wght@100..900&amp;family=Quicksand:wght@300;400;500;700&amp;display=swap" rel="stylesheet"><!-- gitdevr tweaks --><link href="../BS5/gitdevr.min.css" rel="stylesheet"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -15,7 +15,7 @@
       <img src="../apple-touch-icon.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">
       nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +46,10 @@
       <small>Source: <a href="https://github.com/dieghernan/nominatimlite/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="nominatimlite-development-version">nominatimlite (development version)<a class="anchor" aria-label="anchor" href="#nominatimlite-development-version"></a></h2>
+<ul><li>Minor fixes on reverse functions.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.2" id="nominatimlite-042">nominatimlite 0.4.2<a class="anchor" aria-label="anchor" href="#nominatimlite-042"></a></h2><p class="text-muted">CRAN release: 2024-12-17</p>
 <ul><li>Update documentation.</li>
@@ -101,7 +105,7 @@
 <h2 class="pkg-version" data-toc-text="0.2.0" id="nominatimlite-020">nominatimlite 0.2.0<a class="anchor" aria-label="anchor" href="#nominatimlite-020"></a></h2><p class="text-muted">CRAN release: 2023-05-11</p>
 <ul><li>
 <strong>rlang</strong> and <strong>tibble</strong> are not explicitly required. Conversions to tibble happens with <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">dplyr::tibble()</a></code>.</li>
-<li>The data attributes of <strong>sf</strong> objects are returned now as <code>tibble</code>, for easy printing in console.</li>
+<li>The data attributes of <strong>sf</strong> objects are returned now as tibbles, for easy printing in console.</li>
 <li>Improvements in code and tests.</li>
 <li>Now <strong>sf</strong> objects can handle correctly nested fields provided in the json response (for example, the nested address field provided by the API). This is consistent also with the results provided by the non-spatial functions, were unnesting was already handled correctly.</li>
 <li>Improvements on the output of <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> and <code><a href="../reference/reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code> when the API returns nested lists.</li>

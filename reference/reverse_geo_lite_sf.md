@@ -158,10 +158,10 @@ col_sf <- reverse_geo_lite_sf(
 dplyr::glimpse(col_sf)
 #> Rows: 1
 #> Columns: 4
-#> $ address  <chr> "Colosseo, Piazza del Colosseo, Celio, Municipio Roma I, Roma…
+#> $ address  <chr> "Piazza del Colosseo, Celio, Municipio Roma I, Roma, Roma Cap…
 #> $ lat      <dbl> 41.89026
 #> $ lon      <dbl> 12.49309
-#> $ geometry <POLYGON [°]> POLYGON ((12.4913 41.89058,...
+#> $ geometry <POINT [°]> POINT (12.49333 41.89014)
 
 if (any(!sf::st_is_empty(col_sf))) {
   ggplot(col_sf) +

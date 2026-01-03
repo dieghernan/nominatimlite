@@ -150,11 +150,11 @@ Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                                                                                               |
-|:-------------------------------------------|---------:|-----------:|:--------------------------------------------------------------------------------------------------------------------------------------|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89764 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States of America |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States of America          |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87874 |  -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States of America  |
+| query                                      | latitude |  longitude | address                                                                                                                    |
+|:-------------------------------------------|---------:|-----------:|:---------------------------------------------------------------------------------------------------------------------------|
+| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89764 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States          |
+| 233 S Wacker Dr, Chicago, IL 60606         | 41.87874 |  -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States  |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the
@@ -174,11 +174,11 @@ reverse <- reverse_geo_lite(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-| address_found                                                                                                                         |      lat |        lon |
-|:--------------------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States of America | 38.89764 |  -77.03655 |
-| Transamerica Pyramid, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States of America          | 37.79519 | -122.40279 |
-| Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States of America  | 41.87874 |  -87.63596 |
+| address_found                                                                                                              |      lat |        lon |
+|:---------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 |  -77.03655 |
+| Sky Bar, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States                       | 37.79519 | -122.40254 |
+| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States  | 41.87874 |  -87.63589 |
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
@@ -186,7 +186,7 @@ the parameters available.
 
 ## Citation
 
-Hernangómez D (2025). *nominatimlite: Interface with Nominatim API
+Hernangómez D (2026). *nominatimlite: Interface with Nominatim API
 Service*.
 [doi:10.32614/CRAN.package.nominatimlite](https://doi.org/10.32614/CRAN.package.nominatimlite),
 <https://dieghernan.github.io/nominatimlite/>.
@@ -198,8 +198,8 @@ A BibTeX entry for LaTeX users is
   title = {{nominatimlite}: Interface with {Nominatim} {API} Service},
   doi = {10.32614/CRAN.package.nominatimlite},
   author = {Diego Hernangómez},
-  year = {2025},
-  version = {0.4.2},
+  year = {2026},
+  version = {0.4.2.9000},
   url = {https://dieghernan.github.io/nominatimlite/},
   abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
 }

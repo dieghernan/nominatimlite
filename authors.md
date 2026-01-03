@@ -20,7 +20,7 @@
 Source:
 [`inst/CITATION`](https://github.com/dieghernan/nominatimlite/blob/main/inst/CITATION)
 
-Hernangómez D (2025). *nominatimlite: Interface with Nominatim API
+Hernangómez D (2026). *nominatimlite: Interface with Nominatim API
 Service*.
 [doi:10.32614/CRAN.package.nominatimlite](https://doi.org/10.32614/CRAN.package.nominatimlite),
 <https://dieghernan.github.io/nominatimlite/>.
@@ -29,8 +29,8 @@ Service*.
       title = {{nominatimlite}: Interface with {Nominatim} {API} Service},
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
-      year = {2025},
-      version = {0.4.2},
+      year = {2026},
+      version = {0.4.2.9000},
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
     }

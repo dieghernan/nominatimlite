@@ -1,5 +1,9 @@
 # Changelog
 
+## nominatimlite (development version)
+
+- Minor fixes on reverse functions.
+
 ## nominatimlite 0.4.2
 
 CRAN release: 2024-12-17
@@ -106,8 +110,8 @@ CRAN release: 2023-05-11
 - **rlang** and **tibble** are not explicitly required. Conversions to
   tibble happens with
   [`dplyr::tibble()`](https://tibble.tidyverse.org/reference/tibble.html).
-- The data attributes of **sf** objects are returned now as `tibble`,
-  for easy printing in console.
+- The data attributes of **sf** objects are returned now as tibbles, for
+  easy printing in console.
 - Improvements in code and tests.
 - Now **sf** objects can handle correctly nested fields provided in the
   json response (for example, the nested address field provided by the
