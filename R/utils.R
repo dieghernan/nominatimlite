@@ -132,23 +132,27 @@ unnest_reverse <- function(x) {
   # Unnest fields
 
   lngths <- vapply(x, length, FUN.VALUE = numeric(1))
+
+  # Remove null fields
+  x <- x[lngths > 0]
+
   endobj <- dplyr::as_tibble(x[lngths == 1])
 
   # OSM address
-  if ("address" %in% names(lngths)) {
+  if ("address" %in% names(x)) {
     ad <- dplyr::as_tibble(x$address)[1, ]
     names(ad) <- paste0("address.", names(ad))
 
     endobj <- dplyr::bind_cols(endobj, ad)
   }
 
-  if ("extratags" %in% names(lngths)) {
+  if ("extratags" %in% names(x)) {
     xtra <- dplyr::as_tibble(x$extratags)[1, ]
     names(xtra) <- paste0("extratags.", names(xtra))
     endobj <- dplyr::bind_cols(endobj, xtra)
   }
 
-  if ("boundingbox" %in% names(lngths)) {
+  if ("boundingbox" %in% names(x)) {
     bb <- dplyr::tibble(boundingbox = list(as.double(x$boundingbox)))
     endobj <- dplyr::bind_cols(endobj, bb)
   }
@@ -247,6 +251,17 @@ unnest_sf <- function(x) {
 
 
 unnest_sf_reverse <- function(x) {
+  # Remove null fields
+  nulls_or_nas <- vapply(
+    x,
+    function(a_col) {
+      any(is.null(a_col), is.na(a_col))
+    },
+    FUN.VALUE = logical(1)
+  )
+
+  x <- x[!nulls_or_nas]
+
   # Unnest
   if ("address" %in% names(x)) {
     # Need to unnest
