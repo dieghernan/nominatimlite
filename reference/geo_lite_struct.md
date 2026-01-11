@@ -143,7 +143,7 @@ pl_mayor <- geo_lite_struct(
 
 
 dplyr::glimpse(pl_mayor)
-#> Rows: 31
+#> Rows: 32
 #> Columns: 41
 #> $ q_amenity                <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ q_street                 <chr> "Plaza Mayor", "Plaza Mayor", "Plaza Mayor", …

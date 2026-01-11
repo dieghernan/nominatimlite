@@ -135,7 +135,7 @@ sev <- reverse_geo_lite(
 
 dplyr::glimpse(sev)
 #> Rows: 2
-#> Columns: 52
+#> Columns: 50
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
@@ -183,10 +183,8 @@ dplyr::glimpse(sev)
 #> $ extratags.currency                       <chr> NA, "GBP"
 #> $ extratags.timezone                       <chr> NA, "Europe/London"
 #> $ extratags.native_name                    <chr> NA, "United Kingdom of Great …
-#> $ `extratags.source:sqkm`                  <chr> NA, "CIA World Factbook"
 #> $ `extratags.native_name:da`               <chr> NA, "Det Forenede Kongerige S…
 #> $ `extratags.native_name:es`               <chr> NA, "Reino Unido de Gran Bret…
 #> $ `extratags.native_name:vi`               <chr> NA, "Vương quốc Liên hiệp Anh…
-#> $ `extratags.source:population`            <chr> NA, "http://www.statistics.go…
 # }
 ```
