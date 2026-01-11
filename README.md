@@ -194,7 +194,7 @@ reverse <- reverse_geo_lite(
 | address_found | lat | lon |
 |:---|---:|---:|
 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| Sky Bar, Merchant Street, Financial District, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
 | West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
 
 For more advance users, see [Nominatim
@@ -218,7 +218,7 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.4.2.9000},
+      version = {0.4.3},
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
     }

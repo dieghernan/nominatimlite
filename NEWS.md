@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.4.3
 
 -   Minor fixes on reverse functions.
 

@@ -8,7 +8,7 @@ message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
 title: 'nominatimlite: Interface with ''Nominatim'' API Service'
-version: 0.4.2.9000
+version: 0.4.3
 doi: 10.32614/CRAN.package.nominatimlite
 identifiers:
 - type: doi
@@ -31,7 +31,7 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.nominatimlite
   year: '2026'
-  version: 0.4.2.9000
+  version: 0.4.3
   url: https://dieghernan.github.io/nominatimlite/
   abstract: Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>.
     Extract coordinates from addresses, find places near a set of coordinates and
