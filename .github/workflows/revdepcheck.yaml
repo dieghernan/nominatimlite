@@ -2,7 +2,9 @@ on:
   workflow_dispatch:
 
 name: revdepcheck
-
+permissions:
+  contents: write
+  
 jobs:
   revdepcheck:
     runs-on: ${{ matrix.config.os }}

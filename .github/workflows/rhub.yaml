@@ -7,6 +7,9 @@
 # It is unlikely that you need to modify this file manually.
 
 name: R-hub
+permissions:
+  contents: read
+
 run-name: "${{ github.event.inputs.id }}: ${{ github.event.inputs.name || format('Manually run by {0}', github.triggering_actor) }}"
 
 on:
@@ -15,7 +18,7 @@ on:
       config:
         description: 'A comma separated list of R-hub platforms to use.'
         type: string
-        default: 'linux,windows,macos'
+        default: 'linux,windows'
       name:
         description: 'Run name. You can leave this empty now.'
         type: string
