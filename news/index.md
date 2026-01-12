@@ -2,6 +2,8 @@
 
 ## nominatimlite 0.4.3
 
+CRAN release: 2026-01-11
+
 - Minor fixes on reverse functions.
 
 ## nominatimlite 0.4.2
