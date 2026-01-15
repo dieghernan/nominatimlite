@@ -82,7 +82,7 @@ test_that("Data format", {
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
-  expect_true(all(grepl("POINT", sf::st_geometry_type(obj))))
+  expect_true(all(grepl("POINT", sf::st_geometry_type(obj), fixed = TRUE)))
 
   # Polygon
 
@@ -96,7 +96,7 @@ test_that("Data format", {
     "No results for query lon"
   )
 
-  expect_true(any(grepl("POLYGON", sf::st_geometry_type(test))))
+  expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))
   expect_s3_class(test, "sf")
   expect_s3_class(test, "tbl")
   expect_equal(nrow(test), 3)
@@ -206,7 +206,7 @@ test_that("Check unnesting", {
   colclass <- vapply(sf::st_drop_geometry(sev), class, FUN.VALUE = character(1))
 
   # Not lists
-  expect_false(any(grepl("list", colclass)))
+  expect_false(any(grepl("list", colclass, fixed = TRUE)))
 })
 
 test_that("Dedupe", {

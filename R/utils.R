@@ -25,7 +25,7 @@ is_named <- function(x) {
   if (is.null(nm)) {
     return(FALSE)
   }
-  if (any(is.na(nm))) {
+  if (anyNA(nm)) {
     return(FALSE)
   }
   if (any(nm == "")) {
@@ -131,7 +131,7 @@ empty_tbl_rev <- function(x, address) {
 unnest_reverse <- function(x) {
   # Unnest fields
 
-  lngths <- vapply(x, length, FUN.VALUE = numeric(1))
+  lngths <- lengths(x)
 
   # Remove null fields
   x <- x[lngths > 0]
@@ -208,7 +208,7 @@ unnest_sf <- function(x) {
     xtra <- as.character(x$extratags)
 
     newxtra <- lapply(xtra, function(x) {
-      if (any(is.na(x), is.null(x))) {
+      if (any(is.null(x), is.na(x))) {
         return(dplyr::tibble(xxx_empty_remove = NA))
       }
       df <- jsonlite::fromJSON(x, simplifyVector = TRUE)

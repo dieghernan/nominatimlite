@@ -137,7 +137,7 @@ geo_lite_single <- function(
   api <- prepare_api_url(nominatim_server, "search?q=")
 
   # Replace spaces with +
-  address2 <- gsub(" ", "+", address)
+  address2 <- gsub(" ", "+", address, fixed = TRUE)
 
   # Compose url
   url <- paste0(api, address2, "&format=jsonv2&limit=", limit)

@@ -35,8 +35,8 @@ reference:
   contents: has_concept("geocoding")
 - title: Reverse geocoding
   desc: >
-    These functions search coordinates and returns information of places on that
-    coordinates.
+    These functions search coordinates and returns information of places on
+    that coordinates.
   contents: has_concept("reverse")
 - title: Get spatial objects
   desc: >
@@ -55,4 +55,3 @@ articles:
   navbar: Examples
   contents:
   - articles/leaflet
-

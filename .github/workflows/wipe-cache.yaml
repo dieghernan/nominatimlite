@@ -1,10 +1,14 @@
-name: Clear all Github actions caches manually
+name: Clear GHA caches manually
 permissions: write-all
+# This will cancel running jobs once a new run is triggered
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 15 * *'
+    - cron: "0 16 17 * *"
 
 jobs:
   cache-clear:
@@ -12,4 +16,3 @@ jobs:
 
     steps:
       - uses: easimon/wipe-cache@main
-

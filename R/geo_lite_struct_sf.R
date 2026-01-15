@@ -115,7 +115,7 @@ geo_lite_struct_sf <- function(
 
   # Paste +
   pars <- lapply(pars, function(x) {
-    gsub(" ", "+", x)
+    gsub(" ", "+", x, fixed = TRUE)
   })
 
   # First build the api address. If the passed nominatim_server does not end
@@ -137,7 +137,7 @@ geo_lite_struct_sf <- function(
   logis <- vapply(
     newopts,
     function(x) {
-      any(is.na(x), is.null(x))
+      any(is.null(x), is.na(x))
     },
     FUN.VALUE = logical(1)
   )

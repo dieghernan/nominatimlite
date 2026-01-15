@@ -169,7 +169,11 @@ test_that("Check unnesting", {
   expect_true(colclass["boundingbox"] == "list")
 
   # Rest of columns not list
-  expect_false(any(grepl("list", colclass["boundingbox" != names(colclass)])))
+  expect_false(any(grepl(
+    "list",
+    colclass["boundingbox" != names(colclass)],
+    fixed = TRUE
+  )))
 
   # Extract
   bb_l <- sev[["boundingbox"]]
