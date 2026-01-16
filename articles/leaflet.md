@@ -172,7 +172,7 @@ Details
     #>  collate  English_United States.utf8
     #>  ctype    English_United States.utf8
     #>  tz       UTC
-    #>  date     2026-01-15
+    #>  date     2026-01-16
     #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
     #>  quarto   NA
     #> 
@@ -207,7 +207,7 @@ Details
     #>  lifecycle           1.0.5   2026-01-08 [1] RSPM
     #>  magrittr            2.0.4   2025-09-12 [1] RSPM
     #>  mime                0.13    2025-03-17 [1] RSPM
-    #>  nominatimlite     * 0.4.3   2026-01-15 [1] local
+    #>  nominatimlite     * 0.4.3   2026-01-16 [1] local
     #>  otel                0.2.0   2025-08-29 [1] RSPM
     #>  pillar              1.11.1  2025-09-17 [1] RSPM
     #>  pkgconfig           2.0.3   2019-09-22 [1] RSPM
@@ -224,7 +224,7 @@ Details
     #>  rmarkdown           2.30    2025-09-28 [1] RSPM
     #>  s2                  1.1.9   2025-05-23 [1] RSPM
     #>  sass                0.4.10  2025-04-11 [1] RSPM
-    #>  sessioninfo       * 1.2.3   2025-02-05 [1] RSPM
+    #>  sessioninfo       * 1.2.3   2025-02-05 [1] any (@1.2.3)
     #>  sf                * 1.0-24  2026-01-13 [1] RSPM
     #>  shiny               1.12.1  2025-12-09 [1] RSPM
     #>  systemfonts         1.3.1   2025-10-01 [1] RSPM
