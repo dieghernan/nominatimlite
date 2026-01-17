@@ -135,7 +135,7 @@ sev <- reverse_geo_lite(
 
 dplyr::glimpse(sev)
 #> Rows: 2
-#> Columns: 50
+#> Columns: 51
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
@@ -173,6 +173,7 @@ dplyr::glimpse(sev)
 #> $ `extratags.alt_short_name:pl`            <chr> "St. Zj.", NA
 #> $ extratags.country_code_fips              <chr> "US", NA
 #> $ `extratags.old_short_name:ru`            <chr> "САСШ", NA
+#> $ extratags.wikimedia_commons              <chr> "Category:United States", "Ca…
 #> $ extratags.short_official_name            <chr> "U.S.A.", NA
 #> $ `extratags.alt_official_name:en`         <chr> "The United States of America…
 #> $ `extratags.not:official_name:vi`         <chr> "Hợp chủng quốc Hoa Kỳ;Hợp ch…
