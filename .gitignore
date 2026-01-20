@@ -42,3 +42,5 @@ CRAN-SUBMISSION
 .Rproj.user
 .Rdata
 Rplots.pdf
+/.quarto/
+**/*.quarto_ipynb
