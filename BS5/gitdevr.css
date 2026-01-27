@@ -1,9 +1,5 @@
-/*!
-    * Copyright 2022 gitdevr Skin Author
-	* Licensed under MIT
-	* Beautify: https://www.freeformatter.com/css-beautifier.html
-	* Minify: https://www.freeformatter.com/css-minifier.html
-*/
+/*!  Compressed with sass R library https: //rstudio.github.io/sass/*/
+
 /* ---Images and captions figure spacing--- */
 main img {
 	margin-left: auto;
@@ -12,7 +8,7 @@ main img {
 
 .caption,
 .figure {
-	color: #6A788A;
+	color: #6a788a;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 0.5rem;
@@ -22,7 +18,7 @@ main img {
 
 /* ---Navbar tweaks--- */
 .navbar {
-	font-family: 'Inter Tight', Roboto;
+	font-family: "Inter Tight", Roboto;
 }
 
 .navbar-brand {
@@ -44,7 +40,7 @@ main img {
 }
 
 #navbar .dropdown-menu {
-	background-color: #212529 !important;
+	background-color: #22272e !important;
 }
 
 #navbar .dropdown-menu .dropdown-item {
@@ -54,17 +50,17 @@ main img {
 
 #navbar .nav-link:hover,
 #navbar .nav-link:focus {
-	color: #6A788A !important;
+	color: #6a788a !important;
 }
 
 #navbar .dropdown-menu .dropdown-item:hover,
 #navbar .dropdown-menu .dropdown-item:focus {
-	color: #6A788A !important;
+	color: #6a788a !important;
 	background-color: #f8f9fa;
 }
 
 .navbar-toggler {
-	border: none
+	border: none;
 }
 
 .algolia-autocomplete .aa-dropdown-menu {
@@ -79,10 +75,10 @@ footer {
 	right: 50%;
 	margin-left: -50vw;
 	margin-right: -50vw;
-	background-color: #212529 !important;
+	background-color: #0d1117 !important;
 	color: #8b949e;
 	margin-bottom: 0;
-	font-family: 'Inter Tight', Roboto;
+	font-family: "Inter Tight", Roboto;
 	font-weight: 700;
 }
 
@@ -107,50 +103,44 @@ footer .pkgdown-footer-left {
 }
 
 @media screen and (max-width: 576px) {
-
 	footer .pkgdown-footer-right,
 	footer .pkgdown-footer-left {
-		margin-right: .75rem;
-		margin-left: .75rem;
+		margin-right: 0.75rem;
+		margin-left: 0.75rem;
 		padding-left: 12px;
 		padding-right: 12px;
 	}
 }
 
-@media (max-width:768px) and (min-width:576px) {
-
+@media (max-width: 768px) and (min-width: 576px) {
 	footer .pkgdown-footer-right,
 	footer .pkgdown-footer-left {
 		max-width: 270px;
 	}
 }
 
-@media (max-width: 992px) and (min-width:768px) {
-
+@media (max-width: 992px) and (min-width: 768px) {
 	footer .pkgdown-footer-right,
 	footer .pkgdown-footer-left {
 		max-width: 360px;
 	}
 }
 
-@media (max-width: 1200px) and (min-width:992px) {
-
+@media (max-width: 1200px) and (min-width: 992px) {
 	footer .pkgdown-footer-right,
 	footer .pkgdown-footer-left {
 		max-width: 480px;
 	}
 }
 
-@media (max-width: 1400px) and (min-width:1200px) {
-
+@media (max-width: 1400px) and (min-width: 1200px) {
 	footer .pkgdown-footer-right,
 	footer .pkgdown-footer-left {
 		max-width: 570px;
 	}
 }
 
-@media (min-width:1400px) {
-
+@media (min-width: 1400px) {
 	footer .pkgdown-footer-right,
 	footer .pkgdown-footer-left {
 		max-width: 660px;
@@ -166,6 +156,14 @@ img.logo {
 	display: inline;
 }
 
+/* Hack to reduce brightness of plots in dark mode */
+[data-bs-theme="dark"] img.r-plt,
+[data-bs-theme="dark"] pre .r-plt.img img,
+[data-bs-theme="dark"] .cell-output-display img,
+[data-bs-theme="dark"] .html-widget {
+	filter: brightness(66%) !important;
+}
+
 blockquote {
 	border-left: solid #0969da !important;
 	font-size: 115%;
@@ -175,34 +173,33 @@ blockquote {
 	font-weight: bold;
 }
 
+/* ---Code--- */
 code a:any-link {
 	text-decoration: underline;
 	text-decoration-color: #6c757d;
 }
 
-a>code {
+a > code {
 	text-decoration: underline;
 	color: #e83e8c;
 }
 
-/* ---allcontributors package--- */
-
-.allctb-avatar {
-	border: 1px solid;
-	border-radius: 50%;
-	border-color: var(--bs-primary) !important;
-	max-width: 100px;
-}
-
-table.allctb-table td {
-	border-color: transparent;
-}
-
-/* --- Code --- */
 code {
 	font-size: 87.5%;
 	color: #e83e8c;
 	word-wrap: break-word;
+}
+
+/* Dark Mode */
+[data-bs-theme="dark"] {
+	code a:any-link {
+		color: inherit;
+	}
+
+	code {
+		color: #e75ca2;
+		background-color: RGBA(var(--bs-emphasis-color-rgb), 0.04);
+	}
 }
 
 /* --- Inherited args --- */
@@ -218,200 +215,325 @@ code {
 	border-radius: 0;
 }
 
-/* --- Highlighter based in perldoc --- */
+/* --- Highlighter based in gitdevr --- */
 pre {
-	background-color: #f4f4f5
+	background-color: RGBA(var(--bs-emphasis-color-rgb), 0.04);
+	color: var(--bs-primary);
 }
 
 pre code
 
-/* Normal - pygments.n */
-	{
-	color: #212529
+/* Normal - pygments.n */ {
+	color: var(--bs-primary);
 }
 
 pre code span.al
 
-/* Alert - pygments.gr */
-	{
-	color: #aa0000
+/* Alert - pygments.gr */ {
+	color: var(--bs-danger);
 }
 
 pre code span.an
 
-/* Annotation - pygments.c1 */
-	{
-	color: #228B22
+/* Annotation - pygments.c1 */ {
+	color: var(--bs-gray-dark);
+	font-style: italic;
 }
 
 pre code span.at
 
-/* Attribute */
-	{}
-
-pre code span.bn
-
-/* BaseN */
-	{}
-
-pre code span.bu
-
-/* BuiltIn */
-	{}
+/* Attribute - e.g value (non numeric) in YAML */ {
+	color: var(--bs--info);
+}
 
 pre code span.cf
 
-/* ControlFlow */
-	{}
+/* ControlFlow - like Operator -> pygments.o */ {
+	color: var(--bs-info);
+}
 
 pre code span.ch
 
-/* Char - pygments.s2 */
-	{
-	color: #CD5555
+/* Char - pygments.s2 */ {
+	color: var(--bs--warning);
 }
 
 pre code span.cn
 
-/* Constant - pygments.nb */
-	{
-	color: #658b00
+/* Constant - pygments.nb */ {
+	color: var(--bs--warning);
 }
 
 pre code span.co
 
-/* Comment - pygments.c1 */
-	{
-	color: #228B22
+/* Comment - pygments.c1 */ {
+	color: var(--bs-gray-dark);
+	font-style: italic;
 }
 
 pre code span.cv
 
-/* CommentVar - pygments.c1 */
-	{
-	color: #228B22
+/* CommentVar - pygments.c1 */ {
+	color: var(--bs-gray-dark);
+	font-style: italic;
 }
 
 pre code span.do
 
-/* Documentation - pygments.c1 */
-	{
-	color: #228B22
+/* Documentation - pygments.c1 */ {
+	color: var(--bs-gray-dark);
+	font-style: italic;
 }
-
-pre code span.dt
-
-/* DataType */
-	{}
 
 pre code span.dv
 
-/* DecVal - pygments.m */
-	{
-	color: #B452CD
+/* DecVal - pygments.m */ {
+	color: var(--bs-info);
 }
 
 pre code span.er
 
-/* Error - pygments.gr */
-	{
-	color: #aa0000
+/* Error - pygments.gr */ {
+	color: var(--bs-danger);
 }
-
-pre code span.ex
-
-/* Extension */
-	{}
 
 pre code span.fl
 
-/* Float - pygments.m */
-	{
-	color: #B452CD
+/* Float - pygments.m */ {
+	color: var(--bs-info);
 }
 
 pre code span.fu
 
-/* Function - pygments.n */
-	{
-	color: #212529
+/* Function - pygments.n */ {
+	color: var(--bs-blue);
 }
-
-pre code span.im
-
-/* Import */
-	{}
 
 pre code span.in
 
-/* Information - pygments.gp */
-	{
-	color: #555555
+/* Information - pygments.gp */ {
+	color: var(--bs-gray-dark);
+	font-style: italic;
 }
 
 pre code span.kw
 
-/* Keyword - pygments.k */
-	{
-	color: #8B008B;
-	font-weight: bold
+/* Keyword - pygments.k */ {
+	color: var(--bs-info);
+	font-weight: bold;
 }
 
 pre code span.op
-
-/* Operator - pygments.o */
-	{}
+  /* Operator - pygments.o */ {
+	color: var(--bs-info);
+}
 
 pre code span.ot
 
-/* Other - pygments.sx */
-	{
-	color: #cb6c20
+/* Other - pygments.sx */ {
+	color: var(--bs-success);
 }
-
-pre code span.pp
-
-/* Preprocessor */
-	{}
 
 pre code span.sc
 
-/* SpecialChar - pygments.s2 */
-	{
-	color: #CD5555
+/* SpecialChar - pygments.s2 */ {
+	color: var(--bs-success);
 }
 
 pre code span.ss
 
-/* SpecialString - pygments.s2 */
-	{
-	color: #CD5555
+/* SpecialString - pygments.s2 */ {
+	color: var(--bs-success);
 }
 
 pre code span.st
 
-/* String - pygments.s2 */
-	{
-	color: #CD5555
+/* String - pygments.s2 */ {
+	color: var(--bs-success);
 }
 
 pre code span.va
 
-/* Variable - pygments.n */
-	{
-	color: #212529
+/* Variable - pygments.n */ {
+	color: var(--bs-primary);
 }
 
 pre code span.vs
 
-/* VerbatimString - pygments.s2 */
-	{
-	color: #CD5555
+/* VerbatimString - pygments.s2 */ {
+	color: var(--bs-danger);
 }
 
 pre code span.wa
 
-/* Warning - pygments.gr */
-	{
-	color: #aa0000
+/* Warning - pygments.gr */ {
+	color: var(--bs-danger);
+}
+
+/* --- Dark Mode --- */
+[data-bs-theme="dark"] {
+	a.external-link:not(:has(*)),
+	a.uri:not(:has(*)) {
+		color: #2b8ffd;
+	}
+
+	.nav-item.active .nav-link {
+		background: transparent;
+	}
+}
+
+/* Highlighter based in gitdevr --- */
+
+[data-bs-theme="dark"] {
+	pre {
+		background-color: RGBA(var(--bs-emphasis-color-rgb), 0.04);
+		color: var(--bs-light-text-emphasis);
+	}
+
+	pre code
+
+/* Normal - pygments.n */ {
+		color: var(--bs-light-text-emphasis);
+	}
+
+	pre code span.al
+
+/* Alert - pygments.gr */ {
+		color: var(--bs-danger-text-emphasis);
+	}
+
+	pre code span.an
+
+/* Annotation - pygments.c1 */ {
+		color: var(--bs-dark-text-emphasis);
+		font-style: italic;
+	}
+	pre code span.at
+/* Attribute - e.g value (non numeric) in YAML */ {
+		color: var(--bs--info-text-emphasis);
+	}
+
+	pre code span.cf
+
+/* ControlFlow - like Operator -> pygments.o */ {
+		color: var(--bs-info-text-emphasis);
+	}
+
+	pre code span.ch
+
+/* Char - pygments.s2 */ {
+		color: var(--bs--warning-text-emphasis);
+	}
+
+	pre code span.cn
+
+/* Constant - pygments.nb */ {
+		color: var(--bs--warning-text-emphasis);
+	}
+
+	pre code span.co
+
+/* Comment - pygments.c1 */ {
+		color: var(--bs-dark-text-emphasis);
+		font-style: italic;
+	}
+
+	pre code span.cv
+
+/* CommentVar - pygments.c1 */ {
+		color: var(--bs-dark-text-emphasis);
+		font-style: italic;
+	}
+
+	pre code span.do
+
+/* Documentation - pygments.c1 */ {
+		color: var(--bs-dark-text-emphasis);
+		font-style: italic;
+	}
+
+	pre code span.dv
+
+/* DecVal - pygments.m */ {
+		color: var(--bs-info-text-emphasis);
+	}
+
+	pre code span.er
+
+/* Error - pygments.gr */ {
+		color: var(--bs-danger-text-emphasis);
+	}
+
+	pre code span.fl
+
+/* Float - pygments.m */ {
+		color: var(--bs-info-text-emphasis);
+	}
+
+	pre code span.fu
+
+/* Function - pygments.n */ {
+		color: #2b8ffd;
+	}
+
+	pre code span.in
+
+/* Information - pygments.gp */ {
+		color: var(--bs-dark-text-emphasis);
+		font-style: italic;
+	}
+
+	pre code span.kw
+
+/* Keyword - pygments.k */ {
+		color: var(--bs-info-text-emphasis);
+		font-weight: bold;
+	}
+
+	pre code span.op
+  /* Operator - pygments.o */ {
+		color: var(--bs-info-text-emphasis);
+	}
+
+	pre code span.ot
+
+/* Other - pygments.sx */ {
+		color: var(--bs-success-text-emphasis);
+	}
+
+	pre code span.sc
+
+/* SpecialChar - pygments.s2 */ {
+		color: var(--bs-success-text-emphasis);
+	}
+
+	pre code span.ss
+
+/* SpecialString - pygments.s2 */ {
+		color: var(--bs-success-text-emphasis);
+	}
+
+	pre code span.st
+
+/* String - pygments.s2 */ {
+		color: var(--bs-success-text-emphasis);
+	}
+
+	pre code span.va
+
+/* Variable - pygments.n */ {
+		color: var(--bs-light-text-emphasis);
+	}
+
+	pre code span.vs
+
+/* VerbatimString - pygments.s2 */ {
+		color: var(--bs-danger-text-emphasis);
+	}
+
+	pre code span.wa
+
+/* Warning - pygments.gr */ {
+		color: var(--bs-danger-text-emphasis);
+	}
 }
