@@ -215,10 +215,6 @@ Details
     #>  promises            1.5.0   2025-11-01 [1] RSPM
     #>  proxy               0.4-29  2025-12-29 [1] RSPM
     #>  purrr               1.2.1   2026-01-09 [1] RSPM
-    #>  R.cache             0.17.0  2025-05-02 [1] RSPM
-    #>  R.methodsS3         1.8.2   2022-06-13 [1] RSPM
-    #>  R.oo                1.27.1  2025-05-02 [1] RSPM
-    #>  R.utils             2.13.0  2025-02-24 [1] RSPM
     #>  R6                  2.6.1   2025-02-15 [1] RSPM
     #>  ragg                1.5.0   2025-09-02 [1] RSPM
     #>  Rcpp                1.1.1   2026-01-10 [1] RSPM
@@ -231,7 +227,6 @@ Details
     #>  sessioninfo       * 1.2.3   2025-02-05 [1] any (@1.2.3)
     #>  sf                * 1.0-24  2026-01-13 [1] RSPM
     #>  shiny               1.12.1  2025-12-09 [1] RSPM
-    #>  styler              1.11.0  2025-10-13 [1] RSPM
     #>  systemfonts         1.3.1   2025-10-01 [1] RSPM
     #>  textshaping         1.0.4   2025-10-10 [1] RSPM
     #>  tibble              3.3.1   2026-01-11 [1] RSPM
