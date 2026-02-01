@@ -65,12 +65,18 @@ There are other packages much more complete and mature than
 
 ## Installation
 
+<div class=".pkgdown-release">
+
 Install **nominatimlite** from
 [**CRAN**](https://CRAN.R-project.org/package=nominatimlite):
 
 ``` r
 install.packages("nominatimlite")
 ```
+
+</div>
+
+<div class=".pkgdown-dev">
 
 You can install the developing version of **nominatimlite** with:
 
@@ -90,6 +96,8 @@ install.packages("nominatimlite",
   )
 )
 ```
+
+</div>
 
 ## Usage
 

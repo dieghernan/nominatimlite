@@ -221,7 +221,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "249.946KB",
+  "fileSize": "250.009KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
