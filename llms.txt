@@ -48,25 +48,6 @@ Install **nominatimlite** from
 install.packages("nominatimlite")
 ```
 
-You can install the developing version of **nominatimlite** with:
-
-``` r
-remotes::install_github("dieghernan/nominatimlite")
-```
-
-Alternatively, you can install **nominatimlite** using the
-[r-universe](https://dieghernan.r-universe.dev/nominatimlite):
-
-``` r
-# Install nominatimlite in R:
-install.packages("nominatimlite",
-  repos = c(
-    "https://dieghernan.r-universe.dev",
-    "https://cloud.r-project.org"
-  )
-)
-```
-
 ## Usage
 
 ### `sf` objects
