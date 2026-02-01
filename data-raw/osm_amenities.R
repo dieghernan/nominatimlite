@@ -1,3 +1,5 @@
+getwd()
+pkgdev::update_docs()
 ## code to prepare `osm_amenities` dataset goes here
 
 # https://www.r-bloggers.com/2021/07/politely-scraping-wikipedia-tables-2/

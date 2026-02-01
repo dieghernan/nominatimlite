@@ -83,18 +83,15 @@ that presents similar features:
 ## Installation
 
 ::: pkgdown-release
-
 Install **nominatimlite** from
 [**CRAN**](https://CRAN.R-project.org/package=nominatimlite):
 
 ```{r, eval=FALSE}
 install.packages("nominatimlite")
 ```
-
 :::
 
 ::: pkgdown-devel
-
 You can install the developing version of **nominatimlite** with:
 
 ```{r, eval=FALSE}
@@ -113,7 +110,6 @@ install.packages("nominatimlite",
   )
 )
 ```
-
 :::
 
 ## Usage
@@ -229,4 +225,3 @@ toBibtex(citation("nominatimlite"))
 
 ::: {#refs}
 :::
-
