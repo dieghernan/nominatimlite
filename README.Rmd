@@ -82,12 +82,18 @@ that presents similar features:
 
 ## Installation
 
+::: .pkgdown-release
+
 Install **nominatimlite** from
 [**CRAN**](https://CRAN.R-project.org/package=nominatimlite):
 
 ```{r, eval=FALSE}
 install.packages("nominatimlite")
 ```
+
+:::
+
+::: .pkgdown-dev
 
 You can install the developing version of **nominatimlite** with:
 
@@ -107,6 +113,8 @@ install.packages("nominatimlite",
   )
 )
 ```
+
+:::
 
 ## Usage
 

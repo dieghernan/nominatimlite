@@ -1,6 +1,7 @@
 ---
 title: "nominatimlite and leaflet maps"
-subtitle: "Combine nominatimlite and leaflet maps"
+description: >
+  Combine **nominatimlite** and **leaflet** maps.
 ---
 
 ```{r, include = FALSE}

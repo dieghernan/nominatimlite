@@ -12,6 +12,9 @@ template:
 
 repo:
   branch: main
+  
+development:
+  mode: auto
 
 home:
   title: nominatimlite | Connection with OSM Nominatim API
@@ -51,7 +54,7 @@ reference:
   contents: nominatimlite-package
 
 articles:
-- title: Examples
-  navbar: Examples
+- title: Articles
+  navbar: Articles
   contents:
   - articles/leaflet
