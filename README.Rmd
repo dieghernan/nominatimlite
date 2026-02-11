@@ -6,7 +6,8 @@ link-citations: true
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r}
+#| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -86,7 +87,8 @@ that presents similar features:
 Install **nominatimlite** from
 [**CRAN**](https://CRAN.R-project.org/package=nominatimlite):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 install.packages("nominatimlite")
 ```
 :::
@@ -94,14 +96,16 @@ install.packages("nominatimlite")
 ::: pkgdown-devel
 You can install the developing version of **nominatimlite** with:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 remotes::install_github("dieghernan/nominatimlite")
 ```
 
 Alternatively, you can install **nominatimlite** using the
 [r-universe](https://dieghernan.r-universe.dev/nominatimlite):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 # Install nominatimlite in R:
 install.packages("nominatimlite",
   repos = c(
@@ -118,7 +122,9 @@ install.packages("nominatimlite",
 
 With **nominatimlite** you can extract spatial objects easily:
 
-```{r pizzahut, fig.alt="Locations of Pizza Hut restaurants in California extracted with nominatimlite"}
+```{r}
+#| label: pizzahut
+#| fig-alt: Locations of Pizza Hut restaurants in California extracted with nominatimlite
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
@@ -140,14 +146,18 @@ ggplot(CA) +
 You can also extract polygon and line objects (as provided by the Nominatim API)
 using the option `points_only = FALSE`:
 
-```{r statue_liberty, fig.alt="Location of Statue of Liberty extracted with nominatimlite"}
+```{r}
+#| label: statue_liberty
+#| fig-alt: Location of Statue of Liberty extracted with nominatimlite
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
 
 ggplot(sol_poly) +
   geom_sf()
 ```
 
-```{r line-object, fig.alt="Different features named Ohio extracted with nominatimlite"}
+```{r}
+#| label: line-object
+#| fig-alt: Different features named Ohio extracted with nominatimlite
 dayton <- geo_lite_sf("Dayton, OH") # default - a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
 ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line
@@ -165,7 +175,8 @@ ggplot() +
 In this first example we will geocode a few addresses using the `geo_lite()`
 function:
 
-```{r example}
+```{r}
+#| label: example
 library(tibble)
 
 # create a dataframe with addresses
@@ -184,7 +195,8 @@ Only latitude and longitude are returned from the geocoder service in this
 example, but `full_results = TRUE` can be used to return all of the data from
 the geocoder service.
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 knitr::kable(lat_longs)
 ```
 
@@ -201,7 +213,8 @@ reverse <- reverse_geo_lite(
 )
 ```
 
-```{r, echo = FALSE}
+```{r}
+#| echo: false
 knitr::kable(reverse)
 ```
 
@@ -211,13 +224,17 @@ parameters available.
 
 ## Citation
 
-```{r echo=FALSE, results='asis'}
+```{r}
+#| echo: false
+#| results: asis
 print(citation("nominatimlite"), style = "html")
 ```
 
 A BibTeX entry for LaTeX users is
 
-```{r echo=FALSE, comment=""}
+```{r}
+#| echo: false
+#| comment: ''
 toBibtex(citation("nominatimlite"))
 ```
 
