@@ -91,7 +91,7 @@ main img {
 	color: var(--bs-secondary);
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 0.5rem;
+	margin-top: 1rem;
 	font-size: 85%;
 	width: 100%;
 }
