@@ -10,8 +10,11 @@ template:
       creator: '@dhernangomez'
       card: summary_large_image
 
+development:
+  mode: auto
+
 repo:
-  branch: main
+  branch: release
 
 home:
   title: nominatimlite | Connection with OSM Nominatim API
@@ -51,8 +54,7 @@ reference:
   contents: nominatimlite-package
 
 articles:
-- title: Examples
-  navbar: Examples
+- title: Articles
+  navbar: Articles
   contents:
   - articles/leaflet
-
