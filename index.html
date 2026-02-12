@@ -102,7 +102,7 @@
 <p><strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of OSM points (reverse geocoding).</p>
 </div>
 <div class="section level2">
-<h2 id="why-nominatimlite">Why <strong>nominatimlite</strong>?<a class="anchor" aria-label="anchor" href="#why-nominatimlite"></a>
+<h2 id="why-nominatimlite">Why nominatimlite?<a class="anchor" aria-label="anchor" href="#why-nominatimlite"></a>
 </h2>
 <p>The main goal of <strong>nominatimlite</strong> is to access the Nominatim API avoiding the dependency on <strong>curl</strong>. In some situations, <strong>curl</strong> may not be available or accessible, so <strong>nominatimlite</strong> uses base functions to overcome this limitation.</p>
 </div>
@@ -154,14 +154,14 @@
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CA</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pizzahut</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-pizzahut-1.png" alt="Locations of Pizza Hut restaurants in California extracted with nominatimlite" width="100%"></p>
+<p><img src="reference/figures/README-pizzahut-1.png" style="width:100.0%" alt="Locations of Pizza Hut restaurants in California extracted with nominatimlite"></p>
 <p>You can also extract polygon and line objects (as provided by the Nominatim API) using the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sol_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Statue of Liberty, NY, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a building - a polygon</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sol_poly</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-statue_liberty-1.png" alt="Location of Statue of Liberty extracted with nominatimlite" width="100%"></p>
+<p><img src="reference/figures/README-statue_liberty-1.png" style="width:100.0%" alt="Location of Statue of Liberty extracted with nominatimlite"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dayton</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Dayton, OH"</span><span class="op">)</span> <span class="co"># default - a point</span></span>
 <span><span class="va">ohio_state</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Ohio, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># a US state - a polygon</span></span>
@@ -171,7 +171,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ohio_state</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dayton</span>, color <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ohio_river</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-line-object-1.png" alt="Different features named Ohio extracted with nominatimlite" width="100%"></p>
+<p><img src="reference/figures/README-line-object-1.png" style="width:100.0%" alt="Different features named Ohio extracted with nominatimlite"></p>
 </div>
 <div class="section level3">
 <h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
@@ -190,15 +190,17 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># geocode the addresses</span></span>
-<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite.html">geo_lite</a></span><span class="op">(</span><span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>, lat <span class="op">=</span> <span class="st">"latitude"</span>, long <span class="op">=</span> <span class="st">"longitude"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%</span></span></code></pre></div>
+<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite.html">geo_lite</a></span><span class="op">(</span><span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
+<span>  lat <span class="op">=</span> <span class="st">"latitude"</span>, long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
 <table class="table">
 <colgroup>
-<col width="22%">
-<col width="5%">
-<col width="6%">
-<col width="66%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">query</th>
@@ -227,18 +229,21 @@
 </tr>
 </tbody>
 </table>
+<p class="caption">
+Table 1: Example: geocoding addresses.
+</p>
 <p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> function. The arguments are similar to the <code><a href="reference/geo_lite.html">geo_lite()</a></code> function, but now we specify the input data columns with the <code>lat</code> and <code>long</code> arguments. The dataset used here is from the geocoder query above. The single line address is returned in a column named by the <code>address</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
 <span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>, long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>  address <span class="op">=</span> <span class="st">"address_found"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt;   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<span>  address <span class="op">=</span> <span class="st">"address_found"</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<table class="table">
 <colgroup>
-<col width="84%">
-<col width="6%">
-<col width="8%">
+<col width="33%">
+<col width="33%">
+<col width="33%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">address_found</th>
@@ -263,6 +268,9 @@
 </tr>
 </tbody>
 </table>
+<p class="caption">
+Table 2: Example: reverse geocoding addresses.
+</p>
 <p>For more advance users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim docs</a> to check the parameters available.</p>
 </div>
 </div>

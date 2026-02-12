@@ -15,7 +15,7 @@ Full site with examples and vignettes on
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
 and to generate synthetic addresses of OSM points (reverse geocoding).
 
-## Why **nominatimlite**?
+## Why nominatimlite?
 
 The main goal of **nominatimlite** is to access the Nominatim API
 avoiding the dependency on **curl**. In some situations, **curl** may
@@ -64,10 +64,9 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-![Locations of Pizza Hut in
-California](../reference/figures/README-pizzahut-1.png)
+![](../reference/figures/README-pizzahut-1.png)
 
-Locations of Pizza Hut in California
+Figure 1: Locations of Pizza Hut in California
 
 You can also extract polygon and line objects (if available) using the
 option `points_only = FALSE`:
@@ -79,10 +78,9 @@ ggplot(sol_poly) +
   geom_sf()
 ```
 
-![The Statue of
-Liberty](../reference/figures/README-statue_liberty-1.png)
+![](../reference/figures/README-statue_liberty-1.png)
 
-The Statue of Liberty
+Figure 2: Statue of Liberty
 
 ### Geocoding and reverse geocoding
 
@@ -104,16 +102,10 @@ some_addresses <- tribble(
 )
 
 # geocode the addresses
-lat_longs <- geo_lite(some_addresses$addr, lat = "latitude", long = "longitude")
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
+lat_longs <- geo_lite(some_addresses$addr,
+  lat = "latitude",
+  long = "longitude", progressbar = FALSE
+)
 ```
 
 Only latitude and longitude are returned from the geocoder service in
@@ -125,6 +117,8 @@ data from the geocoder service.
 | 1600 Pennsylvania Ave NW, Washington, DC   | 38.89764 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States        |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States |
 | 233 S Wacker Dr, Chicago, IL 60606         | 41.87874 |  -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States         |
+
+Table 1: Example: geocoding addresses
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the
@@ -139,17 +133,8 @@ above. The single line address is returned in a column named by the
 ``` r
 reverse <- reverse_geo_lite(
   lat = lat_longs$latitude, long = lat_longs$longitude,
-  address = "address_found"
+  address = "address_found", progressbar = FALSE
 )
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
 ```
 
 | address_found                                                                                                              |      lat |        lon |
@@ -157,6 +142,8 @@ reverse <- reverse_geo_lite(
 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 |  -77.03655 |
 | Sky Bar, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States       | 37.79519 | -122.40254 |
 | West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States  | 41.87874 |  -87.63589 |
+
+Table 2: Example: reverse geocoding addresses
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check

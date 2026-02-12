@@ -18,7 +18,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/dieghernan/nominatimlite/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/dieghernan/nominatimlite/blob/release/inst/CITATION)
 
 Hernangómez D (2026). *nominatimlite: Interface with Nominatim API
 Service*.
