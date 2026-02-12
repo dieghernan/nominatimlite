@@ -1,27 +1,25 @@
 ---
-output: github_document
+format: gfm
 bibliography: inst/REFERENCES.bib
 link-citations: true
+default-image-extension: ''
+tbl-cap-location: bottom
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dev: "ragg_png"
+    tidy: "styler"
+    fig.path: "man/figures/README-"
+    dpi: 120
+    out.width: "100%"
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
-```{r}
-#| include: false
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dev = "ragg_png",
-  tidy = "styler",
-  fig.path = "man/figures/README-",
-  dpi = 90,
-  out.width = "100%"
-)
-```
-
-# nominatimlite <a href='https://dieghernan.github.io/nominatimlite/'><img src="man/figures/logo.png" align="right" height="139"/></a>
+# nominatimlite <a href="https://dieghernan.github.io/nominatimlite/"><img src="man/figures/logo.png" alt="nominatimlite website" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -59,7 +57,7 @@ Full site with examples and vignettes on
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
 generate synthetic addresses of OSM points (reverse geocoding).
 
-## Why **nominatimlite**?
+## Why nominatimlite?
 
 The main goal of **nominatimlite** is to access the Nominatim API avoiding the
 dependency on **curl**. In some situations, **curl** may not be available or
@@ -94,6 +92,9 @@ install.packages("nominatimlite")
 :::
 
 ::: pkgdown-devel
+Check the docs of the developing version
+in <https://dieghernan.github.io/nominatimlite/dev/>.
+
 You can install the developing version of **nominatimlite** with:
 
 ```{r}
@@ -124,7 +125,7 @@ With **nominatimlite** you can extract spatial objects easily:
 
 ```{r}
 #| label: pizzahut
-#| fig-alt: Locations of Pizza Hut restaurants in California extracted with nominatimlite
+#| fig-cap: Locations of Pizza Hut restaurants in California extracted with nominatimlite
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
@@ -148,7 +149,7 @@ using the option `points_only = FALSE`:
 
 ```{r}
 #| label: statue_liberty
-#| fig-alt: Location of Statue of Liberty extracted with nominatimlite
+#| fig-cap: Location of Statue of Liberty extracted with nominatimlite
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
 
 ggplot(sol_poly) +
@@ -157,7 +158,7 @@ ggplot(sol_poly) +
 
 ```{r}
 #| label: line-object
-#| fig-alt: Different features named Ohio extracted with nominatimlite
+#| fig-cap: Different features named Ohio extracted with nominatimlite
 dayton <- geo_lite_sf("Dayton, OH") # default - a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
 ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line
@@ -188,7 +189,10 @@ some_addresses <- tribble(
 )
 
 # geocode the addresses
-lat_longs <- geo_lite(some_addresses$addr, lat = "latitude", long = "longitude")
+lat_longs <- geo_lite(some_addresses$addr,
+  lat = "latitude", long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only latitude and longitude are returned from the geocoder service in this
@@ -197,7 +201,9 @@ the geocoder service.
 
 ```{r}
 #| echo: false
+#| results: asis
 knitr::kable(lat_longs)
+cat("<p class=\"caption\">Table 1: Example: geocoding addresses.</p>")
 ```
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
@@ -209,13 +215,16 @@ The single line address is returned in a column named by the `address`.
 ```{r}
 reverse <- reverse_geo_lite(
   lat = lat_longs$latitude, long = lat_longs$longitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
 ```
 
 ```{r}
 #| echo: false
+#| results: asis
 knitr::kable(reverse)
+cat("<p class=\"caption\">Table 2: Example: reverse geocoding addresses.</p>")
 ```
 
 For more advance users, see [Nominatim
@@ -240,5 +249,3 @@ toBibtex(citation("nominatimlite"))
 
 ## References
 
-::: {#refs}
-:::

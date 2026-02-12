@@ -1,17 +1,16 @@
 ---
 title: "Get started with nominatimlite"
-output: rmarkdown::html_vignette
-description: >
-  Quick examples showing what **nominatimlite** can do for you.
+description: Quick examples showing what **nominatimlite** can do for you.
 vignette: >
   %\VignetteIndexEntry{Get started with nominatimlite}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
-bibliography: references.bib
+bibliography: REFERENCES.bib
 link-citations: true
+tbl-cap-location: bottom
 ---
 
-<!-- nominatimlite.Rmd is generated from nominatimlite.Rmd.orig. Please edit that file -->
+<!-- nominatimlite.qmd is generated from nominatimlite.qmd.orig. Please edit that file -->
 
 ```{r}
 #| include: false
@@ -42,7 +41,7 @@ Full site with examples and vignettes on
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
 generate synthetic addresses of OSM points (reverse geocoding).
 
-## Why **nominatimlite**?
+## Why nominatimlite?
 
 The main goal of **nominatimlite** is to access the Nominatim API avoiding the
 dependency on **curl**. In some situations, **curl** may not be available or
@@ -91,8 +90,11 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-![Locations of Pizza Hut in
-California](../man/figures/README-pizzahut-1.png){width="100%"}
+::: {#fig-phut}
+![](../man/figures/README-pizzahut-1.png){width="100%"}
+
+Locations of Pizza Hut in California
+:::
 
 You can also extract polygon and line objects (if available) using the option
 `points_only = FALSE`:
@@ -108,8 +110,11 @@ ggplot(sol_poly) +
 
 ```
 
-![The Statue of
-Liberty](../man/figures/README-statue_liberty-1.png){width="100%"}
+::: {#fig-sol}
+![](../man/figures/README-statue_liberty-1.png){width="100%"}
+
+Statue of Liberty
+:::
 
 ### Geocoding and reverse geocoding
 
@@ -131,17 +136,22 @@ some_addresses <- tribble(
 )
 
 # geocode the addresses
-lat_longs <- geo_lite(some_addresses$addr, lat = "latitude", long = "longitude")
+lat_longs <- geo_lite(some_addresses$addr, lat = "latitude",
+                      long = "longitude", progressbar = FALSE)
 ```
 
 Only latitude and longitude are returned from the geocoder service in this
 example, but `full_results = TRUE` can be used to return all of the data from
 the geocoder service.
 
+::: {#tbl-geo}
 ```{r}
 #| echo: false
 knitr::kable(lat_longs)
 ```
+
+Example: geocoding addresses
+:::
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
 we can use the `reverse_geo_lite()` function. The arguments are similar to the
@@ -152,14 +162,18 @@ The single line address is returned in a column named by the `address`.
 ```{r}
 reverse <- reverse_geo_lite(
   lat = lat_longs$latitude, long = lat_longs$longitude,
-  address = "address_found"
+  address = "address_found", progressbar = FALSE
 )
 ```
 
+::: {#tbl-rev}
 ```{r}
 #| echo: false
 knitr::kable(reverse)
 ```
+
+Example: reverse geocoding addresses
+:::
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check the

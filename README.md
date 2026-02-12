@@ -1,7 +1,8 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nominatimlite <a href='https://dieghernan.github.io/nominatimlite/'><img src="man/figures/logo.png" align="right" height="139"/></a>
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# nominatimlite <a href="https://dieghernan.github.io/nominatimlite/"><img src="man/figures/logo.png" alt="nominatimlite website" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -39,7 +40,7 @@ Full site with examples and vignettes on
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
 and to generate synthetic addresses of OSM points (reverse geocoding).
 
-## Why **nominatimlite**?
+## Why nominatimlite?
 
 The main goal of **nominatimlite** is to access the Nominatim API
 avoiding the dependency on **curl**. In some situations, **curl** may
@@ -77,6 +78,9 @@ install.packages("nominatimlite")
 </div>
 
 <div class="pkgdown-devel">
+
+Check the docs of the developing version
+in <https://dieghernan.github.io/nominatimlite/dev/>.
 
 You can install the developing version of **nominatimlite** with:
 
@@ -124,7 +128,8 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-<img src="man/figures/README-pizzahut-1.png" alt="Locations of Pizza Hut restaurants in California extracted with nominatimlite" width="100%" />
+<img src="man/figures/README-pizzahut-1.png" style="width:100.0%"
+alt="Locations of Pizza Hut restaurants in California extracted with nominatimlite" />
 
 You can also extract polygon and line objects (as provided by the
 Nominatim API) using the option `points_only = FALSE`:
@@ -136,7 +141,8 @@ ggplot(sol_poly) +
   geom_sf()
 ```
 
-<img src="man/figures/README-statue_liberty-1.png" alt="Location of Statue of Liberty extracted with nominatimlite" width="100%" />
+<img src="man/figures/README-statue_liberty-1.png" style="width:100.0%"
+alt="Location of Statue of Liberty extracted with nominatimlite" />
 
 ``` r
 dayton <- geo_lite_sf("Dayton, OH") # default - a point
@@ -149,7 +155,8 @@ ggplot() +
   geom_sf(data = ohio_river, color = "blue")
 ```
 
-<img src="man/figures/README-line-object-1.png" alt="Different features named Ohio extracted with nominatimlite" width="100%" />
+<img src="man/figures/README-line-object-1.png" style="width:100.0%"
+alt="Different features named Ohio extracted with nominatimlite" />
 
 ### Geocoding and reverse geocoding
 
@@ -170,19 +177,26 @@ some_addresses <- tribble(
 )
 
 # geocode the addresses
-lat_longs <- geo_lite(some_addresses$addr, lat = "latitude", long = "longitude")
-#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
+lat_longs <- geo_lite(some_addresses$addr,
+  lat = "latitude", long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                                                                                           |
-|:-------------------------------------------|---------:|-----------:|:----------------------------------------------------------------------------------------------------------------------------------|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89764 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States        |
+| query | latitude | longitude | address |
+|:---|---:|---:|:---|
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87874 |  -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States         |
+| 233 S Wacker Dr, Chicago, IL 60606 | 41.87874 | -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States |
+
+<p class="caption">
+
+Table 1: Example: geocoding addresses.
+</p>
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `reverse_geo_lite()` function. The
@@ -194,16 +208,21 @@ returned in a column named by the `address`.
 ``` r
 reverse <- reverse_geo_lite(
   lat = lat_longs$latitude, long = lat_longs$longitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-| address_found                                                                                                              |      lat |        lon |
-|:---------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 |  -77.03655 |
-| Sky Bar, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States       | 37.79519 | -122.40254 |
-| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States  | 41.87874 |  -87.63589 |
+| address_found | lat | lon |
+|:---|---:|---:|
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| Sky Bar, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
+
+<p class="caption">
+
+Table 2: Example: reverse geocoding addresses.
+</p>
 
 For more advance users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
@@ -212,6 +231,7 @@ the parameters available.
 ## Citation
 
 <p>
+
 Hernangómez D (2026). <em>nominatimlite: Interface with Nominatim API
 Service</em>.
 <a href="https://doi.org/10.32614/CRAN.package.nominatimlite">doi:10.32614/CRAN.package.nominatimlite</a>,
@@ -225,7 +245,7 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.4.3},
+      version = {0.4.3.9000},
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
     }

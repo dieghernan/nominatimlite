@@ -1,7 +1,7 @@
 Type: Package
 Package: nominatimlite
 Title: Interface with 'Nominatim' API Service
-Version: 0.4.3
+Version: 0.4.3.9000
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
@@ -31,12 +31,13 @@ Suggests:
     ggplot2 (>= 3.0.0),
     knitr,
     lifecycle,
-    rmarkdown,
+    quarto,
     testthat (>= 3.0.0),
     tibble (>= 3.0.0),
     tidygeocoder
 VignetteBuilder: 
-    knitr
+    knitr,
+    quarto
 Config/Needs/website: dieghernan/gitdevr, remotes, devtools, tidyverse,
     leaflet, reactable, crosstalk, tidyr
 Config/testthat/edition: 3

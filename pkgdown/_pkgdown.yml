@@ -10,11 +10,11 @@ template:
       creator: '@dhernangomez'
       card: summary_large_image
 
-repo:
-  branch: main
-  
 development:
   mode: auto
+
+repo:
+  branch: main
 
 home:
   title: nominatimlite | Connection with OSM Nominatim API

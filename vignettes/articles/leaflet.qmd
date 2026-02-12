@@ -1,22 +1,17 @@
 ---
 title: "nominatimlite and leaflet maps"
-description: >
-  Combine **nominatimlite** and **leaflet** maps.
+description: Combine nominatimlite and leaflet maps.
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dpi: 300
+    tidy: "styler"
+    dev: "ragg_png"
+    out.width: "100%"
 ---
-
-```{r}
-#| include: false
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dpi = 300,
-  tidy = "styler",
-  dev = "ragg_png",
-  out.width = "100%"
-)
-```
 
 ## Example
 
@@ -31,7 +26,6 @@ This widget is browsable and filterable thanks to **crosstalk** and
 #| label: example
 # Coffee Shops and Restaurants around the Eiffel Tower
 
-
 library(nominatimlite)
 library(sf)
 library(leaflet)
@@ -40,10 +34,11 @@ library(tidyr)
 library(reactable)
 library(crosstalk)
 
-
 # Step 1: Eiffel Tower
-eiffel_tower <- geo_lite_sf("Eiffel Tower, Paris, France", points_only = FALSE)
-
+eiffel_tower <- geo_lite_sf("Eiffel Tower, Paris, France",
+  points_only = FALSE,
+  progressbar = FALSE
+)
 
 # Step 2: Coffee Shops and Restaurants nearby
 
@@ -56,7 +51,8 @@ buff <- eiffel_tower %>%
 cf_bk <- geo_amenity_sf(buff,
   amenity = c("cafe", "restaurant"), limit = 50,
   full_results = TRUE,
-  custom_query = list(extratags = TRUE)
+  custom_query = list(extratags = TRUE),
+  progressbar = FALSE
 ) %>%
   # Build address with street, house number, suburb and postcode
   unite("addr", address.road, address.house_number, address.postcode,
@@ -94,7 +90,6 @@ cf_bk_data <- cf_bk %>%
   ) %>%
   SharedData$new(group = "Food")
 
-
 # Step 4: Leaflet map with crosstalk
 # Init leaflet map
 lmend <- leaflet(
@@ -114,7 +109,6 @@ lmend <- leaflet(
     position = "topleft",
     options = layersControlOptions(collapsed = FALSE)
   )
-
 
 # Step 5: Reactable for filtering
 tb <- reactable(cf_bk_data,
@@ -176,20 +170,3 @@ htmltools::browsable(
     Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
 -   [Food icons created by Freepik -
     Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons")
-
-## Session info
-
-<details>
-
-<summary>Details</summary>
-
-```{r}
-#| label: session
-#| echo: false
-if (!require("sessioninfo")) {
-  install.packages("sessioninfo")
-}
-sessioninfo::session_info()
-```
-
-</details>

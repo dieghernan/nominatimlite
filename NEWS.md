@@ -1,3 +1,7 @@
+# nominatimlite (development version)
+
+-   Migrate vignettes to Quarto.
+
 # nominatimlite 0.4.3
 
 -   Minor fixes on reverse functions.
