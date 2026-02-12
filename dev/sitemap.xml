@@ -1,69 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/articles/nominatimlite.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/api_call.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatim_check_access.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatimlite-package.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.html</loc>
-  </url>
-  <url>
-    <loc>https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/CONTRIBUTING.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE-text.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/articles/index.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/articles/leaflet.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/articles/nominatimlite.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/authors.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/index.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/news/index.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/index.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatim_check_access.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/nominatimlite-package.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.html</loc></url>
 </urlset>
+

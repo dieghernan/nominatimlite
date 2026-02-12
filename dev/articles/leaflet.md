@@ -1,0 +1,157 @@
+# nominatimlite and leaflet maps
+
+## Example
+
+The following example shows how it is possible to create a nice [leaflet
+map](https://rstudio.github.io/leaflet/) with data retrieved with
+**nominatimlite**.
+
+This widget is browsable and filterable thanks to **crosstalk** and
+**reactable**:
+
+``` r
+# Coffee Shops and Restaurants around the Eiffel Tower
+
+library(nominatimlite)
+library(sf)
+library(leaflet)
+library(dplyr)
+library(tidyr)
+library(reactable)
+library(crosstalk)
+
+# Step 1: Eiffel Tower
+eiffel_tower <- geo_lite_sf("Eiffel Tower, Paris, France",
+  points_only = FALSE,
+  progressbar = FALSE
+)
+
+# Step 2: Coffee Shops and Restaurants nearby
+
+# Create a buffer of 1km around the Eiffel Tower
+buff <- eiffel_tower %>%
+  st_transform(3857) %>%
+  st_centroid() %>%
+  st_buffer(1000)
+
+cf_bk <- geo_amenity_sf(buff,
+  amenity = c("cafe", "restaurant"), limit = 50,
+  full_results = TRUE,
+  custom_query = list(extratags = TRUE),
+  progressbar = FALSE
+) %>%
+  # Build address with street, house number, suburb and postcode
+  unite("addr", address.road, address.house_number, address.postcode,
+    address.suburb,
+    sep = ", ", na.rm = TRUE
+  )
+
+
+# Labels and icons
+labs <- paste0("<strong>", cf_bk$name, "</strong><br>", cf_bk$addr)
+
+# Assign icons
+# Base url for icons
+icon_url <- paste0(
+  "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
+  "main/vignettes/articles/"
+)
+
+leaf_icons <- icons(
+  ifelse(cf_bk$type == "cafe",
+    paste0(icon_url, "coffee-cup.png"),
+    paste0(icon_url, "restaurant.png")
+  ),
+  iconWidth = 20, iconHeight = 20,
+  iconAnchorX = 10, iconAnchorY = 10
+)
+
+
+# Step 3: Crosstalk object
+cf_bk_data <- cf_bk %>%
+  select(
+    Place = name, Type = type, Address = addr,
+    City = address.city, URL = extratags.website,
+    Phone = extratags.phone
+  ) %>%
+  SharedData$new(group = "Food")
+
+# Step 4: Leaflet map with crosstalk
+# Init leaflet map
+lmend <- leaflet(
+  data = cf_bk_data,
+  elementId = "EiffelTower", width = "100%", height = "60vh",
+  options = leafletOptions(minZoom = 12)
+) %>%
+  addProviderTiles(
+    provider = "CartoDB.Positron",
+    group = "CartoDB.Positron"
+  ) %>%
+  addTiles(group = "OSM") %>%
+  addPolygons(data = eiffel_tower) %>%
+  addMarkers(popup = labs, icon = leaf_icons) %>%
+  addLayersControl(
+    baseGroups = c("CartoDB.Positron", "OSM"),
+    position = "topleft",
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+# Step 5: Reactable for filtering
+tb <- reactable(cf_bk_data,
+  selection = "multiple",
+  onClick = "select",
+  rowStyle = list(cursor = "pointer"),
+  filterable = TRUE,
+  searchable = TRUE,
+  showPageSizeOptions = TRUE,
+  striped = TRUE,
+  defaultColDef = colDef(vAlign = "center", minWidth = 150),
+  paginationType = "jump",
+  elementId = "coffees",
+  columns = list(
+    Place = colDef(
+      sticky = "left", rowHeader = TRUE, name = "",
+      cell = function(value) {
+        htmltools::strong(value)
+      }
+    ),
+    URL = colDef(cell = function(value) {
+      # Render as a link
+      if (is.null(value) | is.na(value)) {
+        return("")
+      }
+      htmltools::a(href = value, target = "_blank", as.character(value))
+    }),
+    Phone = colDef(cell = function(value) {
+      # Render as a link
+      if (is.null(value) | is.na(value)) {
+        return("")
+      }
+      clearphone <- gsub("-", "", value)
+      clearphone <- gsub(" ", "", clearphone)
+      htmltools::a(
+        href = paste0("tel:", clearphone), target = "_blank",
+        as.character(value)
+      )
+    })
+  )
+)
+```
+
+## Widget
+
+``` r
+# Last step: Display all
+htmltools::browsable(
+  htmltools::tagList(lmend, tb)
+)
+```
+
+## Attributions
+
+- [Eiffel tower icons created by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
+- [Mug icons created by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
+- [Food icons created by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons")
