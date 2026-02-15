@@ -45,3 +45,5 @@
 ^inst/README\.qmd$
 ^README_files$
 ^README\.html$
+^\.quarto$
+^\./vignettes/nominatimlite\.qmd\.orig$
