@@ -29,6 +29,7 @@ jobs:
           local::.
           any::rcmdcheck
           dieghernan/pkgdev
+          dieghernan/gitdevr
 
     - name: Install optipng
       run: |
@@ -59,7 +60,7 @@ jobs:
 
     - name: Update docs
       run: |
-
+        
         pkgdev::update_docs()
 
       shell: Rscript {0}
