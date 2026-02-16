@@ -46,4 +46,5 @@
 ^README_files$
 ^README\.html$
 ^\.quarto$
-^\./vignettes/nominatimlite\.qmd\.orig$
+^vignettes/_quarto\.yaml$
+^vignettes/_quarto\.yml$
