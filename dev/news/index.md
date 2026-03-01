@@ -6,19 +6,13 @@
 
 ## nominatimlite 0.4.3
 
-CRAN release: 2026-01-11
-
 - Minor fixes on reverse functions.
 
 ## nominatimlite 0.4.2
 
-CRAN release: 2024-12-17
-
 - Update documentation.
 
 ## nominatimlite 0.4.1
-
-CRAN release: 2024-07-19
 
 - Fix input validation in
   [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md)
@@ -29,8 +23,6 @@ CRAN release: 2024-07-19
   reported by [@lshydro](https://github.com/lshydro)).
 
 ## nominatimlite 0.4.0
-
-CRAN release: 2024-05-27
 
 - New functions:
 
@@ -79,8 +71,6 @@ CRAN release: 2024-05-27
 
 ## nominatimlite 0.3.0
 
-CRAN release: 2024-03-01
-
 - Add a `progressbar` parameter to
   [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md),
   [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),
@@ -104,14 +94,10 @@ CRAN release: 2024-03-01
 
 ## nominatimlite 0.2.1
 
-CRAN release: 2023-08-15
-
 - Remove **osmdata** from Suggests.
 - Fix examples.
 
 ## nominatimlite 0.2.0
-
-CRAN release: 2023-05-11
 
 - **rlang** and **tibble** are not explicitly required. Conversions to
   tibble happens with
@@ -131,19 +117,13 @@ CRAN release: 2023-05-11
 
 ## nominatimlite 0.1.6
 
-CRAN release: 2022-06-10
-
 - Improve results when there is no response of the API.
 
 ## nominatimlite 0.1.5
 
-CRAN release: 2021-11-26
-
 - Avoid de-duplication on results.
 
 ## nominatimlite 0.1.4
-
-CRAN release: 2021-10-28
 
 - Fix issues with
   [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md)
@@ -151,8 +131,6 @@ CRAN release: 2021-10-28
   [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md).
 
 ## nominatimlite 0.1.3
-
-CRAN release: 2021-10-21
 
 - Skip API query tests on **CRAN** to avoid false positives.
 - Centralize API queries on (internal) function `api_call()`.
@@ -162,21 +140,15 @@ CRAN release: 2021-10-21
 
 ## nominatimlite 0.1.2
 
-CRAN release: 2021-10-07
-
 - New internal:
   [`nominatim_check_access()`](https://dieghernan.github.io/nominatimlite/dev/reference/nominatim_check_access.md).
 - Adapt tests to **testthat** `v3.1.0`.
 
 ## nominatimlite 0.1.1
 
-CRAN release: 2021-09-30
-
 - Adapt tests to **CRAN** checks.
 
 ## nominatimlite 0.1.0
-
-CRAN release: 2021-09-16
 
 - **CRAN** release.
 - Adjust query rate limits to Nominatim policy.
