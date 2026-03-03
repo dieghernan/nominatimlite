@@ -36,7 +36,6 @@ Suggests:
     tibble (>= 3.0.0),
     tidygeocoder
 VignetteBuilder: 
-    knitr,
     quarto
 Config/Needs/website: dieghernan/gitdevr, remotes, devtools, tidyverse,
     leaflet, reactable, crosstalk, tidyr
