@@ -35,7 +35,8 @@ library(reactable)
 library(crosstalk)
 
 # Step 1: Eiffel Tower
-eiffel_tower <- geo_lite_sf("Eiffel Tower, Paris, France",
+eiffel_tower <- geo_lite_sf(
+  "Eiffel Tower, Paris, France",
   points_only = FALSE,
   progressbar = FALSE
 )
@@ -48,16 +49,23 @@ buff <- eiffel_tower %>%
   st_centroid() %>%
   st_buffer(1000)
 
-cf_bk <- geo_amenity_sf(buff,
-  amenity = c("cafe", "restaurant"), limit = 50,
+cf_bk <- geo_amenity_sf(
+  buff,
+  amenity = c("cafe", "restaurant"),
+  limit = 50,
   full_results = TRUE,
   custom_query = list(extratags = TRUE),
   progressbar = FALSE
 ) %>%
   # Build address with street, house number, suburb and postcode
-  unite("addr", address.road, address.house_number, address.postcode,
+  unite(
+    "addr",
+    address.road,
+    address.house_number,
+    address.postcode,
     address.suburb,
-    sep = ", ", na.rm = TRUE
+    sep = ", ",
+    na.rm = TRUE
   )
 
 
@@ -72,20 +80,26 @@ icon_url <- paste0(
 )
 
 leaf_icons <- icons(
-  ifelse(cf_bk$type == "cafe",
+  ifelse(
+    cf_bk$type == "cafe",
     paste0(icon_url, "coffee-cup.png"),
     paste0(icon_url, "restaurant.png")
   ),
-  iconWidth = 20, iconHeight = 20,
-  iconAnchorX = 10, iconAnchorY = 10
+  iconWidth = 20,
+  iconHeight = 20,
+  iconAnchorX = 10,
+  iconAnchorY = 10
 )
 
 
 # Step 3: Crosstalk object
 cf_bk_data <- cf_bk %>%
   select(
-    Place = name, Type = type, Address = addr,
-    City = address.city, URL = extratags.website,
+    Place = name,
+    Type = type,
+    Address = addr,
+    City = address.city,
+    URL = extratags.website,
     Phone = extratags.phone
   ) %>%
   SharedData$new(group = "Food")
@@ -94,7 +108,9 @@ cf_bk_data <- cf_bk %>%
 # Init leaflet map
 lmend <- leaflet(
   data = cf_bk_data,
-  elementId = "EiffelTower", width = "100%", height = "60vh",
+  elementId = "EiffelTower",
+  width = "100%",
+  height = "60vh",
   options = leafletOptions(minZoom = 12)
 ) %>%
   addProviderTiles(
@@ -111,7 +127,8 @@ lmend <- leaflet(
   )
 
 # Step 5: Reactable for filtering
-tb <- reactable(cf_bk_data,
+tb <- reactable(
+  cf_bk_data,
   selection = "multiple",
   onClick = "select",
   rowStyle = list(cursor = "pointer"),
@@ -124,7 +141,9 @@ tb <- reactable(cf_bk_data,
   elementId = "coffees",
   columns = list(
     Place = colDef(
-      sticky = "left", rowHeader = TRUE, name = "",
+      sticky = "left",
+      rowHeader = TRUE,
+      name = "",
       cell = function(value) {
         htmltools::strong(value)
       }
@@ -144,7 +163,8 @@ tb <- reactable(cf_bk_data,
       clearphone <- gsub("-", "", value)
       clearphone <- gsub(" ", "", clearphone)
       htmltools::a(
-        href = paste0("tel:", clearphone), target = "_blank",
+        href = paste0("tel:", clearphone),
+        target = "_blank",
         as.character(value)
       )
     })

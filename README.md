@@ -78,13 +78,13 @@ install.packages("nominatimlite")
 
 <div class="pkgdown-devel">
 
-Check the docs of the developing version
-in <https://dieghernan.github.io/nominatimlite/dev/>.
+Check the docs of the developing version in
+<https://dieghernan.github.io/nominatimlite/dev/>.
 
 You can install the developing version of **nominatimlite** with:
 
 ``` r
-remotes::install_github("dieghernan/nominatimlite")
+pak::pak("dieghernan/nominatimlite")
 ```
 
 Alternatively, you can install **nominatimlite** using the
@@ -92,7 +92,8 @@ Alternatively, you can install **nominatimlite** using the
 
 ``` r
 # Install nominatimlite in R:
-install.packages("nominatimlite",
+install.packages(
+  "nominatimlite",
   repos = c(
     "https://dieghernan.r-universe.dev",
     "https://cloud.r-project.org"
@@ -115,7 +116,8 @@ library(nominatimlite)
 
 CA <- geo_lite_sf("California", points_only = FALSE)
 
-pizzahut <- geo_lite_sf("Pizza Hut, California",
+pizzahut <- geo_lite_sf(
+  "Pizza Hut, California",
   limit = 50,
   custom_query = list(countrycodes = "us")
 )
@@ -169,15 +171,17 @@ library(tibble)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
-lat_longs <- geo_lite(some_addresses$addr,
-  lat = "latitude", long = "longitude",
+lat_longs <- geo_lite(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
   progressbar = FALSE
 )
 ```
@@ -206,7 +210,8 @@ returned in a column named by the `address`.
 
 ``` r
 reverse <- reverse_geo_lite(
-  lat = lat_longs$latitude, long = lat_longs$longitude,
+  lat = lat_longs$latitude,
+  long = lat_longs$longitude,
   address = "address_found",
   progressbar = FALSE
 )

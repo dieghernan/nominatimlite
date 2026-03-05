@@ -52,3 +52,4 @@
 ^index_files$
 ^index\.html$
 ^index\.md$
+^dev$

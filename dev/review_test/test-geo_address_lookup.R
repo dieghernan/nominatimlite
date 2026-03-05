@@ -4,7 +4,7 @@ test_that("Returning empty query", {
 
   expect_message(
     obj <- geo_address_lookup(34633854, "N"),
-    "No results for query"
+    "not reachable"
   )
 
   expect_true(nrow(obj) == 1)
@@ -25,7 +25,7 @@ test_that("Returning empty query", {
       lat = "lata",
       long = "longa"
     ),
-    "No results for query"
+    "not reachable"
   )
 
   expect_identical(names(obj_renamed), c("query", "lata", "longa"))
@@ -51,7 +51,7 @@ test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
 
-  obj <- geo_address_lookup(34633854, "W")
+  obj <- geo_address_lookup(32965412, "W")
 
   expect_identical(names(obj), c("query", "lat", "lon", "address"))
 

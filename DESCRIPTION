@@ -19,26 +19,27 @@ License: MIT + file LICENSE
 URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite
 BugReports: https://github.com/dieghernan/nominatimlite/issues
-Depends: 
+Depends:
     R (>= 3.6.0)
-Imports: 
+Imports:
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),
     sf (>= 0.9.0),
+    testthat (>= 3.0.0),
     utils
-Suggests: 
+Suggests:
     arcgeocoder,
     ggplot2 (>= 3.0.0),
     knitr,
     lifecycle,
     quarto,
-    testthat (>= 3.0.0),
+    rmarkdown,
     tibble (>= 3.0.0),
     tidygeocoder
-VignetteBuilder: 
+VignetteBuilder:
     quarto
-Config/Needs/website: dieghernan/gitdevr, remotes, devtools, tidyverse,
-    leaflet, reactable, crosstalk, tidyr
+Config/Needs/website: dieghernan/gitdevr, pak, tidyverse, leaflet,
+    reactable, crosstalk, tidyr, htmltools
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Copyright: Data © OpenStreetMap contributors, ODbL 1.0.
