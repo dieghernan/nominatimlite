@@ -126,14 +126,15 @@
 </h2>
 
 <div class="pkgdown-devel">
-<p>Check the docs of the developing version in <a href="https://dieghernan.github.io/nominatimlite/dev/" class="uri">https://dieghernan.github.io/nominatimlite/dev/</a>.</p>
+<p>Check the docs of the developing version in <a href="https://dieghernan.github.io/nominatimlite/dev/" class="uri">https://dieghernan.github.io/nominatimlite/dev/</a>.</p>
 <p>You can install the developing version of <strong>nominatimlite</strong> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dieghernan/nominatimlite"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"dieghernan/nominatimlite"</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can install <strong>nominatimlite</strong> using the <a href="https://dieghernan.r-universe.dev/nominatimlite" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install nominatimlite in R:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"nominatimlite"</span>,</span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
+<span>  <span class="st">"nominatimlite"</span>,</span>
 <span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"https://dieghernan.r-universe.dev"</span>,</span>
 <span>    <span class="st">"https://cloud.r-project.org"</span></span>
@@ -156,7 +157,8 @@
 <span></span>
 <span><span class="va">CA</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"California"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">pizzahut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pizza Hut, California"</span>,</span>
+<span><span class="va">pizzahut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Pizza Hut, California"</span>,</span>
 <span>  limit <span class="op">=</span> <span class="fl">50</span>,</span>
 <span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>countrycodes <span class="op">=</span> <span class="st">"us"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -195,15 +197,17 @@
 <span></span>
 <span><span class="co"># create a dataframe with addresses</span></span>
 <span><span class="va">some_addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">name</span>,                  <span class="op">~</span><span class="va">addr</span>,</span>
-<span>  <span class="st">"White House"</span>,          <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
+<span>  <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">addr</span>,</span>
+<span>  <span class="st">"White House"</span>, <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
 <span>  <span class="st">"Transamerica Pyramid"</span>, <span class="st">"600 Montgomery St, San Francisco, CA 94111"</span>,</span>
-<span>  <span class="st">"Willis Tower"</span>,         <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
+<span>  <span class="st">"Willis Tower"</span>, <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># geocode the addresses</span></span>
-<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite.html">geo_lite</a></span><span class="op">(</span><span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
-<span>  lat <span class="op">=</span> <span class="st">"latitude"</span>, long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
+<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite.html">geo_lite</a></span><span class="op">(</span></span>
+<span>  <span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
+<span>  lat <span class="op">=</span> <span class="st">"latitude"</span>,</span>
+<span>  long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
@@ -247,7 +251,8 @@ Table 1: Example: geocoding addresses.
 <p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> function. The arguments are similar to the <code><a href="reference/geo_lite.html">geo_lite()</a></code> function, but now we specify the input data columns with the <code>lat</code> and <code>long</code> arguments. The dataset used here is from the geocoder query above. The single line address is returned in a column named by the <code>address</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
-<span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>, long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>  long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
 <span>  address <span class="op">=</span> <span class="st">"address_found"</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>

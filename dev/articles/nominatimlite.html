@@ -131,7 +131,8 @@
 <span></span>
 <span><span class="va">CA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"California"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">pizzahut</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pizza Hut, California"</span>,</span>
+<span><span class="va">pizzahut</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Pizza Hut, California"</span>,</span>
 <span>  limit <span class="op">=</span> <span class="fl">50</span>,</span>
 <span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>countrycodes <span class="op">=</span> <span class="st">"us"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -172,16 +173,18 @@ Figure 2: Statue of Liberty
 <span></span>
 <span><span class="co"># create a dataframe with addresses</span></span>
 <span><span class="va">some_addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">name</span>,                  <span class="op">~</span><span class="va">addr</span>,</span>
-<span>  <span class="st">"White House"</span>,          <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
+<span>  <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">addr</span>,</span>
+<span>  <span class="st">"White House"</span>, <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
 <span>  <span class="st">"Transamerica Pyramid"</span>, <span class="st">"600 Montgomery St, San Francisco, CA 94111"</span>,</span>
-<span>  <span class="st">"Willis Tower"</span>,         <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
+<span>  <span class="st">"Willis Tower"</span>, <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># geocode the addresses</span></span>
-<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite.html">geo_lite</a></span><span class="op">(</span><span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
+<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite.html">geo_lite</a></span><span class="op">(</span></span>
+<span>  <span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
 <span>  lat <span class="op">=</span> <span class="st">"latitude"</span>,</span>
-<span>  long <span class="op">=</span> <span class="st">"longitude"</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
 <div id="tbl-geo" class="quarto-float quarto-figure quarto-figure-center">
@@ -228,8 +231,10 @@ Table 1: Example: geocoding addresses
 <p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> function. The arguments are similar to the <code><a href="../reference/geo_lite.html">geo_lite()</a></code> function, but now we specify the input data columns with the <code>lat</code> and <code>long</code> arguments. The dataset used here is from the geocoder query above. The single line address is returned in a column named by the <code>address</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
-<span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>, long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>  address <span class="op">=</span> <span class="st">"address_found"</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>  long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>  address <span class="op">=</span> <span class="st">"address_found"</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div id="tbl-rev" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-rev-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
