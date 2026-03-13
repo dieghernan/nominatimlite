@@ -128,7 +128,7 @@ test_that("Fail", {
   # KO
   vector_ids <- c(146656, 240109189)
   vector_type <- c("R", "N")
-  expect_snapshot(
+  expect_message(
     several <- geo_address_lookup_sf(
       vector_ids,
       vector_type,

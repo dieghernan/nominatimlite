@@ -94,8 +94,7 @@ geo_address_lookup_sf <- function(
   url <- add_custom_query(custom_query, url)
 
   # Download to temp file
-  json <- tempfile(fileext = ".geojson")
-  res <- api_call(url, json, quiet = isFALSE(verbose))
+  json <- api_call(url, ".geojson", quiet = isFALSE(verbose))
 
   # Step 2: Read and parse results ----
 
@@ -103,7 +102,7 @@ geo_address_lookup_sf <- function(
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
   # If no response...
-  if (isFALSE(res)) {
+  if (isFALSE(json)) {
     message(url, " not reachable.")
     out <- empty_sf(tbl_query)
     return(invisible(out))

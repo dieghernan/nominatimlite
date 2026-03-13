@@ -137,11 +137,10 @@ geo_lite_struct <- function(
   url <- add_custom_query(newopts, url)
 
   # Download to temp file
-  json <- tempfile(fileext = ".json")
-  res <- api_call(url, json, isFALSE(verbose))
+  json <- api_call(url, ".json", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
-  if (isFALSE(res)) {
+  if (isFALSE(json)) {
     message(url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))

@@ -150,15 +150,14 @@ geo_lite_single <- function(
   url <- add_custom_query(custom_query, url)
 
   # Download to temp file
-  json <- tempfile(fileext = ".json")
-  res <- api_call(url, json, isFALSE(verbose))
+  json <- api_call(url, ".json", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
 
   # Keep a tbl with the query
   tbl_query <- dplyr::tibble(query = address)
 
-  if (isFALSE(res)) {
+  if (isFALSE(json)) {
     message(url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))

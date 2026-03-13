@@ -5,7 +5,7 @@ test_that("Access false", {
 test_that("api_url", {
   api <- prepare_api_url("https://www.google.com", "some_invented_entry?")
 
-  expect_snapshot(f <- api_call(api, tempfile(), quiet = FALSE))
+  expect_snapshot(f <- api_call(api, quiet = FALSE))
   expect_false(f)
 
   # Checking with right approach
@@ -17,5 +17,5 @@ test_that("api_url", {
   )
 
   expect_silent(t <- api_call(url, quiet = TRUE))
-  expect_true(t)
+  expect_true(file.exists(t))
 })

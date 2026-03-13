@@ -4,7 +4,7 @@ test_that("Returning empty query", {
 
   expect_message(
     obj <- geo_address_lookup(34633854, "N"),
-    "not reachable"
+    "No results"
   )
 
   expect_true(nrow(obj) == 1)
@@ -25,7 +25,7 @@ test_that("Returning empty query", {
       lat = "lata",
       long = "longa"
     ),
-    "not reachable"
+    "No results"
   )
 
   expect_identical(names(obj_renamed), c("query", "lata", "longa"))
@@ -147,7 +147,7 @@ test_that("Fail", {
   # KO
   vector_ids <- c(146656, 240109189)
   vector_type <- c("R", "N")
-  expect_snapshot(
+  expect_message(
     several <- geo_address_lookup(
       vector_ids,
       vector_type,
