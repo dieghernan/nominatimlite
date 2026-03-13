@@ -2,6 +2,13 @@
 
 ## nominatimlite (development version)
 
+- Download management:
+  - The API calls are cached in the
+    [`tempdir()`](https://rdrr.io/r/base/tempfile.html) to avoid
+    overloading. This cache is meant to be persistent on the current
+    session only.
+  - Now the waiting time between API calls is 1.2 seconds to avoid API
+    overload.
 - Migrate vignettes to Quarto.
 
 ## nominatimlite 0.4.3

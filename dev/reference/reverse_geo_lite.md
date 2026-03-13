@@ -135,11 +135,11 @@ sev <- reverse_geo_lite(
 
 dplyr::glimpse(sev)
 #> Rows: 2
-#> Columns: 51
+#> Columns: 52
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 46985635, 255148843
+#> $ place_id                                 <int> 46583304, 255148843
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149
@@ -179,6 +179,7 @@ dplyr::glimpse(sev)
 #> $ `extratags.not:official_name:vi`         <chr> "Hợp chủng quốc Hoa Kỳ;Hợp ch…
 #> $ `extratags.short_official_name:en`       <chr> "U.S.A.", NA
 #> $ extratags.country_code_iso3166_1_alpha_2 <chr> "US", NA
+#> $ extratags.admin_level                    <chr> "2", "2"
 #> $ boundingbox                              <list> <-14.76084, 71.58895, -180.00…
 #> $ `extratags.ref:gss`                      <chr> NA, "K02000001"
 #> $ extratags.currency                       <chr> NA, "GBP"
