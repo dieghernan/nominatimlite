@@ -199,13 +199,12 @@ reverse_geo_lite_single <- function(
   url <- add_custom_query(custom_query, url)
 
   # Download to temp file
-  json <- tempfile(fileext = ".json")
-  res <- api_call(url, json, isFALSE(verbose))
+  json <- api_call(url, ".json", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
-  if (isFALSE(res)) {
+  if (isFALSE(json)) {
     message(url, " not reachable.")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
