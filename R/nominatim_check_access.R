@@ -143,4 +143,5 @@ cached_filename <- function(url, ext = ".json") {
 
   # Final filename
   fname <- file.path(tmpnomin, paste0(hash, ext))
+  fname
 }
