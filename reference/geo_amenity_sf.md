@@ -1,11 +1,11 @@
 # Geocode amenities in [sf](https://CRAN.R-project.org/package=sf) format
 
-This function search
+Searches
 [amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-as defined by OpenStreetMap on a restricted area defined by a bounding
-box in the form `(<xmin>, <ymin>, <xmax>, <ymax>)`. This function
-returns the spatial object associated with the query using
-[sf](https://CRAN.R-project.org/package=sf), see
+as defined by OpenStreetMap in a restricted area defined by a bounding
+box in the form `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
+spatial object associated with the query using
+[sf](https://CRAN.R-project.org/package=sf); see
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -99,8 +99,8 @@ the results.
 
 ## Details
 
-Bounding boxes can be located using different online tools, as [Bounding
-Box Tool](https://boundingbox.klokantech.com/).
+Bounding boxes can be located using online tools such as
+<https://boundingbox.klokantech.com/>.
 
 For a full list of valid amenities see
 <https://wiki.openstreetmap.org/wiki/Key:amenity> and
@@ -159,7 +159,6 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 
 library(ggplot2)
 mad <- geo_lite_sf("Usera, Madrid, Spain", points_only = FALSE)
-
 
 # Restaurants, pubs and schools
 

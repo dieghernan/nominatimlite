@@ -1,15 +1,14 @@
 # Address search API (free-form query)
 
-Geocodes addresses given as character values. This function returns the
+Geocodes addresses given as character values and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query, see
+associated with the query; see
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
 
-This function correspond to the **free-form query** search described in
-the [API
-endpoint](https://nominatim.org/release-docs/develop/api/Search/).
+Corresponds to the **free-form query** search described in the [API
+endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 
 ## Usage
 
@@ -130,8 +129,8 @@ geo_lite(c("Madrid", "Barcelona"),
 #> # A tibble: 2 × 25
 #>   query       lat    lon address place_id licence osm_type osm_id category type 
 #>   <chr>     <dbl>  <dbl> <chr>      <int> <chr>   <chr>     <dbl> <chr>    <chr>
-#> 1 Madrid     41.9  -93.8 Madrid…   3.46e8 Data ©… relation 1.29e5 boundary admi…
-#> 2 Barcelona  37.7 -121.  Barcel…   2.97e8 Data ©… node     9.63e9 place    neig…
+#> 1 Madrid     41.9  -93.8 Madrid…   3.44e8 Data ©… relation 1.29e5 boundary admi…
+#> 2 Barcelona  37.7 -121.  Barcel…   2.99e8 Data ©… node     9.63e9 place    neig…
 #> # ℹ 15 more variables: place_rank <int>, importance <dbl>, addresstype <chr>,
 #> #   name <chr>, display_name <chr>, address.town <chr>, address.county <chr>,
 #> #   address.state <chr>, `address.ISO3166-2-lvl4` <chr>, address.country <chr>,

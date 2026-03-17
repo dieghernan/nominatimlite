@@ -17,15 +17,15 @@ and to generate synthetic addresses of OSM points (reverse geocoding).
 
 ## Why nominatimlite?
 
-The main goal of **nominatimlite** is to access the Nominatim API
+The main goal of **nominatimlite** is to access the Nominatim API while
 avoiding the dependency on **curl**. In some situations, **curl** may
 not be available or accessible, so **nominatimlite** uses base functions
 to overcome this limitation.
 
 ## Recommended packages
 
-There are other packages much more complete and mature than
-**nominatimlite**, that presents similar features:
+There are other packages that are more complete and mature than
+**nominatimlite** and provide similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)): Allows to interface with
@@ -61,7 +61,8 @@ library(nominatimlite)
 
 CA <- geo_lite_sf("California", points_only = FALSE)
 
-pizzahut <- geo_lite_sf("Pizza Hut, California",
+pizzahut <- geo_lite_sf(
+  "Pizza Hut, California",
   limit = 50,
   custom_query = list(countrycodes = "us")
 )
@@ -116,15 +117,17 @@ library(tibble)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
-lat_longs <- geo_lite(some_addresses$addr,
-  lat = "latitude", long = "longitude",
+lat_longs <- geo_lite(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
   progressbar = FALSE
 )
 ```
@@ -153,7 +156,8 @@ above. The single line address is returned in a column named by the
 
 ``` r
 reverse <- reverse_geo_lite(
-  lat = lat_longs$latitude, long = lat_longs$longitude,
+  lat = lat_longs$latitude,
+  long = lat_longs$longitude,
   address = "address_found",
   progressbar = FALSE
 )
@@ -167,7 +171,7 @@ reverse <- reverse_geo_lite(
 
 Table 2: Example: reverse geocoding addresses.
 
-For more advance users, see [Nominatim
+For more advanced users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
 the parameters available.
 
@@ -186,7 +190,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.nominatimlite},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.4.3},
+  version = {0.5.0},
   url = {https://dieghernan.github.io/nominatimlite/},
   abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
 }

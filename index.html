@@ -45,7 +45,7 @@
 
     <a class="navbar-brand me-2" href="index.html"><img src="apple-touch-icon.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,12 +105,12 @@
 <div class="section level2">
 <h2 id="why-nominatimlite">Why nominatimlite?<a class="anchor" aria-label="anchor" href="#why-nominatimlite"></a>
 </h2>
-<p>The main goal of <strong>nominatimlite</strong> is to access the Nominatim API avoiding the dependency on <strong>curl</strong>. In some situations, <strong>curl</strong> may not be available or accessible, so <strong>nominatimlite</strong> uses base functions to overcome this limitation.</p>
+<p>The main goal of <strong>nominatimlite</strong> is to access the Nominatim API while avoiding the dependency on <strong>curl</strong>. In some situations, <strong>curl</strong> may not be available or accessible, so <strong>nominatimlite</strong> uses base functions to overcome this limitation.</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
 </h2>
-<p>There are other packages much more complete and mature than <strong>nominatimlite</strong>, that presents similar features:</p>
+<p>There are other packages that are more complete and mature than <strong>nominatimlite</strong> and provide similar features:</p>
 <ul>
 <li>
 <a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><strong>tidygeocoder</strong></a> (<a href="#ref-R-tidygeocoder">Cambon et al. 2021</a>): Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse geocoding.</li>
@@ -145,7 +145,8 @@
 <span></span>
 <span><span class="va">CA</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"California"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">pizzahut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Pizza Hut, California"</span>,</span>
+<span><span class="va">pizzahut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Pizza Hut, California"</span>,</span>
 <span>  limit <span class="op">=</span> <span class="fl">50</span>,</span>
 <span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>countrycodes <span class="op">=</span> <span class="st">"us"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -184,15 +185,17 @@
 <span></span>
 <span><span class="co"># create a dataframe with addresses</span></span>
 <span><span class="va">some_addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">name</span>,                  <span class="op">~</span><span class="va">addr</span>,</span>
-<span>  <span class="st">"White House"</span>,          <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
+<span>  <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">addr</span>,</span>
+<span>  <span class="st">"White House"</span>, <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
 <span>  <span class="st">"Transamerica Pyramid"</span>, <span class="st">"600 Montgomery St, San Francisco, CA 94111"</span>,</span>
-<span>  <span class="st">"Willis Tower"</span>,         <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
+<span>  <span class="st">"Willis Tower"</span>, <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># geocode the addresses</span></span>
-<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite.html">geo_lite</a></span><span class="op">(</span><span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
-<span>  lat <span class="op">=</span> <span class="st">"latitude"</span>, long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
+<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_lite.html">geo_lite</a></span><span class="op">(</span></span>
+<span>  <span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
+<span>  lat <span class="op">=</span> <span class="st">"latitude"</span>,</span>
+<span>  long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
@@ -236,7 +239,8 @@ Table 1: Example: geocoding addresses.
 <p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> function. The arguments are similar to the <code><a href="reference/geo_lite.html">geo_lite()</a></code> function, but now we specify the input data columns with the <code>lat</code> and <code>long</code> arguments. The dataset used here is from the geocoder query above. The single line address is returned in a column named by the <code>address</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
-<span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>, long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>  long <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
 <span>  address <span class="op">=</span> <span class="st">"address_found"</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -272,7 +276,7 @@ Table 1: Example: geocoding addresses.
 <p class="caption">
 Table 2: Example: reverse geocoding addresses.
 </p>
-<p>For more advance users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim docs</a> to check the parameters available.</p>
+<p>For more advanced users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim docs</a> to check the parameters available.</p>
 </div>
 </div>
 <div class="section level2">
@@ -287,7 +291,7 @@ Hernangómez D (2026). <em>nominatimlite: Interface with Nominatim API Service</
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.32614</span><span class="sc">/</span>CRAN.package.nominatimlite},</span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2026</span>},</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">4.3</span>},</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">5.0</span>},</span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>nominatimlite<span class="sc">/</span>},</span>
 <span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> getting data from OSM service Nominatim <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>nominatim.org<span class="sc">/</span>release<span class="sc">-</span>docs<span class="sc">/</span>latest<span class="sc">/</span><span class="er">&gt;</span>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},</span>
 <span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>}</span></code></pre></div>

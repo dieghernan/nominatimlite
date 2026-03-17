@@ -1,10 +1,10 @@
 # Reverse geocoding API
 
-Generates an address from a latitude and longitude. Latitudes must be
-between \\\left\[-90, 90 \right\]\\ and longitudes between
-\\\left\[-180, 180 \right\]\\. This function returns the
+Generates an address from latitude and longitude (latitudes in
+\\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180, 180
+\right\]\\), and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query, see
+associated with the query; see
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
@@ -77,7 +77,7 @@ the results found by the query.
 
 ## Details
 
-See <https://nominatim.org/release-docs/develop/api/Reverse/> for
+See <https://nominatim.org/release-docs/latest/api/Reverse/> for
 additional parameters to be passed to `custom_query`.
 
 ## About Zooming
@@ -135,11 +135,11 @@ sev <- reverse_geo_lite(
 
 dplyr::glimpse(sev)
 #> Rows: 2
-#> Columns: 51
+#> Columns: 52
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 45852144, 253791602
+#> $ place_id                                 <int> 45852144, 254352942
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149
@@ -179,6 +179,7 @@ dplyr::glimpse(sev)
 #> $ `extratags.not:official_name:vi`         <chr> "Hợp chủng quốc Hoa Kỳ;Hợp ch…
 #> $ `extratags.short_official_name:en`       <chr> "U.S.A.", NA
 #> $ extratags.country_code_iso3166_1_alpha_2 <chr> "US", NA
+#> $ extratags.admin_level                    <chr> "2", "2"
 #> $ boundingbox                              <list> <-14.76084, 71.58895, -180.00…
 #> $ `extratags.ref:gss`                      <chr> NA, "K02000001"
 #> $ extratags.currency                       <chr> NA, "GBP"
