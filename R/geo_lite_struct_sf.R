@@ -1,13 +1,13 @@
 #' Address search API in \CRANpkg{sf} format (structured query)
 #'
 #' @description
-#' Geocodes addresses already split into components and return the corresponding
-#' spatial object. This function returns the spatial object associated with the
-#' query using \CRANpkg{sf}, see [geo_lite_struct()] for retrieving the data in
+#' Geocodes addresses already split into components and returns the
+#' corresponding spatial object. The query output is provided in \CRANpkg{sf}
+#' format; see [geo_lite_struct()] for retrieving the data in
 #' [`tibble`][tibble::tibble] format.
 #'
-#' This function correspond to the **structured query** search described in the
-#' [API endpoint](https://nominatim.org/release-docs/develop/api/Search/). For
+#' Corresponds to the **structured query** search described in the
+#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
 #' performing a free-form search use [geo_lite_sf()].
 #'
 #' @family geocoding
@@ -18,16 +18,15 @@
 #'
 #' @details
 #'
-#' The structured form of the search query allows to look up up an address that
+#' The structured form of the search query allows you to look up an address that
 #' is already split into its components. Each parameter represents a field of
 #' the address. All parameters are optional. You should only use the ones that
 #' are relevant for the address you want to geocode.
 #'
-#'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @inheritSection  geo_lite_sf  About Geometry Types
+#' @inheritSection geo_lite_sf About Geometry Types
 #'
 #' @return
 #'

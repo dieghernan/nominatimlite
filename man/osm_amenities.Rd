@@ -6,7 +6,7 @@
 \alias{osm_amenities}
 \title{OpenStreetMap amenity database}
 \format{
-A \code{\link[tibble:tibble]{tibble}} with with
+A \code{\link[tibble:tibble]{tibble}} with
 136 rows and
 fields:
 \describe{

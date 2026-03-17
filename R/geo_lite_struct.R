@@ -1,13 +1,13 @@
 #' Address search API (structured query)
 #'
 #' @description
-#' Geocodes addresses already split into components. This function returns the
-#' [`tibble`][tibble::tibble] associated with the query, see
+#' Geocodes addresses already split into components and returns the
+#' [`tibble`][tibble::tibble] associated with the query; see
 #' [geo_lite_struct_sf()] for retrieving the data as a spatial object
 #' ([`sf`][sf::st_sf] format).
 #'
-#' This function correspond to the **structured query** search described in the
-#' [API endpoint](https://nominatim.org/release-docs/develop/api/Search/). For
+#' Corresponds to the **structured query** search described in the
+#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
 #' performing a free-form search use [geo_lite()].
 #'
 #' @family geocoding
@@ -21,14 +21,12 @@
 #' @param postalcode Postal Code.
 #' @inheritParams geo_lite
 #'
-#'
 #' @details
 #'
-#' The structured form of the search query allows to look up up an address that
+#' The structured form of the search query allows you to look up an address that
 #' is already split into its components. Each parameter represents a field of
 #' the address. All parameters are optional. You should only use the ones that
 #' are relevant for the address you want to geocode.
-#'
 #'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
@@ -37,7 +35,6 @@
 #'
 #' ```{r child = "man/chunks/tibbleout.Rmd"}
 #' ```
-#'
 #'
 #' @seealso
 #' [geo_lite_struct_sf()], [tidygeocoder::geo()].
@@ -50,7 +47,6 @@
 #'   street = "Plaza Mayor", country = "Spain",
 #'   limit = 50, full_results = TRUE
 #' )
-#'
 #'
 #' dplyr::glimpse(pl_mayor)
 #' }

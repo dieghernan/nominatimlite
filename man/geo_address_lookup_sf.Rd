@@ -19,9 +19,9 @@ geo_address_lookup_sf(
 \item{osm_ids}{Vector of OSM identifiers as \strong{numeric}
 (\code{c(00000, 11111, 22222)}).}
 
-\item{type}{Vector character of the type of the OSM type associated to each
-\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}) or relation
-(\code{"R"}). If a single value is provided it would be recycled.}
+\item{type}{Character vector of the OSM object type associated with each
+\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}), or relation
+(\code{"R"}). If a single value is provided it will be recycled.}
 
 \item{full_results}{Returns all available data from the API service.
 If \code{FALSE} (default) only address columns are returned. See also
@@ -45,9 +45,9 @@ provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.
 A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
-The lookup API allows to query the address and other details of one or
-multiple OSM objects like node, way or relation. This function returns the
-spatial object associated with the query using \CRANpkg{sf}, see
+The lookup API queries the address and other details of one or
+multiple OSM objects (node, way, relation) and returns the spatial object
+associated with the query using \CRANpkg{sf}; see
 \code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \code{\link[tibble:tibble]{tibble}}
 format.
 }
@@ -94,7 +94,6 @@ NotreDame_poly <- geo_address_lookup_sf(201611261,
   type = "W",
   points_only = FALSE
 )
-
 
 if (any(!sf::st_is_empty(NotreDame_poly))) {
   ggplot(NotreDame_poly) +

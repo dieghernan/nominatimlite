@@ -41,15 +41,15 @@ and to generate synthetic addresses of OSM points (reverse geocoding).
 
 ## Why nominatimlite?
 
-The main goal of **nominatimlite** is to access the Nominatim API
+The main goal of **nominatimlite** is to access the Nominatim API while
 avoiding the dependency on **curl**. In some situations, **curl** may
 not be available or accessible, so **nominatimlite** uses base functions
 to overcome this limitation.
 
 ## Recommended packages
 
-There are other packages much more complete and mature than
-**nominatimlite**, that presents similar features:
+There are other packages that are more complete and mature than
+**nominatimlite** and provide similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)): Allows to interface with
@@ -228,7 +228,7 @@ reverse <- reverse_geo_lite(
 Table 2: Example: reverse geocoding addresses.
 </p>
 
-For more advance users, see [Nominatim
+For more advanced users, see [Nominatim
 docs](https://nominatim.org/release-docs/latest/api/Search/) to check
 the parameters available.
 

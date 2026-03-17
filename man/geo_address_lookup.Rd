@@ -20,9 +20,9 @@ geo_address_lookup(
 \item{osm_ids}{Vector of OSM identifiers as \strong{numeric}
 (\code{c(00000, 11111, 22222)}).}
 
-\item{type}{Vector character of the type of the OSM type associated to each
-\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}) or relation
-(\code{"R"}). If a single value is provided it would be recycled.}
+\item{type}{Character vector of the OSM object type associated with each
+\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}), or relation
+(\code{"R"}). If a single value is provided it will be recycled.}
 
 \item{lat}{Latitude column name in the output data (default  \code{"lat"}).}
 
@@ -46,14 +46,14 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
-The lookup API allows to query the address and other details of one or
-multiple OSM objects like node, way or relation. This function returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query, see
+The lookup API queries the address and other details of one or
+multiple OSM objects (node, way, relation) and returns the
+\code{\link[tibble:tibble]{tibble}} associated with the query; see
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as a spatial object
 (\code{\link[sf:sf]{sf}} format).
 }
 \details{
-See \url{https://nominatim.org/release-docs/develop/api/Lookup/} for additional
+See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \examples{

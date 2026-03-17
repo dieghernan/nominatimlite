@@ -1,12 +1,12 @@
 #' Address search API (free-form query)
 #'
 #' @description
-#' Geocodes addresses given as character values. This function returns the
-#' [`tibble`][tibble::tibble] associated with the query, see [geo_lite_sf()] for
+#' Geocodes addresses given as character values and returns the
+#' [`tibble`][tibble::tibble] associated with the query; see [geo_lite_sf()] for
 #' retrieving the data as a spatial object ([`sf`][sf::st_sf] format).
 #'
-#' This function correspond to the **free-form query** search described in the
-#' [API endpoint](https://nominatim.org/release-docs/develop/api/Search/).
+#' Corresponds to the **free-form query** search described in the
+#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 #'
 #' @family geocoding
 #'
@@ -29,7 +29,6 @@
 #' @param custom_query A named list with API-specific parameters to be used
 #'   (i.e. `list(countrycodes = "US")`). See **Details**.
 #'
-#'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
@@ -38,7 +37,6 @@
 #'
 #' ```{r child = "man/chunks/tibbleout.Rmd"}
 #' ```
-#'
 #'
 #' @seealso
 #' [geo_lite_sf()], [tidygeocoder::geo()].

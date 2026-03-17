@@ -50,12 +50,12 @@ the progress of the function.}
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
-Geocodes addresses given as character values. This function returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query, see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
+Geocodes addresses given as character values and returns the
+\code{\link[tibble:tibble]{tibble}} associated with the query; see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
 retrieving the data as a spatial object (\code{\link[sf:sf]{sf}} format).
 
-This function correspond to the \strong{free-form query} search described in the
-\href{https://nominatim.org/release-docs/develop/api/Search/}{API endpoint}.
+Corresponds to the \strong{free-form query} search described in the
+\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

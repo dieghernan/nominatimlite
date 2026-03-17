@@ -17,10 +17,9 @@
 #' @seealso
 #' [sf::st_as_sfc()] and [sf::st_sfc()].
 #'
-#'
 #' @details
-#' Bounding boxes can be located using different online tools, as [Bounding
-#' Box Tool](https://boundingbox.klokantech.com/).
+#' Bounding boxes can be located using online tools such as
+#' <https://boundingbox.klokantech.com/>.
 #'
 #' @export
 #'
@@ -30,7 +29,6 @@
 #' bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 #'
 #' bbox_GER_sf <- bbox_to_poly(bbox_GER)
-#'
 #'
 #' library(ggplot2)
 #'

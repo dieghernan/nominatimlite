@@ -51,14 +51,14 @@ provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.
 A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
-Generates an address from a latitude and longitude. Latitudes must be
-between \eqn{\left[-90, 90 \right]} and longitudes between
-\eqn{\left[-180, 180 \right]}. This function returns the spatial object
-associated with the query using \CRANpkg{sf}, see \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for
-retrieving the data in \code{\link[tibble:tibble]{tibble}} format.
+Generates an address from latitude and longitude (latitudes in
+\eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
+and returns the spatial object associated with the query using \CRANpkg{sf};
+see \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in
+\code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
-See \url{https://nominatim.org/release-docs/develop/api/Reverse/} for additional
+See \url{https://nominatim.org/release-docs/latest/api/Reverse/} for additional
 parameters to be passed to \code{custom_query}.
 }
 \section{About Zooming}{

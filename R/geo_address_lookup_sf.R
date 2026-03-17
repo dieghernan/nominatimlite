@@ -1,9 +1,9 @@
 #' Address lookup API in \CRANpkg{sf} format
 #'
 #' @description
-#' The lookup API allows to query the address and other details of one or
-#' multiple OSM objects like node, way or relation. This function returns the
-#' spatial object associated with the query using \CRANpkg{sf}, see
+#' The lookup API queries the address and other details of one or
+#' multiple OSM objects (node, way, relation) and returns the spatial object
+#' associated with the query using \CRANpkg{sf}; see
 #' [geo_address_lookup()] for retrieving the data in [`tibble`][tibble::tibble]
 #' format.
 #'
@@ -18,7 +18,7 @@
 #' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @inheritSection  geo_lite_sf  About Geometry Types
+#' @inheritSection geo_lite_sf About Geometry Types
 #'
 #' @return
 #'
@@ -48,7 +48,6 @@
 #'   type = "W",
 #'   points_only = FALSE
 #' )
-#'
 #'
 #' if (any(!sf::st_is_empty(NotreDame_poly))) {
 #'   ggplot(NotreDame_poly) +

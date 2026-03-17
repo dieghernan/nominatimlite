@@ -1,10 +1,10 @@
 #' Geocode amenities
 #'
 #' @description
-#' This function search [amenities][osm_amenities] as defined by OpenStreetMap
-#' on a restricted area defined by a bounding box in the form
-#' `(<xmin>, <ymin>, <xmax>, <ymax>)`. This function returns the
-#' [`tibble`][tibble::tibble] associated with the query, see [geo_amenity_sf()]
+#' Searches [amenities][osm_amenities] as defined by OpenStreetMap
+#' in a restricted area defined by a bounding box in the form
+#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
+#' [`tibble`][tibble::tibble] associated with the query; see [geo_amenity_sf()]
 #' for retrieving the data as a spatial object ([`sf`][sf::st_sf] format).
 #'
 #' @family amenity
@@ -25,15 +25,14 @@
 #'
 #' @details
 #'
-#' Bounding boxes can be located using different online tools, as
-#' [Bounding Box Tool](https://boundingbox.klokantech.com/).
+#' Bounding boxes can be located using online tools such as
+#' <https://boundingbox.klokantech.com/>.
 #'
 #' For a full list of valid amenities see
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity> and [osm_amenities].
 #'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
-#'
 #'
 #' @return
 #'

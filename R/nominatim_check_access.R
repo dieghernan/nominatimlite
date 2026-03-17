@@ -125,7 +125,6 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
 
 #' Create a hashed filename for caching requests
 #'
-#'
 #' @param url The url to cache.
 #' @noRd
 cached_filename <- function(url, ext = ".json") {

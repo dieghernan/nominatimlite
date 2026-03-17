@@ -1,14 +1,13 @@
 #' Address search API in \CRANpkg{sf} format (free-form query)
 #'
 #' @description
-#' This function allows you to geocode addresses and returns the corresponding
-#' spatial object. This function returns the spatial object associated with the
-#' query using \CRANpkg{sf}, see [geo_lite()] for retrieving the data in
+#' Geocodes addresses and returns the corresponding spatial object. The
+#' query output is provided in \CRANpkg{sf} format; see [geo_lite()] for
+#' retrieving the data in
 #' [`tibble`][tibble::tibble] format.
 #'
-#' This function correspond to the **free-form query** search described in the
-#' [API endpoint](https://nominatim.org/release-docs/develop/api/Search/).
-#'
+#' Corresponds to the **free-form query** search described in the
+#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 #'
 #' @family geocoding
 #' @family spatial

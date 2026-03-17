@@ -49,13 +49,13 @@ provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.
 A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
-This function allows you to geocode addresses and returns the corresponding
-spatial object. This function returns the spatial object associated with the
-query using \CRANpkg{sf}, see \code{\link[=geo_lite]{geo_lite()}} for retrieving the data in
+Geocodes addresses and returns the corresponding spatial object. The
+query output is provided in \CRANpkg{sf} format; see \code{\link[=geo_lite]{geo_lite()}} for
+retrieving the data in
 \code{\link[tibble:tibble]{tibble}} format.
 
-This function correspond to the \strong{free-form query} search described in the
-\href{https://nominatim.org/release-docs/develop/api/Search/}{API endpoint}.
+Corresponds to the \strong{free-form query} search described in the
+\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

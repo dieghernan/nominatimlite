@@ -2,10 +2,9 @@
 #'
 #' @description
 #'
-#' Generates an address from a latitude and longitude. Latitudes must be
-#' between \eqn{\left[-90, 90 \right]} and longitudes between
-#' \eqn{\left[-180, 180 \right]}. This function returns the
-#' [`tibble`][tibble::tibble] associated with the query, see
+#' Generates an address from latitude and longitude (latitudes in
+#' \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
+#' and returns the [`tibble`][tibble::tibble] associated with the query; see
 #' [reverse_geo_lite_sf()] for retrieving the data as a spatial object
 #' ([`sf`][sf::st_sf] format).
 #'
@@ -24,14 +23,13 @@
 #'
 #' @details
 #'
-#' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional
+#' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
 #' @section About Zooming:
 #'
 #' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
 #' equivalences on terms of zoom:
-#'
 #'
 #' ```{r, echo=FALSE}
 #'
@@ -49,7 +47,6 @@
 #'
 #' knitr::kable(t, col.names = paste0("**", names(t), "**"))
 #'
-#'
 #' ```
 #'
 #' @return
@@ -61,7 +58,6 @@
 #' [reverse_geo_lite_sf()], [tidygeocoder::reverse_geo()].
 #'
 #' @export
-#'
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{

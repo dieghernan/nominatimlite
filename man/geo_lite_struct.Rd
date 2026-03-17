@@ -62,17 +62,17 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
-Geocodes addresses already split into components. This function returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query, see
+Geocodes addresses already split into components and returns the
+\code{\link[tibble:tibble]{tibble}} associated with the query; see
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}} for retrieving the data as a spatial object
 (\code{\link[sf:sf]{sf}} format).
 
-This function correspond to the \strong{structured query} search described in the
-\href{https://nominatim.org/release-docs/develop/api/Search/}{API endpoint}. For
+Corresponds to the \strong{structured query} search described in the
+\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. For
 performing a free-form search use \code{\link[=geo_lite]{geo_lite()}}.
 }
 \details{
-The structured form of the search query allows to look up up an address that
+The structured form of the search query allows you to look up an address that
 is already split into its components. Each parameter represents a field of
 the address. All parameters are optional. You should only use the ones that
 are relevant for the address you want to geocode.
@@ -87,7 +87,6 @@ pl_mayor <- geo_lite_struct(
   street = "Plaza Mayor", country = "Spain",
   limit = 50, full_results = TRUE
 )
-
 
 dplyr::glimpse(pl_mayor)
 }

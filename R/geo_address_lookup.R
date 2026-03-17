@@ -1,9 +1,9 @@
 #' Address lookup API
 #'
 #' @description
-#' The lookup API allows to query the address and other details of one or
-#' multiple OSM objects like node, way or relation. This function returns the
-#' [`tibble`][tibble::tibble] associated with the query, see
+#' The lookup API queries the address and other details of one or
+#' multiple OSM objects (node, way, relation) and returns the
+#' [`tibble`][tibble::tibble] associated with the query; see
 #' [geo_address_lookup_sf()] for retrieving the data as a spatial object
 #' ([`sf`][sf::st_sf] format).
 #'
@@ -12,19 +12,18 @@
 #'
 #' @param osm_ids Vector of OSM identifiers as **numeric**
 #'   (`c(00000, 11111, 22222)`).
-#' @param type Vector character of the type of the OSM type associated to each
-#'   `osm_ids`. Possible values are node (`"N"`), way (`"W"`) or relation
-#'   (`"R"`). If a single value is provided it would be recycled.
+#' @param type Character vector of the OSM object type associated with each
+#'   `osm_ids`. Possible values are node (`"N"`), way (`"W"`), or relation
+#'   (`"R"`). If a single value is provided it will be recycled.
 #'
 #' @inheritParams geo_lite
 #'
 #' @details
-#' See <https://nominatim.org/release-docs/develop/api/Lookup/> for additional
+#' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
 #' @seealso
 #' [geo_address_lookup_sf()].
-#'
 #'
 #' @return
 #'
@@ -32,7 +31,6 @@
 #' ```
 #'
 #' @export
-#'
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{

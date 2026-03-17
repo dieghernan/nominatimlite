@@ -61,17 +61,17 @@ provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.
 A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
-Geocodes addresses already split into components and return the corresponding
-spatial object. This function returns the spatial object associated with the
-query using \CRANpkg{sf}, see \code{\link[=geo_lite_struct]{geo_lite_struct()}} for retrieving the data in
+Geocodes addresses already split into components and returns the
+corresponding spatial object. The query output is provided in \CRANpkg{sf}
+format; see \code{\link[=geo_lite_struct]{geo_lite_struct()}} for retrieving the data in
 \code{\link[tibble:tibble]{tibble}} format.
 
-This function correspond to the \strong{structured query} search described in the
-\href{https://nominatim.org/release-docs/develop/api/Search/}{API endpoint}. For
+Corresponds to the \strong{structured query} search described in the
+\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. For
 performing a free-form search use \code{\link[=geo_lite_sf]{geo_lite_sf()}}.
 }
 \details{
-The structured form of the search query allows to look up up an address that
+The structured form of the search query allows you to look up an address that
 is already split into its components. Each parameter represents a field of
 the address. All parameters are optional. You should only use the ones that
 are relevant for the address you want to geocode.

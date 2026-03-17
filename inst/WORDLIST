@@ -37,6 +37,7 @@ ie
 json
 lon
 osmdata
+pkgdown
 reactable
 rlang
 testthat

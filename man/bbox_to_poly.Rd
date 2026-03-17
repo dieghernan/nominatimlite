@@ -22,7 +22,8 @@ A \code{\link[sf:sfc]{sfc}} object of class \code{POLYGON}.
 Create a \code{\link[sf:sfc]{sfc}} object from the coordinates of a bounding box.
 }
 \details{
-Bounding boxes can be located using different online tools, as \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
+Bounding boxes can be located using online tools such as
+\url{https://boundingbox.klokantech.com/}.
 }
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
@@ -31,7 +32,6 @@ Bounding boxes can be located using different online tools, as \href{https://bou
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)
-
 
 library(ggplot2)
 

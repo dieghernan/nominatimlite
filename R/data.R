@@ -13,7 +13,7 @@
 #' @docType data
 #'
 #' @format
-#' A [`tibble`][tibble::tibble] with with
+#' A [`tibble`][tibble::tibble] with
 #' `r prettyNum(nrow(nominatimlite::osm_amenities), big.mark=",")` rows and
 #' fields:
 #' \describe{
@@ -21,7 +21,6 @@
 #'   \item{amenity}{The value of the amenity.}
 #'   \item{comment}{A brief description of the type of amenity.}
 #' }
-#'
 #'
 #' @source <https://wiki.openstreetmap.org/wiki/Key:amenity>
 #'

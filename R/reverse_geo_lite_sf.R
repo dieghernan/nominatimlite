@@ -2,25 +2,24 @@
 #'
 #' @description
 #'
-#' Generates an address from a latitude and longitude. Latitudes must be
-#' between \eqn{\left[-90, 90 \right]} and longitudes between
-#' \eqn{\left[-180, 180 \right]}. This function returns the spatial object
-#' associated with the query using \CRANpkg{sf}, see [reverse_geo_lite()] for
-#' retrieving the data in [`tibble`][tibble::tibble] format.
+#' Generates an address from latitude and longitude (latitudes in
+#' \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
+#' and returns the spatial object associated with the query using \CRANpkg{sf};
+#' see [reverse_geo_lite()] for retrieving the data in
+#' [`tibble`][tibble::tibble] format.
 #'
 #' @family reverse
 #' @family spatial
-#'
 #'
 #' @inheritParams reverse_geo_lite
 #' @inheritParams geo_lite_sf
 #'
 #' @details
-#' See <https://nominatim.org/release-docs/develop/api/Reverse/> for additional
+#' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @inheritSection  reverse_geo_lite  About Zooming
-#' @inheritSection  geo_lite_sf  About Geometry Types
+#' @inheritSection reverse_geo_lite About Zooming
+#' @inheritSection geo_lite_sf About Geometry Types
 #'
 #' @return
 #'

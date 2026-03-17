@@ -63,15 +63,15 @@ outside the provided bounding box.}
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
-This function search \link[=osm_amenities]{amenities} as defined by OpenStreetMap
-on a restricted area defined by a bounding box in the form
-\verb{(<xmin>, <ymin>, <xmax>, <ymax>)}. This function returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query, see \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
+Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap
+in a restricted area defined by a bounding box in the form
+\verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the
+\code{\link[tibble:tibble]{tibble}} associated with the query; see \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
 for retrieving the data as a spatial object (\code{\link[sf:sf]{sf}} format).
 }
 \details{
-Bounding boxes can be located using different online tools, as
-\href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
+Bounding boxes can be located using online tools such as
+\url{https://boundingbox.klokantech.com/}.
 
 For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity} and \link{osm_amenities}.

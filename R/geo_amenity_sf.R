@@ -1,10 +1,10 @@
 #' Geocode amenities in \CRANpkg{sf} format
 #'
 #' @description
-#' This function search [amenities][osm_amenities] as defined by OpenStreetMap
-#' on a restricted area defined by a bounding box in the form
-#' `(<xmin>, <ymin>, <xmax>, <ymax>)`.  This function returns the spatial
-#' object associated with the query using \CRANpkg{sf}, see [geo_amenity()] for
+#' Searches [amenities][osm_amenities] as defined by OpenStreetMap
+#' in a restricted area defined by a bounding box in the form
+#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the spatial
+#' object associated with the query using \CRANpkg{sf}; see [geo_amenity()] for
 #' retrieving the data in [`tibble`][tibble::tibble] format.
 #'
 #' @family amenity
@@ -14,19 +14,17 @@
 #' @inheritParams geo_amenity
 #' @inheritParams geo_lite_sf
 #'
+#' @inheritSection geo_lite_sf About Geometry Types
 #' @details
 #'
-#' Bounding boxes can be located using different online tools, as
-#' [Bounding Box Tool](https://boundingbox.klokantech.com/).
+#' Bounding boxes can be located using online tools such as
+#' <https://boundingbox.klokantech.com/>.
 #'
 #' For a full list of valid amenities see
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity> and [osm_amenities].
 #'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
-#'
-#'
-#' @inheritSection  geo_lite_sf  About Geometry Types
 #'
 #' @return
 #'
@@ -41,7 +39,6 @@
 #'
 #' library(ggplot2)
 #' mad <- geo_lite_sf("Usera, Madrid, Spain", points_only = FALSE)
-#'
 #'
 #' # Restaurants, pubs and schools
 #'

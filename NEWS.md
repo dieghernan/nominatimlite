@@ -78,8 +78,8 @@
 # nominatimlite 0.2.0
 
 -   **rlang** and **tibble** are not explicitly required. Conversions to tibble
-    happens with `dplyr::tibble()`.
--   The data attributes of **sf** objects are returned now as tibbles, for easy
+    happen with `dplyr::tibble()`.
+-   The data attributes of **sf** objects are now returned as tibbles, for easy
     printing in console.
 -   Improvements in code and tests.
 -   Now **sf** objects can handle correctly nested fields provided in the json
@@ -105,7 +105,7 @@
 
 -   Skip API query tests on **CRAN** to avoid false positives.
 -   Centralize API queries on (internal) function `api_call()`.
--   Queries fully honors now the [Nominatim Usage
+-   Queries now fully honor the [Nominatim Usage
     Policy](https://operations.osmfoundation.org/policies/nominatim/). Queries
     may be slower now.
 

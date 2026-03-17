@@ -62,15 +62,15 @@ provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.
 A \code{\link[sf:sf]{sf}} object with the results.
 }
 \description{
-This function search \link[=osm_amenities]{amenities} as defined by OpenStreetMap
-on a restricted area defined by a bounding box in the form
-\verb{(<xmin>, <ymin>, <xmax>, <ymax>)}.  This function returns the spatial
-object associated with the query using \CRANpkg{sf}, see \code{\link[=geo_amenity]{geo_amenity()}} for
+Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap
+in a restricted area defined by a bounding box in the form
+\verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the spatial
+object associated with the query using \CRANpkg{sf}; see \code{\link[=geo_amenity]{geo_amenity()}} for
 retrieving the data in \code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
-Bounding boxes can be located using different online tools, as
-\href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
+Bounding boxes can be located using online tools such as
+\url{https://boundingbox.klokantech.com/}.
 
 For a full list of valid amenities see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity} and \link{osm_amenities}.
@@ -105,7 +105,6 @@ in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 
 library(ggplot2)
 mad <- geo_lite_sf("Usera, Madrid, Spain", points_only = FALSE)
-
 
 # Restaurants, pubs and schools
 
