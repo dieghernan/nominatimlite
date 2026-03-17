@@ -116,8 +116,8 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="nominatimlite-020">nominatimlite 0.2.0<a class="anchor" aria-label="anchor" href="#nominatimlite-020"></a></h2><p class="text-muted">CRAN release: 2023-05-11</p>
 <ul><li>
-<strong>rlang</strong> and <strong>tibble</strong> are not explicitly required. Conversions to tibble happens with <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">dplyr::tibble()</a></code>.</li>
-<li>The data attributes of <strong>sf</strong> objects are returned now as tibbles, for easy printing in console.</li>
+<strong>rlang</strong> and <strong>tibble</strong> are not explicitly required. Conversions to tibble happen with <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">dplyr::tibble()</a></code>.</li>
+<li>The data attributes of <strong>sf</strong> objects are now returned as tibbles, for easy printing in console.</li>
 <li>Improvements in code and tests.</li>
 <li>Now <strong>sf</strong> objects can handle correctly nested fields provided in the json response (for example, the nested address field provided by the API). This is consistent also with the results provided by the non-spatial functions, were unnesting was already handled correctly.</li>
 <li>Improvements on the output of <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> and <code><a href="../reference/reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code> when the API returns nested lists.</li>
@@ -138,7 +138,7 @@
 <h2 class="pkg-version" data-toc-text="0.1.3" id="nominatimlite-013">nominatimlite 0.1.3<a class="anchor" aria-label="anchor" href="#nominatimlite-013"></a></h2><p class="text-muted">CRAN release: 2021-10-21</p>
 <ul><li>Skip API query tests on <strong>CRAN</strong> to avoid false positives.</li>
 <li>Centralize API queries on (internal) function <code>api_call()</code>.</li>
-<li>Queries fully honors now the <a href="https://operations.osmfoundation.org/policies/nominatim/" class="external-link">Nominatim Usage Policy</a>. Queries may be slower now.</li>
+<li>Queries now fully honor the <a href="https://operations.osmfoundation.org/policies/nominatim/" class="external-link">Nominatim Usage Policy</a>. Queries may be slower now.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="nominatimlite-012">nominatimlite 0.1.2<a class="anchor" aria-label="anchor" href="#nominatimlite-012"></a></h2><p class="text-muted">CRAN release: 2021-10-07</p>

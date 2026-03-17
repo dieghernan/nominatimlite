@@ -1,9 +1,9 @@
 # Address lookup API
 
-The lookup API allows to query the address and other details of one or
-multiple OSM objects like node, way or relation. This function returns
-the [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query, see
+The lookup API queries the address and other details of one or multiple
+OSM objects (node, way, relation) and returns the
+[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
+associated with the query; see
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
@@ -32,9 +32,9 @@ geo_address_lookup(
 
 - type:
 
-  Vector character of the type of the OSM type associated to each
-  `osm_ids`. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided it would be recycled.
+  Character vector of the OSM object type associated with each
+  `osm_ids`. Possible values are node (`"N"`), way (`"W"`), or relation
+  (`"R"`). If a single value is provided it will be recycled.
 
 - lat:
 
@@ -75,7 +75,7 @@ the results found by the query.
 
 ## Details
 
-See <https://nominatim.org/release-docs/develop/api/Lookup/> for
+See <https://nominatim.org/release-docs/latest/api/Lookup/> for
 additional parameters to be passed to `custom_query`.
 
 ## See also

@@ -1,16 +1,14 @@
 # Address search API in [sf](https://CRAN.R-project.org/package=sf) format (free-form query)
 
-This function allows you to geocode addresses and returns the
-corresponding spatial object. This function returns the spatial object
-associated with the query using
-[sf](https://CRAN.R-project.org/package=sf), see
+Geocodes addresses and returns the corresponding spatial object. The
+query output is provided in [sf](https://CRAN.R-project.org/package=sf)
+format; see
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
 
-This function correspond to the **free-form query** search described in
-the [API
-endpoint](https://nominatim.org/release-docs/develop/api/Search/).
+Corresponds to the **free-form query** search described in the [API
+endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 
 ## Usage
 

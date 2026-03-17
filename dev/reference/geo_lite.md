@@ -1,15 +1,14 @@
 # Address search API (free-form query)
 
-Geocodes addresses given as character values. This function returns the
+Geocodes addresses given as character values and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query, see
+associated with the query; see
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
 
-This function correspond to the **free-form query** search described in
-the [API
-endpoint](https://nominatim.org/release-docs/develop/api/Search/).
+Corresponds to the **free-form query** search described in the [API
+endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 
 ## Usage
 

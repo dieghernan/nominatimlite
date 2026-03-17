@@ -1,15 +1,14 @@
 # Address search API (structured query)
 
-Geocodes addresses already split into components. This function returns
-the [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query, see
+Geocodes addresses already split into components and returns the
+[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
+associated with the query; see
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
 
-This function correspond to the **structured query** search described in
-the [API
-endpoint](https://nominatim.org/release-docs/develop/api/Search/). For
+Corresponds to the **structured query** search described in the [API
+endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
 performing a free-form search use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md).
 
@@ -110,7 +109,7 @@ the results found by the query.
 
 ## Details
 
-The structured form of the search query allows to look up up an address
+The structured form of the search query allows you to look up an address
 that is already split into its components. Each parameter represents a
 field of the address. All parameters are optional. You should only use
 the ones that are relevant for the address you want to geocode.
@@ -141,7 +140,6 @@ pl_mayor <- geo_lite_struct(
   limit = 50, full_results = TRUE
 )
 
-
 dplyr::glimpse(pl_mayor)
 #> Rows: 32
 #> Columns: 41
@@ -155,7 +153,7 @@ dplyr::glimpse(pl_mayor)
 #> $ lat                      <dbl> 40.41539, 40.96503, 41.65206, 40.02982, 41.93…
 #> $ lon                      <dbl> -3.7069974, -5.6640558, -4.7285484, -6.090233…
 #> $ address                  <chr> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…
-#> $ place_id                 <int> 270309643, 269907422, 269150142, 270775664, 3…
+#> $ place_id                 <int> 271438250, 271202714, 269529734, 270829532, 7…
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "relation", "way", "way", "way", "relation", …
 #> $ osm_id                   <int> 16657232, 78180390, 24432960, 184566366, 1820…

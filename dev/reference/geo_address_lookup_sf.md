@@ -1,9 +1,9 @@
 # Address lookup API in [sf](https://CRAN.R-project.org/package=sf) format
 
-The lookup API allows to query the address and other details of one or
-multiple OSM objects like node, way or relation. This function returns
-the spatial object associated with the query using
-[sf](https://CRAN.R-project.org/package=sf), see
+The lookup API queries the address and other details of one or multiple
+OSM objects (node, way, relation) and returns the spatial object
+associated with the query using
+[sf](https://CRAN.R-project.org/package=sf); see
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -31,9 +31,9 @@ geo_address_lookup_sf(
 
 - type:
 
-  Vector character of the type of the OSM type associated to each
-  `osm_ids`. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided it would be recycled.
+  Character vector of the OSM object type associated with each
+  `osm_ids`. Possible values are node (`"N"`), way (`"W"`), or relation
+  (`"R"`). If a single value is provided it will be recycled.
 
 - full_results:
 
@@ -138,7 +138,6 @@ NotreDame_poly <- geo_address_lookup_sf(201611261,
   type = "W",
   points_only = FALSE
 )
-
 
 if (any(!sf::st_is_empty(NotreDame_poly))) {
   ggplot(NotreDame_poly) +

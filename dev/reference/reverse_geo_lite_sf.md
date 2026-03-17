@@ -1,10 +1,9 @@
 # Reverse geocoding API in [sf](https://CRAN.R-project.org/package=sf) format
 
-Generates an address from a latitude and longitude. Latitudes must be
-between \\\left\[-90, 90 \right\]\\ and longitudes between
-\\\left\[-180, 180 \right\]\\. This function returns the spatial object
-associated with the query using
-[sf](https://CRAN.R-project.org/package=sf), see
+Generates an address from latitude and longitude (latitudes in
+\\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180, 180
+\right\]\\), and returns the spatial object associated with the query
+using [sf](https://CRAN.R-project.org/package=sf); see
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -84,7 +83,7 @@ the results.
 
 ## Details
 
-See <https://nominatim.org/release-docs/develop/api/Reverse/> for
+See <https://nominatim.org/release-docs/latest/api/Reverse/> for
 additional parameters to be passed to `custom_query`.
 
 ## About Zooming

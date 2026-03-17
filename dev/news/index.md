@@ -121,9 +121,9 @@ CRAN release: 2023-08-15
 CRAN release: 2023-05-11
 
 - **rlang** and **tibble** are not explicitly required. Conversions to
-  tibble happens with
+  tibble happen with
   [`dplyr::tibble()`](https://tibble.tidyverse.org/reference/tibble.html).
-- The data attributes of **sf** objects are returned now as tibbles, for
+- The data attributes of **sf** objects are now returned as tibbles, for
   easy printing in console.
 - Improvements in code and tests.
 - Now **sf** objects can handle correctly nested fields provided in the
@@ -163,7 +163,7 @@ CRAN release: 2021-10-21
 
 - Skip API query tests on **CRAN** to avoid false positives.
 - Centralize API queries on (internal) function `api_call()`.
-- Queries fully honors now the [Nominatim Usage
+- Queries now fully honor the [Nominatim Usage
   Policy](https://operations.osmfoundation.org/policies/nominatim/).
   Queries may be slower now.
 

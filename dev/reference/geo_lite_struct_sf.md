@@ -1,16 +1,14 @@
 # Address search API in [sf](https://CRAN.R-project.org/package=sf) format (structured query)
 
-Geocodes addresses already split into components and return the
-corresponding spatial object. This function returns the spatial object
-associated with the query using
-[sf](https://CRAN.R-project.org/package=sf), see
+Geocodes addresses already split into components and returns the
+corresponding spatial object. The query output is provided in
+[sf](https://CRAN.R-project.org/package=sf) format; see
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
 
-This function correspond to the **structured query** search described in
-the [API
-endpoint](https://nominatim.org/release-docs/develop/api/Search/). For
+Corresponds to the **structured query** search described in the [API
+endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
 performing a free-form search use
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md).
 
@@ -108,7 +106,7 @@ the results.
 
 ## Details
 
-The structured form of the search query allows to look up up an address
+The structured form of the search query allows you to look up an address
 that is already split into its components. Each parameter represents a
 field of the address. All parameters are optional. You should only use
 the ones that are relevant for the address you want to geocode.

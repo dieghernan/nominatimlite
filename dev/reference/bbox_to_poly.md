@@ -32,8 +32,8 @@ class `POLYGON`.
 
 ## Details
 
-Bounding boxes can be located using different online tools, as [Bounding
-Box Tool](https://boundingbox.klokantech.com/).
+Bounding boxes can be located using online tools such as
+<https://boundingbox.klokantech.com/>.
 
 ## See also
 
@@ -54,7 +54,6 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)
-
 
 library(ggplot2)
 

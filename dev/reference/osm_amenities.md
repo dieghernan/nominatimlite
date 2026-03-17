@@ -5,7 +5,7 @@ Database with the list of amenities available on OpenStreetMap.
 ## Format
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-with 136 rows and fields:
+136 rows and fields:
 
 - category:
 
