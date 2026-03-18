@@ -2,7 +2,7 @@
 
 ## nominatimlite 0.5.0
 
-## nominatimlite 0.4.4
+CRAN release: 2026-03-18
 
 - Download management:
   - The API calls are cached in the
