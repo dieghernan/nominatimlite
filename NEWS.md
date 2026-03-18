@@ -1,7 +1,5 @@
 # nominatimlite 0.5.0
 
-# nominatimlite 0.4.4
-
 -   Download management:
     -   The API calls are cached in the `tempdir()` to avoid overloading. This
         cache is meant to be persistent on the current session only.
