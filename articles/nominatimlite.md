@@ -162,7 +162,7 @@ of Open Source Software* 6 (65): 3544.
 <https://doi.org/10.21105/joss.03544>.
 
 Hernangómez, Diego. 2024. *arcgeocoder: Geocoding with the ArcGIS REST
-API Service* (version 0.1.0). <https://doi.org/10.5281/zenodo.10495365>.
+API Service*. Version 0.1.0. <https://doi.org/10.5281/zenodo.10495365>.
 
 Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
 “osmdata.” *Journal of Open Source Software* 2 (14): 305.
