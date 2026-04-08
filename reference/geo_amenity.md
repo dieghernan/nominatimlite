@@ -144,7 +144,7 @@ geo_amenity(
 #> # A tibble: 1 × 4
 #>   query        lat   lon address                                                
 #>   <chr>      <dbl> <dbl> <chr>                                                  
-#> 1 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manhat…
+#> 1 restaurant  40.8 -74.0 Bobby Van's Grill, West 45th Street, Times Square, Man…
 
 # Several amenities
 geo_amenity(
@@ -155,7 +155,7 @@ geo_amenity(
 #> # A tibble: 2 × 4
 #>   query        lat   lon address                                                
 #>   <chr>      <dbl> <dbl> <chr>                                                  
-#> 1 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manhat…
+#> 1 restaurant  40.8 -74.0 Bobby Van's Grill, West 45th Street, Times Square, Man…
 #> 2 pub         40.8 -74.0 Connolly's, 121, West 45th Street, Times Square, Manha…
 
 # Increase limit and use with strict
