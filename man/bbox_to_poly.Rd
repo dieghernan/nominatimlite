@@ -2,7 +2,7 @@
 % Please edit documentation in R/bbox_to_poly.R
 \name{bbox_to_poly}
 \alias{bbox_to_poly}
-\title{Coerce a bounding box to a \code{\link[sf:sfc]{sfc}} \code{POLYGON} object}
+\title{Coerce a bounding box to a \code{\link[sf:st_sfc]{sfc}} \code{POLYGON} object}
 \usage{
 bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 }
@@ -16,10 +16,10 @@ instead of \code{bbox}.}
 \item{crs}{coordinate reference system, something suitable as input to \link[sf]{st_crs}}
 }
 \value{
-A \code{\link[sf:sfc]{sfc}} object of class \code{POLYGON}.
+A \code{\link[sf:st_sfc]{sfc}} object of class \code{POLYGON}.
 }
 \description{
-Create a \code{\link[sf:sfc]{sfc}} object from the coordinates of a bounding box.
+Create a \code{\link[sf:st_sfc]{sfc}} object from the coordinates of a bounding box.
 }
 \details{
 Bounding boxes can be located using online tools such as
@@ -59,13 +59,13 @@ if (any(!sf::st_is_empty(sfobj))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[sf:st_as_sfc]{sf::st_as_sfc()}} and \code{\link[sf:sfc]{sf::st_sfc()}}.
+\code{\link[sf:st_as_sfc]{sf::st_as_sfc()}} and \code{\link[sf:st_sfc]{sf::st_sfc()}}.
 
 Get \code{\link[sf:sf]{sf}} objects:
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct_sf}()},
-\code{\link{reverse_geo_lite_sf}()}
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}},
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }
 \concept{spatial}

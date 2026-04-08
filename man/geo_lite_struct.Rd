@@ -65,7 +65,7 @@ A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 Geocodes addresses already split into components and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query; see
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}} for retrieving the data as a spatial object
-(\code{\link[sf:sf]{sf}} format).
+(\code{\link[sf:st_sf]{sf}} format).
 
 Corresponds to the \strong{structured query} search described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. For
@@ -96,12 +96,12 @@ dplyr::glimpse(pl_mayor)
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
 
 Geocoding:
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct_sf}()}
+\code{\link[=geo_address_lookup]{geo_address_lookup()}},
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_amenity]{geo_amenity()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite]{geo_lite()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 }
 \concept{geocoding}

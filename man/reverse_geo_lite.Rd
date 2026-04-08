@@ -50,7 +50,7 @@ Generates an address from latitude and longitude (latitudes in
 \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
 and returns the \code{\link[tibble:tibble]{tibble}} associated with the query; see
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} for retrieving the data as a spatial object
-(\code{\link[sf:sf]{sf}} format).
+(\code{\link[sf:st_sf]{sf}} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Reverse/} for additional
@@ -97,6 +97,6 @@ dplyr::glimpse(sev)
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}.
 
 Reverse geocoding coordinates:
-\code{\link{reverse_geo_lite_sf}()}
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }
 \concept{reverse}

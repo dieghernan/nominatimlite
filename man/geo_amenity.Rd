@@ -24,7 +24,7 @@ geo_amenity(
 \itemize{
 \item A numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y})
 \verb{(xmin, ymin, xmax, ymax)}. See \strong{Details}.
-\item A \code{\link[sf:sf]{sf}} or \code{\link[sf:sfc]{sfc}} object.
+\item A \code{\link[sf:st_sf]{sf}} or \code{\link[sf:st_sfc]{sfc}} object.
 }}
 
 \item{amenity}{A \code{character} (or a vector of \code{character}s) with the
@@ -67,7 +67,7 @@ Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap
 in a restricted area defined by a bounding box in the form
 \verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query; see \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
-for retrieving the data as a spatial object (\code{\link[sf:sf]{sf}} format).
+for retrieving the data as a spatial object (\code{\link[sf:st_sf]{sf}} format).
 }
 \details{
 Bounding boxes can be located using online tools such as
@@ -110,18 +110,18 @@ geo_amenity(
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other amenity: 
-\code{\link{geo_amenity_sf}()},
+Other amenity:
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link{osm_amenities}}
 
 Geocoding:
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct}()},
-\code{\link{geo_lite_struct_sf}()}
+\code{\link[=geo_address_lookup]{geo_address_lookup()}},
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite]{geo_lite()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct]{geo_lite_struct()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 }
 \concept{amenity}
 \concept{geocoding}

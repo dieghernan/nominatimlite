@@ -42,7 +42,7 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \code{\link[sf:sf]{sf}} object with the results.
+A \code{\link[sf:st_sf]{sf}} object with the results.
 }
 \description{
 The lookup API queries the address and other details of one or
@@ -111,23 +111,23 @@ several
 \code{\link[=geo_address_lookup]{geo_address_lookup()}}.
 
 Address Lookup API:
-\code{\link{geo_address_lookup}()}
+\code{\link[=geo_address_lookup]{geo_address_lookup()}}
 
 Geocoding:
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct}()},
-\code{\link{geo_lite_struct_sf}()}
+\code{\link[=geo_address_lookup]{geo_address_lookup()}},
+\code{\link[=geo_amenity]{geo_amenity()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite]{geo_lite()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct]{geo_lite_struct()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 
 Get \code{\link[sf:sf]{sf}} objects:
-\code{\link{bbox_to_poly}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct_sf}()},
-\code{\link{reverse_geo_lite_sf}()}
+\code{\link[=bbox_to_poly]{bbox_to_poly()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}},
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }
 \concept{geocoding}
 \concept{lookup}

@@ -48,7 +48,7 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \code{\link[sf:sf]{sf}} object with the results.
+A \code{\link[sf:st_sf]{sf}} object with the results.
 }
 \description{
 Generates an address from latitude and longitude (latitudes in
@@ -143,14 +143,14 @@ if (any(!sf::st_is_empty(rome_sf))) {
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}.
 
 Reverse geocoding coordinates:
-\code{\link{reverse_geo_lite}()}
+\code{\link[=reverse_geo_lite]{reverse_geo_lite()}}
 
 Get \code{\link[sf:sf]{sf}} objects:
-\code{\link{bbox_to_poly}()},
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct_sf}()}
+\code{\link[=bbox_to_poly]{bbox_to_poly()}},
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 }
 \concept{reverse}
 \concept{spatial}

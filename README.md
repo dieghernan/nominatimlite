@@ -256,8 +256,7 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-R-tidygeocoder" class="csl-entry">
 
@@ -271,7 +270,7 @@ Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
 <div id="ref-R-arcgeocoder" class="csl-entry">
 
 Hernangómez, Diego. 2024. *<span class="nocase">arcgeocoder</span>:
-Geocoding with the ArcGIS REST API Service* (version 0.1.0).
+Geocoding with the ArcGIS REST API Service*. Version 0.1.0.
 <https://doi.org/10.5281/zenodo.10495365>.
 
 </div>

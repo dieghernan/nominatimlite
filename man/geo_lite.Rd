@@ -52,7 +52,7 @@ A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 \description{
 Geocodes addresses given as character values and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query; see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
-retrieving the data as a spatial object (\code{\link[sf:sf]{sf}} format).
+retrieving the data as a spatial object (\code{\link[sf:st_sf]{sf}} format).
 
 Corresponds to the \strong{free-form query} search described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}.
@@ -81,12 +81,12 @@ geo_lite(c("Madrid", "Barcelona"),
 \code{\link[=geo_lite_sf]{geo_lite_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
 
 Geocoding:
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct}()},
-\code{\link{geo_lite_struct_sf}()}
+\code{\link[=geo_address_lookup]{geo_address_lookup()}},
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_amenity]{geo_amenity()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct]{geo_lite_struct()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 }
 \concept{geocoding}

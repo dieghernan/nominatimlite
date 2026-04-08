@@ -50,7 +50,7 @@ The lookup API queries the address and other details of one or
 multiple OSM objects (node, way, relation) and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query; see
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as a spatial object
-(\code{\link[sf:sf]{sf}} format).
+(\code{\link[sf:st_sf]{sf}} format).
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
@@ -72,16 +72,16 @@ several
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}.
 
 Address Lookup API:
-\code{\link{geo_address_lookup_sf}()}
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 
 Geocoding:
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_amenity_sf}()},
-\code{\link{geo_lite}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct}()},
-\code{\link{geo_lite_struct_sf}()}
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_amenity]{geo_amenity()}},
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
+\code{\link[=geo_lite]{geo_lite()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct]{geo_lite_struct()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 }
 \concept{geocoding}
 \concept{lookup}

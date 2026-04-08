@@ -23,7 +23,7 @@ geo_amenity_sf(
 \itemize{
 \item A numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y})
 \verb{(xmin, ymin, xmax, ymax)}. See \strong{Details}.
-\item A \code{\link[sf:sf]{sf}} or \code{\link[sf:sfc]{sfc}} object.
+\item A \code{\link[sf:st_sf]{sf}} or \code{\link[sf:st_sfc]{sfc}} object.
 }}
 
 \item{amenity}{A \code{character} (or a vector of \code{character}s) with the
@@ -59,7 +59,7 @@ points (\code{TRUE}, which is the default) or potentially other shapes as
 provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
 }
 \value{
-A \code{\link[sf:sf]{sf}} object with the results.
+A \code{\link[sf:st_sf]{sf}} object with the results.
 }
 \description{
 Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap
@@ -121,25 +121,25 @@ if (any(!sf::st_is_empty(rest_pub))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other amenity: 
-\code{\link{geo_amenity}()},
+Other amenity:
+\code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link{osm_amenities}}
 
 Geocoding:
-\code{\link{geo_address_lookup}()},
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_amenity}()},
-\code{\link{geo_lite}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct}()},
-\code{\link{geo_lite_struct_sf}()}
+\code{\link[=geo_address_lookup]{geo_address_lookup()}},
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_amenity]{geo_amenity()}},
+\code{\link[=geo_lite]{geo_lite()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct]{geo_lite_struct()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 
 Get \code{\link[sf:sf]{sf}} objects:
-\code{\link{bbox_to_poly}()},
-\code{\link{geo_address_lookup_sf}()},
-\code{\link{geo_lite_sf}()},
-\code{\link{geo_lite_struct_sf}()},
-\code{\link{reverse_geo_lite_sf}()}
+\code{\link[=bbox_to_poly]{bbox_to_poly()}},
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
+\code{\link[=geo_lite_sf]{geo_lite_sf()}},
+\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}},
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }
 \concept{amenity}
 \concept{geocoding}
