@@ -54,3 +54,5 @@
 ^index\.md$
 ^dev$
 [.]markdown$
+^\.positai$
+^\.claude$
