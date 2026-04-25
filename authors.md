@@ -22,7 +22,7 @@ Source:
 
 Hernangómez D (2026). *nominatimlite: Interface with Nominatim API
 Service*.
-[doi:10.32614/CRAN.package.nominatimlite](https://doi.org/10.32614/CRAN.package.nominatimlite),
+[doi:10.32614/CRAN.package.nominatimlite](https://doi.org/10.32614/CRAN.package.nominatimlite).
 <https://dieghernan.github.io/nominatimlite/>.
 
     @Manual{R-nominatimlite,
