@@ -36,6 +36,7 @@ Other amenity:
 ## Examples
 
 ``` r
+
 data("osm_amenities")
 
 osm_amenities

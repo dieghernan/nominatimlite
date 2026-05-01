@@ -46,6 +46,7 @@ There are other packages that are more complete and mature than
 With **nominatimlite** you can extract spatial objects easily:
 
 ``` r
+
 library(nominatimlite)
 
 # Extract some points - Pizza Hut in California
@@ -73,6 +74,7 @@ You can also extract polygon and line objects (if available) using the
 option `points_only = FALSE`:
 
 ``` r
+
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
 ggplot(sol_poly) +
@@ -92,6 +94,7 @@ In this first example we will geocode a few addresses using the
 function:
 
 ``` r
+
 library(tibble)
 
 # create a dataframe with addresses
@@ -115,11 +118,11 @@ Only latitude and longitude are returned from the geocoder service in
 this example, but `full_results = TRUE` can be used to return all of the
 data from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                                                                                           |
-|:-------------------------------------------|---------:|-----------:|:----------------------------------------------------------------------------------------------------------------------------------|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89764 |  -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States                  |
+| query | latitude | longitude | address |
+|:---|---:|---:|:---|
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87874 |  -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States         |
+| 233 S Wacker Dr, Chicago, IL 60606 | 41.87874 | -87.63596 | Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States |
 
 Table 1: Example: geocoding addresses
 
@@ -134,6 +137,7 @@ above. The single line address is returned in a column named by the
 `address`.
 
 ``` r
+
 reverse <- reverse_geo_lite(
   lat = lat_longs$latitude,
   long = lat_longs$longitude,
@@ -142,11 +146,11 @@ reverse <- reverse_geo_lite(
 )
 ```
 
-| address_found                                                                                                             |      lat |        lon |
-|:--------------------------------------------------------------------------------------------------------------------------|---------:|-----------:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States          | 38.89764 |  -77.03655 |
-| Sky Bar, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States      | 37.79519 | -122.40254 |
-| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 |  -87.63589 |
+| address_found | lat | lon |
+|:---|---:|---:|
+| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| Sky Bar, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
 
 Table 2: Example: reverse geocoding addresses
 

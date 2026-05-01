@@ -123,7 +123,7 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #>   address                                                             lat    lon
 #>   <chr>                                                             <dbl>  <dbl>
 #> 1 Times Square, Manhattan Community Board 5, Manhattan, New York C…  40.8 -74.0 
-#> 2 East End, Waterloo Place, Waterloo Place, Broughton, New Town/Br…  56.0  -3.19
+#> 2 East End, Waterloo Place, Waterloo Place, Greenside, Broughton, …  56.0  -3.19
 
 # With options: zoom to country level
 sev <- reverse_geo_lite(
@@ -139,7 +139,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 45852144, 255148843
+#> $ place_id                                 <int> 52391348, 275211732
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

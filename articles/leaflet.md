@@ -10,6 +10,7 @@ This widget is browsable and filterable thanks to **crosstalk** and
 **reactable**:
 
 ``` r
+
 # Coffee Shops and Restaurants around the Eiffel Tower
 
 library(nominatimlite)
@@ -161,6 +162,7 @@ tb <- reactable(
 ## Widget
 
 ``` r
+
 # Last step: Display all
 htmltools::browsable(
   htmltools::tagList(lmend, tb)

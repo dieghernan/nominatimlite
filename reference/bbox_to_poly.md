@@ -50,6 +50,7 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 ## Examples
 
 ``` r
+
 # bounding box of Germany
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 

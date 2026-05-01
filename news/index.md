@@ -80,6 +80,7 @@ CRAN release: 2024-05-27
 - `custom_query` argument can use vectors and `logical`:
 
   ``` r
+
   geo_lite(address = "New York",
            custom_query = list(addressdetails = TRUE,
                                viewbox = c(-60, -20, 60, 20))
