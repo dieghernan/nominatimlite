@@ -149,15 +149,14 @@ if (any(!sf::st_is_empty(NotreDame_poly))) {
 
 several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 several
-#> Simple feature collection with 2 features and 2 fields
+#> Simple feature collection with 1 feature and 2 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: -2.245115 ymin: 52.51739 xmax: 13.39513 ymax: 53.47949
+#> Bounding box:  xmin: 13.39513 ymin: 52.51739 xmax: 13.39513 ymax: 52.51739
 #> Geodetic CRS:  WGS 84
-#> # A tibble: 2 × 3
-#>   query      address                                               geometry
-#> * <chr>      <chr>                                              <POINT [°]>
-#> 1 R146656    Manchester, Greater Manchester, England,… (-2.245115 53.47949)
-#> 2 N240109189 Berlin, Deutschland                        (13.39513 52.51739)
+#> # A tibble: 1 × 3
+#>   query      address                        geometry
+#> * <chr>      <chr>                       <POINT [°]>
+#> 1 N240109189 Berlin, Deutschland (13.39513 52.51739)
 # }
 ```
