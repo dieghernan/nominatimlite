@@ -114,7 +114,7 @@ reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #> # A tibble: 1 × 3
 #>   address                                                              lat   lon
 #>   <chr>                                                              <dbl> <dbl>
-#> 1 West 44th Street, Times Square, Manhattan Community Board 5, Manh…  40.8 -74.0
+#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York Co…  40.8 -74.0
 
 # Several coordinates
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
@@ -122,7 +122,7 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #> # A tibble: 2 × 3
 #>   address                                                             lat    lon
 #>   <chr>                                                             <dbl>  <dbl>
-#> 1 West 44th Street, Times Square, Manhattan Community Board 5, Man…  40.8 -74.0 
+#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York C…  40.8 -74.0 
 #> 2 East End, Waterloo Place, Waterloo Place, Broughton, New Town/Br…  56.0  -3.19
 
 # With options: zoom to country level
@@ -139,7 +139,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52172514, 274782588
+#> $ place_id                                 <int> 46985635, 255148843
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149
