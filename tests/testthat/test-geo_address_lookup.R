@@ -115,7 +115,7 @@ test_that("Handle several", {
   skip_if_offline()
 
   # Ok
-  vector_ids <- c(146656, 240109189)
+  vector_ids <- c(343921, 240109189)
   vector_type <- c("R", "N")
   several <- geo_address_lookup(vector_ids, vector_type)
   expect_equal(nrow(several), 2)
@@ -145,7 +145,7 @@ test_that("Fail", {
   skip_if_offline()
 
   # KO
-  vector_ids <- c(146656, 240109189)
+  vector_ids <- c(343921, 240109189)
   vector_type <- c("R", "N")
   expect_message(
     several <- geo_address_lookup(
