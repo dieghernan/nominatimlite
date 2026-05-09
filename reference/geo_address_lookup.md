@@ -109,9 +109,10 @@ ids
 
 several <- geo_address_lookup(c(146656, 240109189), type = c("R", "N"))
 several
-#> # A tibble: 1 × 4
-#>   query        lat   lon address            
-#>   <chr>      <dbl> <dbl> <chr>              
-#> 1 N240109189  52.5  13.4 Berlin, Deutschland
+#> # A tibble: 2 × 4
+#>   query        lat   lon address                                                
+#>   <chr>      <dbl> <dbl> <chr>                                                  
+#> 1 R146656     53.4 -2.23 Manchester, Greater Manchester, England, United Kingdom
+#> 2 N240109189  52.5 13.4  Berlin, Deutschland                                    
 # }
 ```

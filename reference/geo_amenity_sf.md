@@ -167,7 +167,7 @@ rest_pub <- geo_amenity_sf(mad, c("restaurant", "pub", "school"),
 )
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 
-if (any(!sf::st_is_empty(rest_pub))) {
+if (!all(sf::st_is_empty(rest_pub))) {
   ggplot(mad) +
     geom_sf() +
     geom_sf(data = rest_pub, aes(color = query, shape = query))

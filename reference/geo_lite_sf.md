@@ -133,7 +133,7 @@ library(ggplot2)
 string <- "Statue of Liberty, NY, USA"
 sol <- geo_lite_sf(string)
 
-if (any(!sf::st_is_empty(sol))) {
+if (!all(sf::st_is_empty(sol))) {
   ggplot(sol) +
     geom_sf()
 }
@@ -141,7 +141,7 @@ if (any(!sf::st_is_empty(sol))) {
 
 sol_poly <- geo_lite_sf(string, points_only = FALSE)
 
-if (any(!sf::st_is_empty(sol_poly))) {
+if (!all(sf::st_is_empty(sol_poly))) {
   ggplot(sol_poly) +
     geom_sf() +
     geom_sf(data = sol, color = "red")
@@ -154,7 +154,7 @@ madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
   points_only = FALSE, full_results = TRUE
 )
 
-if (any(!sf::st_is_empty(madrid))) {
+if (!all(sf::st_is_empty(madrid))) {
   ggplot(madrid) +
     geom_sf(fill = NA)
 }

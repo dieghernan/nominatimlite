@@ -162,7 +162,7 @@ dplyr::glimpse(col_sf)
 #> $ lon      <dbl> 12.49309
 #> $ geometry <POINT [°]> POINT (12.49333 41.89014)
 
-if (any(!sf::st_is_empty(col_sf))) {
+if (!all(sf::st_is_empty(col_sf))) {
   ggplot(col_sf) +
     geom_sf()
 }
@@ -185,7 +185,7 @@ dplyr::glimpse(rome_sf)
 #> $ lon      <dbl> 12.49309
 #> $ geometry <MULTIPOLYGON [°]> MULTIPOLYGON (((12.23447 41...
 
-if (any(!sf::st_is_empty(rome_sf))) {
+if (!all(sf::st_is_empty(rome_sf))) {
   ggplot(rome_sf) +
     geom_sf()
 }

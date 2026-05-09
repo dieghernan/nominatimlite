@@ -77,7 +77,7 @@ sfobj
 #> 1 seychelles Sesel   (((45.99888 -9.401015, 46.00121 -9.427337, 46.00564 -9.456…
 
 # Need at least one non-empty object
-if (any(!sf::st_is_empty(sfobj))) {
+if (!all(sf::st_is_empty(sfobj))) {
   bbox <- sf::st_bbox(sfobj)
 
   bbox
