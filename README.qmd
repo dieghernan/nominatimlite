@@ -68,15 +68,14 @@ limitation.
 There are other packages that are more complete and mature than
 **nominatimlite** and provide similar features:
 
--   [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-    [@R-tidygeocoder]: Allows to interface with Nominatim, Google, TomTom,
-    Mapbox, etc. for geocoding and reverse geocoding.
--   [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Great for
-    downloading spatial data from OpenStreetMap, via the [Overpass
-    API](https://wiki.openstreetmap.org/wiki/Overpass_API).
--   [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
-    [@R-arcgeocoder]: Lite interface for geocoding with the ArcGIS REST API
-    Service.
+- [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
+  [@R-tidygeocoder]: Allows to interface with Nominatim, Google, TomTom, Mapbox,
+  etc. for geocoding and reverse geocoding.
+- [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Great for
+  downloading spatial data from OpenStreetMap, via the [Overpass
+  API](https://wiki.openstreetmap.org/wiki/Overpass_API).
+- [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/) [@R-arcgeocoder]:
+  Lite interface for geocoding with the ArcGIS REST API Service.
 
 ## Installation
 

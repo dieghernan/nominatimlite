@@ -14,11 +14,7 @@ test_that("Progress bar", {
 
   # Not
   expect_silent(
-    aa <- geo_amenity_sf(
-      bbox,
-      c("pub", "restaurant"),
-      progressbar = FALSE
-    )
+    aa <- geo_amenity_sf(bbox, c("pub", "restaurant"), progressbar = FALSE)
   )
 })
 
@@ -105,12 +101,7 @@ test_that("Checking query", {
   expect_s3_class(bbox_sfc, "sfc")
 
   expect_silent(
-    a <- geo_amenity_sf(
-      bbox = bbox_sfc,
-      "pub",
-      limit = 1,
-      strict = TRUE
-    )
+    a <- geo_amenity_sf(bbox = bbox_sfc, "pub", limit = 1, strict = TRUE)
   )
 
   bbox_sf <- sf::st_sf(x = 1, bbox_sfc)
@@ -119,11 +110,6 @@ test_that("Checking query", {
   bbox_sf <- sf::st_transform(bbox_sf, 3857)
 
   expect_silent(
-    a <- geo_amenity_sf(
-      bbox = bbox_sf,
-      "pub",
-      limit = 1,
-      strict = TRUE
-    )
+    a <- geo_amenity_sf(bbox = bbox_sf, "pub", limit = 1, strict = TRUE)
   )
 })

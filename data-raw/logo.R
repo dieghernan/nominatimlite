@@ -23,19 +23,11 @@ st_bbox(mad)
 
 ## Section----
 
-df1 <- data.frame(
-  label = "nominatim",
-  lon = -3.544387,
-  lat = 40.55039
-)
+df1 <- data.frame(label = "nominatim", lon = -3.544387, lat = 40.55039)
 
 p1 <- st_as_sf(df1, coords = c("lon", "lat"), crs = 4326) %>% st_transform(3857)
 
-df2 <- data.frame(
-  label = "lite",
-  lon = -3.405387,
-  lat = 40.55039
-)
+df2 <- data.frame(label = "lite", lon = -3.405387, lat = 40.55039)
 
 p2 <- st_as_sf(df2, coords = c("lon", "lat"), crs = 4326) %>% st_transform(3857)
 

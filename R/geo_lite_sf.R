@@ -11,6 +11,7 @@
 #'
 #' @family geocoding
 #' @family spatial
+#' @encoding UTF-8
 #'
 #' @param full_results Returns all available data from the API service.
 #'   If `FALSE` (default) only address columns are returned. See also
@@ -60,14 +61,14 @@
 #' string <- "Statue of Liberty, NY, USA"
 #' sol <- geo_lite_sf(string)
 #'
-#' if (any(!sf::st_is_empty(sol))) {
+#' if (!all(sf::st_is_empty(sol))) {
 #'   ggplot(sol) +
 #'     geom_sf()
 #' }
 #'
 #' sol_poly <- geo_lite_sf(string, points_only = FALSE)
 #'
-#' if (any(!sf::st_is_empty(sol_poly))) {
+#' if (!all(sf::st_is_empty(sol_poly))) {
 #'   ggplot(sol_poly) +
 #'     geom_sf() +
 #'     geom_sf(data = sol, color = "red")
@@ -79,7 +80,7 @@
 #'   points_only = FALSE, full_results = TRUE
 #' )
 #'
-#' if (any(!sf::st_is_empty(madrid))) {
+#' if (!all(sf::st_is_empty(madrid))) {
 #'   ggplot(madrid) +
 #'     geom_sf(fill = NA)
 #' }

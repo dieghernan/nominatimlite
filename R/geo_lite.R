@@ -9,6 +9,7 @@
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 #'
 #' @family geocoding
+#' @encoding UTF-8
 #'
 #' @param address `character` with single line address, e.g.
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses

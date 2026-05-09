@@ -10,6 +10,7 @@
 #' @family lookup
 #' @family geocoding
 #' @family spatial
+#' @encoding UTF-8
 #'
 #' @inheritParams geo_lite_sf
 #' @inheritParams geo_address_lookup
@@ -37,7 +38,7 @@
 #' NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 #'
 #' # Need at least one non-empty object
-#' if (any(!sf::st_is_empty(NotreDame))) {
+#' if (!all(sf::st_is_empty(NotreDame))) {
 #'   library(ggplot2)
 #'
 #'   ggplot(NotreDame) +
@@ -49,7 +50,7 @@
 #'   points_only = FALSE
 #' )
 #'
-#' if (any(!sf::st_is_empty(NotreDame_poly))) {
+#' if (!all(sf::st_is_empty(NotreDame_poly))) {
 #'   ggplot(NotreDame_poly) +
 #'     geom_sf()
 #' }
@@ -123,10 +124,7 @@ geo_address_lookup_sf <- function(
   sfobj <- unnest_sf(sfobj)
 
   # In this function we need to re-create tbl_query
-  tbl_query <- dplyr::tibble(
-    query = paste0(type, osm_ids),
-    osm_id = osm_ids
-  )
+  tbl_query <- dplyr::tibble(query = paste0(type, osm_ids), osm_id = osm_ids)
 
   # Keep only same results
   sf_clean <- dplyr::inner_join(sfobj, tbl_query, by = "osm_id")

@@ -2,17 +2,11 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- geo_lite_struct_sf(),
-    "Nothing to search for"
-  )
+  expect_message(obj <- geo_lite_struct_sf(), "Nothing to search for")
   expect_s3_class(obj, "sf")
   expect_true(sf::st_is_empty(obj))
 
-  expect_message(
-    obj <- geo_lite_struct_sf("xbzbzbzoa aiaia"),
-    "No results for"
-  )
+  expect_message(obj <- geo_lite_struct_sf("xbzbzbzoa aiaia"), "No results for")
   expect_s3_class(obj, "sf")
   expect_true(sf::st_is_empty(obj))
 
@@ -62,10 +56,7 @@ test_that("Checking query", {
   skip_if_offline()
 
   expect_message(
-    obj <- geo_lite_struct_sf(
-      city = c("Madrid", "Barcelona"),
-      limit = 51
-    ),
+    obj <- geo_lite_struct_sf(city = c("Madrid", "Barcelona"), limit = 51),
     "50 results"
   )
 

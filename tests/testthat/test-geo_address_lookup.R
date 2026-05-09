@@ -2,10 +2,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- geo_address_lookup(34633854, "N"),
-    "No results"
-  )
+  expect_message(obj <- geo_address_lookup(34633854, "N"), "No results")
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "N34633854")

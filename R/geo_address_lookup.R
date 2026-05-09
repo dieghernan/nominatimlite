@@ -9,6 +9,7 @@
 #'
 #' @family lookup
 #' @family geocoding
+#' @encoding UTF-8
 #'
 #' @param osm_ids Vector of OSM identifiers as **numeric**
 #'   (`c(00000, 11111, 22222)`).
@@ -108,10 +109,7 @@ geo_address_lookup <- function(
   result[long] <- as.double(result[[long]])
 
   # In this function we need to re-create tbl_query
-  tbl_query <- dplyr::tibble(
-    query = paste0(type, osm_ids),
-    osm_id = osm_ids
-  )
+  tbl_query <- dplyr::tibble(query = paste0(type, osm_ids), osm_id = osm_ids)
 
   # Keep only same results
   result_clean <- dplyr::inner_join(result, tbl_query, by = "osm_id")

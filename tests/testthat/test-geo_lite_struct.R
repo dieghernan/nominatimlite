@@ -2,10 +2,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- geo_lite_struct(),
-    "Nothing to search for"
-  )
+  expect_message(obj <- geo_lite_struct(), "Nothing to search for")
 
   expect_message(
     obj <- geo_lite_struct(amenity = "xbzbzbzoa aiaia"),
@@ -81,17 +78,11 @@ test_that("Checking query", {
   skip_if_offline()
 
   expect_message(
-    obj <- geo_lite_struct(
-      city = c("Madrid", "Barcelona"),
-      limit = 51
-    ),
+    obj <- geo_lite_struct(city = c("Madrid", "Barcelona"), limit = 51),
     "50 results"
   )
 
-  expect_identical(
-    rev(names(obj))[1:3],
-    rev(c("lat", "lon", "address"))
-  )
+  expect_identical(rev(names(obj))[1:3], rev(c("lat", "lon", "address")))
 
   obj <- geo_lite_struct(
     city = "Madrid",
@@ -122,10 +113,7 @@ test_that("Checking query", {
 
   expect_gt(ncol(obj), 10)
 
-  expect_gt(
-    nrow(geo_lite_struct("Catedral", country = "ES", limit = 10)),
-    4
-  )
+  expect_gt(nrow(geo_lite_struct("Catedral", country = "ES", limit = 10)), 4)
 
   expect_equal(
     nrow(geo_lite_struct("Madrid", custom_query = list(countrycode = "es"))),

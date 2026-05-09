@@ -6,6 +6,7 @@
 #'
 #' @family api_management
 #' @keywords internal
+#' @encoding UTF-8
 #'
 #' @return
 #' A logical `TRUE/FALSE`.
@@ -88,12 +89,10 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
     return(destfile)
   }
 
-  dwn_res <- suppressWarnings(
-    try(
-      download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
-      silent = TRUE
-    )
-  )
+  dwn_res <- suppressWarnings(try(
+    download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+    silent = TRUE
+  ))
 
   # Always sleep to make 1 call per sec with some extra buffer
   Sys.sleep(1.2)
@@ -106,12 +105,10 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
   }
   Sys.sleep(1.2)
 
-  dwn_res <- suppressWarnings(
-    try(
-      download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
-      silent = TRUE
-    )
-  )
+  dwn_res <- suppressWarnings(try(
+    download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+    silent = TRUE
+  ))
 
   # All OK
   if (!inherits(dwn_res, "try-error")) {

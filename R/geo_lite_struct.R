@@ -11,6 +11,7 @@
 #' performing a free-form search use [geo_lite()].
 #'
 #' @family geocoding
+#' @encoding UTF-8
 #'
 #' @param amenity Name and/or type of POI, see also [geo_amenity].
 #' @param street House number and street name.
@@ -163,10 +164,7 @@ geo_lite_struct <- function(
   result[long] <- as.double(result[[long]])
 
   # Add query
-  result_clean <- dplyr::bind_cols(
-    tbl_query[rep(1, nrow(result)), ],
-    result
-  )
+  result_clean <- dplyr::bind_cols(tbl_query[rep(1, nrow(result)), ], result)
 
   # Keep names
   result_out <- keep_names(

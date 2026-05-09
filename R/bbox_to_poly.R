@@ -4,6 +4,7 @@
 #' Create a [`sfc`][sf::st_sfc] object from the coordinates of a bounding box.
 #'
 #' @family spatial
+#' @encoding UTF-8
 #'
 #' @param bbox Numeric vector of 4 elements representing the coordinates of the
 #'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`.
@@ -41,7 +42,7 @@
 #' sfobj
 #'
 #' # Need at least one non-empty object
-#' if (any(!sf::st_is_empty(sfobj))) {
+#' if (!all(sf::st_is_empty(sfobj))) {
 #'   bbox <- sf::st_bbox(sfobj)
 #'
 #'   bbox
@@ -62,10 +63,7 @@ bbox_to_poly <- function(
   crs = 4326
 ) {
   if (!anyNA(bbox) && length(bbox) != 4) {
-    stop(
-      "bbox argument needs 4 elements. Provided value has ",
-      length(bbox)
-    )
+    stop("bbox argument needs 4 elements. Provided value has ", length(bbox))
   }
 
   # If no bbox check x and y values

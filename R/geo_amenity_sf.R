@@ -10,6 +10,7 @@
 #' @family amenity
 #' @family geocoding
 #' @family spatial
+#' @encoding UTF-8
 #'
 #' @inheritParams geo_amenity
 #' @inheritParams geo_lite_sf
@@ -46,7 +47,7 @@
 #'   limit = 50
 #' )
 #'
-#' if (any(!sf::st_is_empty(rest_pub))) {
+#' if (!all(sf::st_is_empty(rest_pub))) {
 #'   ggplot(mad) +
 #'     geom_sf() +
 #'     geom_sf(data = rest_pub, aes(color = query, shape = query))

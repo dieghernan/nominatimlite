@@ -9,6 +9,7 @@
 #' ([`sf`][sf::st_sf] format).
 #'
 #' @family reverse
+#' @encoding UTF-8
 #'
 #' @param lat Latitude values in numeric format. Must be in the range
 #'   \eqn{\left[-90, 90 \right]}.
@@ -210,12 +211,7 @@ reverse_geo_lite_single <- function(
 
   # Empty query
   if ("error" %in% names(result_init)) {
-    message(
-      "No results for query lon=",
-      long_cap,
-      ", lat=",
-      lat_cap
-    )
+    message("No results for query lon=", long_cap, ", lat=", lat_cap)
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }

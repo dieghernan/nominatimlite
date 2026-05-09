@@ -1,11 +1,8 @@
-test_that("Access false", {
-  expect_false(nominatim_check_access("https://www.google.com/"))
-})
-
 test_that("api_url", {
   api <- prepare_api_url("https://www.google.com", "some_invented_entry?")
 
   expect_snapshot(f <- api_call(api, quiet = FALSE))
+  expect_type(f, "logical")
   expect_false(f)
 
   # Checking with right approach

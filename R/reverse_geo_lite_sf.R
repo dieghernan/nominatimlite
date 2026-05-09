@@ -10,6 +10,7 @@
 #'
 #' @family reverse
 #' @family spatial
+#' @encoding UTF-8
 #'
 #' @inheritParams reverse_geo_lite
 #' @inheritParams geo_lite_sf
@@ -48,7 +49,7 @@
 #'
 #' dplyr::glimpse(col_sf)
 #'
-#' if (any(!sf::st_is_empty(col_sf))) {
+#' if (!all(sf::st_is_empty(col_sf))) {
 #'   ggplot(col_sf) +
 #'     geom_sf()
 #' }
@@ -64,7 +65,7 @@
 #'
 #' dplyr::glimpse(rome_sf)
 #'
-#' if (any(!sf::st_is_empty(rome_sf))) {
+#' if (!all(sf::st_is_empty(rome_sf))) {
 #'   ggplot(rome_sf) +
 #'     geom_sf()
 #' }
@@ -160,10 +161,7 @@ reverse_geo_lite_sf <- function(
     getrows <- dplyr::left_join(
       init_key,
       tmplt,
-      by = c(
-        "lat_key_int",
-        "long_key_int"
-      )
+      by = c("lat_key_int", "long_key_int")
     )
 
     # Select rows
@@ -228,12 +226,7 @@ reverse_geo_lite_sf_single <- function(
   # Empty query
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
   if ("error" %in% names(result_init)) {
-    message(
-      "No results for query lon=",
-      long_cap,
-      ", lat=",
-      lat_cap
-    )
+    message("No results for query lon=", long_cap, ", lat=", lat_cap)
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }

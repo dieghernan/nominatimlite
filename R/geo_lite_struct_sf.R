@@ -12,6 +12,7 @@
 #'
 #' @family geocoding
 #' @family spatial
+#' @encoding UTF-8
 #'
 #' @inheritParams geo_lite_struct
 #' @inheritParams geo_lite_sf
@@ -173,10 +174,7 @@ geo_lite_struct_sf <- function(
   sf_clean <- sfobj
 
   # Naming order
-  sf_clean <- dplyr::bind_cols(
-    sf_clean,
-    tbl_query[rep(1, nrow(sf_clean)), ]
-  )
+  sf_clean <- dplyr::bind_cols(sf_clean, tbl_query[rep(1, nrow(sf_clean)), ])
 
   # Keep names
   result_out <- keep_names(

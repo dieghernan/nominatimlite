@@ -9,6 +9,7 @@
 #'
 #' @family amenity
 #' @family geocoding
+#' @encoding UTF-8
 #'
 #' @param bbox The bounding box (viewbox) used to limit the search. It could be:
 #'   - A numeric vector of **longitude** (`x`) and **latitude** (`y`)
