@@ -40,7 +40,7 @@ test_that("Data format", {
       points_only = FALSE,
       limit = 100
     ),
-    "Nominatim provides 50 results as a maximum"
+    "Nominatim returns at most 50 results"
   )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))

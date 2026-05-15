@@ -1,11 +1,11 @@
 #' Geocode amenities in \CRANpkg{sf} format
 #'
 #' @description
-#' Searches [amenities][osm_amenities] as defined by OpenStreetMap
-#' in a restricted area defined by a bounding box in the form
-#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the spatial
-#' object associated with the query using \CRANpkg{sf}; see [geo_amenity()] for
-#' retrieving the data in [`tibble`][tibble::tibble] format.
+#' Searches [amenities][osm_amenities] as defined by OpenStreetMap in a
+#' restricted area defined by a bounding box in the form
+#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the spatial object associated
+#' with the query using \CRANpkg{sf}; see [geo_amenity()] for retrieving the
+#' data in [`tibble`][tibble::tibble] format.
 #'
 #' @family amenity
 #' @family geocoding
@@ -15,13 +15,13 @@
 #' @inheritParams geo_amenity
 #' @inheritParams geo_lite_sf
 #'
-#' @inheritSection geo_lite_sf About Geometry Types
+#' @inheritSection geo_lite_sf About geometry types
 #' @details
 #'
 #' Bounding boxes can be located using online tools such as
 #' <https://boundingbox.klokantech.com/>.
 #'
-#' For a full list of valid amenities see
+#' For a full list of valid amenities, see
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity> and [osm_amenities].
 #'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
@@ -68,36 +68,34 @@ geo_amenity_sf <- function(
 ) {
   if (limit > 50) {
     message(paste(
-      "Nominatim provides 50 results as a maximum. ",
-      "Your query may be incomplete"
+      "Nominatim returns at most 50 results. ",
+      "Your query may be incomplete."
     ))
     limit <- min(50, limit)
   }
 
-  # bbox types
+  # Normalize supported `bbox` types.
   if (any(inherits(bbox, "sf"), inherits(bbox, "sfc"))) {
     tolonlat <- sf::st_transform(bbox, 4326)
     bbox <- as.vector(sf::st_bbox(tolonlat))
   }
   bbox <- as.vector(bbox)
 
-  # Overwrite custom query
+  # Overwrite the custom query.
   custom_query <- as.list(custom_query)
   custom_query$viewbox <- bbox
   custom_query$bounded <- TRUE
 
-  # Dedupe for query
+  # Deduplicate queries.
   key <- unique(amenity)
 
-  # Set progress bar
+  # Set the progress bar.
   ntot <- length(key)
-  # Set progress bar if n > 1
+  # Show the progress bar only when there is more than one query.
   progressbar <- all(progressbar, ntot > 1)
   if (progressbar) {
     pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
   }
-  seql <- seq(1, ntot, 1)
-
   seql <- seq(1, ntot, 1)
 
   all_res <- lapply(seql, function(x) {
@@ -123,7 +121,7 @@ geo_amenity_sf <- function(
 
   all_res <- dplyr::bind_rows(all_res)
 
-  # Clean columns and names
+  # Clean columns and names.
   nm <- names(all_res)
   nm[nm == "q_amenity"] <- "query"
   names(all_res) <- nm

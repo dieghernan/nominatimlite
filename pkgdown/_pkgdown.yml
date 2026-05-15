@@ -17,9 +17,10 @@ repo:
   branch: main
 
 home:
-  title: nominatimlite | Connection with OSM Nominatim API
+  title: nominatimlite | Interface with the OSM Nominatim API
   description: |
-    Lite interface for getting data from OpenStreetMap Nominatim service.
+    Lightweight interface for getting data from the OpenStreetMap Nominatim
+    service.
 
 authors:
   Diego Hernangómez:
@@ -34,11 +35,11 @@ authors:
 reference:
 - title: Geocoding
   desc: >
-    These functions search an address or reference and return coordinates.
+    These functions search for an address or reference and return coordinates.
   contents: has_concept("geocoding")
 - title: Reverse geocoding
   desc: >
-    These functions search coordinates and returns information of places on that
+    These functions search coordinates and return place information for those
     coordinates.
   contents: has_concept("reverse")
 - title: Get spatial objects

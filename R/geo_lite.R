@@ -11,20 +11,20 @@
 #' @family geocoding
 #' @encoding UTF-8
 #'
-#' @param address `character` with single line address, e.g.
+#' @param address `character` with a single-line address, e.g.
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
 #'   (`c("Madrid", "Barcelona")`).
-#' @param lat	Latitude column name in the output data (default  `"lat"`).
-#' @param long Longitude column name in the output data (default  `"long"`).
-#' @param limit	Maximum number of results to return per input address. Note
+#' @param lat Latitude column name in the output data (default `"lat"`).
+#' @param long Longitude column name in the output data (default `"long"`).
+#' @param limit Maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
 #' @param full_results Returns all available data from the API service.
-#'    If `FALSE` (default) only latitude, longitude and address columns are
-#'    returned. See also `return_addresses`.
+#'   If `FALSE` (default), only latitude, longitude and address columns are
+#'   returned. See also `return_addresses`.
 #' @param return_addresses Return input addresses with results if `TRUE`.
-#' @param verbose If `TRUE` then detailed logs are output to the console.
+#' @param verbose If `TRUE`, detailed logs are output to the console.
 #' @param nominatim_server The URL of the Nominatim server to use.
-#'    Defaults to `"https://nominatim.openstreetmap.org/"`.
+#'   Defaults to `"https://nominatim.openstreetmap.org/"`.
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'   the progress of the function.
 #' @param custom_query A named list with API-specific parameters to be used
@@ -71,19 +71,19 @@ geo_lite <- function(
 ) {
   if (limit > 50) {
     message(paste(
-      "Nominatim provides 50 results as a maximum. ",
-      "Your query may be incomplete"
+      "Nominatim returns at most 50 results. ",
+      "Your query may be incomplete."
     ))
     limit <- min(50, limit)
   }
 
-  # Dedupe for query
+  # Deduplicate queries.
   init_key <- dplyr::tibble(query = address)
   key <- unique(address)
 
-  # Set progress bar
+  # Set the progress bar.
   ntot <- length(key)
-  # Set progress bar if n > 1
+  # Show the progress bar only when there is more than one query.
   progressbar <- all(progressbar, ntot > 1)
   if (progressbar) {
     pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
@@ -131,62 +131,61 @@ geo_lite_single <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 ) {
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   api <- prepare_api_url(nominatim_server, "search?q=")
 
-  # Replace spaces with +
+  # Replace spaces with `+`.
   address2 <- gsub(" ", "+", address, fixed = TRUE)
 
-  # Compose url
+  # Compose the URL.
   url <- paste0(api, address2, "&format=jsonv2&limit=", limit)
 
   if (full_results) {
     url <- paste0(url, "&addressdetails=1")
   }
 
-  # Add options
+  # Add options.
   url <- add_custom_query(custom_query, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- api_call(url, ".json", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
 
-  # Keep a tbl with the query
+  # Keep a tibble with the query.
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(json)) {
-    message(url, " not reachable.")
+    message(url, " is not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
-  # Rename lat and lon
+  # Rename latitude and longitude columns.
   nmes <- names(result)
   nmes[nmes == "lat"] <- lat
   nmes[nmes == "lon"] <- long
 
   names(result) <- nmes
 
-  # Empty query
+  # Handle empty queries.
   if (nrow(result) == 0) {
-    message("No results for query ", address)
+    message("No results for query ", address, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
-  # Coords as double
+  # Convert coordinates to double.
   result[lat] <- as.double(result[[lat]])
   result[long] <- as.double(result[[long]])
 
-  # Add query
+  # Add the query.
   result_clean <- result
   result_clean$query <- address
 
-  # Keep names
+  # Keep selected names.
   result_out <- keep_names(
     result_clean,
     return_addresses,
@@ -194,7 +193,7 @@ geo_lite_single <- function(
     colstokeep = c("query", lat, long)
   )
 
-  # As tibble
+  # Convert to tibble.
   result_out <- dplyr::as_tibble(result_out)
 
   result_out

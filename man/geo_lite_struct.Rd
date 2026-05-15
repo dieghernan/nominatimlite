@@ -24,7 +24,7 @@ geo_lite_struct(
 )
 }
 \arguments{
-\item{amenity}{Name and/or type of POI, see also \link{geo_amenity}.}
+\item{amenity}{Name and/or type of POI. See also \code{\link[=geo_amenity]{geo_amenity()}}.}
 
 \item{street}{House number and street name.}
 
@@ -36,22 +36,22 @@ geo_lite_struct(
 
 \item{country}{Country.}
 
-\item{postalcode}{Postal Code.}
+\item{postalcode}{Postal code.}
 
-\item{lat}{Latitude column name in the output data (default  \code{"lat"}).}
+\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
-\item{long}{Longitude column name in the output data (default  \code{"long"}).}
+\item{long}{Longitude column name in the output data (default \code{"long"}).}
 
 \item{limit}{Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only latitude, longitude and address columns are
+If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
 \item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -70,7 +70,7 @@ Geocodes addresses already split into components and returns the
 
 Corresponds to the \strong{structured query} search described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. For
-performing a free-form search use \code{\link[=geo_lite]{geo_lite()}}.
+performing a free-form search, use \code{\link[=geo_lite]{geo_lite()}}.
 }
 \details{
 The structured form of the search query allows you to look up an address that

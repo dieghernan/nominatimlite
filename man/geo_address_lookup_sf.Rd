@@ -17,20 +17,20 @@ geo_address_lookup_sf(
 )
 }
 \arguments{
-\item{osm_ids}{Vector of OSM identifiers as \strong{numeric}
+\item{osm_ids}{Vector of OSM identifiers as numeric values
 (\code{c(00000, 11111, 22222)}).}
 
 \item{type}{Character vector of the OSM object type associated with each
-\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}), or relation
-(\code{"R"}). If a single value is provided it will be recycled.}
+\code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
+relation (\code{"R"}). If a single value is provided it will be recycled.}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only address columns are returned. See also
+If \code{FALSE} (default), only address columns are returned. See also
 \code{return_addresses}.}
 
 \item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -40,14 +40,14 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
+provided by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
 }
 \value{
 A \code{\link[sf:st_sf]{sf}} object with the results.
 }
 \description{
-The lookup API queries the address and other details of one or
-multiple OSM objects (node, way, relation) and returns the spatial object
+The lookup API queries the address and other details of one or more
+OSM objects (node, way, relation) and returns the spatial object
 associated with the query using \CRANpkg{sf}; see
 \code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \code{\link[tibble:tibble]{tibble}}
 format.
@@ -56,7 +56,7 @@ format.
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
 parameters to be passed to \code{custom_query}.
 }
-\section{About Geometry Types}{
+\section{About geometry types}{
 
 
 The parameter \code{points_only} specifies whether the function results will be
@@ -68,12 +68,12 @@ will depend on the object being geocoded:
 \itemize{
 \item Administrative areas, major buildings and the like will be
 returned as polygons.
-\item Rivers, roads and their like as lines.
-\item Amenities may be points even in case of a \code{points_only = FALSE} call.
+\item Rivers, roads and similar features will be returned as lines.
+\item Amenities may be points even with \code{points_only = FALSE}.
 }
 
 The function is vectorized, allowing for multiple addresses to be geocoded;
-in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
 \examples{
@@ -101,7 +101,7 @@ if (!all(sf::st_is_empty(NotreDame_poly))) {
     geom_sf()
 }
 
-# It is vectorized
+# Vectorized input
 
 several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 several

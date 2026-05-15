@@ -3,8 +3,7 @@
 #' @description
 #' Geocodes addresses and returns the corresponding spatial object. The
 #' query output is provided in \CRANpkg{sf} format; see [geo_lite()] for
-#' retrieving the data in
-#' [`tibble`][tibble::tibble] format.
+#' retrieving the data in [`tibble`][tibble::tibble] format.
 #'
 #' Corresponds to the **free-form query** search described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
@@ -14,11 +13,11 @@
 #' @encoding UTF-8
 #'
 #' @param full_results Returns all available data from the API service.
-#'   If `FALSE` (default) only address columns are returned. See also
+#'   If `FALSE` (default), only address columns are returned. See also
 #'   `return_addresses`.
 #' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
 #'   points (`TRUE`, which is the default) or potentially other shapes as
-#'   provided by the Nominatim API (`FALSE`). See **About Geometry Types**.
+#'   provided by the Nominatim API (`FALSE`). See **About geometry types**.
 #'
 #' @inheritParams geo_lite
 #'
@@ -26,7 +25,7 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @section About Geometry Types:
+#' @section About geometry types:
 #'
 #' The parameter `points_only` specifies whether the function results will be
 #' points (all Nominatim results are guaranteed to have at least point
@@ -35,13 +34,13 @@
 #' Note that the type of geometry returned in case of `points_only = FALSE`
 #' will depend on the object being geocoded:
 #'
-#'   * Administrative areas, major buildings and the like will be
+#'   - Administrative areas, major buildings and the like will be
 #'     returned as polygons.
-#'   * Rivers, roads and their like as lines.
-#'   * Amenities may be points even in case of a `points_only = FALSE` call.
+#'   - Rivers, roads and similar features will be returned as lines.
+#'   - Amenities may be points even with `points_only = FALSE`.
 #'
 #' The function is vectorized, allowing for multiple addresses to be geocoded;
-#' in case of `points_only = FALSE`  multiple geometry types may be returned.
+#' with `points_only = FALSE`, multiple geometry types may be returned.
 #'
 #' @return
 #'
@@ -55,7 +54,7 @@
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Map - Points
+#' # Map: points
 #' library(ggplot2)
 #'
 #' string <- "Statue of Liberty, NY, USA"
@@ -98,19 +97,19 @@ geo_lite_sf <- function(
 ) {
   if (limit > 50) {
     message(paste(
-      "Nominatim provides 50 results as a maximum. ",
-      "Your query may be incomplete"
+      "Nominatim returns at most 50 results. ",
+      "Your query may be incomplete."
     ))
     limit <- min(50, limit)
   }
 
-  # Dedupe for query
+  # Deduplicate queries.
   init_key <- dplyr::tibble(query = address)
   key <- unique(address)
 
-  # Set progress bar
+  # Set the progress bar.
   ntot <- length(key)
-  # Set progress bar if n > 1
+  # Show the progress bar only when there is more than one query.
   progressbar <- all(progressbar, ntot > 1)
   if (progressbar) {
     pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
@@ -118,7 +117,7 @@ geo_lite_sf <- function(
 
   seql <- seq(1, ntot, 1)
 
-  # Loop
+  # Run one request per unique query.
   all_res <- lapply(seql, function(x) {
     ad <- key[x]
     if (progressbar) {
@@ -144,14 +143,14 @@ geo_lite_sf <- function(
 
   all_res <- sf_to_tbl(all_res)
 
-  # Handle dupes in sf
+  # Restore duplicate inputs in `sf` output.
   if (!identical(as.character(init_key$query), key)) {
-    # Join with indexes
+    # Join with indexes.
     template <- sf::st_drop_geometry(all_res)[, "query"]
     template$rindex <- seq_len(nrow(template))
     getrows <- dplyr::left_join(init_key, template, by = "query")
 
-    # Select rows
+    # Select rows.
     all_res <- all_res[as.double(getrows$rindex), ]
     all_res <- sf_to_tbl(all_res)
   }
@@ -172,14 +171,13 @@ geo_lite_sf_single <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   api <- prepare_api_url(nominatim_server, "search?q=")
 
-  # Replace spaces with +
+  # Replace spaces with `+`.
   address2 <- gsub(" ", "+", address, fixed = TRUE)
 
-  # Compose url
+  # Compose the URL.
   url <- paste0(api, address2, "&format=geojson&limit=", limit)
 
   if (full_results) {
@@ -189,43 +187,43 @@ geo_lite_sf_single <- function(
     url <- paste0(url, "&polygon_geojson=1")
   }
 
-  # Add options
+  # Add options.
   url <- add_custom_query(custom_query, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
 
-  # Keep a tbl with the query
+  # Keep a tibble with the query.
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(json)) {
-    message(url, " not reachable.")
+    message(url, " is not reachable.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Read
+  # Read the spatial object.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-  # Empty query
+  # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results for query ", address)
+    message("No results for query ", address, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Prepare output
+  # Prepare the output.
 
-  # Unnest address
+  # Unnest address fields.
   sfobj <- unnest_sf(sfobj)
 
-  # Prepare output
+  # Prepare the output.
   sf_clean <- sfobj
   sf_clean$query <- address
 
-  # Keep names
+  # Keep selected names.
   result_out <- keep_names(
     sf_clean,
     return_addresses,
@@ -233,7 +231,7 @@ geo_lite_sf_single <- function(
     colstokeep = "query"
   )
 
-  # Attach as tibble
+  # Restore tibble classes.
   result_out <- sf_to_tbl(result_out)
 
   result_out

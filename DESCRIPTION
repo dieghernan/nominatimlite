@@ -1,6 +1,6 @@
 Type: Package
 Package: nominatimlite
-Title: Interface with 'Nominatim' API Service
+Title: Interface with the 'Nominatim' API
 Version: 0.5.0
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
@@ -11,10 +11,11 @@ Authors@R: c(
     person("OpenStreetMap", role = "cph",
            comment = "For the data")
   )
-Description: Lite interface for getting data from 'OSM' service
-    'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
-    coordinates from addresses, find places near a set of coordinates and
-    return spatial objects on 'sf' format.
+Description: Lightweight interface for getting data from the
+    'OpenStreetMap' service 'Nominatim'
+    <https://nominatim.org/release-docs/latest/>. Extract coordinates from
+    addresses, find places near a set of coordinates and return spatial
+    objects in 'sf' format.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite

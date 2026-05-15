@@ -20,7 +20,7 @@ geo_amenity_sf(
 )
 }
 \arguments{
-\item{bbox}{The bounding box (viewbox) used to limit the search. It could be:
+\item{bbox}{The bounding box (viewbox) used to limit the search. It can be:
 \itemize{
 \item A numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y})
 \verb{(xmin, ymin, xmax, ymax)}. See \strong{Details}.
@@ -35,12 +35,12 @@ amenities to be geolocated (i.e. \code{c("pub", "restaurant")}). See
 that each query returns a maximum of 50 results.}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only latitude, longitude and address columns are
+If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
 \item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -52,34 +52,34 @@ the progress of the function.}
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 
 \item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behavior may return results located
-outside the provided bounding box.}
+the \code{bbox}. Note that Nominatim default behavior may return results
+located outside the provided bounding box.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
+provided by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
 }
 \value{
 A \code{\link[sf:st_sf]{sf}} object with the results.
 }
 \description{
-Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap
-in a restricted area defined by a bounding box in the form
-\verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the spatial
-object associated with the query using \CRANpkg{sf}; see \code{\link[=geo_amenity]{geo_amenity()}} for
-retrieving the data in \code{\link[tibble:tibble]{tibble}} format.
+Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap in a
+restricted area defined by a bounding box in the form
+\verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the spatial object associated
+with the query using \CRANpkg{sf}; see \code{\link[=geo_amenity]{geo_amenity()}} for retrieving the
+data in \code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
 Bounding boxes can be located using online tools such as
 \url{https://boundingbox.klokantech.com/}.
 
-For a full list of valid amenities see
+For a full list of valid amenities, see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity} and \link{osm_amenities}.
 
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
 }
-\section{About Geometry Types}{
+\section{About geometry types}{
 
 
 The parameter \code{points_only} specifies whether the function results will be
@@ -91,12 +91,12 @@ will depend on the object being geocoded:
 \itemize{
 \item Administrative areas, major buildings and the like will be
 returned as polygons.
-\item Rivers, roads and their like as lines.
-\item Amenities may be points even in case of a \code{points_only = FALSE} call.
+\item Rivers, roads and similar features will be returned as lines.
+\item Amenities may be points even with \code{points_only = FALSE}.
 }
 
 The function is vectorized, allowing for multiple addresses to be geocoded;
-in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
 \examples{

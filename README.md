@@ -26,10 +26,10 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 The goal of **nominatimlite** is to provide a light interface for
 geocoding addresses, based on the [Nominatim
-API](https://nominatim.org/release-docs/latest/). It also allows to load
-spatial objects using the **sf** package.
+API](https://nominatim.org/release-docs/latest/). It also allows you to
+load spatial objects using the **sf** package.
 
-Full site with examples and vignettes on
+The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>
 
 ## What is Nominatim?
@@ -52,7 +52,7 @@ There are other packages that are more complete and mature than
 **nominatimlite** and provide similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-  ([Cambon et al. 2021](#ref-R-tidygeocoder)): Allows to interface with
+  ([Cambon et al. 2021](#ref-R-tidygeocoder)): Provides an interface to
   Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse
   geocoding.
 - [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
@@ -60,8 +60,8 @@ There are other packages that are more complete and mature than
   OpenStreetMap, via the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
-  ([Hernangómez 2024](#ref-R-arcgeocoder)): Lite interface for geocoding
-  with the ArcGIS REST API Service.
+  ([Hernangómez 2024](#ref-R-arcgeocoder)): A lightweight interface for
+  geocoding with the ArcGIS REST API service.
 
 ## Installation
 
@@ -78,10 +78,10 @@ install.packages("nominatimlite")
 
 <div class="pkgdown-devel">
 
-Check the docs of the developing version in
+See the documentation for the development version at
 <https://dieghernan.github.io/nominatimlite/dev/>.
 
-You can install the developing version of **nominatimlite** with:
+You can install the development version of **nominatimlite** with:
 
 ``` r
 pak::pak("dieghernan/nominatimlite")
@@ -112,7 +112,7 @@ With **nominatimlite** you can extract spatial objects easily:
 ``` r
 library(nominatimlite)
 
-# Extract some points - Pizza Hut in California
+# Extract Pizza Hut locations in California.
 
 CA <- geo_lite_sf("California", points_only = FALSE)
 
@@ -136,19 +136,19 @@ You can also extract polygon and line objects (as provided by the
 Nominatim API) using the option `points_only = FALSE`:
 
 ``` r
-sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building - a polygon
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building, returned as a polygon
 
 ggplot(sol_poly) +
   geom_sf()
 ```
 
 <img src="man/figures/README-statue_liberty-1.png" style="width:100.0%"
-alt="Location of Statue of Liberty extracted with nominatimlite" />
+alt="Location of the Statue of Liberty extracted with nominatimlite" />
 
 ``` r
-dayton <- geo_lite_sf("Dayton, OH") # default - a point
-ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state - a polygon
-ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river - a line
+dayton <- geo_lite_sf("Dayton, OH") # default, returned as a point
+ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state, returned as a polygon
+ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river, returned as a line
 
 ggplot() +
   geom_sf(data = ohio_state) +
@@ -161,7 +161,7 @@ alt="Different features named Ohio extracted with nominatimlite" />
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from **tidygeocoder** package*
+*Note: examples adapted from the **tidygeocoder** package.*
 
 In this first example we will geocode a few addresses using the
 `geo_lite()` function:
@@ -169,7 +169,7 @@ In this first example we will geocode a few addresses using the
 ``` r
 library(tibble)
 
-# create a dataframe with addresses
+# Create a data frame with addresses.
 some_addresses <- tribble(
   ~name, ~addr,
   "White House", "1600 Pennsylvania Ave NW, Washington, DC",
@@ -177,7 +177,7 @@ some_addresses <- tribble(
   "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
-# geocode the addresses
+# Geocode the addresses.
 lat_longs <- geo_lite(
   some_addresses$addr,
   lat = "latitude",
@@ -205,8 +205,8 @@ To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `reverse_geo_lite()` function. The
 arguments are similar to the `geo_lite()` function, but now we specify
 the input data columns with the `lat` and `long` arguments. The dataset
-used here is from the geocoder query above. The single line address is
-returned in a column named by the `address`.
+used here is from the geocoder query above. The single-line address is
+returned in a column named with the `address` argument.
 
 ``` r
 reverse <- reverse_geo_lite(
@@ -228,16 +228,16 @@ reverse <- reverse_geo_lite(
 Table 2: Example: reverse geocoding addresses.
 </p>
 
-For more advanced users, see [Nominatim
-docs](https://nominatim.org/release-docs/latest/api/Search/) to check
-the parameters available.
+For more advanced users, see the [Nominatim
+documentation](https://nominatim.org/release-docs/latest/api/Search/)
+for the available parameters.
 
 ## Citation
 
 <p>
 
-Hernangómez D (2026). <em>nominatimlite: Interface with Nominatim API
-Service</em>.
+Hernangómez D (2026). <em>nominatimlite: Interface with the Nominatim
+API</em>.
 <a href="https://doi.org/10.32614/CRAN.package.nominatimlite">doi:10.32614/CRAN.package.nominatimlite</a>.
 <a href="https://dieghernan.github.io/nominatimlite/">https://dieghernan.github.io/nominatimlite/</a>.
 </p>
@@ -245,13 +245,13 @@ Service</em>.
 A BibTeX entry for LaTeX users is
 
     @Manual{R-nominatimlite,
-      title = {{nominatimlite}: Interface with {Nominatim} {API} Service},
+      title = {{nominatimlite}: Interface with the {Nominatim} {API}},
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
       version = {0.5.0},
       url = {https://dieghernan.github.io/nominatimlite/},
-      abstract = {Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on sf format.},
+      abstract = {Lightweight interface for getting data from the OpenStreetMap service Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects in sf format.},
     }
 
 ## References

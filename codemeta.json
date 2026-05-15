@@ -2,8 +2,8 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nominatimlite",
-  "description": "Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects on 'sf' format.",
-  "name": "nominatimlite: Interface with 'Nominatim' API Service",
+  "description": "Lightweight interface for getting data from the 'OpenStreetMap' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects in 'sf' format.",
+  "name": "nominatimlite: Interface with the 'Nominatim' API",
   "relatedLink": ["https://dieghernan.github.io/nominatimlite/", "https://CRAN.R-project.org/package=nominatimlite"],
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
@@ -233,7 +233,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "255.275KB",
+  "fileSize": "256.679KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -245,7 +245,7 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "{nominatimlite}: Interface with {Nominatim} {API} Service",
+      "name": "{nominatimlite}: Interface with the {Nominatim} {API}",
       "identifier": "10.32614/CRAN.package.nominatimlite",
       "url": "https://dieghernan.github.io/nominatimlite/",
       "@id": "https://doi.org/10.32614/CRAN.package.nominatimlite",

@@ -8,18 +8,18 @@
 #'
 #' Corresponds to the **structured query** search described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-#' performing a free-form search use [geo_lite()].
+#' performing a free-form search, use [geo_lite()].
 #'
 #' @family geocoding
 #' @encoding UTF-8
 #'
-#' @param amenity Name and/or type of POI, see also [geo_amenity].
+#' @param amenity Name and/or type of POI. See also [geo_amenity()].
 #' @param street House number and street name.
 #' @param city City.
 #' @param county County.
 #' @param state State.
 #' @param country Country.
-#' @param postalcode Postal Code.
+#' @param postalcode Postal code.
 #' @inheritParams geo_lite
 #'
 #' @details
@@ -70,13 +70,13 @@ geo_lite_struct <- function(
 ) {
   if (limit > 50) {
     message(paste(
-      "Nominatim provides 50 results as a maximum. ",
-      "Your query may be incomplete"
+      "Nominatim returns at most 50 results. ",
+      "Your query may be incomplete."
     ))
     limit <- min(50, limit)
   }
 
-  # Check params, not vectorized
+  # Check parameters; this function is not vectorized.
   pars <- list(
     amenity = amenity[1],
     street = street[1],
@@ -104,22 +104,21 @@ geo_lite_struct <- function(
     return(invisible(out))
   }
 
-  # Paste +
+  # Replace spaces with `+`.
   pars <- lapply(pars, function(x) {
     gsub(" ", "+", x, fixed = TRUE)
   })
 
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   api <- prepare_api_url(nominatim_server, "search?")
-  # Compose url
+  # Compose the URL.
   url <- paste0(api, "format=jsonv2&limit=", limit)
 
   if (full_results) {
     url <- paste0(url, "&addressdetails=1")
   }
 
-  # Clean and add options
+  # Clean and add options.
   newopts <- c(pars, custom_query)
 
   logis <- vapply(
@@ -133,40 +132,40 @@ geo_lite_struct <- function(
   newopts <- newopts[!logis]
   url <- add_custom_query(newopts, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- api_call(url, ".json", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
   if (isFALSE(json)) {
-    message(url, " not reachable.")
+    message(url, " is not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
-  # Rename lat and lon
+  # Rename latitude and longitude columns.
   nmes <- names(result)
   nmes[nmes == "lat"] <- lat
   nmes[nmes == "lon"] <- long
 
   names(result) <- nmes
 
-  # Empty query
+  # Handle empty queries.
   if (nrow(result) == 0) {
-    message("No results for query")
+    message("No results for query.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
-  # Coords as double
+  # Convert coordinates to double.
   result[lat] <- as.double(result[[lat]])
   result[long] <- as.double(result[[long]])
 
-  # Add query
+  # Add the query.
   result_clean <- dplyr::bind_cols(tbl_query[rep(1, nrow(result)), ], result)
 
-  # Keep names
+  # Keep selected names.
   result_out <- keep_names(
     result_clean,
     return_addresses,
@@ -174,7 +173,7 @@ geo_lite_struct <- function(
     colstokeep = c(names(tbl_query), lat, long)
   )
 
-  # As tibble
+  # Convert to tibble.
   result_out <- dplyr::as_tibble(result_out)
 
   result_out

@@ -19,8 +19,8 @@
 #' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @inheritSection reverse_geo_lite About Zooming
-#' @inheritSection geo_lite_sf About Geometry Types
+#' @inheritSection reverse_geo_lite About zooming
+#' @inheritSection geo_lite_sf About geometry types
 #'
 #' @return
 #'
@@ -36,11 +36,11 @@
 #' \donttest{
 #' library(ggplot2)
 #'
-#' # Coliseum coords
+#' # Colosseum coordinates
 #' col_lon <- 12.49309
 #' col_lat <- 41.89026
 #'
-#' # Coliseum as polygon
+#' # Colosseum as polygon
 #' col_sf <- reverse_geo_lite_sf(
 #'   lat = col_lat,
 #'   lon = col_lon,
@@ -54,7 +54,7 @@
 #'     geom_sf()
 #' }
 #'
-#' # City of Rome - same coords with zoom 10
+#' # City of Rome: same coordinates with zoom 10
 #'
 #' rome_sf <- reverse_geo_lite_sf(
 #'   lat = col_lat,
@@ -82,30 +82,30 @@ reverse_geo_lite_sf <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  # Check inputs
+  # Check inputs.
   if (!is.numeric(lat) || !is.numeric(long)) {
-    stop("lat and long must be numeric")
+    stop("lat and long must be numeric.")
   }
 
   if (length(lat) != length(long)) {
-    stop("lat and long should have the same number of elements")
+    stop("lat and long must have the same number of elements.")
   }
 
-  # Lat
+  # Restrict latitude to the valid range.
   lat_cap <- pmax(pmin(lat, 90), -90)
 
   if (!identical(lat_cap, lat)) {
-    message("latitudes have been restricted to [-90, 90]")
+    message("Latitudes have been restricted to [-90, 90].")
   }
 
-  # Lon
+  # Restrict longitude to the valid range.
   long_cap <- pmax(pmin(long, 180), -180)
 
   if (!all(long_cap == long)) {
-    message("longitudes have been restricted to [-180, 180]")
+    message("Longitudes have been restricted to [-180, 180].")
   }
 
-  # Dedupe for query using data frame
+  # Deduplicate queries using a data frame.
 
   init_key <- dplyr::tibble(
     lat_key_int = lat,
@@ -115,9 +115,9 @@ reverse_geo_lite_sf <- function(
   )
   key <- dplyr::distinct(init_key)
 
-  # Set progress bar
+  # Set the progress bar.
   ntot <- nrow(key)
-  # Set progress bar if n > 1
+  # Show the progress bar only when there is more than one query.
   progressbar <- all(progressbar, ntot > 1)
   if (progressbar) {
     pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
@@ -153,9 +153,9 @@ reverse_geo_lite_sf <- function(
 
   all_res <- dplyr::bind_rows(all_res)
 
-  # Handle dupes in sf
+  # Restore duplicate inputs in `sf` output.
   if (!identical(nrow(init_key), nrow(all_res))) {
-    # Join with indexes
+    # Join with indexes.
     tmplt <- sf::st_drop_geometry(all_res)[, c("lat_key_int", "long_key_int")]
     tmplt$rindex <- seq_len(nrow(tmplt))
     getrows <- dplyr::left_join(
@@ -164,11 +164,11 @@ reverse_geo_lite_sf <- function(
       by = c("lat_key_int", "long_key_int")
     )
 
-    # Select rows
+    # Select rows.
     all_res <- all_res[as.double(getrows$rindex), ]
   }
 
-  # Final cleanup
+  # Clean final output.
   kpnms <- setdiff(names(all_res), c("lat_key_int", "long_key_int"))
 
   all_res <- all_res[, kpnms]
@@ -192,11 +192,10 @@ reverse_geo_lite_sf_single <- function(
   custom_query = list(),
   points_only = FALSE
 ) {
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   api <- prepare_api_url(nominatim_server, "reverse?")
 
-  # Compose url
+  # Compose the URL.
   url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=geojson")
 
   if (!isTRUE(points_only)) {
@@ -208,42 +207,42 @@ reverse_geo_lite_sf_single <- function(
     url <- paste0(url, "&addressdetails=1")
   }
 
-  # Add options
+  # Add options.
   url <- add_custom_query(custom_query, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message(url, " not reachable.")
+    message(url, " is not reachable.")
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }
 
-  # Empty query
+  # Handle empty queries.
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
   if ("error" %in% names(result_init)) {
-    message("No results for query lon=", long_cap, ", lat=", lat_cap)
+    message("No results for query lon=", long_cap, ", lat=", lat_cap, ".")
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }
 
-  # Prepare output
+  # Prepare the output.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-  # Unnest address
+  # Unnest address fields.
   sfobj <- unnest_sf_reverse(sfobj)
 
-  # Add lat lon
+  # Add latitude and longitude.
   sf_clean <- dplyr::bind_cols(sfobj, tbl_query)
 
-  # Keep names
+  # Keep selected names.
   result_out <- keep_names_rev(sf_clean, address, return_coords, full_results)
 
-  # Attach as tibble
+  # Restore tibble classes.
   result_out <- sf_to_tbl(result_out)
 
   result_out

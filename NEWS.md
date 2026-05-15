@@ -2,13 +2,13 @@
 
 - Download management:
   - The API calls are cached in the `tempdir()` to avoid overloading. This cache
-    is meant to be persistent on the current session only.
-  - Now the waiting time between API calls is 1.2 seconds to avoid API overload.
+    is meant to persist for the current session only.
+  - The waiting time between API calls is now 1.2 seconds to avoid API overload.
 - Migrate vignettes to Quarto.
 
 # nominatimlite 0.4.3
 
-- Minor fixes on reverse functions.
+- Minor fixes in reverse functions.
 
 # nominatimlite 0.4.2
 
@@ -27,13 +27,13 @@
   - `geo_lite_struct()` and `geo_lite_struct_sf()` for performing structured
     queries.
   - Bring back `geo_amenity()` and `geo_amenity_sf()` as a wrapper of
-    `geo_lite_struct()` / `geo_lite_struct_sf()`, so now are more robust and
-    compatible with **sf** objects.
+    `geo_lite_struct()` and `geo_lite_struct_sf()`, so they are now more robust
+    and compatible with **sf** objects.
 
 - Improve unnesting of fields when requiring `extratags`, i.e.
   `custom_query = list(extratags = TRUE)`.
 
-- It is possible to use **nominatimlite** with local server thanks to the new
+- It is possible to use **nominatimlite** with a local server thanks to the new
   argument `nominatim_server` (#42 \@alexwhitedatamine).
 
 - Adapt endpoints to **Nominatim v4.4.0** `[Python-only]`.
@@ -41,11 +41,11 @@
 - `nominatimlite::osm_amenities` data set re-introduced, updated and with
   additional description fields.
 
-- API call for non-spatial function uses now JSONV2 format (`&format=jsonv2`).
+- API calls for non-spatial functions now use JSONV2 format (`&format=jsonv2`).
   This implies the following changes in the output:
 
   - `class` renamed to `category`.
-  - additional field `place_rank` with the search rank of the object.
+  - Additional field `place_rank` with the search rank of the object.
 
 - `custom_query` argument can use vectors and `logical`:
 
@@ -81,16 +81,16 @@
 - The data attributes of **sf** objects are now returned as tibbles, for easy
   printing in console.
 - Improvements in code and tests.
-- Now **sf** objects can handle correctly nested fields provided in the json
+- Now **sf** objects can correctly handle nested fields provided in the JSON
   response (for example, the nested address field provided by the API). This is
-  consistent also with the results provided by the non-spatial functions, were
+  also consistent with the results provided by the non-spatial functions, where
   unnesting was already handled correctly.
-- Improvements on the output of `reverse_geo_lite()` and `reverse_geo_lite_sf()`
+- Improvements to the output of `reverse_geo_lite()` and `reverse_geo_lite_sf()`
   when the API returns nested lists.
 
 # nominatimlite 0.1.6
 
-- Improve results when there is no response of the API.
+- Improve results when there is no response from the API.
 
 # nominatimlite 0.1.5
 
@@ -123,7 +123,7 @@
 - Adjust query rate limits to Nominatim policy.
 - New `strict` argument on `geo_amenity()` and `geo_amenity_sf()`.
 - Parameter `polygon` changed to `points_only` (#8) thanks to @jlacko.
-- Package now falls gracefully if url not reachable.
+- Package now fails gracefully if the URL is not reachable.
 
 # nominatimlite 0.0.1
 

@@ -24,15 +24,15 @@ reverse_geo_lite(
 \item{long}{Longitude values in numeric format. Must be in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{address}{Address column name in the output data (default  \code{"address"}).}
+\item{address}{Address column name in the output data (default \code{"address"}).}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only latitude, longitude and address columns are
+If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
 \item{return_coords}{Return input coordinates with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -41,7 +41,7 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 the progress of the function.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
+list (i.e. \code{list(zoom = 3)}). See \strong{Details}.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
@@ -57,11 +57,11 @@ and returns the \code{\link[tibble:tibble]{tibble}} associated with the query; s
 See \url{https://nominatim.org/release-docs/latest/api/Reverse/} for additional
 parameters to be passed to \code{custom_query}.
 }
-\section{About Zooming}{
+\section{About zooming}{
 
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
-equivalences on terms of zoom:\tabular{ll}{
+equivalences in terms of zoom:\tabular{ll}{
    \strong{zoom} \tab \strong{address_detail} \cr
    \code{3} \tab country \cr
    \code{5} \tab state \cr

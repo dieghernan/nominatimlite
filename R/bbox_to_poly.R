@@ -26,7 +26,7 @@
 #'
 #' @examplesIf nominatim_check_access()
 #'
-#' # bounding box of Germany
+#' # Bounding box of Germany
 #' bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 #'
 #' bbox_GER_sf <- bbox_to_poly(bbox_GER)
@@ -63,15 +63,19 @@ bbox_to_poly <- function(
   crs = 4326
 ) {
   if (!anyNA(bbox) && length(bbox) != 4) {
-    stop("bbox argument needs 4 elements. Provided value has ", length(bbox))
+    stop(
+      "The bbox argument needs 4 elements. The provided value has ",
+      length(bbox),
+      "."
+    )
   }
 
-  # If no bbox check x and y values
+  # If `bbox` is missing, check x and y values.
   if (anyNA(bbox)) {
     bbox <- as.double(c(xmin, ymin, xmax, ymax))
 
     if (anyNA(bbox)) {
-      stop("xmin, ymin, xmax, ymax can't be NA, if bbox is not provided")
+      stop("xmin, ymin, xmax, ymax cannot be NA if bbox is not provided.")
     }
   }
 

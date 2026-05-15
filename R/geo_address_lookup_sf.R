@@ -1,8 +1,8 @@
 #' Address lookup API in \CRANpkg{sf} format
 #'
 #' @description
-#' The lookup API queries the address and other details of one or
-#' multiple OSM objects (node, way, relation) and returns the spatial object
+#' The lookup API queries the address and other details of one or more
+#' OSM objects (node, way, relation) and returns the spatial object
 #' associated with the query using \CRANpkg{sf}; see
 #' [geo_address_lookup()] for retrieving the data in [`tibble`][tibble::tibble]
 #' format.
@@ -19,7 +19,7 @@
 #' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @inheritSection geo_lite_sf About Geometry Types
+#' @inheritSection geo_lite_sf About geometry types
 #'
 #' @return
 #'
@@ -55,7 +55,7 @@
 #'     geom_sf()
 #' }
 #'
-#' # It is vectorized
+#' # Vectorized input
 #'
 #' several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 #' several
@@ -70,17 +70,16 @@ geo_address_lookup_sf <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   api <- prepare_api_url(nominatim_server, "lookup?")
 
-  # Prepare nodes
+  # Prepare nodes.
   osm_ids <- as.numeric(osm_ids)
   osm_ids <- floor(abs(osm_ids))
   type <- as.character(type)
   nodes <- paste0(type, osm_ids, collapse = ",")
 
-  # Compose url
+  # Compose the URL.
   url <- paste0(api, "osm_ids=", nodes, "&format=geojson")
 
   if (!isTRUE(points_only)) {
@@ -90,51 +89,51 @@ geo_address_lookup_sf <- function(
     url <- paste0(url, "&addressdetails=1")
   }
 
-  # Add options
+  # Add options.
   url <- add_custom_query(custom_query, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- api_call(url, ".geojson", quiet = isFALSE(verbose))
 
   # Step 2: Read and parse results ----
 
-  # Keep a tbl with the query
+  # Keep a tibble with the query.
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
-  # If no response...
+  # Handle missing responses.
   if (isFALSE(json)) {
-    message(url, " not reachable.")
+    message(url, " is not reachable.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Read
+  # Read the spatial object.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-  # Empty query
+  # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results for query ", nodes)
+    message("No results for query ", nodes, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Prepare output
+  # Prepare the output.
 
-  # Unnest address
+  # Unnest address fields.
   sfobj <- unnest_sf(sfobj)
 
-  # In this function we need to re-create tbl_query
+  # Re-create `tbl_query` with normalized OSM IDs.
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids), osm_id = osm_ids)
 
-  # Keep only same results
+  # Keep only matched results.
   sf_clean <- dplyr::inner_join(sfobj, tbl_query, by = "osm_id")
 
-  # Warning in lost rows
+  # Warn about lost rows.
   if (all(nrow(sf_clean) < nrow(tbl_query), verbose)) {
-    warning("Some ids may not have produced results. Check the final object")
+    warning("Some IDs may not have produced results. Check the final object.")
   }
 
-  # Keep names
+  # Keep selected names.
   result_out <- keep_names(
     sf_clean,
     return_addresses,
@@ -142,7 +141,7 @@ geo_address_lookup_sf <- function(
     colstokeep = "query"
   )
 
-  # Attach as tibble
+  # Restore tibble classes.
   result_out <- sf_to_tbl(result_out)
 
   result_out

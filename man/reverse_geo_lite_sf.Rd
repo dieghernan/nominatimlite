@@ -25,15 +25,15 @@ reverse_geo_lite_sf(
 \item{long}{Longitude values in numeric format. Must be in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{address}{Address column name in the output data (default  \code{"address"}).}
+\item{address}{Address column name in the output data (default \code{"address"}).}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only latitude, longitude and address columns are
+If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
 \item{return_coords}{Return input coordinates with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -42,11 +42,11 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 the progress of the function.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \code{list(zoom = 3)}). See \strong{Details}.}
+list (i.e. \code{list(zoom = 3)}). See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
+provided by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
 }
 \value{
 A \code{\link[sf:st_sf]{sf}} object with the results.
@@ -62,11 +62,11 @@ see \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data 
 See \url{https://nominatim.org/release-docs/latest/api/Reverse/} for additional
 parameters to be passed to \code{custom_query}.
 }
-\section{About Zooming}{
+\section{About zooming}{
 
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
-equivalences on terms of zoom:\tabular{ll}{
+equivalences in terms of zoom:\tabular{ll}{
    \strong{zoom} \tab \strong{address_detail} \cr
    \code{3} \tab country \cr
    \code{5} \tab state \cr
@@ -79,7 +79,7 @@ equivalences on terms of zoom:\tabular{ll}{
 }
 }
 
-\section{About Geometry Types}{
+\section{About geometry types}{
 
 
 The parameter \code{points_only} specifies whether the function results will be
@@ -91,12 +91,12 @@ will depend on the object being geocoded:
 \itemize{
 \item Administrative areas, major buildings and the like will be
 returned as polygons.
-\item Rivers, roads and their like as lines.
-\item Amenities may be points even in case of a \code{points_only = FALSE} call.
+\item Rivers, roads and similar features will be returned as lines.
+\item Amenities may be points even with \code{points_only = FALSE}.
 }
 
 The function is vectorized, allowing for multiple addresses to be geocoded;
-in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
 \examples{
@@ -104,11 +104,11 @@ in case of \code{points_only = FALSE}  multiple geometry types may be returned.
 \donttest{
 library(ggplot2)
 
-# Coliseum coords
+# Colosseum coordinates
 col_lon <- 12.49309
 col_lat <- 41.89026
 
-# Coliseum as polygon
+# Colosseum as polygon
 col_sf <- reverse_geo_lite_sf(
   lat = col_lat,
   lon = col_lon,
@@ -122,7 +122,7 @@ if (!all(sf::st_is_empty(col_sf))) {
     geom_sf()
 }
 
-# City of Rome - same coords with zoom 10
+# City of Rome: same coordinates with zoom 10
 
 rome_sf <- reverse_geo_lite_sf(
   lat = col_lat,

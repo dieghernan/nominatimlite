@@ -21,7 +21,7 @@ geo_amenity(
 )
 }
 \arguments{
-\item{bbox}{The bounding box (viewbox) used to limit the search. It could be:
+\item{bbox}{The bounding box (viewbox) used to limit the search. It can be:
 \itemize{
 \item A numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y})
 \verb{(xmin, ymin, xmax, ymax)}. See \strong{Details}.
@@ -32,20 +32,20 @@ geo_amenity(
 amenities to be geolocated (i.e. \code{c("pub", "restaurant")}). See
 \link{osm_amenities}.}
 
-\item{lat}{Latitude column name in the output data (default  \code{"lat"}).}
+\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
-\item{long}{Longitude column name in the output data (default  \code{"long"}).}
+\item{long}{Longitude column name in the output data (default \code{"long"}).}
 
 \item{limit}{Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only latitude, longitude and address columns are
+If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
 \item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -57,24 +57,25 @@ the progress of the function.}
 (i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
 
 \item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behavior may return results located
-outside the provided bounding box.}
+the \code{bbox}. Note that Nominatim default behavior may return results
+located outside the provided bounding box.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
-Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap
-in a restricted area defined by a bounding box in the form
+Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap in a
+restricted area defined by a bounding box in the form
 \verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query; see \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
-for retrieving the data as a spatial object (\code{\link[sf:st_sf]{sf}} format).
+\code{\link[tibble:tibble]{tibble}} associated with the query; see
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
+(\code{\link[sf:st_sf]{sf}} format).
 }
 \details{
 Bounding boxes can be located using online tools such as
 \url{https://boundingbox.klokantech.com/}.
 
-For a full list of valid amenities see
+For a full list of valid amenities, see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity} and \link{osm_amenities}.
 
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional

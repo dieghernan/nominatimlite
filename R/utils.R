@@ -121,7 +121,7 @@ empty_tbl_rev <- function(x, address) {
 
   names(x) <- c(init_nm, address)
 
-  # Reorder
+  # Reorder columns.
   x <- x[, c(address, init_nm)]
 
   x
@@ -129,16 +129,16 @@ empty_tbl_rev <- function(x, address) {
 
 
 unnest_reverse <- function(x) {
-  # Unnest fields
+  # Unnest fields.
 
   lngths <- lengths(x)
 
-  # Remove null fields
+  # Remove null fields.
   x <- x[lngths > 0]
 
   endobj <- dplyr::as_tibble(x[lngths == 1])
 
-  # OSM address
+  # Add OSM address fields.
   if ("address" %in% names(x)) {
     ad <- dplyr::as_tibble(x$address)[1, ]
     names(ad) <- paste0("address.", names(ad))
@@ -159,7 +159,7 @@ unnest_reverse <- function(x) {
 
   endobj
 }
-# sf helpers----
+# sf helpers ----
 empty_sf <- function(x) {
   x <- dplyr::as_tibble(x)
   x$geometry <- "POINT EMPTY"
@@ -171,13 +171,12 @@ empty_sf <- function(x) {
 
 sf_to_tbl <- function(x) {
   if (all(!inherits(x, "tbl"), inherits(x, "sf"))) {
-    # If not, just add the same class
+    # Add the expected `sf` tibble classes when they are missing.
     template <- class(empty_sf(dplyr::tibble(a = 1)))
     class(x) <- template
   }
 
-  # Reorder columns - geom in geometry, it is sticky so even if
-  # not select would be kept in the last position
+  # Reorder columns; geometry is sticky and stays last even when not selected.
   x <- x[, setdiff(names(x), "geometry")]
 
   result_out <- sf::st_make_valid(x)
@@ -186,9 +185,9 @@ sf_to_tbl <- function(x) {
 }
 
 unnest_sf <- function(x) {
-  # Unnest
+  # Unnest nested fields.
   if ("address" %in% names(x)) {
-    # Need to unnest
+    # Unnest address fields.
     add <- as.character(x$address)
     newadd <- lapply(add, function(x) {
       df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
@@ -204,7 +203,7 @@ unnest_sf <- function(x) {
   }
 
   if ("extratags" %in% names(x)) {
-    # Need to unnest
+    # Unnest extra tag fields.
     xtra <- as.character(x$extratags)
 
     newxtra <- lapply(xtra, function(x) {
@@ -232,7 +231,7 @@ unnest_sf <- function(x) {
     return(x)
   }
 
-  # Need to unnest
+  # Unnest address fields.
   add <- as.character(x$address)
   newadd <- lapply(add, function(x) {
     df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
@@ -251,7 +250,7 @@ unnest_sf <- function(x) {
 
 
 unnest_sf_reverse <- function(x) {
-  # Remove null fields
+  # Remove null fields.
   nulls_or_nas <- vapply(
     x,
     function(a_col) {
@@ -262,9 +261,9 @@ unnest_sf_reverse <- function(x) {
 
   x <- x[!nulls_or_nas]
 
-  # Unnest
+  # Unnest nested fields.
   if ("address" %in% names(x)) {
-    # Need to unnest
+    # Unnest address fields.
     add <- as.character(x$address)
     newadd <- lapply(add, function(x) {
       df <- jsonlite::fromJSON(x, simplifyVector = TRUE)
@@ -280,7 +279,7 @@ unnest_sf_reverse <- function(x) {
   }
 
   if ("extratags" %in% names(x)) {
-    # Need to unnest
+    # Unnest extra tag fields.
     xtra <- as.character(x$extratags)
 
     newxtra <- lapply(xtra, function(x) {

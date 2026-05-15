@@ -15,10 +15,10 @@
 #'   \eqn{\left[-90, 90 \right]}.
 #' @param long Longitude values in numeric format. Must be in the range
 #'   \eqn{\left[-180, 180 \right]}.
-#' @param address Address column name in the output data (default  `"address"`).
-#' @param return_coords	Return input coordinates with results if `TRUE`.
+#' @param address Address column name in the output data (default `"address"`).
+#' @param return_coords Return input coordinates with results if `TRUE`.
 #' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (ie. `list(zoom = 3)`). See **Details**.
+#'   list (i.e. `list(zoom = 3)`). See **Details**.
 #'
 #' @inheritParams geo_lite
 #'
@@ -27,10 +27,10 @@
 #' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @section About Zooming:
+#' @section About zooming:
 #'
 #' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
-#' equivalences on terms of zoom:
+#' equivalences in terms of zoom:
 #'
 #' ```{r, echo=FALSE}
 #'
@@ -88,30 +88,30 @@ reverse_geo_lite <- function(
   progressbar = TRUE,
   custom_query = list()
 ) {
-  # Check inputs
+  # Check inputs.
   if (!is.numeric(lat) || !is.numeric(long)) {
-    stop("lat and long must be numeric")
+    stop("lat and long must be numeric.")
   }
 
   if (length(lat) != length(long)) {
-    stop("lat and long should have the same number of elements")
+    stop("lat and long must have the same number of elements.")
   }
 
-  # Lat
+  # Restrict latitude to the valid range.
   lat_cap <- pmax(pmin(lat, 90), -90)
 
   if (!identical(lat_cap, lat)) {
-    message("latitudes have been restricted to [-90, 90]")
+    message("Latitudes have been restricted to [-90, 90].")
   }
 
-  # Lon
+  # Restrict longitude to the valid range.
   long_cap <- pmax(pmin(long, 180), -180)
 
   if (!all(long_cap == long)) {
-    message("longitudes have been restricted to [-180, 180]")
+    message("Longitudes have been restricted to [-180, 180].")
   }
 
-  # Dedupe for query using data frame
+  # Deduplicate queries using a data frame.
 
   init_key <- dplyr::tibble(
     lat_key_int = lat,
@@ -121,9 +121,9 @@ reverse_geo_lite <- function(
   )
   key <- dplyr::distinct(init_key)
 
-  # Set progress bar
+  # Set the progress bar.
   ntot <- nrow(key)
-  # Set progress bar if n > 1
+  # Show the progress bar only when there is more than one query.
   progressbar <- all(progressbar, ntot > 1)
   if (progressbar) {
     pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
@@ -162,7 +162,7 @@ reverse_geo_lite <- function(
     by = c("lat_key_int", "long_key_int")
   )
 
-  # Final clean
+  # Clean final output.
   all_res <- all_res[, -c(1, 2)]
   all_res
 }
@@ -179,11 +179,10 @@ reverse_geo_lite_single <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 ) {
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   api <- prepare_api_url(nominatim_server, "reverse?")
 
-  # Compose url
+  # Compose the URL.
   url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=jsonv2")
 
   if (isFALSE(full_results)) {
@@ -192,37 +191,37 @@ reverse_geo_lite_single <- function(
     url <- paste0(url, "&addressdetails=1")
   }
 
-  # Add options
+  # Add options.
   url <- add_custom_query(custom_query, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- api_call(url, ".json", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message(url, " not reachable.")
+    message(url, " is not reachable.")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
 
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
 
-  # Empty query
+  # Handle empty queries.
   if ("error" %in% names(result_init)) {
-    message("No results for query lon=", long_cap, ", lat=", lat_cap)
+    message("No results for query lon=", long_cap, ", lat=", lat_cap, ".")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
 
-  # Unnnest fields
+  # Unnest fields.
   result <- unnest_reverse(result_init)
 
   result$lat <- as.double(result$lat)
   result$lon <- as.double(result$lon)
 
-  # Keep names
+  # Keep selected names.
   result_out <- keep_names_rev(
     result,
     address = address,

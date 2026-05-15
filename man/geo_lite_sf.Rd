@@ -18,7 +18,7 @@ geo_lite_sf(
 )
 }
 \arguments{
-\item{address}{\code{character} with single line address, e.g.
+\item{address}{\code{character} with a single-line address, e.g.
 (\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
 (\code{c("Madrid", "Barcelona")}).}
 
@@ -28,10 +28,10 @@ that each query returns a maximum of 50 results.}
 \item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only address columns are returned. See also
+If \code{FALSE} (default), only address columns are returned. See also
 \code{return_addresses}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
@@ -44,7 +44,7 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}). See \strong{About Geometry Types}.}
+provided by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
 }
 \value{
 A \code{\link[sf:st_sf]{sf}} object with the results.
@@ -52,8 +52,7 @@ A \code{\link[sf:st_sf]{sf}} object with the results.
 \description{
 Geocodes addresses and returns the corresponding spatial object. The
 query output is provided in \CRANpkg{sf} format; see \code{\link[=geo_lite]{geo_lite()}} for
-retrieving the data in
-\code{\link[tibble:tibble]{tibble}} format.
+retrieving the data in \code{\link[tibble:tibble]{tibble}} format.
 
 Corresponds to the \strong{free-form query} search described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}.
@@ -62,7 +61,7 @@ Corresponds to the \strong{free-form query} search described in the
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
 }
-\section{About Geometry Types}{
+\section{About geometry types}{
 
 
 The parameter \code{points_only} specifies whether the function results will be
@@ -74,18 +73,18 @@ will depend on the object being geocoded:
 \itemize{
 \item Administrative areas, major buildings and the like will be
 returned as polygons.
-\item Rivers, roads and their like as lines.
-\item Amenities may be points even in case of a \code{points_only = FALSE} call.
+\item Rivers, roads and similar features will be returned as lines.
+\item Amenities may be points even with \code{points_only = FALSE}.
 }
 
 The function is vectorized, allowing for multiple addresses to be geocoded;
-in case of \code{points_only = FALSE}  multiple geometry types may be returned.
+with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Map - Points
+# Map: points
 library(ggplot2)
 
 string <- "Statue of Liberty, NY, USA"

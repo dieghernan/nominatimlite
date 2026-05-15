@@ -7,6 +7,6 @@
 ## usethis namespace: end
 NULL
 
-# import stuffs
+# Import functions.
 #' @importFrom utils download.file txtProgressBar setTxtProgressBar
 NULL

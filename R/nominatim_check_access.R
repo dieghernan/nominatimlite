@@ -25,8 +25,7 @@
 nominatim_check_access <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/"
 ) {
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   url <- prepare_api_url(nominatim_server, "status?format=json")
 
   api_res <- api_call(url, ".json", TRUE)
@@ -52,18 +51,18 @@ skip_if_api_server <- function() {
   }
 
   if (requireNamespace("testthat", quietly = TRUE)) {
-    testthat::skip("Nominatim API not reachable")
+    testthat::skip("Nominatim API is not reachable.")
   }
   invisible()
   # nocov end
 }
 
 
-#' Helper function for centralize API queries
+#' Helper function for centralized API queries
 #'
 #' @description
-#' A wrapper of [utils::download.file()]. On warning on error it will
-#' retry the call. Requests are adjusted to the rate of 1 query per second.
+#' A wrapper of [utils::download.file()]. On warning or error, it retries the
+#' call. Requests are adjusted to the rate of one query per second.
 #'
 #' See [Nominatim Usage
 #' Policy](https://operations.osmfoundation.org/policies/nominatim/).
@@ -82,9 +81,9 @@ skip_if_api_server <- function() {
 api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
   ext <- match.arg(ext)
 
-  # Hash destfile
+  # Hash the destination file.
   destfile <- cached_filename(url, ext)
-  # If cached return the file
+  # Return cached files.
   if (file.exists(destfile)) {
     return(destfile)
   }
@@ -94,14 +93,14 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
     silent = TRUE
   ))
 
-  # Always sleep to make 1 call per sec with some extra buffer
+  # Always sleep to keep one call per second with an extra buffer.
   Sys.sleep(1.2)
 
   if (!inherits(dwn_res, "try-error")) {
     return(destfile)
   }
   if (isFALSE(quiet)) {
-    message("Retrying query")
+    message("Retrying query.")
   }
   Sys.sleep(1.2)
 
@@ -110,7 +109,7 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
     silent = TRUE
   ))
 
-  # All OK
+  # Return the file when all went well.
   if (!inherits(dwn_res, "try-error")) {
     return(destfile)
   }
@@ -122,7 +121,7 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
 
 #' Create a hashed filename for caching requests
 #'
-#' @param url The url to cache.
+#' @param url The URL to cache.
 #' @noRd
 cached_filename <- function(url, ext = ".json") {
   tmpf <- tempfile()
@@ -131,13 +130,13 @@ cached_filename <- function(url, ext = ".json") {
   hash <- unname(tools::md5sum(tmpf))
   unlink(tmpf, force = TRUE)
 
-  # Now create the corresponding tempdir and add the extension
+  # Create the corresponding temporary directory and add the extension.
   tmpnomin <- file.path(tempdir(), "nominatim_cache")
   if (!dir.exists(tmpnomin)) {
     dir.create(tmpnomin, showWarnings = FALSE, recursive = TRUE)
   }
 
-  # Final filename
+  # Return the final filename.
   fname <- file.path(tmpnomin, paste0(hash, ext))
   fname
 }

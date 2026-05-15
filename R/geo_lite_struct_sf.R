@@ -8,7 +8,7 @@
 #'
 #' Corresponds to the **structured query** search described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-#' performing a free-form search use [geo_lite_sf()].
+#' performing a free-form search, use [geo_lite_sf()].
 #'
 #' @family geocoding
 #' @family spatial
@@ -27,7 +27,7 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @inheritSection geo_lite_sf About Geometry Types
+#' @inheritSection geo_lite_sf About geometry types
 #'
 #' @return
 #'
@@ -79,13 +79,13 @@ geo_lite_struct_sf <- function(
 ) {
   if (limit > 50) {
     message(paste(
-      "Nominatim provides 50 results as a maximum. ",
-      "Your query may be incomplete"
+      "Nominatim returns at most 50 results. ",
+      "Your query may be incomplete."
     ))
     limit <- min(50, limit)
   }
 
-  # Check params, not vectorized
+  # Check parameters; this function is not vectorized.
   pars <- list(
     amenity = amenity[1],
     street = street[1],
@@ -113,15 +113,14 @@ geo_lite_struct_sf <- function(
     return(invisible(out))
   }
 
-  # Paste +
+  # Replace spaces with `+`.
   pars <- lapply(pars, function(x) {
     gsub(" ", "+", x, fixed = TRUE)
   })
 
-  # First build the api address. If the passed nominatim_server does not end
-  # with a trailing forward-slash, add one
+  # Build the API address and ensure that the server URL has one trailing slash.
   api <- prepare_api_url(nominatim_server, "search?")
-  # Compose url
+  # Compose the URL.
   url <- paste0(api, "format=geojson&limit=", limit)
 
   if (full_results) {
@@ -131,7 +130,7 @@ geo_lite_struct_sf <- function(
     url <- paste0(url, "&polygon_geojson=1")
   }
 
-  # Clean and add options
+  # Clean and add options.
   newopts <- c(pars, custom_query)
 
   logis <- vapply(
@@ -145,38 +144,38 @@ geo_lite_struct_sf <- function(
   newopts <- newopts[!logis]
   url <- add_custom_query(newopts, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
   # Step 2: Read and parse results ----
   if (isFALSE(json)) {
-    message(url, " not reachable.")
+    message(url, " is not reachable.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Read
+  # Read the spatial object.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-  # Empty query
+  # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results for query")
+    message("No results for query.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Prepare output
+  # Prepare the output.
 
-  # Unnest address
+  # Unnest address fields.
   sfobj <- unnest_sf(sfobj)
 
-  # Prepare output
+  # Prepare the output.
   sf_clean <- sfobj
 
-  # Naming order
+  # Preserve the naming order.
   sf_clean <- dplyr::bind_cols(sf_clean, tbl_query[rep(1, nrow(sf_clean)), ])
 
-  # Keep names
+  # Keep selected names.
   result_out <- keep_names(
     sf_clean,
     return_addresses,
@@ -184,7 +183,7 @@ geo_lite_struct_sf <- function(
     colstokeep = names(tbl_query)
   )
 
-  # Attach as tibble
+  # Restore tibble classes.
   result_out <- sf_to_tbl(result_out)
 
   result_out

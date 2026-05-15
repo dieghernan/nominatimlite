@@ -18,24 +18,24 @@ geo_address_lookup(
 )
 }
 \arguments{
-\item{osm_ids}{Vector of OSM identifiers as \strong{numeric}
+\item{osm_ids}{Vector of OSM identifiers as numeric values
 (\code{c(00000, 11111, 22222)}).}
 
 \item{type}{Character vector of the OSM object type associated with each
-\code{osm_ids}. Possible values are node (\code{"N"}), way (\code{"W"}), or relation
-(\code{"R"}). If a single value is provided it will be recycled.}
+\code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
+relation (\code{"R"}). If a single value is provided it will be recycled.}
 
-\item{lat}{Latitude column name in the output data (default  \code{"lat"}).}
+\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
-\item{long}{Longitude column name in the output data (default  \code{"long"}).}
+\item{long}{Longitude column name in the output data (default \code{"long"}).}
 
 \item{full_results}{Returns all available data from the API service.
-If \code{FALSE} (default) only latitude, longitude and address columns are
+If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
 \item{return_addresses}{Return input addresses with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
@@ -47,8 +47,8 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
-The lookup API queries the address and other details of one or
-multiple OSM objects (node, way, relation) and returns the
+The lookup API queries the address and other details of one or more
+OSM objects (node, way, relation) and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query; see
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as a spatial object
 (\code{\link[sf:st_sf]{sf}} format).

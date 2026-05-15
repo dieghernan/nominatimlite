@@ -7,15 +7,16 @@ cff-version: 1.2.0
 message: 'To cite package "nominatimlite" in publications use:'
 type: software
 license: MIT
-title: 'nominatimlite: Interface with ''Nominatim'' API Service'
+title: 'nominatimlite: Interface with the ''Nominatim'' API'
 version: 0.5.0
 doi: 10.32614/CRAN.package.nominatimlite
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.nominatimlite
-abstract: Lite interface for getting data from 'OSM' service 'Nominatim' <https://nominatim.org/release-docs/latest/>.
-  Extract coordinates from addresses, find places near a set of coordinates and return
-  spatial objects on 'sf' format.
+abstract: Lightweight interface for getting data from the 'OpenStreetMap' service
+  'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract coordinates from
+  addresses, find places near a set of coordinates and return spatial objects in 'sf'
+  format.
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -23,7 +24,7 @@ authors:
   orcid: https://orcid.org/0000-0001-8457-4658
 preferred-citation:
   type: manual
-  title: 'nominatimlite: Interface with Nominatim API Service'
+  title: 'nominatimlite: Interface with the Nominatim API'
   authors:
   - family-names: Hernangómez
     given-names: Diego
@@ -33,9 +34,10 @@ preferred-citation:
   year: '2026'
   version: 0.5.0
   url: https://dieghernan.github.io/nominatimlite/
-  abstract: Lite interface for getting data from OSM service Nominatim <https://nominatim.org/release-docs/latest/>.
-    Extract coordinates from addresses, find places near a set of coordinates and
-    return spatial objects on sf format.
+  abstract: Lightweight interface for getting data from the OpenStreetMap service
+    Nominatim <https://nominatim.org/release-docs/latest/>. Extract coordinates from
+    addresses, find places near a set of coordinates and return spatial objects in
+    sf format.
 repository: https://CRAN.R-project.org/package=nominatimlite
 repository-code: https://github.com/dieghernan/nominatimlite
 url: https://dieghernan.github.io/nominatimlite/
