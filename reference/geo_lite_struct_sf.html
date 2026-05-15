@@ -5,13 +5,13 @@ format; see geo_lite_struct() for retrieving the data in
 tibble format.
 Corresponds to the structured query search described in the
 API endpoint. For
-performing a free-form search use geo_lite_sf()."><meta property="og:description" content="Geocodes addresses already split into components and returns the
+performing a free-form search, use geo_lite_sf()."><meta property="og:description" content="Geocodes addresses already split into components and returns the
 corresponding spatial object. The query output is provided in sf
 format; see geo_lite_struct() for retrieving the data in
 tibble format.
 Corresponds to the structured query search described in the
 API endpoint. For
-performing a free-form search use geo_lite_sf()."><meta property="og:image" content="https://dieghernan.github.io/nominatimlite/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-5SLV8G8QD4"></script><script>
+performing a free-form search, use geo_lite_sf()."><meta property="og:image" content="https://dieghernan.github.io/nominatimlite/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-5SLV8G8QD4"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -70,7 +70,7 @@ format; see <code><a href="geo_lite_struct.html">geo_lite_struct()</a></code> fo
 <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> format.</p>
 <p>Corresponds to the <strong>structured query</strong> search described in the
 <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">API endpoint</a>. For
-performing a free-form search use <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code>.</p>
+performing a free-form search, use <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code>.</p>
     </div>
 
     <div class="section level2">
@@ -98,7 +98,7 @@ performing a free-form search use <code><a href="geo_lite_sf.html">geo_lite_sf()
 
 
 <dl><dt id="arg-amenity">amenity<a class="anchor" aria-label="anchor" href="#arg-amenity"></a></dt>
-<dd><p>Name and/or type of POI, see also <a href="geo_amenity.html">geo_amenity</a>.</p></dd>
+<dd><p>Name and/or type of POI. See also <code><a href="geo_amenity.html">geo_amenity()</a></code>.</p></dd>
 
 
 <dt id="arg-street">street<a class="anchor" aria-label="anchor" href="#arg-street"></a></dt>
@@ -122,7 +122,7 @@ performing a free-form search use <code><a href="geo_lite_sf.html">geo_lite_sf()
 
 
 <dt id="arg-postalcode">postalcode<a class="anchor" aria-label="anchor" href="#arg-postalcode"></a></dt>
-<dd><p>Postal Code.</p></dd>
+<dd><p>Postal code.</p></dd>
 
 
 <dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
@@ -132,7 +132,7 @@ that each query returns a maximum of 50 results.</p></dd>
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
 <dd><p>Returns all available data from the API service.
-If <code>FALSE</code> (default) only latitude, longitude and address columns are
+If <code>FALSE</code> (default), only latitude, longitude and address columns are
 returned. See also <code>return_addresses</code>.</p></dd>
 
 
@@ -141,7 +141,7 @@ returned. See also <code>return_addresses</code>.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>If <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>If <code>TRUE</code>, detailed logs are output to the console.</p></dd>
 
 
 <dt id="arg-nominatim-server">nominatim_server<a class="anchor" aria-label="anchor" href="#arg-nominatim-server"></a></dt>
@@ -157,7 +157,7 @@ Defaults to <code>"https://nominatim.openstreetmap.org/"</code>.</p></dd>
 <dt id="arg-points-only">points_only<a class="anchor" aria-label="anchor" href="#arg-points-only"></a></dt>
 <dd><p>Logical <code>TRUE/FALSE</code>. Whether to return only spatial
 points (<code>TRUE</code>, which is the default) or potentially other shapes as
-provided by the Nominatim API (<code>FALSE</code>). See <strong>About Geometry Types</strong>.</p></dd>
+provided by the Nominatim API (<code>FALSE</code>). See <strong>About geometry types</strong>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -174,7 +174,7 @@ are relevant for the address you want to geocode.</p>
 parameters to be passed to <code>custom_query</code>.</p>
     </div>
     <div class="section level2">
-    <h2 id="about-geometry-types">About Geometry Types<a class="anchor" aria-label="anchor" href="#about-geometry-types"></a></h2>
+    <h2 id="about-geometry-types">About geometry types<a class="anchor" aria-label="anchor" href="#about-geometry-types"></a></h2>
 
 
 
@@ -184,10 +184,10 @@ geometry) or possibly other spatial objects.</p>
 <p>Note that the type of geometry returned in case of <code>points_only = FALSE</code>
 will depend on the object being geocoded:</p><ul><li><p>Administrative areas, major buildings and the like will be
 returned as polygons.</p></li>
-<li><p>Rivers, roads and their like as lines.</p></li>
-<li><p>Amenities may be points even in case of a <code>points_only = FALSE</code> call.</p></li>
+<li><p>Rivers, roads and similar features will be returned as lines.</p></li>
+<li><p>Amenities may be points even with <code>points_only = FALSE</code>.</p></li>
 </ul><p>The function is vectorized, allowing for multiple addresses to be geocoded;
-in case of <code>points_only = FALSE</code>  multiple geometry types may be returned.</p>
+with <code>points_only = FALSE</code>, multiple geometry types may be returned.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

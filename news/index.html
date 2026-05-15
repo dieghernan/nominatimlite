@@ -53,14 +53,14 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="nominatimlite-050">nominatimlite 0.5.0<a class="anchor" aria-label="anchor" href="#nominatimlite-050"></a></h2><p class="text-muted">CRAN release: 2026-03-18</p>
 <ul><li>Download management:
-<ul><li>The API calls are cached in the <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to avoid overloading. This cache is meant to be persistent on the current session only.</li>
-<li>Now the waiting time between API calls is 1.2 seconds to avoid API overload.</li>
+<ul><li>The API calls are cached in the <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to avoid overloading. This cache is meant to persist for the current session only.</li>
+<li>The waiting time between API calls is now 1.2 seconds to avoid API overload.</li>
 </ul></li>
 <li>Migrate vignettes to Quarto.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.3" id="nominatimlite-043">nominatimlite 0.4.3<a class="anchor" aria-label="anchor" href="#nominatimlite-043"></a></h2><p class="text-muted">CRAN release: 2026-01-11</p>
-<ul><li>Minor fixes on reverse functions.</li>
+<ul><li>Minor fixes in reverse functions.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.2" id="nominatimlite-042">nominatimlite 0.4.2<a class="anchor" aria-label="anchor" href="#nominatimlite-042"></a></h2><p class="text-muted">CRAN release: 2024-12-17</p>
@@ -76,17 +76,17 @@
 <p>New functions:</p>
 <ul><li>
 <code><a href="../reference/geo_lite_struct.html">geo_lite_struct()</a></code> and <code><a href="../reference/geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code> for performing structured queries.</li>
-<li>Bring back <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code> as a wrapper of <code><a href="../reference/geo_lite_struct.html">geo_lite_struct()</a></code> / <code><a href="../reference/geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code>, so now are more robust and compatible with <strong>sf</strong> objects.</li>
+<li>Bring back <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code> as a wrapper of <code><a href="../reference/geo_lite_struct.html">geo_lite_struct()</a></code> and <code><a href="../reference/geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code>, so they are now more robust and compatible with <strong>sf</strong> objects.</li>
 </ul></li>
 <li><p>Improve unnesting of fields when requiring <code>extratags</code>, i.e. <code>custom_query = list(extratags = TRUE)</code>.</p></li>
-<li><p>It is possible to use <strong>nominatimlite</strong> with local server thanks to the new argument <code>nominatim_server</code> (<a href="https://github.com/dieghernan/nominatimlite/issues/42" class="external-link">#42</a> <a href="https://github.com/alexwhitedatamine" class="external-link">@alexwhitedatamine</a>).</p></li>
+<li><p>It is possible to use <strong>nominatimlite</strong> with a local server thanks to the new argument <code>nominatim_server</code> (<a href="https://github.com/dieghernan/nominatimlite/issues/42" class="external-link">#42</a> <a href="https://github.com/alexwhitedatamine" class="external-link">@alexwhitedatamine</a>).</p></li>
 <li><p>Adapt endpoints to <strong>Nominatim v4.4.0</strong> <code>[Python-only]</code>.</p></li>
 <li><p><code><a href="../reference/osm_amenities.html">nominatimlite::osm_amenities</a></code> data set re-introduced, updated and with additional description fields.</p></li>
 <li>
-<p>API call for non-spatial function uses now JSONV2 format (<code>&amp;format=jsonv2</code>). This implies the following changes in the output:</p>
+<p>API calls for non-spatial functions now use JSONV2 format (<code>&amp;format=jsonv2</code>). This implies the following changes in the output:</p>
 <ul><li>
 <code>class</code> renamed to <code>category</code>.</li>
-<li>additional field <code>place_rank</code> with the search rank of the object.</li>
+<li>Additional field <code>place_rank</code> with the search rank of the object.</li>
 </ul></li>
 <li>
 <p><code>custom_query</code> argument can use vectors and <code>logical</code>:</p>
@@ -119,12 +119,12 @@
 <strong>rlang</strong> and <strong>tibble</strong> are not explicitly required. Conversions to tibble happen with <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">dplyr::tibble()</a></code>.</li>
 <li>The data attributes of <strong>sf</strong> objects are now returned as tibbles, for easy printing in console.</li>
 <li>Improvements in code and tests.</li>
-<li>Now <strong>sf</strong> objects can handle correctly nested fields provided in the json response (for example, the nested address field provided by the API). This is consistent also with the results provided by the non-spatial functions, were unnesting was already handled correctly.</li>
-<li>Improvements on the output of <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> and <code><a href="../reference/reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code> when the API returns nested lists.</li>
+<li>Now <strong>sf</strong> objects can correctly handle nested fields provided in the JSON response (for example, the nested address field provided by the API). This is also consistent with the results provided by the non-spatial functions, where unnesting was already handled correctly.</li>
+<li>Improvements to the output of <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> and <code><a href="../reference/reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code> when the API returns nested lists.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.6" id="nominatimlite-016">nominatimlite 0.1.6<a class="anchor" aria-label="anchor" href="#nominatimlite-016"></a></h2><p class="text-muted">CRAN release: 2022-06-10</p>
-<ul><li>Improve results when there is no response of the API.</li>
+<ul><li>Improve results when there is no response from the API.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.5" id="nominatimlite-015">nominatimlite 0.1.5<a class="anchor" aria-label="anchor" href="#nominatimlite-015"></a></h2><p class="text-muted">CRAN release: 2021-11-26</p>
@@ -156,7 +156,7 @@
 <li>Adjust query rate limits to Nominatim policy.</li>
 <li>New <code>strict</code> argument on <code><a href="../reference/geo_amenity.html">geo_amenity()</a></code> and <code><a href="../reference/geo_amenity_sf.html">geo_amenity_sf()</a></code>.</li>
 <li>Parameter <code>polygon</code> changed to <code>points_only</code> (<a href="https://github.com/dieghernan/nominatimlite/issues/8" class="external-link">#8</a>) thanks to <a href="https://github.com/jlacko" class="external-link">@jlacko</a>.</li>
-<li>Package now falls gracefully if url not reachable.</li>
+<li>Package now fails gracefully if the URL is not reachable.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="nominatimlite-001">nominatimlite 0.0.1<a class="anchor" aria-label="anchor" href="#nominatimlite-001"></a></h2>

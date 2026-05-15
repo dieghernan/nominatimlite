@@ -51,7 +51,7 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 
 ``` r
 
-# bounding box of Germany
+# Bounding box of Germany
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)

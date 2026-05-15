@@ -7,9 +7,9 @@ CRAN release: 2026-03-18
 - Download management:
   - The API calls are cached in the
     [`tempdir()`](https://rdrr.io/r/base/tempfile.html) to avoid
-    overloading. This cache is meant to be persistent on the current
-    session only.
-  - Now the waiting time between API calls is 1.2 seconds to avoid API
+    overloading. This cache is meant to persist for the current session
+    only.
+  - The waiting time between API calls is now 1.2 seconds to avoid API
     overload.
 - Migrate vignettes to Quarto.
 
@@ -17,7 +17,7 @@ CRAN release: 2026-03-18
 
 CRAN release: 2026-01-11
 
-- Minor fixes on reverse functions.
+- Minor fixes in reverse functions.
 
 ## nominatimlite 0.4.2
 
@@ -53,14 +53,14 @@ CRAN release: 2024-05-27
     [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
     as a wrapper of
     [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
-    /
+    and
     [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md),
-    so now are more robust and compatible with **sf** objects.
+    so they are now more robust and compatible with **sf** objects.
 
 - Improve unnesting of fields when requiring `extratags`, i.e.
   `custom_query = list(extratags = TRUE)`.
 
-- It is possible to use **nominatimlite** with local server thanks to
+- It is possible to use **nominatimlite** with a local server thanks to
   the new argument `nominatim_server`
   ([\#42](https://github.com/dieghernan/nominatimlite/issues/42)
   [@alexwhitedatamine](https://github.com/alexwhitedatamine)).
@@ -71,11 +71,11 @@ CRAN release: 2024-05-27
   data set re-introduced, updated and with additional description
   fields.
 
-- API call for non-spatial function uses now JSONV2 format
+- API calls for non-spatial functions now use JSONV2 format
   (`&format=jsonv2`). This implies the following changes in the output:
 
   - `class` renamed to `category`.
-  - additional field `place_rank` with the search rank of the object.
+  - Additional field `place_rank` with the search rank of the object.
 
 - `custom_query` argument can use vectors and `logical`:
 
@@ -129,11 +129,11 @@ CRAN release: 2023-05-11
 - The data attributes of **sf** objects are now returned as tibbles, for
   easy printing in console.
 - Improvements in code and tests.
-- Now **sf** objects can handle correctly nested fields provided in the
-  json response (for example, the nested address field provided by the
-  API). This is consistent also with the results provided by the
-  non-spatial functions, were unnesting was already handled correctly.
-- Improvements on the output of
+- Now **sf** objects can correctly handle nested fields provided in the
+  JSON response (for example, the nested address field provided by the
+  API). This is also consistent with the results provided by the
+  non-spatial functions, where unnesting was already handled correctly.
+- Improvements to the output of
   [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
   and
   [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
@@ -143,7 +143,7 @@ CRAN release: 2023-05-11
 
 CRAN release: 2022-06-10
 
-- Improve results when there is no response of the API.
+- Improve results when there is no response from the API.
 
 ## nominatimlite 0.1.5
 
@@ -197,7 +197,7 @@ CRAN release: 2021-09-16
 - Parameter `polygon` changed to `points_only`
   ([\#8](https://github.com/dieghernan/nominatimlite/issues/8)) thanks
   to [@jlacko](https://github.com/jlacko).
-- Package now falls gracefully if url not reachable.
+- Package now fails gracefully if the URL is not reachable.
 
 ## nominatimlite 0.0.1
 

@@ -9,7 +9,7 @@ for retrieving the data in
 
 Corresponds to the **structured query** search described in the [API
 endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-performing a free-form search use
+performing a free-form search, use
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md).
 
 ## Usage
@@ -37,8 +37,8 @@ geo_lite_struct_sf(
 
 - amenity:
 
-  Name and/or type of POI, see also
-  [geo_amenity](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
+  Name and/or type of POI. See also
+  [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
 
 - street:
 
@@ -62,7 +62,7 @@ geo_lite_struct_sf(
 
 - postalcode:
 
-  Postal Code.
+  Postal code.
 
 - limit:
 
@@ -71,7 +71,7 @@ geo_lite_struct_sf(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
+  Returns all available data from the API service. If `FALSE` (default),
   only latitude, longitude and address columns are returned. See also
   `return_addresses`.
 
@@ -81,7 +81,7 @@ geo_lite_struct_sf(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
@@ -97,7 +97,7 @@ geo_lite_struct_sf(
 
   Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
   which is the default) or potentially other shapes as provided by the
-  Nominatim API (`FALSE`). See **About Geometry Types**.
+  Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
 
@@ -114,7 +114,7 @@ the ones that are relevant for the address you want to geocode.
 See <https://nominatim.org/release-docs/latest/api/Search/> for
 additional parameters to be passed to `custom_query`.
 
-## About Geometry Types
+## About geometry types
 
 The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
@@ -126,13 +126,13 @@ will depend on the object being geocoded:
 - Administrative areas, major buildings and the like will be returned as
   polygons.
 
-- Rivers, roads and their like as lines.
+- Rivers, roads and similar features will be returned as lines.
 
-- Amenities may be points even in case of a `points_only = FALSE` call.
+- Amenities may be points even with `points_only = FALSE`.
 
 The function is vectorized, allowing for multiple addresses to be
-geocoded; in case of `points_only = FALSE` multiple geometry types may
-be returned.
+geocoded; with `points_only = FALSE`, multiple geometry types may be
+returned.
 
 ## See also
 

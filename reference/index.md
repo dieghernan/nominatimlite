@@ -2,7 +2,8 @@
 
 ## Geocoding
 
-These functions search an address or reference and return coordinates.
+These functions search for an address or reference and return
+coordinates.
 
 - [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
   : Address lookup API
@@ -42,8 +43,8 @@ These functions search an address or reference and return coordinates.
 
 ## Reverse geocoding
 
-These functions search coordinates and returns information of places on
-that coordinates.
+These functions search coordinates and return place information for
+those coordinates.
 
 - [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
   : Reverse geocoding API
@@ -107,4 +108,4 @@ Helper datasets.
 
 - [`nominatimlite`](https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.md)
   [`nominatimlite-package`](https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.md)
-  : nominatimlite: Interface with 'Nominatim' API Service
+  : nominatimlite: Interface with the 'Nominatim' API

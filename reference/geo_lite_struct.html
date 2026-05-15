@@ -5,13 +5,13 @@ geo_lite_struct_sf() for retrieving the data as a spatial object
 (sf format).
 Corresponds to the structured query search described in the
 API endpoint. For
-performing a free-form search use geo_lite()."><meta property="og:description" content="Geocodes addresses already split into components and returns the
+performing a free-form search, use geo_lite()."><meta property="og:description" content="Geocodes addresses already split into components and returns the
 tibble associated with the query; see
 geo_lite_struct_sf() for retrieving the data as a spatial object
 (sf format).
 Corresponds to the structured query search described in the
 API endpoint. For
-performing a free-form search use geo_lite()."><meta property="og:image" content="https://dieghernan.github.io/nominatimlite/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-5SLV8G8QD4"></script><script>
+performing a free-form search, use geo_lite()."><meta property="og:image" content="https://dieghernan.github.io/nominatimlite/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-5SLV8G8QD4"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -70,7 +70,7 @@ performing a free-form search use geo_lite()."><meta property="og:image" content
 (<code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> format).</p>
 <p>Corresponds to the <strong>structured query</strong> search described in the
 <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">API endpoint</a>. For
-performing a free-form search use <code><a href="geo_lite.html">geo_lite()</a></code>.</p>
+performing a free-form search, use <code><a href="geo_lite.html">geo_lite()</a></code>.</p>
     </div>
 
     <div class="section level2">
@@ -99,7 +99,7 @@ performing a free-form search use <code><a href="geo_lite.html">geo_lite()</a></
 
 
 <dl><dt id="arg-amenity">amenity<a class="anchor" aria-label="anchor" href="#arg-amenity"></a></dt>
-<dd><p>Name and/or type of POI, see also <a href="geo_amenity.html">geo_amenity</a>.</p></dd>
+<dd><p>Name and/or type of POI. See also <code><a href="geo_amenity.html">geo_amenity()</a></code>.</p></dd>
 
 
 <dt id="arg-street">street<a class="anchor" aria-label="anchor" href="#arg-street"></a></dt>
@@ -123,15 +123,15 @@ performing a free-form search use <code><a href="geo_lite.html">geo_lite()</a></
 
 
 <dt id="arg-postalcode">postalcode<a class="anchor" aria-label="anchor" href="#arg-postalcode"></a></dt>
-<dd><p>Postal Code.</p></dd>
+<dd><p>Postal code.</p></dd>
 
 
 <dt id="arg-lat">lat<a class="anchor" aria-label="anchor" href="#arg-lat"></a></dt>
-<dd><p>Latitude column name in the output data (default  <code>"lat"</code>).</p></dd>
+<dd><p>Latitude column name in the output data (default <code>"lat"</code>).</p></dd>
 
 
 <dt id="arg-long">long<a class="anchor" aria-label="anchor" href="#arg-long"></a></dt>
-<dd><p>Longitude column name in the output data (default  <code>"long"</code>).</p></dd>
+<dd><p>Longitude column name in the output data (default <code>"long"</code>).</p></dd>
 
 
 <dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
@@ -141,7 +141,7 @@ that each query returns a maximum of 50 results.</p></dd>
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
 <dd><p>Returns all available data from the API service.
-If <code>FALSE</code> (default) only latitude, longitude and address columns are
+If <code>FALSE</code> (default), only latitude, longitude and address columns are
 returned. See also <code>return_addresses</code>.</p></dd>
 
 
@@ -150,7 +150,7 @@ returned. See also <code>return_addresses</code>.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>If <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>If <code>TRUE</code>, detailed logs are output to the console.</p></dd>
 
 
 <dt id="arg-nominatim-server">nominatim_server<a class="anchor" aria-label="anchor" href="#arg-nominatim-server"></a></dt>
@@ -210,7 +210,7 @@ parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lat                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.41539<span style="color: #949494;">, </span>40.96503<span style="color: #949494;">, </span>41.65206<span style="color: #949494;">, </span>40.95033<span style="color: #949494;">, </span>40.02…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lon                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.7069974<span style="color: #949494;">, </span>-5.6640558<span style="color: #949494;">, </span>-4.7285484<span style="color: #949494;">, </span>-4.123986…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 293280562<span style="color: #949494;">, </span>292768831<span style="color: #949494;">, </span>292162441<span style="color: #949494;">, </span>292826660<span style="color: #949494;">, </span>2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 292554531<span style="color: #949494;">, </span>294024152<span style="color: #949494;">, </span>292389199<span style="color: #949494;">, </span>292113204<span style="color: #949494;">, </span>2…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ licence                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Data © OpenStreetMap contributors, ODbL 1.0.…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_type                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "relation"<span style="color: #949494;">, </span>"way"<span style="color: #949494;">, </span>"way"<span style="color: #949494;">, </span>"relation"<span style="color: #949494;">, </span>"way"<span style="color: #949494;">, </span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 16657232<span style="color: #949494;">, </span>78180390<span style="color: #949494;">, </span>24432960<span style="color: #949494;">, </span>18226870<span style="color: #949494;">, </span>18456…</span>

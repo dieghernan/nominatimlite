@@ -43,7 +43,7 @@ reverse_geo_lite(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
+  Returns all available data from the API service. If `FALSE` (default),
   only latitude, longitude and address columns are returned. See also
   `return_addresses`.
 
@@ -53,7 +53,7 @@ reverse_geo_lite(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
@@ -67,7 +67,7 @@ reverse_geo_lite(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list (ie.
+  API-specific parameters to be used, passed as a named list (i.e.
   `list(zoom = 3)`). See **Details**.
 
 ## Value
@@ -80,10 +80,10 @@ the results found by the query.
 See <https://nominatim.org/release-docs/latest/api/Reverse/> for
 additional parameters to be passed to `custom_query`.
 
-## About Zooming
+## About zooming
 
 Use the option `custom_query = list(zoom = 3)` to adjust the output.
-Some equivalences on terms of zoom:
+Some equivalences in terms of zoom:
 
 |          |                         |
 |----------|-------------------------|
@@ -123,7 +123,7 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #>   address                                                             lat    lon
 #>   <chr>                                                             <dbl>  <dbl>
 #> 1 West 44th Street, Times Square, Manhattan Community Board 5, Man…  40.8 -74.0 
-#> 2 East End, Waterloo Place, Waterloo Place, Greenside, Broughton, …  56.0  -3.19
+#> 2 East End, Waterloo Place, Waterloo Place, Broughton, New Town/Br…  56.0  -3.19
 
 # With options: zoom to country level
 sev <- reverse_geo_lite(
@@ -139,7 +139,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52489199, 275211732
+#> $ place_id                                 <int> 51484763, 275211732
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

@@ -30,7 +30,7 @@ geo_lite_sf(
 
 - address:
 
-  `character` with single line address, e.g.
+  `character` with a single-line address, e.g.
   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
   (`c("Madrid", "Barcelona")`).
 
@@ -45,12 +45,12 @@ geo_lite_sf(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
+  Returns all available data from the API service. If `FALSE` (default),
   only address columns are returned. See also `return_addresses`.
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - progressbar:
 
@@ -71,7 +71,7 @@ geo_lite_sf(
 
   Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
   which is the default) or potentially other shapes as provided by the
-  Nominatim API (`FALSE`). See **About Geometry Types**.
+  Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
 
@@ -83,7 +83,7 @@ the results.
 See <https://nominatim.org/release-docs/latest/api/Search/> for
 additional parameters to be passed to `custom_query`.
 
-## About Geometry Types
+## About geometry types
 
 The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
@@ -95,13 +95,13 @@ will depend on the object being geocoded:
 - Administrative areas, major buildings and the like will be returned as
   polygons.
 
-- Rivers, roads and their like as lines.
+- Rivers, roads and similar features will be returned as lines.
 
-- Amenities may be points even in case of a `points_only = FALSE` call.
+- Amenities may be points even with `points_only = FALSE`.
 
 The function is vectorized, allowing for multiple addresses to be
-geocoded; in case of `points_only = FALSE` multiple geometry types may
-be returned.
+geocoded; with `points_only = FALSE`, multiple geometry types may be
+returned.
 
 ## See also
 
@@ -127,7 +127,7 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 
 ``` r
 # \donttest{
-# Map - Points
+# Map: points
 library(ggplot2)
 
 string <- "Statue of Liberty, NY, USA"

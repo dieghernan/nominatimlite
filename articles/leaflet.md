@@ -2,8 +2,8 @@
 
 ## Example
 
-The following example shows how it is possible to create a nice [leaflet
-map](https://rstudio.github.io/leaflet/) with data retrieved with
+The following example shows how to create an interactive [leaflet
+map](https://rstudio.github.io/leaflet/) using data retrieved with
 **nominatimlite**.
 
 This widget is browsable and filterable thanks to **crosstalk** and
@@ -11,7 +11,7 @@ This widget is browsable and filterable thanks to **crosstalk** and
 
 ``` r
 
-# Coffee Shops and Restaurants around the Eiffel Tower
+# Coffee shops and restaurants around the Eiffel Tower.
 
 library(nominatimlite)
 library(sf)
@@ -28,9 +28,9 @@ eiffel_tower <- geo_lite_sf(
   progressbar = FALSE
 )
 
-# Step 2: Coffee Shops and Restaurants nearby
+# Step 2: Coffee shops and restaurants nearby.
 
-# Create a buffer of 1km around the Eiffel Tower
+# Create a buffer of 1 km around the Eiffel Tower.
 buff <- eiffel_tower %>%
   st_transform(3857) %>%
   st_centroid() %>%
@@ -44,7 +44,7 @@ cf_bk <- geo_amenity_sf(
   custom_query = list(extratags = TRUE),
   progressbar = FALSE
 ) %>%
-  # Build address with street, house number, suburb and postcode
+  # Build addresses with street, house number, suburb and postcode.
   unite(
     "addr",
     address.road,
@@ -56,11 +56,11 @@ cf_bk <- geo_amenity_sf(
   )
 
 
-# Labels and icons
+# Labels and icons.
 labs <- paste0("<strong>", cf_bk$name, "</strong><br>", cf_bk$addr)
 
-# Assign icons
-# Base url for icons
+# Assign icons.
+# Base URL for icons.
 icon_url <- paste0(
   "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
   "main/vignettes/articles/"
@@ -79,7 +79,7 @@ leaf_icons <- icons(
 )
 
 
-# Step 3: Crosstalk object
+# Step 3: Crosstalk object.
 cf_bk_data <- cf_bk %>%
   select(
     Place = name,
@@ -91,8 +91,8 @@ cf_bk_data <- cf_bk %>%
   ) %>%
   SharedData$new(group = "Food")
 
-# Step 4: Leaflet map with crosstalk
-# Init leaflet map
+# Step 4: Leaflet map with crosstalk.
+# Initialize the leaflet map.
 lmend <- leaflet(
   data = cf_bk_data,
   elementId = "EiffelTower",
@@ -113,7 +113,7 @@ lmend <- leaflet(
     options = layersControlOptions(collapsed = FALSE)
   )
 
-# Step 5: Reactable for filtering
+# Step 5: Reactable for filtering.
 tb <- reactable(
   cf_bk_data,
   selection = "multiple",
@@ -163,7 +163,7 @@ tb <- reactable(
 
 ``` r
 
-# Last step: Display all
+# Last step: Display all widgets.
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
 )

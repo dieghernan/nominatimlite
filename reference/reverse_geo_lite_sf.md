@@ -43,7 +43,7 @@ reverse_geo_lite_sf(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
+  Returns all available data from the API service. If `FALSE` (default),
   only latitude, longitude and address columns are returned. See also
   `return_addresses`.
 
@@ -53,7 +53,7 @@ reverse_geo_lite_sf(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
@@ -67,14 +67,14 @@ reverse_geo_lite_sf(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list (ie.
+  API-specific parameters to be used, passed as a named list (i.e.
   `list(zoom = 3)`). See **Details**.
 
 - points_only:
 
   Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
   which is the default) or potentially other shapes as provided by the
-  Nominatim API (`FALSE`). See **About Geometry Types**.
+  Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
 
@@ -86,10 +86,10 @@ the results.
 See <https://nominatim.org/release-docs/latest/api/Reverse/> for
 additional parameters to be passed to `custom_query`.
 
-## About Zooming
+## About zooming
 
 Use the option `custom_query = list(zoom = 3)` to adjust the output.
-Some equivalences on terms of zoom:
+Some equivalences in terms of zoom:
 
 |          |                         |
 |----------|-------------------------|
@@ -103,7 +103,7 @@ Some equivalences on terms of zoom:
 | `17`     | major and minor streets |
 | `18`     | building                |
 
-## About Geometry Types
+## About geometry types
 
 The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
@@ -115,13 +115,13 @@ will depend on the object being geocoded:
 - Administrative areas, major buildings and the like will be returned as
   polygons.
 
-- Rivers, roads and their like as lines.
+- Rivers, roads and similar features will be returned as lines.
 
-- Amenities may be points even in case of a `points_only = FALSE` call.
+- Amenities may be points even with `points_only = FALSE`.
 
 The function is vectorized, allowing for multiple addresses to be
-geocoded; in case of `points_only = FALSE` multiple geometry types may
-be returned.
+geocoded; with `points_only = FALSE`, multiple geometry types may be
+returned.
 
 ## See also
 
@@ -143,11 +143,11 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 # \donttest{
 library(ggplot2)
 
-# Coliseum coords
+# Colosseum coordinates
 col_lon <- 12.49309
 col_lat <- 41.89026
 
-# Coliseum as polygon
+# Colosseum as polygon
 col_sf <- reverse_geo_lite_sf(
   lat = col_lat,
   lon = col_lon,
@@ -168,7 +168,7 @@ if (!all(sf::st_is_empty(col_sf))) {
 }
 
 
-# City of Rome - same coords with zoom 10
+# City of Rome: same coordinates with zoom 10
 
 rome_sf <- reverse_geo_lite_sf(
   lat = col_lat,

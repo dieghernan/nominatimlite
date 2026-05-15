@@ -1,7 +1,7 @@
 # Address lookup API
 
-The lookup API queries the address and other details of one or multiple
-OSM objects (node, way, relation) and returns the
+The lookup API queries the address and other details of one or more OSM
+objects (node, way, relation) and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
 associated with the query; see
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
@@ -28,12 +28,13 @@ geo_address_lookup(
 
 - osm_ids:
 
-  Vector of OSM identifiers as **numeric** (`c(00000, 11111, 22222)`).
+  Vector of OSM identifiers as numeric values
+  (`c(00000, 11111, 22222)`).
 
 - type:
 
-  Character vector of the OSM object type associated with each
-  `osm_ids`. Possible values are node (`"N"`), way (`"W"`), or relation
+  Character vector of the OSM object type associated with each `osm_ids`
+  value. Possible values are node (`"N"`), way (`"W"`) or relation
   (`"R"`). If a single value is provided it will be recycled.
 
 - lat:
@@ -46,7 +47,7 @@ geo_address_lookup(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
+  Returns all available data from the API service. If `FALSE` (default),
   only latitude, longitude and address columns are returned. See also
   `return_addresses`.
 
@@ -56,7 +57,7 @@ geo_address_lookup(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 

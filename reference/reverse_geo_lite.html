@@ -97,12 +97,12 @@ and returns the <code><a href="https://tibble.tidyverse.org/reference/tibble.htm
 
 
 <dt id="arg-address">address<a class="anchor" aria-label="anchor" href="#arg-address"></a></dt>
-<dd><p>Address column name in the output data (default  <code>"address"</code>).</p></dd>
+<dd><p>Address column name in the output data (default <code>"address"</code>).</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
 <dd><p>Returns all available data from the API service.
-If <code>FALSE</code> (default) only latitude, longitude and address columns are
+If <code>FALSE</code> (default), only latitude, longitude and address columns are
 returned. See also <code>return_addresses</code>.</p></dd>
 
 
@@ -111,7 +111,7 @@ returned. See also <code>return_addresses</code>.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>If <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>If <code>TRUE</code>, detailed logs are output to the console.</p></dd>
 
 
 <dt id="arg-nominatim-server">nominatim_server<a class="anchor" aria-label="anchor" href="#arg-nominatim-server"></a></dt>
@@ -126,7 +126,7 @@ the progress of the function.</p></dd>
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
 <dd><p>API-specific parameters to be used, passed as a named
-list (ie. <code>list(zoom = 3)</code>). See <strong>Details</strong>.</p></dd>
+list (i.e. <code>list(zoom = 3)</code>). See <strong>Details</strong>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -139,12 +139,12 @@ list (ie. <code>list(zoom = 3)</code>). See <strong>Details</strong>.</p></dd>
 parameters to be passed to <code>custom_query</code>.</p>
     </div>
     <div class="section level2">
-    <h2 id="about-zooming">About Zooming<a class="anchor" aria-label="anchor" href="#about-zooming"></a></h2>
+    <h2 id="about-zooming">About zooming<a class="anchor" aria-label="anchor" href="#about-zooming"></a></h2>
 
 
 
 <p>Use the option <code>custom_query = list(zoom = 3)</code> to adjust the output. Some
-equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoom</strong></td><td><strong>address_detail</strong></td></tr><tr><td><code>3</code></td><td>country</td></tr><tr><td><code>5</code></td><td>state</td></tr><tr><td><code>8</code></td><td>county</td></tr><tr><td><code>10</code></td><td>city</td></tr><tr><td><code>14</code></td><td>suburb</td></tr><tr><td><code>16</code></td><td>major streets</td></tr><tr><td><code>17</code></td><td>major and minor streets</td></tr><tr><td><code>18</code></td><td>building</td></tr></table></div>
+equivalences in terms of zoom:</p><table class="table table"><tr><td><strong>zoom</strong></td><td><strong>address_detail</strong></td></tr><tr><td><code>3</code></td><td>country</td></tr><tr><td><code>5</code></td><td>state</td></tr><tr><td><code>8</code></td><td>county</td></tr><tr><td><code>10</code></td><td>city</td></tr><tr><td><code>14</code></td><td>suburb</td></tr><tr><td><code>16</code></td><td>major streets</td></tr><tr><td><code>17</code></td><td>major and minor streets</td></tr><tr><td><code>18</code></td><td>building</td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code>, <code><a href="https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html" class="external-link">tidygeocoder::reverse_geo()</a></code>.</p>
@@ -169,7 +169,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span>   address                                                             lat    lon</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> West 44th Street, Times Square, Manhattan Community Board 5, Man…  40.8 -<span style="color: #BB0000;">74.0</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> East End, Waterloo Place, Waterloo Place, Greenside, Broughton, …  56.0  -<span style="color: #BB0000;">3.19</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> East End, Waterloo Place, Waterloo Place, Broughton, New Town/Br…  56.0  -<span style="color: #BB0000;">3.19</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># With options: zoom to country level</span></span></span>
 <span class="r-in"><span><span class="va">sev</span> <span class="op">&lt;-</span> <span class="fu">reverse_geo_lite</span><span class="op">(</span></span></span>
@@ -185,7 +185,7 @@ equivalences on terms of zoom:</p><table class="table table"><tr><td><strong>zoo
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "United States"<span style="color: #949494;">, </span>"United King…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lat                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 39.78373<span style="color: #949494;">, </span>54.70235</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lon                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -100.445882<span style="color: #949494;">, </span>-3.276575</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 52489199<span style="color: #949494;">, </span>275211732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 51484763<span style="color: #949494;">, </span>275211732</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ licence                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Data © OpenStreetMap contrib…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_type                                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "relation"<span style="color: #949494;">, </span>"relation"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_id                                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 148838<span style="color: #949494;">, </span>62149</span>

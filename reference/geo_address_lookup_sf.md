@@ -1,9 +1,8 @@
 # Address lookup API in [sf](https://CRAN.R-project.org/package=sf) format
 
-The lookup API queries the address and other details of one or multiple
-OSM objects (node, way, relation) and returns the spatial object
-associated with the query using
-[sf](https://CRAN.R-project.org/package=sf); see
+The lookup API queries the address and other details of one or more OSM
+objects (node, way, relation) and returns the spatial object associated
+with the query using [sf](https://CRAN.R-project.org/package=sf); see
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -27,17 +26,18 @@ geo_address_lookup_sf(
 
 - osm_ids:
 
-  Vector of OSM identifiers as **numeric** (`c(00000, 11111, 22222)`).
+  Vector of OSM identifiers as numeric values
+  (`c(00000, 11111, 22222)`).
 
 - type:
 
-  Character vector of the OSM object type associated with each
-  `osm_ids`. Possible values are node (`"N"`), way (`"W"`), or relation
+  Character vector of the OSM object type associated with each `osm_ids`
+  value. Possible values are node (`"N"`), way (`"W"`) or relation
   (`"R"`). If a single value is provided it will be recycled.
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
+  Returns all available data from the API service. If `FALSE` (default),
   only address columns are returned. See also `return_addresses`.
 
 - return_addresses:
@@ -46,7 +46,7 @@ geo_address_lookup_sf(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
@@ -62,7 +62,7 @@ geo_address_lookup_sf(
 
   Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
   which is the default) or potentially other shapes as provided by the
-  Nominatim API (`FALSE`). See **About Geometry Types**.
+  Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
 
@@ -74,7 +74,7 @@ the results.
 See <https://nominatim.org/release-docs/latest/api/Lookup/> for
 additional parameters to be passed to `custom_query`.
 
-## About Geometry Types
+## About geometry types
 
 The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
@@ -86,13 +86,13 @@ will depend on the object being geocoded:
 - Administrative areas, major buildings and the like will be returned as
   polygons.
 
-- Rivers, roads and their like as lines.
+- Rivers, roads and similar features will be returned as lines.
 
-- Amenities may be points even in case of a `points_only = FALSE` call.
+- Amenities may be points even with `points_only = FALSE`.
 
 The function is vectorized, allowing for multiple addresses to be
-geocoded; in case of `points_only = FALSE` multiple geometry types may
-be returned.
+geocoded; with `points_only = FALSE`, multiple geometry types may be
+returned.
 
 ## See also
 
@@ -145,7 +145,7 @@ if (!all(sf::st_is_empty(NotreDame_poly))) {
 }
 
 
-# It is vectorized
+# Vectorized input
 
 several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 several

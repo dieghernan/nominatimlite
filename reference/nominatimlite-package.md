@@ -1,9 +1,9 @@
-# nominatimlite: Interface with 'Nominatim' API Service
+# nominatimlite: Interface with the 'Nominatim' API
 
-Lite interface for getting data from 'OSM' service 'Nominatim'
-<https://nominatim.org/release-docs/latest/>. Extract coordinates from
-addresses, find places near a set of coordinates and return spatial
-objects on 'sf' format.
+Lightweight interface for getting data from the 'OpenStreetMap' service
+'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
+coordinates from addresses, find places near a set of coordinates and
+return spatial objects in 'sf' format.
 
 ## See also
 

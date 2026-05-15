@@ -9,7 +9,7 @@ for retrieving the data as a spatial object
 
 Corresponds to the **structured query** search described in the [API
 endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-performing a free-form search use
+performing a free-form search, use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md).
 
 ## Usage
@@ -38,8 +38,8 @@ geo_lite_struct(
 
 - amenity:
 
-  Name and/or type of POI, see also
-  [geo_amenity](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
+  Name and/or type of POI. See also
+  [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
 
 - street:
 
@@ -63,7 +63,7 @@ geo_lite_struct(
 
 - postalcode:
 
-  Postal Code.
+  Postal code.
 
 - lat:
 
@@ -80,7 +80,7 @@ geo_lite_struct(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
+  Returns all available data from the API service. If `FALSE` (default),
   only latitude, longitude and address columns are returned. See also
   `return_addresses`.
 
@@ -90,7 +90,7 @@ geo_lite_struct(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
@@ -153,7 +153,7 @@ dplyr::glimpse(pl_mayor)
 #> $ lat                      <dbl> 40.41539, 40.96503, 41.65206, 40.95033, 40.02…
 #> $ lon                      <dbl> -3.7069974, -5.6640558, -4.7285484, -4.123986…
 #> $ address                  <chr> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…
-#> $ place_id                 <int> 293280562, 292768831, 292162441, 292826660, 2…
+#> $ place_id                 <int> 292554531, 294024152, 292389199, 292113204, 2…
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "relation", "way", "way", "relation", "way", …
 #> $ osm_id                   <int> 16657232, 78180390, 24432960, 18226870, 18456…
