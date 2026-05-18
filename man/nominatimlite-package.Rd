@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Lightweight interface for getting data from the 'OpenStreetMap' service 'Nominatim' \url{https://nominatim.org/release-docs/latest/}. Extract coordinates from addresses, find places near a set of coordinates and return spatial objects in 'sf' format.
+Lightweight interface to the 'OpenStreetMap' service 'Nominatim' \url{https://nominatim.org/release-docs/latest/}. Geocode addresses, reverse geocode coordinates, find places near a set of coordinates and return spatial objects in 'sf' format.
 }
 \seealso{
 Useful links:

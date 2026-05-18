@@ -1,8 +1,8 @@
 # nominatimlite 0.5.0
 
 - Download management:
-  - The API calls are cached in the `tempdir()` to avoid overloading. This cache
-    is meant to persist for the current session only.
+  - API calls are cached in `tempdir()` to avoid overloading. This cache is
+    meant to persist for the current session only.
   - The waiting time between API calls is now 1.2 seconds to avoid API overload.
 - Migrate vignettes to Quarto.
 
@@ -17,7 +17,7 @@
 # nominatimlite 0.4.1
 
 - Fix input validation in `geo_address_lookup()` and `geo_address_lookup_sf()`
-  that crashes the function if the OSM ID is too long (#47 reported by
+  that crashed the function when the OSM ID was too long (#47 reported by
   \@lshydro).
 
 # nominatimlite 0.4.0
@@ -26,9 +26,9 @@
 
   - `geo_lite_struct()` and `geo_lite_struct_sf()` for performing structured
     queries.
-  - Bring back `geo_amenity()` and `geo_amenity_sf()` as a wrapper of
+  - Bring back `geo_amenity()` and `geo_amenity_sf()` as wrappers of
     `geo_lite_struct()` and `geo_lite_struct_sf()`, so they are now more robust
-    and compatible with **sf** objects.
+    and compatible with objects from the **sf** package.
 
 - Improve unnesting of fields when requiring `extratags`, i.e.
   `custom_query = list(extratags = TRUE)`.
@@ -38,7 +38,7 @@
 
 - Adapt endpoints to **Nominatim v4.4.0** `[Python-only]`.
 
-- `nominatimlite::osm_amenities` data set re-introduced, updated and with
+- `nominatimlite::osm_amenities` dataset reintroduced, updated and with
   additional description fields.
 
 - API calls for non-spatial functions now use JSONV2 format (`&format=jsonv2`).
@@ -47,7 +47,7 @@
   - `class` renamed to `category`.
   - Additional field `place_rank` with the search rank of the object.
 
-- `custom_query` argument can use vectors and `logical`:
+- The `custom_query` argument can use vectors and logical values:
 
   ``` r
   geo_lite(address = "New York",
@@ -67,7 +67,7 @@
 - `geo_amenity()` and `geo_amenity_sf()`, see
   [Nominatim/issues/1311](https://github.com/osm-search/Nominatim/issues/1311).
   Use `arcgeocoder::arc_geo_categories()` as an alternative.
-- `nominatimlite::osm_amenities` data set deleted.
+- `nominatimlite::osm_amenities` dataset deleted.
 
 # nominatimlite 0.2.1
 
@@ -78,8 +78,8 @@
 
 - **rlang** and **tibble** are not explicitly required. Conversions to tibble
   happen with `dplyr::tibble()`.
-- The data attributes of **sf** objects are now returned as tibbles, for easy
-  printing in console.
+- The data attributes of **sf** objects are now returned as tibbles for easier
+  printing in the console.
 - Improvements in code and tests.
 - Now **sf** objects can correctly handle nested fields provided in the JSON
   response (for example, the nested address field provided by the API). This is
@@ -110,7 +110,7 @@
 
 # nominatimlite 0.1.2
 
-- New internal: `nominatim_check_access()`.
+- New internal function: `nominatim_check_access()`.
 - Adapt tests to **testthat** `v3.1.0`.
 
 # nominatimlite 0.1.1
@@ -127,4 +127,4 @@
 
 # nominatimlite 0.0.1
 
-- Initial version of the package
+- Initial version of the package.

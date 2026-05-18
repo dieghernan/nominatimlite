@@ -20,15 +20,13 @@ geo_amenity_sf(
 )
 }
 \arguments{
-\item{bbox}{The bounding box (viewbox) used to limit the search. It can be:
-\itemize{
-\item A numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y})
-\verb{(xmin, ymin, xmax, ymax)}. See \strong{Details}.
-\item A \code{\link[sf:st_sf]{sf}} or \code{\link[sf:st_sfc]{sfc}} object.
-}}
+\item{bbox}{The bounding box (viewbox) used to limit the search. It can be
+a numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y}) in the form
+\verb{(xmin, ymin, xmax, ymax)}, or a \code{\link[sf:st_sf]{sf}} or
+\code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
 
 \item{amenity}{A \code{character} (or a vector of \code{character}s) with the
-amenities to be geolocated (i.e. \code{c("pub", "restaurant")}). See
+amenities to be geocoded (i.e. \code{c("pub", "restaurant")}). See
 \link{osm_amenities}.}
 
 \item{limit}{Maximum number of results to return per input address. Note
@@ -57,7 +55,7 @@ located outside the provided bounding box.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
-provided by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
+returned by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
 }
 \value{
 A \code{\link[sf:st_sf]{sf}} object with the results.
@@ -86,14 +84,10 @@ The parameter \code{points_only} specifies whether the function results will be
 points (all Nominatim results are guaranteed to have at least point
 geometry) or possibly other spatial objects.
 
-Note that the type of geometry returned in case of \code{points_only = FALSE}
-will depend on the object being geocoded:
-\itemize{
-\item Administrative areas, major buildings and the like will be
-returned as polygons.
-\item Rivers, roads and similar features will be returned as lines.
-\item Amenities may be points even with \code{points_only = FALSE}.
-}
+Note that when \code{points_only = FALSE}, the type of geometry returned depends
+on the object being geocoded. Administrative areas, major buildings and the
+like will be returned as polygons; rivers, roads and similar features will
+be returned as lines; and amenities may still be returned as points.
 
 The function is vectorized, allowing for multiple addresses to be geocoded;
 with \code{points_only = FALSE}, multiple geometry types may be returned.

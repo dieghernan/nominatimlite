@@ -35,7 +35,6 @@ is_named <- function(x) {
   TRUE
 }
 
-
 keep_names <- function(
   x,
   return_addresses,
@@ -126,7 +125,6 @@ empty_tbl_rev <- function(x, address) {
 
   x
 }
-
 
 unnest_reverse <- function(x) {
   # Unnest fields.
@@ -247,7 +245,6 @@ unnest_sf <- function(x) {
   x <- sf_to_tbl(x)
   x
 }
-
 
 unnest_sf_reverse <- function(x) {
   # Remove null fields.

@@ -11,11 +11,10 @@ Authors@R: c(
     person("OpenStreetMap", role = "cph",
            comment = "For the data")
   )
-Description: Lightweight interface for getting data from the
-    'OpenStreetMap' service 'Nominatim'
-    <https://nominatim.org/release-docs/latest/>. Extract coordinates from
-    addresses, find places near a set of coordinates and return spatial
-    objects in 'sf' format.
+Description: Lightweight interface to the 'OpenStreetMap' service
+    'Nominatim' <https://nominatim.org/release-docs/latest/>. Geocode
+    addresses, reverse geocode coordinates, find places near a set of
+    coordinates and return spatial objects in 'sf' format.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite

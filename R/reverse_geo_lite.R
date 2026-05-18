@@ -112,7 +112,6 @@ reverse_geo_lite <- function(
   }
 
   # Deduplicate queries using a data frame.
-
   init_key <- dplyr::tibble(
     lat_key_int = lat,
     long_key_int = long,

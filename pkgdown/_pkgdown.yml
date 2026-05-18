@@ -17,10 +17,10 @@ repo:
   branch: main
 
 home:
-  title: nominatimlite | Interface with the OSM Nominatim API
+  title: nominatimlite | Interface with the OpenStreetMap Nominatim API
   description: |
-    Lightweight interface for getting data from the OpenStreetMap Nominatim
-    service.
+    Lightweight interface to the OpenStreetMap Nominatim service for geocoding,
+    reverse geocoding and spatial objects.
 
 authors:
   Diego Hernangómez:
@@ -35,20 +35,19 @@ authors:
 reference:
 - title: Geocoding
   desc: >
-    These functions search for an address or reference and return coordinates.
+    Search for addresses or structured queries and return coordinates.
   contents: has_concept("geocoding")
 - title: Reverse geocoding
   desc: >
-    These functions search coordinates and return place information for those
-    coordinates.
+    Use coordinates to return addresses and place information.
   contents: has_concept("reverse")
-- title: Get spatial objects
+- title: Spatial objects
   desc: >
-    These functions return <a href="https://CRAN.R-project.org/package=sf"
+    Return results as <a href="https://CRAN.R-project.org/package=sf"
     class="external-link"><span class="pkg">sf</span></a> objects.
   contents: has_concept("spatial")
 - title: Datasets
-  desc: Helper datasets.
+  desc: Package datasets.
   contents:
   - has_concept("datasets")
 - title: About the package

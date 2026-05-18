@@ -57,12 +57,11 @@ skip_if_api_server <- function() {
   # nocov end
 }
 
-
 #' Helper function for centralized API queries
 #'
 #' @description
-#' A wrapper of [utils::download.file()]. On warning or error, it retries the
-#' call. Requests are adjusted to the rate of one query per second.
+#' A wrapper around [utils::download.file()]. On warning or error, it retries
+#' the call. Requests are adjusted to the rate of one query per second.
 #'
 #' See [Nominatim Usage
 #' Policy](https://operations.osmfoundation.org/policies/nominatim/).

@@ -64,7 +64,7 @@ bbox_to_poly <- function(
 ) {
   if (!anyNA(bbox) && length(bbox) != 4) {
     stop(
-      "The bbox argument needs 4 elements. The provided value has ",
+      "`bbox` must have 4 elements. The provided value has ",
       length(bbox),
       "."
     )
@@ -75,7 +75,10 @@ bbox_to_poly <- function(
     bbox <- as.double(c(xmin, ymin, xmax, ymax))
 
     if (anyNA(bbox)) {
-      stop("xmin, ymin, xmax, ymax cannot be NA if bbox is not provided.")
+      stop(
+        "`xmin`, `ymin`, `xmax` and `ymax` cannot be NA when `bbox` is ",
+        "not provided."
+      )
     }
   }
 

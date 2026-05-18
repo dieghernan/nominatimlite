@@ -26,8 +26,8 @@ knitr::opts_chunk$set(
 library(nominatimlite)
 ```
 
-The goal of **nominatimlite** is to provide a light interface for geocoding
-addresses, based on the [Nominatim
+The goal of **nominatimlite** is to provide a lightweight interface for
+geocoding addresses, based on the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It also allows you to load
 spatial objects using the **sf** package.
 
@@ -54,10 +54,10 @@ There are other packages that are more complete and mature than
 **nominatimlite** and provide similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-  [@R-tidygeocoder]: Provides an interface to Nominatim, Google, TomTom,
-  Mapbox, etc. for geocoding and reverse geocoding.
-- [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Great for
-  downloading spatial data from OpenStreetMap, via the [Overpass
+  [@R-tidygeocoder]: Provides an interface to geocoding services such as
+  Nominatim, Google, TomTom and Mapbox.
+- [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Useful for
+  downloading spatial data from OpenStreetMap with the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
   [@R-arcgeocoder]: A lightweight interface for geocoding with the ArcGIS REST
@@ -67,7 +67,7 @@ There are other packages that are more complete and mature than
 
 ### `sf` objects
 
-With **nominatimlite** you can extract spatial objects easily:
+With **nominatimlite** you can extract spatial objects:
 
 ```{r}
 #| label: pizzahut
@@ -97,8 +97,8 @@ ggplot(CA) +
 Locations of Pizza Hut in California
 :::
 
-You can also extract polygon and line objects (if available) using the option
-`points_only = FALSE`:
+You can also extract polygon and line objects when the Nominatim API provides
+them, using the option `points_only = FALSE`:
 
 ```{r}
 #| label: sol
@@ -121,7 +121,7 @@ Statue of Liberty
 
 *Note: examples adapted from the **tidygeocoder** package.*
 
-In this first example we will geocode a few addresses using the `geo_lite()`
+In this first example, we geocode a few addresses using the `geo_lite()`
 function:
 
 ```{r}
@@ -159,7 +159,7 @@ Example: geocoding addresses
 :::
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
-we can use the `reverse_geo_lite()` function. The arguments are similar to the
+use the `reverse_geo_lite()` function. The arguments are similar to the
 `geo_lite()` function, but now we specify the input data columns with the `lat`
 and `long` arguments. The dataset used here is from the geocoder query above.
 The single-line address is returned in a column named with the `address`

@@ -12,12 +12,12 @@
 #' @family geocoding
 #' @encoding UTF-8
 #'
-#' @param bbox The bounding box (viewbox) used to limit the search. It can be:
-#'   - A numeric vector of **longitude** (`x`) and **latitude** (`y`)
-#'     `(xmin, ymin, xmax, ymax)`. See **Details**.
-#'   - A [`sf`][sf::st_sf] or [`sfc`][sf::st_sfc] object.
+#' @param bbox The bounding box (viewbox) used to limit the search. It can be
+#'   a numeric vector of **longitude** (`x`) and **latitude** (`y`) in the form
+#'   `(xmin, ymin, xmax, ymax)`, or a [`sf`][sf::st_sf] or
+#'   [`sfc`][sf::st_sfc] object. See **Details**.
 #' @param amenity A `character` (or a vector of `character`s) with the
-#'   amenities to be geolocated (i.e. `c("pub", "restaurant")`). See
+#'   amenities to be geocoded (i.e. `c("pub", "restaurant")`). See
 #'   [nominatimlite::osm_amenities].
 #' @param strict Logical `TRUE/FALSE`. Force the results to be included inside
 #'   the `bbox`. Note that Nominatim default behavior may return results

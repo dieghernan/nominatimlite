@@ -106,7 +106,6 @@ reverse_geo_lite_sf <- function(
   }
 
   # Deduplicate queries using a data frame.
-
   init_key <- dplyr::tibble(
     lat_key_int = lat,
     long_key_int = long,
@@ -177,8 +176,6 @@ reverse_geo_lite_sf <- function(
 
   all_res
 }
-
-
 #' @noRd
 #' @inheritParams reverse_geo_lite_sf
 reverse_geo_lite_sf_single <- function(
