@@ -55,7 +55,6 @@ cf_bk <- geo_amenity_sf(
     na.rm = TRUE
   )
 
-
 # Labels and icons.
 labs <- paste0("<strong>", cf_bk$name, "</strong><br>", cf_bk$addr)
 
@@ -77,7 +76,6 @@ leaf_icons <- icons(
   iconAnchorX = 10,
   iconAnchorY = 10
 )
-
 
 # Step 3: Crosstalk object.
 cf_bk_data <- cf_bk %>%
@@ -136,14 +134,14 @@ tb <- reactable(
       }
     ),
     URL = colDef(cell = function(value) {
-      # Render as a link
+      # Render as a link.
       if (any(is.null(value), is.na(value))) {
         return("")
       }
       htmltools::a(href = value, target = "_blank", as.character(value))
     }),
     Phone = colDef(cell = function(value) {
-      # Render as a link
+      # Render as a link.
       if (any(is.null(value), is.na(value))) {
         return("")
       }

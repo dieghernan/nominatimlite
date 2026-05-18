@@ -5,7 +5,7 @@
 CRAN release: 2026-03-18
 
 - Download management:
-  - The API calls are cached in the
+  - API calls are cached in
     [`tempdir()`](https://rdrr.io/r/base/tempfile.html) to avoid
     overloading. This cache is meant to persist for the current session
     only.
@@ -33,7 +33,7 @@ CRAN release: 2024-07-19
   [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
   and
   [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
-  that crashes the function if the OSM ID is too long
+  that crashed the function when the OSM ID was too long
   ([\#47](https://github.com/dieghernan/nominatimlite/issues/47)
   reported by [@lshydro](https://github.com/lshydro)).
 
@@ -51,11 +51,12 @@ CRAN release: 2024-05-27
     [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
     and
     [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
-    as a wrapper of
+    as wrappers of
     [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
     and
     [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md),
-    so they are now more robust and compatible with **sf** objects.
+    so they are now more robust and compatible with objects from the
+    **sf** package.
 
 - Improve unnesting of fields when requiring `extratags`, i.e.
   `custom_query = list(extratags = TRUE)`.
@@ -68,8 +69,7 @@ CRAN release: 2024-05-27
 - Adapt endpoints to **Nominatim v4.4.0** `[Python-only]`.
 
 - [`nominatimlite::osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-  data set re-introduced, updated and with additional description
-  fields.
+  dataset reintroduced, updated and with additional description fields.
 
 - API calls for non-spatial functions now use JSONV2 format
   (`&format=jsonv2`). This implies the following changes in the output:
@@ -77,7 +77,7 @@ CRAN release: 2024-05-27
   - `class` renamed to `category`.
   - Additional field `place_rank` with the search rank of the object.
 
-- `custom_query` argument can use vectors and `logical`:
+- The `custom_query` argument can use vectors and logical values:
 
   ``` r
 
@@ -110,7 +110,7 @@ CRAN release: 2024-03-01
   [`arcgeocoder::arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.html)
   as an alternative.
 - [`nominatimlite::osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-  data set deleted.
+  dataset deleted.
 
 ## nominatimlite 0.2.1
 
@@ -126,8 +126,8 @@ CRAN release: 2023-05-11
 - **rlang** and **tibble** are not explicitly required. Conversions to
   tibble happen with
   [`dplyr::tibble()`](https://tibble.tidyverse.org/reference/tibble.html).
-- The data attributes of **sf** objects are now returned as tibbles, for
-  easy printing in console.
+- The data attributes of **sf** objects are now returned as tibbles for
+  easier printing in the console.
 - Improvements in code and tests.
 - Now **sf** objects can correctly handle nested fields provided in the
   JSON response (for example, the nested address field provided by the
@@ -174,7 +174,7 @@ CRAN release: 2021-10-21
 
 CRAN release: 2021-10-07
 
-- New internal:
+- New internal function:
   [`nominatim_check_access()`](https://dieghernan.github.io/nominatimlite/reference/nominatim_check_access.md).
 - Adapt tests to **testthat** `v3.1.0`.
 
@@ -201,4 +201,4 @@ CRAN release: 2021-09-16
 
 ## nominatimlite 0.0.1
 
-- Initial version of the package
+- Initial version of the package.

@@ -1,6 +1,6 @@
 # Get started with nominatimlite
 
-The goal of **nominatimlite** is to provide a light interface for
+The goal of **nominatimlite** is to provide a lightweight interface for
 geocoding addresses, based on the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It also allows you to
 load spatial objects using the **sf** package.
@@ -29,11 +29,10 @@ There are other packages that are more complete and mature than
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)): Provides an interface to
-  Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse
-  geocoding.
+  geocoding services such as Nominatim, Google, TomTom and Mapbox.
 - [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
-  2017](#ref-R-osmdata)): Great for downloading spatial data from
-  OpenStreetMap, via the [Overpass
+  2017](#ref-R-osmdata)): Useful for downloading spatial data from
+  OpenStreetMap with the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
   ([Hernangómez 2024](#ref-R-arcgeocoder)): A lightweight interface for
@@ -43,7 +42,7 @@ There are other packages that are more complete and mature than
 
 ### `sf` objects
 
-With **nominatimlite** you can extract spatial objects easily:
+With **nominatimlite** you can extract spatial objects:
 
 ``` r
 
@@ -70,8 +69,8 @@ ggplot(CA) +
 
 Figure 1: Locations of Pizza Hut in California
 
-You can also extract polygon and line objects (if available) using the
-option `points_only = FALSE`:
+You can also extract polygon and line objects when the Nominatim API
+provides them, using the option `points_only = FALSE`:
 
 ``` r
 
@@ -89,7 +88,7 @@ Figure 2: Statue of Liberty
 
 *Note: examples adapted from the **tidygeocoder** package.*
 
-In this first example we will geocode a few addresses using the
+In this first example, we geocode a few addresses using the
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
 function:
 
@@ -127,7 +126,7 @@ data from the geocoder service.
 Table 1: Example: geocoding addresses
 
 To perform reverse geocoding (obtaining addresses from geographic
-coordinates), we can use the
+coordinates), use the
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
 function. The arguments are similar to the
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
@@ -148,9 +147,9 @@ reverse <- reverse_geo_lite(
 
 | address_found | lat | lon |
 |:---|---:|---:|
-| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
 | Sky Bar, Mark Twain Place, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
-| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
+| 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87874 | -87.63589 |
 
 Table 2: Example: reverse geocoding addresses
 

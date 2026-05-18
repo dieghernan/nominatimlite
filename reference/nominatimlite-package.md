@@ -1,9 +1,9 @@
 # nominatimlite: Interface with the 'Nominatim' API
 
-Lightweight interface for getting data from the 'OpenStreetMap' service
-'Nominatim' <https://nominatim.org/release-docs/latest/>. Extract
-coordinates from addresses, find places near a set of coordinates and
-return spatial objects in 'sf' format.
+Lightweight interface to the 'OpenStreetMap' service 'Nominatim'
+<https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse
+geocode coordinates, find places near a set of coordinates and return
+spatial objects in 'sf' format.
 
 ## See also
 

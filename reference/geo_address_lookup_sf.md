@@ -61,7 +61,7 @@ geo_address_lookup_sf(
 - points_only:
 
   Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
-  which is the default) or potentially other shapes as provided by the
+  which is the default) or potentially other shapes as returned by the
   Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
@@ -80,15 +80,11 @@ The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
 geometry) or possibly other spatial objects.
 
-Note that the type of geometry returned in case of `points_only = FALSE`
-will depend on the object being geocoded:
-
-- Administrative areas, major buildings and the like will be returned as
-  polygons.
-
-- Rivers, roads and similar features will be returned as lines.
-
-- Amenities may be points even with `points_only = FALSE`.
+Note that when `points_only = FALSE`, the type of geometry returned
+depends on the object being geocoded. Administrative areas, major
+buildings and the like will be returned as polygons; rivers, roads and
+similar features will be returned as lines; and amenities may still be
+returned as points.
 
 The function is vectorized, allowing for multiple addresses to be
 geocoded; with `points_only = FALSE`, multiple geometry types may be

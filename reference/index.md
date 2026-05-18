@@ -2,8 +2,7 @@
 
 ## Geocoding
 
-These functions search for an address or reference and return
-coordinates.
+Search for addresses or structured queries and return coordinates.
 
 - [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
   : Address lookup API
@@ -43,8 +42,7 @@ coordinates.
 
 ## Reverse geocoding
 
-These functions search coordinates and return place information for
-those coordinates.
+Use coordinates to return addresses and place information.
 
 - [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
   : Reverse geocoding API
@@ -55,10 +53,9 @@ those coordinates.
   Reverse geocoding API in [sf](https://CRAN.R-project.org/package=sf)
   format
 
-## Get spatial objects
+## Spatial objects
 
-These functions return [sf](https://CRAN.R-project.org/package=sf)
-objects.
+Return results as [sf](https://CRAN.R-project.org/package=sf) objects.
 
 - [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md)
   :
@@ -99,7 +96,7 @@ objects.
 
 ## Datasets
 
-Helper datasets.
+Package datasets.
 
 - [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
   : OpenStreetMap amenity database
