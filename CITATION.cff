@@ -2,7 +2,7 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
- 
+
 cff-version: 1.2.0
 message: 'To cite package "nominatimlite" in publications use:'
 type: software
@@ -342,4 +342,3 @@ references:
     orcid: https://orcid.org/0000-0002-6738-9845
   year: '2026'
   doi: 10.32614/CRAN.package.tidygeocoder
-
