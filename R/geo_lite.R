@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Geocodes addresses given as character values and returns the
-#' [`tibble`][tibble::tibble] associated with the query; see [geo_lite_sf()] for
+#' [`tibble`][tibble::tibble] associated with the query. See [geo_lite_sf()] for
 #' retrieving the data as a spatial object ([`sf`][sf::st_sf] format).
 #'
 #' Corresponds to the **free-form query** search described in the
@@ -11,8 +11,8 @@
 #' @family geocoding
 #' @encoding UTF-8
 #'
-#' @param address `character` with a single-line address, e.g.
-#'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+#' @param address `character` with a single-line address, for example
+#'   `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
 #'   (`c("Madrid", "Barcelona")`).
 #' @param lat Latitude column name in the output data (default `"lat"`).
 #' @param long Longitude column name in the output data (default `"long"`).
@@ -27,8 +27,8 @@
 #'   Defaults to `"https://nominatim.openstreetmap.org/"`.
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'   the progress of the function.
-#' @param custom_query A named list with API-specific parameters to be used
-#'   (i.e. `list(countrycodes = "US")`). See **Details**.
+#' @param custom_query A named list with API-specific parameters to be used,
+#'   for example `list(countrycodes = "US")`. See **Details**.
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional

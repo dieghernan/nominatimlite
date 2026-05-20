@@ -16,11 +16,10 @@ knitr:
 ## Example
 
 The following example shows how to create an interactive [leaflet
-map](https://rstudio.github.io/leaflet/) using data retrieved with
+map](https://rstudio.github.io/leaflet/) with data retrieved using
 **nominatimlite**.
 
-This widget is browsable and filterable thanks to **crosstalk** and
-**reactable**:
+This widget is browsable and filterable with **crosstalk** and **reactable**:
 
 ```{r}
 #| label: example
@@ -34,7 +33,7 @@ library(tidyr)
 library(reactable)
 library(crosstalk)
 
-# Step 1: Eiffel Tower
+# Step 1: Eiffel Tower.
 eiffel_tower <- geo_lite_sf(
   "Eiffel Tower, Paris, France",
   points_only = FALSE,
@@ -90,7 +89,7 @@ leaf_icons <- icons(
   iconAnchorY = 10
 )
 
-# Step 3: Crosstalk object.
+# Step 3: Create a crosstalk object.
 cf_bk_data <- cf_bk %>%
   select(
     Place = name,
@@ -102,7 +101,7 @@ cf_bk_data <- cf_bk %>%
   ) %>%
   SharedData$new(group = "Food")
 
-# Step 4: Leaflet map with crosstalk.
+# Step 4: Create a leaflet map with crosstalk.
 # Initialize the leaflet map.
 lmend <- leaflet(
   data = cf_bk_data,
@@ -124,7 +123,7 @@ lmend <- leaflet(
     options = layersControlOptions(collapsed = FALSE)
   )
 
-# Step 5: Reactable for filtering.
+# Step 5: Create a reactable table for filtering.
 tb <- reactable(
   cf_bk_data,
   selection = "multiple",
@@ -182,7 +181,7 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel tower icons created by Freepik -
+- [Eiffel Tower icons created by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
 - [Mug icons created by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")

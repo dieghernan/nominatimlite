@@ -51,8 +51,8 @@ returned. See also \code{return_addresses}.}
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{A named list with API-specific parameters to be used,
+for example \code{list(countrycodes = "US")}. See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
@@ -64,12 +64,12 @@ A \code{\link[sf:st_sf]{sf}} object with the results.
 \description{
 Geocodes addresses already split into components and returns the
 corresponding spatial object. The query output is provided in \CRANpkg{sf}
-format; see \code{\link[=geo_lite_struct]{geo_lite_struct()}} for retrieving the data in
+format. See \code{\link[=geo_lite_struct]{geo_lite_struct()}} for retrieving the data in
 \code{\link[tibble:tibble]{tibble}} format.
 
 Corresponds to the \strong{structured query} search described in the
-\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. For
-performing a free-form search, use \code{\link[=geo_lite_sf]{geo_lite_sf()}}.
+\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. To
+perform a free-form search, use \code{\link[=geo_lite_sf]{geo_lite_sf()}}.
 }
 \details{
 The structured form of the search query allows you to look up an address that
@@ -89,10 +89,10 @@ geometry) or possibly other spatial objects.
 
 Note that when \code{points_only = FALSE}, the type of geometry returned depends
 on the object being geocoded. Administrative areas, major buildings and the
-like will be returned as polygons; rivers, roads and similar features will
-be returned as lines; and amenities may still be returned as points.
+like will be returned as polygons, rivers, roads and similar features will
+be returned as lines, and amenities may still be returned as points.
 
-The function is vectorized, allowing for multiple addresses to be geocoded;
+The function is vectorized, allowing multiple addresses to be geocoded,
 with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 

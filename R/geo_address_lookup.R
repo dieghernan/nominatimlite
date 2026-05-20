@@ -3,7 +3,7 @@
 #' @description
 #' The lookup API queries the address and other details of one or more
 #' OSM objects (node, way, relation) and returns the
-#' [`tibble`][tibble::tibble] associated with the query; see
+#' [`tibble`][tibble::tibble] associated with the query. See
 #' [geo_address_lookup_sf()] for retrieving the data as a spatial object
 #' ([`sf`][sf::st_sf] format).
 #'
@@ -11,11 +11,11 @@
 #' @family geocoding
 #' @encoding UTF-8
 #'
-#' @param osm_ids Vector of OSM identifiers as numeric values
+#' @param osm_ids Vector of OSM identifiers as numeric values.
 #'   (`c(00000, 11111, 22222)`).
 #' @param type Character vector of the OSM object type associated with each
 #'   `osm_ids` value. Possible values are node (`"N"`), way (`"W"`) or
-#'   relation (`"R"`). If a single value is provided it will be recycled.
+#'   relation (`"R"`). If a single value is provided, it will be recycled.
 #'
 #' @inheritParams geo_lite
 #'

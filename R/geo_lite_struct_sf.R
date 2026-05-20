@@ -3,12 +3,12 @@
 #' @description
 #' Geocodes addresses already split into components and returns the
 #' corresponding spatial object. The query output is provided in \CRANpkg{sf}
-#' format; see [geo_lite_struct()] for retrieving the data in
+#' format. See [geo_lite_struct()] for retrieving the data in
 #' [`tibble`][tibble::tibble] format.
 #'
 #' Corresponds to the **structured query** search described in the
-#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-#' performing a free-form search, use [geo_lite_sf()].
+#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
+#' perform a free-form search, use [geo_lite_sf()].
 #'
 #' @family geocoding
 #' @family spatial
@@ -85,7 +85,7 @@ geo_lite_struct_sf <- function(
     limit <- min(50, limit)
   }
 
-  # Check parameters; this function is not vectorized.
+  # Check parameters, because this function is not vectorized.
   pars <- list(
     amenity = amenity[1],
     street = street[1],
@@ -163,8 +163,6 @@ geo_lite_struct_sf <- function(
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
-
-  # Prepare the output.
 
   # Unnest address fields.
   sfobj <- unnest_sf(sfobj)

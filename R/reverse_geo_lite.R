@@ -1,10 +1,9 @@
 #' Reverse geocoding API
 #'
 #' @description
-#'
 #' Generates an address from latitude and longitude (latitudes in
 #' \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-#' and returns the [`tibble`][tibble::tibble] associated with the query; see
+#' and returns the [`tibble`][tibble::tibble] associated with the query. See
 #' [reverse_geo_lite_sf()] for retrieving the data as a spatial object
 #' ([`sf`][sf::st_sf] format).
 #'
@@ -18,7 +17,7 @@
 #' @param address Address column name in the output data (default `"address"`).
 #' @param return_coords Return input coordinates with results if `TRUE`.
 #' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (i.e. `list(zoom = 3)`). See **Details**.
+#'   list, for example `list(zoom = 3)`. See **Details**.
 #'
 #' @inheritParams geo_lite
 #'
@@ -30,7 +29,7 @@
 #' @section About zooming:
 #'
 #' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
-#' equivalences in terms of zoom:
+#' zoom levels correspond to these address details:
 #'
 #' ```{r, echo=FALSE}
 #'
@@ -90,25 +89,25 @@ reverse_geo_lite <- function(
 ) {
   # Check inputs.
   if (!is.numeric(lat) || !is.numeric(long)) {
-    stop("lat and long must be numeric.")
+    stop("`lat` and `long` must be numeric.")
   }
 
   if (length(lat) != length(long)) {
-    stop("lat and long must have the same number of elements.")
+    stop("`lat` and `long` must have the same number of elements.")
   }
 
   # Restrict latitude to the valid range.
   lat_cap <- pmax(pmin(lat, 90), -90)
 
   if (!identical(lat_cap, lat)) {
-    message("Latitudes have been restricted to [-90, 90].")
+    message("Latitude values have been restricted to [-90, 90].")
   }
 
   # Restrict longitude to the valid range.
   long_cap <- pmax(pmin(long, 180), -180)
 
   if (!all(long_cap == long)) {
-    message("Longitudes have been restricted to [-180, 180].")
+    message("Longitude values have been restricted to [-180, 180].")
   }
 
   # Deduplicate queries using a data frame.

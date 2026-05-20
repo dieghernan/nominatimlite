@@ -56,21 +56,21 @@ returned. See also \code{return_addresses}.}
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{A named list with API-specific parameters to be used,
+for example \code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
 Geocodes addresses already split into components and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query; see
+\code{\link[tibble:tibble]{tibble}} associated with the query. See
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}} for retrieving the data as a spatial object
 (\code{\link[sf:st_sf]{sf}} format).
 
 Corresponds to the \strong{structured query} search described in the
-\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. For
-performing a free-form search, use \code{\link[=geo_lite]{geo_lite()}}.
+\href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. To
+perform a free-form search, use \code{\link[=geo_lite]{geo_lite()}}.
 }
 \details{
 The structured form of the search query allows you to look up an address that

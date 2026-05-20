@@ -18,12 +18,12 @@ geo_address_lookup(
 )
 }
 \arguments{
-\item{osm_ids}{Vector of OSM identifiers as numeric values
+\item{osm_ids}{Vector of OSM identifiers as numeric values.
 (\code{c(00000, 11111, 22222)}).}
 
 \item{type}{Character vector of the OSM object type associated with each
 \code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
-relation (\code{"R"}). If a single value is provided it will be recycled.}
+relation (\code{"R"}). If a single value is provided, it will be recycled.}
 
 \item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
@@ -40,8 +40,8 @@ returned. See also \code{return_addresses}.}
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{A named list with API-specific parameters to be used,
+for example \code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
@@ -49,7 +49,7 @@ A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 \description{
 The lookup API queries the address and other details of one or more
 OSM objects (node, way, relation) and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query; see
+\code{\link[tibble:tibble]{tibble}} associated with the query. See
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as a spatial object
 (\code{\link[sf:st_sf]{sf}} format).
 }

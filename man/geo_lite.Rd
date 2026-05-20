@@ -19,8 +19,8 @@ geo_lite(
 )
 }
 \arguments{
-\item{address}{\code{character} with a single-line address, e.g.
-(\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
+\item{address}{\code{character} with a single-line address, for example
+\code{"1600 Pennsylvania Ave NW, Washington"}, or a vector of addresses
 (\code{c("Madrid", "Barcelona")}).}
 
 \item{lat}{Latitude column name in the output data (default \code{"lat"}).}
@@ -44,15 +44,15 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{A named list with API-specific parameters to be used,
+for example \code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 }
 \description{
 Geocodes addresses given as character values and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query; see \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
+\code{\link[tibble:tibble]{tibble}} associated with the query. See \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
 retrieving the data as a spatial object (\code{\link[sf:st_sf]{sf}} format).
 
 Corresponds to the \strong{free-form query} search described in the

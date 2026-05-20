@@ -100,7 +100,7 @@ prepare_api_url <- function(
   api
 }
 
-# tibble helpers ----
+# Tibble helpers ----
 
 empty_tbl <- function(x, lat, lon) {
   init_nm <- names(x)
@@ -174,7 +174,7 @@ sf_to_tbl <- function(x) {
     class(x) <- template
   }
 
-  # Reorder columns; geometry is sticky and stays last even when not selected.
+  # Reorder columns, because geometry stays last even when not selected.
   x <- x[, setdiff(names(x), "geometry")]
 
   result_out <- sf::st_make_valid(x)

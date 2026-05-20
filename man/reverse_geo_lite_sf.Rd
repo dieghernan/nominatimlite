@@ -42,7 +42,7 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 the progress of the function.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(zoom = 3)}). See \strong{Details}.}
+list, for example \code{list(zoom = 3)}. See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
@@ -54,8 +54,8 @@ A \code{\link[sf:st_sf]{sf}} object with the results.
 \description{
 Generates an address from latitude and longitude (latitudes in
 \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-and returns the spatial object associated with the query using \CRANpkg{sf};
-see \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in
+and returns the spatial object associated with the query using \CRANpkg{sf}.
+See \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in
 \code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
@@ -66,7 +66,7 @@ parameters to be passed to \code{custom_query}.
 
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
-equivalences in terms of zoom:\tabular{ll}{
+zoom levels correspond to these address details:\tabular{ll}{
    \strong{zoom} \tab \strong{address_detail} \cr
    \code{3} \tab country \cr
    \code{5} \tab state \cr
@@ -88,10 +88,10 @@ geometry) or possibly other spatial objects.
 
 Note that when \code{points_only = FALSE}, the type of geometry returned depends
 on the object being geocoded. Administrative areas, major buildings and the
-like will be returned as polygons; rivers, roads and similar features will
-be returned as lines; and amenities may still be returned as points.
+like will be returned as polygons, rivers, roads and similar features will
+be returned as lines, and amenities may still be returned as points.
 
-The function is vectorized, allowing for multiple addresses to be geocoded;
+The function is vectorized, allowing multiple addresses to be geocoded,
 with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 

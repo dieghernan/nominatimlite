@@ -27,7 +27,7 @@ a numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y
 \code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
 
 \item{amenity}{A \code{character} (or a vector of \code{character}s) with the
-amenities to be geocoded (i.e. \code{c("pub", "restaurant")}). See
+amenities to be geocoded, for example \code{c("pub", "restaurant")}. See
 \link{osm_amenities}.}
 
 \item{lat}{Latitude column name in the output data (default \code{"lat"}).}
@@ -51,8 +51,8 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{A named list with API-specific parameters to be used,
+for example \code{list(countrycodes = "US")}. See \strong{Details}.}
 
 \item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
 the \code{bbox}. Note that Nominatim default behavior may return results
@@ -65,7 +65,7 @@ A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap in a
 restricted area defined by a bounding box in the form
 \verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query; see
+\code{\link[tibble:tibble]{tibble}} associated with the query. See
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
 (\code{\link[sf:st_sf]{sf}} format).
 }

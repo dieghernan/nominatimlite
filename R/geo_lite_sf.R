@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Geocodes addresses and returns the corresponding spatial object. The
-#' query output is provided in \CRANpkg{sf} format; see [geo_lite()] for
+#' query output is provided in \CRANpkg{sf} format. See [geo_lite()] for
 #' retrieving the data in [`tibble`][tibble::tibble] format.
 #'
 #' Corresponds to the **free-form query** search described in the
@@ -33,10 +33,10 @@
 #'
 #' Note that when `points_only = FALSE`, the type of geometry returned depends
 #' on the object being geocoded. Administrative areas, major buildings and the
-#' like will be returned as polygons; rivers, roads and similar features will
-#' be returned as lines; and amenities may still be returned as points.
+#' like will be returned as polygons, rivers, roads and similar features will
+#' be returned as lines, and amenities may still be returned as points.
 #'
-#' The function is vectorized, allowing for multiple addresses to be geocoded;
+#' The function is vectorized, allowing multiple addresses to be geocoded,
 #' with `points_only = FALSE`, multiple geometry types may be returned.
 #'
 #' @return
@@ -210,8 +210,6 @@ geo_lite_sf_single <- function(
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
-
-  # Prepare the output.
 
   # Unnest address fields.
   sfobj <- unnest_sf(sfobj)

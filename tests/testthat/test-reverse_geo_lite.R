@@ -5,9 +5,9 @@ test_that("Errors", {
 
   expect_error(
     reverse_geo_lite(0, c(2, 3)),
-    "lat and long must have the same number"
+    "`lat` and `long` must have the same number"
   )
-  expect_error(reverse_geo_lite("a", "a"), "must be numeric")
+  expect_error(reverse_geo_lite("a", "a"), "`lat` and `long` must be numeric")
 })
 
 test_that("Messages", {

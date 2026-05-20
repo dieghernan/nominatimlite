@@ -3,7 +3,7 @@
 #' @description
 #' The lookup API queries the address and other details of one or more
 #' OSM objects (node, way, relation) and returns the spatial object
-#' associated with the query using \CRANpkg{sf}; see
+#' associated with the query using \CRANpkg{sf}. See
 #' [geo_address_lookup()] for retrieving the data in [`tibble`][tibble::tibble]
 #' format.
 #'
@@ -116,8 +116,6 @@ geo_address_lookup_sf <- function(
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
-
-  # Prepare the output.
 
   # Unnest address fields.
   sfobj <- unnest_sf(sfobj)

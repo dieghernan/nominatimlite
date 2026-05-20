@@ -17,10 +17,10 @@ repo:
   branch: main
 
 home:
-  title: nominatimlite | Interface with the OpenStreetMap Nominatim API
+  title: nominatimlite | Interface to the OpenStreetMap Nominatim API
   description: |
     Lightweight interface to the OpenStreetMap Nominatim service for geocoding,
-    reverse geocoding and spatial objects.
+    reverse geocoding, amenity lookup and spatial objects.
 
 authors:
   Diego Hernangómez:
@@ -35,21 +35,45 @@ authors:
 reference:
 - title: Geocoding
   desc: >
-    Search for addresses or structured queries and return coordinates.
-  contents: has_concept("geocoding")
+    Search addresses and structured queries to return coordinates.
+  contents:
+  - geo_lite
+  - geo_lite_struct
+- title: Amenity lookup
+  desc: >
+    Search OpenStreetMap amenities within a bounding box.
+  contents:
+  - geo_amenity
+- title: Address lookup
+  desc: >
+    Retrieve address details for OSM node, way and relation identifiers.
+  contents:
+  - geo_address_lookup
 - title: Reverse geocoding
   desc: >
-    Use coordinates to return addresses and place information.
-  contents: has_concept("reverse")
+    Reverse geocode coordinates to return addresses and place information.
+  contents:
+  - reverse_geo_lite
 - title: Spatial objects
   desc: >
-    Return results as <a href="https://CRAN.R-project.org/package=sf"
+    Return geocoding results as <a href="https://CRAN.R-project.org/package=sf"
     class="external-link"><span class="pkg">sf</span></a> objects.
-  contents: has_concept("spatial")
-- title: Datasets
-  desc: Package datasets.
   contents:
-  - has_concept("datasets")
+  - bbox_to_poly
+  - geo_lite_sf
+  - geo_lite_struct_sf
+  - geo_amenity_sf
+  - geo_address_lookup_sf
+  - reverse_geo_lite_sf
+- title: API management
+  desc: >
+    Check API availability and manage request behavior.
+  contents:
+  - nominatim_check_access
+- title: Datasets
+  desc: Data shipped with the package.
+  contents:
+  - osm_amenities
 - title: About the package
   contents: nominatimlite-package
 

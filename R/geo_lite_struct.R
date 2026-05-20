@@ -2,13 +2,13 @@
 #'
 #' @description
 #' Geocodes addresses already split into components and returns the
-#' [`tibble`][tibble::tibble] associated with the query; see
+#' [`tibble`][tibble::tibble] associated with the query. See
 #' [geo_lite_struct_sf()] for retrieving the data as a spatial object
 #' ([`sf`][sf::st_sf] format).
 #'
 #' Corresponds to the **structured query** search described in the
-#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-#' performing a free-form search, use [geo_lite()].
+#' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
+#' perform a free-form search, use [geo_lite()].
 #'
 #' @family geocoding
 #' @encoding UTF-8
@@ -76,7 +76,7 @@ geo_lite_struct <- function(
     limit <- min(50, limit)
   }
 
-  # Check parameters; this function is not vectorized.
+  # Check parameters, because this function is not vectorized.
   pars <- list(
     amenity = amenity[1],
     street = street[1],

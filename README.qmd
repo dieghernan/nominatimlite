@@ -42,40 +42,40 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- badges: end -->
 
 The goal of **nominatimlite** is to provide a lightweight interface for
-geocoding addresses, based on the [Nominatim
-API](https://nominatim.org/release-docs/latest/). It also allows you to load
-spatial objects using the **sf** package.
+geocoding addresses with the [Nominatim
+API](https://nominatim.org/release-docs/latest/). It also allows you to
+retrieve spatial objects using the **sf** package.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>
 
 ## What is Nominatim?
 
-**Nominatim** is a tool to search
+**Nominatim** is a tool for searching
 [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
-generate synthetic addresses of OSM points (reverse geocoding).
+generate synthetic addresses for OSM points (reverse geocoding).
 
 ## Why nominatimlite?
 
-The main goal of **nominatimlite** is to access the Nominatim API while avoiding
-the dependency on **curl**. In some situations, **curl** may not be available or
-accessible, so **nominatimlite** uses base functions to overcome this
-limitation.
+**nominatimlite** accesses the Nominatim API without depending on **curl**. In
+some situations, **curl** may not be available or accessible, so
+**nominatimlite** uses base R functions instead.
 
 ## Recommended packages
 
-There are other packages that are more complete and mature than
-**nominatimlite** and provide similar features:
+Other packages are more complete and mature than **nominatimlite** and provide
+similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   [@R-tidygeocoder]: Provides an interface to geocoding services such as
   Nominatim, Google, TomTom and Mapbox.
-- [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Useful for
-  downloading spatial data from OpenStreetMap with the [Overpass
+- [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Downloads
+  spatial data from OpenStreetMap with the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/) [@R-arcgeocoder]:
-  A lightweight interface for geocoding with the ArcGIS REST API service.
+  Provides a lightweight interface for geocoding with the ArcGIS REST API
+  service.
 
 ## Installation
 
@@ -124,7 +124,7 @@ With **nominatimlite** you can extract spatial objects:
 
 ```{r}
 #| label: pizzahut
-#| fig-cap: Locations of Pizza Hut restaurants in California extracted with nominatimlite
+#| fig-cap: Pizza Hut restaurant locations in California extracted with nominatimlite.
 library(nominatimlite)
 
 # Extract Pizza Hut locations in California.
@@ -149,7 +149,7 @@ them, using the option `points_only = FALSE`:
 
 ```{r}
 #| label: statue_liberty
-#| fig-cap: Location of the Statue of Liberty extracted with nominatimlite
+#| fig-cap: Location of the Statue of Liberty extracted with nominatimlite.
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building, returned as a polygon
 
 ggplot(sol_poly) +
@@ -158,7 +158,7 @@ ggplot(sol_poly) +
 
 ```{r}
 #| label: line-object
-#| fig-cap: Different features named Ohio extracted with nominatimlite
+#| fig-cap: Different features named Ohio extracted with nominatimlite.
 dayton <- geo_lite_sf("Dayton, OH") # default, returned as a point
 ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state, returned as a polygon
 ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river, returned as a line
@@ -171,10 +171,9 @@ ggplot() +
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from the **tidygeocoder** package.*
+*Note: examples are adapted from the **tidygeocoder** package.*
 
-In this first example, we geocode a few addresses using the `geo_lite()`
-function:
+In this first example, we geocode a few addresses with `geo_lite()`:
 
 ```{r}
 #| label: example
@@ -197,9 +196,8 @@ lat_longs <- geo_lite(
 )
 ```
 
-Only latitude and longitude are returned from the geocoder service in this
-example, but `full_results = TRUE` can be used to return all of the data from
-the geocoder service.
+This example returns only latitude and longitude from the geocoder service. Use
+`full_results = TRUE` to return all data from the geocoder service.
 
 ```{r}
 #| echo: false
@@ -209,9 +207,9 @@ cat("<p class=\"caption\">Table 1: Example: geocoding addresses.</p>")
 ```
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
-use the `reverse_geo_lite()` function. The arguments are similar to the
-`geo_lite()` function, but now we specify the input data columns with the `lat`
-and `long` arguments. The dataset used here is from the geocoder query above.
+use `reverse_geo_lite()`. The arguments are similar to `geo_lite()`, but now we
+specify the input data columns with the `lat` and `long` arguments. The dataset
+used here is from the geocoder query above.
 The single-line address is returned in a column named with the `address`
 argument.
 

@@ -26,7 +26,7 @@ a numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y
 \code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
 
 \item{amenity}{A \code{character} (or a vector of \code{character}s) with the
-amenities to be geocoded (i.e. \code{c("pub", "restaurant")}). See
+amenities to be geocoded, for example \code{c("pub", "restaurant")}. See
 \link{osm_amenities}.}
 
 \item{limit}{Maximum number of results to return per input address. Note
@@ -46,8 +46,8 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{A named list with API-specific parameters to be used,
+for example \code{list(countrycodes = "US")}. See \strong{Details}.}
 
 \item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
 the \code{bbox}. Note that Nominatim default behavior may return results
@@ -64,7 +64,7 @@ A \code{\link[sf:st_sf]{sf}} object with the results.
 Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap in a
 restricted area defined by a bounding box in the form
 \verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the spatial object associated
-with the query using \CRANpkg{sf}; see \code{\link[=geo_amenity]{geo_amenity()}} for retrieving the
+with the query using \CRANpkg{sf}. See \code{\link[=geo_amenity]{geo_amenity()}} for retrieving the
 data in \code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
@@ -86,10 +86,10 @@ geometry) or possibly other spatial objects.
 
 Note that when \code{points_only = FALSE}, the type of geometry returned depends
 on the object being geocoded. Administrative areas, major buildings and the
-like will be returned as polygons; rivers, roads and similar features will
-be returned as lines; and amenities may still be returned as points.
+like will be returned as polygons, rivers, roads and similar features will
+be returned as lines, and amenities may still be returned as points.
 
-The function is vectorized, allowing for multiple addresses to be geocoded;
+The function is vectorized, allowing multiple addresses to be geocoded,
 with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 

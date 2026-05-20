@@ -41,7 +41,7 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 the progress of the function.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(zoom = 3)}). See \strong{Details}.}
+list, for example \code{list(zoom = 3)}. See \strong{Details}.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
@@ -49,7 +49,7 @@ A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
 \description{
 Generates an address from latitude and longitude (latitudes in
 \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-and returns the \code{\link[tibble:tibble]{tibble}} associated with the query; see
+and returns the \code{\link[tibble:tibble]{tibble}} associated with the query. See
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} for retrieving the data as a spatial object
 (\code{\link[sf:st_sf]{sf}} format).
 }
@@ -61,7 +61,7 @@ parameters to be passed to \code{custom_query}.
 
 
 Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
-equivalences in terms of zoom:\tabular{ll}{
+zoom levels correspond to these address details:\tabular{ll}{
    \strong{zoom} \tab \strong{address_detail} \cr
    \code{3} \tab country \cr
    \code{5} \tab state \cr

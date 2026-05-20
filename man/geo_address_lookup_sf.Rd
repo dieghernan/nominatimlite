@@ -17,12 +17,12 @@ geo_address_lookup_sf(
 )
 }
 \arguments{
-\item{osm_ids}{Vector of OSM identifiers as numeric values
+\item{osm_ids}{Vector of OSM identifiers as numeric values.
 (\code{c(00000, 11111, 22222)}).}
 
 \item{type}{Character vector of the OSM object type associated with each
 \code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
-relation (\code{"R"}). If a single value is provided it will be recycled.}
+relation (\code{"R"}). If a single value is provided, it will be recycled.}
 
 \item{full_results}{Returns all available data from the API service.
 If \code{FALSE} (default), only address columns are returned. See also
@@ -35,8 +35,8 @@ If \code{FALSE} (default), only address columns are returned. See also
 \item{nominatim_server}{The URL of the Nominatim server to use.
 Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{A named list with API-specific parameters to be used
-(i.e. \code{list(countrycodes = "US")}). See \strong{Details}.}
+\item{custom_query}{A named list with API-specific parameters to be used,
+for example \code{list(countrycodes = "US")}. See \strong{Details}.}
 
 \item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
 points (\code{TRUE}, which is the default) or potentially other shapes as
@@ -48,7 +48,7 @@ A \code{\link[sf:st_sf]{sf}} object with the results.
 \description{
 The lookup API queries the address and other details of one or more
 OSM objects (node, way, relation) and returns the spatial object
-associated with the query using \CRANpkg{sf}; see
+associated with the query using \CRANpkg{sf}. See
 \code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \code{\link[tibble:tibble]{tibble}}
 format.
 }
@@ -65,10 +65,10 @@ geometry) or possibly other spatial objects.
 
 Note that when \code{points_only = FALSE}, the type of geometry returned depends
 on the object being geocoded. Administrative areas, major buildings and the
-like will be returned as polygons; rivers, roads and similar features will
-be returned as lines; and amenities may still be returned as points.
+like will be returned as polygons, rivers, roads and similar features will
+be returned as lines, and amenities may still be returned as points.
 
-The function is vectorized, allowing for multiple addresses to be geocoded;
+The function is vectorized, allowing multiple addresses to be geocoded,
 with \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 

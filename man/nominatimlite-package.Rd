@@ -4,11 +4,11 @@
 \name{nominatimlite-package}
 \alias{nominatimlite}
 \alias{nominatimlite-package}
-\title{nominatimlite: Interface with the 'Nominatim' API}
+\title{nominatimlite: Interface to the 'Nominatim' API}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Lightweight interface to the 'OpenStreetMap' service 'Nominatim' \url{https://nominatim.org/release-docs/latest/}. Geocode addresses, reverse geocode coordinates, find places near a set of coordinates and return spatial objects in 'sf' format.
+Lightweight interface to the 'OpenStreetMap' service 'Nominatim' \url{https://nominatim.org/release-docs/latest/}. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames or 'sf' spatial objects.
 }
 \seealso{
 Useful links:

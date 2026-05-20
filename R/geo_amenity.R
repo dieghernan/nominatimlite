@@ -4,7 +4,7 @@
 #' Searches [amenities][osm_amenities] as defined by OpenStreetMap in a
 #' restricted area defined by a bounding box in the form
 #' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
-#' [`tibble`][tibble::tibble] associated with the query; see
+#' [`tibble`][tibble::tibble] associated with the query. See
 #' [geo_amenity_sf()] for retrieving the data as a spatial object
 #' ([`sf`][sf::st_sf] format).
 #'
@@ -17,7 +17,7 @@
 #'   `(xmin, ymin, xmax, ymax)`, or a [`sf`][sf::st_sf] or
 #'   [`sfc`][sf::st_sfc] object. See **Details**.
 #' @param amenity A `character` (or a vector of `character`s) with the
-#'   amenities to be geocoded (i.e. `c("pub", "restaurant")`). See
+#'   amenities to be geocoded, for example `c("pub", "restaurant")`. See
 #'   [nominatimlite::osm_amenities].
 #' @param strict Logical `TRUE/FALSE`. Force the results to be included inside
 #'   the `bbox`. Note that Nominatim default behavior may return results

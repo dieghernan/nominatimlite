@@ -4,7 +4,7 @@
 #' Searches [amenities][osm_amenities] as defined by OpenStreetMap in a
 #' restricted area defined by a bounding box in the form
 #' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the spatial object associated
-#' with the query using \CRANpkg{sf}; see [geo_amenity()] for retrieving the
+#' with the query using \CRANpkg{sf}. See [geo_amenity()] for retrieving the
 #' data in [`tibble`][tibble::tibble] format.
 #'
 #' @family amenity
