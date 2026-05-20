@@ -4,14 +4,12 @@
 
 CRAN release: 2026-03-18
 
-- Download management:
-  - API calls are cached in
-    [`tempdir()`](https://rdrr.io/r/base/tempfile.html) to avoid
-    overloading. This cache is meant to persist for the current session
-    only.
-  - The waiting time between API calls is now 1.2 seconds to avoid API
-    overload.
-- Migrate vignettes to Quarto.
+- API calls are cached in
+  [`tempdir()`](https://rdrr.io/r/base/tempfile.html) during the current
+  session to reduce load on the service.
+- API calls now wait 1.2 seconds between requests to reduce overload
+  risk.
+- Vignettes have been migrated to Quarto.
 
 ## nominatimlite 0.4.3
 
@@ -29,55 +27,24 @@ CRAN release: 2024-12-17
 
 CRAN release: 2024-07-19
 
-- Fix input validation in
-  [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
+- [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
   and
   [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
-  that crashed the function when the OSM ID was too long
-  ([\#47](https://github.com/dieghernan/nominatimlite/issues/47)
+  now validate long OSM IDs without crashing
+  ([\#47](https://github.com/dieghernan/nominatimlite/issues/47),
   reported by [@lshydro](https://github.com/lshydro)).
 
 ## nominatimlite 0.4.0
 
 CRAN release: 2024-05-27
 
-- New functions:
-
-  - [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
-    and
-    [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
-    for performing structured queries.
-  - Bring back
-    [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
-    and
-    [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
-    as wrappers of
-    [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
-    and
-    [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md),
-    so they are now more robust and compatible with objects from the
-    **sf** package.
-
-- Improve unnesting of fields when requiring `extratags`, i.e.
-  `custom_query = list(extratags = TRUE)`.
-
-- It is possible to use **nominatimlite** with a local server thanks to
-  the new argument `nominatim_server`
-  ([\#42](https://github.com/dieghernan/nominatimlite/issues/42)
-  [@alexwhitedatamine](https://github.com/alexwhitedatamine)).
-
 - Adapt endpoints to **Nominatim v4.4.0** `[Python-only]`.
 
-- [`nominatimlite::osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-  dataset reintroduced, updated and with additional description fields.
-
 - API calls for non-spatial functions now use JSONV2 format
-  (`&format=jsonv2`). This implies the following changes in the output:
+  (`&format=jsonv2`), so `class` is renamed to `category` and
+  `place_rank` is added with the search rank of the object.
 
-  - `class` renamed to `category`.
-  - Additional field `place_rank` with the search rank of the object.
-
-- The `custom_query` argument can use vectors and logical values:
+- The `custom_query` argument now supports vectors and logical values:
 
   ``` r
 
@@ -87,17 +54,41 @@ CRAN release: 2024-05-27
            )
   ```
 
+- The `nominatim_server` argument lets **nominatimlite** use a local
+  server ([\#42](https://github.com/dieghernan/nominatimlite/issues/42),
+  [@alexwhitedatamine](https://github.com/alexwhitedatamine)).
+
+- [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
+  and
+  [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
+  are back as wrappers of
+  [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
+  and
+  [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md),
+  making them more robust and compatible with **sf** objects.
+
+- [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
+  and
+  [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
+  are new functions for structured queries.
+
+- [`nominatimlite::osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
+  has been reintroduced with updated data and additional description
+  fields.
+
+- Unnesting fields requested with
+  `custom_query = list(extratags = TRUE)` is improved.
+
 ## nominatimlite 0.3.0
 
 CRAN release: 2024-03-01
 
-- Add a `progressbar` parameter to
-  [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
+- [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
   [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
   [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
   and
   [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
-  to display progress in the console.
+  gain a `progressbar` parameter to display progress in the console.
 
 ### Deprecated
 
@@ -123,21 +114,19 @@ CRAN release: 2023-08-15
 
 CRAN release: 2023-05-11
 
-- **rlang** and **tibble** are not explicitly required. Conversions to
-  tibble happen with
-  [`dplyr::tibble()`](https://tibble.tidyverse.org/reference/tibble.html).
-- The data attributes of **sf** objects are now returned as tibbles for
-  easier printing in the console.
 - Improvements in code and tests.
-- Now **sf** objects can correctly handle nested fields provided in the
-  JSON response (for example, the nested address field provided by the
-  API). This is also consistent with the results provided by the
-  non-spatial functions, where unnesting was already handled correctly.
-- Improvements to the output of
-  [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
+- **rlang** and **tibble** are no longer explicitly required.
+  Conversions to tibble happen with
+  [`dplyr::tibble()`](https://tibble.tidyverse.org/reference/tibble.html).
+- **sf** object attributes are now returned as tibbles for easier
+  printing in the console.
+- **sf** objects now handle nested fields provided in the JSON response,
+  such as the nested address field, consistently with non-spatial
+  functions.
+- [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
   and
   [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
-  when the API returns nested lists.
+  output is improved when the API returns nested lists.
 
 ## nominatimlite 0.1.6
 

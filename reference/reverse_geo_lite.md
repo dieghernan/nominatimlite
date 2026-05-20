@@ -4,7 +4,7 @@ Generates an address from latitude and longitude (latitudes in
 \\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180, 180
 \right\]\\), and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
@@ -67,8 +67,8 @@ reverse_geo_lite(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list (i.e.
-  `list(zoom = 3)`). See **Details**.
+  API-specific parameters to be used, passed as a named list, for
+  example `list(zoom = 3)`. See **Details**.
 
 ## Value
 
@@ -83,7 +83,7 @@ additional parameters to be passed to `custom_query`.
 ## About zooming
 
 Use the option `custom_query = list(zoom = 3)` to adjust the output.
-Some equivalences in terms of zoom:
+Some zoom levels correspond to these address details:
 
 |          |                         |
 |----------|-------------------------|
@@ -114,7 +114,7 @@ reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #> # A tibble: 1 × 3
 #>   address                                                              lat   lon
 #>   <chr>                                                              <dbl> <dbl>
-#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York Co…  40.8 -74.0
+#> 1 West 44th Street, Times Square, Manhattan Community Board 5, Manh…  40.8 -74.0
 
 # Several coordinates
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
@@ -122,7 +122,7 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #> # A tibble: 2 × 3
 #>   address                                                             lat    lon
 #>   <chr>                                                             <dbl>  <dbl>
-#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York C…  40.8 -74.0 
+#> 1 West 44th Street, Times Square, Manhattan Community Board 5, Man…  40.8 -74.0 
 #> 2 East End, Waterloo Place, Waterloo Place, Greenside, Broughton, …  56.0  -3.19
 
 # With options: zoom to country level
@@ -139,7 +139,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 46583304, 276157440
+#> $ place_id                                 <int> 52172514, 274782588
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

@@ -2,7 +2,7 @@
 
 Geocodes addresses and returns the corresponding spatial object. The
 query output is provided in [sf](https://CRAN.R-project.org/package=sf)
-format; see
+format. See
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -30,8 +30,8 @@ geo_lite_sf(
 
 - address:
 
-  `character` with a single-line address, e.g.
-  (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+  `character` with a single-line address, for example
+  `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
   (`c("Madrid", "Barcelona")`).
 
 - limit:
@@ -64,8 +64,8 @@ geo_lite_sf(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  A named list with API-specific parameters to be used, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 - points_only:
 
@@ -91,13 +91,12 @@ geometry) or possibly other spatial objects.
 
 Note that when `points_only = FALSE`, the type of geometry returned
 depends on the object being geocoded. Administrative areas, major
-buildings and the like will be returned as polygons; rivers, roads and
-similar features will be returned as lines; and amenities may still be
+buildings and the like will be returned as polygons, rivers, roads and
+similar features will be returned as lines, and amenities may still be
 returned as points.
 
-The function is vectorized, allowing for multiple addresses to be
-geocoded; with `points_only = FALSE`, multiple geometry types may be
-returned.
+The function is vectorized, allowing multiple addresses to be geocoded,
+with `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 

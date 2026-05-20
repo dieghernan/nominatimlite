@@ -2,14 +2,14 @@
 
 Geocodes addresses already split into components and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
 
 Corresponds to the **structured query** search described in the [API
-endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-performing a free-form search, use
+endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
+perform a free-form search, use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md).
 
 ## Usage
@@ -99,8 +99,8 @@ geo_lite_struct(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  A named list with API-specific parameters to be used, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 ## Value
 
@@ -153,7 +153,7 @@ dplyr::glimpse(pl_mayor)
 #> $ lat                      <dbl> 40.41539, 40.96503, 41.65206, 40.95033, 40.02…
 #> $ lon                      <dbl> -3.7069974, -5.6640558, -4.7285484, -4.123986…
 #> $ address                  <chr> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…
-#> $ place_id                 <int> 291459241, 291059616, 290448086, 293050135, 2…
+#> $ place_id                 <int> 293280562, 292768831, 292162441, 292826660, 2…
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "relation", "way", "way", "relation", "way", …
 #> $ osm_id                   <int> 16657232, 78180390, 24432960, 18226870, 18456…

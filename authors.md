@@ -20,16 +20,16 @@
 Source:
 [`inst/CITATION`](https://github.com/dieghernan/nominatimlite/blob/main/inst/CITATION)
 
-Hernangómez D (2026). *nominatimlite: Interface with the Nominatim API*.
+Hernangómez D (2026). *nominatimlite: Interface to the Nominatim API*.
 [doi:10.32614/CRAN.package.nominatimlite](https://doi.org/10.32614/CRAN.package.nominatimlite).
 <https://dieghernan.github.io/nominatimlite/>.
 
     @Manual{R-nominatimlite,
-      title = {{nominatimlite}: Interface with the {Nominatim} {API}},
+      title = {{nominatimlite}: Interface to the {Nominatim} {API}},
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
       version = {0.5.0},
       url = {https://dieghernan.github.io/nominatimlite/},
-      abstract = {Lightweight interface to the OpenStreetMap service Nominatim <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, find places near a set of coordinates and return spatial objects in sf format.},
+      abstract = {Lightweight interface to the OpenStreetMap service Nominatim <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames or sf spatial objects.},
     }

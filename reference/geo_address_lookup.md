@@ -3,7 +3,7 @@
 The lookup API queries the address and other details of one or more OSM
 objects (node, way, relation) and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
@@ -28,14 +28,14 @@ geo_address_lookup(
 
 - osm_ids:
 
-  Vector of OSM identifiers as numeric values
+  Vector of OSM identifiers as numeric values.
   (`c(00000, 11111, 22222)`).
 
 - type:
 
   Character vector of the OSM object type associated with each `osm_ids`
   value. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided it will be recycled.
+  (`"R"`). If a single value is provided, it will be recycled.
 
 - lat:
 
@@ -66,8 +66,8 @@ geo_address_lookup(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  A named list with API-specific parameters to be used, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 ## Value
 

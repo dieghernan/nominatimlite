@@ -5,7 +5,7 @@ Searches
 as defined by OpenStreetMap in a restricted area defined by a bounding
 box in the form `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
 spatial object associated with the query using
-[sf](https://CRAN.R-project.org/package=sf); see
+[sf](https://CRAN.R-project.org/package=sf). See
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -42,7 +42,7 @@ geo_amenity_sf(
 - amenity:
 
   A `character` (or a vector of `character`s) with the amenities to be
-  geocoded (i.e. `c("pub", "restaurant")`). See
+  geocoded, for example `c("pub", "restaurant")`. See
   [osm_amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md).
 
 - limit:
@@ -76,8 +76,8 @@ geo_amenity_sf(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  A named list with API-specific parameters to be used, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 - strict:
 
@@ -116,13 +116,12 @@ geometry) or possibly other spatial objects.
 
 Note that when `points_only = FALSE`, the type of geometry returned
 depends on the object being geocoded. Administrative areas, major
-buildings and the like will be returned as polygons; rivers, roads and
-similar features will be returned as lines; and amenities may still be
+buildings and the like will be returned as polygons, rivers, roads and
+similar features will be returned as lines, and amenities may still be
 returned as points.
 
-The function is vectorized, allowing for multiple addresses to be
-geocoded; with `points_only = FALSE`, multiple geometry types may be
-returned.
+The function is vectorized, allowing multiple addresses to be geocoded,
+with `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 

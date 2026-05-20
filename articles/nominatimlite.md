@@ -1,42 +1,40 @@
 # Get started with nominatimlite
 
 The goal of **nominatimlite** is to provide a lightweight interface for
-geocoding addresses, based on the [Nominatim
+geocoding addresses with the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It also allows you to
-load spatial objects using the **sf** package.
+retrieve spatial objects using the **sf** package.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>
 
 ## What is Nominatim?
 
-**Nominatim** is a tool to search
+**Nominatim** is a tool for searching
 [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
-and to generate synthetic addresses of OSM points (reverse geocoding).
+and to generate synthetic addresses for OSM points (reverse geocoding).
 
 ## Why nominatimlite?
 
-The main goal of **nominatimlite** is to access the Nominatim API while
-avoiding the dependency on **curl**. In some situations, **curl** may
-not be available or accessible, so **nominatimlite** uses base functions
-to overcome this limitation.
+**nominatimlite** accesses the Nominatim API without depending on
+**curl**. In some situations, **curl** may not be available or
+accessible, so **nominatimlite** uses base R functions instead.
 
 ## Recommended packages
 
-There are other packages that are more complete and mature than
-**nominatimlite** and provide similar features:
+Other packages are more complete and mature than **nominatimlite** and
+provide similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)): Provides an interface to
   geocoding services such as Nominatim, Google, TomTom and Mapbox.
 - [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
-  2017](#ref-R-osmdata)): Useful for downloading spatial data from
-  OpenStreetMap with the [Overpass
-  API](https://wiki.openstreetmap.org/wiki/Overpass_API).
+  2017](#ref-R-osmdata)): Downloads spatial data from OpenStreetMap with
+  the [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
-  ([Hernangómez 2024](#ref-R-arcgeocoder)): A lightweight interface for
-  geocoding with the ArcGIS REST API service.
+  ([Hernangómez 2024](#ref-R-arcgeocoder)): Provides a lightweight
+  interface for geocoding with the ArcGIS REST API service.
 
 ## Usage
 
@@ -86,11 +84,10 @@ Figure 2: Statue of Liberty
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from the **tidygeocoder** package.*
+*Note: examples are adapted from the **tidygeocoder** package.*
 
-In this first example, we geocode a few addresses using the
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
-function:
+In this first example, we geocode a few addresses with
+[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md):
 
 ``` r
 
@@ -113,9 +110,9 @@ lat_longs <- geo_lite(
 )
 ```
 
-Only latitude and longitude are returned from the geocoder service in
-this example, but `full_results = TRUE` can be used to return all of the
-data from the geocoder service.
+This example returns only latitude and longitude from the geocoder
+service. Use `full_results = TRUE` to return all data from the geocoder
+service.
 
 | query | latitude | longitude | address |
 |:---|---:|---:|:---|
@@ -126,14 +123,14 @@ data from the geocoder service.
 Table 1: Example: geocoding addresses
 
 To perform reverse geocoding (obtaining addresses from geographic
-coordinates), use the
-[`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
-function. The arguments are similar to the
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
-function, but now we specify the input data columns with the `lat` and
-`long` arguments. The dataset used here is from the geocoder query
-above. The single-line address is returned in a column named with the
-`address` argument.
+coordinates), use
+[`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md).
+The arguments are similar to
+[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
+but now we specify the input data columns with the `lat` and `long`
+arguments. The dataset used here is from the geocoder query above. The
+single-line address is returned in a column named with the `address`
+argument.
 
 ``` r
 
@@ -148,7 +145,7 @@ reverse <- reverse_geo_lite(
 | address_found | lat | lon |
 |:---|---:|---:|
 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, Mark Twain Place, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| Sky Bar, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
 | 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87874 | -87.63589 |
 
 Table 2: Example: reverse geocoding addresses

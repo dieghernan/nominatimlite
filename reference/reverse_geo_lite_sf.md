@@ -3,7 +3,7 @@
 Generates an address from latitude and longitude (latitudes in
 \\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180, 180
 \right\]\\), and returns the spatial object associated with the query
-using [sf](https://CRAN.R-project.org/package=sf); see
+using [sf](https://CRAN.R-project.org/package=sf). See
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -67,8 +67,8 @@ reverse_geo_lite_sf(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list (i.e.
-  `list(zoom = 3)`). See **Details**.
+  API-specific parameters to be used, passed as a named list, for
+  example `list(zoom = 3)`. See **Details**.
 
 - points_only:
 
@@ -89,7 +89,7 @@ additional parameters to be passed to `custom_query`.
 ## About zooming
 
 Use the option `custom_query = list(zoom = 3)` to adjust the output.
-Some equivalences in terms of zoom:
+Some zoom levels correspond to these address details:
 
 |          |                         |
 |----------|-------------------------|
@@ -111,13 +111,12 @@ geometry) or possibly other spatial objects.
 
 Note that when `points_only = FALSE`, the type of geometry returned
 depends on the object being geocoded. Administrative areas, major
-buildings and the like will be returned as polygons; rivers, roads and
-similar features will be returned as lines; and amenities may still be
+buildings and the like will be returned as polygons, rivers, roads and
+similar features will be returned as lines, and amenities may still be
 returned as points.
 
-The function is vectorized, allowing for multiple addresses to be
-geocoded; with `points_only = FALSE`, multiple geometry types may be
-returned.
+The function is vectorized, allowing multiple addresses to be geocoded,
+with `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 

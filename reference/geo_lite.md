@@ -2,7 +2,7 @@
 
 Geocodes addresses given as character values and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md)
 for retrieving the data as a spatial object
 ([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
@@ -31,8 +31,8 @@ geo_lite(
 
 - address:
 
-  `character` with a single-line address, e.g.
-  (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+  `character` with a single-line address, for example
+  `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
   (`c("Madrid", "Barcelona")`).
 
 - lat:
@@ -74,8 +74,8 @@ geo_lite(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  A named list with API-specific parameters to be used, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 ## Value
 

@@ -2,14 +2,14 @@
 
 Geocodes addresses already split into components and returns the
 corresponding spatial object. The query output is provided in
-[sf](https://CRAN.R-project.org/package=sf) format; see
+[sf](https://CRAN.R-project.org/package=sf) format. See
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
 
 Corresponds to the **structured query** search described in the [API
-endpoint](https://nominatim.org/release-docs/latest/api/Search/). For
-performing a free-form search, use
+endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
+perform a free-form search, use
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md).
 
 ## Usage
@@ -90,8 +90,8 @@ geo_lite_struct_sf(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  A named list with API-specific parameters to be used, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 - points_only:
 
@@ -122,13 +122,12 @@ geometry) or possibly other spatial objects.
 
 Note that when `points_only = FALSE`, the type of geometry returned
 depends on the object being geocoded. Administrative areas, major
-buildings and the like will be returned as polygons; rivers, roads and
-similar features will be returned as lines; and amenities may still be
+buildings and the like will be returned as polygons, rivers, roads and
+similar features will be returned as lines, and amenities may still be
 returned as points.
 
-The function is vectorized, allowing for multiple addresses to be
-geocoded; with `points_only = FALSE`, multiple geometry types may be
-returned.
+The function is vectorized, allowing multiple addresses to be geocoded,
+with `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 

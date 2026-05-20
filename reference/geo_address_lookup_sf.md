@@ -2,7 +2,7 @@
 
 The lookup API queries the address and other details of one or more OSM
 objects (node, way, relation) and returns the spatial object associated
-with the query using [sf](https://CRAN.R-project.org/package=sf); see
+with the query using [sf](https://CRAN.R-project.org/package=sf). See
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -26,14 +26,14 @@ geo_address_lookup_sf(
 
 - osm_ids:
 
-  Vector of OSM identifiers as numeric values
+  Vector of OSM identifiers as numeric values.
   (`c(00000, 11111, 22222)`).
 
 - type:
 
   Character vector of the OSM object type associated with each `osm_ids`
   value. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided it will be recycled.
+  (`"R"`). If a single value is provided, it will be recycled.
 
 - full_results:
 
@@ -55,8 +55,8 @@ geo_address_lookup_sf(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  A named list with API-specific parameters to be used, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 - points_only:
 
@@ -82,13 +82,12 @@ geometry) or possibly other spatial objects.
 
 Note that when `points_only = FALSE`, the type of geometry returned
 depends on the object being geocoded. Administrative areas, major
-buildings and the like will be returned as polygons; rivers, roads and
-similar features will be returned as lines; and amenities may still be
+buildings and the like will be returned as polygons, rivers, roads and
+similar features will be returned as lines, and amenities may still be
 returned as points.
 
-The function is vectorized, allowing for multiple addresses to be
-geocoded; with `points_only = FALSE`, multiple geometry types may be
-returned.
+The function is vectorized, allowing multiple addresses to be geocoded,
+with `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
