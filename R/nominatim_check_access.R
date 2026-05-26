@@ -1,7 +1,7 @@
 #' Check access to Nominatim API
 #'
 #' @description
-#' Check if **R** has access to resources at
+#' Check if \R has access to resources at
 #' <https://nominatim.openstreetmap.org>.
 #'
 #' @family api_management

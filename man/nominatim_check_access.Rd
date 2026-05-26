@@ -17,7 +17,7 @@ Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
 A logical \code{TRUE/FALSE}.
 }
 \description{
-Check if \strong{R} has access to resources at
+Check if \R has access to resources at
 \url{https://nominatim.openstreetmap.org}.
 }
 \examples{
