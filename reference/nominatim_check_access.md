@@ -1,6 +1,6 @@
 # Check access to Nominatim API
 
-Check if **R** has access to resources at
+Check if R has access to resources at
 <https://nominatim.openstreetmap.org>.
 
 ## Usage
