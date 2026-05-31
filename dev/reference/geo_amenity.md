@@ -5,10 +5,10 @@ Searches
 as defined by OpenStreetMap in a restricted area defined by a bounding
 box in the form `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md)
-for retrieving the data as a spatial object
-([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
+for retrieving the data as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
 
 ## Usage
 
@@ -33,18 +33,17 @@ geo_amenity(
 
 - bbox:
 
-  The bounding box (viewbox) used to limit the search. It could be:
-
-  - A numeric vector of **longitude** (`x`) and **latitude** (`y`)
-    `(xmin, ymin, xmax, ymax)`. See **Details**.
-
-  - A [`sf`](https://r-spatial.github.io/sf/reference/sf.html) or
-    [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object.
+  The bounding box (viewbox) used to limit the search. It can be a
+  numeric vector of **longitude** (`x`) and **latitude** (`y`) in the
+  form `(xmin, ymin, xmax, ymax)`, or a
+  [`sf`](https://r-spatial.github.io/sf/reference/sf.html) or
+  [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object. See
+  **Details**.
 
 - amenity:
 
-  A `character` (or a vector of `character`s) with the amenities to be
-  geolocated (i.e. `c("pub", "restaurant")`). See
+  `character` value or vector with the amenities to geocode, for example
+  `c("pub", "restaurant")`. See
   [osm_amenities](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md).
 
 - lat:
@@ -62,9 +61,9 @@ geo_amenity(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_addresses:
 
@@ -72,11 +71,11 @@ geo_amenity(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
@@ -86,26 +85,26 @@ geo_amenity(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  Named list with API-specific parameters, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 - strict:
 
   Logical `TRUE/FALSE`. Force the results to be included inside the
-  `bbox`. Note that Nominatim default behavior may return results
-  located outside the provided bounding box.
+  `bbox`. Nominatim's default behavior may return results located
+  outside the provided bounding box.
 
 ## Value
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the results found by the query.
+the results that match the query.
 
 ## Details
 
 Bounding boxes can be located using online tools such as
 <https://boundingbox.klokantech.com/>.
 
-For a full list of valid amenities see
+For a full list of valid amenities, see
 <https://wiki.openstreetmap.org/wiki/Key:amenity> and
 [osm_amenities](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md).
 
@@ -114,7 +113,7 @@ additional parameters to be passed to `custom_query`.
 
 ## See also
 
-Other amenity:
+Amenity lookup:
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
 [`osm_amenities`](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md)
 
@@ -144,7 +143,7 @@ geo_amenity(
 #> # A tibble: 1 × 4
 #>   query        lat   lon address                                                
 #>   <chr>      <dbl> <dbl> <chr>                                                  
-#> 1 restaurant  40.8 -74.0 Bobby Van's Grill, West 45th Street, Times Square, Man…
+#> 1 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manhat…
 
 # Several amenities
 geo_amenity(
@@ -155,10 +154,10 @@ geo_amenity(
 #> # A tibble: 2 × 4
 #>   query        lat   lon address                                                
 #>   <chr>      <dbl> <dbl> <chr>                                                  
-#> 1 restaurant  40.8 -74.0 Bobby Van's Grill, West 45th Street, Times Square, Man…
+#> 1 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manhat…
 #> 2 pub         40.8 -74.0 Connolly's, 121, West 45th Street, Times Square, Manha…
 
-# Increase limit and use with strict
+# Increase `limit` and use strict filtering
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub"),
@@ -173,18 +172,18 @@ geo_amenity(
 #>  2 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manha…
 #>  3 restaurant  40.8 -74.0 Dave & Buster's, 234, West 42nd Street, Times Square,…
 #>  4 restaurant  40.8 -74.0 Applebee's, 234, West 42nd Street, Times Square, Manh…
-#>  5 restaurant  40.8 -74.0 Dallas BBQ, 241, West 42nd Street, Times Square, Manh…
-#>  6 restaurant  40.8 -74.0 Haru Sushi, 229, West 43rd Street, Times Square, Manh…
-#>  7 restaurant  40.8 -74.0 Brooklyn Deli, 1501, Broadway, Times Square, Manhatta…
-#>  8 restaurant  40.8 -74.0 Hard Rock Cafe, 1501, Broadway, Times Square, Manhatt…
-#>  9 restaurant  40.8 -74.0 Bubba Gump Shrimp Company, 1501, Broadway, Times Squa…
-#> 10 restaurant  40.8 -74.0 Carmine's, 200, West 44th Street, Times Square, Manha…
+#>  5 restaurant  40.8 -74.0 Bobby Van's Grill, 120, West 45th Street, Times Squar…
+#>  6 restaurant  40.8 -74.0 Virgil's Real BBQ, 152, West 44th Street, Times Squar…
+#>  7 restaurant  40.8 -74.0 Brooklyn Diner, 155, West 43rd Street, Times Square, …
+#>  8 restaurant  40.8 -74.0 Tony's, 147, West 43rd Street, Times Square, Manhatta…
+#>  9 restaurant  40.8 -74.0 The Lambs Club, 130, West 44th Street, Times Square, …
+#> 10 restaurant  40.8 -74.0 The Mermaid Bar, 127, West 43rd Street, Times Square,…
 #> 11 pub         40.8 -74.0 Connolly's, 121, West 45th Street, Times Square, Manh…
 #> 12 pub         40.8 -74.0 Perfect Pint, 123, West 45th Street, Times Square, Ma…
-#> 13 pub         40.8 -74.0 Bar 54, 135, West 45th Street, Times Square, Manhatta…
+#> 13 pub         40.8 -74.0 Merrion Row, 119, West 45th Street, Times Square, Man…
 #> 14 pub         40.8 -74.0 O'Donoghue's, 156, West 44th Street, Times Square, Ma…
 #> 15 pub         40.8 -74.0 Jimmy's Corner, 140, West 44th Street, Times Square, …
 #> 16 pub         40.8 -74.0 BXL Cafe, 125, West 43rd Street, Times Square, Manhat…
-#> 17 pub         40.8 -74.0 Merrion Row, West 45th Street, Times Square, Manhatta…
+#> 17 pub         40.8 -74.0 Bar 54, 135, West 45th Street, Times Square, Manhatta…
 # }
 ```

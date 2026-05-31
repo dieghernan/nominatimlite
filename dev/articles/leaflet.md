@@ -2,15 +2,16 @@
 
 ## Example
 
-The following example shows how it is possible to create a nice [leaflet
-map](https://rstudio.github.io/leaflet/) with data retrieved with
+The following example shows how to create an interactive [leaflet
+map](https://rstudio.github.io/leaflet/) with data retrieved using
 **nominatimlite**.
 
-This widget is browsable and filterable thanks to **crosstalk** and
+The widget can be browsed and filtered with **crosstalk** and
 **reactable**:
 
 ``` r
-# Coffee Shops and Restaurants around the Eiffel Tower
+
+# Coffee shops and restaurants around the Eiffel Tower.
 
 library(nominatimlite)
 library(sf)
@@ -20,19 +21,19 @@ library(tidyr)
 library(reactable)
 library(crosstalk)
 
-# Step 1: Eiffel Tower
+# Step 1: Eiffel Tower.
 eiffel_tower <- geo_lite_sf(
   "Eiffel Tower, Paris, France",
   points_only = FALSE,
   progressbar = FALSE
 )
 
-# Step 2: Coffee Shops and Restaurants nearby
+# Step 2: Coffee shops and restaurants nearby.
 
-# Create a buffer of 1km around the Eiffel Tower
-buff <- eiffel_tower %>%
-  st_transform(3857) %>%
-  st_centroid() %>%
+# Create a buffer of 1 km around the Eiffel Tower.
+buff <- eiffel_tower |>
+  st_transform(3857) |>
+  st_centroid() |>
   st_buffer(1000)
 
 cf_bk <- geo_amenity_sf(
@@ -42,8 +43,8 @@ cf_bk <- geo_amenity_sf(
   full_results = TRUE,
   custom_query = list(extratags = TRUE),
   progressbar = FALSE
-) %>%
-  # Build address with street, house number, suburb and postcode
+) |>
+  # Build addresses with street, house number, suburb and postcode.
   unite(
     "addr",
     address.road,
@@ -54,12 +55,10 @@ cf_bk <- geo_amenity_sf(
     na.rm = TRUE
   )
 
-
-# Labels and icons
+# Create labels and icons.
 labs <- paste0("<strong>", cf_bk$name, "</strong><br>", cf_bk$addr)
 
-# Assign icons
-# Base url for icons
+# Base URL for icons.
 icon_url <- paste0(
   "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
   "main/vignettes/articles/"
@@ -77,9 +76,8 @@ leaf_icons <- icons(
   iconAnchorY = 10
 )
 
-
-# Step 3: Crosstalk object
-cf_bk_data <- cf_bk %>%
+# Step 3: Create a crosstalk object.
+cf_bk_data <- cf_bk |>
   select(
     Place = name,
     Type = type,
@@ -87,32 +85,31 @@ cf_bk_data <- cf_bk %>%
     City = address.city,
     URL = extratags.website,
     Phone = extratags.phone
-  ) %>%
+  ) |>
   SharedData$new(group = "Food")
 
-# Step 4: Leaflet map with crosstalk
-# Init leaflet map
+# Step 4: Create a leaflet map with crosstalk.
 lmend <- leaflet(
   data = cf_bk_data,
   elementId = "EiffelTower",
   width = "100%",
   height = "60vh",
   options = leafletOptions(minZoom = 12)
-) %>%
+) |>
   addProviderTiles(
     provider = "CartoDB.Positron",
     group = "CartoDB.Positron"
-  ) %>%
-  addTiles(group = "OSM") %>%
-  addPolygons(data = eiffel_tower) %>%
-  addMarkers(popup = labs, icon = leaf_icons) %>%
+  ) |>
+  addTiles(group = "OSM") |>
+  addPolygons(data = eiffel_tower) |>
+  addMarkers(popup = labs, icon = leaf_icons) |>
   addLayersControl(
     baseGroups = c("CartoDB.Positron", "OSM"),
     position = "topleft",
     options = layersControlOptions(collapsed = FALSE)
   )
 
-# Step 5: Reactable for filtering
+# Step 5: Create a reactable table for filtering.
 tb <- reactable(
   cf_bk_data,
   selection = "multiple",
@@ -135,15 +132,15 @@ tb <- reactable(
       }
     ),
     URL = colDef(cell = function(value) {
-      # Render as a link
-      if (is.null(value) | is.na(value)) {
+      # Render as a link.
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       htmltools::a(href = value, target = "_blank", as.character(value))
     }),
     Phone = colDef(cell = function(value) {
-      # Render as a link
-      if (is.null(value) | is.na(value)) {
+      # Render as a link.
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       clearphone <- gsub("-", "", value)
@@ -161,7 +158,8 @@ tb <- reactable(
 ## Widget
 
 ``` r
-# Last step: Display all
+
+# Display all widgets.
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
 )
@@ -169,9 +167,9 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel tower icons created by Freepik -
+- [Eiffel Tower icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
-- [Mug icons created by Freepik -
+- [Mug icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
-- [Food icons created by Freepik -
+- [Food icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons")

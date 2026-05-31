@@ -2,10 +2,10 @@
 
 Geocodes addresses given as character values and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md)
-for retrieving the data as a spatial object
-([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
+for retrieving the data as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
 
 Corresponds to the **free-form query** search described in the [API
 endpoint](https://nominatim.org/release-docs/latest/api/Search/).
@@ -31,8 +31,8 @@ geo_lite(
 
 - address:
 
-  `character` with single line address, e.g.
-  (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+  `character` with a single-line address, for example
+  `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
   (`c("Madrid", "Barcelona")`).
 
 - lat:
@@ -50,9 +50,9 @@ geo_lite(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_addresses:
 
@@ -60,11 +60,11 @@ geo_lite(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
@@ -74,13 +74,13 @@ geo_lite(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  Named list with API-specific parameters, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 ## Value
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the results found by the query.
+the results that match the query.
 
 ## Details
 
@@ -89,7 +89,6 @@ additional parameters to be passed to `custom_query`.
 
 ## See also
 
-[`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),
 [`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html).
 
 Geocoding:
@@ -120,21 +119,21 @@ geo_lite(c("Madrid", "Barcelona"))
 #> 1 Madrid     40.4 -3.70 Madrid, Comunidad de Madrid, España                
 #> 2 Barcelona  41.4  2.18 Barcelona, Barcelonès, Barcelona, Catalunya, España
 
-# With options: restrict search to USA
+# With options: restrict search to the United States
 geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE
 )
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
-#> # A tibble: 2 × 25
-#>   query       lat    lon address place_id licence osm_type osm_id category type 
-#>   <chr>     <dbl>  <dbl> <chr>      <int> <chr>   <chr>     <dbl> <chr>    <chr>
-#> 1 Madrid     41.9  -93.8 Madrid…   3.44e8 Data ©… relation 1.29e5 boundary admi…
-#> 2 Barcelona  37.7 -121.  Barcel…   2.99e8 Data ©… node     9.63e9 place    neig…
-#> # ℹ 15 more variables: place_rank <int>, importance <dbl>, addresstype <chr>,
+#> # A tibble: 2 × 24
+#>   query       lat   lon address  place_id licence osm_type osm_id category type 
+#>   <chr>     <dbl> <dbl> <chr>       <int> <chr>   <chr>     <int> <chr>    <chr>
+#> 1 Madrid     41.9 -93.8 Madrid,…   3.74e8 Data ©… relation 1.29e5 boundary admi…
+#> 2 Barcelona  42.3 -79.6 Barcelo…   3.49e8 Data ©… node     1.58e8 place    haml…
+#> # ℹ 14 more variables: place_rank <int>, importance <dbl>, addresstype <chr>,
 #> #   name <chr>, display_name <chr>, address.town <chr>, address.county <chr>,
 #> #   address.state <chr>, `address.ISO3166-2-lvl4` <chr>, address.country <chr>,
-#> #   address.country_code <chr>, boundingbox <list>,
-#> #   address.neighbourhood <chr>, address.city <chr>, address.postcode <chr>
+#> #   address.country_code <chr>, boundingbox <list>, address.hamlet <chr>,
+#> #   address.postcode <chr>
 # }
 ```

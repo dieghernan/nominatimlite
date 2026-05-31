@@ -1,8 +1,9 @@
-# Address search API in [sf](https://CRAN.R-project.org/package=sf) format (free-form query)
+# Address search API with [sf](https://CRAN.R-project.org/package=sf) output (free-form query)
 
-Geocodes addresses and returns the corresponding spatial object. The
-query output is provided in [sf](https://CRAN.R-project.org/package=sf)
-format; see
+Geocodes addresses and returns the corresponding
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object. The
+query output is returned as an
+[sf](https://CRAN.R-project.org/package=sf) object. See
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -30,8 +31,8 @@ geo_lite_sf(
 
 - address:
 
-  `character` with single line address, e.g.
-  (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+  `character` with a single-line address, for example
+  `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
   (`c("Madrid", "Barcelona")`).
 
 - limit:
@@ -45,12 +46,13 @@ geo_lite_sf(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
-  only address columns are returned. See also `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only address columns are returned. See also
+  `return_addresses`.
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - progressbar:
 
@@ -59,53 +61,46 @@ geo_lite_sf(
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  Named list with API-specific parameters, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 - points_only:
 
-  Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
-  which is the default) or potentially other shapes as provided by the
-  Nominatim API (`FALSE`). See **About Geometry Types**.
+  Logical `TRUE/FALSE`. Whether to return only point geometries (`TRUE`,
+  which is the default) or potentially other shapes as returned by the
+  Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
 
-A [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object with
-the results.
+An [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object with
+the results that match the query.
 
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
 additional parameters to be passed to `custom_query`.
 
-## About Geometry Types
+## About geometry types
 
 The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
-geometry) or possibly other spatial objects.
+geometry) or other geometry types.
 
-Note that the type of geometry returned in case of `points_only = FALSE`
-will depend on the object being geocoded:
+Note that when `points_only = FALSE`, the type of geometry returned
+depends on the object being geocoded. Administrative areas, major
+buildings and the like will be returned as polygons, rivers, roads and
+similar features will be returned as lines, and amenities may still be
+returned as points.
 
-- Administrative areas, major buildings and the like will be returned as
-  polygons.
-
-- Rivers, roads and their like as lines.
-
-- Amenities may be points even in case of a `points_only = FALSE` call.
-
-The function is vectorized, allowing for multiple addresses to be
-geocoded; in case of `points_only = FALSE` multiple geometry types may
-be returned.
+This function is vectorized, allowing multiple addresses to be geocoded.
+With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
-
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md).
 
 Geocoding:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md),
@@ -116,7 +111,7 @@ Geocoding:
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
 
-Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) outputs:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
@@ -127,13 +122,13 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 
 ``` r
 # \donttest{
-# Map - Points
+# Map: points
 library(ggplot2)
 
 string <- "Statue of Liberty, NY, USA"
 sol <- geo_lite_sf(string)
 
-if (any(!sf::st_is_empty(sol))) {
+if (!all(sf::st_is_empty(sol))) {
   ggplot(sol) +
     geom_sf()
 }
@@ -141,7 +136,7 @@ if (any(!sf::st_is_empty(sol))) {
 
 sol_poly <- geo_lite_sf(string, points_only = FALSE)
 
-if (any(!sf::st_is_empty(sol_poly))) {
+if (!all(sf::st_is_empty(sol_poly))) {
   ggplot(sol_poly) +
     geom_sf() +
     geom_sf(data = sol, color = "red")
@@ -154,7 +149,7 @@ madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
   points_only = FALSE, full_results = TRUE
 )
 
-if (any(!sf::st_is_empty(madrid))) {
+if (!all(sf::st_is_empty(madrid))) {
   ggplot(madrid) +
     geom_sf(fill = NA)
 }

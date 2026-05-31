@@ -13,8 +13,8 @@
 <link rel="manifest" href="../site.webmanifest">
 <!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="../katex-auto.js"></script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Inter-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Inter_Tight-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Fira_Code-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
@@ -44,7 +44,7 @@
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.5.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,34 +100,34 @@
 
 
 
-    <!-- nominatimlite.qmd is generated from nominatimlite.qmd.orig. Please edit that file --><p>The goal of <strong>nominatimlite</strong> is to provide a light interface for geocoding addresses, based on the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>. It also allows to load spatial objects using the <strong>sf</strong> package.</p>
-<p>Full site with examples and vignettes on <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
+    <!-- nominatimlite.qmd is generated from nominatimlite.qmd.orig. Please edit that file --><p>The goal of <strong>nominatimlite</strong> is to provide a lightweight interface for geocoding addresses with the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>. It also allows you to return results as <code>sf</code> objects using the <strong>sf</strong> package.</p>
+<p>The full site with examples and vignettes is available at <a href="https://dieghernan.github.io/nominatimlite/" class="uri">https://dieghernan.github.io/nominatimlite/</a></p>
 <section class="level2"><h2 id="what-is-nominatim">What is Nominatim?<a class="anchor" aria-label="anchor" href="#what-is-nominatim"></a>
 </h2>
-<p><strong>Nominatim</strong> is a tool to search <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and to generate synthetic addresses of OSM points (reverse geocoding).</p>
+<p><strong>Nominatim</strong> is a tool for searching <a href="https://www.openstreetmap.org/" class="external-link">OpenStreetMap</a> data by name and address (<a href="https://wiki.openstreetmap.org/wiki/Geocoding" title="Geocoding" class="external-link">geocoding</a>) and generating synthetic addresses for OSM points (reverse geocoding).</p>
 </section><section class="level2"><h2 id="why-nominatimlite">Why nominatimlite?<a class="anchor" aria-label="anchor" href="#why-nominatimlite"></a>
 </h2>
-<p>The main goal of <strong>nominatimlite</strong> is to access the Nominatim API while avoiding the dependency on <strong>curl</strong>. In some situations, <strong>curl</strong> may not be available or accessible, so <strong>nominatimlite</strong> uses base functions to overcome this limitation.</p>
+<p><strong>nominatimlite</strong> accesses the Nominatim API without depending on <strong>curl</strong>. In some situations, <strong>curl</strong> may not be available or accessible, so <strong>nominatimlite</strong> uses base R functions instead.</p>
 </section><section class="level2"><h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
 </h2>
-<p>There are other packages that are more complete and mature than <strong>nominatimlite</strong> and provide similar features:</p>
+<p>Other packages are more complete and mature than <strong>nominatimlite</strong> and provide similar features:</p>
 <ul>
 <li>
-<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><strong>tidygeocoder</strong></a> <span class="citation" data-cites="R-tidygeocoder">(<a href="#ref-R-tidygeocoder" role="doc-biblioref">Cambon et al. 2021</a>)</span>: Allows to interface with Nominatim, Google, TomTom, Mapbox, etc. for geocoding and reverse geocoding.</li>
+<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><strong>tidygeocoder</strong></a> <span class="citation" data-cites="R-tidygeocoder">(<a href="#ref-R-tidygeocoder" role="doc-biblioref">Cambon et al. 2021</a>)</span>: Provides an interface to geocoding services such as Nominatim, Google, TomTom and Mapbox.</li>
 <li>
-<a href="https://docs.ropensci.org/osmdata/" class="external-link"><strong>osmdata</strong></a> <span class="citation" data-cites="R-osmdata">(<a href="#ref-R-osmdata" role="doc-biblioref">Padgham et al. 2017</a>)</span>: Great for downloading spatial data from OpenStreetMap, via the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" class="external-link">Overpass API</a>.</li>
+<a href="https://docs.ropensci.org/osmdata/" class="external-link"><strong>osmdata</strong></a> <span class="citation" data-cites="R-osmdata">(<a href="#ref-R-osmdata" role="doc-biblioref">Padgham et al. 2017</a>)</span>: Downloads spatial data from OpenStreetMap with the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" class="external-link">Overpass API</a>.</li>
 <li>
-<a href="https://dieghernan.github.io/arcgeocoder/" class="external-link"><strong>arcgeocoder</strong></a> <span class="citation" data-cites="R-arcgeocoder">(<a href="#ref-R-arcgeocoder" role="doc-biblioref">Hernangómez 2024</a>)</span>: Lite interface for geocoding with the ArcGIS REST API Service.</li>
+<a href="https://dieghernan.github.io/arcgeocoder/" class="external-link"><strong>arcgeocoder</strong></a> <span class="citation" data-cites="R-arcgeocoder">(<a href="#ref-R-arcgeocoder" role="doc-biblioref">Hernangómez 2024</a>)</span>: Provides a lightweight interface for geocoding with the ArcGIS REST API service.</li>
 </ul></section><section class="level2"><h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <section class="level3"><h3 id="sf-objects">
 <code>sf</code> objects<a class="anchor" aria-label="anchor" href="#sf-objects"></a>
 </h3>
-<p>With <strong>nominatimlite</strong> you can extract spatial objects easily:</p>
+<p>With <strong>nominatimlite</strong> you can return <code>sf</code> objects:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/nominatimlite/">nominatimlite</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Extract some points - Pizza Hut in California</span></span>
+<span><span class="co"># Search for Pizza Hut locations in California.</span></span>
 <span></span>
 <span><span class="va">CA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"California"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -150,7 +150,7 @@
 Figure 1: Locations of Pizza Hut in California
 </figcaption></figure>
 </div>
-<p>You can also extract polygon and line objects (if available) using the option <code>points_only = FALSE</code>:</p>
+<p>You can also return polygon and line objects when the Nominatim API provides them, using the option <code>points_only = FALSE</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sol_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"Statue of Liberty, NY, USA"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -166,12 +166,12 @@ Figure 2: Statue of Liberty
 </div>
 </section><section class="level3"><h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
 </h3>
-<p><em>Note: examples adapted from <strong>tidygeocoder</strong> package</em></p>
-<p>In this first example we will geocode a few addresses using the <code><a href="../reference/geo_lite.html">geo_lite()</a></code> function:</p>
+<p><em>Note: examples are adapted from the <strong>tidygeocoder</strong> package.</em></p>
+<p>In this first example, we geocode a few addresses with <code><a href="../reference/geo_lite.html">geo_lite()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># create a dataframe with addresses</span></span>
+<span><span class="co"># Create a data frame with addresses.</span></span>
 <span><span class="va">some_addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">addr</span>,</span>
 <span>  <span class="st">"White House"</span>, <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
@@ -179,22 +179,22 @@ Figure 2: Statue of Liberty
 <span>  <span class="st">"Willis Tower"</span>, <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># geocode the addresses</span></span>
+<span><span class="co"># Geocode the addresses.</span></span>
 <span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_lite.html">geo_lite</a></span><span class="op">(</span></span>
 <span>  <span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
 <span>  lat <span class="op">=</span> <span class="st">"latitude"</span>,</span>
 <span>  long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Only latitude and longitude are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
+<p>This example returns only latitude, longitude and address columns from the Nominatim API. Use <code>full_results = TRUE</code> to return all available data from the Nominatim API.</p>
 <div id="tbl-geo" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-geo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col style="width: 22%">
+<col style="width: 20%">
 <col style="width: 4%">
 <col style="width: 5%">
-<col style="width: 67%">
+<col style="width: 69%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: left;">query</th>
@@ -213,13 +213,13 @@ Figure 2: Statue of Liberty
 <td style="text-align: left;">600 Montgomery St, San Francisco, CA 94111</td>
 <td style="text-align: right;">37.79519</td>
 <td style="text-align: right;">-122.40279</td>
-<td style="text-align: left;">Transamerica Pyramid, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States</td>
+<td style="text-align: left;">Transamerica Pyramid, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">233 S Wacker Dr, Chicago, IL 60606</td>
 <td style="text-align: right;">41.87874</td>
 <td style="text-align: right;">-87.63596</td>
-<td style="text-align: left;">Willis Tower, 233, South Wacker Drive, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States</td>
+<td style="text-align: left;">Willis Tower, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States</td>
 </tr>
 </tbody>
 </table>
@@ -228,7 +228,7 @@ Figure 2: Statue of Liberty
 Table 1: Example: geocoding addresses
 </figcaption></figure>
 </div>
-<p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> function. The arguments are similar to the <code><a href="../reference/geo_lite.html">geo_lite()</a></code> function, but now we specify the input data columns with the <code>lat</code> and <code>long</code> arguments. The dataset used here is from the geocoder query above. The single line address is returned in a column named by the <code>address</code>.</p>
+<p>To perform reverse geocoding, use <code><a href="../reference/reverse_geo_lite.html">reverse_geo_lite()</a></code> to obtain addresses from geographic coordinates. The arguments are similar to <code><a href="../reference/geo_lite.html">geo_lite()</a></code>, but now we provide coordinate values with the <code>lat</code> and <code>long</code> arguments. The dataset used here is from the geocoding query above. The single-line address is returned in a column named with the <code>address</code> argument.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reverse_geo_lite.html">reverse_geo_lite</a></span><span class="op">(</span></span>
 <span>  lat <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>,</span>
@@ -240,7 +240,7 @@ Table 1: Example: geocoding addresses
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-rev-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
-<col style="width: 86%">
+<col style="width: 85%">
 <col style="width: 6%">
 <col style="width: 7%">
 </colgroup>
@@ -251,12 +251,12 @@ Table 1: Example: geocoding addresses
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States</td>
+<td style="text-align: left;">White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States</td>
 <td style="text-align: right;">38.89764</td>
 <td style="text-align: right;">-77.03655</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Sky Bar, 600, Montgomery Street, Telegraph Hill, Financial District, San Francisco, California, 94111, United States</td>
+<td style="text-align: left;">Sky Bar, Mark Twain Place, Financial District, South of Market, San Francisco, California, 94111, United States</td>
 <td style="text-align: right;">37.79519</td>
 <td style="text-align: right;">-122.40254</td>
 </tr>
@@ -272,15 +272,15 @@ Table 1: Example: geocoding addresses
 Table 2: Example: reverse geocoding addresses
 </figcaption></figure>
 </div>
-<p>For more advanced users, see <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim docs</a> to check the parameters available.</p>
+<p>For more advanced users, see the <a href="https://nominatim.org/release-docs/latest/api/Search/" class="external-link">Nominatim documentation</a> for the available parameters.</p>
 </section></section><section class="level2 unnumbered"><h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-R-tidygeocoder" class="csl-entry" role="listitem">
 Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel Possenriede. 2021. <span>“<span class="nocase">tidygeocoder</span>: An <span>R</span> Package for Geocoding.”</span> <em>Journal of Open Source Software</em> 6 (65): 3544. <a href="https://doi.org/10.21105/joss.03544" class="external-link">https://doi.org/10.21105/joss.03544</a>.
 </div>
 <div id="ref-R-arcgeocoder" class="csl-entry" role="listitem">
-Hernangómez, Diego. 2024. <em><span class="nocase">arcgeocoder</span>: Geocoding with the <span>ArcGIS</span> <span>REST</span> <span>API</span> Service</em> (version 0.1.0). <a href="https://doi.org/10.5281/zenodo.10495365" class="external-link">https://doi.org/10.5281/zenodo.10495365</a>.
+Hernangómez, Diego. 2024. <em><span class="nocase">arcgeocoder</span>: Geocoding with the <span>ArcGIS</span> <span>REST</span> <span>API</span> Service</em>. Version 0.1.0. <a href="https://doi.org/10.5281/zenodo.10495365" class="external-link">https://doi.org/10.5281/zenodo.10495365</a>.
 </div>
 <div id="ref-R-osmdata" class="csl-entry" role="listitem">
 Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017. <span>“<span class="nocase">osmdata</span>.”</span> <em>Journal of Open Source Software</em> 2 (14): 305. <a href="https://doi.org/10.21105/joss.00305" class="external-link">https://doi.org/10.21105/joss.00305</a>.

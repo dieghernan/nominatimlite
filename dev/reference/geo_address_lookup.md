@@ -1,12 +1,12 @@
 # Address lookup API
 
-The lookup API queries the address and other details of one or multiple
-OSM objects (node, way, relation) and returns the
+The lookup API queries the address and other details of one or more OSM
+objects, such as nodes, ways or relations, and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
-for retrieving the data as a spatial object
-([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
+for retrieving the data as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
 
 ## Usage
 
@@ -28,13 +28,14 @@ geo_address_lookup(
 
 - osm_ids:
 
-  Vector of OSM identifiers as **numeric** (`c(00000, 11111, 22222)`).
+  Vector of OSM identifiers as numeric values, for example
+  `c(00000, 11111, 22222)`.
 
 - type:
 
-  Character vector of the OSM object type associated with each
-  `osm_ids`. Possible values are node (`"N"`), way (`"W"`), or relation
-  (`"R"`). If a single value is provided it will be recycled.
+  Character vector of the OSM object type associated with each `osm_ids`
+  value. Possible values are node (`"N"`), way (`"W"`) or relation
+  (`"R"`). If a single value is provided, it will be recycled.
 
 - lat:
 
@@ -46,9 +47,9 @@ geo_address_lookup(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_addresses:
 
@@ -56,22 +57,22 @@ geo_address_lookup(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  A named list with API-specific parameters to be used (i.e.
-  `list(countrycodes = "US")`). See **Details**.
+  Named list with API-specific parameters, for example
+  `list(countrycodes = "US")`. See **Details**.
 
 ## Value
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the results found by the query.
+the results that match the query.
 
 ## Details
 
@@ -80,9 +81,7 @@ additional parameters to be passed to `custom_query`.
 
 ## See also
 
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md).
-
-Address Lookup API:
+Address lookup:
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
 
 Geocoding:
@@ -112,7 +111,7 @@ several
 #> # A tibble: 2 × 4
 #>   query        lat   lon address                                                
 #>   <chr>      <dbl> <dbl> <chr>                                                  
-#> 1 R146656     53.5 -2.25 Manchester, Greater Manchester, England, United Kingdom
+#> 1 R146656     53.4 -2.23 Manchester, Greater Manchester, England, United Kingdom
 #> 2 N240109189  52.5 13.4  Berlin, Deutschland                                    
 # }
 ```

@@ -29,13 +29,14 @@ Data extracted on **03 April 2024**.
 
 ## See also
 
-Other amenity:
+Amenity lookup:
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md)
 
 ## Examples
 
 ``` r
+
 data("osm_amenities")
 
 osm_amenities

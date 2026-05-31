@@ -1,9 +1,9 @@
-# nominatimlite: Interface with 'Nominatim' API Service
+# nominatimlite: Interface to the 'Nominatim' API
 
-Lite interface for getting data from 'OSM' service 'Nominatim'
-<https://nominatim.org/release-docs/latest/>. Extract coordinates from
-addresses, find places near a set of coordinates and return spatial
-objects on 'sf' format.
+Lightweight interface to the 'OpenStreetMap' 'Nominatim' service
+<https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse
+geocode coordinates, look up amenities and return results as data frames
+(tibbles) or 'sf' objects.
 
 ## See also
 
@@ -19,6 +19,11 @@ Useful links:
 
 **Maintainer**: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 ([ORCID](https://orcid.org/0000-0001-8457-4658)) \[copyright holder\]
+
+Authors:
+
+- Diego Hernangómez <diego.hernangomezherrero@gmail.com>
+  ([ORCID](https://orcid.org/0000-0001-8457-4658)) \[copyright holder\]
 
 Other contributors:
 

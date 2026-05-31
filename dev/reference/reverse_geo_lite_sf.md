@@ -1,9 +1,11 @@
-# Reverse geocoding API in [sf](https://CRAN.R-project.org/package=sf) format
+# Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf) output
 
 Generates an address from latitude and longitude (latitudes in
 \\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180, 180
-\right\]\\), and returns the spatial object associated with the query
-using [sf](https://CRAN.R-project.org/package=sf); see
+\right\]\\), and returns the
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object
+associated with the query using
+[sf](https://CRAN.R-project.org/package=sf). See
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -43,9 +45,9 @@ reverse_geo_lite_sf(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_coords:
 
@@ -53,11 +55,11 @@ reverse_geo_lite_sf(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
@@ -67,29 +69,29 @@ reverse_geo_lite_sf(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list (ie.
-  `list(zoom = 3)`). See **Details**.
+  Named list with API-specific parameters, for example `list(zoom = 3)`.
+  See **Details**.
 
 - points_only:
 
-  Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
-  which is the default) or potentially other shapes as provided by the
-  Nominatim API (`FALSE`). See **About Geometry Types**.
+  Logical `TRUE/FALSE`. Whether to return only point geometries (`TRUE`,
+  which is the default) or potentially other shapes as returned by the
+  Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
 
-A [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object with
-the results.
+An [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object with
+the results that match the query.
 
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Reverse/> for
 additional parameters to be passed to `custom_query`.
 
-## About Zooming
+## About zooming
 
 Use the option `custom_query = list(zoom = 3)` to adjust the output.
-Some equivalences on terms of zoom:
+Some zoom levels correspond to these address details:
 
 |          |                         |
 |----------|-------------------------|
@@ -103,34 +105,27 @@ Some equivalences on terms of zoom:
 | `17`     | major and minor streets |
 | `18`     | building                |
 
-## About Geometry Types
+## About geometry types
 
 The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
-geometry) or possibly other spatial objects.
+geometry) or other geometry types.
 
-Note that the type of geometry returned in case of `points_only = FALSE`
-will depend on the object being geocoded:
+Note that when `points_only = FALSE`, the type of geometry returned
+depends on the object being geocoded. Administrative areas, major
+buildings and the like will be returned as polygons, rivers, roads and
+similar features will be returned as lines, and amenities may still be
+returned as points.
 
-- Administrative areas, major buildings and the like will be returned as
-  polygons.
-
-- Rivers, roads and their like as lines.
-
-- Amenities may be points even in case of a `points_only = FALSE` call.
-
-The function is vectorized, allowing for multiple addresses to be
-geocoded; in case of `points_only = FALSE` multiple geometry types may
-be returned.
+This function is vectorized, allowing multiple addresses to be geocoded.
+With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
-[`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md).
-
-Reverse geocoding coordinates:
+Reverse geocoding:
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md)
 
-Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) outputs:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
@@ -143,11 +138,11 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 # \donttest{
 library(ggplot2)
 
-# Coliseum coords
+# Colosseum coordinates
 col_lon <- 12.49309
 col_lat <- 41.89026
 
-# Coliseum as polygon
+# Colosseum as polygon
 col_sf <- reverse_geo_lite_sf(
   lat = col_lat,
   lon = col_lon,
@@ -162,13 +157,13 @@ dplyr::glimpse(col_sf)
 #> $ lon      <dbl> 12.49309
 #> $ geometry <POINT [°]> POINT (12.49333 41.89014)
 
-if (any(!sf::st_is_empty(col_sf))) {
+if (!all(sf::st_is_empty(col_sf))) {
   ggplot(col_sf) +
     geom_sf()
 }
 
 
-# City of Rome - same coords with zoom 10
+# City of Rome: same coordinates with zoom 10
 
 rome_sf <- reverse_geo_lite_sf(
   lat = col_lat,
@@ -185,7 +180,7 @@ dplyr::glimpse(rome_sf)
 #> $ lon      <dbl> 12.49309
 #> $ geometry <MULTIPOLYGON [°]> MULTIPOLYGON (((12.23447 41...
 
-if (any(!sf::st_is_empty(rome_sf))) {
+if (!all(sf::st_is_empty(rome_sf))) {
   ggplot(rome_sf) +
     geom_sf()
 }

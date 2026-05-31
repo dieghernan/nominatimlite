@@ -4,10 +4,10 @@ Generates an address from latitude and longitude (latitudes in
 \\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180, 180
 \right\]\\), and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query; see
+associated with the query. See
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.md)
-for retrieving the data as a spatial object
-([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
+for retrieving the data as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
 
 ## Usage
 
@@ -43,9 +43,9 @@ reverse_geo_lite(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default)
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_coords:
 
@@ -53,11 +53,11 @@ reverse_geo_lite(
 
 - verbose:
 
-  If `TRUE` then detailed logs are output to the console.
+  If `TRUE`, detailed logs are output to the console.
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
@@ -67,23 +67,23 @@ reverse_geo_lite(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list (ie.
-  `list(zoom = 3)`). See **Details**.
+  Named list with API-specific parameters, for example `list(zoom = 3)`.
+  See **Details**.
 
 ## Value
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the results found by the query.
+the results that match the query.
 
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Reverse/> for
 additional parameters to be passed to `custom_query`.
 
-## About Zooming
+## About zooming
 
 Use the option `custom_query = list(zoom = 3)` to adjust the output.
-Some equivalences on terms of zoom:
+Some zoom levels correspond to these address details:
 
 |          |                         |
 |----------|-------------------------|
@@ -99,10 +99,9 @@ Some equivalences on terms of zoom:
 
 ## See also
 
-[`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.md),
 [`tidygeocoder::reverse_geo()`](https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html).
 
-Reverse geocoding coordinates:
+Reverse geocoding:
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.md)
 
 ## Examples
@@ -114,7 +113,7 @@ reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #> # A tibble: 1 × 3
 #>   address                                                              lat   lon
 #>   <chr>                                                              <dbl> <dbl>
-#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York Co…  40.8 -74.0
+#> 1 West 44th Street, Times Square, Manhattan Community Board 5, Manh…  40.8 -74.0
 
 # Several coordinates
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
@@ -122,8 +121,8 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #> # A tibble: 2 × 3
 #>   address                                                             lat    lon
 #>   <chr>                                                             <dbl>  <dbl>
-#> 1 Times Square, Manhattan Community Board 5, Manhattan, New York C…  40.8 -74.0 
-#> 2 East End, Waterloo Place, Waterloo Place, Broughton, New Town/Br…  56.0  -3.19
+#> 1 West 44th Street, Times Square, Manhattan Community Board 5, Man…  40.8 -74.0 
+#> 2 East End, Waterloo Place, Waterloo Place, Greenside, Broughton, …  56.0  -3.19
 
 # With options: zoom to country level
 sev <- reverse_geo_lite(
@@ -139,7 +138,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 45852144, 254352942
+#> $ place_id                                 <int> 52172514, 273351366
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149
