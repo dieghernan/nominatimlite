@@ -11,10 +11,10 @@ Authors@R: c(
     person("OpenStreetMap", role = "cph",
            comment = "For the data")
   )
-Description: Lightweight interface to the 'OpenStreetMap' service
-    'Nominatim' <https://nominatim.org/release-docs/latest/>. Geocode
+Description: Lightweight interface to the 'OpenStreetMap' 'Nominatim'
+    service <https://nominatim.org/release-docs/latest/>. Geocode
     addresses, reverse geocode coordinates, look up amenities and return
-    results as data frames or 'sf' spatial objects.
+    results as data frames (tibbles) or 'sf' objects.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite

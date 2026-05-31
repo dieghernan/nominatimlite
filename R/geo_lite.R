@@ -3,7 +3,7 @@
 #' @description
 #' Geocodes addresses given as character values and returns the
 #' [`tibble`][tibble::tibble] associated with the query. See [geo_lite_sf()] for
-#' retrieving the data as a spatial object ([`sf`][sf::st_sf] format).
+#' retrieving the data as an [`sf`][sf::st_sf] object.
 #'
 #' Corresponds to the **free-form query** search described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
@@ -18,29 +18,27 @@
 #' @param long Longitude column name in the output data (default `"long"`).
 #' @param limit Maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
-#' @param full_results Returns all available data from the API service.
+#' @param full_results Return all available data from the Nominatim API.
 #'   If `FALSE` (default), only latitude, longitude and address columns are
 #'   returned. See also `return_addresses`.
 #' @param return_addresses Return input addresses with results if `TRUE`.
 #' @param verbose If `TRUE`, detailed logs are output to the console.
-#' @param nominatim_server The URL of the Nominatim server to use.
-#'   Defaults to `"https://nominatim.openstreetmap.org/"`.
+#' @param nominatim_server URL of the Nominatim server to use. Defaults to
+#'   `"https://nominatim.openstreetmap.org/"`.
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'   the progress of the function.
-#' @param custom_query A named list with API-specific parameters to be used,
-#'   for example `list(countrycodes = "US")`. See **Details**.
+#' @param custom_query Named list with API-specific parameters, for example
+#'   `list(countrycodes = "US")`. See **Details**.
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
 #' @return
-#'
-#' ```{r child = "man/chunks/tibbleout.Rmd"}
-#' ```
+#' A [`tibble`][tibble::tibble] with the results that match the query.
 #'
 #' @seealso
-#' [geo_lite_sf()], [tidygeocoder::geo()].
+#' [tidygeocoder::geo()].
 #'
 #' @export
 #'
@@ -51,7 +49,7 @@
 #' # Several addresses
 #' geo_lite(c("Madrid", "Barcelona"))
 #'
-#' # With options: restrict search to USA
+#' # With options: restrict search to the United States
 #' geo_lite(c("Madrid", "Barcelona"),
 #'   custom_query = list(countrycodes = "US"),
 #'   full_results = TRUE
@@ -69,32 +67,16 @@ geo_lite <- function(
   progressbar = TRUE,
   custom_query = list()
 ) {
-  if (limit > 50) {
-    message(paste(
-      "Nominatim returns at most 50 results. ",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- cap_limit(limit)
 
-  # Deduplicate queries.
+  # Deduplicate queries before calling the API.
   init_key <- dplyr::tibble(query = address)
   key <- unique(address)
 
-  # Set the progress bar.
   ntot <- length(key)
-  # Show the progress bar only when there is more than one query.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-  seql <- seq(1, ntot, 1)
 
-  all_res <- lapply(seql, function(x) {
+  all_res <- progress_lapply(ntot, progressbar, function(x) {
     ad <- key[x]
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
-    }
     geo_lite_single(
       address = ad,
       lat,
@@ -107,9 +89,6 @@ geo_lite <- function(
       custom_query
     )
   })
-  if (progressbar) {
-    close(pb)
-  }
 
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(init_key, all_res, by = "query")
@@ -117,8 +96,8 @@ geo_lite <- function(
   all_res
 }
 
-#' @noRd
 #' @inheritParams geo_lite
+#' @noRd
 
 geo_lite_single <- function(
   address,
@@ -131,44 +110,30 @@ geo_lite_single <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 ) {
-  # Build the API address and ensure that the server URL has one trailing slash.
-  api <- prepare_api_url(nominatim_server, "search?q=")
+  url <- build_search_url(
+    nominatim_server = nominatim_server,
+    format = "jsonv2",
+    limit = limit,
+    full_results = full_results,
+    custom_query = custom_query,
+    query = address
+  )
 
-  # Replace spaces with `+`.
-  address2 <- gsub(" ", "+", address, fixed = TRUE)
-
-  # Compose the URL.
-  url <- paste0(api, address2, "&format=jsonv2&limit=", limit)
-
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
-
-  # Add options.
-  url <- add_custom_query(custom_query, url)
-
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".json", isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
-
-  # Keep a tibble with the query.
+  # Keep the original query value.
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
-  # Rename latitude and longitude columns.
-  nmes <- names(result)
-  nmes[nmes == "lat"] <- lat
-  nmes[nmes == "lon"] <- long
-
-  names(result) <- nmes
+  result <- rename_coordinate_cols(result, lat, long)
 
   # Handle empty queries.
   if (nrow(result) == 0) {
@@ -177,15 +142,13 @@ geo_lite_single <- function(
     return(invisible(out))
   }
 
-  # Convert coordinates to double.
-  result[lat] <- as.double(result[[lat]])
-  result[long] <- as.double(result[[long]])
+  result <- convert_coordinate_cols(result, lat, long)
 
-  # Add the query.
+  # Add the query to the API results.
   result_clean <- result
   result_clean$query <- address
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names(
     result_clean,
     return_addresses,
@@ -193,7 +156,7 @@ geo_lite_single <- function(
     colstokeep = c("query", lat, long)
   )
 
-  # Convert to tibble.
+  # Restore tibble classes.
   result_out <- dplyr::as_tibble(result_out)
 
   result_out

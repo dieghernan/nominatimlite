@@ -27,7 +27,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 The goal of **nominatimlite** is to provide a lightweight interface for
 geocoding addresses with the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It also allows you to
-retrieve spatial objects using the **sf** package.
+return results as `sf` objects using the **sf** package.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>
@@ -37,7 +37,7 @@ The full site with examples and vignettes is available at
 **Nominatim** is a tool for searching
 [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
-and to generate synthetic addresses for OSM points (reverse geocoding).
+and generating synthetic addresses for OSM points (reverse geocoding).
 
 ## Why nominatimlite?
 
@@ -104,12 +104,12 @@ install.packages(
 
 ### `sf` objects
 
-With **nominatimlite** you can extract spatial objects:
+With **nominatimlite** you can return `sf` objects:
 
 ``` r
 library(nominatimlite)
 
-# Extract Pizza Hut locations in California.
+# Search for Pizza Hut locations in California.
 
 CA <- geo_lite_sf("California", points_only = FALSE)
 
@@ -129,11 +129,11 @@ ggplot(CA) +
 <img src="man/figures/README-pizzahut-1.png" style="width:100.0%"
 alt="Pizza Hut restaurant locations in California extracted with nominatimlite." />
 
-You can also extract polygon and line objects when the Nominatim API
+You can also return polygon and line objects when the Nominatim API
 provides them, using the option `points_only = FALSE`:
 
 ``` r
-sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building, returned as a polygon
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # A building, returned as a polygon.
 
 ggplot(sol_poly) +
   geom_sf()
@@ -143,9 +143,9 @@ ggplot(sol_poly) +
 alt="Location of the Statue of Liberty extracted with nominatimlite." />
 
 ``` r
-dayton <- geo_lite_sf("Dayton, OH") # default, returned as a point
-ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state, returned as a polygon
-ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river, returned as a line
+dayton <- geo_lite_sf("Dayton, OH") # Default, returned as a point.
+ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # A US state, returned as a polygon.
+ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # A river, returned as a line.
 
 ggplot() +
   geom_sf(data = ohio_state) +
@@ -182,13 +182,13 @@ lat_longs <- geo_lite(
 )
 ```
 
-This example returns only latitude and longitude from the geocoder
-service. Use `full_results = TRUE` to return all data from the geocoder
-service.
+This example returns only latitude, longitude and address columns from
+the Nominatim API. Use `full_results = TRUE` to return all available
+data from the Nominatim API.
 
 | query | latitude | longitude | address |
 |:---|---:|---:|:---|
-| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States |
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States |
 | 233 S Wacker Dr, Chicago, IL 60606 | 41.87874 | -87.63596 | Willis Tower, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States |
 
@@ -197,10 +197,10 @@ service.
 Table 1: Example: geocoding addresses.
 </p>
 
-To perform reverse geocoding (obtaining addresses from geographic
-coordinates), use `reverse_geo_lite()`. The arguments are similar to
-`geo_lite()`, but now we specify the input data columns with the `lat`
-and `long` arguments. The dataset used here is from the geocoder query
+To perform reverse geocoding, use `reverse_geo_lite()` to obtain
+addresses from geographic coordinates. The arguments are similar to
+`geo_lite()`, but now we provide coordinate values with the `lat` and
+`long` arguments. The dataset used here is from the geocoding query
 above. The single-line address is returned in a column named with the
 `address` argument.
 
@@ -216,8 +216,8 @@ reverse <- reverse_geo_lite(
 | address_found | lat | lon |
 |:---|---:|---:|
 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
-| 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87874 | -87.63589 |
+| Sky Bar, Mark Twain Place, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
 
 <p class="caption">
 
@@ -245,9 +245,9 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.5.0},
+      version = {0.5.0.9000},
       url = {https://dieghernan.github.io/nominatimlite/},
-      abstract = {Lightweight interface to the OpenStreetMap service Nominatim <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames or sf spatial objects.},
+      abstract = {Lightweight interface to the OpenStreetMap Nominatim service <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames (tibbles) or sf objects.},
     }
 
 ## References

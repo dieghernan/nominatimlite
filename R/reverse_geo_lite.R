@@ -4,8 +4,8 @@
 #' Generates an address from latitude and longitude (latitudes in
 #' \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
 #' and returns the [`tibble`][tibble::tibble] associated with the query. See
-#' [reverse_geo_lite_sf()] for retrieving the data as a spatial object
-#' ([`sf`][sf::st_sf] format).
+#' [reverse_geo_lite_sf()] for retrieving the data as an [`sf`][sf::st_sf]
+#' object.
 #'
 #' @family reverse
 #' @encoding UTF-8
@@ -16,13 +16,13 @@
 #'   \eqn{\left[-180, 180 \right]}.
 #' @param address Address column name in the output data (default `"address"`).
 #' @param return_coords Return input coordinates with results if `TRUE`.
-#' @param custom_query API-specific parameters to be used, passed as a named
-#'   list, for example `list(zoom = 3)`. See **Details**.
+#' @param custom_query Named list with API-specific parameters, for example
+#'   `list(zoom = 3)`. See **Details**.
 #'
 #' @inheritParams geo_lite
+#' @inherit geo_lite return
 #'
 #' @details
-#'
 #' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
 #' parameters to be passed to `custom_query`.
 #'
@@ -47,15 +47,8 @@
 #'
 #' knitr::kable(t, col.names = paste0("**", names(t), "**"))
 #'
-#' ```
-#'
-#' @return
-#'
-#' ```{r child = "man/chunks/tibbleout.Rmd"}
-#' ```
-#'
 #' @seealso
-#' [reverse_geo_lite_sf()], [tidygeocoder::reverse_geo()].
+#' [tidygeocoder::reverse_geo()].
 #'
 #' @export
 #'
@@ -87,86 +80,37 @@ reverse_geo_lite <- function(
   progressbar = TRUE,
   custom_query = list()
 ) {
-  # Check inputs.
-  if (!is.numeric(lat) || !is.numeric(long)) {
-    stop("`lat` and `long` must be numeric.")
-  }
-
-  if (length(lat) != length(long)) {
-    stop("`lat` and `long` must have the same number of elements.")
-  }
-
-  # Restrict latitude to the valid range.
-  lat_cap <- pmax(pmin(lat, 90), -90)
-
-  if (!identical(lat_cap, lat)) {
-    message("Latitude values have been restricted to [-90, 90].")
-  }
-
-  # Restrict longitude to the valid range.
-  long_cap <- pmax(pmin(long, 180), -180)
-
-  if (!all(long_cap == long)) {
-    message("Longitude values have been restricted to [-180, 180].")
-  }
-
-  # Deduplicate queries using a data frame.
-  init_key <- dplyr::tibble(
-    lat_key_int = lat,
-    long_key_int = long,
-    lat_cap_int = lat_cap,
-    long_cap_int = long_cap
-  )
-  key <- dplyr::distinct(init_key)
-
-  # Set the progress bar.
-  ntot <- nrow(key)
-  # Show the progress bar only when there is more than one query.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-
-  seql <- seq(1, ntot, 1)
-
-  all_res <- lapply(seql, function(x) {
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
+  keys <- reverse_query_keys(lat, long)
+  all_res <- run_reverse_queries(
+    keys$unique,
+    progressbar,
+    function(lat_cap, long_cap) {
+      reverse_geo_lite_single(
+        lat_cap = lat_cap,
+        long_cap = long_cap,
+        address = address,
+        full_results = full_results,
+        return_coords = return_coords,
+        verbose = verbose,
+        custom_query = custom_query,
+        nominatim_server = nominatim_server
+      )
     }
-    rw <- key[x, ]
-    res_single <- reverse_geo_lite_single(
-      lat_cap = as.double(rw$lat_cap_int),
-      long_cap = as.double(rw$long_cap_int),
-      address = address,
-      full_results = full_results,
-      return_coords = return_coords,
-      verbose = verbose,
-      custom_query = custom_query,
-      nominatim_server = nominatim_server
-    )
+  )
 
-    res_single <- dplyr::bind_cols(res_single, rw[, c(1, 2)])
-
-    res_single
-  })
-  if (progressbar) {
-    close(pb)
-  }
-
-  all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(
-    init_key[, c(1, 2)],
+    keys$init[, c(1, 2)],
     all_res,
     by = c("lat_key_int", "long_key_int")
   )
 
-  # Clean final output.
+  # Remove internal join keys.
   all_res <- all_res[, -c(1, 2)]
   all_res
 }
 
-#' @noRd
 #' @inheritParams reverse_geo_lite
+#' @noRd
 reverse_geo_lite_single <- function(
   lat_cap,
   long_cap,
@@ -177,29 +121,22 @@ reverse_geo_lite_single <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 ) {
-  # Build the API address and ensure that the server URL has one trailing slash.
-  api <- prepare_api_url(nominatim_server, "reverse?")
+  url <- build_reverse_url(
+    nominatim_server = nominatim_server,
+    lat = lat_cap,
+    long = long_cap,
+    format = "jsonv2",
+    full_results = full_results,
+    custom_query = custom_query
+  )
 
-  # Compose the URL.
-  url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=jsonv2")
-
-  if (isFALSE(full_results)) {
-    url <- paste0(url, "&addressdetails=0")
-  } else {
-    url <- paste0(url, "&addressdetails=1")
-  }
-
-  # Add options.
-  url <- add_custom_query(custom_query, url)
-
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".json", isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
@@ -208,18 +145,18 @@ reverse_geo_lite_single <- function(
 
   # Handle empty queries.
   if ("error" %in% names(result_init)) {
-    message("No results for query lon=", long_cap, ", lat=", lat_cap, ".")
+    message("No results for query lat=", lat_cap, ", lon=", long_cap, ".")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
 
-  # Unnest fields.
+  # Unnest nested fields.
   result <- unnest_reverse(result_init)
 
   result$lat <- as.double(result$lat)
   result$lon <- as.double(result$lon)
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names_rev(
     result,
     address = address,

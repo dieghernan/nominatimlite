@@ -31,7 +31,7 @@ test_that("Returning empty query", {
 
   expect_message(
     obj <- reverse_geo_lite(89.999999, 179.9999),
-    "No results for query lon"
+    "No results for query lat"
   )
 
   expect_true(nrow(obj) == 1)

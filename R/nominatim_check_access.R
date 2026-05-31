@@ -5,16 +5,17 @@
 #' <https://nominatim.openstreetmap.org>.
 #'
 #' @family api_management
-#' @keywords internal
 #' @encoding UTF-8
+#'
+#' @inheritParams geo_lite
 #'
 #' @return
 #' A logical `TRUE/FALSE`.
 #'
-#' @inheritParams geo_lite
-#'
 #' @seealso
 #' <https://nominatim.org/release-docs/latest/api/Status/>.
+#'
+#' @keywords internal
 #'
 #' @export
 #'
@@ -25,7 +26,7 @@
 nominatim_check_access <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/"
 ) {
-  # Build the API address and ensure that the server URL has one trailing slash.
+  # Build the API address.
   url <- prepare_api_url(nominatim_server, "status?format=json")
 
   api_res <- api_call(url, ".json", TRUE)
@@ -57,7 +58,7 @@ skip_if_api_server <- function() {
   # nocov end
 }
 
-#' Helper function for centralized API queries
+#' Query the Nominatim API
 #'
 #' @description
 #' A wrapper around [utils::download.file()]. On warning or error, it retries
@@ -71,7 +72,7 @@ skip_if_api_server <- function() {
 #' @inheritParams utils::download.file
 #'
 #' @return
-#' A logical `TRUE/FALSE`.
+#' A cached file path, or `FALSE` when the query fails.
 #'
 #' @keywords internal
 #'
@@ -87,10 +88,7 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
     return(destfile)
   }
 
-  dwn_res <- suppressWarnings(try(
-    download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
-    silent = TRUE
-  ))
+  dwn_res <- download_api_file(url, destfile, quiet)
 
   # Always sleep to keep one call per second with an extra buffer.
   Sys.sleep(1.2)
@@ -99,14 +97,11 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
     return(destfile)
   }
   if (isFALSE(quiet)) {
-    message("Retrying query.")
+    message("Retrying API query.")
   }
   Sys.sleep(1.2)
 
-  dwn_res <- suppressWarnings(try(
-    download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
-    silent = TRUE
-  ))
+  dwn_res <- download_api_file(url, destfile, quiet)
 
   # Return the file when all went well.
   if (!inherits(dwn_res, "try-error")) {
@@ -118,9 +113,17 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
   !inherits(dwn_res, "try-error")
 }
 
+download_api_file <- function(url, destfile, quiet) {
+  suppressWarnings(try(
+    download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+    silent = TRUE
+  ))
+}
+
 #' Create a hashed filename for caching requests
 #'
 #' @param url The URL to cache.
+#' @param ext The file extension to append to the cached file.
 #' @noRd
 cached_filename <- function(url, ext = ".json") {
   tmpf <- tempfile()

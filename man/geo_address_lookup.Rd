@@ -18,8 +18,8 @@ geo_address_lookup(
 )
 }
 \arguments{
-\item{osm_ids}{Vector of OSM identifiers as numeric values.
-(\code{c(00000, 11111, 22222)}).}
+\item{osm_ids}{Vector of OSM identifiers as numeric values, for example
+\code{c(00000, 11111, 22222)}.}
 
 \item{type}{Character vector of the OSM object type associated with each
 \code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
@@ -29,7 +29,7 @@ relation (\code{"R"}). If a single value is provided, it will be recycled.}
 
 \item{long}{Longitude column name in the output data (default \code{"long"}).}
 
-\item{full_results}{Returns all available data from the API service.
+\item{full_results}{Return all available data from the Nominatim API.
 If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
@@ -37,21 +37,21 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
-\item{nominatim_server}{The URL of the Nominatim server to use.
-Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{A named list with API-specific parameters to be used,
-for example \code{list(countrycodes = "US")}. See \strong{Details}.}
+\item{custom_query}{Named list with API-specific parameters, for example
+\code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
+A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
 }
 \description{
 The lookup API queries the address and other details of one or more
-OSM objects (node, way, relation) and returns the
+OSM objects, such as nodes, ways or relations, and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query. See
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as a spatial object
-(\code{\link[sf:st_sf]{sf}} format).
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as an \code{\link[sf:st_sf]{sf}}
+object.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
@@ -70,9 +70,7 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}.
-
-Address Lookup API:
+Address lookup:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 
 Geocoding:

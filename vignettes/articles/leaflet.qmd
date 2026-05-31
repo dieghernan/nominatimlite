@@ -19,7 +19,7 @@ The following example shows how to create an interactive [leaflet
 map](https://rstudio.github.io/leaflet/) with data retrieved using
 **nominatimlite**.
 
-This widget is browsable and filterable with **crosstalk** and **reactable**:
+The widget can be browsed and filtered with **crosstalk** and **reactable**:
 
 ```{r}
 #| label: example
@@ -67,10 +67,9 @@ cf_bk <- geo_amenity_sf(
     na.rm = TRUE
   )
 
-# Labels and icons.
+# Create labels and icons.
 labs <- paste0("<strong>", cf_bk$name, "</strong><br>", cf_bk$addr)
 
-# Assign icons.
 # Base URL for icons.
 icon_url <- paste0(
   "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
@@ -102,7 +101,6 @@ cf_bk_data <- cf_bk %>%
   SharedData$new(group = "Food")
 
 # Step 4: Create a leaflet map with crosstalk.
-# Initialize the leaflet map.
 lmend <- leaflet(
   data = cf_bk_data,
   elementId = "EiffelTower",
@@ -173,7 +171,7 @@ tb <- reactable(
 
 ```{r}
 #| label: widget
-# Last step: Display all widgets.
+# Display all widgets.
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
 )
@@ -181,9 +179,9 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel Tower icons created by Freepik -
+- [Eiffel Tower icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
-- [Mug icons created by Freepik -
+- [Mug icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
-- [Food icons created by Freepik -
+- [Food icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons")

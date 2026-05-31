@@ -1,9 +1,9 @@
-#' Address lookup API in \CRANpkg{sf} format
+#' Address lookup API with \CRANpkg{sf} output
 #'
 #' @description
 #' The lookup API queries the address and other details of one or more
-#' OSM objects (node, way, relation) and returns the spatial object
-#' associated with the query using \CRANpkg{sf}. See
+#' OSM objects, such as nodes, ways or relations, and returns the
+#' [`sf`][sf::st_sf] object associated with the query using \CRANpkg{sf}. See
 #' [geo_address_lookup()] for retrieving the data in [`tibble`][tibble::tibble]
 #' format.
 #'
@@ -14,20 +14,13 @@
 #'
 #' @inheritParams geo_lite_sf
 #' @inheritParams geo_address_lookup
+#' @inherit geo_lite_sf return
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
 #'
 #' @inheritSection geo_lite_sf About geometry types
-#'
-#' @return
-#'
-#' ```{r child = "man/chunks/sfout.Rmd"}
-#' ```
-#'
-#' @seealso
-#' [geo_address_lookup()].
 #'
 #' @export
 #'
@@ -37,7 +30,7 @@
 #'
 #' NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 #'
-#' # Need at least one non-empty object
+#' # Require at least one non-empty object
 #' if (!all(sf::st_is_empty(NotreDame))) {
 #'   library(ggplot2)
 #'
@@ -70,16 +63,16 @@ geo_address_lookup_sf <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  # Build the API address and ensure that the server URL has one trailing slash.
+  # Build the API address.
   api <- prepare_api_url(nominatim_server, "lookup?")
 
-  # Prepare nodes.
+  # Prepare OSM object identifiers.
   osm_ids <- as.numeric(osm_ids)
   osm_ids <- floor(abs(osm_ids))
   type <- as.character(type)
   nodes <- paste0(type, osm_ids, collapse = ",")
 
-  # Compose the URL.
+  # Compose the lookup URL.
   url <- paste0(api, "osm_ids=", nodes, "&format=geojson")
 
   if (!isTRUE(points_only)) {
@@ -89,25 +82,23 @@ geo_address_lookup_sf <- function(
     url <- paste0(url, "&addressdetails=1")
   }
 
-  # Add options.
+  # Add custom query options.
   url <- add_custom_query(custom_query, url)
 
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".geojson", quiet = isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
-
-  # Keep a tibble with the query.
+  # Keep the original query values.
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
   # Handle missing responses.
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Read the spatial object.
+  # Read the `sf` object.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
   # Handle empty queries.
@@ -128,10 +119,10 @@ geo_address_lookup_sf <- function(
 
   # Warn about lost rows.
   if (all(nrow(sf_clean) < nrow(tbl_query), verbose)) {
-    warning("Some IDs may not have produced results. Check the final object.")
+    warning("Some OSM IDs did not return results. Check the output.")
   }
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names(
     sf_clean,
     return_addresses,

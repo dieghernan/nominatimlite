@@ -2,13 +2,13 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nominatimlite",
-  "description": "Lightweight interface to the 'OpenStreetMap' service 'Nominatim' <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames or 'sf' spatial objects.",
+  "description": "Lightweight interface to the 'OpenStreetMap' 'Nominatim' service <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames (tibbles) or 'sf' objects.",
   "name": "nominatimlite: Interface to the 'Nominatim' API",
   "relatedLink": ["https://dieghernan.github.io/nominatimlite/", "https://CRAN.R-project.org/package=nominatimlite"],
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.5.0",
+  "version": "0.5.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -233,7 +233,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "254.054KB",
+  "fileSize": "250.699KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

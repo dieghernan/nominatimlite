@@ -1,8 +1,8 @@
-#' Address search API in \CRANpkg{sf} format (free-form query)
+#' Address search API with \CRANpkg{sf} output (free-form query)
 #'
 #' @description
-#' Geocodes addresses and returns the corresponding spatial object. The
-#' query output is provided in \CRANpkg{sf} format. See [geo_lite()] for
+#' Geocodes addresses and returns the corresponding [`sf`][sf::st_sf] object.
+#' The query output is returned as an \CRANpkg{sf} object. See [geo_lite()] for
 #' retrieving the data in [`tibble`][tibble::tibble] format.
 #'
 #' Corresponds to the **free-form query** search described in the
@@ -12,11 +12,11 @@
 #' @family spatial
 #' @encoding UTF-8
 #'
-#' @param full_results Returns all available data from the API service.
+#' @param full_results Return all available data from the Nominatim API.
 #'   If `FALSE` (default), only address columns are returned. See also
 #'   `return_addresses`.
-#' @param points_only Logical `TRUE/FALSE`. Whether to return only spatial
-#'   points (`TRUE`, which is the default) or potentially other shapes as
+#' @param points_only Logical `TRUE/FALSE`. Whether to return only point
+#'   geometries (`TRUE`, which is the default) or potentially other shapes as
 #'   returned by the Nominatim API (`FALSE`). See **About geometry types**.
 #'
 #' @inheritParams geo_lite
@@ -29,23 +29,18 @@
 #'
 #' The parameter `points_only` specifies whether the function results will be
 #' points (all Nominatim results are guaranteed to have at least point
-#' geometry) or possibly other spatial objects.
+#' geometry) or other geometry types.
 #'
 #' Note that when `points_only = FALSE`, the type of geometry returned depends
 #' on the object being geocoded. Administrative areas, major buildings and the
 #' like will be returned as polygons, rivers, roads and similar features will
 #' be returned as lines, and amenities may still be returned as points.
 #'
-#' The function is vectorized, allowing multiple addresses to be geocoded,
-#' with `points_only = FALSE`, multiple geometry types may be returned.
+#' This function is vectorized, allowing multiple addresses to be geocoded.
+#' With `points_only = FALSE`, multiple geometry types may be returned.
 #'
 #' @return
-#'
-#' ```{r child = "man/chunks/sfout.Rmd"}
-#' ```
-#'
-#' @seealso
-#' [geo_lite()].
+#' An [`sf`][sf::st_sf] object with the results that match the query.
 #'
 #' @export
 #'
@@ -92,34 +87,17 @@ geo_lite_sf <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  if (limit > 50) {
-    message(paste(
-      "Nominatim returns at most 50 results. ",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- cap_limit(limit)
 
-  # Deduplicate queries.
+  # Deduplicate queries before calling the API.
   init_key <- dplyr::tibble(query = address)
   key <- unique(address)
 
-  # Set the progress bar.
   ntot <- length(key)
-  # Show the progress bar only when there is more than one query.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-
-  seql <- seq(1, ntot, 1)
 
   # Run one request per unique query.
-  all_res <- lapply(seql, function(x) {
+  all_res <- progress_lapply(ntot, progressbar, function(x) {
     ad <- key[x]
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
-    }
     geo_lite_sf_single(
       address = ad,
       limit,
@@ -132,22 +110,18 @@ geo_lite_sf <- function(
     )
   })
 
-  if (progressbar) {
-    close(pb)
-  }
-
   all_res <- dplyr::bind_rows(all_res)
 
   all_res <- sf_to_tbl(all_res)
 
   # Restore duplicate inputs in `sf` output.
   if (!identical(as.character(init_key$query), key)) {
-    # Join with indexes.
+    # Join with row indexes.
     template <- sf::st_drop_geometry(all_res)[, "query"]
     template$rindex <- seq_len(nrow(template))
     getrows <- dplyr::left_join(init_key, template, by = "query")
 
-    # Select rows.
+    # Restore the original row order.
     all_res <- all_res[as.double(getrows$rindex), ]
     all_res <- sf_to_tbl(all_res)
   }
@@ -155,8 +129,8 @@ geo_lite_sf <- function(
   all_res
 }
 
-#' @noRd
 #' @inheritParams geo_lite
+#' @noRd
 
 geo_lite_sf_single <- function(
   address,
@@ -168,40 +142,29 @@ geo_lite_sf_single <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  # Build the API address and ensure that the server URL has one trailing slash.
-  api <- prepare_api_url(nominatim_server, "search?q=")
+  url <- build_search_url(
+    nominatim_server = nominatim_server,
+    format = "geojson",
+    limit = limit,
+    full_results = full_results,
+    custom_query = custom_query,
+    query = address,
+    points_only = points_only
+  )
 
-  # Replace spaces with `+`.
-  address2 <- gsub(" ", "+", address, fixed = TRUE)
-
-  # Compose the URL.
-  url <- paste0(api, address2, "&format=geojson&limit=", limit)
-
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
-  if (!isTRUE(points_only)) {
-    url <- paste0(url, "&polygon_geojson=1")
-  }
-
-  # Add options.
-  url <- add_custom_query(custom_query, url)
-
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
-
-  # Keep a tibble with the query.
+  # Keep the original query value.
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Read the spatial object.
+  # Read the `sf` object.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
   # Handle empty queries.
@@ -211,14 +174,14 @@ geo_lite_sf_single <- function(
     return(invisible(out))
   }
 
-  # Unnest address fields.
+  # Unnest nested fields.
   sfobj <- unnest_sf(sfobj)
 
-  # Prepare the output.
+  # Add the query to the API results.
   sf_clean <- sfobj
   sf_clean$query <- address
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names(
     sf_clean,
     return_addresses,

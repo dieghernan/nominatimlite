@@ -127,7 +127,7 @@ test_that("Handle several", {
 
   expect_warning(
     several <- geo_address_lookup(vector_ids, vector_type, verbose = TRUE),
-    "Check the final object"
+    "Some OSM IDs did not return results. Check the output."
   )
 
   expect_equal(nrow(several), 1)

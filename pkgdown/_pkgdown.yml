@@ -19,8 +19,9 @@ repo:
 home:
   title: nominatimlite | Interface to the OpenStreetMap Nominatim API
   description: |
-    Lightweight interface to the OpenStreetMap Nominatim service for geocoding,
-    reverse geocoding, amenity lookup and spatial objects.
+    Lightweight interface to the OpenStreetMap Nominatim API for geocoding,
+    reverse geocoding, amenity lookup and address lookup. Results can be
+    returned as data frames (tibbles) or sf objects.
 
 authors:
   Diego Hernangómez:
@@ -37,34 +38,31 @@ reference:
   desc: >
     Search addresses and structured queries to return coordinates.
   contents:
-  - geo_lite
-  - geo_lite_struct
-- title: Amenity lookup
+  - starts_with("geo_lite")
+- subtitle: Amenity lookup
   desc: >
     Search OpenStreetMap amenities within a bounding box.
   contents:
-  - geo_amenity
-- title: Address lookup
+  - has_concept("amenity")
+- subtitle: Address lookup
   desc: >
     Retrieve address details for OSM node, way and relation identifiers.
   contents:
-  - geo_address_lookup
+  - has_concept("lookup")
 - title: Reverse geocoding
   desc: >
     Reverse geocode coordinates to return addresses and place information.
   contents:
-  - reverse_geo_lite
-- title: Spatial objects
+  - has_concept("reverse")
+- title: >
+    <a href="https://CRAN.R-project.org/package=sf"
+    class="external-link"><span class="pkg">sf</span></a> outputs
   desc: >
-    Return geocoding results as <a href="https://CRAN.R-project.org/package=sf"
-    class="external-link"><span class="pkg">sf</span></a> objects.
+    Return API results as <a href="https://CRAN.R-project.org/package=sf"
+    class="external-link"><span class="pkg">sf</span></a> objects and convert
+    bounding boxes to <span class="pkg">sf</span> geometries.
   contents:
-  - bbox_to_poly
-  - geo_lite_sf
-  - geo_lite_struct_sf
-  - geo_amenity_sf
-  - geo_address_lookup_sf
-  - reverse_geo_lite_sf
+  - has_concept("spatial")
 - title: API management
   desc: >
     Check API availability and manage request behavior.
@@ -73,7 +71,7 @@ reference:
 - title: Datasets
   desc: Data shipped with the package.
   contents:
-  - osm_amenities
+  - has_concept("datasets")
 - title: About the package
   contents: nominatimlite-package
 

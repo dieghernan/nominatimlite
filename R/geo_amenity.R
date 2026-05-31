@@ -5,8 +5,7 @@
 #' restricted area defined by a bounding box in the form
 #' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
 #' [`tibble`][tibble::tibble] associated with the query. See
-#' [geo_amenity_sf()] for retrieving the data as a spatial object
-#' ([`sf`][sf::st_sf] format).
+#' [geo_amenity_sf()] for retrieving the data as an [`sf`][sf::st_sf] object.
 #'
 #' @family amenity
 #' @family geocoding
@@ -16,14 +15,14 @@
 #'   a numeric vector of **longitude** (`x`) and **latitude** (`y`) in the form
 #'   `(xmin, ymin, xmax, ymax)`, or a [`sf`][sf::st_sf] or
 #'   [`sfc`][sf::st_sfc] object. See **Details**.
-#' @param amenity A `character` (or a vector of `character`s) with the
-#'   amenities to be geocoded, for example `c("pub", "restaurant")`. See
-#'   [nominatimlite::osm_amenities].
+#' @param amenity `character` value or vector with the amenities to geocode,
+#'   for example `c("pub", "restaurant")`. See [osm_amenities].
 #' @param strict Logical `TRUE/FALSE`. Force the results to be included inside
-#'   the `bbox`. Note that Nominatim default behavior may return results
+#'   the `bbox`. Nominatim's default behavior may return results
 #'   located outside the provided bounding box.
 #' @inheritParams geo_lite_struct
 #' @inheritParams geo_lite
+#' @inherit geo_lite return
 #'
 #' @details
 #'
@@ -35,11 +34,6 @@
 #'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
-#'
-#' @return
-#'
-#' ```{r child = "man/chunks/tibbleout.Rmd"}
-#' ```
 #'
 #' @export
 #'
@@ -62,7 +56,7 @@
 #'   amenity = c("restaurant", "pub")
 #' )
 #'
-#' # Increase limit and use with strict
+#' # Increase `limit` and use strict filtering
 #' geo_amenity(
 #'   bbox = bbox,
 #'   amenity = c("restaurant", "pub"),
@@ -84,22 +78,11 @@ geo_amenity <- function(
   custom_query = list(),
   strict = FALSE
 ) {
-  if (limit > 50) {
-    message(paste(
-      "Nominatim returns at most 50 results. ",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- cap_limit(limit)
 
-  # Normalize supported `bbox` types.
-  if (any(inherits(bbox, "sf"), inherits(bbox, "sfc"))) {
-    tolonlat <- sf::st_transform(bbox, 4326)
-    bbox <- as.vector(sf::st_bbox(tolonlat))
-  }
-  bbox <- as.vector(bbox)
+  bbox <- normalize_bbox(bbox)
 
-  # Overwrite the custom query.
+  # Add the viewbox restriction to the custom query.
   custom_query <- as.list(custom_query)
   custom_query$viewbox <- bbox
   custom_query$bounded <- TRUE
@@ -107,20 +90,10 @@ geo_amenity <- function(
   # Deduplicate queries.
   key <- unique(amenity)
 
-  # Set the progress bar.
   ntot <- length(key)
-  # Show the progress bar only when there is more than one query.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-  seql <- seq(1, ntot, 1)
 
-  all_res <- lapply(seql, function(x) {
+  all_res <- progress_lapply(ntot, progressbar, function(x) {
     ad <- key[x]
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
-    }
 
     geo_lite_struct(
       amenity = ad,
@@ -134,13 +107,10 @@ geo_amenity <- function(
       custom_query = custom_query
     )
   })
-  if (progressbar) {
-    close(pb)
-  }
 
   all_res <- dplyr::bind_rows(all_res)
 
-  # Clean columns and names.
+  # Clean query columns and names.
   nm <- names(all_res)
   nm[nm == "q_amenity"] <- "query"
   names(all_res) <- nm

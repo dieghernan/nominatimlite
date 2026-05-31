@@ -30,7 +30,7 @@ geo_lite(
 \item{limit}{Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{Returns all available data from the API service.
+\item{full_results}{Return all available data from the Nominatim API.
 If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
@@ -38,22 +38,22 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
-\item{nominatim_server}{The URL of the Nominatim server to use.
-Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{A named list with API-specific parameters to be used,
-for example \code{list(countrycodes = "US")}. See \strong{Details}.}
+\item{custom_query}{Named list with API-specific parameters, for example
+\code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
+A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
 }
 \description{
 Geocodes addresses given as character values and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query. See \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
-retrieving the data as a spatial object (\code{\link[sf:st_sf]{sf}} format).
+retrieving the data as an \code{\link[sf:st_sf]{sf}} object.
 
 Corresponds to the \strong{free-form query} search described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}.
@@ -70,7 +70,7 @@ geo_lite("Madrid, Spain")
 # Several addresses
 geo_lite(c("Madrid", "Barcelona"))
 
-# With options: restrict search to USA
+# With options: restrict search to the United States
 geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE
@@ -79,7 +79,7 @@ geo_lite(c("Madrid", "Barcelona"),
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=geo_lite_sf]{geo_lite_sf()}}, \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
+\code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
 
 Geocoding:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},

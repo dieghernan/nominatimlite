@@ -1,10 +1,10 @@
-#' Reverse geocoding API in \CRANpkg{sf} format
+#' Reverse geocoding API with \CRANpkg{sf} output
 #'
 #' @description
 #' Generates an address from latitude and longitude (latitudes in
 #' \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-#' and returns the spatial object associated with the query using \CRANpkg{sf}.
-#' See [reverse_geo_lite()] for retrieving the data in
+#' and returns the [`sf`][sf::st_sf] object associated with the query using
+#' \CRANpkg{sf}. See [reverse_geo_lite()] for retrieving the data in
 #' [`tibble`][tibble::tibble] format.
 #'
 #' @family reverse
@@ -13,6 +13,7 @@
 #'
 #' @inheritParams reverse_geo_lite
 #' @inheritParams geo_lite_sf
+#' @inherit geo_lite_sf return
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
@@ -21,15 +22,7 @@
 #' @inheritSection reverse_geo_lite About zooming
 #' @inheritSection geo_lite_sf About geometry types
 #'
-#' @return
-#'
-#' ```{r child = "man/chunks/sfout.Rmd"}
-#' ```
-#'
 #' @export
-#'
-#' @seealso
-#' [reverse_geo_lite()].
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
@@ -81,92 +74,41 @@ reverse_geo_lite_sf <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  # Check inputs.
-  if (!is.numeric(lat) || !is.numeric(long)) {
-    stop("`lat` and `long` must be numeric.")
-  }
-
-  if (length(lat) != length(long)) {
-    stop("`lat` and `long` must have the same number of elements.")
-  }
-
-  # Restrict latitude to the valid range.
-  lat_cap <- pmax(pmin(lat, 90), -90)
-
-  if (!identical(lat_cap, lat)) {
-    message("Latitude values have been restricted to [-90, 90].")
-  }
-
-  # Restrict longitude to the valid range.
-  long_cap <- pmax(pmin(long, 180), -180)
-
-  if (!all(long_cap == long)) {
-    message("Longitude values have been restricted to [-180, 180].")
-  }
-
-  # Deduplicate queries using a data frame.
-  init_key <- dplyr::tibble(
-    lat_key_int = lat,
-    long_key_int = long,
-    lat_cap_int = lat_cap,
-    long_cap_int = long_cap
-  )
-  key <- dplyr::distinct(init_key)
-
-  # Set the progress bar.
-  ntot <- nrow(key)
-  # Show the progress bar only when there is more than one query.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-
-  seql <- seq(1, ntot, 1)
-
-  all_res <- lapply(seql, function(x) {
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
+  keys <- reverse_query_keys(lat, long)
+  all_res <- run_reverse_queries(
+    keys$unique,
+    progressbar,
+    function(lat_cap, long_cap) {
+      reverse_geo_lite_sf_single(
+        lat_cap = lat_cap,
+        long_cap = long_cap,
+        address = address,
+        full_results = full_results,
+        return_coords = return_coords,
+        verbose = verbose,
+        custom_query = custom_query,
+        points_only = points_only,
+        nominatim_server = nominatim_server
+      )
     }
-    rw <- key[x, ]
-
-    res_single <- reverse_geo_lite_sf_single(
-      lat_cap = as.double(rw$lat_cap_int),
-      long_cap = as.double(rw$long_cap_int),
-      address = address,
-      full_results = full_results,
-      return_coords = return_coords,
-      verbose = verbose,
-      custom_query = custom_query,
-      points_only = points_only,
-      nominatim_server = nominatim_server
-    )
-
-    res_single <- dplyr::bind_cols(res_single, rw[, c(1, 2)])
-
-    res_single
-  })
-  if (progressbar) {
-    close(pb)
-  }
-
-  all_res <- dplyr::bind_rows(all_res)
+  )
 
   # Restore duplicate inputs in `sf` output.
-  if (!identical(nrow(init_key), nrow(all_res))) {
-    # Join with indexes.
+  if (!identical(nrow(keys$init), nrow(all_res))) {
+    # Join with row indexes.
     tmplt <- sf::st_drop_geometry(all_res)[, c("lat_key_int", "long_key_int")]
     tmplt$rindex <- seq_len(nrow(tmplt))
     getrows <- dplyr::left_join(
-      init_key,
+      keys$init,
       tmplt,
       by = c("lat_key_int", "long_key_int")
     )
 
-    # Select rows.
+    # Restore the original row order.
     all_res <- all_res[as.double(getrows$rindex), ]
   }
 
-  # Clean final output.
+  # Remove internal join keys.
   kpnms <- setdiff(names(all_res), c("lat_key_int", "long_key_int"))
 
   all_res <- all_res[, kpnms]
@@ -175,8 +117,8 @@ reverse_geo_lite_sf <- function(
 
   all_res
 }
-#' @noRd
 #' @inheritParams reverse_geo_lite_sf
+#' @noRd
 reverse_geo_lite_sf_single <- function(
   lat_cap,
   long_cap,
@@ -188,32 +130,23 @@ reverse_geo_lite_sf_single <- function(
   custom_query = list(),
   points_only = FALSE
 ) {
-  # Build the API address and ensure that the server URL has one trailing slash.
-  api <- prepare_api_url(nominatim_server, "reverse?")
+  url <- build_reverse_url(
+    nominatim_server = nominatim_server,
+    lat = lat_cap,
+    long = long_cap,
+    format = "geojson",
+    full_results = full_results,
+    custom_query = custom_query,
+    points_only = points_only
+  )
 
-  # Compose the URL.
-  url <- paste0(api, "lat=", lat_cap, "&lon=", long_cap, "&format=geojson")
-
-  if (!isTRUE(points_only)) {
-    url <- paste0(url, "&polygon_geojson=1")
-  }
-  if (isFALSE(full_results)) {
-    url <- paste0(url, "&addressdetails=0")
-  } else {
-    url <- paste0(url, "&addressdetails=1")
-  }
-
-  # Add options.
-  url <- add_custom_query(custom_query, url)
-
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }
@@ -221,21 +154,21 @@ reverse_geo_lite_sf_single <- function(
   # Handle empty queries.
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
   if ("error" %in% names(result_init)) {
-    message("No results for query lon=", long_cap, ", lat=", lat_cap, ".")
+    message("No results for query lat=", lat_cap, ", lon=", long_cap, ".")
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }
 
-  # Prepare the output.
+  # Read the `sf` object.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
-  # Unnest address fields.
+  # Unnest nested fields.
   sfobj <- unnest_sf_reverse(sfobj)
 
   # Add latitude and longitude.
   sf_clean <- dplyr::bind_cols(sfobj, tbl_query)
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names_rev(sf_clean, address, return_coords, full_results)
 
   # Restore tibble classes.

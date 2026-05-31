@@ -44,7 +44,7 @@ test_that("Returning empty query", {
 
   expect_message(
     obj <- reverse_geo_lite_sf(89.999999, 179.9999),
-    "No results for query lon"
+    "No results for query lat"
   )
 
   expect_true(nrow(obj) == 1)
@@ -93,7 +93,7 @@ test_that("Data format", {
       points_only = FALSE,
       custom_query = list(zoom = 5)
     ),
-    "No results for query lon"
+    "No results for query lat"
   )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))

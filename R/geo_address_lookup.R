@@ -2,34 +2,27 @@
 #'
 #' @description
 #' The lookup API queries the address and other details of one or more
-#' OSM objects (node, way, relation) and returns the
+#' OSM objects, such as nodes, ways or relations, and returns the
 #' [`tibble`][tibble::tibble] associated with the query. See
-#' [geo_address_lookup_sf()] for retrieving the data as a spatial object
-#' ([`sf`][sf::st_sf] format).
+#' [geo_address_lookup_sf()] for retrieving the data as an [`sf`][sf::st_sf]
+#' object.
 #'
 #' @family lookup
 #' @family geocoding
 #' @encoding UTF-8
 #'
-#' @param osm_ids Vector of OSM identifiers as numeric values.
-#'   (`c(00000, 11111, 22222)`).
+#' @param osm_ids Vector of OSM identifiers as numeric values, for example
+#'   `c(00000, 11111, 22222)`.
 #' @param type Character vector of the OSM object type associated with each
 #'   `osm_ids` value. Possible values are node (`"N"`), way (`"W"`) or
 #'   relation (`"R"`). If a single value is provided, it will be recycled.
 #'
 #' @inheritParams geo_lite
+#' @inherit geo_lite return
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
 #' parameters to be passed to `custom_query`.
-#'
-#' @seealso
-#' [geo_address_lookup_sf()].
-#'
-#' @return
-#'
-#' ```{r child = "man/chunks/tibbleout.Rmd"}
-#' ```
 #'
 #' @export
 #'
@@ -53,48 +46,34 @@ geo_address_lookup <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 ) {
-  # Step 1: Download ----
-  # Build the API address and ensure that the server URL has one trailing slash.
-  api <- prepare_api_url(nominatim_server, "lookup?")
-
-  # Prepare nodes.
+  # Prepare OSM object identifiers.
   osm_ids <- as.numeric(osm_ids)
   osm_ids <- floor(abs(osm_ids))
   type <- as.character(type)
   nodes <- paste0(type, osm_ids, collapse = ",")
 
-  # Compose the URL.
-  url <- paste0(api, "osm_ids=", nodes, "&format=jsonv2")
+  url <- build_lookup_url(
+    nominatim_server = nominatim_server,
+    nodes = nodes,
+    full_results = full_results,
+    custom_query = custom_query
+  )
 
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
-
-  # Add options.
-  url <- add_custom_query(custom_query, url)
-
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".json", isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
-
-  # Keep a tibble with the query.
+  # Keep the original query values.
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids))
 
   # Handle missing responses.
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
-  # Rename latitude and longitude columns.
-  nmes <- names(result)
-  nmes[nmes == "lat"] <- lat
-  nmes[nmes == "lon"] <- long
-
-  names(result) <- nmes
+  result <- rename_coordinate_cols(result, lat, long)
 
   # Handle empty queries.
   if (nrow(result) == 0) {
@@ -103,9 +82,7 @@ geo_address_lookup <- function(
     return(invisible(out))
   }
 
-  # Convert coordinates to double.
-  result[lat] <- as.double(result[[lat]])
-  result[long] <- as.double(result[[long]])
+  result <- convert_coordinate_cols(result, lat, long)
 
   # Re-create `tbl_query` with normalized OSM IDs.
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids), osm_id = osm_ids)
@@ -115,10 +92,10 @@ geo_address_lookup <- function(
 
   # Warn about lost rows.
   if (all(nrow(result_clean) < nrow(tbl_query), verbose)) {
-    warning("Some IDs may not have produced results. Check the final object.")
+    warning("Some OSM IDs did not return results. Check the output.")
   }
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names(
     result_clean,
     return_addresses,
@@ -126,7 +103,7 @@ geo_address_lookup <- function(
     colstokeep = c("query", lat, long)
   )
 
-  # Convert to tibble.
+  # Restore tibble classes.
   result_out <- dplyr::as_tibble(result_out)
 
   result_out

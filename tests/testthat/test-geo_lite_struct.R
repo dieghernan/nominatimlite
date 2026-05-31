@@ -2,7 +2,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(obj <- geo_lite_struct(), "Nothing to search for")
+  expect_message(obj <- geo_lite_struct(), "No query parameters were provided")
 
   expect_message(
     obj <- geo_lite_struct(amenity = "xbzbzbzoa aiaia"),

@@ -13,14 +13,16 @@
 #'
 #' @inheritParams sf::st_sf
 #'
-#' @return A [`sfc`][sf::st_sfc] object of class `POLYGON`.
-#'
-#' @seealso
-#' [sf::st_as_sfc()] and [sf::st_sfc()].
-#'
 #' @details
 #' Bounding boxes can be located using online tools such as
 #' <https://boundingbox.klokantech.com/>.
+#'
+#' @return
+#' A [`sfc`][sf::st_sfc] object of class `POLYGON` with the corresponding
+#' coordinate reference system `crs`.
+#'
+#' @seealso
+#' [sf::st_as_sfc()] and [sf::st_sfc()].
 #'
 #' @export
 #'
@@ -36,12 +38,12 @@
 #' ggplot(bbox_GER_sf) +
 #'   geom_sf()
 #' \donttest{
-#' # Extract the bounding box of a sf object
+#' # Extract the bounding box of an sf object
 #' sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 #'
 #' sfobj
 #'
-#' # Need at least one non-empty object
+#' # Require at least one non-empty object
 #' if (!all(sf::st_is_empty(sfobj))) {
 #'   bbox <- sf::st_bbox(sfobj)
 #'
@@ -70,7 +72,7 @@ bbox_to_poly <- function(
     )
   }
 
-  # If `bbox` is missing, check x and y values.
+  # If `bbox` is missing, use explicit x and y values.
   if (anyNA(bbox)) {
     bbox <- as.double(c(xmin, ymin, xmax, ymax))
 

@@ -1,9 +1,9 @@
-#' Address search API in \CRANpkg{sf} format (structured query)
+#' Address search API with \CRANpkg{sf} output (structured query)
 #'
 #' @description
 #' Geocodes addresses already split into components and returns the
-#' corresponding spatial object. The query output is provided in \CRANpkg{sf}
-#' format. See [geo_lite_struct()] for retrieving the data in
+#' corresponding [`sf`][sf::st_sf] object. The query output is returned as an
+#' \CRANpkg{sf} format. See [geo_lite_struct()] for retrieving the data in
 #' [`tibble`][tibble::tibble] format.
 #'
 #' Corresponds to the **structured query** search described in the
@@ -16,9 +16,9 @@
 #'
 #' @inheritParams geo_lite_struct
 #' @inheritParams geo_lite_sf
+#' @inherit geo_lite_sf return
 #'
 #' @details
-#'
 #' The structured form of the search query allows you to look up an address that
 #' is already split into its components. Each parameter represents a field of
 #' the address. All parameters are optional. You should only use the ones that
@@ -28,14 +28,6 @@
 #' parameters to be passed to `custom_query`.
 #'
 #' @inheritSection geo_lite_sf About geometry types
-#'
-#' @return
-#'
-#' ```{r child = "man/chunks/sfout.Rmd"}
-#' ```
-#'
-#' @seealso
-#' [geo_lite_struct()].
 #'
 #' @export
 #'
@@ -77,84 +69,47 @@ geo_lite_struct_sf <- function(
   custom_query = list(),
   points_only = TRUE
 ) {
-  if (limit > 50) {
-    message(paste(
-      "Nominatim returns at most 50 results. ",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- cap_limit(limit)
 
-  # Check parameters, because this function is not vectorized.
-  pars <- list(
-    amenity = amenity[1],
-    street = street[1],
-    city = city[1],
-    county = county[1],
-    state = state[1],
-    country = country[1],
-    postalcode = postalcode[1]
+  # Keep the first value of each parameter; this function is not vectorized.
+  pars <- structured_query_params(
+    amenity = amenity,
+    street = street,
+    city = city,
+    county = county,
+    state = state,
+    country = country,
+    postalcode = postalcode
   )
-
-  pars <- lapply(pars, function(x) {
-    if (is.null(x)) {
-      return(NA_character_)
-    }
-    a_char <- as.character(x)
-    a_char
-  })
-
-  tbl_query <- dplyr::as_tibble(pars)
-  names(tbl_query) <- paste0("q_", names(tbl_query))
+  tbl_query <- structured_query_tbl(pars)
 
   if (all(is.na(pars))) {
-    message("Nothing to search for.")
+    message("No query parameters were provided.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Replace spaces with `+`.
-  pars <- lapply(pars, function(x) {
-    gsub(" ", "+", x, fixed = TRUE)
-  })
-
-  # Build the API address and ensure that the server URL has one trailing slash.
-  api <- prepare_api_url(nominatim_server, "search?")
-  # Compose the URL.
-  url <- paste0(api, "format=geojson&limit=", limit)
-
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
-  if (!isTRUE(points_only)) {
-    url <- paste0(url, "&polygon_geojson=1")
-  }
-
-  # Clean and add options.
-  newopts <- c(pars, custom_query)
-
-  logis <- vapply(
-    newopts,
-    function(x) {
-      any(is.null(x), is.na(x))
-    },
-    FUN.VALUE = logical(1)
+  pars <- lapply(pars, encode_search_text)
+  custom_query <- compact_query_options(c(pars, custom_query))
+  url <- build_search_url(
+    nominatim_server = nominatim_server,
+    format = "geojson",
+    limit = limit,
+    full_results = full_results,
+    custom_query = custom_query,
+    points_only = points_only
   )
 
-  newopts <- newopts[!logis]
-  url <- add_custom_query(newopts, url)
-
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
 
-  # Read the spatial object.
+  # Read the `sf` object.
   sfobj <- sf::read_sf(json, stringsAsFactors = FALSE)
 
   # Handle empty queries.
@@ -164,16 +119,16 @@ geo_lite_struct_sf <- function(
     return(invisible(out))
   }
 
-  # Unnest address fields.
+  # Unnest nested fields.
   sfobj <- unnest_sf(sfobj)
 
-  # Prepare the output.
+  # Prepare the output with query metadata.
   sf_clean <- sfobj
 
   # Preserve the naming order.
   sf_clean <- dplyr::bind_cols(sf_clean, tbl_query[rep(1, nrow(sf_clean)), ])
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names(
     sf_clean,
     return_addresses,

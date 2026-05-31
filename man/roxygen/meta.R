@@ -1,9 +1,10 @@
 list(
   rd_family_title = list(
-    lookup = "Address Lookup API: ",
+    lookup = "Address lookup: ",
     geocoding = "Geocoding: ",
-    reverse = "Reverse geocoding coordinates: ",
-    spatial = "Get \\code{\\link[sf:sf]{sf}} objects: ",
-    api_management = "API Management: "
+    reverse = "Reverse geocoding: ",
+    spatial = "\\code{\\link[sf:sf]{sf}} outputs: ",
+    amenity = "Amenity lookup: ",
+    api_management = "API management: "
   )
 )

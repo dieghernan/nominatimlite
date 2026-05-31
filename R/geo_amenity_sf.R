@@ -1,11 +1,11 @@
-#' Geocode amenities in \CRANpkg{sf} format
+#' Geocode amenities with \CRANpkg{sf} output
 #'
 #' @description
 #' Searches [amenities][osm_amenities] as defined by OpenStreetMap in a
 #' restricted area defined by a bounding box in the form
-#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the spatial object associated
-#' with the query using \CRANpkg{sf}. See [geo_amenity()] for retrieving the
-#' data in [`tibble`][tibble::tibble] format.
+#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the [`sf`][sf::st_sf]
+#' object associated with the query using \CRANpkg{sf}. See [geo_amenity()] for
+#' retrieving the data in [`tibble`][tibble::tibble] format.
 #'
 #' @family amenity
 #' @family geocoding
@@ -14,10 +14,9 @@
 #'
 #' @inheritParams geo_amenity
 #' @inheritParams geo_lite_sf
+#' @inherit geo_lite_sf return
 #'
-#' @inheritSection geo_lite_sf About geometry types
 #' @details
-#'
 #' Bounding boxes can be located using online tools such as
 #' <https://boundingbox.klokantech.com/>.
 #'
@@ -27,10 +26,7 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @return
-#'
-#' ```{r child = "man/chunks/sfout.Rmd"}
-#' ```
+#' @inheritSection geo_lite_sf About geometry types
 #'
 #' @export
 #'
@@ -66,22 +62,11 @@ geo_amenity_sf <- function(
   strict = FALSE,
   points_only = TRUE
 ) {
-  if (limit > 50) {
-    message(paste(
-      "Nominatim returns at most 50 results. ",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- cap_limit(limit)
 
-  # Normalize supported `bbox` types.
-  if (any(inherits(bbox, "sf"), inherits(bbox, "sfc"))) {
-    tolonlat <- sf::st_transform(bbox, 4326)
-    bbox <- as.vector(sf::st_bbox(tolonlat))
-  }
-  bbox <- as.vector(bbox)
+  bbox <- normalize_bbox(bbox)
 
-  # Overwrite the custom query.
+  # Add the viewbox restriction to the custom query.
   custom_query <- as.list(custom_query)
   custom_query$viewbox <- bbox
   custom_query$bounded <- TRUE
@@ -89,20 +74,10 @@ geo_amenity_sf <- function(
   # Deduplicate queries.
   key <- unique(amenity)
 
-  # Set the progress bar.
   ntot <- length(key)
-  # Show the progress bar only when there is more than one query.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-  seql <- seq(1, ntot, 1)
 
-  all_res <- lapply(seql, function(x) {
+  all_res <- progress_lapply(ntot, progressbar, function(x) {
     ad <- key[x]
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
-    }
 
     geo_lite_struct_sf(
       amenity = ad,
@@ -115,13 +90,10 @@ geo_amenity_sf <- function(
       points_only = points_only
     )
   })
-  if (progressbar) {
-    close(pb)
-  }
 
   all_res <- dplyr::bind_rows(all_res)
 
-  # Clean columns and names.
+  # Clean query columns and names.
   nm <- names(all_res)
   nm[nm == "q_amenity"] <- "query"
   names(all_res) <- nm
