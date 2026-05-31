@@ -133,7 +133,8 @@ You can also return polygon and line objects when the Nominatim API
 provides them, using the option `points_only = FALSE`:
 
 ``` r
-sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # A building, returned as a polygon.
+# A building, returned as a polygon.
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
 ggplot(sol_poly) +
   geom_sf()
@@ -143,9 +144,12 @@ ggplot(sol_poly) +
 alt="Location of the Statue of Liberty extracted with nominatimlite." />
 
 ``` r
-dayton <- geo_lite_sf("Dayton, OH") # Default, returned as a point.
-ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # A US state, returned as a polygon.
-ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # A river, returned as a line.
+# Default, returned as a point.
+dayton <- geo_lite_sf("Dayton, OH")
+# A US state, returned as a polygon.
+ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE)
+# A river, returned as a line.
+ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE)
 
 ggplot() +
   geom_sf(data = ohio_state) +

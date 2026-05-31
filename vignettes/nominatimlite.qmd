@@ -16,8 +16,8 @@ tbl-cap-location: bottom
 
 The goal of **nominatimlite** is to provide a lightweight interface for
 geocoding addresses with the [Nominatim
-API](https://nominatim.org/release-docs/latest/). It also allows you to
-return results as `sf` objects using the **sf** package.
+API](https://nominatim.org/release-docs/latest/). It also allows you to return
+results as `sf` objects using the **sf** package.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>
@@ -46,9 +46,9 @@ similar features:
 - [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Downloads
   spatial data from OpenStreetMap with the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
-- [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
-  [@R-arcgeocoder]: Provides a lightweight interface for geocoding with the
-  ArcGIS REST API service.
+- [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/) [@R-arcgeocoder]:
+  Provides a lightweight interface for geocoding with the ArcGIS REST API
+  service.
 
 ## Usage
 
@@ -148,8 +148,8 @@ Example: geocoding addresses
 To perform reverse geocoding, use `reverse_geo_lite()` to obtain addresses from
 geographic coordinates. The arguments are similar to `geo_lite()`, but now we
 provide coordinate values with the `lat` and `long` arguments. The dataset used
-here is from the geocoding query above. The single-line address is returned in
-a column named with the `address` argument.
+here is from the geocoding query above. The single-line address is returned in a
+column named with the `address` argument.
 
 
 ``` r

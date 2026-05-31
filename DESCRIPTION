@@ -20,7 +20,7 @@ URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite
 BugReports: https://github.com/dieghernan/nominatimlite/issues
 Depends:
-    R (>= 3.6.0)
+    R (>= 4.1.0)
 Imports:
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0),

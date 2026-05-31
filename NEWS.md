@@ -1,5 +1,6 @@
 # nominatimlite (development version)
 
+- The minimum required **R** version is now 4.1.0.
 - Documentation has been proofread and aligned across roxygen2 comments, README
   and vignettes with AI assistance.
 - Internal code has been refactored with AI assistance to reduce duplication in
