@@ -1,3 +1,5 @@
+# nominatimlite (development version)
+
 # nominatimlite 0.5.0
 
 - API calls are cached in `tempdir()` during the current session to reduce load on the service.
