@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_amenity_sf}
 \alias{geo_amenity_sf}
-\title{Geocode amenities in \CRANpkg{sf} format}
+\title{Geocode amenities with \CRANpkg{sf} output}
 \usage{
 geo_amenity_sf(
   bbox,
@@ -25,14 +25,13 @@ a numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y
 \verb{(xmin, ymin, xmax, ymax)}, or a \code{\link[sf:st_sf]{sf}} or
 \code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
 
-\item{amenity}{A \code{character} (or a vector of \code{character}s) with the
-amenities to be geocoded, for example \code{c("pub", "restaurant")}. See
-\link{osm_amenities}.}
+\item{amenity}{\code{character} value or vector with the amenities to geocode,
+for example \code{c("pub", "restaurant")}. See \link{osm_amenities}.}
 
 \item{limit}{Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{Returns all available data from the API service.
+\item{full_results}{Return all available data from the Nominatim API.
 If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
@@ -40,32 +39,32 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
-\item{nominatim_server}{The URL of the Nominatim server to use.
-Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{A named list with API-specific parameters to be used,
-for example \code{list(countrycodes = "US")}. See \strong{Details}.}
+\item{custom_query}{Named list with API-specific parameters, for example
+\code{list(countrycodes = "US")}. See \strong{Details}.}
 
 \item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behavior may return results
+the \code{bbox}. Nominatim's default behavior may return results
 located outside the provided bounding box.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
-points (\code{TRUE}, which is the default) or potentially other shapes as
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only point
+geometries (\code{TRUE}, which is the default) or potentially other shapes as
 returned by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
 }
 \value{
-A \code{\link[sf:st_sf]{sf}} object with the results.
+An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
 Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap in a
 restricted area defined by a bounding box in the form
-\verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the spatial object associated
-with the query using \CRANpkg{sf}. See \code{\link[=geo_amenity]{geo_amenity()}} for retrieving the
-data in \code{\link[tibble:tibble]{tibble}} format.
+\verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the \code{\link[sf:st_sf]{sf}}
+object associated with the query using \CRANpkg{sf}. See \code{\link[=geo_amenity]{geo_amenity()}} for
+retrieving the data in \code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
 Bounding boxes can be located using online tools such as
@@ -82,15 +81,15 @@ parameters to be passed to \code{custom_query}.
 
 The parameter \code{points_only} specifies whether the function results will be
 points (all Nominatim results are guaranteed to have at least point
-geometry) or possibly other spatial objects.
+geometry) or other geometry types.
 
 Note that when \code{points_only = FALSE}, the type of geometry returned depends
 on the object being geocoded. Administrative areas, major buildings and the
 like will be returned as polygons, rivers, roads and similar features will
 be returned as lines, and amenities may still be returned as points.
 
-The function is vectorized, allowing multiple addresses to be geocoded,
-with \code{points_only = FALSE}, multiple geometry types may be returned.
+This function is vectorized, allowing multiple addresses to be geocoded.
+With \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
 \examples{
@@ -116,7 +115,7 @@ if (!all(sf::st_is_empty(rest_pub))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other amenity:
+Amenity lookup:
 \code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link{osm_amenities}}
 
@@ -129,7 +128,7 @@ Geocoding:
 \code{\link[=geo_lite_struct]{geo_lite_struct()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 
-Get \code{\link[sf:sf]{sf}} objects:
+\code{\link[sf:sf]{sf}} outputs:
 \code{\link[=bbox_to_poly]{bbox_to_poly()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},

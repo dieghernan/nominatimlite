@@ -17,7 +17,8 @@ instead of \code{bbox}.}
 \item{crs}{coordinate reference system, something suitable as input to \link[sf]{st_crs}}
 }
 \value{
-A \code{\link[sf:st_sfc]{sfc}} object of class \code{POLYGON}.
+A \code{\link[sf:st_sfc]{sfc}} object of class \code{POLYGON} with the corresponding
+coordinate reference system \code{crs}.
 }
 \description{
 Create a \code{\link[sf:st_sfc]{sfc}} object from the coordinates of a bounding box.
@@ -39,12 +40,12 @@ library(ggplot2)
 ggplot(bbox_GER_sf) +
   geom_sf()
 \donttest{
-# Extract the bounding box of a sf object
+# Extract the bounding box of an sf object
 sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj
 
-# Need at least one non-empty object
+# Require at least one non-empty object
 if (!all(sf::st_is_empty(sfobj))) {
   bbox <- sf::st_bbox(sfobj)
 
@@ -62,7 +63,7 @@ if (!all(sf::st_is_empty(sfobj))) {
 \seealso{
 \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}} and \code{\link[sf:st_sfc]{sf::st_sfc()}}.
 
-Get \code{\link[sf:sf]{sf}} objects:
+\code{\link[sf:sf]{sf}} outputs:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},

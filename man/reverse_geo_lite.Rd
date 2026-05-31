@@ -26,7 +26,7 @@ reverse_geo_lite(
 
 \item{address}{Address column name in the output data (default \code{"address"}).}
 
-\item{full_results}{Returns all available data from the API service.
+\item{full_results}{Return all available data from the Nominatim API.
 If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
@@ -34,24 +34,24 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
-\item{nominatim_server}{The URL of the Nominatim server to use.
-Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list, for example \code{list(zoom = 3)}. See \strong{Details}.}
+\item{custom_query}{Named list with API-specific parameters, for example
+\code{list(zoom = 3)}. See \strong{Details}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
+A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
 }
 \description{
 Generates an address from latitude and longitude (latitudes in
 \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
 and returns the \code{\link[tibble:tibble]{tibble}} associated with the query. See
-\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} for retrieving the data as a spatial object
-(\code{\link[sf:st_sf]{sf}} format).
+\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} for retrieving the data as an \code{\link[sf:st_sf]{sf}}
+object.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Reverse/} for additional
@@ -95,9 +95,9 @@ dplyr::glimpse(sev)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}, \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}.
+\code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}.
 
-Reverse geocoding coordinates:
+Reverse geocoding:
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }
 \concept{reverse}

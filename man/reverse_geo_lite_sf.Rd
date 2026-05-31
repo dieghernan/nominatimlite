@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{reverse_geo_lite_sf}
 \alias{reverse_geo_lite_sf}
-\title{Reverse geocoding API in \CRANpkg{sf} format}
+\title{Reverse geocoding API with \CRANpkg{sf} output}
 \usage{
 reverse_geo_lite_sf(
   lat,
@@ -27,7 +27,7 @@ reverse_geo_lite_sf(
 
 \item{address}{Address column name in the output data (default \code{"address"}).}
 
-\item{full_results}{Returns all available data from the API service.
+\item{full_results}{Return all available data from the Nominatim API.
 If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
@@ -35,27 +35,27 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
-\item{nominatim_server}{The URL of the Nominatim server to use.
-Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
-list, for example \code{list(zoom = 3)}. See \strong{Details}.}
+\item{custom_query}{Named list with API-specific parameters, for example
+\code{list(zoom = 3)}. See \strong{Details}.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only spatial
-points (\code{TRUE}, which is the default) or potentially other shapes as
+\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only point
+geometries (\code{TRUE}, which is the default) or potentially other shapes as
 returned by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
 }
 \value{
-A \code{\link[sf:st_sf]{sf}} object with the results.
+An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
 Generates an address from latitude and longitude (latitudes in
 \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-and returns the spatial object associated with the query using \CRANpkg{sf}.
-See \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in
+and returns the \code{\link[sf:st_sf]{sf}} object associated with the query using
+\CRANpkg{sf}. See \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in
 \code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
@@ -84,15 +84,15 @@ zoom levels correspond to these address details:\tabular{ll}{
 
 The parameter \code{points_only} specifies whether the function results will be
 points (all Nominatim results are guaranteed to have at least point
-geometry) or possibly other spatial objects.
+geometry) or other geometry types.
 
 Note that when \code{points_only = FALSE}, the type of geometry returned depends
 on the object being geocoded. Administrative areas, major buildings and the
 like will be returned as polygons, rivers, roads and similar features will
 be returned as lines, and amenities may still be returned as points.
 
-The function is vectorized, allowing multiple addresses to be geocoded,
-with \code{points_only = FALSE}, multiple geometry types may be returned.
+This function is vectorized, allowing multiple addresses to be geocoded.
+With \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
 \examples{
@@ -137,12 +137,10 @@ if (!all(sf::st_is_empty(rome_sf))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=reverse_geo_lite]{reverse_geo_lite()}}.
-
-Reverse geocoding coordinates:
+Reverse geocoding:
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}
 
-Get \code{\link[sf:sf]{sf}} objects:
+\code{\link[sf:sf]{sf}} outputs:
 \code{\link[=bbox_to_poly]{bbox_to_poly()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},

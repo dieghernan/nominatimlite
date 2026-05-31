@@ -43,8 +43,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 The goal of **nominatimlite** is to provide a lightweight interface for
 geocoding addresses with the [Nominatim
-API](https://nominatim.org/release-docs/latest/). It also allows you to
-retrieve spatial objects using the **sf** package.
+API](https://nominatim.org/release-docs/latest/). It also allows you to return
+results as `sf` objects using the **sf** package.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>
@@ -53,8 +53,8 @@ The full site with examples and vignettes is available at
 
 **Nominatim** is a tool for searching
 [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
-([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and to
-generate synthetic addresses for OSM points (reverse geocoding).
+([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and
+generating synthetic addresses for OSM points (reverse geocoding).
 
 ## Why nominatimlite?
 
@@ -120,14 +120,14 @@ install.packages(
 
 ### `sf` objects
 
-With **nominatimlite** you can extract spatial objects:
+With **nominatimlite** you can return `sf` objects:
 
 ```{r}
 #| label: pizzahut
 #| fig-cap: Pizza Hut restaurant locations in California extracted with nominatimlite.
 library(nominatimlite)
 
-# Extract Pizza Hut locations in California.
+# Search for Pizza Hut locations in California.
 
 CA <- geo_lite_sf("California", points_only = FALSE)
 
@@ -144,13 +144,14 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-You can also extract polygon and line objects when the Nominatim API provides
+You can also return polygon and line objects when the Nominatim API provides
 them, using the option `points_only = FALSE`:
 
 ```{r}
 #| label: statue_liberty
 #| fig-cap: Location of the Statue of Liberty extracted with nominatimlite.
-sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building, returned as a polygon
+# A building, returned as a polygon.
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
 ggplot(sol_poly) +
   geom_sf()
@@ -159,9 +160,12 @@ ggplot(sol_poly) +
 ```{r}
 #| label: line-object
 #| fig-cap: Different features named Ohio extracted with nominatimlite.
-dayton <- geo_lite_sf("Dayton, OH") # default, returned as a point
-ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state, returned as a polygon
-ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river, returned as a line
+# Default, returned as a point.
+dayton <- geo_lite_sf("Dayton, OH")
+# A US state, returned as a polygon.
+ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE)
+# A river, returned as a line.
+ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE)
 
 ggplot() +
   geom_sf(data = ohio_state) +
@@ -196,8 +200,9 @@ lat_longs <- geo_lite(
 )
 ```
 
-This example returns only latitude and longitude from the geocoder service. Use
-`full_results = TRUE` to return all data from the geocoder service.
+This example returns only latitude, longitude and address columns from the
+Nominatim API. Use `full_results = TRUE` to return all available data from the
+Nominatim API.
 
 ```{r}
 #| echo: false
@@ -206,12 +211,11 @@ knitr::kable(lat_longs)
 cat("<p class=\"caption\">Table 1: Example: geocoding addresses.</p>")
 ```
 
-To perform reverse geocoding (obtaining addresses from geographic coordinates),
-use `reverse_geo_lite()`. The arguments are similar to `geo_lite()`, but now we
-specify the input data columns with the `lat` and `long` arguments. The dataset
-used here is from the geocoder query above.
-The single-line address is returned in a column named with the `address`
-argument.
+To perform reverse geocoding, use `reverse_geo_lite()` to obtain addresses from
+geographic coordinates. The arguments are similar to `geo_lite()`, but now we
+provide coordinate values with the `lat` and `long` arguments. The dataset used
+here is from the geocoding query above. The single-line address is returned in a
+column named with the `address` argument.
 
 ```{r}
 reverse <- reverse_geo_lite(

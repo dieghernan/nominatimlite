@@ -10,8 +10,8 @@ nominatim_check_access(
 )
 }
 \arguments{
-\item{nominatim_server}{The URL of the Nominatim server to use.
-Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\code{"https://nominatim.openstreetmap.org/"}.}
 }
 \value{
 A logical \code{TRUE/FALSE}.

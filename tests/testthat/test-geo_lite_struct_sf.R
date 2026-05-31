@@ -2,7 +2,10 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(obj <- geo_lite_struct_sf(), "Nothing to search for")
+  expect_message(
+    obj <- geo_lite_struct_sf(),
+    "No query parameters were provided"
+  )
   expect_s3_class(obj, "sf")
   expect_true(sf::st_is_empty(obj))
 
@@ -40,7 +43,7 @@ test_that("Data format", {
       points_only = FALSE,
       limit = 100
     ),
-    "Nominatim returns at most 50 results"
+    "`limit` has been set to 50"
   )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))

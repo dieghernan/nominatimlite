@@ -26,9 +26,8 @@ a numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y
 \verb{(xmin, ymin, xmax, ymax)}, or a \code{\link[sf:st_sf]{sf}} or
 \code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
 
-\item{amenity}{A \code{character} (or a vector of \code{character}s) with the
-amenities to be geocoded, for example \code{c("pub", "restaurant")}. See
-\link{osm_amenities}.}
+\item{amenity}{\code{character} value or vector with the amenities to geocode,
+for example \code{c("pub", "restaurant")}. See \link{osm_amenities}.}
 
 \item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
@@ -37,7 +36,7 @@ amenities to be geocoded, for example \code{c("pub", "restaurant")}. See
 \item{limit}{Maximum number of results to return per input address. Note
 that each query returns a maximum of 50 results.}
 
-\item{full_results}{Returns all available data from the API service.
+\item{full_results}{Return all available data from the Nominatim API.
 If \code{FALSE} (default), only latitude, longitude and address columns are
 returned. See also \code{return_addresses}.}
 
@@ -45,29 +44,28 @@ returned. See also \code{return_addresses}.}
 
 \item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
 
-\item{nominatim_server}{The URL of the Nominatim server to use.
-Defaults to \code{"https://nominatim.openstreetmap.org/"}.}
+\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{custom_query}{A named list with API-specific parameters to be used,
-for example \code{list(countrycodes = "US")}. See \strong{Details}.}
+\item{custom_query}{Named list with API-specific parameters, for example
+\code{list(countrycodes = "US")}. See \strong{Details}.}
 
 \item{strict}{Logical \code{TRUE/FALSE}. Force the results to be included inside
-the \code{bbox}. Note that Nominatim default behavior may return results
+the \code{bbox}. Nominatim's default behavior may return results
 located outside the provided bounding box.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results found by the query.
+A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
 }
 \description{
 Searches \link[=osm_amenities]{amenities} as defined by OpenStreetMap in a
 restricted area defined by a bounding box in the form
 \verb{(<xmin>, <ymin>, <xmax>, <ymax>)} and returns the
 \code{\link[tibble:tibble]{tibble}} associated with the query. See
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as a spatial object
-(\code{\link[sf:st_sf]{sf}} format).
+\code{\link[=geo_amenity_sf]{geo_amenity_sf()}} for retrieving the data as an \code{\link[sf:st_sf]{sf}} object.
 }
 \details{
 Bounding boxes can be located using online tools such as
@@ -99,7 +97,7 @@ geo_amenity(
   amenity = c("restaurant", "pub")
 )
 
-# Increase limit and use with strict
+# Increase `limit` and use strict filtering
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub"),
@@ -110,7 +108,7 @@ geo_amenity(
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other amenity:
+Amenity lookup:
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link{osm_amenities}}
 

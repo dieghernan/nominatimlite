@@ -5,16 +5,14 @@
 #'
 #' @family datasets
 #' @family amenity
-#'
 #' @encoding UTF-8
 #'
 #' @name osm_amenities
-#'
 #' @docType data
 #'
 #' @format
 #' A [`tibble`][tibble::tibble] with
-#' `r prettyNum(nrow(nominatimlite::osm_amenities), big.mark=",")` rows and
+#' `r prettyNum(nrow(nominatimlite::osm_amenities), big.mark = ",")` rows and
 #' fields:
 #' \describe{
 #'   \item{category}{The category of the amenity.}

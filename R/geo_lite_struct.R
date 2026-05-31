@@ -3,8 +3,8 @@
 #' @description
 #' Geocodes addresses already split into components and returns the
 #' [`tibble`][tibble::tibble] associated with the query. See
-#' [geo_lite_struct_sf()] for retrieving the data as a spatial object
-#' ([`sf`][sf::st_sf] format).
+#' [geo_lite_struct_sf()] for retrieving the data as an [`sf`][sf::st_sf]
+#' object.
 #'
 #' Corresponds to the **structured query** search described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
@@ -21,9 +21,9 @@
 #' @param country Country.
 #' @param postalcode Postal code.
 #' @inheritParams geo_lite
+#' @inherit geo_lite return
 #'
 #' @details
-#'
 #' The structured form of the search query allows you to look up an address that
 #' is already split into its components. Each parameter represents a field of
 #' the address. All parameters are optional. You should only use the ones that
@@ -32,13 +32,8 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @return
-#'
-#' ```{r child = "man/chunks/tibbleout.Rmd"}
-#' ```
-#'
 #' @seealso
-#' [geo_lite_struct_sf()], [tidygeocoder::geo()].
+#' [tidygeocoder::geo()].
 #'
 #' @export
 #'
@@ -68,88 +63,48 @@ geo_lite_struct <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/",
   custom_query = list()
 ) {
-  if (limit > 50) {
-    message(paste(
-      "Nominatim returns at most 50 results. ",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- cap_limit(limit)
 
-  # Check parameters, because this function is not vectorized.
-  pars <- list(
-    amenity = amenity[1],
-    street = street[1],
-    city = city[1],
-    county = county[1],
-    state = state[1],
-    country = country[1],
-    postalcode = postalcode[1]
+  # Keep the first value of each parameter; this function is not vectorized.
+  pars <- structured_query_params(
+    amenity = amenity,
+    street = street,
+    city = city,
+    county = county,
+    state = state,
+    country = country,
+    postalcode = postalcode
   )
-
-  pars <- lapply(pars, function(x) {
-    if (is.null(x)) {
-      return(NA_character_)
-    }
-    a_char <- as.character(x)
-    a_char
-  })
-
-  tbl_query <- dplyr::as_tibble(pars)
-  names(tbl_query) <- paste0("q_", names(tbl_query))
+  tbl_query <- structured_query_tbl(pars)
 
   if (all(is.na(pars))) {
-    message("Nothing to search for.")
+    message("No query parameters were provided.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
-  # Replace spaces with `+`.
-  pars <- lapply(pars, function(x) {
-    gsub(" ", "+", x, fixed = TRUE)
-  })
-
-  # Build the API address and ensure that the server URL has one trailing slash.
-  api <- prepare_api_url(nominatim_server, "search?")
-  # Compose the URL.
-  url <- paste0(api, "format=jsonv2&limit=", limit)
-
-  if (full_results) {
-    url <- paste0(url, "&addressdetails=1")
-  }
-
-  # Clean and add options.
-  newopts <- c(pars, custom_query)
-
-  logis <- vapply(
-    newopts,
-    function(x) {
-      any(is.null(x), is.na(x))
-    },
-    FUN.VALUE = logical(1)
+  pars <- lapply(pars, encode_search_text)
+  custom_query <- compact_query_options(c(pars, custom_query))
+  url <- build_search_url(
+    nominatim_server = nominatim_server,
+    format = "jsonv2",
+    limit = limit,
+    full_results = full_results,
+    custom_query = custom_query
   )
 
-  newopts <- newopts[!logis]
-  url <- add_custom_query(newopts, url)
-
-  # Download to a temporary file.
+  # Download the API response.
   json <- api_call(url, ".json", isFALSE(verbose))
 
-  # Step 2: Read and parse results ----
   if (isFALSE(json)) {
-    message(url, " is not reachable.")
+    message("API endpoint is not reachable: ", url, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(json, flatten = TRUE))
 
-  # Rename latitude and longitude columns.
-  nmes <- names(result)
-  nmes[nmes == "lat"] <- lat
-  nmes[nmes == "lon"] <- long
-
-  names(result) <- nmes
+  result <- rename_coordinate_cols(result, lat, long)
 
   # Handle empty queries.
   if (nrow(result) == 0) {
@@ -158,14 +113,12 @@ geo_lite_struct <- function(
     return(invisible(out))
   }
 
-  # Convert coordinates to double.
-  result[lat] <- as.double(result[[lat]])
-  result[long] <- as.double(result[[long]])
+  result <- convert_coordinate_cols(result, lat, long)
 
-  # Add the query.
+  # Add the structured query to the API results.
   result_clean <- dplyr::bind_cols(tbl_query[rep(1, nrow(result)), ], result)
 
-  # Keep selected names.
+  # Keep selected columns.
   result_out <- keep_names(
     result_clean,
     return_addresses,
@@ -173,7 +126,7 @@ geo_lite_struct <- function(
     colstokeep = c(names(tbl_query), lat, long)
   )
 
-  # Convert to tibble.
+  # Restore tibble classes.
   result_out <- dplyr::as_tibble(result_out)
 
   result_out
