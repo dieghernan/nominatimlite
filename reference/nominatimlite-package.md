@@ -1,9 +1,9 @@
 # nominatimlite: Interface to the 'Nominatim' API
 
-Lightweight interface to the 'OpenStreetMap' service 'Nominatim'
-<https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse
-geocode coordinates, look up amenities and return results as data frames
-or 'sf' spatial objects.
+Lightweight interface to the 'OpenStreetMap' 'Nominatim' API
+<https://nominatim.org/release-docs/latest/>. Extract coordinates from
+addresses, retrieve addresses from coordinates, look up amenities and
+addresses, and return results as 'tibble' or 'sf' objects.
 
 ## See also
 

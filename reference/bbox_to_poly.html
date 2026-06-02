@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,8 @@ instead of <code>bbox</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sfc</a></code> object of class <code>POLYGON</code>.</p>
+    <p>A <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sfc</a></code> object of class <code>POLYGON</code> with the corresponding
+coordinate reference system <code>crs</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -90,7 +91,7 @@ instead of <code>bbox</code>.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html" class="external-link">sf::st_as_sfc()</a></code> and <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sf::st_sfc()</a></code>.</p>
-<p>Get <code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> objects:
+<p><code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> outputs:
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code>,
 <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code>,
 <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code>,
@@ -112,7 +113,7 @@ instead of <code>bbox</code>.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="bbox_to_poly-1.png" alt="" width="2188" height="1352"></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># Extract the bounding box of a sf object</span></span></span>
+<span class="r-in"><span><span class="co"># Extract the bounding box of an sf object</span></span></span>
 <span class="r-in"><span><span class="va">sfobj</span> <span class="op">&lt;-</span> <span class="fu"><a href="geo_lite_sf.html">geo_lite_sf</a></span><span class="op">(</span><span class="st">"seychelles"</span>, points_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">sfobj</span></span></span>
@@ -126,7 +127,7 @@ instead of <code>bbox</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                            <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [°]&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> seychelles Sesel   (((45.99888 -9.401015, 46.00121 -9.427337, 46.00564 -9.456…</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Need at least one non-empty object</span></span></span>
+<span class="r-in"><span><span class="co"># Require at least one non-empty object</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_query.html" class="external-link">st_is_empty</a></span><span class="op">(</span><span class="va">sfobj</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">sfobj</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

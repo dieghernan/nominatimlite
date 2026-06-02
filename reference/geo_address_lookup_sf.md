@@ -1,8 +1,10 @@
-# Address lookup API in [sf](https://CRAN.R-project.org/package=sf) format
+# Address lookup API with [sf](https://CRAN.R-project.org/package=sf) output
 
 The lookup API queries the address and other details of one or more OSM
-objects (node, way, relation) and returns the spatial object associated
-with the query using [sf](https://CRAN.R-project.org/package=sf). See
+objects, such as nodes, ways or relations, and returns the
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object
+associated with the query using
+[sf](https://CRAN.R-project.org/package=sf). See
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
 for retrieving the data in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
@@ -26,8 +28,8 @@ geo_address_lookup_sf(
 
 - osm_ids:
 
-  Vector of OSM identifiers as numeric values.
-  (`c(00000, 11111, 22222)`).
+  Vector of OSM identifiers as numeric values, for example
+  `c(00000, 11111, 22222)`.
 
 - type:
 
@@ -37,8 +39,9 @@ geo_address_lookup_sf(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default),
-  only address columns are returned. See also `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only address columns are returned. See also
+  `return_addresses`.
 
 - return_addresses:
 
@@ -50,24 +53,24 @@ geo_address_lookup_sf(
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  A named list with API-specific parameters to be used, for example
+  Named list with API-specific parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 - points_only:
 
-  Logical `TRUE/FALSE`. Whether to return only spatial points (`TRUE`,
+  Logical `TRUE/FALSE`. Whether to return only point geometries (`TRUE`,
   which is the default) or potentially other shapes as returned by the
   Nominatim API (`FALSE`). See **About geometry types**.
 
 ## Value
 
-A [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object with
-the results.
+An [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object with
+the results that match the query.
 
 ## Details
 
@@ -78,7 +81,7 @@ additional parameters to be passed to `custom_query`.
 
 The parameter `points_only` specifies whether the function results will
 be points (all Nominatim results are guaranteed to have at least point
-geometry) or possibly other spatial objects.
+geometry) or other geometry types.
 
 Note that when `points_only = FALSE`, the type of geometry returned
 depends on the object being geocoded. Administrative areas, major
@@ -86,14 +89,12 @@ buildings and the like will be returned as polygons, rivers, roads and
 similar features will be returned as lines, and amenities may still be
 returned as points.
 
-The function is vectorized, allowing multiple addresses to be geocoded,
-with `points_only = FALSE`, multiple geometry types may be returned.
+This function is vectorized, allowing multiple addresses to be geocoded.
+With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md).
-
-Address Lookup API:
+Address lookup:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
 
 Geocoding:
@@ -105,7 +106,7 @@ Geocoding:
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
 
-Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) outputs:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
@@ -120,7 +121,7 @@ Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
 
 NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 
-# Need at least one non-empty object
+# Require at least one non-empty object
 if (!all(sf::st_is_empty(NotreDame))) {
   library(ggplot2)
 

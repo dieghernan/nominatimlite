@@ -1,5 +1,17 @@
 # Changelog
 
+## nominatimlite 0.6.0
+
+- The minimum required **R** version is now 4.1.0.
+- Documentation has been proofread and aligned across roxygen2 comments,
+  README and vignettes with AI assistance.
+- Internal code has been refactored with AI assistance to reduce
+  duplication in URL construction, progress handling, coordinate
+  validation and output preparation without changing the public API.
+- User-facing messages have been clarified with AI assistance, including
+  unreachable API endpoint messages, capped `limit` messages and empty
+  structured query messages.
+
 ## nominatimlite 0.5.0
 
 CRAN release: 2026-03-18

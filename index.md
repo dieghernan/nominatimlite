@@ -3,7 +3,7 @@
 The goal of **nominatimlite** is to provide a lightweight interface for
 geocoding addresses with the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It also allows you to
-retrieve spatial objects using the **sf** package.
+return results as `sf` objects using the **sf** package.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>
@@ -13,7 +13,7 @@ The full site with examples and vignettes is available at
 **Nominatim** is a tool for searching
 [OpenStreetMap](https://www.openstreetmap.org/) data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
-and to generate synthetic addresses for OSM points (reverse geocoding).
+and generating synthetic addresses for OSM points (reverse geocoding).
 
 ## Why nominatimlite?
 
@@ -50,13 +50,13 @@ install.packages("nominatimlite")
 
 ### `sf` objects
 
-With **nominatimlite** you can extract spatial objects:
+With **nominatimlite** you can return `sf` objects:
 
 ``` r
 
 library(nominatimlite)
 
-# Extract Pizza Hut locations in California.
+# Search for Pizza Hut locations in California.
 
 CA <- geo_lite_sf("California", points_only = FALSE)
 
@@ -76,12 +76,13 @@ ggplot(CA) +
 ![Pizza Hut restaurant locations in California extracted with
 nominatimlite.](reference/figures/README-pizzahut-1.png)
 
-You can also extract polygon and line objects when the Nominatim API
+You can also return polygon and line objects when the Nominatim API
 provides them, using the option `points_only = FALSE`:
 
 ``` r
 
-sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE) # a building, returned as a polygon
+# A building, returned as a polygon.
+sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
 ggplot(sol_poly) +
   geom_sf()
@@ -92,9 +93,12 @@ nominatimlite.](reference/figures/README-statue_liberty-1.png)
 
 ``` r
 
-dayton <- geo_lite_sf("Dayton, OH") # default, returned as a point
-ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE) # a US state, returned as a polygon
-ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE) # a river, returned as a line
+# Default, returned as a point.
+dayton <- geo_lite_sf("Dayton, OH")
+# A US state, returned as a polygon.
+ohio_state <- geo_lite_sf("Ohio, USA", points_only = FALSE)
+# A river, returned as a line.
+ohio_river <- geo_lite_sf("Ohio river", points_only = FALSE)
 
 ggplot() +
   geom_sf(data = ohio_state) +
@@ -133,9 +137,9 @@ lat_longs <- geo_lite(
 )
 ```
 
-This example returns only latitude and longitude from the geocoder
-service. Use `full_results = TRUE` to return all data from the geocoder
-service.
+This example returns only latitude, longitude and address columns from
+the Nominatim API. Use `full_results = TRUE` to return all available
+data from the Nominatim API.
 
 | query | latitude | longitude | address |
 |:---|---:|---:|:---|
@@ -145,13 +149,13 @@ service.
 
 Table 1: Example: geocoding addresses.
 
-To perform reverse geocoding (obtaining addresses from geographic
-coordinates), use
-[`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md).
-The arguments are similar to
+To perform reverse geocoding, use
+[`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
+to obtain addresses from geographic coordinates. The arguments are
+similar to
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
-but now we specify the input data columns with the `lat` and `long`
-arguments. The dataset used here is from the geocoder query above. The
+but now we provide coordinate values with the `lat` and `long`
+arguments. The dataset used here is from the geocoding query above. The
 single-line address is returned in a column named with the `address`
 argument.
 
@@ -167,9 +171,9 @@ reverse <- reverse_geo_lite(
 
 | address_found | lat | lon |
 |:---|---:|---:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
-| 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87874 | -87.63589 |
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| Sky Bar, Mark Twain Place, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
 
 Table 2: Example: reverse geocoding addresses.
 
@@ -191,9 +195,9 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.nominatimlite},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.5.0},
+  version = {0.6.0},
   url = {https://dieghernan.github.io/nominatimlite/},
-  abstract = {Lightweight interface to the OpenStreetMap service Nominatim <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames or sf spatial objects.},
+  abstract = {Lightweight interface to the OpenStreetMap Nominatim API <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, retrieve addresses from coordinates, look up amenities and addresses, and return results as tibble or sf objects.},
 }
 ```
 

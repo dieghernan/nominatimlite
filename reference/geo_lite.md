@@ -4,8 +4,8 @@ Geocodes addresses given as character values and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
 associated with the query. See
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md)
-for retrieving the data as a spatial object
-([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
+for retrieving the data as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
 
 Corresponds to the **free-form query** search described in the [API
 endpoint](https://nominatim.org/release-docs/latest/api/Search/).
@@ -50,9 +50,9 @@ geo_lite(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default),
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_addresses:
 
@@ -64,7 +64,7 @@ geo_lite(
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
@@ -74,13 +74,13 @@ geo_lite(
 
 - custom_query:
 
-  A named list with API-specific parameters to be used, for example
+  Named list with API-specific parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 ## Value
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the results found by the query.
+the results that match the query.
 
 ## Details
 
@@ -89,7 +89,6 @@ additional parameters to be passed to `custom_query`.
 
 ## See also
 
-[`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
 [`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html).
 
 Geocoding:
@@ -120,7 +119,7 @@ geo_lite(c("Madrid", "Barcelona"))
 #> 1 Madrid     40.4 -3.70 Madrid, Comunidad de Madrid, España                
 #> 2 Barcelona  41.4  2.18 Barcelona, Barcelonès, Barcelona, Catalunya, España
 
-# With options: restrict search to USA
+# With options: restrict search to the United States
 geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE

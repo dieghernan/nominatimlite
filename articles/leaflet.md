@@ -6,7 +6,7 @@ The following example shows how to create an interactive [leaflet
 map](https://rstudio.github.io/leaflet/) with data retrieved using
 **nominatimlite**.
 
-This widget is browsable and filterable with **crosstalk** and
+The widget can be browsed and filtered with **crosstalk** and
 **reactable**:
 
 ``` r
@@ -31,9 +31,9 @@ eiffel_tower <- geo_lite_sf(
 # Step 2: Coffee shops and restaurants nearby.
 
 # Create a buffer of 1 km around the Eiffel Tower.
-buff <- eiffel_tower %>%
-  st_transform(3857) %>%
-  st_centroid() %>%
+buff <- eiffel_tower |>
+  st_transform(3857) |>
+  st_centroid() |>
   st_buffer(1000)
 
 cf_bk <- geo_amenity_sf(
@@ -43,7 +43,7 @@ cf_bk <- geo_amenity_sf(
   full_results = TRUE,
   custom_query = list(extratags = TRUE),
   progressbar = FALSE
-) %>%
+) |>
   # Build addresses with street, house number, suburb and postcode.
   unite(
     "addr",
@@ -55,10 +55,9 @@ cf_bk <- geo_amenity_sf(
     na.rm = TRUE
   )
 
-# Labels and icons.
+# Create labels and icons.
 labs <- paste0("<strong>", cf_bk$name, "</strong><br>", cf_bk$addr)
 
-# Assign icons.
 # Base URL for icons.
 icon_url <- paste0(
   "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
@@ -78,7 +77,7 @@ leaf_icons <- icons(
 )
 
 # Step 3: Create a crosstalk object.
-cf_bk_data <- cf_bk %>%
+cf_bk_data <- cf_bk |>
   select(
     Place = name,
     Type = type,
@@ -86,25 +85,24 @@ cf_bk_data <- cf_bk %>%
     City = address.city,
     URL = extratags.website,
     Phone = extratags.phone
-  ) %>%
+  ) |>
   SharedData$new(group = "Food")
 
 # Step 4: Create a leaflet map with crosstalk.
-# Initialize the leaflet map.
 lmend <- leaflet(
   data = cf_bk_data,
   elementId = "EiffelTower",
   width = "100%",
   height = "60vh",
   options = leafletOptions(minZoom = 12)
-) %>%
+) |>
   addProviderTiles(
     provider = "CartoDB.Positron",
     group = "CartoDB.Positron"
-  ) %>%
-  addTiles(group = "OSM") %>%
-  addPolygons(data = eiffel_tower) %>%
-  addMarkers(popup = labs, icon = leaf_icons) %>%
+  ) |>
+  addTiles(group = "OSM") |>
+  addPolygons(data = eiffel_tower) |>
+  addMarkers(popup = labs, icon = leaf_icons) |>
   addLayersControl(
     baseGroups = c("CartoDB.Positron", "OSM"),
     position = "topleft",
@@ -161,7 +159,7 @@ tb <- reactable(
 
 ``` r
 
-# Last step: Display all widgets.
+# Display all widgets.
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
 )
@@ -169,9 +167,9 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel Tower icons created by Freepik -
+- [Eiffel Tower icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
-- [Mug icons created by Freepik -
+- [Mug icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
-- [Food icons created by Freepik -
+- [Food icons created by Freepik on
   Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons")

@@ -4,8 +4,8 @@ Geocodes addresses already split into components and returns the
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
 associated with the query. See
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
-for retrieving the data as a spatial object
-([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
+for retrieving the data as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
 
 Corresponds to the **structured query** search described in the [API
 endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
@@ -80,9 +80,9 @@ geo_lite_struct(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default),
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_addresses:
 
@@ -94,18 +94,18 @@ geo_lite_struct(
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  A named list with API-specific parameters to be used, for example
+  Named list with API-specific parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 ## Value
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the results found by the query.
+the results that match the query.
 
 ## Details
 
@@ -119,7 +119,6 @@ additional parameters to be passed to `custom_query`.
 
 ## See also
 
-[`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md),
 [`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html).
 
 Geocoding:

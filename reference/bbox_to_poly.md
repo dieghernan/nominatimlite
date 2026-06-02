@@ -28,7 +28,8 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 ## Value
 
 A [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object of
-class `POLYGON`.
+class `POLYGON` with the corresponding coordinate reference system
+`crs`.
 
 ## Details
 
@@ -40,7 +41,7 @@ Bounding boxes can be located using online tools such as
 [`sf::st_as_sfc()`](https://r-spatial.github.io/sf/reference/st_as_sfc.html)
 and [`sf::st_sfc()`](https://r-spatial.github.io/sf/reference/sfc.html).
 
-Get [`sf`](https://r-spatial.github.io/sf/reference/sf.html) objects:
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) outputs:
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
@@ -62,7 +63,7 @@ ggplot(bbox_GER_sf) +
   geom_sf()
 
 # \donttest{
-# Extract the bounding box of a sf object
+# Extract the bounding box of an sf object
 sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj
@@ -76,7 +77,7 @@ sfobj
 #> * <chr>      <chr>                                            <MULTIPOLYGON [°]>
 #> 1 seychelles Sesel   (((45.99888 -9.401015, 46.00121 -9.427337, 46.00564 -9.456…
 
-# Need at least one non-empty object
+# Require at least one non-empty object
 if (!all(sf::st_is_empty(sfobj))) {
   bbox <- sf::st_bbox(sfobj)
 

@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">nominatimlite</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,13 +68,27 @@
 
         <dt>
 
+          <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code>
+
+        </dt>
+        <dd>Address search API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output (free-form query)</dd>
+
+        <dt>
+
           <code><a href="geo_lite_struct.html">geo_lite_struct()</a></code>
 
         </dt>
         <dd>Address search API (structured query)</dd>
-      </dl></div><div class="section level2">
-      <h2 id="amenity-lookup">Amenity lookup<a class="anchor" aria-label="anchor" href="#amenity-lookup"></a></h2>
 
+        <dt>
+
+          <code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code>
+
+        </dt>
+        <dd>Address search API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output (structured query)</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="amenity-lookup">Amenity lookup<a class="anchor" aria-label="anchor" href="#amenity-lookup"></a></h3>
       <div class="section-desc"><p>Search OpenStreetMap amenities within a bounding box.</p></div>
 
       <dl></dl></div><div class="section level2">
@@ -88,9 +102,23 @@
 
         </dt>
         <dd>Geocode amenities</dd>
-      </dl></div><div class="section level2">
-      <h2 id="address-lookup">Address lookup<a class="anchor" aria-label="anchor" href="#address-lookup"></a></h2>
 
+        <dt>
+
+          <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code>
+
+        </dt>
+        <dd>Geocode amenities with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output</dd>
+
+        <dt>
+
+          <code><a href="osm_amenities.html">osm_amenities</a></code>
+
+        </dt>
+        <dd>OpenStreetMap amenity database</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="address-lookup">Address lookup<a class="anchor" aria-label="anchor" href="#address-lookup"></a></h3>
       <div class="section-desc"><p>Retrieve address details for OSM node, way and relation identifiers.</p></div>
 
       <dl></dl></div><div class="section level2">
@@ -104,6 +132,13 @@
 
         </dt>
         <dd>Address lookup API</dd>
+
+        <dt>
+
+          <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code>
+
+        </dt>
+        <dd>Address lookup API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output</dd>
       </dl></div><div class="section level2">
       <h2 id="reverse-geocoding">Reverse geocoding<a class="anchor" aria-label="anchor" href="#reverse-geocoding"></a></h2>
 
@@ -120,10 +155,17 @@
 
         </dt>
         <dd>Reverse geocoding API</dd>
-      </dl></div><div class="section level2">
-      <h2 id="spatial-objects">Spatial objects<a class="anchor" aria-label="anchor" href="#spatial-objects"></a></h2>
 
-      <div class="section-desc"><p>Return geocoding results as <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> objects.</p></div>
+        <dt>
+
+          <code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code>
+
+        </dt>
+        <dd>Reverse geocoding API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output</dd>
+      </dl></div><div class="section level2">
+      <h2 id="sf-outputs-"><a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> outputs<a class="anchor" aria-label="anchor" href="#sf-outputs-"></a></h2>
+
+      <div class="section-desc"><p>Return API results as <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> objects and convert bounding boxes to <span class="pkg">sf</span> geometries.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -139,38 +181,38 @@
 
         <dt>
 
-          <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code>
+          <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code>
 
         </dt>
-        <dd>Address search API in <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> format (free-form query)</dd>
-
-        <dt>
-
-          <code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code>
-
-        </dt>
-        <dd>Address search API in <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> format (structured query)</dd>
+        <dd>Address lookup API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output</dd>
 
         <dt>
 
           <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code>
 
         </dt>
-        <dd>Geocode amenities in <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> format</dd>
+        <dd>Geocode amenities with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output</dd>
 
         <dt>
 
-          <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code>
+          <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code>
 
         </dt>
-        <dd>Address lookup API in <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> format</dd>
+        <dd>Address search API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output (free-form query)</dd>
+
+        <dt>
+
+          <code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code>
+
+        </dt>
+        <dd>Address search API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output (structured query)</dd>
 
         <dt>
 
           <code><a href="reverse_geo_lite_sf.html">reverse_geo_lite_sf()</a></code>
 
         </dt>
-        <dd>Reverse geocoding API in <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> format</dd>
+        <dd>Reverse geocoding API with <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> output</dd>
       </dl></div><div class="section level2">
       <h2 id="api-management">API management<a class="anchor" aria-label="anchor" href="#api-management"></a></h2>
 

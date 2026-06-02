@@ -6,8 +6,8 @@ Generates an address from latitude and longitude (latitudes in
 [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
 associated with the query. See
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
-for retrieving the data as a spatial object
-([`sf`](https://r-spatial.github.io/sf/reference/sf.html) format).
+for retrieving the data as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
 
 ## Usage
 
@@ -43,9 +43,9 @@ reverse_geo_lite(
 
 - full_results:
 
-  Returns all available data from the API service. If `FALSE` (default),
-  only latitude, longitude and address columns are returned. See also
-  `return_addresses`.
+  Return all available data from the Nominatim API. If `FALSE`
+  (default), only latitude, longitude and address columns are returned.
+  See also `return_addresses`.
 
 - return_coords:
 
@@ -57,7 +57,7 @@ reverse_geo_lite(
 
 - nominatim_server:
 
-  The URL of the Nominatim server to use. Defaults to
+  URL of the Nominatim server to use. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
@@ -67,13 +67,13 @@ reverse_geo_lite(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list, for
-  example `list(zoom = 3)`. See **Details**.
+  Named list with API-specific parameters, for example `list(zoom = 3)`.
+  See **Details**.
 
 ## Value
 
 A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the results found by the query.
+the results that match the query.
 
 ## Details
 
@@ -99,10 +99,9 @@ Some zoom levels correspond to these address details:
 
 ## See also
 
-[`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md),
 [`tidygeocoder::reverse_geo()`](https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html).
 
-Reverse geocoding coordinates:
+Reverse geocoding:
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
 
 ## Examples
@@ -139,7 +138,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52172514, 274782588
+#> $ place_id                                 <int> 52172514, 275211732
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149
