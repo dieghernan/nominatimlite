@@ -36,26 +36,7 @@ nominatim_check_access <- function(
 
   result <- dplyr::as_tibble(jsonlite::fromJSON(api_res, flatten = TRUE))
 
-  # nocov start
-  if (result$status == 0 || result$message == "OK") {
-    TRUE
-  } else {
-    FALSE
-  }
-  # nocov end
-}
-
-skip_if_api_server <- function() {
-  # nocov start
-  if (nominatim_check_access()) {
-    return(invisible(TRUE))
-  }
-
-  if (requireNamespace("testthat", quietly = TRUE)) {
-    testthat::skip("Nominatim API is not reachable.")
-  }
-  invisible()
-  # nocov end
+  any(result$status == 0 || result$message == "OK")
 }
 
 #' Query the Nominatim API
@@ -105,7 +86,7 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
 
   # Return the file when all went well.
   if (!inherits(dwn_res, "try-error")) {
-    return(destfile)
+    return(destfile) # nocov
   }
 
   unlink(destfile, force = TRUE)

@@ -5,7 +5,6 @@ dir.v: vignettes
 dir.t: tests
 extra.suggests:
 - tibble
-- lifecycle
 - quarto
 - tidygeocoder
 - ggplot2

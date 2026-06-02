@@ -192,7 +192,7 @@ data from the Nominatim API.
 
 | query | latitude | longitude | address |
 |:---|---:|---:|:---|
-| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States |
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States |
 | 233 S Wacker Dr, Chicago, IL 60606 | 41.87874 | -87.63596 | Willis Tower, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States |
 
@@ -219,7 +219,7 @@ reverse <- reverse_geo_lite(
 
 | address_found | lat | lon |
 |:---|---:|---:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
 | Sky Bar, Mark Twain Place, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
 | West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
 
@@ -249,9 +249,9 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.5.0.9000},
+      version = {0.6.0},
       url = {https://dieghernan.github.io/nominatimlite/},
-      abstract = {Lightweight interface to the OpenStreetMap Nominatim service <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames (tibbles) or sf objects.},
+      abstract = {Lightweight interface to the OpenStreetMap Nominatim API <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, retrieve addresses from coordinates, look up amenities and addresses, and return results as tibble or sf objects.},
     }
 
 ## References

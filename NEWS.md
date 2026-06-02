@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.6.0
 
 - The minimum required **R** version is now 4.1.0.
 - Documentation has been proofread and aligned across roxygen2 comments, README

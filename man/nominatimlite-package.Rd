@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Lightweight interface to the 'OpenStreetMap' 'Nominatim' service \url{https://nominatim.org/release-docs/latest/}. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames (tibbles) or 'sf' objects.
+Lightweight interface to the 'OpenStreetMap' 'Nominatim' API \url{https://nominatim.org/release-docs/latest/}. Extract coordinates from addresses, retrieve addresses from coordinates, look up amenities and addresses, and return results as 'tibble' or 'sf' objects.
 }
 \seealso{
 Useful links:

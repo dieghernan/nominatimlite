@@ -2,13 +2,13 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nominatimlite",
-  "description": "Lightweight interface to the 'OpenStreetMap' 'Nominatim' service <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames (tibbles) or 'sf' objects.",
+  "description": "Lightweight interface to the 'OpenStreetMap' 'Nominatim' API <https://nominatim.org/release-docs/latest/>. Extract coordinates from addresses, retrieve addresses from coordinates, look up amenities and addresses, and return results as 'tibble' or 'sf' objects.",
   "name": "nominatimlite: Interface to the 'Nominatim' API",
   "relatedLink": ["https://dieghernan.github.io/nominatimlite/", "https://CRAN.R-project.org/package=nominatimlite"],
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.5.0.9000",
+  "version": "0.6.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -105,18 +105,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "lifecycle",
-      "name": "lifecycle",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=lifecycle"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "quarto",
       "name": "quarto",
       "provider": {
@@ -129,15 +117,16 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rmarkdown",
-      "name": "rmarkdown",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     },
     {
       "@type": "SoftwareApplication",
@@ -213,16 +202,8 @@
     },
     "5": {
       "@type": "SoftwareApplication",
-      "identifier": "testthat",
-      "name": "testthat",
-      "version": ">= 3.0.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=testthat"
+      "identifier": "tools",
+      "name": "tools"
     },
     "6": {
       "@type": "SoftwareApplication",
@@ -232,8 +213,8 @@
     "SystemRequirements": null
   },
   "applicationCategory": "cartography",
-  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis"],
-  "fileSize": "250.754KB",
+  "keywords": ["r", "geocoding", "openstreetmap", "address", "nominatim", "reverse-geocoding", "rstats", "shapefile", "r-package", "spatial", "cran", "api-wrapper", "api", "gis", "geocoder", "reverse-geocoder"],
+  "fileSize": "252.752KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
