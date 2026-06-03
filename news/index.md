@@ -2,6 +2,8 @@
 
 ## nominatimlite 0.6.0
 
+CRAN release: 2026-06-03
+
 - The minimum required **R** version is now 4.1.0.
 - Documentation has been proofread and aligned across roxygen2 comments,
   README and vignettes with AI assistance.
