@@ -7,7 +7,7 @@ test_that("Returning empty query", {
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "xbzbzbzoa aiaia")
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("query", "lat", "lon"))
+  expect_named(obj, c("query", "lat", "lon"))
   expect_true(all(
     vapply(obj, class, FUN.VALUE = character(1)) ==
       c("character", rep("numeric", 2))
@@ -20,7 +20,7 @@ test_that("Returning empty query", {
     "No results for"
   )
 
-  expect_identical(names(obj_renamed), c("query", "lata", "longa"))
+  expect_named(obj_renamed, c("query", "lata", "longa"))
 
   names(obj_renamed) <- names(obj)
 
@@ -50,7 +50,7 @@ test_that("Checking query", {
     "50 results"
   )
 
-  expect_identical(names(obj), c("query", "lat", "lon", "address"))
+  expect_named(obj, c("query", "lat", "lon", "address"))
 
   obj <- geo_lite(
     "Madrid",
@@ -59,7 +59,7 @@ test_that("Checking query", {
     full_results = FALSE,
     return_addresses = FALSE
   )
-  expect_identical(names(obj), c("query", "at", "ong"))
+  expect_named(obj, c("query", "at", "ong"))
 
   obj <- geo_lite(
     "Madrid",
@@ -69,7 +69,7 @@ test_that("Checking query", {
     return_addresses = TRUE
   )
 
-  expect_identical(names(obj), c("query", "at", "ong", "address"))
+  expect_named(obj, c("query", "at", "ong", "address"))
 
   obj <- geo_lite(
     "Madrid",

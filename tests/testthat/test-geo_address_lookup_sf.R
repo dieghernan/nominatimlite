@@ -114,7 +114,7 @@ test_that("Verify names", {
   vector_type <- c("R", "N")
   several <- geo_address_lookup_sf(vector_ids, vector_type, full_results = TRUE)
 
-  expect_identical(names(several), unique(names(several)))
+  expect_named(several, unique(names(several)))
 
   # Do I have dups by any chance?
   expect_false(any(grepl("\\.[0-9]$", names(several))))

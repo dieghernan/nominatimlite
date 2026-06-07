@@ -12,8 +12,8 @@ test_that("Returning empty query", {
   expect_true(nrow(obj) == 1)
   expect_true(obj$q_amenity == "xbzbzbzoa aiaia")
   expect_s3_class(obj, "tbl")
-  expect_identical(
-    names(obj),
+  expect_named(
+    obj,
     c(
       "q_amenity",
       "q_street",
@@ -39,8 +39,8 @@ test_that("Returning empty query", {
     "No results for"
   )
 
-  expect_identical(
-    names(obj_renamed),
+  expect_named(
+    obj_renamed,
     c(
       "q_amenity",
       "q_street",

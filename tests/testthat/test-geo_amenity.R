@@ -32,7 +32,7 @@ test_that("Checking query", {
     "50 results"
   )
 
-  expect_identical(names(obj), c("query", "lat", "lon", "address"))
+  expect_named(obj, c("query", "lat", "lon", "address"))
 
   obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -42,7 +42,7 @@ test_that("Checking query", {
     full_results = FALSE,
     return_addresses = FALSE
   )
-  expect_identical(names(obj), c("query", "at", "ong"))
+  expect_named(obj, c("query", "at", "ong"))
 
   obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),
@@ -53,7 +53,7 @@ test_that("Checking query", {
     return_addresses = TRUE
   )
 
-  expect_identical(names(obj), c("query", "at", "ong", "address"))
+  expect_named(obj, c("query", "at", "ong", "address"))
 
   obj <- geo_amenity(
     bbox = c(-1.1446, 41.5022, -0.4854, 41.8795),

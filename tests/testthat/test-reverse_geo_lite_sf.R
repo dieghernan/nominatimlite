@@ -52,7 +52,7 @@ test_that("Returning empty query", {
   expect_true(obj$lon == 179.9999)
   expect_s3_class(obj, "tbl")
   expect_s3_class(obj, "sf")
-  expect_identical(names(obj), c("address", "lat", "lon", "geometry"))
+  expect_named(obj, c("address", "lat", "lon", "geometry"))
   expect_true(is.na(obj$address))
 
   expect_message(
@@ -64,7 +64,7 @@ test_that("Returning empty query", {
     "No results for"
   )
 
-  expect_identical(names(obj_renamed), c("adddata", "lat", "lon", "geometry"))
+  expect_named(obj_renamed, c("adddata", "lat", "lon", "geometry"))
 
   names(obj_renamed) <- names(obj)
 
@@ -114,7 +114,7 @@ test_that("Checking query", {
   expect_s3_class(obj, "sf")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("address", "lat", "lon", "geometry"))
+  expect_named(obj, c("address", "lat", "lon", "geometry"))
 
   # Same with different zoom
   obj_zoom <- reverse_geo_lite_sf(
@@ -146,7 +146,7 @@ test_that("Checking query", {
   expect_s3_class(obj, "sf")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("addrs", "lat", "lon", "geometry"))
+  expect_named(obj, c("addrs", "lat", "lon", "geometry"))
 
   # Check opts
   obj <- reverse_geo_lite_sf(
@@ -158,7 +158,7 @@ test_that("Checking query", {
 
   expect_s3_class(obj, "tbl")
   expect_s3_class(obj, "sf")
-  expect_identical(names(obj), c("addrs", "geometry"))
+  expect_named(obj, c("addrs", "geometry"))
 
   obj <- reverse_geo_lite_sf(
     40.4207414,

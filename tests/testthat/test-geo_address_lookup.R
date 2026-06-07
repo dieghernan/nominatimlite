@@ -7,7 +7,7 @@ test_that("Returning empty query", {
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "N34633854")
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("query", "lat", "lon"))
+  expect_named(obj, c("query", "lat", "lon"))
 
   objclass <- vapply(obj, class, FUN.VALUE = character(1))
 
@@ -25,7 +25,7 @@ test_that("Returning empty query", {
     "No results"
   )
 
-  expect_identical(names(obj_renamed), c("query", "lata", "longa"))
+  expect_named(obj_renamed, c("query", "lata", "longa"))
 
   names(obj_renamed) <- names(obj)
 
@@ -50,7 +50,7 @@ test_that("Checking query", {
 
   obj <- geo_address_lookup(32965412, "W")
 
-  expect_identical(names(obj), c("query", "lat", "lon", "address"))
+  expect_named(obj, c("query", "lat", "lon", "address"))
 
   obj <- geo_address_lookup(
     34633854,
@@ -61,7 +61,7 @@ test_that("Checking query", {
     return_addresses = FALSE
   )
 
-  expect_identical(names(obj), c("query", "at", "ong"))
+  expect_named(obj, c("query", "at", "ong"))
 
   obj <- geo_address_lookup(
     34633854,
@@ -71,7 +71,7 @@ test_that("Checking query", {
     full_results = FALSE,
     return_addresses = TRUE
   )
-  expect_identical(names(obj), c("query", "at", "ong", "address"))
+  expect_named(obj, c("query", "at", "ong", "address"))
 
   obj <- geo_address_lookup(
     34633854,
@@ -116,7 +116,7 @@ test_that("Handle several", {
   vector_type <- c("R", "N")
   several <- geo_address_lookup(vector_ids, vector_type)
   expect_equal(nrow(several), 2)
-  expect_identical(names(several), c("query", "lat", "lon", "address"))
+  expect_named(several, c("query", "lat", "lon", "address"))
 
   expect_identical(as.vector(several$query), paste0(vector_type, vector_ids))
 
@@ -131,7 +131,7 @@ test_that("Handle several", {
   )
 
   expect_equal(nrow(several), 1)
-  expect_identical(names(several), c("query", "lat", "lon", "address"))
+  expect_named(several, c("query", "lat", "lon", "address"))
 
   expect_identical(as.vector(several$query), paste0(vector_type, vector_ids)[2])
 })

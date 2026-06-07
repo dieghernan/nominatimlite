@@ -38,7 +38,7 @@ test_that("Returning empty query", {
   expect_true(obj$lat == 89.999999)
   expect_true(obj$lon == 179.9999)
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("address", "lat", "lon"))
+  expect_named(obj, c("address", "lat", "lon"))
   expect_true(all(
     vapply(obj, class, FUN.VALUE = character(1)) ==
       c("character", rep("numeric", 2))
@@ -50,7 +50,7 @@ test_that("Returning empty query", {
     "No results for"
   )
 
-  expect_identical(names(obj_renamed), c("adddata", "lat", "lon"))
+  expect_named(obj_renamed, c("adddata", "lat", "lon"))
 
   names(obj_renamed) <- names(obj)
 
@@ -78,7 +78,7 @@ test_that("Checking query", {
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("address", "lat", "lon"))
+  expect_named(obj, c("address", "lat", "lon"))
 
   # Same with different zoom
   obj_zoom <- reverse_geo_lite(
@@ -106,7 +106,7 @@ test_that("Checking query", {
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("addrs", "lat", "lon"))
+  expect_named(obj, c("addrs", "lat", "lon"))
 
   # Check opts
   obj <- reverse_geo_lite(
@@ -117,7 +117,7 @@ test_that("Checking query", {
   )
 
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), "addrs")
+  expect_named(obj, "addrs")
 
   obj <- reverse_geo_lite(
     40.4207414,
@@ -174,7 +174,7 @@ test_that("Check unnesting", {
 
   # Extract
   bb_l <- sev[["boundingbox"]]
-  expect_true(is.list(bb_l))
+  expect_type(bb_l, "list")
   expect_length(bb_l, 2)
 
   # Each object

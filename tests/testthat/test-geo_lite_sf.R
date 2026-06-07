@@ -59,19 +59,19 @@ test_that("Checking query", {
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("query", "address", "geometry"))
+  expect_named(obj, c("query", "address", "geometry"))
 
   obj <- geo_lite_sf("Madrid", full_results = FALSE, return_addresses = FALSE)
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("query", "geometry"))
+  expect_named(obj, c("query", "geometry"))
 
   obj <- geo_lite_sf("Madrid", full_results = FALSE, return_addresses = TRUE)
 
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("query", "address", "geometry"))
+  expect_named(obj, c("query", "address", "geometry"))
 
   obj <- geo_lite_sf("Madrid", full_results = TRUE, return_addresses = FALSE)
   expect_s3_class(obj, "sf")
@@ -132,7 +132,7 @@ test_that("Verify names", {
     full_results = TRUE
   )
 
-  expect_identical(names(several), unique(names(several)))
+  expect_named(several, unique(names(several)))
 
   # Do I have dups by any chance?
   expect_false(any(grepl("\\.[0-9]$", names(several))))
