@@ -16,7 +16,7 @@ osm_amenities <- rvest::read_html(url) |> # scrape web page
   rvest::html_table() |>
   pluck(1) |>
   as_tibble(.name_repair = "unique") |>
-  mutate(Element = ifelse(Element == "", NA, Element)) |>
+  mutate(Element = ifelse(!nzchar(Element), NA, Element)) |>
   fill(Element, .direction = "down") |>
   select(category = Element, amenity = Value, comment = Comment) |>
   mutate(

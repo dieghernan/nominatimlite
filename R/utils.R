@@ -277,7 +277,7 @@ is_named <- function(x) {
   if (anyNA(nm)) {
     return(FALSE)
   }
-  if (any(nm == "")) {
+  if (!all(nzchar(nm))) {
     return(FALSE)
   }
 
