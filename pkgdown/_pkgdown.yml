@@ -85,8 +85,8 @@ articles:
   contents:
   - nominatimlite
 
-- title: Maps and visualisation
-  navbar: Articles
+- title: Maps and visualization
+  navbar: Visualizations
   desc: >
     Display geocoding results on interactive maps with leaflet and
     integrate Nominatim data into spatial workflows.
