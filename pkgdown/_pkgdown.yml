@@ -40,41 +40,56 @@ reference:
     Search addresses and structured queries to return coordinates.
 - contents:
   - starts_with("geo_lite")
-- subtitle: Amenity lookup
-  desc: >
-    Search OpenStreetMap amenities within a bounding box.
-- contents:
-  - has_concept("amenity")
-- subtitle: Address lookup
-  desc: >
-    Retrieve address details for OSM node, way and relation identifiers.
-- contents:
-  - has_concept("lookup")
+
 - title: Reverse geocoding
   desc: >
     Reverse geocode coordinates to return addresses and place information.
 - contents:
   - has_concept("reverse")
-- title: >
-    <a href="https://CRAN.R-project.org/package=sf"
-    class="external-link"><span class="pkg">sf</span></a> outputs
+
+- title: Lookup tools
+- subtitle: Amenity lookup
   desc: >
-    Return API results as <a href="https://CRAN.R-project.org/package=sf"
-    class="external-link"><span class="pkg">sf</span></a> objects and convert
-    bounding boxes to <span class="pkg">sf</span> geometries.
+    Search OpenStreetMap amenities within a bounding box.
+- contents:
+  - has_concept("amenity")
+
+- subtitle: Address lookup
+  desc: >
+    Retrieve address details for OSM node, way and relation identifiers.
+- contents:
+  - has_concept("lookup")
+
+- title: Spatial outputs
+  desc: >
+    Return API results as `sf` objects and convert bounding boxes to `sf`
+    geometries.
 - contents:
   - has_concept("spatial")
+
 - title: Datasets
-  desc: Data shipped with the package.
+  desc: >
+    Data shipped with the package.
 - contents:
   - has_concept("datasets")
-- title: About the package
-- contents: nominatimlite-package
+
+- title: Package documentation
+- contents:
+  - nominatimlite-package
 
 articles:
 - title: Get started
-  contents: nominatimlite
-- title: Articles
+  desc: >
+    Introduction to nominatimlite. Learn how to geocode addresses,
+    reverse geocode coordinates and work with Nominatim search results.
+  contents:
+  - nominatimlite
+
+- title: Maps and visualisation
   navbar: Articles
+  desc: >
+    Display geocoding results on interactive maps with leaflet and
+    integrate Nominatim data into spatial workflows.
   contents:
   - articles/leaflet
+ 
