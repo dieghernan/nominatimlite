@@ -10,7 +10,7 @@ geocode coordinates and work with Nominatim search results.
 
   Quick examples showing what **nominatimlite** can do for you.
 
-### Maps and visualisation
+### Maps and visualization
 
 Display geocoding results on interactive maps with leaflet and integrate
 Nominatim data into spatial workflows.
