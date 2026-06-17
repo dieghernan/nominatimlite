@@ -33,26 +33,27 @@ authors:
     html: >
       <img src='https://wiki.openstreetmap.org/w/images/6/6f/Made_with.svg'
       width='150' alt='OpenStreetMap' style='margin-bottom: 3px;'>
+ 
 reference:
 - title: Geocoding
   desc: >
     Search addresses and structured queries to return coordinates.
-  contents:
+- contents:
   - starts_with("geo_lite")
 - subtitle: Amenity lookup
   desc: >
     Search OpenStreetMap amenities within a bounding box.
-  contents:
+- contents:
   - has_concept("amenity")
 - subtitle: Address lookup
   desc: >
     Retrieve address details for OSM node, way and relation identifiers.
-  contents:
+- contents:
   - has_concept("lookup")
 - title: Reverse geocoding
   desc: >
     Reverse geocode coordinates to return addresses and place information.
-  contents:
+- contents:
   - has_concept("reverse")
 - title: >
     <a href="https://CRAN.R-project.org/package=sf"
@@ -61,21 +62,18 @@ reference:
     Return API results as <a href="https://CRAN.R-project.org/package=sf"
     class="external-link"><span class="pkg">sf</span></a> objects and convert
     bounding boxes to <span class="pkg">sf</span> geometries.
-  contents:
+- contents:
   - has_concept("spatial")
-- title: API management
-  desc: >
-    Check API availability and manage request behavior.
-  contents:
-  - nominatim_check_access
 - title: Datasets
   desc: Data shipped with the package.
-  contents:
+- contents:
   - has_concept("datasets")
 - title: About the package
-  contents: nominatimlite-package
+- contents: nominatimlite-package
 
 articles:
+- title: Get started
+  contents: nominatimlite
 - title: Articles
   navbar: Articles
   contents:
