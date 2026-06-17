@@ -22,6 +22,21 @@ Search addresses and structured queries to return coordinates.
   Address search API with [sf](https://CRAN.R-project.org/package=sf)
   output (structured query)
 
+## Reverse geocoding
+
+Reverse geocode coordinates to return addresses and place information.
+
+- [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
+  : Reverse geocoding API
+
+- [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
+  :
+
+  Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
+  output
+
+## Lookup tools
+
 ### Amenity lookup
 
 Search OpenStreetMap amenities within a bounding box.
@@ -51,23 +66,10 @@ Retrieve address details for OSM node, way and relation identifiers.
   Address lookup API with [sf](https://CRAN.R-project.org/package=sf)
   output
 
-## Reverse geocoding
+## Spatial outputs
 
-Reverse geocode coordinates to return addresses and place information.
-
-- [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
-  : Reverse geocoding API
-
-- [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
-  :
-
-  Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-## [sf](https://CRAN.R-project.org/package=sf) outputs
-
-Return API results as [sf](https://CRAN.R-project.org/package=sf)
-objects and convert bounding boxes to sf geometries.
+Return API results as `sf` objects and convert bounding boxes to `sf`
+geometries.
 
 - [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md)
   :
@@ -113,7 +115,7 @@ Data shipped with the package.
 - [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
   : OpenStreetMap amenity database
 
-## About the package
+## Package documentation
 
 - [`nominatimlite`](https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.md)
   [`nominatimlite-package`](https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.md)
