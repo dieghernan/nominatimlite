@@ -137,10 +137,10 @@ if (!all(sf::st_is_empty(rome_sf))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Reverse geocoding:
+Reverse geocoding functions:
 \code{\link[=reverse_geo_lite]{reverse_geo_lite()}}
 
-\code{\link[sf:sf]{sf}} outputs:
+Spatial output functions:
 \code{\link[=bbox_to_poly]{bbox_to_poly()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},

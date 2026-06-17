@@ -97,7 +97,7 @@ dplyr::glimpse(sev)
 \seealso{
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}.
 
-Reverse geocoding:
+Reverse geocoding functions:
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }
 \concept{reverse}

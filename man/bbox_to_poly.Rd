@@ -63,7 +63,7 @@ if (!all(sf::st_is_empty(sfobj))) {
 \seealso{
 \code{\link[sf:st_as_sfc]{sf::st_as_sfc()}} and \code{\link[sf:st_sfc]{sf::st_sfc()}}.
 
-\code{\link[sf:sf]{sf}} outputs:
+Spatial output functions:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},

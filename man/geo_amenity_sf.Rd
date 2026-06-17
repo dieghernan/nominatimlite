@@ -115,11 +115,11 @@ if (!all(sf::st_is_empty(rest_pub))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Amenity lookup:
+Amenity lookup functions:
 \code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link{osm_amenities}}
 
-Geocoding:
+Geocoding functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity]{geo_amenity()}},
@@ -128,7 +128,7 @@ Geocoding:
 \code{\link[=geo_lite_struct]{geo_lite_struct()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 
-\code{\link[sf:sf]{sf}} outputs:
+Spatial output functions:
 \code{\link[=bbox_to_poly]{bbox_to_poly()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},

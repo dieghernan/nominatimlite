@@ -70,10 +70,10 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Address lookup:
+Address lookup functions:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 
-Geocoding:
+Geocoding functions:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},

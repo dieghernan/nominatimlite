@@ -108,11 +108,11 @@ geo_amenity(
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Amenity lookup:
+Amenity lookup functions:
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link{osm_amenities}}
 
-Geocoding:
+Geocoding functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},

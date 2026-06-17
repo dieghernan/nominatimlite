@@ -105,10 +105,10 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Address lookup:
+Address lookup functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}}
 
-Geocoding:
+Geocoding functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
@@ -117,7 +117,7 @@ Geocoding:
 \code{\link[=geo_lite_struct]{geo_lite_struct()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 
-\code{\link[sf:sf]{sf}} outputs:
+Spatial output functions:
 \code{\link[=bbox_to_poly]{bbox_to_poly()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},
