@@ -323,13 +323,6 @@ objects and convert bounding boxes to sf geometries.
   Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
   output
 
-## API management
-
-Check API availability and manage request behavior.
-
-- [`nominatim_check_access()`](https://dieghernan.github.io/nominatimlite/reference/nominatim_check_access.md)
-  : Check access to Nominatim API
-
 ## Datasets
 
 Data shipped with the package.
@@ -344,6 +337,13 @@ Data shipped with the package.
   : nominatimlite: Interface to the 'Nominatim' API
 
 # Articles
+
+### Get started
+
+- [Get started with
+  nominatimlite](https://dieghernan.github.io/nominatimlite/articles/nominatimlite.md):
+
+  Quick examples showing what **nominatimlite** can do for you.
 
 ### Articles
 

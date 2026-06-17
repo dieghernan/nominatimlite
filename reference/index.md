@@ -106,13 +106,6 @@ objects and convert bounding boxes to sf geometries.
   Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
   output
 
-## API management
-
-Check API availability and manage request behavior.
-
-- [`nominatim_check_access()`](https://dieghernan.github.io/nominatimlite/reference/nominatim_check_access.md)
-  : Check access to Nominatim API
-
 ## Datasets
 
 Data shipped with the package.
