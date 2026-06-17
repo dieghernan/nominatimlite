@@ -29,7 +29,7 @@ Data extracted on **03 April 2024**.
 
 ## See also
 
-Amenity lookup:
+Amenity lookup functions:
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
 

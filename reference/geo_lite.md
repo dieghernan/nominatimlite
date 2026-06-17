@@ -91,7 +91,7 @@ additional parameters to be passed to `custom_query`.
 
 [`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html).
 
-Geocoding:
+Geocoding functions:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
@@ -129,7 +129,7 @@ geo_lite(c("Madrid", "Barcelona"),
 #>   query       lat   lon address  place_id licence osm_type osm_id category type 
 #>   <chr>     <dbl> <dbl> <chr>       <int> <chr>   <chr>     <int> <chr>    <chr>
 #> 1 Madrid     41.9 -93.8 Madrid,…   3.73e8 Data ©… relation 1.29e5 boundary admi…
-#> 2 Barcelona  42.3 -79.6 Barcelo…   3.51e8 Data ©… node     1.58e8 place    haml…
+#> 2 Barcelona  42.3 -79.6 Barcelo…   3.50e8 Data ©… node     1.58e8 place    haml…
 #> # ℹ 14 more variables: place_rank <int>, importance <dbl>, addresstype <chr>,
 #> #   name <chr>, display_name <chr>, address.town <chr>, address.county <chr>,
 #> #   address.state <chr>, `address.ISO3166-2-lvl4` <chr>,

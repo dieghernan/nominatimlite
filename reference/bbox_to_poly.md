@@ -41,7 +41,7 @@ Bounding boxes can be located using online tools such as
 [`sf::st_as_sfc()`](https://r-spatial.github.io/sf/reference/st_as_sfc.html)
 and [`sf::st_sfc()`](https://r-spatial.github.io/sf/reference/sfc.html).
 
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) outputs:
+Spatial output functions:
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),

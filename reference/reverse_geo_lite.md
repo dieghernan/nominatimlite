@@ -101,7 +101,7 @@ Some zoom levels correspond to these address details:
 
 [`tidygeocoder::reverse_geo()`](https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html).
 
-Reverse geocoding:
+Reverse geocoding functions:
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
 
 ## Examples
