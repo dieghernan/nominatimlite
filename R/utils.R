@@ -1,4 +1,17 @@
 # General ----
+message_api_unavailable <- function(url) {
+  message("Could not reach the API endpoint: ", url, ".")
+}
+
+message_no_results <- function(query = NULL) {
+  if (is.null(query)) {
+    message("No results were found for the query.")
+    return(invisible(NULL))
+  }
+
+  message("No results were found for query: ", query, ".")
+}
+
 cap_limit <- function(limit) {
   if (limit <= 50) {
     return(limit)
@@ -6,7 +19,7 @@ cap_limit <- function(limit) {
 
   message(paste0(
     "Nominatim returns at most 50 results per query. ",
-    "Setting `limit` to 50."
+    "`limit` has been set to 50."
   ))
   min(50, limit)
 }
@@ -38,13 +51,13 @@ cap_coordinates <- function(lat, long) {
 
   lat_cap <- pmax(pmin(lat, 90), -90)
   if (!identical(lat_cap, lat)) {
-    message("Latitude values outside [-90, 90] were restricted to that range.")
+    message("Latitude values outside [-90, 90] were clamped to that range.")
   }
 
   long_cap <- pmax(pmin(long, 180), -180)
   if (!all(long_cap == long)) {
     message(
-      "Longitude values outside [-180, 180] were restricted to that range."
+      "Longitude values outside [-180, 180] were clamped to that range."
     )
   }
 

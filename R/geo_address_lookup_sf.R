@@ -3,8 +3,8 @@
 #' @description
 #' Looks up addresses and other details for one or more OpenStreetMap (OSM)
 #' objects, such as nodes, ways or relations. Results are returned as an
-#' [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use [geo_address_lookup()] to
-#' return a [tibble][dplyr::tibble] instead.
+#' [`sf`][sf::st_sf] object. Use [geo_address_lookup()] to return a
+#' [tibble][dplyr::tibble] instead.
 #'
 #' @inherit geo_address_lookup details
 #'
@@ -16,17 +16,19 @@
 #' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
 #'   API may return other geometry types. See **About geometry types**.
 #' @inheritParams geo_address_lookup
+#'
 #' @inherit geo_lite_sf return
 #'
-#' @family lookup
 #' @family geocoding
+#' @family lookup
 #' @family spatial
+#'
 #' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Notre Dame Cathedral, Paris
+#' # Notre-Dame Cathedral, Paris
 #'
 #' NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 #'
@@ -93,7 +95,7 @@ geo_address_lookup_sf <- function(
 
   # Handle missing responses.
   if (isFALSE(json)) {
-    message("Cannot reach the API endpoint: ", url, ".")
+    message_api_unavailable(url)
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -103,7 +105,7 @@ geo_address_lookup_sf <- function(
 
   # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results found for query: ", nodes, ".")
+    message_no_results(nodes)
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -119,7 +121,7 @@ geo_address_lookup_sf <- function(
 
   # Warn about lost rows.
   if (all(nrow(sf_clean) < nrow(tbl_query), verbose)) {
-    warning("Some OSM IDs returned no results. Check the output.")
+    warning("No results were found for some OSM IDs. Check the output.")
   }
 
   # Keep selected columns.

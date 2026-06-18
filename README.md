@@ -218,8 +218,8 @@ reverse <- reverse_geo_lite(
 
 | address_found | lat | lon |
 |:---|---:|---:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79541 | -122.40257 |
 | SkyDeck Chicago Willis Tower, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87850 | -87.63589 |
 
 <p class="caption">

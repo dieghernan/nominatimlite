@@ -23,22 +23,23 @@ geo_lite_struct_sf(
 )
 }
 \arguments{
-\item{amenity}{Name or type of amenity. See \code{\link[=geo_amenity]{geo_amenity()}}.}
+\item{amenity}{A string giving the name or type of amenity. See
+\code{\link[=geo_amenity]{geo_amenity()}}.}
 
-\item{street}{House number and street name.}
+\item{street}{A string giving the house number and street name.}
 
-\item{city}{City.}
+\item{city}{A string giving the city.}
 
-\item{county}{County.}
+\item{county}{A string giving the county.}
 
-\item{state}{State.}
+\item{state}{A string giving the state.}
 
-\item{country}{Country.}
+\item{country}{A string giving the country.}
 
-\item{postalcode}{Postal code.}
+\item{postalcode}{A string giving the postal code.}
 
-\item{limit}{Maximum number of results to return per query. Nominatim returns
-at most 50 results per query.}
+\item{limit}{A positive integer giving the maximum number of results to
+return per query. Nominatim returns at most 50 results per query.}
 
 \item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
 API. If \code{FALSE}, return only query metadata, geometry and requested address
@@ -47,9 +48,10 @@ columns.}
 \item{return_addresses}{If \code{TRUE}, include single-line addresses in the
 results.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
@@ -63,8 +65,8 @@ An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
 Searches for addresses already split into components and returns matching
-results as an \code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Use
-\code{\link[=geo_lite_struct]{geo_lite_struct()}} to return a \link[dplyr:tibble]{tibble} instead.
+results as an \code{\link[sf:st_sf]{sf}} object. Use \code{\link[=geo_lite_struct]{geo_lite_struct()}} to return a
+\link[dplyr:tibble]{tibble} instead.
 
 This function performs the \strong{structured address search} described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. To
@@ -81,8 +83,8 @@ parameters to be passed to \code{custom_query}.
 \section{About geometry types}{
 
 
-The \code{points_only} argument controls whether results contain points only. All
-Nominatim results have at least a point geometry.
+The \code{points_only} argument controls whether the results contain only points.
+All Nominatim results have at least a point geometry.
 
 When \code{points_only = FALSE}, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as polygons,

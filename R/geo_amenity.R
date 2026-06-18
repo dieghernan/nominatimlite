@@ -16,19 +16,21 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @param bbox Bounding box (viewbox) used to limit the search. It can be
-#'   a numeric vector of **longitude** (`x`) and **latitude** (`y`) in the form
-#'   `(xmin, ymin, xmax, ymax)`, or a [`sf`][sf::st_sf] or
+#' @param bbox A bounding box (viewbox) used to limit the search. Supply a
+#'   numeric vector of **longitude** (`x`) and **latitude** (`y`) in the form
+#'   `(xmin, ymin, xmax, ymax)`, an [`sf`][sf::st_sf] object or an
 #'   [`sfc`][sf::st_sfc] object. See **Details**.
 #' @param amenity A character vector of amenities to look up,
 #'   for example `c("pub", "restaurant")`. See [osm_amenities].
-#' @param strict If `TRUE`, keep only results inside `bbox`. By default,
-#'   Nominatim may return results outside the bounding box.
+#' @param strict If `TRUE`, keeps only results inside `bbox`. If `FALSE` (the
+#'   default), Nominatim may return results outside the bounding box.
 #' @inheritParams geo_lite
+#'
 #' @inherit geo_lite return
 #'
 #' @family amenity
 #' @family geocoding
+#'
 #' @encoding UTF-8
 #' @export
 #'

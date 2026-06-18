@@ -12,15 +12,16 @@
 #'
 #' @param osm_ids A numeric vector of OSM identifiers, for example
 #'   `c(12345, 67890)`.
-#' @param type Character vector of the OSM object type associated with each
-#'   `osm_ids` value. Possible values are node (`"N"`), way (`"W"`) or
-#'   relation (`"R"`). If a single value is provided, it will be recycled.
+#' @param type A character vector containing the OSM object type associated
+#'   with each value in `osm_ids`. Possible values are node (`"N"`), way
+#'   (`"W"`) and relation (`"R"`). A single value is recycled.
 #'
 #' @inheritParams geo_lite
 #' @inherit geo_lite return
 #'
-#' @family lookup
 #' @family geocoding
+#' @family lookup
+#'
 #' @encoding UTF-8
 #' @export
 #'
@@ -65,7 +66,7 @@ geo_address_lookup <- function(
 
   # Handle missing responses.
   if (isFALSE(json)) {
-    message("Cannot reach the API endpoint: ", url, ".")
+    message_api_unavailable(url)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -75,7 +76,7 @@ geo_address_lookup <- function(
 
   # Handle empty queries.
   if (nrow(result) == 0) {
-    message("No results found for query: ", nodes, ".")
+    message_no_results(nodes)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -90,7 +91,7 @@ geo_address_lookup <- function(
 
   # Warn about lost rows.
   if (all(nrow(result_clean) < nrow(tbl_query), verbose)) {
-    warning("Some OSM IDs returned no results. Check the output.")
+    warning("No results were found for some OSM IDs. Check the output.")
   }
 
   # Keep selected columns.

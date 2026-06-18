@@ -1,8 +1,7 @@
 #' Check access to the Nominatim API
 #'
 #' @description
-#' Checks whether \R can access the Nominatim API at
-#' <https://nominatim.openstreetmap.org>.
+#' Checks whether \R can access a Nominatim API server.
 #'
 #' @inheritParams geo_lite nominatim_server
 #'
@@ -12,8 +11,8 @@
 #' @seealso
 #' <https://nominatim.org/release-docs/latest/api/Status/>.
 #'
-#' @family api_management
-#' @keywords internal
+#' @family API management
+#'
 #' @encoding UTF-8
 #' @export
 #'
@@ -44,8 +43,8 @@ nominatim_check_access <- function(
 #' Query the Nominatim API
 #'
 #' @description
-#' Wraps [utils::download.file()] and retries the request after a warning or
-#' error. Requests are limited to approximately one query per second.
+#' Wraps [utils::download.file()] and retries the request after an error or
+#' warning. Requests are limited to approximately one query per second.
 #'
 #' See [Nominatim Usage
 #' Policy](https://operations.osmfoundation.org/policies/nominatim/).
@@ -57,7 +56,8 @@ nominatim_check_access <- function(
 #' @returns
 #' A cached file path, or `FALSE` when the query fails.
 #'
-#' @family api_management
+#' @family API management
+#'
 #' @keywords internal
 #' @noRd
 #'
@@ -106,7 +106,7 @@ download_api_file <- function(url, destfile, quiet) {
 #' Create a hashed filename for caching requests
 #'
 #' @param url The URL to cache.
-#' @param ext The file extension to append to the cached file.
+#' @param ext A string giving the file extension to append to the cached file.
 #' @noRd
 cached_filename <- function(url, ext = ".json") {
   tmpf <- tempfile()
@@ -128,7 +128,7 @@ cached_filename <- function(url, ext = ".json") {
 
 #' Check whether the current session is running on CRAN
 #'
-#' @return A logical.
+#' @returns A single logical value.
 #' @noRd
 on_cran <- function() {
   env <- Sys.getenv("NOT_CRAN")

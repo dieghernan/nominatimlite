@@ -20,16 +20,16 @@ geo_amenity_sf(
 )
 }
 \arguments{
-\item{bbox}{Bounding box (viewbox) used to limit the search. It can be
-a numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y}) in the form
-\verb{(xmin, ymin, xmax, ymax)}, or a \code{\link[sf:st_sf]{sf}} or
+\item{bbox}{A bounding box (viewbox) used to limit the search. Supply a
+numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y}) in the form
+\verb{(xmin, ymin, xmax, ymax)}, an \code{\link[sf:st_sf]{sf}} object or an
 \code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
 
 \item{amenity}{A character vector of amenities to look up,
 for example \code{c("pub", "restaurant")}. See \link{osm_amenities}.}
 
-\item{limit}{Maximum number of results to return per query. Nominatim returns
-at most 50 results per query.}
+\item{limit}{A positive integer giving the maximum number of results to
+return per query. Nominatim returns at most 50 results per query.}
 
 \item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
 API. If \code{FALSE}, return only query metadata, geometry and requested address
@@ -38,19 +38,20 @@ columns.}
 \item{return_addresses}{If \code{TRUE}, include single-line addresses in the
 results.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{If \code{TRUE}, display a progress bar when processing multiple
-queries.}
+\item{progressbar}{If \code{TRUE}, displays a progress bar when processing
+multiple queries.}
 
 \item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{strict}{If \code{TRUE}, keep only results inside \code{bbox}. By default,
-Nominatim may return results outside the bounding box.}
+\item{strict}{If \code{TRUE}, keeps only results inside \code{bbox}. If \code{FALSE} (the
+default), Nominatim may return results outside the bounding box.}
 
 \item{points_only}{If \code{TRUE}, return only point geometries. If \code{FALSE}, the
 API may return other geometry types. See \strong{About geometry types}.}
@@ -61,7 +62,7 @@ An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 \description{
 Looks up OpenStreetMap \link[=osm_amenities]{amenities} within a bounding box of
 the form \verb{(xmin, ymin, xmax, ymax)}. Results are returned as an
-\code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Use \code{\link[=geo_amenity]{geo_amenity()}} to return a
+\code{\link[sf:st_sf]{sf}} object. Use \code{\link[=geo_amenity]{geo_amenity()}} to return a
 \link[dplyr:tibble]{tibble} instead.
 }
 \details{
@@ -77,8 +78,8 @@ parameters to be passed to \code{custom_query}.
 \section{About geometry types}{
 
 
-The \code{points_only} argument controls whether results contain points only. All
-Nominatim results have at least a point geometry.
+The \code{points_only} argument controls whether the results contain only points.
+All Nominatim results have at least a point geometry.
 
 When \code{points_only = FALSE}, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as polygons,

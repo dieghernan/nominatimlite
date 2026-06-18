@@ -21,20 +21,22 @@ geo_amenity(
 )
 }
 \arguments{
-\item{bbox}{Bounding box (viewbox) used to limit the search. It can be
-a numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y}) in the form
-\verb{(xmin, ymin, xmax, ymax)}, or a \code{\link[sf:st_sf]{sf}} or
+\item{bbox}{A bounding box (viewbox) used to limit the search. Supply a
+numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y}) in the form
+\verb{(xmin, ymin, xmax, ymax)}, an \code{\link[sf:st_sf]{sf}} object or an
 \code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
 
 \item{amenity}{A character vector of amenities to look up,
 for example \code{c("pub", "restaurant")}. See \link{osm_amenities}.}
 
-\item{lat}{Name of the latitude column in the output. Defaults to \code{"lat"}.}
+\item{lat}{A string giving the name of the latitude column in the output.
+Defaults to \code{"lat"}.}
 
-\item{long}{Name of the longitude column in the output. Defaults to \code{"lon"}.}
+\item{long}{A string giving the name of the longitude column in the output.
+Defaults to \code{"lon"}.}
 
-\item{limit}{Maximum number of results to return per query. Nominatim returns
-at most 50 results per query.}
+\item{limit}{A positive integer giving the maximum number of results to
+return per query. Nominatim returns at most 50 results per query.}
 
 \item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
 API. If \code{FALSE}, return only query metadata, location data and requested
@@ -43,19 +45,20 @@ address columns.}
 \item{return_addresses}{If \code{TRUE}, include single-line addresses in the
 results.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{If \code{TRUE}, display a progress bar when processing multiple
-queries.}
+\item{progressbar}{If \code{TRUE}, displays a progress bar when processing
+multiple queries.}
 
 \item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{strict}{If \code{TRUE}, keep only results inside \code{bbox}. By default,
-Nominatim may return results outside the bounding box.}
+\item{strict}{If \code{TRUE}, keeps only results inside \code{bbox}. If \code{FALSE} (the
+default), Nominatim may return results outside the bounding box.}
 }
 \value{
 A \code{\link[dplyr:tibble]{tibble}} with the results that match the query.

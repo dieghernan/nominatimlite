@@ -3,7 +3,7 @@
 #' @description
 #' Looks up OpenStreetMap [amenities][osm_amenities] within a bounding box of
 #' the form `(xmin, ymin, xmax, ymax)`. Results are returned as an
-#' [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use [geo_amenity()] to return a
+#' [`sf`][sf::st_sf] object. Use [geo_amenity()] to return a
 #' [tibble][dplyr::tibble] instead.
 #'
 #' @inherit geo_amenity details
@@ -16,11 +16,13 @@
 #' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
 #'   API may return other geometry types. See **About geometry types**.
 #' @inheritParams geo_amenity
+#'
 #' @inherit geo_lite_sf return
 #'
 #' @family amenity
 #' @family geocoding
 #' @family spatial
+#'
 #' @encoding UTF-8
 #' @export
 #'

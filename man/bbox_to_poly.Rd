@@ -17,12 +17,12 @@ arguments as an alternative to \code{bbox}.}
 \item{crs}{coordinate reference system, something suitable as input to \link[sf]{st_crs}}
 }
 \value{
-A \code{\link[sf:st_sfc]{sfc}} object of class \code{POLYGON} with the corresponding
-coordinate reference system specified by \code{crs}.
+An \code{\link[sf:st_sfc]{sfc}} object with \code{POLYGON} geometry and the coordinate
+reference system specified by \code{crs}.
 }
 \description{
-Converts bounding box coordinates to an \code{\link[sf:st_sfc]{sfc}} \code{POLYGON}
-object.
+Converts bounding box coordinates to an \code{\link[sf:st_sfc]{sfc}} object with
+\code{POLYGON} geometry.
 }
 \details{
 Bounding boxes can be located using online tools such as
@@ -31,7 +31,7 @@ Bounding boxes can be located using online tools such as
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 
-# Bounding box of Germany
+# Bounding box for Germany
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)

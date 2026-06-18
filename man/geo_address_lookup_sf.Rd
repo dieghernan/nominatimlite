@@ -20,9 +20,9 @@ geo_address_lookup_sf(
 \item{osm_ids}{A numeric vector of OSM identifiers, for example
 \code{c(12345, 67890)}.}
 
-\item{type}{Character vector of the OSM object type associated with each
-\code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
-relation (\code{"R"}). If a single value is provided, it will be recycled.}
+\item{type}{A character vector containing the OSM object type associated
+with each value in \code{osm_ids}. Possible values are node (\code{"N"}), way
+(\code{"W"}) and relation (\code{"R"}). A single value is recycled.}
 
 \item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
 API. If \code{FALSE}, return only query metadata, geometry and requested address
@@ -31,9 +31,10 @@ columns.}
 \item{return_addresses}{If \code{TRUE}, include single-line addresses in the
 results.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
@@ -48,8 +49,8 @@ An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 \description{
 Looks up addresses and other details for one or more OpenStreetMap (OSM)
 objects, such as nodes, ways or relations. Results are returned as an
-\code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Use \code{\link[=geo_address_lookup]{geo_address_lookup()}} to
-return a \link[dplyr:tibble]{tibble} instead.
+\code{\link[sf:st_sf]{sf}} object. Use \code{\link[=geo_address_lookup]{geo_address_lookup()}} to return a
+\link[dplyr:tibble]{tibble} instead.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
@@ -58,8 +59,8 @@ parameters to be passed to \code{custom_query}.
 \section{About geometry types}{
 
 
-The \code{points_only} argument controls whether results contain points only. All
-Nominatim results have at least a point geometry.
+The \code{points_only} argument controls whether the results contain only points.
+All Nominatim results have at least a point geometry.
 
 When \code{points_only = FALSE}, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as polygons,
@@ -73,7 +74,7 @@ With \code{points_only = FALSE}, multiple geometry types may be returned.
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Notre Dame Cathedral, Paris
+# Notre-Dame Cathedral, Paris
 
 NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 
@@ -103,9 +104,6 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Address lookup functions:
-\code{\link[=geo_address_lookup]{geo_address_lookup()}}
-
 Address search functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_amenity]{geo_amenity()}},
@@ -114,6 +112,9 @@ Address search functions:
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},
 \code{\link[=geo_lite_struct]{geo_lite_struct()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
+
+Address lookup functions:
+\code{\link[=geo_address_lookup]{geo_address_lookup()}}
 
 Spatial output functions:
 \code{\link[=bbox_to_poly]{bbox_to_poly()}},

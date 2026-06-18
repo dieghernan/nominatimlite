@@ -25,22 +25,24 @@ reverse_geo_lite_sf(
 \item{long}{Numeric longitude values in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{address}{Name of the address column in the output. Defaults to
-\code{"address"}.}
+\item{address}{A string giving the name of the address column in the output.
+Defaults to \code{"address"}.}
 
 \item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
 API. If \code{FALSE}, return only query metadata, geometry and requested address
 columns.}
 
-\item{return_coords}{Return input coordinates with results if \code{TRUE}.}
+\item{return_coords}{If \code{TRUE}, returns the input coordinates with the
+results.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{If \code{TRUE}, display a progress bar when processing multiple
-queries.}
+\item{progressbar}{If \code{TRUE}, displays a progress bar when processing
+multiple queries.}
 
 \item{custom_query}{A named list of API-specific parameters, for example
 \code{list(zoom = 3)}. See \strong{Details}.}
@@ -53,8 +55,8 @@ An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
 Finds addresses from latitude and longitude coordinates and returns the
-matching results as an \code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Latitude
-values must be in \eqn{\left[-90, 90 \right]} and longitude values in
+matching results as an \code{\link[sf:st_sf]{sf}} object. Latitude values must be in
+\eqn{\left[-90, 90 \right]} and longitude values in
 \eqn{\left[-180, 180 \right]}. Use \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} to return a
 \link[dplyr:tibble]{tibble} instead.
 }
@@ -82,8 +84,8 @@ levels correspond to these address details:\tabular{ll}{
 \section{About geometry types}{
 
 
-The \code{points_only} argument controls whether results contain points only. All
-Nominatim results have at least a point geometry.
+The \code{points_only} argument controls whether the results contain only points.
+All Nominatim results have at least a point geometry.
 
 When \code{points_only = FALSE}, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as polygons,

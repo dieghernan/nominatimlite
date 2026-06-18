@@ -22,8 +22,8 @@ geo_lite_sf(
 \code{"1600 Pennsylvania Ave NW, Washington"} or
 \code{c("Madrid", "Barcelona")}.}
 
-\item{limit}{Maximum number of results to return per query. Nominatim returns
-at most 50 results per query.}
+\item{limit}{A positive integer giving the maximum number of results to
+return per query. Nominatim returns at most 50 results per query.}
 
 \item{return_addresses}{If \code{TRUE}, include single-line addresses in the
 results.}
@@ -32,12 +32,13 @@ results.}
 API. If \code{FALSE}, return only query metadata, geometry and requested address
 columns.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{progressbar}{If \code{TRUE}, display a progress bar when processing multiple
-queries.}
+\item{progressbar}{If \code{TRUE}, displays a progress bar when processing
+multiple queries.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
@@ -51,7 +52,7 @@ An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
 Searches for addresses and returns matching results as an
-\code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Use \code{\link[=geo_lite]{geo_lite()}} to return a
+\code{\link[sf:st_sf]{sf}} object. Use \code{\link[=geo_lite]{geo_lite()}} to return a
 \link[dplyr:tibble]{tibble} instead.
 
 This function performs the \strong{free-form address search} described in the
@@ -64,8 +65,8 @@ parameters to be passed to \code{custom_query}.
 \section{About geometry types}{
 
 
-The \code{points_only} argument controls whether results contain points only. All
-Nominatim results have at least a point geometry.
+The \code{points_only} argument controls whether the results contain only points.
+All Nominatim results have at least a point geometry.
 
 When \code{points_only = FALSE}, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as polygons,

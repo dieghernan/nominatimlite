@@ -21,13 +21,15 @@ geo_address_lookup(
 \item{osm_ids}{A numeric vector of OSM identifiers, for example
 \code{c(12345, 67890)}.}
 
-\item{type}{Character vector of the OSM object type associated with each
-\code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
-relation (\code{"R"}). If a single value is provided, it will be recycled.}
+\item{type}{A character vector containing the OSM object type associated
+with each value in \code{osm_ids}. Possible values are node (\code{"N"}), way
+(\code{"W"}) and relation (\code{"R"}). A single value is recycled.}
 
-\item{lat}{Name of the latitude column in the output. Defaults to \code{"lat"}.}
+\item{lat}{A string giving the name of the latitude column in the output.
+Defaults to \code{"lat"}.}
 
-\item{long}{Name of the longitude column in the output. Defaults to \code{"lon"}.}
+\item{long}{A string giving the name of the longitude column in the output.
+Defaults to \code{"lon"}.}
 
 \item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
 API. If \code{FALSE}, return only query metadata, location data and requested
@@ -36,9 +38,10 @@ address columns.}
 \item{return_addresses}{If \code{TRUE}, include single-line addresses in the
 results.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
@@ -70,9 +73,6 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Address lookup functions:
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
-
 Address search functions:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity]{geo_amenity()}},
@@ -81,6 +81,9 @@ Address search functions:
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},
 \code{\link[=geo_lite_struct]{geo_lite_struct()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
+
+Address lookup functions:
+\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 }
 \concept{geocoding}
 \concept{lookup}

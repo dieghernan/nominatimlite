@@ -2,8 +2,8 @@
 #'
 #' @description
 #' Finds addresses from latitude and longitude coordinates and returns the
-#' matching results as an [`sf`][sf::st_sf] object using \CRANpkg{sf}. Latitude
-#' values must be in \eqn{\left[-90, 90 \right]} and longitude values in
+#' matching results as an [`sf`][sf::st_sf] object. Latitude values must be in
+#' \eqn{\left[-90, 90 \right]} and longitude values in
 #' \eqn{\left[-180, 180 \right]}. Use [reverse_geo_lite()] to return a
 #' [tibble][dplyr::tibble] instead.
 #'
@@ -18,12 +18,14 @@
 #' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
 #'   API may return other geometry types. See **About geometry types**.
 #' @inheritParams reverse_geo_lite
+#'
 #' @inherit geo_lite_sf return
 #'
 #' @inherit reverse_geo_lite seealso
 #'
 #' @family reverse
 #' @family spatial
+#'
 #' @encoding UTF-8
 #' @export
 #'
@@ -149,7 +151,7 @@ reverse_geo_lite_sf_single <- function(
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message("Cannot reach the API endpoint: ", url, ".")
+    message_api_unavailable(url)
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }
@@ -157,13 +159,7 @@ reverse_geo_lite_sf_single <- function(
   # Handle empty queries.
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
   if ("error" %in% names(result_init)) {
-    message(
-      "No results found for query: lat = ",
-      lat_cap,
-      ", long = ",
-      long_cap,
-      "."
-    )
+    message_no_results(paste0("lat = ", lat_cap, ", long = ", long_cap))
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }

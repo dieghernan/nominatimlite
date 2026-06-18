@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Finds addresses from latitude and longitude coordinates and returns the
-#' matching results as a [tibble][dplyr::tibble]. Latitudes must be in
+#' matching results as a [tibble][dplyr::tibble]. Latitude values must be in
 #' \eqn{\left[-90, 90 \right]} and longitudes in
 #' \eqn{\left[-180, 180 \right]}. Use [reverse_geo_lite_sf()] to return an
 #' [`sf`][sf::st_sf] object instead.
@@ -32,20 +32,24 @@
 #'
 #' knitr::kable(t, col.names = paste0("**", names(t), "**"))
 #'
+#' ```
+#'
 #' @param lat Numeric latitude values in the range
 #'   \eqn{\left[-90, 90 \right]}.
 #' @param long Numeric longitude values in the range
 #'   \eqn{\left[-180, 180 \right]}.
-#' @param address Name of the address column in the output. Defaults to
-#'   `"address"`.
-#' @param return_coords Return input coordinates with results if `TRUE`.
+#' @param address A string giving the name of the address column in the output.
+#'   Defaults to `"address"`.
+#' @param return_coords If `TRUE`, returns the input coordinates with the
+#'   results.
 #' @param custom_query A named list of API-specific parameters, for example
 #'   `list(zoom = 3)`. See **Details**.
-#'
 #' @inheritParams geo_lite
+#'
 #' @inherit geo_lite return
 #'
 #' @family reverse
+#'
 #' @encoding UTF-8
 #' @export
 #'
@@ -133,7 +137,7 @@ reverse_geo_lite_single <- function(
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message("Cannot reach the API endpoint: ", url, ".")
+    message_api_unavailable(url)
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
@@ -142,13 +146,7 @@ reverse_geo_lite_single <- function(
 
   # Handle empty queries.
   if ("error" %in% names(result_init)) {
-    message(
-      "No results found for query: lat = ",
-      lat_cap,
-      ", long = ",
-      long_cap,
-      "."
-    )
+    message_no_results(paste0("lat = ", lat_cap, ", long = ", long_cap))
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }

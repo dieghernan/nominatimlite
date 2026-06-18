@@ -85,7 +85,7 @@ test_that("Data format", {
       points_only = FALSE,
       custom_query = list(zoom = 5)
     ),
-    "No results"
+    "No results were found"
   )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))

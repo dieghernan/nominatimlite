@@ -10,15 +10,15 @@ nominatim_check_access(
 )
 }
 \arguments{
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 }
 \value{
 A single logical value: \code{TRUE} if the API is available and \code{FALSE} otherwise.
 }
 \description{
-Checks whether \R can access the Nominatim API at
-\url{https://nominatim.openstreetmap.org}.
+Checks whether \R can access a Nominatim API server.
 }
 \examples{
 \donttest{
@@ -28,5 +28,4 @@ nominatim_check_access()
 \seealso{
 \url{https://nominatim.org/release-docs/latest/api/Status/}.
 }
-\concept{api_management}
-\keyword{internal}
+\concept{API management}

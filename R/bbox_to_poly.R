@@ -1,8 +1,8 @@
 #' Convert a bounding box to an [`sfc`][sf::st_sfc] `POLYGON` object
 #'
 #' @description
-#' Converts bounding box coordinates to an [`sfc`][sf::st_sfc] `POLYGON`
-#' object.
+#' Converts bounding box coordinates to an [`sfc`][sf::st_sfc] object with
+#' `POLYGON` geometry.
 #'
 #' @details
 #' Bounding boxes can be located using online tools such as
@@ -12,23 +12,23 @@
 #'   `c(xmin, ymin, xmax, ymax)`.
 #' @param xmin,ymin,xmax,ymax Individual bounding box coordinates. Use these
 #'   arguments as an alternative to `bbox`.
-#'
 #' @inheritParams sf::st_sf crs
 #'
 #' @returns
-#' A [`sfc`][sf::st_sfc] object of class `POLYGON` with the corresponding
-#' coordinate reference system specified by `crs`.
+#' An [`sfc`][sf::st_sfc] object with `POLYGON` geometry and the coordinate
+#' reference system specified by `crs`.
 #'
 #' @seealso
 #' [sf::st_as_sfc()] and [sf::st_sfc()].
 #'
 #' @family spatial
+#'
 #' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
 #'
-#' # Bounding box of Germany
+#' # Bounding box for Germany
 #' bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 #'
 #' bbox_GER_sf <- bbox_to_poly(bbox_GER)
@@ -72,7 +72,7 @@ bbox_to_poly <- function(
     )
   }
 
-  # If `bbox` is missing, use explicit x and y values.
+  # Use explicit x and y values when `bbox` is missing.
   if (anyNA(bbox)) {
     bbox <- as.double(c(xmin, ymin, xmax, ymax))
 

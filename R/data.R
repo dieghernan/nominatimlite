@@ -1,7 +1,7 @@
 #' OpenStreetMap amenities
 #'
 #' @description
-#' A dataset of amenities available on OpenStreetMap.
+#' A dataset of amenity values available on OpenStreetMap.
 #'
 #' @format
 #' A [tibble][dplyr::tibble] with
@@ -15,13 +15,14 @@
 #'
 #' @source <https://wiki.openstreetmap.org/wiki/Key:amenity>
 #'
-#' @note Data extracted on **April 3, 2024**.
+#' @note The data were extracted on **April 3, 2024**.
 #'
-#' @family datasets
 #' @family amenity
-#' @encoding UTF-8
+#' @family datasets
+#'
 #' @docType data
 #' @name osm_amenities
+#' @encoding UTF-8
 #'
 #' @examples
 #'

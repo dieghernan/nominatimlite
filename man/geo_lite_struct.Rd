@@ -24,26 +24,29 @@ geo_lite_struct(
 )
 }
 \arguments{
-\item{amenity}{Name or type of amenity. See \code{\link[=geo_amenity]{geo_amenity()}}.}
+\item{amenity}{A string giving the name or type of amenity. See
+\code{\link[=geo_amenity]{geo_amenity()}}.}
 
-\item{street}{House number and street name.}
+\item{street}{A string giving the house number and street name.}
 
-\item{city}{City.}
+\item{city}{A string giving the city.}
 
-\item{county}{County.}
+\item{county}{A string giving the county.}
 
-\item{state}{State.}
+\item{state}{A string giving the state.}
 
-\item{country}{Country.}
+\item{country}{A string giving the country.}
 
-\item{postalcode}{Postal code.}
+\item{postalcode}{A string giving the postal code.}
 
-\item{lat}{Name of the latitude column in the output. Defaults to \code{"lat"}.}
+\item{lat}{A string giving the name of the latitude column in the output.
+Defaults to \code{"lat"}.}
 
-\item{long}{Name of the longitude column in the output. Defaults to \code{"lon"}.}
+\item{long}{A string giving the name of the longitude column in the output.
+Defaults to \code{"lon"}.}
 
-\item{limit}{Maximum number of results to return per query. Nominatim returns
-at most 50 results per query.}
+\item{limit}{A positive integer giving the maximum number of results to
+return per query. Nominatim returns at most 50 results per query.}
 
 \item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
 API. If \code{FALSE}, return only query metadata, location data and requested
@@ -52,9 +55,10 @@ address columns.}
 \item{return_addresses}{If \code{TRUE}, include single-line addresses in the
 results.}
 
-\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
+\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
 
-\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
+\item{nominatim_server}{A string giving the base URL of the Nominatim
+server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example

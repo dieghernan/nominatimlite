@@ -19,10 +19,10 @@ three columns:
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}
 }
 \description{
-A dataset of amenities available on OpenStreetMap.
+A dataset of amenity values available on OpenStreetMap.
 }
 \note{
-Data extracted on \strong{April 3, 2024}.
+The data were extracted on \strong{April 3, 2024}.
 }
 \examples{
 

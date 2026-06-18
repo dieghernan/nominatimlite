@@ -17,19 +17,22 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @param amenity Name or type of amenity. See [geo_amenity()].
-#' @param street House number and street name.
-#' @param city City.
-#' @param county County.
-#' @param state State.
-#' @param country Country.
-#' @param postalcode Postal code.
+#' @param amenity A string giving the name or type of amenity. See
+#'   [geo_amenity()].
+#' @param street A string giving the house number and street name.
+#' @param city A string giving the city.
+#' @param county A string giving the county.
+#' @param state A string giving the state.
+#' @param country A string giving the country.
+#' @param postalcode A string giving the postal code.
 #' @inheritParams geo_lite
+#'
 #' @inherit geo_lite return
 #'
 #' @inherit geo_lite seealso
 #'
 #' @family geocoding
+#'
 #' @encoding UTF-8
 #' @export
 #'
@@ -61,7 +64,7 @@ geo_lite_struct <- function(
 ) {
   limit <- cap_limit(limit)
 
-  # Keep the first value of each parameter; this function is not vectorized.
+  # Keep the first value of each parameter. This function is not vectorized.
   pars <- structured_query_params(
     amenity = amenity,
     street = street,
@@ -74,7 +77,7 @@ geo_lite_struct <- function(
   tbl_query <- structured_query_tbl(pars)
 
   if (all(is.na(pars))) {
-    message("No query parameters were provided.")
+    message("No search parameters were provided.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -93,7 +96,7 @@ geo_lite_struct <- function(
   json <- api_call(url, ".json", isFALSE(verbose))
 
   if (isFALSE(json)) {
-    message("Cannot reach the API endpoint: ", url, ".")
+    message_api_unavailable(url)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -104,7 +107,7 @@ geo_lite_struct <- function(
 
   # Handle empty queries.
   if (nrow(result) == 0) {
-    message("No results found for the query.")
+    message_no_results()
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }

@@ -2,8 +2,8 @@
 #'
 #' @description
 #' Searches for addresses already split into components and returns matching
-#' results as an [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use
-#' [geo_lite_struct()] to return a [tibble][dplyr::tibble] instead.
+#' results as an [`sf`][sf::st_sf] object. Use [geo_lite_struct()] to return a
+#' [tibble][dplyr::tibble] instead.
 #'
 #' This function performs the **structured address search** described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
@@ -19,12 +19,14 @@
 #' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
 #'   API may return other geometry types. See **About geometry types**.
 #' @inheritParams geo_lite_struct
+#'
 #' @inherit geo_lite_sf return
 #'
 #' @inherit geo_lite seealso
 #'
 #' @family geocoding
 #' @family spatial
+#'
 #' @encoding UTF-8
 #' @export
 #'
@@ -68,7 +70,7 @@ geo_lite_struct_sf <- function(
 ) {
   limit <- cap_limit(limit)
 
-  # Keep the first value of each parameter; this function is not vectorized.
+  # Keep the first value of each parameter. This function is not vectorized.
   pars <- structured_query_params(
     amenity = amenity,
     street = street,
@@ -81,7 +83,7 @@ geo_lite_struct_sf <- function(
   tbl_query <- structured_query_tbl(pars)
 
   if (all(is.na(pars))) {
-    message("No query parameters were provided.")
+    message("No search parameters were provided.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -101,7 +103,7 @@ geo_lite_struct_sf <- function(
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
   if (isFALSE(json)) {
-    message("Cannot reach the API endpoint: ", url, ".")
+    message_api_unavailable(url)
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -111,7 +113,7 @@ geo_lite_struct_sf <- function(
 
   # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results found for the query.")
+    message_no_results()
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }

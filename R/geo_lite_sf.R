@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Searches for addresses and returns matching results as an
-#' [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use [geo_lite()] to return a
+#' [`sf`][sf::st_sf] object. Use [geo_lite()] to return a
 #' [tibble][dplyr::tibble] instead.
 #'
 #' This function performs the **free-form address search** described in the
@@ -12,8 +12,8 @@
 #'
 #' @section About geometry types:
 #'
-#' The `points_only` argument controls whether results contain points only. All
-#' Nominatim results have at least a point geometry.
+#' The `points_only` argument controls whether the results contain only points.
+#' All Nominatim results have at least a point geometry.
 #'
 #' When `points_only = FALSE`, the geometry type depends on the matching
 #' feature. Administrative areas and major buildings are returned as polygons,
@@ -28,7 +28,6 @@
 #'   columns.
 #' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
 #'   API may return other geometry types. See **About geometry types**.
-#'
 #' @inheritParams geo_lite
 #'
 #' @returns
@@ -38,6 +37,7 @@
 #'
 #' @family geocoding
 #' @family spatial
+#'
 #' @encoding UTF-8
 #' @export
 #'
@@ -156,7 +156,7 @@ geo_lite_sf_single <- function(
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(json)) {
-    message("Cannot reach the API endpoint: ", url, ".")
+    message_api_unavailable(url)
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -166,7 +166,7 @@ geo_lite_sf_single <- function(
 
   # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results found for query: ", address, ".")
+    message_no_results(address)
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
