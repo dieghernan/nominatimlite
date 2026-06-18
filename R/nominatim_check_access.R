@@ -13,6 +13,7 @@
 #'
 #' @family API management
 #'
+#' @keywords internal
 #' @encoding UTF-8
 #' @export
 #'

@@ -29,3 +29,4 @@ nominatim_check_access()
 \url{https://nominatim.org/release-docs/latest/api/Status/}.
 }
 \concept{API management}
+\keyword{internal}
