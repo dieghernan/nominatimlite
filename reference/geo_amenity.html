@@ -89,9 +89,9 @@ the form <code>(xmin, ymin, xmax, ymax)</code>. Results are returned as a
 
 
 <dl><dt id="arg-bbox">bbox<a class="anchor" aria-label="anchor" href="#arg-bbox"></a></dt>
-<dd><p>Bounding box (viewbox) used to limit the search. It can be
-a numeric vector of <strong>longitude</strong> (<code>x</code>) and <strong>latitude</strong> (<code>y</code>) in the form
-<code>(xmin, ymin, xmax, ymax)</code>, or a <code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> or
+<dd><p>A bounding box (viewbox) used to limit the search. Supply a
+numeric vector of <strong>longitude</strong> (<code>x</code>) and <strong>latitude</strong> (<code>y</code>) in the form
+<code>(xmin, ymin, xmax, ymax)</code>, an <code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> object or an
 <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sfc</a></code> object. See <strong>Details</strong>.</p></dd>
 
 
@@ -101,16 +101,18 @@ for example <code>c("pub", "restaurant")</code>. See <a href="osm_amenities.html
 
 
 <dt id="arg-lat">lat<a class="anchor" aria-label="anchor" href="#arg-lat"></a></dt>
-<dd><p>Name of the latitude column in the output. Defaults to <code>"lat"</code>.</p></dd>
+<dd><p>A string giving the name of the latitude column in the output.
+Defaults to <code>"lat"</code>.</p></dd>
 
 
 <dt id="arg-long">long<a class="anchor" aria-label="anchor" href="#arg-long"></a></dt>
-<dd><p>Name of the longitude column in the output. Defaults to <code>"lon"</code>.</p></dd>
+<dd><p>A string giving the name of the longitude column in the output.
+Defaults to <code>"lon"</code>.</p></dd>
 
 
 <dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
-<dd><p>Maximum number of results to return per query. Nominatim returns
-at most 50 results per query.</p></dd>
+<dd><p>A positive integer giving the maximum number of results to
+return per query. Nominatim returns at most 50 results per query.</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
@@ -125,17 +127,18 @@ results.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>If <code>TRUE</code>, display detailed messages in the console.</p></dd>
+<dd><p>If <code>TRUE</code>, displays detailed messages in the console.</p></dd>
 
 
 <dt id="arg-nominatim-server">nominatim_server<a class="anchor" aria-label="anchor" href="#arg-nominatim-server"></a></dt>
-<dd><p>Base URL of the Nominatim server. Defaults to
+<dd><p>A string giving the base URL of the Nominatim
+server. Defaults to
 <code>"https://nominatim.openstreetmap.org/"</code>.</p></dd>
 
 
 <dt id="arg-progressbar">progressbar<a class="anchor" aria-label="anchor" href="#arg-progressbar"></a></dt>
-<dd><p>If <code>TRUE</code>, display a progress bar when processing multiple
-queries.</p></dd>
+<dd><p>If <code>TRUE</code>, displays a progress bar when processing
+multiple queries.</p></dd>
 
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
@@ -144,8 +147,8 @@ queries.</p></dd>
 
 
 <dt id="arg-strict">strict<a class="anchor" aria-label="anchor" href="#arg-strict"></a></dt>
-<dd><p>If <code>TRUE</code>, keep only results inside <code>bbox</code>. By default,
-Nominatim may return results outside the bounding box.</p></dd>
+<dd><p>If <code>TRUE</code>, keeps only results inside <code>bbox</code>. If <code>FALSE</code> (the
+default), Nominatim may return results outside the bounding box.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -223,10 +226,10 @@ parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Applebee's, 234, West 42nd Street, Times Square, Manh…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bobby Van's Grill, 120, West 45th Street, Times Squar…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Dallas BBQ, 241, West 42nd Street, Times Square, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Haru Sushi, 229, West 43rd Street, Times Square, Manh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Brooklyn Deli, 1501, Broadway, Times Square, Manhatta…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Hard Rock Cafe, 1501, Broadway, Times Square, Manhatt…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Bubba Gump Shrimp Company, 1501, Broadway, Times Squa…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Villa Fresh Italian Kitchen, 263, West 42nd Street, T…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Haru Sushi, 229, West 43rd Street, Times Square, Manh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Brooklyn Deli, 1501, Broadway, Times Square, Manhatta…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> restaurant  40.8 -<span style="color: #BB0000;">74.0</span> Hard Rock Cafe, 1501, Broadway, Times Square, Manhatt…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Connolly's, 121, West 45th Street, Times Square, Manh…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Perfect Pint, 123, West 45th Street, Times Square, Ma…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> pub         40.8 -<span style="color: #BB0000;">74.0</span> Bar 54, 135, West 45th Street, Times Square, Manhatta…</span>

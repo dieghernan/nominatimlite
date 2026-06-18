@@ -31,17 +31,19 @@ geo_address_lookup(
 
 - type:
 
-  Character vector of the OSM object type associated with each `osm_ids`
-  value. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided, it will be recycled.
+  A character vector containing the OSM object type associated with each
+  value in `osm_ids`. Possible values are node (`"N"`), way (`"W"`) and
+  relation (`"R"`). A single value is recycled.
 
 - lat:
 
-  Name of the latitude column in the output. Defaults to `"lat"`.
+  A string giving the name of the latitude column in the output.
+  Defaults to `"lat"`.
 
 - long:
 
-  Name of the longitude column in the output. Defaults to `"lon"`.
+  A string giving the name of the longitude column in the output.
+  Defaults to `"lon"`.
 
 - full_results:
 
@@ -55,11 +57,11 @@ geo_address_lookup(
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
@@ -79,9 +81,6 @@ additional parameters to be passed to `custom_query`.
 
 ## See also
 
-Address lookup functions:
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
-
 Address search functions:
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
@@ -90,6 +89,9 @@ Address search functions:
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
+
+Address lookup functions:
+[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
 
 ## Examples
 

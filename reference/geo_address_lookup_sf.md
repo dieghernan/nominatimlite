@@ -2,8 +2,7 @@
 
 Looks up addresses and other details for one or more OpenStreetMap (OSM)
 objects, such as nodes, ways or relations. Results are returned as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object using
-[sf](https://CRAN.R-project.org/package=sf). Use
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object. Use
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
 to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
 instead.
@@ -31,9 +30,9 @@ geo_address_lookup_sf(
 
 - type:
 
-  Character vector of the OSM object type associated with each `osm_ids`
-  value. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided, it will be recycled.
+  A character vector containing the OSM object type associated with each
+  value in `osm_ids`. Possible values are node (`"N"`), way (`"W"`) and
+  relation (`"R"`). A single value is recycled.
 
 - full_results:
 
@@ -47,11 +46,11 @@ geo_address_lookup_sf(
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
@@ -76,8 +75,8 @@ additional parameters to be passed to `custom_query`.
 
 ## About geometry types
 
-The `points_only` argument controls whether results contain points only.
-All Nominatim results have at least a point geometry.
+The `points_only` argument controls whether the results contain only
+points. All Nominatim results have at least a point geometry.
 
 When `points_only = FALSE`, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as
@@ -89,9 +88,6 @@ With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
-Address lookup functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
-
 Address search functions:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
@@ -100,6 +96,9 @@ Address search functions:
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
+
+Address lookup functions:
+[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
 
 Spatial output functions:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md),
@@ -112,7 +111,7 @@ Spatial output functions:
 
 ``` r
 # \donttest{
-# Notre Dame Cathedral, Paris
+# Notre-Dame Cathedral, Paris
 
 NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 

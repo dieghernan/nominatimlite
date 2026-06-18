@@ -4,8 +4,7 @@ Looks up OpenStreetMap
 [amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
 within a bounding box of the form `(xmin, ymin, xmax, ymax)`. Results
 are returned as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object using
-[sf](https://CRAN.R-project.org/package=sf). Use
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object. Use
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
 to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
 instead.
@@ -32,10 +31,10 @@ geo_amenity_sf(
 
 - bbox:
 
-  Bounding box (viewbox) used to limit the search. It can be a numeric
+  A bounding box (viewbox) used to limit the search. Supply a numeric
   vector of **longitude** (`x`) and **latitude** (`y`) in the form
-  `(xmin, ymin, xmax, ymax)`, or a
-  [`sf`](https://r-spatial.github.io/sf/reference/sf.html) or
+  `(xmin, ymin, xmax, ymax)`, an
+  [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object or an
   [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object. See
   **Details**.
 
@@ -47,8 +46,8 @@ geo_amenity_sf(
 
 - limit:
 
-  Maximum number of results to return per query. Nominatim returns at
-  most 50 results per query.
+  A positive integer giving the maximum number of results to return per
+  query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
@@ -62,16 +61,16 @@ geo_amenity_sf(
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, display a progress bar when processing multiple queries.
+  If `TRUE`, displays a progress bar when processing multiple queries.
 
 - custom_query:
 
@@ -80,8 +79,8 @@ geo_amenity_sf(
 
 - strict:
 
-  If `TRUE`, keep only results inside `bbox`. By default, Nominatim may
-  return results outside the bounding box.
+  If `TRUE`, keeps only results inside `bbox`. If `FALSE` (the default),
+  Nominatim may return results outside the bounding box.
 
 - points_only:
 
@@ -107,8 +106,8 @@ additional parameters to be passed to `custom_query`.
 
 ## About geometry types
 
-The `points_only` argument controls whether results contain points only.
-All Nominatim results have at least a point geometry.
+The `points_only` argument controls whether the results contain only
+points. All Nominatim results have at least a point geometry.
 
 When `points_only = FALSE`, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as

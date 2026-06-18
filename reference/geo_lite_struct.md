@@ -39,45 +39,47 @@ geo_lite_struct(
 
 - amenity:
 
-  Name or type of amenity. See
+  A string giving the name or type of amenity. See
   [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
 
 - street:
 
-  House number and street name.
+  A string giving the house number and street name.
 
 - city:
 
-  City.
+  A string giving the city.
 
 - county:
 
-  County.
+  A string giving the county.
 
 - state:
 
-  State.
+  A string giving the state.
 
 - country:
 
-  Country.
+  A string giving the country.
 
 - postalcode:
 
-  Postal code.
+  A string giving the postal code.
 
 - lat:
 
-  Name of the latitude column in the output. Defaults to `"lat"`.
+  A string giving the name of the latitude column in the output.
+  Defaults to `"lat"`.
 
 - long:
 
-  Name of the longitude column in the output. Defaults to `"lon"`.
+  A string giving the name of the longitude column in the output.
+  Defaults to `"lon"`.
 
 - limit:
 
-  Maximum number of results to return per query. Nominatim returns at
-  most 50 results per query.
+  A positive integer giving the maximum number of results to return per
+  query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
@@ -91,11 +93,11 @@ geo_lite_struct(
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
@@ -151,7 +153,7 @@ dplyr::glimpse(pl_mayor)
 #> $ lat                      <dbl> 40.41539, 40.96503, 41.65206, 40.95033, 40.02…
 #> $ lon                      <dbl> -3.7069974, -5.6640558, -4.7285484, -4.123986…
 #> $ address                  <chr> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…
-#> $ place_id                 <int> 291459241, 291059616, 290448086, 293050135, 2…
+#> $ place_id                 <int> 293280562, 292768831, 292162441, 292826660, 2…
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "relation", "way", "way", "relation", "way", …
 #> $ osm_id                   <int> 16657232, 78180390, 24432960, 18226870, 18456…

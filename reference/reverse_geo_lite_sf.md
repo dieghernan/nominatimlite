@@ -2,10 +2,9 @@
 
 Finds addresses from latitude and longitude coordinates and returns the
 matching results as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object using
-[sf](https://CRAN.R-project.org/package=sf). Latitude values must be in
-\\\left\[-90, 90 \right\]\\ and longitude values in \\\left\[-180, 180
-\right\]\\. Use
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
+Latitude values must be in \\\left\[-90, 90 \right\]\\ and longitude
+values in \\\left\[-180, 180 \right\]\\. Use
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
 to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
 instead.
@@ -39,7 +38,8 @@ reverse_geo_lite_sf(
 
 - address:
 
-  Name of the address column in the output. Defaults to `"address"`.
+  A string giving the name of the address column in the output. Defaults
+  to `"address"`.
 
 - full_results:
 
@@ -49,20 +49,20 @@ reverse_geo_lite_sf(
 
 - return_coords:
 
-  Return input coordinates with results if `TRUE`.
+  If `TRUE`, returns the input coordinates with the results.
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, display a progress bar when processing multiple queries.
+  If `TRUE`, displays a progress bar when processing multiple queries.
 
 - custom_query:
 
@@ -103,8 +103,8 @@ levels correspond to these address details:
 
 ## About geometry types
 
-The `points_only` argument controls whether results contain points only.
-All Nominatim results have at least a point geometry.
+The `points_only` argument controls whether the results contain only
+points. All Nominatim results have at least a point geometry.
 
 When `points_only = FALSE`, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as

@@ -32,10 +32,10 @@ geo_amenity(
 
 - bbox:
 
-  Bounding box (viewbox) used to limit the search. It can be a numeric
+  A bounding box (viewbox) used to limit the search. Supply a numeric
   vector of **longitude** (`x`) and **latitude** (`y`) in the form
-  `(xmin, ymin, xmax, ymax)`, or a
-  [`sf`](https://r-spatial.github.io/sf/reference/sf.html) or
+  `(xmin, ymin, xmax, ymax)`, an
+  [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object or an
   [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object. See
   **Details**.
 
@@ -47,16 +47,18 @@ geo_amenity(
 
 - lat:
 
-  Name of the latitude column in the output. Defaults to `"lat"`.
+  A string giving the name of the latitude column in the output.
+  Defaults to `"lat"`.
 
 - long:
 
-  Name of the longitude column in the output. Defaults to `"lon"`.
+  A string giving the name of the longitude column in the output.
+  Defaults to `"lon"`.
 
 - limit:
 
-  Maximum number of results to return per query. Nominatim returns at
-  most 50 results per query.
+  A positive integer giving the maximum number of results to return per
+  query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
@@ -70,16 +72,16 @@ geo_amenity(
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, display a progress bar when processing multiple queries.
+  If `TRUE`, displays a progress bar when processing multiple queries.
 
 - custom_query:
 
@@ -88,8 +90,8 @@ geo_amenity(
 
 - strict:
 
-  If `TRUE`, keep only results inside `bbox`. By default, Nominatim may
-  return results outside the bounding box.
+  If `TRUE`, keeps only results inside `bbox`. If `FALSE` (the default),
+  Nominatim may return results outside the bounding box.
 
 ## Value
 
@@ -171,10 +173,10 @@ geo_amenity(
 #>  4 restaurant  40.8 -74.0 Applebee's, 234, West 42nd Street, Times Square, Manh…
 #>  5 restaurant  40.8 -74.0 Bobby Van's Grill, 120, West 45th Street, Times Squar…
 #>  6 restaurant  40.8 -74.0 Dallas BBQ, 241, West 42nd Street, Times Square, Manh…
-#>  7 restaurant  40.8 -74.0 Haru Sushi, 229, West 43rd Street, Times Square, Manh…
-#>  8 restaurant  40.8 -74.0 Brooklyn Deli, 1501, Broadway, Times Square, Manhatta…
-#>  9 restaurant  40.8 -74.0 Hard Rock Cafe, 1501, Broadway, Times Square, Manhatt…
-#> 10 restaurant  40.8 -74.0 Bubba Gump Shrimp Company, 1501, Broadway, Times Squa…
+#>  7 restaurant  40.8 -74.0 Villa Fresh Italian Kitchen, 263, West 42nd Street, T…
+#>  8 restaurant  40.8 -74.0 Haru Sushi, 229, West 43rd Street, Times Square, Manh…
+#>  9 restaurant  40.8 -74.0 Brooklyn Deli, 1501, Broadway, Times Square, Manhatta…
+#> 10 restaurant  40.8 -74.0 Hard Rock Cafe, 1501, Broadway, Times Square, Manhatt…
 #> 11 pub         40.8 -74.0 Connolly's, 121, West 45th Street, Times Square, Manh…
 #> 12 pub         40.8 -74.0 Perfect Pint, 123, West 45th Street, Times Square, Ma…
 #> 13 pub         40.8 -74.0 Bar 54, 135, West 45th Street, Times Square, Manhatta…

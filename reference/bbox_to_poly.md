@@ -1,8 +1,8 @@
 # Convert a bounding box to an [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON` object
 
 Converts bounding box coordinates to an
-[`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON`
-object.
+[`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object with
+`POLYGON` geometry.
 
 ## Usage
 
@@ -29,9 +29,9 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 
 ## Value
 
-A [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object of
-class `POLYGON` with the corresponding coordinate reference system
-specified by `crs`.
+An [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object
+with `POLYGON` geometry and the coordinate reference system specified by
+`crs`.
 
 ## Details
 
@@ -54,7 +54,7 @@ Spatial output functions:
 
 ``` r
 
-# Bounding box of Germany
+# Bounding box for Germany
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)

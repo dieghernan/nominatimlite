@@ -2,8 +2,7 @@
 
 Searches for addresses already split into components and returns
 matching results as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object using
-[sf](https://CRAN.R-project.org/package=sf). Use
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object. Use
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
 to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
 instead.
@@ -39,37 +38,37 @@ geo_lite_struct_sf(
 
 - amenity:
 
-  Name or type of amenity. See
+  A string giving the name or type of amenity. See
   [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
 
 - street:
 
-  House number and street name.
+  A string giving the house number and street name.
 
 - city:
 
-  City.
+  A string giving the city.
 
 - county:
 
-  County.
+  A string giving the county.
 
 - state:
 
-  State.
+  A string giving the state.
 
 - country:
 
-  Country.
+  A string giving the country.
 
 - postalcode:
 
-  Postal code.
+  A string giving the postal code.
 
 - limit:
 
-  Maximum number of results to return per query. Nominatim returns at
-  most 50 results per query.
+  A positive integer giving the maximum number of results to return per
+  query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
@@ -83,11 +82,11 @@ geo_lite_struct_sf(
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
@@ -117,8 +116,8 @@ additional parameters to be passed to `custom_query`.
 
 ## About geometry types
 
-The `points_only` argument controls whether results contain points only.
-All Nominatim results have at least a point geometry.
+The `points_only` argument controls whether the results contain only
+points. All Nominatim results have at least a point geometry.
 
 When `points_only = FALSE`, the geometry type depends on the matching
 feature. Administrative areas and major buildings are returned as

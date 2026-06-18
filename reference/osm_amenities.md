@@ -1,6 +1,6 @@
 # OpenStreetMap amenities
 
-A dataset of amenities available on OpenStreetMap.
+A dataset of amenity values available on OpenStreetMap.
 
 ## Format
 
@@ -25,7 +25,7 @@ rows and three columns:
 
 ## Note
 
-Data extracted on **April 3, 2024**.
+The data were extracted on **April 3, 2024**.
 
 ## See also
 

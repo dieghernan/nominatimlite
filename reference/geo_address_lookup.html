@@ -91,17 +91,19 @@ objects, such as nodes, ways or relations. Results are returned as a
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Character vector of the OSM object type associated with each
-<code>osm_ids</code> value. Possible values are node (<code>"N"</code>), way (<code>"W"</code>) or
-relation (<code>"R"</code>). If a single value is provided, it will be recycled.</p></dd>
+<dd><p>A character vector containing the OSM object type associated
+with each value in <code>osm_ids</code>. Possible values are node (<code>"N"</code>), way
+(<code>"W"</code>) and relation (<code>"R"</code>). A single value is recycled.</p></dd>
 
 
 <dt id="arg-lat">lat<a class="anchor" aria-label="anchor" href="#arg-lat"></a></dt>
-<dd><p>Name of the latitude column in the output. Defaults to <code>"lat"</code>.</p></dd>
+<dd><p>A string giving the name of the latitude column in the output.
+Defaults to <code>"lat"</code>.</p></dd>
 
 
 <dt id="arg-long">long<a class="anchor" aria-label="anchor" href="#arg-long"></a></dt>
-<dd><p>Name of the longitude column in the output. Defaults to <code>"lon"</code>.</p></dd>
+<dd><p>A string giving the name of the longitude column in the output.
+Defaults to <code>"lon"</code>.</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
@@ -116,11 +118,12 @@ results.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>If <code>TRUE</code>, display detailed messages in the console.</p></dd>
+<dd><p>If <code>TRUE</code>, displays detailed messages in the console.</p></dd>
 
 
 <dt id="arg-nominatim-server">nominatim_server<a class="anchor" aria-label="anchor" href="#arg-nominatim-server"></a></dt>
-<dd><p>Base URL of the Nominatim server. Defaults to
+<dd><p>A string giving the base URL of the Nominatim
+server. Defaults to
 <code>"https://nominatim.openstreetmap.org/"</code>.</p></dd>
 
 
@@ -140,16 +143,16 @@ parameters to be passed to <code>custom_query</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Address lookup functions:
-<code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code></p>
-<p>Address search functions:
+    <div class="dont-index"><p>Address search functions:
 <code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code>,
 <code><a href="geo_amenity.html">geo_amenity()</a></code>,
 <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code>,
 <code><a href="geo_lite.html">geo_lite()</a></code>,
 <code><a href="geo_lite_sf.html">geo_lite_sf()</a></code>,
 <code><a href="geo_lite_struct.html">geo_lite_struct()</a></code>,
-<code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code></p></div>
+<code><a href="geo_lite_struct_sf.html">geo_lite_struct_sf()</a></code></p>
+<p>Address lookup functions:
+<code><a href="geo_address_lookup_sf.html">geo_address_lookup_sf()</a></code></p></div>
     </div>
 
     <div class="section level2">

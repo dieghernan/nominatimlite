@@ -2,9 +2,9 @@
 
 Finds addresses from latitude and longitude coordinates and returns the
 matching results as a
-[tibble](https://tibble.tidyverse.org/reference/tibble.html). Latitudes
-must be in \\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180,
-180 \right\]\\. Use
+[tibble](https://tibble.tidyverse.org/reference/tibble.html). Latitude
+values must be in \\\left\[-90, 90 \right\]\\ and longitudes in
+\\\left\[-180, 180 \right\]\\. Use
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
 to return an [`sf`](https://r-spatial.github.io/sf/reference/sf.html)
 object instead.
@@ -37,7 +37,8 @@ reverse_geo_lite(
 
 - address:
 
-  Name of the address column in the output. Defaults to `"address"`.
+  A string giving the name of the address column in the output. Defaults
+  to `"address"`.
 
 - full_results:
 
@@ -47,20 +48,20 @@ reverse_geo_lite(
 
 - return_coords:
 
-  Return input coordinates with results if `TRUE`.
+  If `TRUE`, returns the input coordinates with the results.
 
 - verbose:
 
-  If `TRUE`, display detailed messages in the console.
+  If `TRUE`, displays detailed messages in the console.
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, display a progress bar when processing multiple queries.
+  If `TRUE`, displays a progress bar when processing multiple queries.
 
 - custom_query:
 
@@ -133,7 +134,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52172514, 274782588
+#> $ place_id                                 <int> 51484763, 275211732
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

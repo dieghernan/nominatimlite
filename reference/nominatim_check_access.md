@@ -1,7 +1,6 @@
 # Check access to the Nominatim API
 
-Checks whether R can access the Nominatim API at
-<https://nominatim.openstreetmap.org>.
+Checks whether R can access a Nominatim API server.
 
 ## Usage
 
@@ -15,7 +14,7 @@ nominatim_check_access(
 
 - nominatim_server:
 
-  Base URL of the Nominatim server. Defaults to
+  A string giving the base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 ## Value

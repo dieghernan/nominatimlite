@@ -98,44 +98,47 @@ perform a free-form search, use <code><a href="geo_lite.html">geo_lite()</a></co
 
 
 <dl><dt id="arg-amenity">amenity<a class="anchor" aria-label="anchor" href="#arg-amenity"></a></dt>
-<dd><p>Name or type of amenity. See <code><a href="geo_amenity.html">geo_amenity()</a></code>.</p></dd>
+<dd><p>A string giving the name or type of amenity. See
+<code><a href="geo_amenity.html">geo_amenity()</a></code>.</p></dd>
 
 
 <dt id="arg-street">street<a class="anchor" aria-label="anchor" href="#arg-street"></a></dt>
-<dd><p>House number and street name.</p></dd>
+<dd><p>A string giving the house number and street name.</p></dd>
 
 
 <dt id="arg-city">city<a class="anchor" aria-label="anchor" href="#arg-city"></a></dt>
-<dd><p>City.</p></dd>
+<dd><p>A string giving the city.</p></dd>
 
 
 <dt id="arg-county">county<a class="anchor" aria-label="anchor" href="#arg-county"></a></dt>
-<dd><p>County.</p></dd>
+<dd><p>A string giving the county.</p></dd>
 
 
 <dt id="arg-state">state<a class="anchor" aria-label="anchor" href="#arg-state"></a></dt>
-<dd><p>State.</p></dd>
+<dd><p>A string giving the state.</p></dd>
 
 
 <dt id="arg-country">country<a class="anchor" aria-label="anchor" href="#arg-country"></a></dt>
-<dd><p>Country.</p></dd>
+<dd><p>A string giving the country.</p></dd>
 
 
 <dt id="arg-postalcode">postalcode<a class="anchor" aria-label="anchor" href="#arg-postalcode"></a></dt>
-<dd><p>Postal code.</p></dd>
+<dd><p>A string giving the postal code.</p></dd>
 
 
 <dt id="arg-lat">lat<a class="anchor" aria-label="anchor" href="#arg-lat"></a></dt>
-<dd><p>Name of the latitude column in the output. Defaults to <code>"lat"</code>.</p></dd>
+<dd><p>A string giving the name of the latitude column in the output.
+Defaults to <code>"lat"</code>.</p></dd>
 
 
 <dt id="arg-long">long<a class="anchor" aria-label="anchor" href="#arg-long"></a></dt>
-<dd><p>Name of the longitude column in the output. Defaults to <code>"lon"</code>.</p></dd>
+<dd><p>A string giving the name of the longitude column in the output.
+Defaults to <code>"lon"</code>.</p></dd>
 
 
 <dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
-<dd><p>Maximum number of results to return per query. Nominatim returns
-at most 50 results per query.</p></dd>
+<dd><p>A positive integer giving the maximum number of results to
+return per query. Nominatim returns at most 50 results per query.</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
@@ -150,11 +153,12 @@ results.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>If <code>TRUE</code>, display detailed messages in the console.</p></dd>
+<dd><p>If <code>TRUE</code>, displays detailed messages in the console.</p></dd>
 
 
 <dt id="arg-nominatim-server">nominatim_server<a class="anchor" aria-label="anchor" href="#arg-nominatim-server"></a></dt>
-<dd><p>Base URL of the Nominatim server. Defaults to
+<dd><p>A string giving the base URL of the Nominatim
+server. Defaults to
 <code>"https://nominatim.openstreetmap.org/"</code>.</p></dd>
 
 
@@ -208,7 +212,7 @@ parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lat                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.41539<span style="color: #949494;">, </span>40.96503<span style="color: #949494;">, </span>41.65206<span style="color: #949494;">, </span>40.95033<span style="color: #949494;">, </span>40.02…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ lon                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.7069974<span style="color: #949494;">, </span>-5.6640558<span style="color: #949494;">, </span>-4.7285484<span style="color: #949494;">, </span>-4.123986…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 291459241<span style="color: #949494;">, </span>291059616<span style="color: #949494;">, </span>290448086<span style="color: #949494;">, </span>293050135<span style="color: #949494;">, </span>2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 293280562<span style="color: #949494;">, </span>292768831<span style="color: #949494;">, </span>292162441<span style="color: #949494;">, </span>292826660<span style="color: #949494;">, </span>2…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ licence                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Data © OpenStreetMap contributors, ODbL 1.0.…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_type                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "relation"<span style="color: #949494;">, </span>"way"<span style="color: #949494;">, </span>"way"<span style="color: #949494;">, </span>"relation"<span style="color: #949494;">, </span>"way"<span style="color: #949494;">, </span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ osm_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 16657232<span style="color: #949494;">, </span>78180390<span style="color: #949494;">, </span>24432960<span style="color: #949494;">, </span>18226870<span style="color: #949494;">, </span>18456…</span>
