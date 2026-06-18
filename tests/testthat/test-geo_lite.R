@@ -2,7 +2,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(obj <- geo_lite("xbzbzbzoa aiaia"), "No results for")
+  expect_snapshot(obj <- geo_lite("xbzbzbzoa aiaia"))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "xbzbzbzoa aiaia")
@@ -15,9 +15,8 @@ test_that("Returning empty query", {
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
-  expect_message(
-    obj_renamed <- geo_lite("xbzbzbzoa aiaia", lat = "lata", long = "longa"),
-    "No results for"
+  expect_snapshot(
+    obj_renamed <- geo_lite("xbzbzbzoa aiaia", lat = "lata", long = "longa")
   )
 
   expect_named(obj_renamed, c("query", "lata", "longa"))
@@ -47,7 +46,7 @@ test_that("Checking query", {
 
   expect_message(
     obj <- geo_lite(c("Madrid", "Barcelona"), limit = 51),
-    "50 results"
+    "at most 50"
   )
 
   expect_named(obj, c("query", "lat", "lon", "address"))

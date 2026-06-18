@@ -23,7 +23,7 @@ geo_lite_struct_sf(
 )
 }
 \arguments{
-\item{amenity}{Name and/or type of POI. See also \code{\link[=geo_amenity]{geo_amenity()}}.}
+\item{amenity}{Name or type of amenity. See \code{\link[=geo_amenity]{geo_amenity()}}.}
 
 \item{street}{House number and street name.}
 
@@ -37,45 +37,43 @@ geo_lite_struct_sf(
 
 \item{postalcode}{Postal code.}
 
-\item{limit}{Maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.}
+\item{limit}{Maximum number of results to return per query. Nominatim returns
+at most 50 results per query.}
 
-\item{full_results}{Return all available data from the Nominatim API.
-If \code{FALSE} (default), only latitude, longitude and address columns are
-returned. See also \code{return_addresses}.}
+\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
+API. If \code{FALSE}, return only query metadata, geometry and requested address
+columns.}
 
-\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
+results.}
 
-\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
 
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{Named list with API-specific parameters, for example
+\item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only point
-geometries (\code{TRUE}, which is the default) or potentially other shapes as
-returned by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
+\item{points_only}{If \code{TRUE}, return only point geometries. If \code{FALSE}, the
+API may return other geometry types. See \strong{About geometry types}.}
 }
 \value{
 An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
-Geocodes addresses already split into components and returns the
-corresponding \code{\link[sf:st_sf]{sf}} object. The query output is returned as an
-\CRANpkg{sf} format. See \code{\link[=geo_lite_struct]{geo_lite_struct()}} for retrieving the data in
-\code{\link[tibble:tibble]{tibble}} format.
+Searches for addresses already split into components and returns matching
+results as an \code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Use
+\code{\link[=geo_lite_struct]{geo_lite_struct()}} to return a \link[dplyr:tibble]{tibble} instead.
 
-Corresponds to the \strong{structured query} search described in the
+This function performs the \strong{structured address search} described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. To
 perform a free-form search, use \code{\link[=geo_lite_sf]{geo_lite_sf()}}.
 }
 \details{
-The structured form of the search query allows you to look up an address that
-is already split into its components. Each parameter represents a field of
-the address. All parameters are optional. You should only use the ones that
-are relevant for the address you want to geocode.
+A structured address search accepts an address already split into components.
+Each argument represents an address field. All components are optional, so
+provide only those relevant to the address you want to find.
 
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
@@ -83,23 +81,22 @@ parameters to be passed to \code{custom_query}.
 \section{About geometry types}{
 
 
-The parameter \code{points_only} specifies whether the function results will be
-points (all Nominatim results are guaranteed to have at least point
-geometry) or other geometry types.
+The \code{points_only} argument controls whether results contain points only. All
+Nominatim results have at least a point geometry.
 
-Note that when \code{points_only = FALSE}, the type of geometry returned depends
-on the object being geocoded. Administrative areas, major buildings and the
-like will be returned as polygons, rivers, roads and similar features will
-be returned as lines, and amenities may still be returned as points.
+When \code{points_only = FALSE}, the geometry type depends on the matching
+feature. Administrative areas and major buildings are returned as polygons,
+rivers and roads are returned as lines and amenities may still be returned
+as points.
 
-This function is vectorized, allowing multiple addresses to be geocoded.
+This function is vectorized, allowing multiple addresses to be searched.
 With \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Map
+# Structured address search
 
 pl_mayor <- geo_lite_struct_sf(
   street = "Plaza Mayor",
@@ -108,7 +105,7 @@ pl_mayor <- geo_lite_struct_sf(
   full_results = TRUE, verbose = TRUE
 )
 
-# Outline
+# Administrative boundary
 ccaa <- geo_lite_sf("Comunidad de Madrid, Spain", points_only = FALSE)
 
 library(ggplot2)
@@ -122,7 +119,7 @@ if (any(!sf::st_is_empty(pl_mayor), !sf::st_is_empty(ccaa))) {
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Geocoding functions:
+Address search functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity]{geo_amenity()}},

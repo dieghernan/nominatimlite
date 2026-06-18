@@ -4,20 +4,18 @@ dir.r: R
 dir.v: vignettes
 dir.t: tests
 extra.suggests:
-- tibble
-- quarto
-- tidygeocoder
-- ggplot2
-- arcgeocoder
+  - ggplot2
 pkg_ignore:
-- tidyverse
-- leaflet
-- reactable
-- crosstalk
-- tidyr
-- htmltools
+  - tidyverse
+  - leaflet
+  - reactable
+  - crosstalk
+  - tidyr
+  - htmltools
+  - arcgeocoder
+  - tidygeocoder
 document: yes
 normalize: yes
-inside_rmd: no
+inside_rmd: yes
 must.exist: yes
 check_if_suggests_is_installed: yes

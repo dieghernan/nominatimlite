@@ -4,11 +4,11 @@
 \encoding{UTF-8}
 \name{osm_amenities}
 \alias{osm_amenities}
-\title{OpenStreetMap amenity database}
+\title{OpenStreetMap amenities}
 \format{
-A \code{\link[tibble:tibble]{tibble}} with
+A \link[dplyr:tibble]{tibble} with
 136 rows and
-fields:
+three columns:
 \describe{
 \item{category}{The category of the amenity.}
 \item{amenity}{The value of the amenity.}
@@ -19,10 +19,10 @@ fields:
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity}
 }
 \description{
-Database with the list of amenities available on OpenStreetMap.
+A dataset of amenities available on OpenStreetMap.
 }
 \note{
-Data extracted on \strong{03 April 2024}.
+Data extracted on \strong{April 3, 2024}.
 }
 \examples{
 

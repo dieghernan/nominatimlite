@@ -3,25 +3,26 @@
 \encoding{UTF-8}
 \name{bbox_to_poly}
 \alias{bbox_to_poly}
-\title{Coerce a bounding box to a \code{\link[sf:st_sfc]{sfc}} \code{POLYGON} object}
+\title{Convert a bounding box to an \code{\link[sf:st_sfc]{sfc}} \code{POLYGON} object}
 \usage{
 bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 }
 \arguments{
-\item{bbox}{Numeric vector of 4 elements representing the coordinates of the
-bounding box. Values should be \code{c(xmin, ymin, xmax, ymax)}.}
+\item{bbox}{A numeric vector of four bounding box coordinates in the form
+\code{c(xmin, ymin, xmax, ymax)}.}
 
-\item{xmin, ymin, xmax, ymax}{Alternatively, you can use these named parameters
-instead of \code{bbox}.}
+\item{xmin, ymin, xmax, ymax}{Individual bounding box coordinates. Use these
+arguments as an alternative to \code{bbox}.}
 
 \item{crs}{coordinate reference system, something suitable as input to \link[sf]{st_crs}}
 }
 \value{
 A \code{\link[sf:st_sfc]{sfc}} object of class \code{POLYGON} with the corresponding
-coordinate reference system \code{crs}.
+coordinate reference system specified by \code{crs}.
 }
 \description{
-Create a \code{\link[sf:st_sfc]{sfc}} object from the coordinates of a bounding box.
+Converts bounding box coordinates to an \code{\link[sf:st_sfc]{sfc}} \code{POLYGON}
+object.
 }
 \details{
 Bounding boxes can be located using online tools such as
@@ -40,7 +41,7 @@ library(ggplot2)
 ggplot(bbox_GER_sf) +
   geom_sf()
 \donttest{
-# Extract the bounding box of an sf object
+# Extract the bounding box of an `sf` object
 sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj

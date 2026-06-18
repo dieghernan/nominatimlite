@@ -1,26 +1,11 @@
 #' Reverse geocoding API
 #'
 #' @description
-#' Generates an address from latitude and longitude (latitudes in
-#' \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-#' and returns the [`tibble`][tibble::tibble] associated with the query. See
-#' [reverse_geo_lite_sf()] for retrieving the data as an [`sf`][sf::st_sf]
-#' object.
-#'
-#' @family reverse
-#' @encoding UTF-8
-#'
-#' @param lat Latitude values in numeric format. Must be in the range
-#'   \eqn{\left[-90, 90 \right]}.
-#' @param long Longitude values in numeric format. Must be in the range
-#'   \eqn{\left[-180, 180 \right]}.
-#' @param address Address column name in the output data (default `"address"`).
-#' @param return_coords Return input coordinates with results if `TRUE`.
-#' @param custom_query Named list with API-specific parameters, for example
-#'   `list(zoom = 3)`. See **Details**.
-#'
-#' @inheritParams geo_lite
-#' @inherit geo_lite return
+#' Finds addresses from latitude and longitude coordinates and returns the
+#' matching results as a [tibble][dplyr::tibble]. Latitudes must be in
+#' \eqn{\left[-90, 90 \right]} and longitudes in
+#' \eqn{\left[-180, 180 \right]}. Use [reverse_geo_lite_sf()] to return an
+#' [`sf`][sf::st_sf] object instead.
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
@@ -28,8 +13,8 @@
 #'
 #' @section About zooming:
 #'
-#' Use the option `custom_query = list(zoom = 3)` to adjust the output. Some
-#' zoom levels correspond to these address details:
+#' Set `custom_query = list(zoom = 3)` to adjust the output. Selected zoom
+#' levels correspond to these address details:
 #'
 #' ```{r, echo=FALSE}
 #'
@@ -47,9 +32,21 @@
 #'
 #' knitr::kable(t, col.names = paste0("**", names(t), "**"))
 #'
-#' @seealso
-#' [tidygeocoder::reverse_geo()].
+#' @param lat Numeric latitude values in the range
+#'   \eqn{\left[-90, 90 \right]}.
+#' @param long Numeric longitude values in the range
+#'   \eqn{\left[-180, 180 \right]}.
+#' @param address Name of the address column in the output. Defaults to
+#'   `"address"`.
+#' @param return_coords Return input coordinates with results if `TRUE`.
+#' @param custom_query A named list of API-specific parameters, for example
+#'   `list(zoom = 3)`. See **Details**.
 #'
+#' @inheritParams geo_lite
+#' @inherit geo_lite return
+#'
+#' @family reverse
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
@@ -57,10 +54,10 @@
 #'
 #' reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #'
-#' # Several coordinates
+#' # Multiple coordinate pairs
 #' reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #'
-#' # With options: zoom to country level
+#' # Set the zoom to country level
 #' sev <- reverse_geo_lite(
 #'   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
 #'   custom_query = list(zoom = 0, extratags = TRUE),
@@ -136,7 +133,7 @@ reverse_geo_lite_single <- function(
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
@@ -145,7 +142,13 @@ reverse_geo_lite_single <- function(
 
   # Handle empty queries.
   if ("error" %in% names(result_init)) {
-    message("No results for query lat=", lat_cap, ", lon=", long_cap, ".")
+    message(
+      "No results found for query: lat = ",
+      lat_cap,
+      ", long = ",
+      long_cap,
+      "."
+    )
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }

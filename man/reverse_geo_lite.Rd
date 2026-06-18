@@ -18,40 +18,41 @@ reverse_geo_lite(
 )
 }
 \arguments{
-\item{lat}{Latitude values in numeric format. Must be in the range
+\item{lat}{Numeric latitude values in the range
 \eqn{\left[-90, 90 \right]}.}
 
-\item{long}{Longitude values in numeric format. Must be in the range
+\item{long}{Numeric longitude values in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{address}{Address column name in the output data (default \code{"address"}).}
+\item{address}{Name of the address column in the output. Defaults to
+\code{"address"}.}
 
-\item{full_results}{Return all available data from the Nominatim API.
-If \code{FALSE} (default), only latitude, longitude and address columns are
-returned. See also \code{return_addresses}.}
+\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
+API. If \code{FALSE}, return only query metadata, location data and requested
+address columns.}
 
 \item{return_coords}{Return input coordinates with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
 
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
-the progress of the function.}
+\item{progressbar}{If \code{TRUE}, display a progress bar when processing multiple
+queries.}
 
-\item{custom_query}{Named list with API-specific parameters, for example
+\item{custom_query}{A named list of API-specific parameters, for example
 \code{list(zoom = 3)}. See \strong{Details}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
+A \code{\link[dplyr:tibble]{tibble}} with the results that match the query.
 }
 \description{
-Generates an address from latitude and longitude (latitudes in
-\eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-and returns the \code{\link[tibble:tibble]{tibble}} associated with the query. See
-\code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} for retrieving the data as an \code{\link[sf:st_sf]{sf}}
-object.
+Finds addresses from latitude and longitude coordinates and returns the
+matching results as a \link[dplyr:tibble]{tibble}. Latitudes must be in
+\eqn{\left[-90, 90 \right]} and longitudes in
+\eqn{\left[-180, 180 \right]}. Use \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}} to return an
+\code{\link[sf:st_sf]{sf}} object instead.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Reverse/} for additional
@@ -60,8 +61,8 @@ parameters to be passed to \code{custom_query}.
 \section{About zooming}{
 
 
-Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
-zoom levels correspond to these address details:\tabular{ll}{
+Set \code{custom_query = list(zoom = 3)} to adjust the output. Selected zoom
+levels correspond to these address details:\tabular{ll}{
    \strong{zoom} \tab \strong{address_detail} \cr
    \code{3} \tab country \cr
    \code{5} \tab state \cr
@@ -80,10 +81,10 @@ zoom levels correspond to these address details:\tabular{ll}{
 
 reverse_geo_lite(lat = 40.75728, long = -73.98586)
 
-# Several coordinates
+# Multiple coordinate pairs
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 
-# With options: zoom to country level
+# Set the zoom to country level
 sev <- reverse_geo_lite(
   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
   custom_query = list(zoom = 0, extratags = TRUE),
@@ -95,8 +96,6 @@ dplyr::glimpse(sev)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}.
-
 Reverse geocoding functions:
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }

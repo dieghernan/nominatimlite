@@ -24,7 +24,7 @@ geo_lite_struct(
 )
 }
 \arguments{
-\item{amenity}{Name and/or type of POI. See also \code{\link[=geo_amenity]{geo_amenity()}}.}
+\item{amenity}{Name or type of amenity. See \code{\link[=geo_amenity]{geo_amenity()}}.}
 
 \item{street}{House number and street name.}
 
@@ -38,45 +38,44 @@ geo_lite_struct(
 
 \item{postalcode}{Postal code.}
 
-\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
+\item{lat}{Name of the latitude column in the output. Defaults to \code{"lat"}.}
 
-\item{long}{Longitude column name in the output data (default \code{"long"}).}
+\item{long}{Name of the longitude column in the output. Defaults to \code{"lon"}.}
 
-\item{limit}{Maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.}
+\item{limit}{Maximum number of results to return per query. Nominatim returns
+at most 50 results per query.}
 
-\item{full_results}{Return all available data from the Nominatim API.
-If \code{FALSE} (default), only latitude, longitude and address columns are
-returned. See also \code{return_addresses}.}
+\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
+API. If \code{FALSE}, return only query metadata, location data and requested
+address columns.}
 
-\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
+results.}
 
-\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
 
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{Named list with API-specific parameters, for example
+\item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
+A \code{\link[dplyr:tibble]{tibble}} with the results that match the query.
 }
 \description{
-Geocodes addresses already split into components and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query. See
-\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}} for retrieving the data as an \code{\link[sf:st_sf]{sf}}
-object.
+Searches for addresses already split into components and returns matching
+results as a \link[dplyr:tibble]{tibble}. Use \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}} to return
+an \code{\link[sf:st_sf]{sf}} object instead.
 
-Corresponds to the \strong{structured query} search described in the
+This function performs the \strong{structured address search} described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}. To
 perform a free-form search, use \code{\link[=geo_lite]{geo_lite()}}.
 }
 \details{
-The structured form of the search query allows you to look up an address that
-is already split into its components. Each parameter represents a field of
-the address. All parameters are optional. You should only use the ones that
-are relevant for the address you want to geocode.
+A structured address search accepts an address already split into components.
+Each argument represents an address field. All components are optional, so
+provide only those relevant to the address you want to find.
 
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
 parameters to be passed to \code{custom_query}.
@@ -94,9 +93,7 @@ dplyr::glimpse(pl_mayor)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
-
-Geocoding functions:
+Address search functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity]{geo_amenity()}},

@@ -1,22 +1,20 @@
-#' Check access to Nominatim API
+#' Check access to the Nominatim API
 #'
 #' @description
-#' Check if \R has access to resources at
+#' Checks whether \R can access the Nominatim API at
 #' <https://nominatim.openstreetmap.org>.
 #'
-#' @family api_management
-#' @encoding UTF-8
+#' @inheritParams geo_lite nominatim_server
 #'
-#' @inheritParams geo_lite
-#'
-#' @return
-#' A logical `TRUE/FALSE`.
+#' @returns
+#' A single logical value: `TRUE` if the API is available and `FALSE` otherwise.
 #'
 #' @seealso
 #' <https://nominatim.org/release-docs/latest/api/Status/>.
 #'
+#' @family api_management
 #' @keywords internal
-#'
+#' @encoding UTF-8
 #' @export
 #'
 #' @examples
@@ -42,21 +40,21 @@ nominatim_check_access <- function(
 #' Query the Nominatim API
 #'
 #' @description
-#' A wrapper around [utils::download.file()]. On warning or error, it retries
-#' the call. Requests are adjusted to the rate of one query per second.
+#' Wraps [utils::download.file()] and retries the request after a warning or
+#' error. Requests are limited to approximately one query per second.
 #'
 #' See [Nominatim Usage
 #' Policy](https://operations.osmfoundation.org/policies/nominatim/).
 #'
-#' @family api_management
+#' @param ext File extension for the cached response. Must be `".json"` or
+#'   `".geojson"`.
+#' @inheritParams utils::download.file url quiet
 #'
-#' @inheritParams utils::download.file
-#'
-#' @return
+#' @returns
 #' A cached file path, or `FALSE` when the query fails.
 #'
+#' @family api_management
 #' @keywords internal
-#'
 #' @noRd
 #'
 api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
@@ -78,13 +76,13 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
     return(destfile)
   }
   if (isFALSE(quiet)) {
-    message("Retrying API query.")
+    message("Retrying the Nominatim API query.")
   }
   Sys.sleep(1.2)
 
   dwn_res <- download_api_file(url, destfile, quiet)
 
-  # Return the file when all went well.
+  # Return the file after a successful request.
   if (!inherits(dwn_res, "try-error")) {
     return(destfile) # nocov
   }

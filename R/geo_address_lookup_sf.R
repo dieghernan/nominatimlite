@@ -1,27 +1,27 @@
 #' Address lookup API with \CRANpkg{sf} output
 #'
 #' @description
-#' The lookup API queries the address and other details of one or more
-#' OSM objects, such as nodes, ways or relations, and returns the
-#' [`sf`][sf::st_sf] object associated with the query using \CRANpkg{sf}. See
-#' [geo_address_lookup()] for retrieving the data in [`tibble`][tibble::tibble]
-#' format.
+#' Looks up addresses and other details for one or more OpenStreetMap (OSM)
+#' objects, such as nodes, ways or relations. Results are returned as an
+#' [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use [geo_address_lookup()] to
+#' return a [tibble][dplyr::tibble] instead.
+#'
+#' @inherit geo_address_lookup details
+#'
+#' @inheritSection geo_lite_sf About geometry types
+#'
+#' @param full_results If `TRUE`, return all available fields from the Nominatim
+#'   API. If `FALSE`, return only query metadata, geometry and requested address
+#'   columns.
+#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
+#'   API may return other geometry types. See **About geometry types**.
+#' @inheritParams geo_address_lookup
+#' @inherit geo_lite_sf return
 #'
 #' @family lookup
 #' @family geocoding
 #' @family spatial
 #' @encoding UTF-8
-#'
-#' @inheritParams geo_lite_sf
-#' @inheritParams geo_address_lookup
-#' @inherit geo_lite_sf return
-#'
-#' @details
-#' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
-#' parameters to be passed to `custom_query`.
-#'
-#' @inheritSection geo_lite_sf About geometry types
-#'
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
@@ -93,7 +93,7 @@ geo_address_lookup_sf <- function(
 
   # Handle missing responses.
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -103,7 +103,7 @@ geo_address_lookup_sf <- function(
 
   # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results for query ", nodes, ".")
+    message("No results found for query: ", nodes, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -111,7 +111,7 @@ geo_address_lookup_sf <- function(
   # Unnest address fields.
   sfobj <- unnest_sf(sfobj)
 
-  # Re-create `tbl_query` with normalized OSM IDs.
+  # Recreate `tbl_query` with normalized OSM IDs.
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids), osm_id = osm_ids)
 
   # Keep only matched results.
@@ -119,7 +119,7 @@ geo_address_lookup_sf <- function(
 
   # Warn about lost rows.
   if (all(nrow(sf_clean) < nrow(tbl_query), verbose)) {
-    warning("Some OSM IDs did not return results. Check the output.")
+    warning("Some OSM IDs returned no results. Check the output.")
   }
 
   # Keep selected columns.

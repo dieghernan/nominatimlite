@@ -2,7 +2,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(obj <- geo_lite_sf("xbzbzbzoa aiaia"), "No results for")
+  expect_snapshot(obj <- geo_lite_sf("xbzbzbzoa aiaia"))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "xbzbzbzoa aiaia")
@@ -33,7 +33,7 @@ test_that("Data format", {
       c("Madrid", "ga hann xx kaa pa", "Barcelona"),
       points_only = FALSE
     ),
-    "No results for query ga hann xx kaa pa"
+    "No results found for query"
   )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))
@@ -54,7 +54,7 @@ test_that("Checking query", {
 
   expect_message(
     obj <- geo_lite_sf(c("Madrid", "Barcelona"), limit = 51),
-    "50 results"
+    "at most 50"
   )
 
   expect_s3_class(obj, "sf")

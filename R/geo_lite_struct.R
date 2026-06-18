@@ -1,19 +1,23 @@
 #' Address search API (structured query)
 #'
 #' @description
-#' Geocodes addresses already split into components and returns the
-#' [`tibble`][tibble::tibble] associated with the query. See
-#' [geo_lite_struct_sf()] for retrieving the data as an [`sf`][sf::st_sf]
-#' object.
+#' Searches for addresses already split into components and returns matching
+#' results as a [tibble][dplyr::tibble]. Use [geo_lite_struct_sf()] to return
+#' an [`sf`][sf::st_sf] object instead.
 #'
-#' Corresponds to the **structured query** search described in the
+#' This function performs the **structured address search** described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
 #' perform a free-form search, use [geo_lite()].
 #'
-#' @family geocoding
-#' @encoding UTF-8
+#' @details
+#' A structured address search accepts an address already split into components.
+#' Each argument represents an address field. All components are optional, so
+#' provide only those relevant to the address you want to find.
 #'
-#' @param amenity Name and/or type of POI. See also [geo_amenity()].
+#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
+#' parameters to be passed to `custom_query`.
+#'
+#' @param amenity Name or type of amenity. See [geo_amenity()].
 #' @param street House number and street name.
 #' @param city City.
 #' @param county County.
@@ -23,18 +27,10 @@
 #' @inheritParams geo_lite
 #' @inherit geo_lite return
 #'
-#' @details
-#' The structured form of the search query allows you to look up an address that
-#' is already split into its components. Each parameter represents a field of
-#' the address. All parameters are optional. You should only use the ones that
-#' are relevant for the address you want to geocode.
+#' @inherit geo_lite seealso
 #'
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
-#'
-#' @seealso
-#' [tidygeocoder::geo()].
-#'
+#' @family geocoding
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
@@ -97,7 +93,7 @@ geo_lite_struct <- function(
   json <- api_call(url, ".json", isFALSE(verbose))
 
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -108,7 +104,7 @@ geo_lite_struct <- function(
 
   # Handle empty queries.
   if (nrow(result) == 0) {
-    message("No results for query.")
+    message("No results found for the query.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }

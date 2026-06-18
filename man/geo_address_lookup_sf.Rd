@@ -17,40 +17,39 @@ geo_address_lookup_sf(
 )
 }
 \arguments{
-\item{osm_ids}{Vector of OSM identifiers as numeric values, for example
-\code{c(00000, 11111, 22222)}.}
+\item{osm_ids}{A numeric vector of OSM identifiers, for example
+\code{c(12345, 67890)}.}
 
 \item{type}{Character vector of the OSM object type associated with each
 \code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
 relation (\code{"R"}). If a single value is provided, it will be recycled.}
 
-\item{full_results}{Return all available data from the Nominatim API.
-If \code{FALSE} (default), only address columns are returned. See also
-\code{return_addresses}.}
+\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
+API. If \code{FALSE}, return only query metadata, geometry and requested address
+columns.}
 
-\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
+results.}
 
-\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
 
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{Named list with API-specific parameters, for example
+\item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only point
-geometries (\code{TRUE}, which is the default) or potentially other shapes as
-returned by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
+\item{points_only}{If \code{TRUE}, return only point geometries. If \code{FALSE}, the
+API may return other geometry types. See \strong{About geometry types}.}
 }
 \value{
 An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
-The lookup API queries the address and other details of one or more
-OSM objects, such as nodes, ways or relations, and returns the
-\code{\link[sf:st_sf]{sf}} object associated with the query using \CRANpkg{sf}. See
-\code{\link[=geo_address_lookup]{geo_address_lookup()}} for retrieving the data in \code{\link[tibble:tibble]{tibble}}
-format.
+Looks up addresses and other details for one or more OpenStreetMap (OSM)
+objects, such as nodes, ways or relations. Results are returned as an
+\code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Use \code{\link[=geo_address_lookup]{geo_address_lookup()}} to
+return a \link[dplyr:tibble]{tibble} instead.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
@@ -59,16 +58,15 @@ parameters to be passed to \code{custom_query}.
 \section{About geometry types}{
 
 
-The parameter \code{points_only} specifies whether the function results will be
-points (all Nominatim results are guaranteed to have at least point
-geometry) or other geometry types.
+The \code{points_only} argument controls whether results contain points only. All
+Nominatim results have at least a point geometry.
 
-Note that when \code{points_only = FALSE}, the type of geometry returned depends
-on the object being geocoded. Administrative areas, major buildings and the
-like will be returned as polygons, rivers, roads and similar features will
-be returned as lines, and amenities may still be returned as points.
+When \code{points_only = FALSE}, the geometry type depends on the matching
+feature. Administrative areas and major buildings are returned as polygons,
+rivers and roads are returned as lines and amenities may still be returned
+as points.
 
-This function is vectorized, allowing multiple addresses to be geocoded.
+This function is vectorized, allowing multiple addresses to be searched.
 With \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
@@ -108,7 +106,7 @@ several
 Address lookup functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}}
 
-Geocoding functions:
+Address search functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},

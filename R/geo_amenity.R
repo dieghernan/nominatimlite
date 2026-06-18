@@ -1,31 +1,12 @@
-#' Geocode amenities
+#' Look up amenities
 #'
 #' @description
-#' Searches [amenities][osm_amenities] as defined by OpenStreetMap in a
-#' restricted area defined by a bounding box in the form
-#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
-#' [`tibble`][tibble::tibble] associated with the query. See
-#' [geo_amenity_sf()] for retrieving the data as an [`sf`][sf::st_sf] object.
-#'
-#' @family amenity
-#' @family geocoding
-#' @encoding UTF-8
-#'
-#' @param bbox The bounding box (viewbox) used to limit the search. It can be
-#'   a numeric vector of **longitude** (`x`) and **latitude** (`y`) in the form
-#'   `(xmin, ymin, xmax, ymax)`, or a [`sf`][sf::st_sf] or
-#'   [`sfc`][sf::st_sfc] object. See **Details**.
-#' @param amenity `character` value or vector with the amenities to geocode,
-#'   for example `c("pub", "restaurant")`. See [osm_amenities].
-#' @param strict Logical `TRUE/FALSE`. Force the results to be included inside
-#'   the `bbox`. Nominatim's default behavior may return results
-#'   located outside the provided bounding box.
-#' @inheritParams geo_lite_struct
-#' @inheritParams geo_lite
-#' @inherit geo_lite return
+#' Looks up OpenStreetMap [amenities][osm_amenities] within a bounding box of
+#' the form `(xmin, ymin, xmax, ymax)`. Results are returned as a
+#' [tibble][dplyr::tibble]. Use [geo_amenity_sf()] to return an
+#' [`sf`][sf::st_sf] object instead.
 #'
 #' @details
-#'
 #' Bounding boxes can be located using online tools such as
 #' <https://boundingbox.klokantech.com/>.
 #'
@@ -35,6 +16,20 @@
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
+#' @param bbox Bounding box (viewbox) used to limit the search. It can be
+#'   a numeric vector of **longitude** (`x`) and **latitude** (`y`) in the form
+#'   `(xmin, ymin, xmax, ymax)`, or a [`sf`][sf::st_sf] or
+#'   [`sfc`][sf::st_sfc] object. See **Details**.
+#' @param amenity A character vector of amenities to look up,
+#'   for example `c("pub", "restaurant")`. See [osm_amenities].
+#' @param strict If `TRUE`, keep only results inside `bbox`. By default,
+#'   Nominatim may return results outside the bounding box.
+#' @inheritParams geo_lite
+#' @inherit geo_lite return
+#'
+#' @family amenity
+#' @family geocoding
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
@@ -50,7 +45,7 @@
 #'   amenity = "restaurant"
 #' )
 #'
-#' # Several amenities
+#' # Multiple amenities
 #' geo_amenity(
 #'   bbox = bbox,
 #'   amenity = c("restaurant", "pub")

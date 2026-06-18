@@ -1,27 +1,30 @@
 #' Reverse geocoding API with \CRANpkg{sf} output
 #'
 #' @description
-#' Generates an address from latitude and longitude (latitudes in
-#' \eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-#' and returns the [`sf`][sf::st_sf] object associated with the query using
-#' \CRANpkg{sf}. See [reverse_geo_lite()] for retrieving the data in
-#' [`tibble`][tibble::tibble] format.
+#' Finds addresses from latitude and longitude coordinates and returns the
+#' matching results as an [`sf`][sf::st_sf] object using \CRANpkg{sf}. Latitude
+#' values must be in \eqn{\left[-90, 90 \right]} and longitude values in
+#' \eqn{\left[-180, 180 \right]}. Use [reverse_geo_lite()] to return a
+#' [tibble][dplyr::tibble] instead.
 #'
-#' @family reverse
-#' @family spatial
-#' @encoding UTF-8
-#'
-#' @inheritParams reverse_geo_lite
-#' @inheritParams geo_lite_sf
-#' @inherit geo_lite_sf return
-#'
-#' @details
-#' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
-#' parameters to be passed to `custom_query`.
+#' @inherit reverse_geo_lite details
 #'
 #' @inheritSection reverse_geo_lite About zooming
 #' @inheritSection geo_lite_sf About geometry types
 #'
+#' @param full_results If `TRUE`, return all available fields from the Nominatim
+#'   API. If `FALSE`, return only query metadata, geometry and requested address
+#'   columns.
+#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
+#'   API may return other geometry types. See **About geometry types**.
+#' @inheritParams reverse_geo_lite
+#' @inherit geo_lite_sf return
+#'
+#' @inherit reverse_geo_lite seealso
+#'
+#' @family reverse
+#' @family spatial
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
@@ -32,10 +35,10 @@
 #' col_lon <- 12.49309
 #' col_lat <- 41.89026
 #'
-#' # Colosseum as polygon
+#' # Colosseum as a polygon
 #' col_sf <- reverse_geo_lite_sf(
 #'   lat = col_lat,
-#'   lon = col_lon,
+#'   long = col_lon,
 #'   points_only = FALSE
 #' )
 #'
@@ -50,7 +53,7 @@
 #'
 #' rome_sf <- reverse_geo_lite_sf(
 #'   lat = col_lat,
-#'   lon = col_lon,
+#'   long = col_lon,
 #'   custom_query = list(zoom = 10),
 #'   points_only = FALSE
 #' )
@@ -146,7 +149,7 @@ reverse_geo_lite_sf_single <- function(
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }
@@ -154,7 +157,13 @@ reverse_geo_lite_sf_single <- function(
   # Handle empty queries.
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
   if ("error" %in% names(result_init)) {
-    message("No results for query lat=", lat_cap, ", lon=", long_cap, ".")
+    message(
+      "No results found for query: lat = ",
+      lat_cap,
+      ", long = ",
+      long_cap,
+      "."
+    )
     out <- empty_sf(empty_tbl_rev(tbl_query, address))
     return(invisible(out))
   }

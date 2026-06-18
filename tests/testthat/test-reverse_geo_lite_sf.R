@@ -3,14 +3,8 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_error(
-    reverse_geo_lite_sf(0, c(2, 3)),
-    "`lat` and `long` must have the same number"
-  )
-  expect_error(
-    reverse_geo_lite_sf("a", "a"),
-    "`lat` and `long` must be numeric"
-  )
+  expect_snapshot(error = TRUE, reverse_geo_lite_sf(0, c(2, 3)))
+  expect_snapshot(error = TRUE, reverse_geo_lite_sf("a", "a"))
 })
 
 test_that("Messages", {
@@ -18,7 +12,7 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_message(obj <- reverse_geo_lite_sf(0, 200))
+  expect_snapshot(obj <- reverse_geo_lite_sf(0, 200))
   expect_true(nrow(obj) == 1)
   expect_true(obj$lon == 180)
   expect_true(is.na(obj$address))
@@ -27,7 +21,7 @@ test_that("Messages", {
   expect_true(sf::st_is_empty(obj))
   expect_identical(sf::st_crs(obj), sf::st_crs(4326))
 
-  expect_message(obj <- reverse_geo_lite_sf(200, 200))
+  expect_snapshot(obj <- reverse_geo_lite_sf(200, 200))
   expect_true(nrow(obj) == 1)
   expect_true(obj$lat == 90)
   expect_true(is.na(obj$address))
@@ -42,9 +36,8 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- reverse_geo_lite_sf(89.999999, 179.9999),
-    "No results for query lat"
+  expect_snapshot(
+    obj <- reverse_geo_lite_sf(89.999999, 179.9999)
   )
 
   expect_true(nrow(obj) == 1)
@@ -55,13 +48,12 @@ test_that("Returning empty query", {
   expect_named(obj, c("address", "lat", "lon", "geometry"))
   expect_true(is.na(obj$address))
 
-  expect_message(
+  expect_snapshot(
     obj_renamed <- reverse_geo_lite_sf(
       89.999999,
       179.9999,
       address = "adddata"
-    ),
-    "No results for"
+    )
   )
 
   expect_named(obj_renamed, c("adddata", "lat", "lon", "geometry"))
@@ -93,7 +85,7 @@ test_that("Data format", {
       points_only = FALSE,
       custom_query = list(zoom = 5)
     ),
-    "No results for query lat"
+    "No results"
   )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))

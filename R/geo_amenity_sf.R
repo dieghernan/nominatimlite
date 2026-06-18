@@ -1,33 +1,27 @@
-#' Geocode amenities with \CRANpkg{sf} output
+#' Look up amenities with \CRANpkg{sf} output
 #'
 #' @description
-#' Searches [amenities][osm_amenities] as defined by OpenStreetMap in a
-#' restricted area defined by a bounding box in the form
-#' `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the [`sf`][sf::st_sf]
-#' object associated with the query using \CRANpkg{sf}. See [geo_amenity()] for
-#' retrieving the data in [`tibble`][tibble::tibble] format.
+#' Looks up OpenStreetMap [amenities][osm_amenities] within a bounding box of
+#' the form `(xmin, ymin, xmax, ymax)`. Results are returned as an
+#' [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use [geo_amenity()] to return a
+#' [tibble][dplyr::tibble] instead.
+#'
+#' @inherit geo_amenity details
+#'
+#' @inheritSection geo_lite_sf About geometry types
+#'
+#' @param full_results If `TRUE`, return all available fields from the Nominatim
+#'   API. If `FALSE`, return only query metadata, geometry and requested address
+#'   columns.
+#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
+#'   API may return other geometry types. See **About geometry types**.
+#' @inheritParams geo_amenity
+#' @inherit geo_lite_sf return
 #'
 #' @family amenity
 #' @family geocoding
 #' @family spatial
 #' @encoding UTF-8
-#'
-#' @inheritParams geo_amenity
-#' @inheritParams geo_lite_sf
-#' @inherit geo_lite_sf return
-#'
-#' @details
-#' Bounding boxes can be located using online tools such as
-#' <https://boundingbox.klokantech.com/>.
-#'
-#' For a full list of valid amenities, see
-#' <https://wiki.openstreetmap.org/wiki/Key:amenity> and [osm_amenities].
-#'
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
-#'
-#' @inheritSection geo_lite_sf About geometry types
-#'
 #' @export
 #'
 #' @examplesIf nominatim_check_access()

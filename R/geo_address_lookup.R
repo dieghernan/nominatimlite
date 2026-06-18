@@ -1,18 +1,17 @@
 #' Address lookup API
 #'
 #' @description
-#' The lookup API queries the address and other details of one or more
-#' OSM objects, such as nodes, ways or relations, and returns the
-#' [`tibble`][tibble::tibble] associated with the query. See
-#' [geo_address_lookup_sf()] for retrieving the data as an [`sf`][sf::st_sf]
-#' object.
+#' Looks up addresses and other details for one or more OpenStreetMap (OSM)
+#' objects, such as nodes, ways or relations. Results are returned as a
+#' [tibble][dplyr::tibble]. Use [geo_address_lookup_sf()] to return an
+#' [`sf`][sf::st_sf] object instead.
 #'
-#' @family lookup
-#' @family geocoding
-#' @encoding UTF-8
+#' @details
+#' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
+#' parameters to be passed to `custom_query`.
 #'
-#' @param osm_ids Vector of OSM identifiers as numeric values, for example
-#'   `c(00000, 11111, 22222)`.
+#' @param osm_ids A numeric vector of OSM identifiers, for example
+#'   `c(12345, 67890)`.
 #' @param type Character vector of the OSM object type associated with each
 #'   `osm_ids` value. Possible values are node (`"N"`), way (`"W"`) or
 #'   relation (`"R"`). If a single value is provided, it will be recycled.
@@ -20,10 +19,9 @@
 #' @inheritParams geo_lite
 #' @inherit geo_lite return
 #'
-#' @details
-#' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
-#' parameters to be passed to `custom_query`.
-#'
+#' @family lookup
+#' @family geocoding
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
@@ -67,7 +65,7 @@ geo_address_lookup <- function(
 
   # Handle missing responses.
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -77,14 +75,14 @@ geo_address_lookup <- function(
 
   # Handle empty queries.
   if (nrow(result) == 0) {
-    message("No results for query ", nodes, ".")
+    message("No results found for query: ", nodes, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
   result <- convert_coordinate_cols(result, lat, long)
 
-  # Re-create `tbl_query` with normalized OSM IDs.
+  # Recreate `tbl_query` with normalized OSM IDs.
   tbl_query <- dplyr::tibble(query = paste0(type, osm_ids), osm_id = osm_ids)
 
   # Keep only matched results.
@@ -92,7 +90,7 @@ geo_address_lookup <- function(
 
   # Warn about lost rows.
   if (all(nrow(result_clean) < nrow(tbl_query), verbose)) {
-    warning("Some OSM IDs did not return results. Check the output.")
+    warning("Some OSM IDs returned no results. Check the output.")
   }
 
   # Keep selected columns.

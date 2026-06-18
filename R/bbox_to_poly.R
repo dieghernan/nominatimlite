@@ -1,29 +1,29 @@
-#' Coerce a bounding box to a [`sfc`][sf::st_sfc] `POLYGON` object
+#' Convert a bounding box to an [`sfc`][sf::st_sfc] `POLYGON` object
 #'
 #' @description
-#' Create a [`sfc`][sf::st_sfc] object from the coordinates of a bounding box.
-#'
-#' @family spatial
-#' @encoding UTF-8
-#'
-#' @param bbox Numeric vector of 4 elements representing the coordinates of the
-#'   bounding box. Values should be `c(xmin, ymin, xmax, ymax)`.
-#' @param xmin,ymin,xmax,ymax Alternatively, you can use these named parameters
-#'   instead of `bbox`.
-#'
-#' @inheritParams sf::st_sf
+#' Converts bounding box coordinates to an [`sfc`][sf::st_sfc] `POLYGON`
+#' object.
 #'
 #' @details
 #' Bounding boxes can be located using online tools such as
 #' <https://boundingbox.klokantech.com/>.
 #'
-#' @return
+#' @param bbox A numeric vector of four bounding box coordinates in the form
+#'   `c(xmin, ymin, xmax, ymax)`.
+#' @param xmin,ymin,xmax,ymax Individual bounding box coordinates. Use these
+#'   arguments as an alternative to `bbox`.
+#'
+#' @inheritParams sf::st_sf crs
+#'
+#' @returns
 #' A [`sfc`][sf::st_sfc] object of class `POLYGON` with the corresponding
-#' coordinate reference system `crs`.
+#' coordinate reference system specified by `crs`.
 #'
 #' @seealso
 #' [sf::st_as_sfc()] and [sf::st_sfc()].
 #'
+#' @family spatial
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
@@ -38,7 +38,7 @@
 #' ggplot(bbox_GER_sf) +
 #'   geom_sf()
 #' \donttest{
-#' # Extract the bounding box of an sf object
+#' # Extract the bounding box of an `sf` object
 #' sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 #'
 #' sfobj
@@ -66,7 +66,7 @@ bbox_to_poly <- function(
 ) {
   if (!anyNA(bbox) && length(bbox) != 4) {
     stop(
-      "`bbox` must have 4 elements. The provided value has ",
+      "`bbox` must contain exactly four elements, but the provided value has ",
       length(bbox),
       "."
     )
@@ -78,8 +78,8 @@ bbox_to_poly <- function(
 
     if (anyNA(bbox)) {
       stop(
-        "`xmin`, `ymin`, `xmax` and `ymax` cannot be NA when `bbox` is ",
-        "not provided."
+        "Provide `bbox` or non-missing values for `xmin`, `ymin`, `xmax` ",
+        "and `ymax`."
       )
     }
   }

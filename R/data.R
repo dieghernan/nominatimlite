@@ -1,19 +1,12 @@
-#' OpenStreetMap amenity database
+#' OpenStreetMap amenities
 #'
 #' @description
-#' Database with the list of amenities available on OpenStreetMap.
-#'
-#' @family datasets
-#' @family amenity
-#' @encoding UTF-8
-#'
-#' @name osm_amenities
-#' @docType data
+#' A dataset of amenities available on OpenStreetMap.
 #'
 #' @format
-#' A [`tibble`][tibble::tibble] with
+#' A [tibble][dplyr::tibble] with
 #' `r prettyNum(nrow(nominatimlite::osm_amenities), big.mark = ",")` rows and
-#' fields:
+#' three columns:
 #' \describe{
 #'   \item{category}{The category of the amenity.}
 #'   \item{amenity}{The value of the amenity.}
@@ -22,7 +15,13 @@
 #'
 #' @source <https://wiki.openstreetmap.org/wiki/Key:amenity>
 #'
-#' @note Data extracted on **03 April 2024**.
+#' @note Data extracted on **April 3, 2024**.
+#'
+#' @family datasets
+#' @family amenity
+#' @encoding UTF-8
+#' @docType data
+#' @name osm_amenities
 #'
 #' @examples
 #'

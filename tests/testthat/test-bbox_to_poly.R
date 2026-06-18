@@ -1,10 +1,7 @@
 test_that("Errors", {
-  expect_error(bbox_to_poly())
-  expect_error(bbox_to_poly(1), "`bbox` must have 4 elements")
-  expect_error(
-    bbox_to_poly(xmin = 1),
-    "`xmin`, `ymin`, `xmax` and `ymax` cannot be NA"
-  )
+  expect_snapshot(error = TRUE, bbox_to_poly())
+  expect_snapshot(error = TRUE, bbox_to_poly(1))
+  expect_snapshot(error = TRUE, bbox_to_poly(xmin = 1))
 })
 
 

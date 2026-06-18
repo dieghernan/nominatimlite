@@ -1,55 +1,52 @@
 #' Address search API (free-form query)
 #'
 #' @description
-#' Geocodes addresses given as character values and returns the
-#' [`tibble`][tibble::tibble] associated with the query. See [geo_lite_sf()] for
-#' retrieving the data as an [`sf`][sf::st_sf] object.
+#' Searches for addresses supplied as a character vector and returns matching
+#' results as a [tibble][dplyr::tibble]. Use [geo_lite_sf()] to return an
+#' [`sf`][sf::st_sf] object instead.
 #'
-#' Corresponds to the **free-form query** search described in the
+#' This function performs the **free-form address search** described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
-#'
-#' @family geocoding
-#' @encoding UTF-8
-#'
-#' @param address `character` with a single-line address, for example
-#'   `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
-#'   (`c("Madrid", "Barcelona")`).
-#' @param lat Latitude column name in the output data (default `"lat"`).
-#' @param long Longitude column name in the output data (default `"long"`).
-#' @param limit Maximum number of results to return per input address. Note
-#'   that each query returns a maximum of 50 results.
-#' @param full_results Return all available data from the Nominatim API.
-#'   If `FALSE` (default), only latitude, longitude and address columns are
-#'   returned. See also `return_addresses`.
-#' @param return_addresses Return input addresses with results if `TRUE`.
-#' @param verbose If `TRUE`, detailed logs are output to the console.
-#' @param nominatim_server URL of the Nominatim server to use. Defaults to
-#'   `"https://nominatim.openstreetmap.org/"`.
-#' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
-#'   the progress of the function.
-#' @param custom_query Named list with API-specific parameters, for example
-#'   `list(countrycodes = "US")`. See **Details**.
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
 #' parameters to be passed to `custom_query`.
 #'
-#' @return
-#' A [`tibble`][tibble::tibble] with the results that match the query.
+#' @param address A character vector of single-line addresses, for example
+#'   `"1600 Pennsylvania Ave NW, Washington"` or
+#'   `c("Madrid", "Barcelona")`.
+#' @param lat Name of the latitude column in the output. Defaults to `"lat"`.
+#' @param long Name of the longitude column in the output. Defaults to `"lon"`.
+#' @param limit Maximum number of results to return per query. Nominatim returns
+#'   at most 50 results per query.
+#' @param full_results If `TRUE`, return all available fields from the Nominatim
+#'   API. If `FALSE`, return only query metadata, location data and requested
+#'   address columns.
+#' @param return_addresses If `TRUE`, include single-line addresses in the
+#'   results.
+#' @param verbose If `TRUE`, display detailed messages in the console.
+#' @param nominatim_server Base URL of the Nominatim server. Defaults to
+#'   `"https://nominatim.openstreetmap.org/"`.
+#' @param progressbar If `TRUE`, display a progress bar when processing multiple
+#'   queries.
+#' @param custom_query A named list of additional API parameters, for example
+#'   `list(countrycodes = "US")`. See **Details**.
 #'
-#' @seealso
-#' [tidygeocoder::geo()].
+#' @returns
+#' A [`tibble`][dplyr::tibble] with the results that match the query.
 #'
+#' @family geocoding
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
 #' geo_lite("Madrid, Spain")
 #'
-#' # Several addresses
+#' # Multiple addresses
 #' geo_lite(c("Madrid", "Barcelona"))
 #'
-#' # With options: restrict search to the United States
+#' # Restrict the search to the United States and return all fields
 #' geo_lite(c("Madrid", "Barcelona"),
 #'   custom_query = list(countrycodes = "US"),
 #'   full_results = TRUE
@@ -126,7 +123,7 @@ geo_lite_single <- function(
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -137,7 +134,7 @@ geo_lite_single <- function(
 
   # Handle empty queries.
   if (nrow(result) == 0) {
-    message("No results for query ", address, ".")
+    message("No results found for query: ", address, ".")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }

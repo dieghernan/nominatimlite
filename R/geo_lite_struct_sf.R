@@ -1,39 +1,36 @@
 #' Address search API with \CRANpkg{sf} output (structured query)
 #'
 #' @description
-#' Geocodes addresses already split into components and returns the
-#' corresponding [`sf`][sf::st_sf] object. The query output is returned as an
-#' \CRANpkg{sf} format. See [geo_lite_struct()] for retrieving the data in
-#' [`tibble`][tibble::tibble] format.
+#' Searches for addresses already split into components and returns matching
+#' results as an [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use
+#' [geo_lite_struct()] to return a [tibble][dplyr::tibble] instead.
 #'
-#' Corresponds to the **structured query** search described in the
+#' This function performs the **structured address search** described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
 #' perform a free-form search, use [geo_lite_sf()].
+#'
+#' @inherit geo_lite_struct details
+#'
+#' @inheritSection geo_lite_sf About geometry types
+#'
+#' @param full_results If `TRUE`, return all available fields from the Nominatim
+#'   API. If `FALSE`, return only query metadata, geometry and requested address
+#'   columns.
+#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
+#'   API may return other geometry types. See **About geometry types**.
+#' @inheritParams geo_lite_struct
+#' @inherit geo_lite_sf return
+#'
+#' @inherit geo_lite seealso
 #'
 #' @family geocoding
 #' @family spatial
 #' @encoding UTF-8
-#'
-#' @inheritParams geo_lite_struct
-#' @inheritParams geo_lite_sf
-#' @inherit geo_lite_sf return
-#'
-#' @details
-#' The structured form of the search query allows you to look up an address that
-#' is already split into its components. Each parameter represents a field of
-#' the address. All parameters are optional. You should only use the ones that
-#' are relevant for the address you want to geocode.
-#'
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
-#'
-#' @inheritSection geo_lite_sf About geometry types
-#'
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Map
+#' # Structured address search
 #'
 #' pl_mayor <- geo_lite_struct_sf(
 #'   street = "Plaza Mayor",
@@ -42,7 +39,7 @@
 #'   full_results = TRUE, verbose = TRUE
 #' )
 #'
-#' # Outline
+#' # Administrative boundary
 #' ccaa <- geo_lite_sf("Comunidad de Madrid, Spain", points_only = FALSE)
 #'
 #' library(ggplot2)
@@ -104,7 +101,7 @@ geo_lite_struct_sf <- function(
   json <- api_call(url, ".geojson", isFALSE(verbose))
 
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -114,7 +111,7 @@ geo_lite_struct_sf <- function(
 
   # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results for query.")
+    message("No results found for the query.")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }

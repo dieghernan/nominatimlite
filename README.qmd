@@ -41,31 +41,32 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-The goal of **nominatimlite** is to provide a lightweight interface for
-geocoding addresses with the [Nominatim
-API](https://nominatim.org/release-docs/latest/). It also allows you to return
-results as `sf` objects using the **sf** package.
+**nominatimlite** provides a lightweight interface to the [Nominatim
+API](https://nominatim.org/release-docs/latest/). It supports free-form and
+structured address searches, reverse geocoding, amenity lookup and address
+lookup by OpenStreetMap object identifier. Results are returned as tibbles or
+`sf` objects.
 
 The full site with examples and vignettes is available at
-<https://dieghernan.github.io/nominatimlite/>
+<https://dieghernan.github.io/nominatimlite/>.
 
 ## What is Nominatim?
 
-**Nominatim** is a tool for searching
-[OpenStreetMap](https://www.openstreetmap.org/) data by name and address
+**Nominatim** searches [OpenStreetMap](https://www.openstreetmap.org/) data by
+name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and
-generating synthetic addresses for OSM points (reverse geocoding).
+finds addresses from geographic coordinates (reverse geocoding).
 
 ## Why nominatimlite?
 
-**nominatimlite** accesses the Nominatim API without depending on **curl**. In
-some situations, **curl** may not be available or accessible, so
-**nominatimlite** uses base R functions instead.
+**nominatimlite** accesses the Nominatim API without requiring the **curl**
+package. This makes the package useful in environments where **curl** is not
+available. API requests use base R functions instead.
 
 ## Recommended packages
 
-Other packages are more complete and mature than **nominatimlite** and provide
-similar features:
+Related packages provide broader interfaces to geocoding services and
+OpenStreetMap data:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   [@R-tidygeocoder]: Provides an interface to geocoding services such as
@@ -120,11 +121,11 @@ install.packages(
 
 ### `sf` objects
 
-With **nominatimlite** you can return `sf` objects:
+Use functions with the `_sf` suffix to return matching results as `sf` objects:
 
 ```{r}
 #| label: pizzahut
-#| fig-cap: Pizza Hut restaurant locations in California extracted with nominatimlite.
+#| fig-cap: Pizza Hut locations in California returned by nominatimlite.
 library(nominatimlite)
 
 # Search for Pizza Hut locations in California.
@@ -144,12 +145,12 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-You can also return polygon and line objects when the Nominatim API provides
-them, using the option `points_only = FALSE`:
+Set `points_only = FALSE` to return polygon and line geometries when they are
+available from the Nominatim API:
 
 ```{r}
 #| label: statue_liberty
-#| fig-cap: Location of the Statue of Liberty extracted with nominatimlite.
+#| fig-cap: Statue of Liberty geometry returned by nominatimlite.
 # A building, returned as a polygon.
 sol_poly <- geo_lite_sf("Statue of Liberty, NY, USA", points_only = FALSE)
 
@@ -159,7 +160,7 @@ ggplot(sol_poly) +
 
 ```{r}
 #| label: line-object
-#| fig-cap: Different features named Ohio extracted with nominatimlite.
+#| fig-cap: Different features named Ohio returned by nominatimlite.
 # Default, returned as a point.
 dayton <- geo_lite_sf("Dayton, OH")
 # A US state, returned as a polygon.
@@ -173,18 +174,16 @@ ggplot() +
   geom_sf(data = ohio_river, color = "blue")
 ```
 
-### Geocoding and reverse geocoding
+### Address search and reverse geocoding
 
-*Note: examples are adapted from the **tidygeocoder** package.*
+*The examples in this section are adapted from the **tidygeocoder** package.*
 
-In this first example, we geocode a few addresses with `geo_lite()`:
+Use `geo_lite()` to perform a free-form address search:
 
 ```{r}
 #| label: example
-library(tibble)
-
 # Create a data frame with addresses.
-some_addresses <- tribble(
+some_addresses <- dplyr::tribble(
   ~name, ~addr,
   "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
@@ -200,22 +199,21 @@ lat_longs <- geo_lite(
 )
 ```
 
-This example returns only latitude, longitude and address columns from the
-Nominatim API. Use `full_results = TRUE` to return all available data from the
+By default, `geo_lite()` returns the query, latitude, longitude and address
+columns. Set `full_results = TRUE` to return all available fields from the
 Nominatim API.
 
 ```{r}
 #| echo: false
 #| results: asis
 knitr::kable(lat_longs)
-cat("<p class=\"caption\">Table 1: Example: geocoding addresses.</p>")
+cat("<p class=\"caption\">Table 1: Geocoded addresses.</p>")
 ```
 
-To perform reverse geocoding, use `reverse_geo_lite()` to obtain addresses from
-geographic coordinates. The arguments are similar to `geo_lite()`, but now we
-provide coordinate values with the `lat` and `long` arguments. The dataset used
-here is from the geocoding query above. The single-line address is returned in a
-column named with the `address` argument.
+Use `reverse_geo_lite()` to find addresses from latitude and longitude
+coordinates. The `lat` and `long` arguments use the results from the address
+search above. The `address` argument specifies the name of the output column
+that contains each single-line address.
 
 ```{r}
 reverse <- reverse_geo_lite(
@@ -230,12 +228,12 @@ reverse <- reverse_geo_lite(
 #| echo: false
 #| results: asis
 knitr::kable(reverse)
-cat("<p class=\"caption\">Table 2: Example: reverse geocoding addresses.</p>")
+cat("<p class=\"caption\">Table 2: Reverse-geocoded addresses.</p>")
 ```
 
-For more advanced users, see the [Nominatim
-documentation](https://nominatim.org/release-docs/latest/api/Search/) for the
-available parameters.
+See the [Nominatim search API
+documentation](https://nominatim.org/release-docs/latest/api/Search/) for
+additional parameters that can be passed through `custom_query`.
 
 ## Citation
 
@@ -245,7 +243,7 @@ available parameters.
 print(citation("nominatimlite"), style = "html")
 ```
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is shown below.
 
 ```{r}
 #| echo: false

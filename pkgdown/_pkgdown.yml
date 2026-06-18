@@ -17,11 +17,12 @@ repo:
   branch: main
 
 home:
-  title: nominatimlite | Interface to the OpenStreetMap Nominatim API
+  title: nominatimlite | Interface to the Nominatim API
   description: |
-    Lightweight interface to the OpenStreetMap Nominatim API for geocoding,
-    reverse geocoding, amenity lookup and address lookup. Results can be
-    returned as data frames (tibbles) or sf objects.
+    Provides a lightweight interface to the Nominatim API for free-form and
+    structured address searches, searches for addresses from coordinates,
+    amenity lookup and address lookup by OpenStreetMap object identifier.
+    Results are returned as tibbles or `sf` objects.
 
 authors:
   Diego Hernangómez:
@@ -33,39 +34,40 @@ authors:
     html: >
       <img src='https://wiki.openstreetmap.org/w/images/6/6f/Made_with.svg'
       width='150' alt='OpenStreetMap' style='margin-bottom: 3px;'>
- 
+
 reference:
-- title: Geocoding
+- title: Address search
   desc: >
-    Search addresses and structured queries to return coordinates.
+    Perform free-form and structured address searches to find coordinates and
+    place information.
 - contents:
   - starts_with("geo_lite")
 
 - title: Reverse geocoding
   desc: >
-    Reverse geocode coordinates to return addresses and place information.
+    Find addresses and place information from latitude and longitude coordinates.
 - contents:
   - has_concept("reverse")
 
-- title: Lookup tools
-- subtitle: Amenity lookup
+- title: Amenity lookup
   desc: >
-    Search OpenStreetMap amenities within a bounding box.
+    Search for OpenStreetMap amenities within a bounding box.
 - contents:
   - has_concept("amenity")
 
-- subtitle: Address lookup
+- title: Address lookup
   desc: >
-    Retrieve address details for OSM node, way and relation identifiers.
+    Retrieve address details for OpenStreetMap node, way and relation
+    identifiers.
 - contents:
   - has_concept("lookup")
 
-- title: Spatial outputs
+- title: Spatial helpers
   desc: >
-    Return API results as `sf` objects and convert bounding boxes to `sf`
-    geometries.
+    Convert bounding boxes to `sf` geometries. Functions that return `sf`
+    objects are listed with their corresponding API operations above.
 - contents:
-  - has_concept("spatial")
+  - bbox_to_poly
 
 - title: Datasets
   desc: >
@@ -74,22 +76,23 @@ reference:
   - has_concept("datasets")
 
 - title: Package documentation
+  desc: >
+    Package overview and metadata.
 - contents:
   - nominatimlite-package
 
 articles:
 - title: Get started
   desc: >
-    Introduction to nominatimlite. Learn how to geocode addresses,
-    reverse geocode coordinates and work with Nominatim search results.
+    Learn how to search for addresses, perform reverse geocoding and work with
+    Nominatim API results.
   contents:
   - nominatimlite
 
-- title: Maps and visualization
-  navbar: Visualizations
+- title: Interactive maps
+  navbar: Maps
   desc: >
-    Display geocoding results on interactive maps with leaflet and
-    integrate Nominatim data into spatial workflows.
+    Display Nominatim API results with leaflet and use the data in interactive
+    spatial workflows.
   contents:
   - articles/leaflet
- 

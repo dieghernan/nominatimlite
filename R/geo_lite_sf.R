@@ -1,52 +1,49 @@
 #' Address search API with \CRANpkg{sf} output (free-form query)
 #'
 #' @description
-#' Geocodes addresses and returns the corresponding [`sf`][sf::st_sf] object.
-#' The query output is returned as an \CRANpkg{sf} object. See [geo_lite()] for
-#' retrieving the data in [`tibble`][tibble::tibble] format.
+#' Searches for addresses and returns matching results as an
+#' [`sf`][sf::st_sf] object using \CRANpkg{sf}. Use [geo_lite()] to return a
+#' [tibble][dplyr::tibble] instead.
 #'
-#' Corresponds to the **free-form query** search described in the
+#' This function performs the **free-form address search** described in the
 #' [API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
+#'
+#' @inherit geo_lite details
+#'
+#' @section About geometry types:
+#'
+#' The `points_only` argument controls whether results contain points only. All
+#' Nominatim results have at least a point geometry.
+#'
+#' When `points_only = FALSE`, the geometry type depends on the matching
+#' feature. Administrative areas and major buildings are returned as polygons,
+#' rivers and roads are returned as lines and amenities may still be returned
+#' as points.
+#'
+#' This function is vectorized, allowing multiple addresses to be searched.
+#' With `points_only = FALSE`, multiple geometry types may be returned.
+#'
+#' @param full_results If `TRUE`, return all available fields from the Nominatim
+#'   API. If `FALSE`, return only query metadata, geometry and requested address
+#'   columns.
+#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
+#'   API may return other geometry types. See **About geometry types**.
+#'
+#' @inheritParams geo_lite
+#'
+#' @returns
+#' An [`sf`][sf::st_sf] object with the results that match the query.
+#'
+#' @inherit geo_lite seealso
 #'
 #' @family geocoding
 #' @family spatial
 #' @encoding UTF-8
-#'
-#' @param full_results Return all available data from the Nominatim API.
-#'   If `FALSE` (default), only address columns are returned. See also
-#'   `return_addresses`.
-#' @param points_only Logical `TRUE/FALSE`. Whether to return only point
-#'   geometries (`TRUE`, which is the default) or potentially other shapes as
-#'   returned by the Nominatim API (`FALSE`). See **About geometry types**.
-#'
-#' @inheritParams geo_lite
-#'
-#' @details
-#' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
-#'
-#' @section About geometry types:
-#'
-#' The parameter `points_only` specifies whether the function results will be
-#' points (all Nominatim results are guaranteed to have at least point
-#' geometry) or other geometry types.
-#'
-#' Note that when `points_only = FALSE`, the type of geometry returned depends
-#' on the object being geocoded. Administrative areas, major buildings and the
-#' like will be returned as polygons, rivers, roads and similar features will
-#' be returned as lines, and amenities may still be returned as points.
-#'
-#' This function is vectorized, allowing multiple addresses to be geocoded.
-#' With `points_only = FALSE`, multiple geometry types may be returned.
-#'
-#' @return
-#' An [`sf`][sf::st_sf] object with the results that match the query.
-#'
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Map: points
+#' # Point geometries
 #' library(ggplot2)
 #'
 #' string <- "Statue of Liberty, NY, USA"
@@ -64,7 +61,7 @@
 #'     geom_sf() +
 #'     geom_sf(data = sol, color = "red")
 #' }
-#' # Several results
+#' # Multiple matches
 #'
 #' madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
 #'   limit = 2,
@@ -159,7 +156,7 @@ geo_lite_sf_single <- function(
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(json)) {
-    message("API endpoint is not reachable: ", url, ".")
+    message("Cannot reach the API endpoint: ", url, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }
@@ -169,7 +166,7 @@ geo_lite_sf_single <- function(
 
   # Handle empty queries.
   if (length(names(sfobj)) == 1) {
-    message("No results for query ", address, ".")
+    message("No results found for query: ", address, ".")
     out <- empty_sf(tbl_query)
     return(invisible(out))
   }

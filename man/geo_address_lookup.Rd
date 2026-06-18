@@ -18,40 +18,40 @@ geo_address_lookup(
 )
 }
 \arguments{
-\item{osm_ids}{Vector of OSM identifiers as numeric values, for example
-\code{c(00000, 11111, 22222)}.}
+\item{osm_ids}{A numeric vector of OSM identifiers, for example
+\code{c(12345, 67890)}.}
 
 \item{type}{Character vector of the OSM object type associated with each
 \code{osm_ids} value. Possible values are node (\code{"N"}), way (\code{"W"}) or
 relation (\code{"R"}). If a single value is provided, it will be recycled.}
 
-\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
+\item{lat}{Name of the latitude column in the output. Defaults to \code{"lat"}.}
 
-\item{long}{Longitude column name in the output data (default \code{"long"}).}
+\item{long}{Name of the longitude column in the output. Defaults to \code{"lon"}.}
 
-\item{full_results}{Return all available data from the Nominatim API.
-If \code{FALSE} (default), only latitude, longitude and address columns are
-returned. See also \code{return_addresses}.}
+\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
+API. If \code{FALSE}, return only query metadata, location data and requested
+address columns.}
 
-\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
+results.}
 
-\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
 
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{custom_query}{Named list with API-specific parameters, for example
+\item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
+A \code{\link[dplyr:tibble]{tibble}} with the results that match the query.
 }
 \description{
-The lookup API queries the address and other details of one or more
-OSM objects, such as nodes, ways or relations, and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query. See
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} for retrieving the data as an \code{\link[sf:st_sf]{sf}}
-object.
+Looks up addresses and other details for one or more OpenStreetMap (OSM)
+objects, such as nodes, ways or relations. Results are returned as a
+\link[dplyr:tibble]{tibble}. Use \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}} to return an
+\code{\link[sf:st_sf]{sf}} object instead.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
@@ -73,7 +73,7 @@ several
 Address lookup functions:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 
-Geocoding functions:
+Address search functions:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},

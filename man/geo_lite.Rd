@@ -19,43 +19,44 @@ geo_lite(
 )
 }
 \arguments{
-\item{address}{\code{character} with a single-line address, for example
-\code{"1600 Pennsylvania Ave NW, Washington"}, or a vector of addresses
-(\code{c("Madrid", "Barcelona")}).}
+\item{address}{A character vector of single-line addresses, for example
+\code{"1600 Pennsylvania Ave NW, Washington"} or
+\code{c("Madrid", "Barcelona")}.}
 
-\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
+\item{lat}{Name of the latitude column in the output. Defaults to \code{"lat"}.}
 
-\item{long}{Longitude column name in the output data (default \code{"long"}).}
+\item{long}{Name of the longitude column in the output. Defaults to \code{"lon"}.}
 
-\item{limit}{Maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.}
+\item{limit}{Maximum number of results to return per query. Nominatim returns
+at most 50 results per query.}
 
-\item{full_results}{Return all available data from the Nominatim API.
-If \code{FALSE} (default), only latitude, longitude and address columns are
-returned. See also \code{return_addresses}.}
+\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
+API. If \code{FALSE}, return only query metadata, location data and requested
+address columns.}
 
-\item{return_addresses}{Return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
+results.}
 
-\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
 
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
-the progress of the function.}
+\item{progressbar}{If \code{TRUE}, display a progress bar when processing multiple
+queries.}
 
-\item{custom_query}{Named list with API-specific parameters, for example
+\item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the results that match the query.
+A \code{\link[dplyr:tibble]{tibble}} with the results that match the query.
 }
 \description{
-Geocodes addresses given as character values and returns the
-\code{\link[tibble:tibble]{tibble}} associated with the query. See \code{\link[=geo_lite_sf]{geo_lite_sf()}} for
-retrieving the data as an \code{\link[sf:st_sf]{sf}} object.
+Searches for addresses supplied as a character vector and returns matching
+results as a \link[dplyr:tibble]{tibble}. Use \code{\link[=geo_lite_sf]{geo_lite_sf()}} to return an
+\code{\link[sf:st_sf]{sf}} object instead.
 
-Corresponds to the \strong{free-form query} search described in the
+This function performs the \strong{free-form address search} described in the
 \href{https://nominatim.org/release-docs/latest/api/Search/}{API endpoint}.
 }
 \details{
@@ -67,10 +68,10 @@ parameters to be passed to \code{custom_query}.
 \donttest{
 geo_lite("Madrid, Spain")
 
-# Several addresses
+# Multiple addresses
 geo_lite(c("Madrid", "Barcelona"))
 
-# With options: restrict search to the United States
+# Restrict the search to the United States and return all fields
 geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE
@@ -79,9 +80,7 @@ geo_lite(c("Madrid", "Barcelona"),
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}.
-
-Geocoding functions:
+Address search functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}},
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
 \code{\link[=geo_amenity]{geo_amenity()}},

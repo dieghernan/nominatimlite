@@ -3,21 +3,21 @@
 \encoding{UTF-8}
 \name{nominatim_check_access}
 \alias{nominatim_check_access}
-\title{Check access to Nominatim API}
+\title{Check access to the Nominatim API}
 \usage{
 nominatim_check_access(
   nominatim_server = "https://nominatim.openstreetmap.org/"
 )
 }
 \arguments{
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 }
 \value{
-A logical \code{TRUE/FALSE}.
+A single logical value: \code{TRUE} if the API is available and \code{FALSE} otherwise.
 }
 \description{
-Check if \R has access to resources at
+Checks whether \R can access the Nominatim API at
 \url{https://nominatim.openstreetmap.org}.
 }
 \examples{

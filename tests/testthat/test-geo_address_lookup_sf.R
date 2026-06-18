@@ -2,10 +2,7 @@ test_that("Returning Empty", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- geo_address_lookup_sf(34633854, "N"),
-    "No results for query"
-  )
+  expect_snapshot(obj <- geo_address_lookup_sf(34633854, "N"))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "N34633854")
@@ -93,9 +90,8 @@ test_that("Handle several", {
   vector_ids <- c(146, 240109189)
   vector_type <- c("J", "N")
 
-  expect_warning(
-    several <- geo_address_lookup_sf(vector_ids, vector_type, verbose = TRUE),
-    "Some OSM IDs did not return results. Check the output."
+  expect_snapshot(
+    several <- geo_address_lookup_sf(vector_ids, vector_type, verbose = TRUE)
   )
   expect_equal(nrow(several), 1)
   expect_identical(names(several)[1], "query")
@@ -128,7 +124,7 @@ test_that("Fail", {
   # KO
   vector_ids <- c(343921, 240109189)
   vector_type <- c("R", "N")
-  expect_message(
+  expect_snapshot(
     several <- geo_address_lookup_sf(
       vector_ids,
       vector_type,

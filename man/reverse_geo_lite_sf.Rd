@@ -19,44 +19,44 @@ reverse_geo_lite_sf(
 )
 }
 \arguments{
-\item{lat}{Latitude values in numeric format. Must be in the range
+\item{lat}{Numeric latitude values in the range
 \eqn{\left[-90, 90 \right]}.}
 
-\item{long}{Longitude values in numeric format. Must be in the range
+\item{long}{Numeric longitude values in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{address}{Address column name in the output data (default \code{"address"}).}
+\item{address}{Name of the address column in the output. Defaults to
+\code{"address"}.}
 
-\item{full_results}{Return all available data from the Nominatim API.
-If \code{FALSE} (default), only latitude, longitude and address columns are
-returned. See also \code{return_addresses}.}
+\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
+API. If \code{FALSE}, return only query metadata, geometry and requested address
+columns.}
 
 \item{return_coords}{Return input coordinates with results if \code{TRUE}.}
 
-\item{verbose}{If \code{TRUE}, detailed logs are output to the console.}
+\item{verbose}{If \code{TRUE}, display detailed messages in the console.}
 
-\item{nominatim_server}{URL of the Nominatim server to use. Defaults to
+\item{nominatim_server}{Base URL of the Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
-the progress of the function.}
+\item{progressbar}{If \code{TRUE}, display a progress bar when processing multiple
+queries.}
 
-\item{custom_query}{Named list with API-specific parameters, for example
+\item{custom_query}{A named list of API-specific parameters, for example
 \code{list(zoom = 3)}. See \strong{Details}.}
 
-\item{points_only}{Logical \code{TRUE/FALSE}. Whether to return only point
-geometries (\code{TRUE}, which is the default) or potentially other shapes as
-returned by the Nominatim API (\code{FALSE}). See \strong{About geometry types}.}
+\item{points_only}{If \code{TRUE}, return only point geometries. If \code{FALSE}, the
+API may return other geometry types. See \strong{About geometry types}.}
 }
 \value{
 An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
-Generates an address from latitude and longitude (latitudes in
-\eqn{\left[-90, 90 \right]} and longitudes in \eqn{\left[-180, 180 \right]}),
-and returns the \code{\link[sf:st_sf]{sf}} object associated with the query using
-\CRANpkg{sf}. See \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} for retrieving the data in
-\code{\link[tibble:tibble]{tibble}} format.
+Finds addresses from latitude and longitude coordinates and returns the
+matching results as an \code{\link[sf:st_sf]{sf}} object using \CRANpkg{sf}. Latitude
+values must be in \eqn{\left[-90, 90 \right]} and longitude values in
+\eqn{\left[-180, 180 \right]}. Use \code{\link[=reverse_geo_lite]{reverse_geo_lite()}} to return a
+\link[dplyr:tibble]{tibble} instead.
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Reverse/} for additional
@@ -65,8 +65,8 @@ parameters to be passed to \code{custom_query}.
 \section{About zooming}{
 
 
-Use the option \code{custom_query = list(zoom = 3)} to adjust the output. Some
-zoom levels correspond to these address details:\tabular{ll}{
+Set \code{custom_query = list(zoom = 3)} to adjust the output. Selected zoom
+levels correspond to these address details:\tabular{ll}{
    \strong{zoom} \tab \strong{address_detail} \cr
    \code{3} \tab country \cr
    \code{5} \tab state \cr
@@ -82,16 +82,15 @@ zoom levels correspond to these address details:\tabular{ll}{
 \section{About geometry types}{
 
 
-The parameter \code{points_only} specifies whether the function results will be
-points (all Nominatim results are guaranteed to have at least point
-geometry) or other geometry types.
+The \code{points_only} argument controls whether results contain points only. All
+Nominatim results have at least a point geometry.
 
-Note that when \code{points_only = FALSE}, the type of geometry returned depends
-on the object being geocoded. Administrative areas, major buildings and the
-like will be returned as polygons, rivers, roads and similar features will
-be returned as lines, and amenities may still be returned as points.
+When \code{points_only = FALSE}, the geometry type depends on the matching
+feature. Administrative areas and major buildings are returned as polygons,
+rivers and roads are returned as lines and amenities may still be returned
+as points.
 
-This function is vectorized, allowing multiple addresses to be geocoded.
+This function is vectorized, allowing multiple addresses to be searched.
 With \code{points_only = FALSE}, multiple geometry types may be returned.
 }
 
@@ -104,10 +103,10 @@ library(ggplot2)
 col_lon <- 12.49309
 col_lat <- 41.89026
 
-# Colosseum as polygon
+# Colosseum as a polygon
 col_sf <- reverse_geo_lite_sf(
   lat = col_lat,
-  lon = col_lon,
+  long = col_lon,
   points_only = FALSE
 )
 
@@ -122,7 +121,7 @@ if (!all(sf::st_is_empty(col_sf))) {
 
 rome_sf <- reverse_geo_lite_sf(
   lat = col_lat,
-  lon = col_lon,
+  long = col_lon,
   custom_query = list(zoom = 10),
   points_only = FALSE
 )

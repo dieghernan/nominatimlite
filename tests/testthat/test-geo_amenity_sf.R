@@ -29,7 +29,7 @@ test_that("Checking query", {
       c("pub", "restaurant"),
       limit = 51
     ),
-    "50 results"
+    "at most 50"
   )
 
   expect_named(obj, c("query", "address", "geometry"))

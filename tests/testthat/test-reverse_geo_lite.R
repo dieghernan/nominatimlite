@@ -3,11 +3,8 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_error(
-    reverse_geo_lite(0, c(2, 3)),
-    "`lat` and `long` must have the same number"
-  )
-  expect_error(reverse_geo_lite("a", "a"), "`lat` and `long` must be numeric")
+  expect_snapshot(error = TRUE, reverse_geo_lite(0, c(2, 3)))
+  expect_snapshot(error = TRUE, reverse_geo_lite("a", "a"))
 })
 
 test_that("Messages", {
@@ -15,11 +12,11 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_message(out <- reverse_geo_lite(0, 200))
+  expect_snapshot(out <- reverse_geo_lite(0, 200))
   chk <- dplyr::tibble(lat = 0, lon = 180)
   expect_identical(out[, c("lat", "lon")], chk)
 
-  expect_message(out <- reverse_geo_lite(200, 0))
+  expect_snapshot(out <- reverse_geo_lite(200, 0))
   chk <- dplyr::tibble(lat = 90, lon = 0)
   expect_identical(out[, c("lat", "lon")], chk)
 })
@@ -29,9 +26,8 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- reverse_geo_lite(89.999999, 179.9999),
-    "No results for query lat"
+  expect_snapshot(
+    obj <- reverse_geo_lite(89.999999, 179.9999)
   )
 
   expect_true(nrow(obj) == 1)
@@ -45,9 +41,8 @@ test_that("Returning empty query", {
   ))
   expect_true(is.na(obj$address))
 
-  expect_message(
-    obj_renamed <- reverse_geo_lite(89.999999, 179.9999, address = "adddata"),
-    "No results for"
+  expect_snapshot(
+    obj_renamed <- reverse_geo_lite(89.999999, 179.9999, address = "adddata")
   )
 
   expect_named(obj_renamed, c("adddata", "lat", "lon"))

@@ -11,10 +11,12 @@ Authors@R: c(
     person("OpenStreetMap", role = "cph",
            comment = "For the data")
   )
-Description: Lightweight interface to the 'OpenStreetMap' 'Nominatim' API
-    <https://nominatim.org/release-docs/latest/>. Extract coordinates from
-    addresses, retrieve addresses from coordinates, look up amenities and
-    addresses, and return results as 'tibble' or 'sf' objects.
+Description: Provides a lightweight interface to the 'Nominatim' API
+    <https://nominatim.org/release-docs/latest/>. It supports free-form
+    and structured address searches, searches for addresses from
+    coordinates, amenity lookup and address lookup by 'OpenStreetMap'
+    object identifier. It returns results as 'tibble' data frames or 'sf'
+    objects.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/nominatimlite/,
     https://github.com/dieghernan/nominatimlite
@@ -28,17 +30,14 @@ Imports:
     tools,
     utils
 Suggests:
-    arcgeocoder,
-    ggplot2 (>= 3.0.0),
+    ggplot2,
     knitr,
     quarto,
-    testthat (>= 3.0.0),
-    tibble (>= 3.0.0),
-    tidygeocoder
+    testthat (>= 3.0.0)
 VignetteBuilder:
     quarto
 Config/Needs/website: dieghernan/gitdevr, pak, tidyverse, leaflet,
-    reactable, crosstalk, tidyr, htmltools
+    reactable, crosstalk, tidyr, htmltools, arcgeocoder, tidygeocoder
 Config/roxygen2/markdown: TRUE
 Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
@@ -48,6 +47,7 @@ Copyright: Data © OpenStreetMap contributors, ODbL 1.0.
 Encoding: UTF-8
 LazyData: true
 X-schema.org-applicationCategory: cartography
-X-schema.org-keywords: r, geocoding, openstreetmap, address, nominatim,
-    reverse-geocoding, rstats, shapefile, r-package, spatial, cran,
-    api-wrapper, api, gis, geocoder, reverse-geocoder
+X-schema.org-keywords: r, openstreetmap, address, coordinates, nominatim,
+    reverse-search, rstats, r-package, cran, api-wrapper, api, geocoder,
+    geocoding, gis, reverse-geocoder, reverse-geocoding, shapefile,
+    spatial

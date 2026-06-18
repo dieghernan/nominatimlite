@@ -2,7 +2,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(obj <- geo_address_lookup(34633854, "N"), "No results")
+  expect_snapshot(obj <- geo_address_lookup(34633854, "N"))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "N34633854")
@@ -15,14 +15,13 @@ test_that("Returning empty query", {
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
-  expect_message(
+  expect_snapshot(
     obj_renamed <- geo_address_lookup(
       34633854,
       "N",
       lat = "lata",
       long = "longa"
-    ),
-    "No results"
+    )
   )
 
   expect_named(obj_renamed, c("query", "lata", "longa"))
@@ -125,9 +124,8 @@ test_that("Handle several", {
   vector_ids <- c(146, 240109189)
   vector_type <- c("J", "N")
 
-  expect_warning(
-    several <- geo_address_lookup(vector_ids, vector_type, verbose = TRUE),
-    "Some OSM IDs did not return results. Check the output."
+  expect_snapshot(
+    several <- geo_address_lookup(vector_ids, vector_type, verbose = TRUE)
   )
 
   expect_equal(nrow(several), 1)
@@ -144,7 +142,7 @@ test_that("Fail", {
   # KO
   vector_ids <- c(343921, 240109189)
   vector_type <- c("R", "N")
-  expect_message(
+  expect_snapshot(
     several <- geo_address_lookup(
       vector_ids,
       vector_type,

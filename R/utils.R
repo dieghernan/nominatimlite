@@ -5,8 +5,8 @@ cap_limit <- function(limit) {
   }
 
   message(paste0(
-    "Nominatim returns at most 50 results. ",
-    "`limit` has been set to 50."
+    "Nominatim returns at most 50 results per query. ",
+    "Setting `limit` to 50."
   ))
   min(50, limit)
 }
@@ -33,17 +33,19 @@ cap_coordinates <- function(lat, long) {
   }
 
   if (length(lat) != length(long)) {
-    stop("`lat` and `long` must have the same number of elements.")
+    stop("`lat` and `long` must have the same length.")
   }
 
   lat_cap <- pmax(pmin(lat, 90), -90)
   if (!identical(lat_cap, lat)) {
-    message("Latitude values have been restricted to the range [-90, 90].")
+    message("Latitude values outside [-90, 90] were restricted to that range.")
   }
 
   long_cap <- pmax(pmin(long, 180), -180)
   if (!all(long_cap == long)) {
-    message("Longitude values have been restricted to the range [-180, 180].")
+    message(
+      "Longitude values outside [-180, 180] were restricted to that range."
+    )
   }
 
   list(lat = lat_cap, long = long_cap)
@@ -380,7 +382,7 @@ unnest_reverse <- function(x) {
 
   lngths <- lengths(x)
 
-  # Remove null fields.
+  # Remove `NULL` fields.
   x <- x[lngths > 0]
 
   endobj <- dplyr::as_tibble(x[lngths == 1])
@@ -423,7 +425,7 @@ sf_to_tbl <- function(x) {
     class(x) <- template
   }
 
-  # Reorder columns, because geometry stays last even when not selected.
+  # Reorder columns because geometry remains last even when not selected.
   x <- x[, setdiff(names(x), "geometry")]
 
   result_out <- sf::st_make_valid(x)
@@ -476,7 +478,7 @@ unnest_sf <- function(x) {
 }
 
 unnest_sf_reverse <- function(x) {
-  # Remove null fields.
+  # Remove `NULL` fields.
   nulls_or_nas <- vapply(
     x,
     function(a_col) {
