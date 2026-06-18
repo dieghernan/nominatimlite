@@ -24,6 +24,10 @@
 nominatim_check_access <- function(
   nominatim_server = "https://nominatim.openstreetmap.org/"
 ) {
+  if (on_cran()) {
+    return(FALSE)
+  }
+
   # Build the API address.
   url <- prepare_api_url(nominatim_server, "status?format=json")
 
@@ -120,4 +124,17 @@ cached_filename <- function(url, ext = ".json") {
   # Return the final filename.
   fname <- file.path(tmpnomin, paste0(hash, ext))
   fname
+}
+
+#' Check whether the current session is running on CRAN
+#'
+#' @return A logical.
+#' @noRd
+on_cran <- function() {
+  env <- Sys.getenv("NOT_CRAN")
+  if (identical(env, "")) {
+    !interactive()
+  } else {
+    !isTRUE(as.logical(env))
+  }
 }

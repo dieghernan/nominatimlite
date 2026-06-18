@@ -5,6 +5,7 @@ dir.v: vignettes
 dir.t: tests
 extra.suggests:
   - ggplot2
+  - curl
 pkg_ignore:
   - tidyverse
   - leaflet
