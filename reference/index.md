@@ -1,8 +1,9 @@
 # Package index
 
-## Geocoding
+## Address search
 
-Search addresses and structured queries to return coordinates.
+Perform free-form and structured address searches to find coordinates
+and place information.
 
 - [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
   : Address search API (free-form query)
@@ -24,7 +25,8 @@ Search addresses and structured queries to return coordinates.
 
 ## Reverse geocoding
 
-Reverse geocode coordinates to return addresses and place information.
+Find addresses and place information from latitude and longitude
+coordinates.
 
 - [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
   : Reverse geocoding API
@@ -35,27 +37,26 @@ Reverse geocode coordinates to return addresses and place information.
   Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
   output
 
-## Lookup tools
+## Amenity lookup
 
-### Amenity lookup
-
-Search OpenStreetMap amenities within a bounding box.
+Search for OpenStreetMap amenities within a bounding box.
 
 - [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
-  : Geocode amenities
+  : Look up amenities
 
 - [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
   :
 
-  Geocode amenities with [sf](https://CRAN.R-project.org/package=sf)
+  Look up amenities with [sf](https://CRAN.R-project.org/package=sf)
   output
 
 - [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-  : OpenStreetMap amenity database
+  : OpenStreetMap amenities
 
-### Address lookup
+## Address lookup
 
-Retrieve address details for OSM node, way and relation identifiers.
+Retrieve address details for OpenStreetMap node, way and relation
+identifiers.
 
 - [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
   : Address lookup API
@@ -66,56 +67,28 @@ Retrieve address details for OSM node, way and relation identifiers.
   Address lookup API with [sf](https://CRAN.R-project.org/package=sf)
   output
 
-## Spatial outputs
+## Spatial helpers
 
-Return API results as `sf` objects and convert bounding boxes to `sf`
-geometries.
+Convert bounding boxes to `sf` geometries. Functions that return `sf`
+objects are listed with their corresponding API operations above.
 
 - [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md)
   :
 
-  Coerce a bounding box to a
+  Convert a bounding box to an
   [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON`
   object
-
-- [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
-  :
-
-  Address lookup API with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-- [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
-  :
-
-  Geocode amenities with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-- [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md)
-  :
-
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (free-form query)
-
-- [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
-  :
-
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (structured query)
-
-- [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
-  :
-
-  Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
-  output
 
 ## Datasets
 
 Data shipped with the package.
 
 - [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-  : OpenStreetMap amenity database
+  : OpenStreetMap amenities
 
 ## Package documentation
+
+Package overview and metadata.
 
 - [`nominatimlite`](https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.md)
   [`nominatimlite-package`](https://dieghernan.github.io/nominatimlite/reference/nominatimlite-package.md)

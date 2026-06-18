@@ -1,14 +1,14 @@
 # Address search API (free-form query)
 
-Geocodes addresses given as character values and returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query. See
+Searches for addresses supplied as a character vector and returns
+matching results as a
+[tibble](https://tibble.tidyverse.org/reference/tibble.html). Use
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md)
-for retrieving the data as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
+to return an [`sf`](https://r-spatial.github.io/sf/reference/sf.html)
+object instead.
 
-Corresponds to the **free-form query** search described in the [API
-endpoint](https://nominatim.org/release-docs/latest/api/Search/).
+This function performs the **free-form address search** described in the
+[API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 
 ## Usage
 
@@ -31,50 +31,49 @@ geo_lite(
 
 - address:
 
-  `character` with a single-line address, for example
-  `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
-  (`c("Madrid", "Barcelona")`).
+  A character vector of single-line addresses, for example
+  `"1600 Pennsylvania Ave NW, Washington"` or
+  `c("Madrid", "Barcelona")`.
 
 - lat:
 
-  Latitude column name in the output data (default `"lat"`).
+  Name of the latitude column in the output. Defaults to `"lat"`.
 
 - long:
 
-  Longitude column name in the output data (default `"long"`).
+  Name of the longitude column in the output. Defaults to `"lon"`.
 
 - limit:
 
-  Maximum number of results to return per input address. Note that each
-  query returns a maximum of 50 results.
+  Maximum number of results to return per query. Nominatim returns at
+  most 50 results per query.
 
 - full_results:
 
-  Return all available data from the Nominatim API. If `FALSE`
-  (default), only latitude, longitude and address columns are returned.
-  See also `return_addresses`.
+  If `TRUE`, return all available fields from the Nominatim API. If
+  `FALSE`, return only query metadata, location data and requested
+  address columns.
 
 - return_addresses:
 
-  Return input addresses with results if `TRUE`.
+  If `TRUE`, include single-line addresses in the results.
 
 - verbose:
 
-  If `TRUE`, detailed logs are output to the console.
+  If `TRUE`, display detailed messages in the console.
 
 - nominatim_server:
 
-  URL of the Nominatim server to use. Defaults to
+  Base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  Logical. If `TRUE` displays a progress bar to indicate the progress of
-  the function.
+  If `TRUE`, display a progress bar when processing multiple queries.
 
 - custom_query:
 
-  Named list with API-specific parameters, for example
+  A named list of additional API parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 ## Value
@@ -89,9 +88,7 @@ additional parameters to be passed to `custom_query`.
 
 ## See also
 
-[`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html).
-
-Geocoding functions:
+Address search functions:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
@@ -110,7 +107,7 @@ geo_lite("Madrid, Spain")
 #>   <chr>         <dbl> <dbl> <chr>                              
 #> 1 Madrid, Spain  40.4 -3.70 Madrid, Comunidad de Madrid, España
 
-# Several addresses
+# Multiple addresses
 geo_lite(c("Madrid", "Barcelona"))
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 #> # A tibble: 2 × 4
@@ -119,7 +116,7 @@ geo_lite(c("Madrid", "Barcelona"))
 #> 1 Madrid     40.4 -3.70 Madrid, Comunidad de Madrid, España                
 #> 2 Barcelona  41.4  2.18 Barcelona, Barcelonès, Barcelona, Catalunya, España
 
-# With options: restrict search to the United States
+# Restrict the search to the United States and return all fields
 geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE
@@ -128,12 +125,12 @@ geo_lite(c("Madrid", "Barcelona"),
 #> # A tibble: 2 × 24
 #>   query       lat   lon address  place_id licence osm_type osm_id category type 
 #>   <chr>     <dbl> <dbl> <chr>       <int> <chr>   <chr>     <int> <chr>    <chr>
-#> 1 Madrid     41.9 -93.8 Madrid,…   3.73e8 Data ©… relation 1.29e5 boundary admi…
-#> 2 Barcelona  42.3 -79.6 Barcelo…   3.50e8 Data ©… node     1.58e8 place    haml…
+#> 1 Madrid     41.9 -93.8 Madrid,…   3.74e8 Data ©… relation 1.29e5 boundary admi…
+#> 2 Barcelona  42.3 -79.6 Barcelo…   3.51e8 Data ©… node     1.58e8 place    haml…
 #> # ℹ 14 more variables: place_rank <int>, importance <dbl>, addresstype <chr>,
 #> #   name <chr>, display_name <chr>, address.town <chr>, address.county <chr>,
-#> #   address.state <chr>, `address.ISO3166-2-lvl4` <chr>,
-#> #   address.postcode <chr>, address.country <chr>, address.country_code <chr>,
-#> #   boundingbox <list>, address.hamlet <chr>
+#> #   address.state <chr>, `address.ISO3166-2-lvl4` <chr>, address.country <chr>,
+#> #   address.country_code <chr>, boundingbox <list>, address.hamlet <chr>,
+#> #   address.postcode <chr>
 # }
 ```

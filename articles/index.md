@@ -2,20 +2,20 @@
 
 ### Get started
 
-Introduction to nominatimlite. Learn how to geocode addresses, reverse
-geocode coordinates and work with Nominatim search results.
+Learn how to search for addresses, perform reverse geocoding and work
+with Nominatim API results.
 
 - [Get started with
   nominatimlite](https://dieghernan.github.io/nominatimlite/articles/nominatimlite.md):
 
-  Quick examples showing what **nominatimlite** can do for you.
+  Search for addresses and work with Nominatim API results.
 
-### Maps and visualization
+### Interactive maps
 
-Display geocoding results on interactive maps with leaflet and integrate
-Nominatim data into spatial workflows.
+Display Nominatim API results with leaflet and use the data in
+interactive spatial workflows.
 
-- [nominatimlite and leaflet
-  maps](https://dieghernan.github.io/nominatimlite/articles/leaflet.md):
+- [Interactive maps with nominatimlite and
+  leaflet](https://dieghernan.github.io/nominatimlite/articles/leaflet.md):
 
-  Combine nominatimlite with leaflet maps.
+  Display Nominatim API results on interactive maps.

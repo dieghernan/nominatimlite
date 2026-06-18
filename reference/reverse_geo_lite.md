@@ -1,13 +1,13 @@
 # Reverse geocoding API
 
-Generates an address from latitude and longitude (latitudes in
-\\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180, 180
-\right\]\\), and returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query. See
+Finds addresses from latitude and longitude coordinates and returns the
+matching results as a
+[tibble](https://tibble.tidyverse.org/reference/tibble.html). Latitudes
+must be in \\\left\[-90, 90 \right\]\\ and longitudes in \\\left\[-180,
+180 \right\]\\. Use
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
-for retrieving the data as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
+to return an [`sf`](https://r-spatial.github.io/sf/reference/sf.html)
+object instead.
 
 ## Usage
 
@@ -29,23 +29,21 @@ reverse_geo_lite(
 
 - lat:
 
-  Latitude values in numeric format. Must be in the range \\\left\[-90,
-  90 \right\]\\.
+  Numeric latitude values in the range \\\left\[-90, 90 \right\]\\.
 
 - long:
 
-  Longitude values in numeric format. Must be in the range
-  \\\left\[-180, 180 \right\]\\.
+  Numeric longitude values in the range \\\left\[-180, 180 \right\]\\.
 
 - address:
 
-  Address column name in the output data (default `"address"`).
+  Name of the address column in the output. Defaults to `"address"`.
 
 - full_results:
 
-  Return all available data from the Nominatim API. If `FALSE`
-  (default), only latitude, longitude and address columns are returned.
-  See also `return_addresses`.
+  If `TRUE`, return all available fields from the Nominatim API. If
+  `FALSE`, return only query metadata, location data and requested
+  address columns.
 
 - return_coords:
 
@@ -53,21 +51,20 @@ reverse_geo_lite(
 
 - verbose:
 
-  If `TRUE`, detailed logs are output to the console.
+  If `TRUE`, display detailed messages in the console.
 
 - nominatim_server:
 
-  URL of the Nominatim server to use. Defaults to
+  Base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  Logical. If `TRUE` displays a progress bar to indicate the progress of
-  the function.
+  If `TRUE`, display a progress bar when processing multiple queries.
 
 - custom_query:
 
-  Named list with API-specific parameters, for example `list(zoom = 3)`.
+  A named list of API-specific parameters, for example `list(zoom = 3)`.
   See **Details**.
 
 ## Value
@@ -82,8 +79,8 @@ additional parameters to be passed to `custom_query`.
 
 ## About zooming
 
-Use the option `custom_query = list(zoom = 3)` to adjust the output.
-Some zoom levels correspond to these address details:
+Set `custom_query = list(zoom = 3)` to adjust the output. Selected zoom
+levels correspond to these address details:
 
 |          |                         |
 |----------|-------------------------|
@@ -99,8 +96,6 @@ Some zoom levels correspond to these address details:
 
 ## See also
 
-[`tidygeocoder::reverse_geo()`](https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html).
-
 Reverse geocoding functions:
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
 
@@ -115,7 +110,7 @@ reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #>   <chr>                                                              <dbl> <dbl>
 #> 1 West 44th Street, Times Square, Manhattan Community Board 5, Manh…  40.8 -74.0
 
-# Several coordinates
+# Multiple coordinate pairs
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 #> # A tibble: 2 × 3
@@ -124,7 +119,7 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #> 1 West 44th Street, Times Square, Manhattan Community Board 5, Man…  40.8 -74.0 
 #> 2 East End, Waterloo Place, Waterloo Place, Greenside, Broughton, …  56.0  -3.19
 
-# With options: zoom to country level
+# Set the zoom to country level
 sev <- reverse_geo_lite(
   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
   custom_query = list(zoom = 0, extratags = TRUE),
@@ -138,7 +133,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52172514, 276157440
+#> $ place_id                                 <int> 52489199, 274782588
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

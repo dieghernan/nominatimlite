@@ -1,13 +1,14 @@
-# nominatimlite and leaflet maps
+# Interactive maps with nominatimlite and leaflet
 
-## Example
+## Build the map
 
-The following example shows how to create an interactive [leaflet
-map](https://rstudio.github.io/leaflet/) with data retrieved using
-**nominatimlite**.
+This example displays Nominatim API results on an interactive [leaflet
+map](https://rstudio.github.io/leaflet/). It searches for cafes and
+restaurants near the Eiffel Tower with
+[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md).
 
-The widget can be browsed and filtered with **crosstalk** and
-**reactable**:
+The **crosstalk** and **reactable** packages link the map to a
+filterable table.
 
 ``` r
 
@@ -44,7 +45,7 @@ cf_bk <- geo_amenity_sf(
   custom_query = list(extratags = TRUE),
   progressbar = FALSE
 ) |>
-  # Build addresses with street, house number, suburb and postcode.
+  # Build addresses with street, house number, suburb and postal code.
   unite(
     "addr",
     address.road,
@@ -155,7 +156,7 @@ tb <- reactable(
 )
 ```
 
-## Widget
+## Explore the results
 
 ``` r
 
@@ -168,8 +169,8 @@ htmltools::browsable(
 ## Attributions
 
 - [Eiffel Tower icons created by Freepik on
-  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
+  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons").
 - [Mug icons created by Freepik on
-  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
+  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons").
 - [Food icons created by Freepik on
-  Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons")
+  Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons").

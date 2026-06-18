@@ -1,11 +1,11 @@
-# OpenStreetMap amenity database
+# OpenStreetMap amenities
 
-Database with the list of amenities available on OpenStreetMap.
+A dataset of amenities available on OpenStreetMap.
 
 ## Format
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-136 rows and fields:
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with 136
+rows and three columns:
 
 - category:
 
@@ -25,7 +25,7 @@ A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
 
 ## Note
 
-Data extracted on **03 April 2024**.
+Data extracted on **April 3, 2024**.
 
 ## See also
 

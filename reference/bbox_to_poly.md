@@ -1,7 +1,8 @@
-# Coerce a bounding box to a [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON` object
+# Convert a bounding box to an [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON` object
 
-Create a [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html)
-object from the coordinates of a bounding box.
+Converts bounding box coordinates to an
+[`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON`
+object.
 
 ## Usage
 
@@ -13,12 +14,13 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 
 - bbox:
 
-  Numeric vector of 4 elements representing the coordinates of the
-  bounding box. Values should be `c(xmin, ymin, xmax, ymax)`.
+  A numeric vector of four bounding box coordinates in the form
+  `c(xmin, ymin, xmax, ymax)`.
 
 - xmin, ymin, xmax, ymax:
 
-  Alternatively, you can use these named parameters instead of `bbox`.
+  Individual bounding box coordinates. Use these arguments as an
+  alternative to `bbox`.
 
 - crs:
 
@@ -29,7 +31,7 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 
 A [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object of
 class `POLYGON` with the corresponding coordinate reference system
-`crs`.
+specified by `crs`.
 
 ## Details
 
@@ -63,7 +65,7 @@ ggplot(bbox_GER_sf) +
   geom_sf()
 
 # \donttest{
-# Extract the bounding box of an sf object
+# Extract the bounding box of an `sf` object
 sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj

@@ -1,15 +1,14 @@
 # Address search API with [sf](https://CRAN.R-project.org/package=sf) output (free-form query)
 
-Geocodes addresses and returns the corresponding
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object. The
-query output is returned as an
-[sf](https://CRAN.R-project.org/package=sf) object. See
+Searches for addresses and returns matching results as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object using
+[sf](https://CRAN.R-project.org/package=sf). Use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
-for retrieving the data in
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
+to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
+instead.
 
-Corresponds to the **free-form query** search described in the [API
-endpoint](https://nominatim.org/release-docs/latest/api/Search/).
+This function performs the **free-form address search** described in the
+[API endpoint](https://nominatim.org/release-docs/latest/api/Search/).
 
 ## Usage
 
@@ -31,49 +30,47 @@ geo_lite_sf(
 
 - address:
 
-  `character` with a single-line address, for example
-  `"1600 Pennsylvania Ave NW, Washington"`, or a vector of addresses
-  (`c("Madrid", "Barcelona")`).
+  A character vector of single-line addresses, for example
+  `"1600 Pennsylvania Ave NW, Washington"` or
+  `c("Madrid", "Barcelona")`.
 
 - limit:
 
-  Maximum number of results to return per input address. Note that each
-  query returns a maximum of 50 results.
+  Maximum number of results to return per query. Nominatim returns at
+  most 50 results per query.
 
 - return_addresses:
 
-  Return input addresses with results if `TRUE`.
+  If `TRUE`, include single-line addresses in the results.
 
 - full_results:
 
-  Return all available data from the Nominatim API. If `FALSE`
-  (default), only address columns are returned. See also
-  `return_addresses`.
+  If `TRUE`, return all available fields from the Nominatim API. If
+  `FALSE`, return only query metadata, geometry and requested address
+  columns.
 
 - verbose:
 
-  If `TRUE`, detailed logs are output to the console.
+  If `TRUE`, display detailed messages in the console.
 
 - progressbar:
 
-  Logical. If `TRUE` displays a progress bar to indicate the progress of
-  the function.
+  If `TRUE`, display a progress bar when processing multiple queries.
 
 - nominatim_server:
 
-  URL of the Nominatim server to use. Defaults to
+  Base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  Named list with API-specific parameters, for example
+  A named list of additional API parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 - points_only:
 
-  Logical `TRUE/FALSE`. Whether to return only point geometries (`TRUE`,
-  which is the default) or potentially other shapes as returned by the
-  Nominatim API (`FALSE`). See **About geometry types**.
+  If `TRUE`, return only point geometries. If `FALSE`, the API may
+  return other geometry types. See **About geometry types**.
 
 ## Value
 
@@ -87,22 +84,20 @@ additional parameters to be passed to `custom_query`.
 
 ## About geometry types
 
-The parameter `points_only` specifies whether the function results will
-be points (all Nominatim results are guaranteed to have at least point
-geometry) or other geometry types.
+The `points_only` argument controls whether results contain points only.
+All Nominatim results have at least a point geometry.
 
-Note that when `points_only = FALSE`, the type of geometry returned
-depends on the object being geocoded. Administrative areas, major
-buildings and the like will be returned as polygons, rivers, roads and
-similar features will be returned as lines, and amenities may still be
-returned as points.
+When `points_only = FALSE`, the geometry type depends on the matching
+feature. Administrative areas and major buildings are returned as
+polygons, rivers and roads are returned as lines and amenities may still
+be returned as points.
 
-This function is vectorized, allowing multiple addresses to be geocoded.
+This function is vectorized, allowing multiple addresses to be searched.
 With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
-Geocoding functions:
+Address search functions:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
@@ -122,7 +117,7 @@ Spatial output functions:
 
 ``` r
 # \donttest{
-# Map: points
+# Point geometries
 library(ggplot2)
 
 string <- "Statue of Liberty, NY, USA"
@@ -142,7 +137,7 @@ if (!all(sf::st_is_empty(sol_poly))) {
     geom_sf(data = sol, color = "red")
 }
 
-# Several results
+# Multiple matches
 
 madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
   limit = 2,

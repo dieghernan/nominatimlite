@@ -1,14 +1,13 @@
-# Geocode amenities
+# Look up amenities
 
-Searches
+Looks up OpenStreetMap
 [amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-as defined by OpenStreetMap in a restricted area defined by a bounding
-box in the form `(<xmin>, <ymin>, <xmax>, <ymax>)` and returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query. See
+within a bounding box of the form `(xmin, ymin, xmax, ymax)`. Results
+are returned as a
+[tibble](https://tibble.tidyverse.org/reference/tibble.html). Use
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
-for retrieving the data as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
+to return an [`sf`](https://r-spatial.github.io/sf/reference/sf.html)
+object instead.
 
 ## Usage
 
@@ -33,66 +32,64 @@ geo_amenity(
 
 - bbox:
 
-  The bounding box (viewbox) used to limit the search. It can be a
-  numeric vector of **longitude** (`x`) and **latitude** (`y`) in the
-  form `(xmin, ymin, xmax, ymax)`, or a
+  Bounding box (viewbox) used to limit the search. It can be a numeric
+  vector of **longitude** (`x`) and **latitude** (`y`) in the form
+  `(xmin, ymin, xmax, ymax)`, or a
   [`sf`](https://r-spatial.github.io/sf/reference/sf.html) or
   [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object. See
   **Details**.
 
 - amenity:
 
-  `character` value or vector with the amenities to geocode, for example
+  A character vector of amenities to look up, for example
   `c("pub", "restaurant")`. See
   [osm_amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md).
 
 - lat:
 
-  Latitude column name in the output data (default `"lat"`).
+  Name of the latitude column in the output. Defaults to `"lat"`.
 
 - long:
 
-  Longitude column name in the output data (default `"long"`).
+  Name of the longitude column in the output. Defaults to `"lon"`.
 
 - limit:
 
-  Maximum number of results to return per input address. Note that each
-  query returns a maximum of 50 results.
+  Maximum number of results to return per query. Nominatim returns at
+  most 50 results per query.
 
 - full_results:
 
-  Return all available data from the Nominatim API. If `FALSE`
-  (default), only latitude, longitude and address columns are returned.
-  See also `return_addresses`.
+  If `TRUE`, return all available fields from the Nominatim API. If
+  `FALSE`, return only query metadata, location data and requested
+  address columns.
 
 - return_addresses:
 
-  Return input addresses with results if `TRUE`.
+  If `TRUE`, include single-line addresses in the results.
 
 - verbose:
 
-  If `TRUE`, detailed logs are output to the console.
+  If `TRUE`, display detailed messages in the console.
 
 - nominatim_server:
 
-  URL of the Nominatim server to use. Defaults to
+  Base URL of the Nominatim server. Defaults to
   `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  Logical. If `TRUE` displays a progress bar to indicate the progress of
-  the function.
+  If `TRUE`, display a progress bar when processing multiple queries.
 
 - custom_query:
 
-  Named list with API-specific parameters, for example
+  A named list of additional API parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 - strict:
 
-  Logical `TRUE/FALSE`. Force the results to be included inside the
-  `bbox`. Nominatim's default behavior may return results located
-  outside the provided bounding box.
+  If `TRUE`, keep only results inside `bbox`. By default, Nominatim may
+  return results outside the bounding box.
 
 ## Value
 
@@ -117,7 +114,7 @@ Amenity lookup functions:
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
 
-Geocoding functions:
+Address search functions:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
@@ -145,7 +142,7 @@ geo_amenity(
 #>   <chr>      <dbl> <dbl> <chr>                                                  
 #> 1 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manhat…
 
-# Several amenities
+# Multiple amenities
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub")
@@ -180,10 +177,10 @@ geo_amenity(
 #> 10 restaurant  40.8 -74.0 Bubba Gump Shrimp Company, 1501, Broadway, Times Squa…
 #> 11 pub         40.8 -74.0 Connolly's, 121, West 45th Street, Times Square, Manh…
 #> 12 pub         40.8 -74.0 Perfect Pint, 123, West 45th Street, Times Square, Ma…
-#> 13 pub         40.8 -74.0 Merrion Row, 119, West 45th Street, Times Square, Man…
-#> 14 pub         40.8 -74.0 O'Donoghue's, 156, West 44th Street, Times Square, Ma…
-#> 15 pub         40.8 -74.0 Jimmy's Corner, 140, West 44th Street, Times Square, …
-#> 16 pub         40.8 -74.0 BXL Cafe, 125, West 43rd Street, Times Square, Manhat…
-#> 17 pub         40.8 -74.0 Bar 54, 135, West 45th Street, Times Square, Manhatta…
+#> 13 pub         40.8 -74.0 Bar 54, 135, West 45th Street, Times Square, Manhatta…
+#> 14 pub         40.8 -74.0 Merrion Row, 119, West 45th Street, Times Square, Man…
+#> 15 pub         40.8 -74.0 O'Donoghue's, 156, West 44th Street, Times Square, Ma…
+#> 16 pub         40.8 -74.0 Jimmy's Corner, 140, West 44th Street, Times Square, …
+#> 17 pub         40.8 -74.0 BXL Cafe, 125, West 43rd Street, Times Square, Manhat…
 # }
 ```
