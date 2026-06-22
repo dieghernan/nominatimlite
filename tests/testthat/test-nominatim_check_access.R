@@ -86,17 +86,53 @@ test_that("On CRAN", {
   skip_on_cran()
   skip_if_api_server()
 
+  env_orig <- Sys.getenv("NOT_CRAN", unset = NA_character_)
+
+  on.exit({
+    if (is.na(env_orig)) {
+      Sys.unsetenv("NOT_CRAN")
+    } else {
+      Sys.setenv("NOT_CRAN" = env_orig)
+    }
+  }, add = TRUE)
+
   # Imagine we are in CRAN
-  env_orig <- Sys.getenv("NOT_CRAN")
   Sys.setenv("NOT_CRAN" = "false")
   expect_true(on_cran())
   expect_false(nominatim_check_access())
 
   Sys.setenv("NOT_CRAN" = "")
   expect_identical(!interactive(), on_cran())
+})
 
-  # Restore
-  Sys.setenv("NOT_CRAN" = env_orig)
-  expect_identical(Sys.getenv("NOT_CRAN"), env_orig)
-  expect_true(nominatim_check_access())
+test_that("api_call informs when retrying", {
+  skip_on_cran()
+
+  tmp <- tempfile(fileext = ".json")
+  calls <- 0L
+
+  local_mocked_bindings(
+    cached_filename = function(url, ext) tmp,
+    download_api_file = function(url, destfile, quiet) {
+      calls <<- calls + 1L
+
+      if (calls == 1L) {
+        return(structure("boom", class = "try-error"))
+      }
+
+      file.create(destfile)
+      destfile
+    },
+    Sys.sleep = function(...) NULL
+  )
+
+  expect_message(
+    res <- api_call("https://example.com", ext = ".json", quiet = FALSE),
+    "Retrying the Nominatim API query."
+  )
+
+  expect_identical(res, tmp)
+  expect_equal(calls, 2L)
+
+  unlink(tmp)
 })

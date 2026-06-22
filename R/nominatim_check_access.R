@@ -89,7 +89,7 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
 
   # Return the file after a successful request.
   if (!inherits(dwn_res, "try-error")) {
-    return(destfile) # nocov
+    return(destfile)
   }
 
   unlink(destfile, force = TRUE)
