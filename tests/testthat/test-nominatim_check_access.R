@@ -88,13 +88,16 @@ test_that("On CRAN", {
 
   env_orig <- Sys.getenv("NOT_CRAN", unset = NA_character_)
 
-  on.exit({
-    if (is.na(env_orig)) {
-      Sys.unsetenv("NOT_CRAN")
-    } else {
-      Sys.setenv("NOT_CRAN" = env_orig)
-    }
-  }, add = TRUE)
+  on.exit(
+    {
+      if (is.na(env_orig)) {
+        Sys.unsetenv("NOT_CRAN")
+      } else {
+        Sys.setenv("NOT_CRAN" = env_orig)
+      }
+    },
+    add = TRUE
+  )
 
   # Imagine we are in CRAN
   Sys.setenv("NOT_CRAN" = "false")
@@ -122,8 +125,7 @@ test_that("api_call informs when retrying", {
 
       file.create(destfile)
       destfile
-    },
-    Sys.sleep = function(...) NULL
+    }
   )
 
   expect_message(
