@@ -1,4 +1,4 @@
-#' Address lookup API with \CRANpkg{sf} output
+#' Look up OpenStreetMap objects and return \CRANpkg{sf} objects
 #'
 #' @description
 #' Looks up addresses and other details for one or more OpenStreetMap (OSM)
@@ -10,16 +10,16 @@
 #'
 #' @inheritSection geo_lite_sf About geometry types
 #'
-#' @param full_results If `TRUE`, return all available fields from the Nominatim
-#'   API. If `FALSE`, return only query metadata, geometry and requested address
-#'   columns.
-#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
-#'   API may return other geometry types. See **About geometry types**.
+#' @param full_results A logical value indicating whether to return all
+#'   available fields from the Nominatim API. If `FALSE`, only query metadata,
+#'   geometry and requested address columns are returned.
+#' @param points_only A logical value indicating whether to return only point
+#'   geometries. If `FALSE`, the API may return other geometry types. See
+#'   **About geometry types**.
 #' @inheritParams geo_address_lookup
 #'
 #' @inherit geo_lite_sf return
 #'
-#' @family geocoding
 #' @family lookup
 #' @family spatial
 #'
@@ -28,11 +28,11 @@
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Notre-Dame Cathedral, Paris
+#' # Look up Notre-Dame Cathedral in Paris.
 #'
 #' NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 #'
-#' # Require at least one non-empty object
+#' # Require at least one non-empty object.
 #' if (!all(sf::st_is_empty(NotreDame))) {
 #'   library(ggplot2)
 #'
@@ -50,7 +50,7 @@
 #'     geom_sf()
 #' }
 #'
-#' # Vectorized input
+#' # Look up multiple OSM objects.
 #'
 #' several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 #' several

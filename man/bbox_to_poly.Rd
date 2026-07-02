@@ -11,8 +11,8 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 \item{bbox}{A numeric vector of four bounding box coordinates in the form
 \code{c(xmin, ymin, xmax, ymax)}.}
 
-\item{xmin, ymin, xmax, ymax}{Individual bounding box coordinates. Use these
-arguments as an alternative to \code{bbox}.}
+\item{xmin, ymin, xmax, ymax}{A numeric value specifying an individual bounding
+box coordinate. Use these arguments as an alternative to \code{bbox}.}
 
 \item{crs}{coordinate reference system, something suitable as input to \link[sf]{st_crs}}
 }
@@ -30,8 +30,7 @@ Bounding boxes can be located using online tools such as
 }
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
-
-# Bounding box for Germany
+# Convert the bounding box for Germany.
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)
@@ -41,12 +40,12 @@ library(ggplot2)
 ggplot(bbox_GER_sf) +
   geom_sf()
 \donttest{
-# Extract the bounding box of an `sf` object
+# Extract the bounding box of an `sf` object.
 sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj
 
-# Require at least one non-empty object
+# Require at least one non-empty object.
 if (!all(sf::st_is_empty(sfobj))) {
   bbox <- sf::st_bbox(sfobj)
 

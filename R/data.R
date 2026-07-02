@@ -8,9 +8,9 @@
 #' `r prettyNum(nrow(nominatimlite::osm_amenities), big.mark = ",")` rows and
 #' three columns:
 #' \describe{
-#'   \item{category}{The category of the amenity.}
-#'   \item{amenity}{The value of the amenity.}
-#'   \item{comment}{A brief description of the type of amenity.}
+#'   \item{category}{Amenity category.}
+#'   \item{amenity}{Amenity value.}
+#'   \item{comment}{Brief description of the amenity type.}
 #' }
 #'
 #' @source <https://wiki.openstreetmap.org/wiki/Key:amenity>
@@ -18,14 +18,13 @@
 #' @note The data were extracted on **April 3, 2024**.
 #'
 #' @family amenity
-#' @family datasets
+#' @keywords datasets
 #'
 #' @docType data
 #' @name osm_amenities
 #' @encoding UTF-8
 #'
 #' @examples
-#'
 #' data("osm_amenities")
 #'
 #' osm_amenities

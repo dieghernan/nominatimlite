@@ -3,14 +3,14 @@
     Code
       obj <- geo_address_lookup(34633854, "N")
     Message
-      No results were found for query: N34633854.
+      No results were found for the query: N34633854.
 
 ---
 
     Code
       obj_renamed <- geo_address_lookup(34633854, "N", lat = "lata", long = "longa")
     Message
-      No results were found for query: N34633854.
+      No results were found for the query: N34633854.
 
 # Handle several
 

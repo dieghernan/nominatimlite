@@ -33,7 +33,7 @@ test_that("Data format", {
       c("Madrid", "ga hann xx kaa pa", "Barcelona"),
       points_only = FALSE
     ),
-    "No results were found for query"
+    "No results were found for the query"
   )
 
   expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))

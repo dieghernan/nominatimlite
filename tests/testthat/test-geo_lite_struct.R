@@ -4,9 +4,7 @@ test_that("Returning empty query", {
 
   expect_snapshot(obj <- geo_lite_struct())
 
-  expect_snapshot(
-    obj <- geo_lite_struct(amenity = "xbzbzbzoa aiaia")
-  )
+  expect_snapshot(obj <- geo_lite_struct(amenity = "xbzbzbzoa aiaia"))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$q_amenity == "xbzbzbzoa aiaia")

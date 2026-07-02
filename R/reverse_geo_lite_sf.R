@@ -1,8 +1,8 @@
-#' Reverse geocoding API with \CRANpkg{sf} output
+#' Reverse geocode coordinates and return \CRANpkg{sf} objects
 #'
 #' @description
-#' Finds addresses from latitude and longitude coordinates and returns the
-#' matching results as an [`sf`][sf::st_sf] object. Latitude values must be in
+#' Reverse geocodes latitude and longitude coordinates and returns matching
+#' results as an [`sf`][sf::st_sf] object. Latitude values must be in
 #' \eqn{\left[-90, 90 \right]} and longitude values in
 #' \eqn{\left[-180, 180 \right]}. Use [reverse_geo_lite()] to return a
 #' [tibble][dplyr::tibble] instead.
@@ -12,16 +12,15 @@
 #' @inheritSection reverse_geo_lite About zooming
 #' @inheritSection geo_lite_sf About geometry types
 #'
-#' @param full_results If `TRUE`, return all available fields from the Nominatim
-#'   API. If `FALSE`, return only query metadata, geometry and requested address
-#'   columns.
-#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
-#'   API may return other geometry types. See **About geometry types**.
+#' @param full_results A logical value indicating whether to return all
+#'   available fields from the Nominatim API. If `FALSE`, only query metadata,
+#'   geometry and requested address columns are returned.
+#' @param points_only A logical value indicating whether to return only point
+#'   geometries. If `FALSE`, the API may return other geometry types. See
+#'   **About geometry types**.
 #' @inheritParams reverse_geo_lite
 #'
 #' @inherit geo_lite_sf return
-#'
-#' @inherit reverse_geo_lite seealso
 #'
 #' @family reverse
 #' @family spatial
@@ -33,11 +32,11 @@
 #' \donttest{
 #' library(ggplot2)
 #'
-#' # Colosseum coordinates
+#' # Define the Colosseum coordinates.
 #' col_lon <- 12.49309
 #' col_lat <- 41.89026
 #'
-#' # Colosseum as a polygon
+#' # Return the Colosseum as a polygon.
 #' col_sf <- reverse_geo_lite_sf(
 #'   lat = col_lat,
 #'   long = col_lon,
@@ -51,7 +50,7 @@
 #'     geom_sf()
 #' }
 #'
-#' # City of Rome: same coordinates with zoom 10
+#' # Return the city of Rome by using the same coordinates with zoom 10.
 #'
 #' rome_sf <- reverse_geo_lite_sf(
 #'   lat = col_lat,

@@ -1,4 +1,4 @@
-#' Address search API (structured query)
+#' Search for addresses with structured queries
 #'
 #' @description
 #' Searches for addresses already split into components and returns matching
@@ -15,21 +15,19 @@
 #' provide only those relevant to the address you want to find.
 #'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
+#' parameters to pass to `custom_query`.
 #'
-#' @param amenity A string giving the name or type of amenity. See
+#' @param amenity A character string specifying the name or type of amenity. See
 #'   [geo_amenity()].
-#' @param street A string giving the house number and street name.
-#' @param city A string giving the city.
-#' @param county A string giving the county.
-#' @param state A string giving the state.
-#' @param country A string giving the country.
-#' @param postalcode A string giving the postal code.
+#' @param street A character string specifying the house number and street name.
+#' @param city A character string specifying the city.
+#' @param county A character string specifying the county.
+#' @param state A character string specifying the state.
+#' @param country A character string specifying the country.
+#' @param postalcode A character string specifying the postal code.
 #' @inheritParams geo_lite
 #'
 #' @inherit geo_lite return
-#'
-#' @inherit geo_lite seealso
 #'
 #' @family geocoding
 #'

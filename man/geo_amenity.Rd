@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_amenity}
 \alias{geo_amenity}
-\title{Look up amenities}
+\title{Look up OpenStreetMap amenities}
 \usage{
 geo_amenity(
   bbox,
@@ -21,44 +21,46 @@ geo_amenity(
 )
 }
 \arguments{
-\item{bbox}{A bounding box (viewbox) used to limit the search. Supply a
-numeric vector of \strong{longitude} (\code{x}) and \strong{latitude} (\code{y}) in the form
-\verb{(xmin, ymin, xmax, ymax)}, an \code{\link[sf:st_sf]{sf}} object or an
-\code{\link[sf:st_sfc]{sfc}} object. See \strong{Details}.}
+\item{bbox}{A numeric vector, an \code{\link[sf:st_sf]{sf}} object or an
+\code{\link[sf:st_sfc]{sfc}} object specifying a bounding box (viewbox) used to
+limit the search. Numeric vectors must contain \strong{longitude} (\code{x}) and
+\strong{latitude} (\code{y}) in the form \verb{(xmin, ymin, xmax, ymax)}. See \strong{Details}.}
 
 \item{amenity}{A character vector of amenities to look up,
 for example \code{c("pub", "restaurant")}. See \link{osm_amenities}.}
 
-\item{lat}{A string giving the name of the latitude column in the output.
-Defaults to \code{"lat"}.}
+\item{lat}{A character string specifying the name of the latitude column in
+the output. Defaults to \code{"lat"}.}
 
-\item{long}{A string giving the name of the longitude column in the output.
-Defaults to \code{"lon"}.}
+\item{long}{A character string specifying the name of the longitude column
+in the output. Defaults to \code{"lon"}.}
 
-\item{limit}{A positive integer giving the maximum number of results to
+\item{limit}{A positive integer specifying the maximum number of results to
 return per query. Nominatim returns at most 50 results per query.}
 
-\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
-API. If \code{FALSE}, return only query metadata, location data and requested
-address columns.}
+\item{full_results}{A logical value indicating whether to return all
+available fields from the Nominatim API. If \code{FALSE}, only query metadata,
+location data and requested address columns are returned.}
 
-\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
-results.}
+\item{return_addresses}{A logical value indicating whether to include
+single-line addresses in the results.}
 
-\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
+\item{verbose}{A logical value indicating whether to display detailed
+messages in the console.}
 
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{If \code{TRUE}, displays a progress bar when processing
-multiple queries.}
+\item{progressbar}{A logical value indicating whether to display a progress
+bar when processing multiple queries.}
 
 \item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{strict}{If \code{TRUE}, keeps only results inside \code{bbox}. If \code{FALSE} (the
-default), Nominatim may return results outside the bounding box.}
+\item{strict}{A logical value indicating whether to keep only results inside
+\code{bbox}. If \code{FALSE} (the default), Nominatim may return results outside the
+bounding box.}
 }
 \value{
 A \code{\link[dplyr:tibble]{tibble}} with the results that match the query.
@@ -77,12 +79,12 @@ For a full list of valid amenities, see
 \url{https://wiki.openstreetmap.org/wiki/Key:amenity} and \link{osm_amenities}.
 
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
-parameters to be passed to \code{custom_query}.
+parameters to pass to \code{custom_query}.
 }
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Times Square, NY, USA
+# Define a bounding box around Times Square, New York.
 bbox <- c(
   -73.9894467311, 40.75573629,
   -73.9830630737, 40.75789245
@@ -93,13 +95,13 @@ geo_amenity(
   amenity = "restaurant"
 )
 
-# Multiple amenities
+# Search for multiple amenities.
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub")
 )
 
-# Increase `limit` and use strict filtering
+# Increase `limit` and use strict filtering.
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub"),
@@ -113,15 +115,5 @@ geo_amenity(
 Amenity lookup functions:
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link{osm_amenities}}
-
-Address search functions:
-\code{\link[=geo_address_lookup]{geo_address_lookup()}},
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
-\code{\link[=geo_lite]{geo_lite()}},
-\code{\link[=geo_lite_sf]{geo_lite_sf()}},
-\code{\link[=geo_lite_struct]{geo_lite_struct()}},
-\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
 }
 \concept{amenity}
-\concept{geocoding}

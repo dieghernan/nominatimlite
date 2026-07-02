@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_lite_sf}
 \alias{geo_lite_sf}
-\title{Address search API with \CRANpkg{sf} output (free-form query)}
+\title{Search for addresses with free-form queries and return \CRANpkg{sf} objects}
 \usage{
 geo_lite_sf(
   address,
@@ -22,37 +22,39 @@ geo_lite_sf(
 \code{"1600 Pennsylvania Ave NW, Washington"} or
 \code{c("Madrid", "Barcelona")}.}
 
-\item{limit}{A positive integer giving the maximum number of results to
+\item{limit}{A positive integer specifying the maximum number of results to
 return per query. Nominatim returns at most 50 results per query.}
 
-\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
-results.}
+\item{return_addresses}{A logical value indicating whether to include
+single-line addresses in the results.}
 
-\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
-API. If \code{FALSE}, return only query metadata, geometry and requested address
-columns.}
+\item{full_results}{A logical value indicating whether to return all
+available fields from the Nominatim API. If \code{FALSE}, only query metadata,
+geometry and requested address columns are returned.}
 
-\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
+\item{verbose}{A logical value indicating whether to display detailed
+messages in the console.}
 
-\item{progressbar}{If \code{TRUE}, displays a progress bar when processing
-multiple queries.}
+\item{progressbar}{A logical value indicating whether to display a progress
+bar when processing multiple queries.}
 
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{points_only}{If \code{TRUE}, return only point geometries. If \code{FALSE}, the
-API may return other geometry types. See \strong{About geometry types}.}
+\item{points_only}{A logical value indicating whether to return only point
+geometries. If \code{FALSE}, the API may return other geometry types. See
+\strong{About geometry types}.}
 }
 \value{
 An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
 }
 \description{
-Searches for addresses and returns matching results as an
-\code{\link[sf:st_sf]{sf}} object. Use \code{\link[=geo_lite]{geo_lite()}} to return a
+Searches for addresses supplied as a character vector and returns matching
+results as an \code{\link[sf:st_sf]{sf}} object. Use \code{\link[=geo_lite]{geo_lite()}} to return a
 \link[dplyr:tibble]{tibble} instead.
 
 This function performs the \strong{free-form address search} described in the
@@ -60,7 +62,7 @@ This function performs the \strong{free-form address search} described in the
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
-parameters to be passed to \code{custom_query}.
+parameters to pass to \code{custom_query}.
 }
 \section{About geometry types}{
 
@@ -80,7 +82,7 @@ With \code{points_only = FALSE}, multiple geometry types may be returned.
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Point geometries
+# Return point geometries.
 library(ggplot2)
 
 string <- "Statue of Liberty, NY, USA"
@@ -98,7 +100,7 @@ if (!all(sf::st_is_empty(sol_poly))) {
     geom_sf() +
     geom_sf(data = sol, color = "red")
 }
-# Multiple matches
+# Return multiple matches.
 
 madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
   limit = 2,
@@ -114,10 +116,6 @@ if (!all(sf::st_is_empty(madrid))) {
 }
 \seealso{
 Address search functions:
-\code{\link[=geo_address_lookup]{geo_address_lookup()}},
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
-\code{\link[=geo_amenity]{geo_amenity()}},
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link[=geo_lite]{geo_lite()}},
 \code{\link[=geo_lite_struct]{geo_lite_struct()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}

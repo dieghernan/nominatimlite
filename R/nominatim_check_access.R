@@ -11,8 +11,6 @@
 #' @seealso
 #' <https://nominatim.org/release-docs/latest/api/Status/>.
 #'
-#' @family API management
-#'
 #' @keywords internal
 #' @encoding UTF-8
 #' @export
@@ -50,16 +48,13 @@ nominatim_check_access <- function(
 #' See [Nominatim Usage
 #' Policy](https://operations.osmfoundation.org/policies/nominatim/).
 #'
-#' @param ext File extension for the cached response. Must be `".json"` or
-#'   `".geojson"`.
+#' @param ext A character string specifying the file extension for the cached
+#'   response. Must be `".json"` or `".geojson"`.
 #' @inheritParams utils::download.file url quiet
 #'
 #' @returns
-#' A cached file path, or `FALSE` when the query fails.
+#' A cached file path or `FALSE` when the query fails.
 #'
-#' @family API management
-#'
-#' @keywords internal
 #' @noRd
 #'
 api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
@@ -106,8 +101,15 @@ download_api_file <- function(url, destfile, quiet) {
 
 #' Create a hashed filename for caching requests
 #'
-#' @param url The URL to cache.
-#' @param ext A string giving the file extension to append to the cached file.
+#' Creates a deterministic path in the session temporary directory from the
+#' request URL.
+#'
+#' @param url A character string specifying the URL to cache.
+#' @param ext A character string specifying the file extension to append to the
+#'   cached file.
+#'
+#' @returns A path to the cached response file.
+#'
 #' @noRd
 cached_filename <- function(url, ext = ".json") {
   tmpf <- tempfile()
@@ -129,7 +131,11 @@ cached_filename <- function(url, ext = ".json") {
 
 #' Check whether the current session is running on CRAN
 #'
+#' Checks the `NOT_CRAN` environment variable and whether the session is
+#' interactive.
+#'
 #' @returns A single logical value.
+#'
 #' @noRd
 on_cran <- function() {
   env <- Sys.getenv("NOT_CRAN")

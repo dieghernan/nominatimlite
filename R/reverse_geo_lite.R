@@ -1,15 +1,15 @@
-#' Reverse geocoding API
+#' Reverse geocode coordinates
 #'
 #' @description
-#' Finds addresses from latitude and longitude coordinates and returns the
-#' matching results as a [tibble][dplyr::tibble]. Latitude values must be in
+#' Reverse geocodes latitude and longitude coordinates and returns matching
+#' results as a [tibble][dplyr::tibble]. Latitude values must be in
 #' \eqn{\left[-90, 90 \right]} and longitudes in
 #' \eqn{\left[-180, 180 \right]}. Use [reverse_geo_lite_sf()] to return an
 #' [`sf`][sf::st_sf] object instead.
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Reverse/> for additional
-#' parameters to be passed to `custom_query`.
+#' parameters to pass to `custom_query`.
 #'
 #' @section About zooming:
 #'
@@ -34,14 +34,14 @@
 #'
 #' ```
 #'
-#' @param lat Numeric latitude values in the range
+#' @param lat A numeric vector of latitude values in the range
 #'   \eqn{\left[-90, 90 \right]}.
-#' @param long Numeric longitude values in the range
+#' @param long A numeric vector of longitude values in the range
 #'   \eqn{\left[-180, 180 \right]}.
-#' @param address A string giving the name of the address column in the output.
-#'   Defaults to `"address"`.
-#' @param return_coords If `TRUE`, returns the input coordinates with the
-#'   results.
+#' @param address A character string specifying the name of the address column
+#'   in the output. Defaults to `"address"`.
+#' @param return_coords A logical value indicating whether to return the input
+#'   coordinates with the results.
 #' @param custom_query A named list of API-specific parameters, for example
 #'   `list(zoom = 3)`. See **Details**.
 #' @inheritParams geo_lite
@@ -55,13 +55,12 @@
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#'
 #' reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #'
-#' # Multiple coordinate pairs
+#' # Reverse geocode multiple coordinate pairs.
 #' reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #'
-#' # Set the zoom to country level
+#' # Set the zoom to the country level.
 #' sev <- reverse_geo_lite(
 #'   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
 #'   custom_query = list(zoom = 0, extratags = TRUE),

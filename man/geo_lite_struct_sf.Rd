@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_lite_struct_sf}
 \alias{geo_lite_struct_sf}
-\title{Address search API with \CRANpkg{sf} output (structured query)}
+\title{Search for addresses with structured queries and return \CRANpkg{sf} objects}
 \usage{
 geo_lite_struct_sf(
   amenity = NULL,
@@ -23,42 +23,44 @@ geo_lite_struct_sf(
 )
 }
 \arguments{
-\item{amenity}{A string giving the name or type of amenity. See
+\item{amenity}{A character string specifying the name or type of amenity. See
 \code{\link[=geo_amenity]{geo_amenity()}}.}
 
-\item{street}{A string giving the house number and street name.}
+\item{street}{A character string specifying the house number and street name.}
 
-\item{city}{A string giving the city.}
+\item{city}{A character string specifying the city.}
 
-\item{county}{A string giving the county.}
+\item{county}{A character string specifying the county.}
 
-\item{state}{A string giving the state.}
+\item{state}{A character string specifying the state.}
 
-\item{country}{A string giving the country.}
+\item{country}{A character string specifying the country.}
 
-\item{postalcode}{A string giving the postal code.}
+\item{postalcode}{A character string specifying the postal code.}
 
-\item{limit}{A positive integer giving the maximum number of results to
+\item{limit}{A positive integer specifying the maximum number of results to
 return per query. Nominatim returns at most 50 results per query.}
 
-\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
-API. If \code{FALSE}, return only query metadata, geometry and requested address
-columns.}
+\item{full_results}{A logical value indicating whether to return all
+available fields from the Nominatim API. If \code{FALSE}, only query metadata,
+geometry and requested address columns are returned.}
 
-\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
-results.}
+\item{return_addresses}{A logical value indicating whether to include
+single-line addresses in the results.}
 
-\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
+\item{verbose}{A logical value indicating whether to display detailed
+messages in the console.}
 
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{points_only}{If \code{TRUE}, return only point geometries. If \code{FALSE}, the
-API may return other geometry types. See \strong{About geometry types}.}
+\item{points_only}{A logical value indicating whether to return only point
+geometries. If \code{FALSE}, the API may return other geometry types. See
+\strong{About geometry types}.}
 }
 \value{
 An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
@@ -78,7 +80,7 @@ Each argument represents an address field. All components are optional, so
 provide only those relevant to the address you want to find.
 
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
-parameters to be passed to \code{custom_query}.
+parameters to pass to \code{custom_query}.
 }
 \section{About geometry types}{
 
@@ -98,7 +100,7 @@ With \code{points_only = FALSE}, multiple geometry types may be returned.
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Structured address search
+# Search with a structured address.
 
 pl_mayor <- geo_lite_struct_sf(
   street = "Plaza Mayor",
@@ -107,7 +109,7 @@ pl_mayor <- geo_lite_struct_sf(
   full_results = TRUE, verbose = TRUE
 )
 
-# Administrative boundary
+# Retrieve an administrative boundary.
 ccaa <- geo_lite_sf("Comunidad de Madrid, Spain", points_only = FALSE)
 
 library(ggplot2)
@@ -122,10 +124,6 @@ if (any(!sf::st_is_empty(pl_mayor), !sf::st_is_empty(ccaa))) {
 }
 \seealso{
 Address search functions:
-\code{\link[=geo_address_lookup]{geo_address_lookup()}},
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
-\code{\link[=geo_amenity]{geo_amenity()}},
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link[=geo_lite]{geo_lite()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},
 \code{\link[=geo_lite_struct]{geo_lite_struct()}}

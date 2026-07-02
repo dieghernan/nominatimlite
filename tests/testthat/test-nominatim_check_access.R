@@ -24,56 +24,36 @@ test_that("Mock no access", {
 
   api_res <- tempfile(fileext = ".json")
 
-  writeLines(
-    '{\"status\":0,\"message\":\"OK\"}',
-    con = api_res
-  )
+  writeLines('{\"status\":0,\"message\":\"OK\"}', con = api_res)
 
-  local_mocked_bindings(
-    api_call = function(...) {
-      api_res <- tempfile(fileext = ".json")
+  local_mocked_bindings(api_call = function(...) {
+    api_res <- tempfile(fileext = ".json")
 
-      writeLines(
-        '{\"status\":0,\"message\":\"OK\"}',
-        con = api_res
-      )
-      api_res
-    }
-  )
+    writeLines('{\"status\":0,\"message\":\"OK\"}', con = api_res)
+    api_res
+  })
 
   expect_true(nominatim_check_access())
 
-  local_mocked_bindings(
-    api_call = function(...) {
-      api_res <- tempfile(fileext = ".json")
+  local_mocked_bindings(api_call = function(...) {
+    api_res <- tempfile(fileext = ".json")
 
-      writeLines(
-        '{\"status\":0,\"message\":\"KO\"}',
-        con = api_res
-      )
-      api_res
-    }
-  )
+    writeLines('{\"status\":0,\"message\":\"KO\"}', con = api_res)
+    api_res
+  })
   expect_true(nominatim_check_access())
 
-  local_mocked_bindings(
-    api_call = function(...) {
-      api_res <- tempfile(fileext = ".json")
+  local_mocked_bindings(api_call = function(...) {
+    api_res <- tempfile(fileext = ".json")
 
-      writeLines(
-        '{\"status\":999,\"message\":\"KO\"}',
-        con = api_res
-      )
-      api_res
-    }
-  )
+    writeLines('{\"status\":999,\"message\":\"KO\"}', con = api_res)
+    api_res
+  })
   expect_false(nominatim_check_access())
 
-  local_mocked_bindings(
-    api_call = function(...) {
-      FALSE
-    }
-  )
+  local_mocked_bindings(api_call = function(...) {
+    FALSE
+  })
   expect_false(nominatim_check_access())
 
   local_mocked_bindings(api_call = my_fn)

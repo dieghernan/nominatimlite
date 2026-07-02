@@ -1,4 +1,4 @@
-#' Look up amenities with \CRANpkg{sf} output
+#' Look up OpenStreetMap amenities and return \CRANpkg{sf} objects
 #'
 #' @description
 #' Looks up OpenStreetMap [amenities][osm_amenities] within a bounding box of
@@ -10,17 +10,17 @@
 #'
 #' @inheritSection geo_lite_sf About geometry types
 #'
-#' @param full_results If `TRUE`, return all available fields from the Nominatim
-#'   API. If `FALSE`, return only query metadata, geometry and requested address
-#'   columns.
-#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
-#'   API may return other geometry types. See **About geometry types**.
+#' @param full_results A logical value indicating whether to return all
+#'   available fields from the Nominatim API. If `FALSE`, only query metadata,
+#'   geometry and requested address columns are returned.
+#' @param points_only A logical value indicating whether to return only point
+#'   geometries. If `FALSE`, the API may return other geometry types. See
+#'   **About geometry types**.
 #' @inheritParams geo_amenity
 #'
 #' @inherit geo_lite_sf return
 #'
 #' @family amenity
-#' @family geocoding
 #' @family spatial
 #'
 #' @encoding UTF-8
@@ -28,12 +28,12 @@
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Usera, Madrid
+#' # Retrieve the Usera district in Madrid.
 #'
 #' library(ggplot2)
 #' mad <- geo_lite_sf("Usera, Madrid, Spain", points_only = FALSE)
 #'
-#' # Restaurants, pubs and schools
+#' # Search for restaurants, pubs and schools.
 #'
 #' rest_pub <- geo_amenity_sf(mad, c("restaurant", "pub", "school"),
 #'   limit = 50

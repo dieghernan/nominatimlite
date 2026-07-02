@@ -1,8 +1,8 @@
-#' Address search API with \CRANpkg{sf} output (free-form query)
+#' Search for addresses with free-form queries and return \CRANpkg{sf} objects
 #'
 #' @description
-#' Searches for addresses and returns matching results as an
-#' [`sf`][sf::st_sf] object. Use [geo_lite()] to return a
+#' Searches for addresses supplied as a character vector and returns matching
+#' results as an [`sf`][sf::st_sf] object. Use [geo_lite()] to return a
 #' [tibble][dplyr::tibble] instead.
 #'
 #' This function performs the **free-form address search** described in the
@@ -23,17 +23,16 @@
 #' This function is vectorized, allowing multiple addresses to be searched.
 #' With `points_only = FALSE`, multiple geometry types may be returned.
 #'
-#' @param full_results If `TRUE`, return all available fields from the Nominatim
-#'   API. If `FALSE`, return only query metadata, geometry and requested address
-#'   columns.
-#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
-#'   API may return other geometry types. See **About geometry types**.
+#' @param full_results A logical value indicating whether to return all
+#'   available fields from the Nominatim API. If `FALSE`, only query metadata,
+#'   geometry and requested address columns are returned.
+#' @param points_only A logical value indicating whether to return only point
+#'   geometries. If `FALSE`, the API may return other geometry types. See
+#'   **About geometry types**.
 #' @inheritParams geo_lite
 #'
 #' @returns
 #' An [`sf`][sf::st_sf] object with the results that match the query.
-#'
-#' @inherit geo_lite seealso
 #'
 #' @family geocoding
 #' @family spatial
@@ -43,7 +42,7 @@
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Point geometries
+#' # Return point geometries.
 #' library(ggplot2)
 #'
 #' string <- "Statue of Liberty, NY, USA"
@@ -61,7 +60,7 @@
 #'     geom_sf() +
 #'     geom_sf(data = sol, color = "red")
 #' }
-#' # Multiple matches
+#' # Return multiple matches.
 #'
 #' madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
 #'   limit = 2,

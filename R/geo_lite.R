@@ -1,4 +1,4 @@
-#' Address search API (free-form query)
+#' Search for addresses with free-form queries
 #'
 #' @description
 #' Searches for addresses supplied as a character vector and returns matching
@@ -10,28 +10,29 @@
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
+#' parameters to pass to `custom_query`.
 #'
 #' @param address A character vector of single-line addresses, for example
 #'   `"1600 Pennsylvania Ave NW, Washington"` or
 #'   `c("Madrid", "Barcelona")`.
-#' @param lat A string giving the name of the latitude column in the output.
-#'   Defaults to `"lat"`.
-#' @param long A string giving the name of the longitude column in the output.
-#'   Defaults to `"lon"`.
-#' @param limit A positive integer giving the maximum number of results to
+#' @param lat A character string specifying the name of the latitude column in
+#'   the output. Defaults to `"lat"`.
+#' @param long A character string specifying the name of the longitude column
+#'   in the output. Defaults to `"lon"`.
+#' @param limit A positive integer specifying the maximum number of results to
 #'   return per query. Nominatim returns at most 50 results per query.
-#' @param full_results If `TRUE`, return all available fields from the Nominatim
-#'   API. If `FALSE`, return only query metadata, location data and requested
-#'   address columns.
-#' @param return_addresses If `TRUE`, include single-line addresses in the
-#'   results.
-#' @param verbose If `TRUE`, displays detailed messages in the console.
-#' @param nominatim_server A string giving the base URL of the Nominatim
-#'   server. Defaults to
+#' @param full_results A logical value indicating whether to return all
+#'   available fields from the Nominatim API. If `FALSE`, only query metadata,
+#'   location data and requested address columns are returned.
+#' @param return_addresses A logical value indicating whether to include
+#'   single-line addresses in the results.
+#' @param verbose A logical value indicating whether to display detailed
+#'   messages in the console.
+#' @param nominatim_server A character string specifying the base URL of the
+#'   Nominatim server. Defaults to
 #'   `"https://nominatim.openstreetmap.org/"`.
-#' @param progressbar If `TRUE`, displays a progress bar when processing
-#'   multiple queries.
+#' @param progressbar A logical value indicating whether to display a progress
+#'   bar when processing multiple queries.
 #' @param custom_query A named list of additional API parameters, for example
 #'   `list(countrycodes = "US")`. See **Details**.
 #'
@@ -47,10 +48,10 @@
 #' \donttest{
 #' geo_lite("Madrid, Spain")
 #'
-#' # Multiple addresses
+#' # Search for multiple addresses.
 #' geo_lite(c("Madrid", "Barcelona"))
 #'
-#' # Restrict the search to the United States and return all fields
+#' # Restrict the search to the United States and return all fields.
 #' geo_lite(c("Madrid", "Barcelona"),
 #'   custom_query = list(countrycodes = "US"),
 #'   full_results = TRUE

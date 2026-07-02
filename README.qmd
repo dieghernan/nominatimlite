@@ -44,8 +44,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 **nominatimlite** provides a lightweight interface to the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It supports free-form and
 structured address searches, reverse geocoding, amenity lookup and address
-lookup by OpenStreetMap object identifier. Results are returned as tibbles or
-`sf` objects.
+lookup by OpenStreetMap (OSM) object identifier. Results are returned as tibbles
+or `sf` objects.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>.
@@ -55,7 +55,7 @@ The full site with examples and vignettes is available at
 **Nominatim** searches [OpenStreetMap](https://www.openstreetmap.org/) data by
 name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding")) and
-finds addresses from geographic coordinates (reverse geocoding).
+reverse geocodes geographic coordinates.
 
 ## Why nominatimlite?
 
@@ -69,13 +69,13 @@ Related packages provide broader interfaces to geocoding services and
 OpenStreetMap data:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-  [@R-tidygeocoder]: Provides an interface to geocoding services such as
+  [@R-tidygeocoder] provides an interface to geocoding services such as
   Nominatim, Google, TomTom and Mapbox.
-- [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata]: Downloads
+- [**osmdata**](https://docs.ropensci.org/osmdata/) [@R-osmdata] downloads
   spatial data from OpenStreetMap with the [Overpass
   API](https://wiki.openstreetmap.org/wiki/Overpass_API).
-- [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/) [@R-arcgeocoder]:
-  Provides a lightweight interface for geocoding with the ArcGIS REST API
+- [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/) [@R-arcgeocoder]
+  provides a lightweight interface for geocoding with the ArcGIS REST API
   service.
 
 ## Installation
@@ -119,9 +119,9 @@ install.packages(
 
 ## Usage
 
-### `sf` objects
+### `sf` output
 
-Use functions with the `_sf` suffix to return matching results as `sf` objects:
+Use functions with the `_sf` suffix to return results as `sf` objects:
 
 ```{r}
 #| label: pizzahut
@@ -178,7 +178,7 @@ ggplot() +
 
 *The examples in this section are adapted from the **tidygeocoder** package.*
 
-Use `geo_lite()` to perform a free-form address search:
+Use `geo_lite()` to search for addresses with free-form queries:
 
 ```{r}
 #| label: example
@@ -210,10 +210,10 @@ knitr::kable(lat_longs)
 cat("<p class=\"caption\">Table 1: Geocoded addresses.</p>")
 ```
 
-Use `reverse_geo_lite()` to find addresses from latitude and longitude
-coordinates. The `lat` and `long` arguments use the results from the address
-search above. The `address` argument specifies the name of the output column
-that contains each single-line address.
+Use `reverse_geo_lite()` to reverse geocode latitude and longitude coordinates.
+The `lat` and `long` arguments use the results from the address search above.
+The `address` argument specifies the name of the output column that contains
+each single-line address.
 
 ```{r}
 reverse <- reverse_geo_lite(
@@ -233,7 +233,7 @@ cat("<p class=\"caption\">Table 2: Reverse-geocoded addresses.</p>")
 
 See the [Nominatim search API
 documentation](https://nominatim.org/release-docs/latest/api/Search/) for
-additional parameters that can be passed through `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## Citation
 

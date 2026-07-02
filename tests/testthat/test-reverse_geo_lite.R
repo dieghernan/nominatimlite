@@ -26,9 +26,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_snapshot(
-    obj <- reverse_geo_lite(89.999999, 179.9999)
-  )
+  expect_snapshot(obj <- reverse_geo_lite(89.999999, 179.9999))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$lat == 89.999999)

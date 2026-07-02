@@ -1,4 +1,4 @@
-#' Address lookup API
+#' Look up OpenStreetMap objects
 #'
 #' @description
 #' Looks up addresses and other details for one or more OpenStreetMap (OSM)
@@ -8,7 +8,7 @@
 #'
 #' @details
 #' See <https://nominatim.org/release-docs/latest/api/Lookup/> for additional
-#' parameters to be passed to `custom_query`.
+#' parameters to pass to `custom_query`.
 #'
 #' @param osm_ids A numeric vector of OSM identifiers, for example
 #'   `c(12345, 67890)`.
@@ -19,7 +19,6 @@
 #' @inheritParams geo_lite
 #' @inherit geo_lite return
 #'
-#' @family geocoding
 #' @family lookup
 #'
 #' @encoding UTF-8

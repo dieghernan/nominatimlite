@@ -1,4 +1,4 @@
-#' Address search API with \CRANpkg{sf} output (structured query)
+#' Search for addresses with structured queries and return \CRANpkg{sf} objects
 #'
 #' @description
 #' Searches for addresses already split into components and returns matching
@@ -13,16 +13,15 @@
 #'
 #' @inheritSection geo_lite_sf About geometry types
 #'
-#' @param full_results If `TRUE`, return all available fields from the Nominatim
-#'   API. If `FALSE`, return only query metadata, geometry and requested address
-#'   columns.
-#' @param points_only If `TRUE`, return only point geometries. If `FALSE`, the
-#'   API may return other geometry types. See **About geometry types**.
+#' @param full_results A logical value indicating whether to return all
+#'   available fields from the Nominatim API. If `FALSE`, only query metadata,
+#'   geometry and requested address columns are returned.
+#' @param points_only A logical value indicating whether to return only point
+#'   geometries. If `FALSE`, the API may return other geometry types. See
+#'   **About geometry types**.
 #' @inheritParams geo_lite_struct
 #'
 #' @inherit geo_lite_sf return
-#'
-#' @inherit geo_lite seealso
 #'
 #' @family geocoding
 #' @family spatial
@@ -32,7 +31,7 @@
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Structured address search
+#' # Search with a structured address.
 #'
 #' pl_mayor <- geo_lite_struct_sf(
 #'   street = "Plaza Mayor",
@@ -41,7 +40,7 @@
 #'   full_results = TRUE, verbose = TRUE
 #' )
 #'
-#' # Administrative boundary
+#' # Retrieve an administrative boundary.
 #' ccaa <- geo_lite_sf("Comunidad de Madrid, Spain", points_only = FALSE)
 #'
 #' library(ggplot2)

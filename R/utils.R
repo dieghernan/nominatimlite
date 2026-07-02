@@ -9,7 +9,7 @@ message_no_results <- function(query = NULL) {
     return(invisible(NULL))
   }
 
-  message("No results were found for query: ", query, ".")
+  message("No results were found for the query: ", query, ".")
 }
 
 cap_limit <- function(limit) {
@@ -56,9 +56,7 @@ cap_coordinates <- function(lat, long) {
 
   long_cap <- pmax(pmin(long, 180), -180)
   if (!all(long_cap == long)) {
-    message(
-      "Longitude values outside [-180, 180] were clamped to that range."
-    )
+    message("Longitude values outside [-180, 180] were clamped to that range.")
   }
 
   list(lat = lat_cap, long = long_cap)
@@ -249,10 +247,7 @@ reverse_query_keys <- function(lat, long) {
     long_cap_int = coords$long
   )
 
-  list(
-    init = init_key,
-    unique = dplyr::distinct(init_key)
-  )
+  list(init = init_key, unique = dplyr::distinct(init_key))
 }
 
 run_reverse_queries <- function(key, progressbar, f) {

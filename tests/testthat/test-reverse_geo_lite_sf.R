@@ -36,9 +36,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_snapshot(
-    obj <- reverse_geo_lite_sf(89.999999, 179.9999)
-  )
+  expect_snapshot(obj <- reverse_geo_lite_sf(89.999999, 179.9999))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$lat == 89.999999)
@@ -49,11 +47,7 @@ test_that("Returning empty query", {
   expect_true(is.na(obj$address))
 
   expect_snapshot(
-    obj_renamed <- reverse_geo_lite_sf(
-      89.999999,
-      179.9999,
-      address = "adddata"
-    )
+    obj_renamed <- reverse_geo_lite_sf(89.999999, 179.9999, address = "adddata")
   )
 
   expect_named(obj_renamed, c("adddata", "lat", "lon", "geometry"))

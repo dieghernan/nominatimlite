@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_address_lookup_sf}
 \alias{geo_address_lookup_sf}
-\title{Address lookup API with \CRANpkg{sf} output}
+\title{Look up OpenStreetMap objects and return \CRANpkg{sf} objects}
 \usage{
 geo_address_lookup_sf(
   osm_ids,
@@ -24,24 +24,26 @@ geo_address_lookup_sf(
 with each value in \code{osm_ids}. Possible values are node (\code{"N"}), way
 (\code{"W"}) and relation (\code{"R"}). A single value is recycled.}
 
-\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
-API. If \code{FALSE}, return only query metadata, geometry and requested address
-columns.}
+\item{full_results}{A logical value indicating whether to return all
+available fields from the Nominatim API. If \code{FALSE}, only query metadata,
+geometry and requested address columns are returned.}
 
-\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
-results.}
+\item{return_addresses}{A logical value indicating whether to include
+single-line addresses in the results.}
 
-\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
+\item{verbose}{A logical value indicating whether to display detailed
+messages in the console.}
 
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
 
-\item{points_only}{If \code{TRUE}, return only point geometries. If \code{FALSE}, the
-API may return other geometry types. See \strong{About geometry types}.}
+\item{points_only}{A logical value indicating whether to return only point
+geometries. If \code{FALSE}, the API may return other geometry types. See
+\strong{About geometry types}.}
 }
 \value{
 An \code{\link[sf:st_sf]{sf}} object with the results that match the query.
@@ -54,7 +56,7 @@ objects, such as nodes, ways or relations. Results are returned as an
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
-parameters to be passed to \code{custom_query}.
+parameters to pass to \code{custom_query}.
 }
 \section{About geometry types}{
 
@@ -74,11 +76,11 @@ With \code{points_only = FALSE}, multiple geometry types may be returned.
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Notre-Dame Cathedral, Paris
+# Look up Notre-Dame Cathedral in Paris.
 
 NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 
-# Require at least one non-empty object
+# Require at least one non-empty object.
 if (!all(sf::st_is_empty(NotreDame))) {
   library(ggplot2)
 
@@ -96,7 +98,7 @@ if (!all(sf::st_is_empty(NotreDame_poly))) {
     geom_sf()
 }
 
-# Vectorized input
+# Look up multiple OSM objects.
 
 several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 several
@@ -104,15 +106,6 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Address search functions:
-\code{\link[=geo_address_lookup]{geo_address_lookup()}},
-\code{\link[=geo_amenity]{geo_amenity()}},
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
-\code{\link[=geo_lite]{geo_lite()}},
-\code{\link[=geo_lite_sf]{geo_lite_sf()}},
-\code{\link[=geo_lite_struct]{geo_lite_struct()}},
-\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
-
 Address lookup functions:
 \code{\link[=geo_address_lookup]{geo_address_lookup()}}
 
@@ -123,6 +116,5 @@ Spatial output functions:
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}},
 \code{\link[=reverse_geo_lite_sf]{reverse_geo_lite_sf()}}
 }
-\concept{geocoding}
 \concept{lookup}
 \concept{spatial}

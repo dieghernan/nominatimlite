@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_lite_struct}
 \alias{geo_lite_struct}
-\title{Address search API (structured query)}
+\title{Search for addresses with structured queries}
 \usage{
 geo_lite_struct(
   amenity = NULL,
@@ -24,41 +24,42 @@ geo_lite_struct(
 )
 }
 \arguments{
-\item{amenity}{A string giving the name or type of amenity. See
+\item{amenity}{A character string specifying the name or type of amenity. See
 \code{\link[=geo_amenity]{geo_amenity()}}.}
 
-\item{street}{A string giving the house number and street name.}
+\item{street}{A character string specifying the house number and street name.}
 
-\item{city}{A string giving the city.}
+\item{city}{A character string specifying the city.}
 
-\item{county}{A string giving the county.}
+\item{county}{A character string specifying the county.}
 
-\item{state}{A string giving the state.}
+\item{state}{A character string specifying the state.}
 
-\item{country}{A string giving the country.}
+\item{country}{A character string specifying the country.}
 
-\item{postalcode}{A string giving the postal code.}
+\item{postalcode}{A character string specifying the postal code.}
 
-\item{lat}{A string giving the name of the latitude column in the output.
-Defaults to \code{"lat"}.}
+\item{lat}{A character string specifying the name of the latitude column in
+the output. Defaults to \code{"lat"}.}
 
-\item{long}{A string giving the name of the longitude column in the output.
-Defaults to \code{"lon"}.}
+\item{long}{A character string specifying the name of the longitude column
+in the output. Defaults to \code{"lon"}.}
 
-\item{limit}{A positive integer giving the maximum number of results to
+\item{limit}{A positive integer specifying the maximum number of results to
 return per query. Nominatim returns at most 50 results per query.}
 
-\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
-API. If \code{FALSE}, return only query metadata, location data and requested
-address columns.}
+\item{full_results}{A logical value indicating whether to return all
+available fields from the Nominatim API. If \code{FALSE}, only query metadata,
+location data and requested address columns are returned.}
 
-\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
-results.}
+\item{return_addresses}{A logical value indicating whether to include
+single-line addresses in the results.}
 
-\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
+\item{verbose}{A logical value indicating whether to display detailed
+messages in the console.}
 
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
@@ -82,7 +83,7 @@ Each argument represents an address field. All components are optional, so
 provide only those relevant to the address you want to find.
 
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
-parameters to be passed to \code{custom_query}.
+parameters to pass to \code{custom_query}.
 }
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
@@ -98,10 +99,6 @@ dplyr::glimpse(pl_mayor)
 }
 \seealso{
 Address search functions:
-\code{\link[=geo_address_lookup]{geo_address_lookup()}},
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
-\code{\link[=geo_amenity]{geo_amenity()}},
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link[=geo_lite]{geo_lite()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}

@@ -10,8 +10,8 @@
 #'
 #' @param bbox A numeric vector of four bounding box coordinates in the form
 #'   `c(xmin, ymin, xmax, ymax)`.
-#' @param xmin,ymin,xmax,ymax Individual bounding box coordinates. Use these
-#'   arguments as an alternative to `bbox`.
+#' @param xmin,ymin,xmax,ymax A numeric value specifying an individual bounding
+#'   box coordinate. Use these arguments as an alternative to `bbox`.
 #' @inheritParams sf::st_sf crs
 #'
 #' @returns
@@ -27,8 +27,7 @@
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
-#'
-#' # Bounding box for Germany
+#' # Convert the bounding box for Germany.
 #' bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 #'
 #' bbox_GER_sf <- bbox_to_poly(bbox_GER)
@@ -38,12 +37,12 @@
 #' ggplot(bbox_GER_sf) +
 #'   geom_sf()
 #' \donttest{
-#' # Extract the bounding box of an `sf` object
+#' # Extract the bounding box of an `sf` object.
 #' sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 #'
 #' sfobj
 #'
-#' # Require at least one non-empty object
+#' # Require at least one non-empty object.
 #' if (!all(sf::st_is_empty(sfobj))) {
 #'   bbox <- sf::st_bbox(sfobj)
 #'

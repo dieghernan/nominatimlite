@@ -20,7 +20,7 @@
       obj <- reverse_geo_lite_sf(0, 200)
     Message
       Longitude values outside [-180, 180] were clamped to that range.
-      No results were found for query: lat = 0, long = 180.
+      No results were found for the query: lat = 0, long = 180.
 
 ---
 
@@ -29,21 +29,21 @@
     Message
       Latitude values outside [-90, 90] were clamped to that range.
       Longitude values outside [-180, 180] were clamped to that range.
-      No results were found for query: lat = 90, long = 180.
+      No results were found for the query: lat = 90, long = 180.
 
 # Returning empty query
 
     Code
       obj <- reverse_geo_lite_sf(89.999999, 179.9999)
     Message
-      No results were found for query: lat = 89.999999, long = 179.9999.
+      No results were found for the query: lat = 89.999999, long = 179.9999.
 
 ---
 
     Code
       obj_renamed <- reverse_geo_lite_sf(89.999999, 179.9999, address = "adddata")
     Message
-      No results were found for query: lat = 89.999999, long = 179.9999.
+      No results were found for the query: lat = 89.999999, long = 179.9999.
 
 # Fail
 

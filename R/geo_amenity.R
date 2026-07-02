@@ -1,4 +1,4 @@
-#' Look up amenities
+#' Look up OpenStreetMap amenities
 #'
 #' @description
 #' Looks up OpenStreetMap [amenities][osm_amenities] within a bounding box of
@@ -14,29 +14,29 @@
 #' <https://wiki.openstreetmap.org/wiki/Key:amenity> and [osm_amenities].
 #'
 #' See <https://nominatim.org/release-docs/latest/api/Search/> for additional
-#' parameters to be passed to `custom_query`.
+#' parameters to pass to `custom_query`.
 #'
-#' @param bbox A bounding box (viewbox) used to limit the search. Supply a
-#'   numeric vector of **longitude** (`x`) and **latitude** (`y`) in the form
-#'   `(xmin, ymin, xmax, ymax)`, an [`sf`][sf::st_sf] object or an
-#'   [`sfc`][sf::st_sfc] object. See **Details**.
+#' @param bbox A numeric vector, an [`sf`][sf::st_sf] object or an
+#'   [`sfc`][sf::st_sfc] object specifying a bounding box (viewbox) used to
+#'   limit the search. Numeric vectors must contain **longitude** (`x`) and
+#'   **latitude** (`y`) in the form `(xmin, ymin, xmax, ymax)`. See **Details**.
 #' @param amenity A character vector of amenities to look up,
 #'   for example `c("pub", "restaurant")`. See [osm_amenities].
-#' @param strict If `TRUE`, keeps only results inside `bbox`. If `FALSE` (the
-#'   default), Nominatim may return results outside the bounding box.
+#' @param strict A logical value indicating whether to keep only results inside
+#'   `bbox`. If `FALSE` (the default), Nominatim may return results outside the
+#'   bounding box.
 #' @inheritParams geo_lite
 #'
 #' @inherit geo_lite return
 #'
 #' @family amenity
-#' @family geocoding
 #'
 #' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf nominatim_check_access()
 #' \donttest{
-#' # Times Square, NY, USA
+#' # Define a bounding box around Times Square, New York.
 #' bbox <- c(
 #'   -73.9894467311, 40.75573629,
 #'   -73.9830630737, 40.75789245
@@ -47,13 +47,13 @@
 #'   amenity = "restaurant"
 #' )
 #'
-#' # Multiple amenities
+#' # Search for multiple amenities.
 #' geo_amenity(
 #'   bbox = bbox,
 #'   amenity = c("restaurant", "pub")
 #' )
 #'
-#' # Increase `limit` and use strict filtering
+#' # Increase `limit` and use strict filtering.
 #' geo_amenity(
 #'   bbox = bbox,
 #'   amenity = c("restaurant", "pub"),

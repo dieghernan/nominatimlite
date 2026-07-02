@@ -32,7 +32,7 @@
 
 # nominatimlite 0.4.0
 
-- Updated endpoints for **Nominatim 4.4.0** (`Python-only`).
+- Updated endpoints for **Nominatim 4.4.0** (Python only).
 
 - API calls for non-spatial functions now use JSONv2 format (`&format=jsonv2`),
   so `class` is renamed to `category` and `place_rank` is added with the search
@@ -50,7 +50,7 @@
 - The `nominatim_server` argument allows **nominatimlite** to use a local server
   (#42, \@alexwhitedatamine).
 
-- `geo_amenity()` and `geo_amenity_sf()` are back as wrappers of
+- `geo_amenity()` and `geo_amenity_sf()` are back as wrappers around
   `geo_lite_struct()` and `geo_lite_struct_sf()`, making them more robust and
   compatible with `sf` objects.
 
@@ -90,8 +90,8 @@
   the console.
 - `sf` objects now handle nested fields provided in the JSON response, such as
   the nested address field, consistently with non-spatial functions.
-- `reverse_geo_lite()` and `reverse_geo_lite_sf()` output is improved when the
-  API returns nested lists.
+- Output from `reverse_geo_lite()` and `reverse_geo_lite_sf()` is improved when
+  the API returns nested lists.
 
 # nominatimlite 0.1.6
 
@@ -107,7 +107,7 @@
 
 # nominatimlite 0.1.3
 
-- Skip API query tests on **CRAN** to avoid false positives.
+- API query tests are skipped on **CRAN** to avoid false positives.
 - Centralized API queries in the internal `api_call()` function.
 - Queries now fully honor the [Nominatim Usage
   Policy](https://operations.osmfoundation.org/policies/nominatim/). Queries may

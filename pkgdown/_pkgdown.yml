@@ -20,9 +20,9 @@ home:
   title: nominatimlite | Interface to the Nominatim API
   description: |
     Provides a lightweight interface to the Nominatim API for free-form and
-    structured address searches, searches for addresses from coordinates,
-    amenity lookup and address lookup by OpenStreetMap object identifier.
-    Results are returned as tibbles or `sf` objects.
+    structured address searches, reverse geocoding, amenity lookup and address
+    lookup by OpenStreetMap (OSM) object identifier. Results are returned as
+    tibbles or `sf` objects.
 
 authors:
   Diego Hernangómez:
@@ -38,34 +38,32 @@ authors:
 reference:
 - title: Address search
   desc: >
-    Perform free-form and structured address searches to find coordinates and
-    place information.
+    Search for addresses with free-form and structured queries.
 - contents:
-  - starts_with("geo_lite")
+  - has_concept("geocoding")
 
 - title: Reverse geocoding
   desc: >
-    Find addresses and place information from latitude and longitude coordinates.
+    Reverse geocode latitude and longitude coordinates.
 - contents:
   - has_concept("reverse")
 
 - title: Amenity lookup
   desc: >
-    Search for OpenStreetMap amenities within a bounding box.
+    Look up OpenStreetMap amenities within a bounding box.
 - contents:
   - has_concept("amenity")
+  - -has_keyword("datasets")
 
 - title: Address lookup
   desc: >
-    Retrieve address details for OpenStreetMap node, way and relation
-    identifiers.
+    Look up OpenStreetMap nodes, ways and relations by identifier.
 - contents:
   - has_concept("lookup")
 
-- title: Spatial helpers
+- title: Spatial output
   desc: >
-    Convert bounding boxes to `sf` geometries. Functions that return `sf`
-    objects are listed with their corresponding API operations above.
+    Convert bounding boxes to `sfc` polygon objects.
 - contents:
   - bbox_to_poly
 
@@ -73,7 +71,7 @@ reference:
   desc: >
     Data shipped with the package.
 - contents:
-  - has_concept("datasets")
+  - has_keyword("datasets")
 
 - title: Package documentation
   desc: >
@@ -84,15 +82,15 @@ reference:
 articles:
 - title: Get started
   desc: >
-    Learn how to search for addresses, perform reverse geocoding and work with
-    Nominatim API results.
+    Learn how to search for addresses, reverse geocode coordinates and work
+    with Nominatim API results.
   contents:
   - nominatimlite
 
 - title: Interactive maps
   navbar: Maps
   desc: >
-    Display Nominatim API results with leaflet and use the data in interactive
+    Display Nominatim API results with **leaflet** and use them in interactive
     spatial workflows.
   contents:
   - articles/leaflet

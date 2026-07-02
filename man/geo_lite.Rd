@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_lite}
 \alias{geo_lite}
-\title{Address search API (free-form query)}
+\title{Search for addresses with free-form queries}
 \usage{
 geo_lite(
   address,
@@ -23,30 +23,31 @@ geo_lite(
 \code{"1600 Pennsylvania Ave NW, Washington"} or
 \code{c("Madrid", "Barcelona")}.}
 
-\item{lat}{A string giving the name of the latitude column in the output.
-Defaults to \code{"lat"}.}
+\item{lat}{A character string specifying the name of the latitude column in
+the output. Defaults to \code{"lat"}.}
 
-\item{long}{A string giving the name of the longitude column in the output.
-Defaults to \code{"lon"}.}
+\item{long}{A character string specifying the name of the longitude column
+in the output. Defaults to \code{"lon"}.}
 
-\item{limit}{A positive integer giving the maximum number of results to
+\item{limit}{A positive integer specifying the maximum number of results to
 return per query. Nominatim returns at most 50 results per query.}
 
-\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
-API. If \code{FALSE}, return only query metadata, location data and requested
-address columns.}
+\item{full_results}{A logical value indicating whether to return all
+available fields from the Nominatim API. If \code{FALSE}, only query metadata,
+location data and requested address columns are returned.}
 
-\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
-results.}
+\item{return_addresses}{A logical value indicating whether to include
+single-line addresses in the results.}
 
-\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
+\item{verbose}{A logical value indicating whether to display detailed
+messages in the console.}
 
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
-\item{progressbar}{If \code{TRUE}, displays a progress bar when processing
-multiple queries.}
+\item{progressbar}{A logical value indicating whether to display a progress
+bar when processing multiple queries.}
 
 \item{custom_query}{A named list of additional API parameters, for example
 \code{list(countrycodes = "US")}. See \strong{Details}.}
@@ -64,17 +65,17 @@ This function performs the \strong{free-form address search} described in the
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Search/} for additional
-parameters to be passed to \code{custom_query}.
+parameters to pass to \code{custom_query}.
 }
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 geo_lite("Madrid, Spain")
 
-# Multiple addresses
+# Search for multiple addresses.
 geo_lite(c("Madrid", "Barcelona"))
 
-# Restrict the search to the United States and return all fields
+# Restrict the search to the United States and return all fields.
 geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE
@@ -84,10 +85,6 @@ geo_lite(c("Madrid", "Barcelona"),
 }
 \seealso{
 Address search functions:
-\code{\link[=geo_address_lookup]{geo_address_lookup()}},
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
-\code{\link[=geo_amenity]{geo_amenity()}},
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
 \code{\link[=geo_lite_sf]{geo_lite_sf()}},
 \code{\link[=geo_lite_struct]{geo_lite_struct()}},
 \code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}

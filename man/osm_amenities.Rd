@@ -10,9 +10,9 @@ A \link[dplyr:tibble]{tibble} with
 136 rows and
 three columns:
 \describe{
-\item{category}{The category of the amenity.}
-\item{amenity}{The value of the amenity.}
-\item{comment}{A brief description of the type of amenity.}
+\item{category}{Amenity category.}
+\item{amenity}{Amenity value.}
+\item{comment}{Brief description of the amenity type.}
 }
 }
 \source{
@@ -25,7 +25,6 @@ A dataset of amenity values available on OpenStreetMap.
 The data were extracted on \strong{April 3, 2024}.
 }
 \examples{
-
 data("osm_amenities")
 
 osm_amenities
@@ -36,4 +35,4 @@ Amenity lookup functions:
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
 }
 \concept{amenity}
-\concept{datasets}
+\keyword{datasets}

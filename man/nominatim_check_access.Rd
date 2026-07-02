@@ -10,8 +10,8 @@ nominatim_check_access(
 )
 }
 \arguments{
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 }
 \value{
@@ -28,5 +28,4 @@ nominatim_check_access()
 \seealso{
 \url{https://nominatim.org/release-docs/latest/api/Status/}.
 }
-\concept{API management}
 \keyword{internal}

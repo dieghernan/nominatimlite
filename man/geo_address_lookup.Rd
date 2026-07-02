@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geo_address_lookup}
 \alias{geo_address_lookup}
-\title{Address lookup API}
+\title{Look up OpenStreetMap objects}
 \usage{
 geo_address_lookup(
   osm_ids,
@@ -25,23 +25,24 @@ geo_address_lookup(
 with each value in \code{osm_ids}. Possible values are node (\code{"N"}), way
 (\code{"W"}) and relation (\code{"R"}). A single value is recycled.}
 
-\item{lat}{A string giving the name of the latitude column in the output.
-Defaults to \code{"lat"}.}
+\item{lat}{A character string specifying the name of the latitude column in
+the output. Defaults to \code{"lat"}.}
 
-\item{long}{A string giving the name of the longitude column in the output.
-Defaults to \code{"lon"}.}
+\item{long}{A character string specifying the name of the longitude column
+in the output. Defaults to \code{"lon"}.}
 
-\item{full_results}{If \code{TRUE}, return all available fields from the Nominatim
-API. If \code{FALSE}, return only query metadata, location data and requested
-address columns.}
+\item{full_results}{A logical value indicating whether to return all
+available fields from the Nominatim API. If \code{FALSE}, only query metadata,
+location data and requested address columns are returned.}
 
-\item{return_addresses}{If \code{TRUE}, include single-line addresses in the
-results.}
+\item{return_addresses}{A logical value indicating whether to include
+single-line addresses in the results.}
 
-\item{verbose}{If \code{TRUE}, displays detailed messages in the console.}
+\item{verbose}{A logical value indicating whether to display detailed
+messages in the console.}
 
-\item{nominatim_server}{A string giving the base URL of the Nominatim
-server. Defaults to
+\item{nominatim_server}{A character string specifying the base URL of the
+Nominatim server. Defaults to
 \code{"https://nominatim.openstreetmap.org/"}.}
 
 \item{custom_query}{A named list of additional API parameters, for example
@@ -58,7 +59,7 @@ objects, such as nodes, ways or relations. Results are returned as a
 }
 \details{
 See \url{https://nominatim.org/release-docs/latest/api/Lookup/} for additional
-parameters to be passed to \code{custom_query}.
+parameters to pass to \code{custom_query}.
 }
 \examples{
 \dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
@@ -73,17 +74,7 @@ several
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Address search functions:
-\code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}},
-\code{\link[=geo_amenity]{geo_amenity()}},
-\code{\link[=geo_amenity_sf]{geo_amenity_sf()}},
-\code{\link[=geo_lite]{geo_lite()}},
-\code{\link[=geo_lite_sf]{geo_lite_sf()}},
-\code{\link[=geo_lite_struct]{geo_lite_struct()}},
-\code{\link[=geo_lite_struct_sf]{geo_lite_struct_sf()}}
-
 Address lookup functions:
 \code{\link[=geo_address_lookup_sf]{geo_address_lookup_sf()}}
 }
-\concept{geocoding}
 \concept{lookup}

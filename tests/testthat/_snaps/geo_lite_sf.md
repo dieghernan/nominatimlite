@@ -3,7 +3,7 @@
     Code
       obj <- geo_lite_sf("xbzbzbzoa aiaia")
     Message
-      No results were found for query: xbzbzbzoa aiaia.
+      No results were found for the query: xbzbzbzoa aiaia.
 
 # Fail
 

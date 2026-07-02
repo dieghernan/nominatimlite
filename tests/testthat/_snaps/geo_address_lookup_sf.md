@@ -3,7 +3,7 @@
     Code
       obj <- geo_address_lookup_sf(34633854, "N")
     Message
-      No results were found for query: N34633854.
+      No results were found for the query: N34633854.
 
 # Handle several
 

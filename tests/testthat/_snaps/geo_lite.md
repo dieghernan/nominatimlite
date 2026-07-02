@@ -3,14 +3,14 @@
     Code
       obj <- geo_lite("xbzbzbzoa aiaia")
     Message
-      No results were found for query: xbzbzbzoa aiaia.
+      No results were found for the query: xbzbzbzoa aiaia.
 
 ---
 
     Code
       obj_renamed <- geo_lite("xbzbzbzoa aiaia", lat = "lata", long = "longa")
     Message
-      No results were found for query: xbzbzbzoa aiaia.
+      No results were found for the query: xbzbzbzoa aiaia.
 
 # Fail
 
