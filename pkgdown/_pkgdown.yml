@@ -36,41 +36,59 @@ authors:
       width='150' alt='OpenStreetMap' style='margin-bottom: 3px;'>
 
 reference:
-- title: Address search
+- title: Geocoding
   desc: >
-    Search for addresses with free-form and structured queries.
-- contents:
+    Search OpenStreetMap using free-form text, structured queries or
+    geographic coordinates.
+
+- subtitle: Address search
+  desc: >
+    Search for places and addresses using free-form text or structured
+    address components.
+  contents:
   - has_concept("geocoding")
 
-- title: Reverse geocoding
+- subtitle: Reverse geocoding
   desc: >
-    Reverse geocode latitude and longitude coordinates.
-- contents:
+    Convert latitude and longitude coordinates into human-readable
+    addresses.
+  contents:
   - has_concept("reverse")
 
-- title: Amenity lookup
+- title: OpenStreetMap lookups
   desc: >
-    Look up OpenStreetMap amenities within a bounding box.
-- contents:
+    Retrieve OpenStreetMap features directly from existing OSM
+    identifiers or search for amenities within a geographic area.
+
+- subtitle: Address lookup
+  desc: >
+    Retrieve OpenStreetMap nodes, ways and relations from their
+    OSM identifiers.
+  contents:
+  - has_concept("lookup")
+ 
+- subtitle: Amenity lookup
+  desc: >
+    Find OpenStreetMap amenities and points of interest inside a
+    bounding box.
+  contents:
   - has_concept("amenity")
   - -has_keyword("datasets")
 
-- title: Address lookup
+- title: Utilities
   desc: >
-    Look up OpenStreetMap nodes, ways and relations by identifier.
-- contents:
-  - has_concept("lookup")
+    Helper functions and bundled datasets.
 
-- title: Spatial output
+- subtitle: Spatial output
   desc: >
-    Convert bounding boxes to `sfc` polygon objects.
-- contents:
+    Convert returned bounding boxes into `sf` polygon geometries.
+  contents:
   - bbox_to_poly
 
-- title: Datasets
+- subtitle: Datasets
   desc: >
-    Data shipped with the package.
-- contents:
+    Sample data included with the package.
+  contents:
   - has_keyword("datasets")
 
 - title: Package documentation
