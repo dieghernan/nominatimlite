@@ -52,9 +52,14 @@
     </div>
 
     <div class="section level2">
-      <h2 id="address-search">Address search<a class="anchor" aria-label="anchor" href="#address-search"></a></h2>
+      <h2 id="geocoding">Geocoding<a class="anchor" aria-label="anchor" href="#geocoding"></a></h2>
 
-      <div class="section-desc"><p>Search for addresses with free-form and structured queries.</p></div>
+      <div class="section-desc"><p>Search OpenStreetMap using free-form text, structured queries or geographic coordinates.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+      <h3 id="address-search">Address search<a class="anchor" aria-label="anchor" href="#address-search"></a></h3>
+      <div class="section-desc"><p>Search for places and addresses using free-form text or structured address components.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -89,9 +94,9 @@
         </dt>
         <dd>Search for addresses with structured queries and return <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> objects</dd>
       </dl></div><div class="section level2">
-      <h2 id="reverse-geocoding">Reverse geocoding<a class="anchor" aria-label="anchor" href="#reverse-geocoding"></a></h2>
 
-      <div class="section-desc"><p>Reverse geocode latitude and longitude coordinates.</p></div>
+      <h3 id="reverse-geocoding">Reverse geocoding<a class="anchor" aria-label="anchor" href="#reverse-geocoding"></a></h3>
+      <div class="section-desc"><p>Convert latitude and longitude coordinates into human-readable addresses.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -112,32 +117,14 @@
         </dt>
         <dd>Reverse geocode coordinates and return <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> objects</dd>
       </dl></div><div class="section level2">
-      <h2 id="amenity-lookup">Amenity lookup<a class="anchor" aria-label="anchor" href="#amenity-lookup"></a></h2>
+      <h2 id="openstreetmap-lookups">OpenStreetMap lookups<a class="anchor" aria-label="anchor" href="#openstreetmap-lookups"></a></h2>
 
-      <div class="section-desc"><p>Look up OpenStreetMap amenities within a bounding box.</p></div>
+      <div class="section-desc"><p>Retrieve OpenStreetMap features directly from existing OSM identifiers or search for amenities within a geographic area.</p></div>
 
       <dl></dl></div><div class="section level2">
 
-
-
-
-      <dl><dt>
-
-          <code><a href="geo_amenity.html">geo_amenity()</a></code>
-
-        </dt>
-        <dd>Look up OpenStreetMap amenities</dd>
-
-        <dt>
-
-          <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code>
-
-        </dt>
-        <dd>Look up OpenStreetMap amenities and return <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> objects</dd>
-      </dl></div><div class="section level2">
-      <h2 id="address-lookup">Address lookup<a class="anchor" aria-label="anchor" href="#address-lookup"></a></h2>
-
-      <div class="section-desc"><p>Look up OpenStreetMap nodes, ways and relations by identifier.</p></div>
+      <h3 id="address-lookup">Address lookup<a class="anchor" aria-label="anchor" href="#address-lookup"></a></h3>
+      <div class="section-desc"><p>Retrieve OpenStreetMap nodes, ways and relations from their OSM identifiers.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -158,9 +145,37 @@
         </dt>
         <dd>Look up OpenStreetMap objects and return <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> objects</dd>
       </dl></div><div class="section level2">
-      <h2 id="spatial-output">Spatial output<a class="anchor" aria-label="anchor" href="#spatial-output"></a></h2>
 
-      <div class="section-desc"><p>Convert bounding boxes to <code>sfc</code> polygon objects.</p></div>
+      <h3 id="amenity-lookup">Amenity lookup<a class="anchor" aria-label="anchor" href="#amenity-lookup"></a></h3>
+      <div class="section-desc"><p>Find OpenStreetMap amenities and points of interest inside a bounding box.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="geo_amenity.html">geo_amenity()</a></code>
+
+        </dt>
+        <dd>Look up OpenStreetMap amenities</dd>
+
+        <dt>
+
+          <code><a href="geo_amenity_sf.html">geo_amenity_sf()</a></code>
+
+        </dt>
+        <dd>Look up OpenStreetMap amenities and return <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> objects</dd>
+      </dl></div><div class="section level2">
+      <h2 id="utilities">Utilities<a class="anchor" aria-label="anchor" href="#utilities"></a></h2>
+
+      <div class="section-desc"><p>Helper functions and bundled datasets.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+      <h3 id="spatial-output">Spatial output<a class="anchor" aria-label="anchor" href="#spatial-output"></a></h3>
+      <div class="section-desc"><p>Convert returned bounding boxes into <code>sf</code> polygon geometries.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -174,9 +189,9 @@
         </dt>
         <dd>Convert a bounding box to an <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sfc</a></code> <code>POLYGON</code> object</dd>
       </dl></div><div class="section level2">
-      <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a></h2>
 
-      <div class="section-desc"><p>Data shipped with the package.</p></div>
+      <h3 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a></h3>
+      <div class="section-desc"><p>Sample data included with the package.</p></div>
 
       <dl></dl></div><div class="section level2">
 
