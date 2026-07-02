@@ -1,7 +1,7 @@
-# Reverse geocoding API
+# Reverse geocode coordinates
 
-Finds addresses from latitude and longitude coordinates and returns the
-matching results as a
+Reverse geocodes latitude and longitude coordinates and returns matching
+results as a
 [tibble](https://tibble.tidyverse.org/reference/tibble.html). Latitude
 values must be in \\\left\[-90, 90 \right\]\\ and longitudes in
 \\\left\[-180, 180 \right\]\\. Use
@@ -29,39 +29,44 @@ reverse_geo_lite(
 
 - lat:
 
-  Numeric latitude values in the range \\\left\[-90, 90 \right\]\\.
+  A numeric vector of latitude values in the range \\\left\[-90, 90
+  \right\]\\.
 
 - long:
 
-  Numeric longitude values in the range \\\left\[-180, 180 \right\]\\.
+  A numeric vector of longitude values in the range \\\left\[-180, 180
+  \right\]\\.
 
 - address:
 
-  A string giving the name of the address column in the output. Defaults
-  to `"address"`.
+  A character string specifying the name of the address column in the
+  output. Defaults to `"address"`.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, location data and requested
-  address columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, location data and
+  requested address columns are returned.
 
 - return_coords:
 
-  If `TRUE`, returns the input coordinates with the results.
+  A logical value indicating whether to return the input coordinates
+  with the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, displays a progress bar when processing multiple queries.
+  A logical value indicating whether to display a progress bar when
+  processing multiple queries.
 
 - custom_query:
 
@@ -76,7 +81,7 @@ the results that match the query.
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Reverse/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## About zooming
 
@@ -104,14 +109,13 @@ Reverse geocoding functions:
 
 ``` r
 # \donttest{
-
 reverse_geo_lite(lat = 40.75728, long = -73.98586)
 #> # A tibble: 1 × 3
 #>   address                                                              lat   lon
 #>   <chr>                                                              <dbl> <dbl>
 #> 1 West 44th Street, Times Square, Manhattan Community Board 5, Manh…  40.8 -74.0
 
-# Multiple coordinate pairs
+# Reverse geocode multiple coordinate pairs.
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 #> # A tibble: 2 × 3
@@ -120,7 +124,7 @@ reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
 #> 1 West 44th Street, Times Square, Manhattan Community Board 5, Man…  40.8 -74.0 
 #> 2 East End, Waterloo Place, Waterloo Place, Greenside, Broughton, …  56.0  -3.19
 
-# Set the zoom to country level
+# Set the zoom to the country level.
 sev <- reverse_geo_lite(
   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
   custom_query = list(zoom = 0, extratags = TRUE),
@@ -134,7 +138,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52489199, 274782588
+#> $ place_id                                 <int> 51484763, 273351366
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

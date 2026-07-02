@@ -3,8 +3,8 @@
 **nominatimlite** provides a lightweight interface to the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It supports free-form
 and structured address searches, reverse geocoding, amenity lookup and
-address lookup by OpenStreetMap object identifier. Results are returned
-as tibbles or `sf` objects.
+address lookup by OpenStreetMap (OSM) object identifier. Results are
+returned as tibbles or `sf` objects.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>.
@@ -14,7 +14,7 @@ The full site with examples and vignettes is available at
 **Nominatim** searches [OpenStreetMap](https://www.openstreetmap.org/)
 data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
-and finds addresses from geographic coordinates (reverse geocoding).
+and reverse geocodes geographic coordinates.
 
 ## Why nominatimlite?
 
@@ -28,13 +28,13 @@ Related packages provide broader interfaces to geocoding services and
 OpenStreetMap data:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-  ([Cambon et al. 2021](#ref-R-tidygeocoder)): Provides an interface to
+  ([Cambon et al. 2021](#ref-R-tidygeocoder)) provides an interface to
   geocoding services such as Nominatim, Google, TomTom and Mapbox.
 - [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
-  2017](#ref-R-osmdata)): Downloads spatial data from OpenStreetMap with
+  2017](#ref-R-osmdata)) downloads spatial data from OpenStreetMap with
   the [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
-  ([Hernangómez 2024](#ref-R-arcgeocoder)): Provides a lightweight
+  ([Hernangómez 2024](#ref-R-arcgeocoder)) provides a lightweight
   interface for geocoding with the ArcGIS REST API service.
 
 ## Installation
@@ -49,10 +49,9 @@ install.packages("nominatimlite")
 
 ## Usage
 
-### `sf` objects
+### `sf` output
 
-Use functions with the `_sf` suffix to return matching results as `sf`
-objects:
+Use functions with the `_sf` suffix to return results as `sf` objects:
 
 ``` r
 
@@ -118,7 +117,7 @@ package.*
 
 Use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
-to perform a free-form address search:
+to search for addresses with free-form queries:
 
 ``` r
 
@@ -155,7 +154,7 @@ Table 1: Geocoded addresses.
 
 Use
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
-to find addresses from latitude and longitude coordinates. The `lat` and
+to reverse geocode latitude and longitude coordinates. The `lat` and
 `long` arguments use the results from the address search above. The
 `address` argument specifies the name of the output column that contains
 each single-line address.
@@ -172,15 +171,15 @@ reverse <- reverse_geo_lite(
 
 | address_found | lat | lon |
 |:---|---:|---:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79541 | -122.40257 |
 | The Metropolitan, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87883 | -87.63607 |
 
 Table 2: Reverse-geocoded addresses.
 
 See the [Nominatim search API
 documentation](https://nominatim.org/release-docs/latest/api/Search/)
-for additional parameters that can be passed through `custom_query`.
+for additional parameters to pass to `custom_query`.
 
 ## Citation
 
@@ -220,75 +219,68 @@ Padgham, Mark, Robin Lovelace, Maëlle Salmon, and Bob Rudis. 2017.
 
 ## Address search
 
-Perform free-form and structured address searches to find coordinates
-and place information.
+Search for addresses with free-form and structured queries.
 
 - [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
-  : Address search API (free-form query)
+  : Search for addresses with free-form queries
 
 - [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md)
   :
 
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (free-form query)
+  Search for addresses with free-form queries and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 - [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
-  : Address search API (structured query)
+  : Search for addresses with structured queries
 
 - [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
   :
 
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (structured query)
+  Search for addresses with structured queries and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 ## Reverse geocoding
 
-Find addresses and place information from latitude and longitude
-coordinates.
+Reverse geocode latitude and longitude coordinates.
 
 - [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
-  : Reverse geocoding API
+  : Reverse geocode coordinates
 
 - [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
   :
 
-  Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
-  output
+  Reverse geocode coordinates and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 ## Amenity lookup
 
-Search for OpenStreetMap amenities within a bounding box.
+Look up OpenStreetMap amenities within a bounding box.
 
 - [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
-  : Look up amenities
+  : Look up OpenStreetMap amenities
 
 - [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
   :
 
-  Look up amenities with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-- [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-  : OpenStreetMap amenities
+  Look up OpenStreetMap amenities and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 ## Address lookup
 
-Retrieve address details for OpenStreetMap node, way and relation
-identifiers.
+Look up OpenStreetMap nodes, ways and relations by identifier.
 
 - [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
-  : Address lookup API
+  : Look up OpenStreetMap objects
 
 - [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
   :
 
-  Address lookup API with [sf](https://CRAN.R-project.org/package=sf)
-  output
+  Look up OpenStreetMap objects and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
-## Spatial helpers
+## Spatial output
 
-Convert bounding boxes to `sf` geometries. Functions that return `sf`
-objects are listed with their corresponding API operations above.
+Convert bounding boxes to `sfc` polygon objects.
 
 - [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md)
   :
@@ -316,7 +308,7 @@ Package overview and metadata.
 
 ### Get started
 
-Learn how to search for addresses, perform reverse geocoding and work
+Learn how to search for addresses, reverse geocode coordinates and work
 with Nominatim API results.
 
 - [Get started with
@@ -326,10 +318,10 @@ with Nominatim API results.
 
 ### Interactive maps
 
-Display Nominatim API results with leaflet and use the data in
+Display Nominatim API results with **leaflet** and use them in
 interactive spatial workflows.
 
 - [Interactive maps with nominatimlite and
   leaflet](https://dieghernan.github.io/nominatimlite/articles/leaflet.md):
 
-  Display Nominatim API results on interactive maps.
+  Display Nominatim API results on interactive leaflet maps.

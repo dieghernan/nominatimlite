@@ -2,9 +2,9 @@
 
 ## Build the map
 
-This example displays Nominatim API results on an interactive [leaflet
-map](https://rstudio.github.io/leaflet/). It searches for cafes and
-restaurants near the Eiffel Tower with
+This example displays Nominatim API results on an interactive
+[**leaflet**](https://rstudio.github.io/leaflet/) map. It looks up cafes
+and restaurants near the Eiffel Tower with
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md).
 
 The **crosstalk** and **reactable** packages link the map to a
@@ -29,7 +29,7 @@ eiffel_tower <- geo_lite_sf(
   progressbar = FALSE
 )
 
-# Step 2: Coffee shops and restaurants nearby.
+# Step 2: Look up coffee shops and restaurants nearby.
 
 # Create a buffer of 1 km around the Eiffel Tower.
 buff <- eiffel_tower |>

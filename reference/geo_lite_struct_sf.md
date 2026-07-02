@@ -1,4 +1,4 @@
-# Address search API with [sf](https://CRAN.R-project.org/package=sf) output (structured query)
+# Search for addresses with structured queries and return [sf](https://CRAN.R-project.org/package=sf) objects
 
 Searches for addresses already split into components and returns
 matching results as an
@@ -38,56 +38,58 @@ geo_lite_struct_sf(
 
 - amenity:
 
-  A string giving the name or type of amenity. See
+  A character string specifying the name or type of amenity. See
   [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
 
 - street:
 
-  A string giving the house number and street name.
+  A character string specifying the house number and street name.
 
 - city:
 
-  A string giving the city.
+  A character string specifying the city.
 
 - county:
 
-  A string giving the county.
+  A character string specifying the county.
 
 - state:
 
-  A string giving the state.
+  A character string specifying the state.
 
 - country:
 
-  A string giving the country.
+  A character string specifying the country.
 
 - postalcode:
 
-  A string giving the postal code.
+  A character string specifying the postal code.
 
 - limit:
 
-  A positive integer giving the maximum number of results to return per
-  query. Nominatim returns at most 50 results per query.
+  A positive integer specifying the maximum number of results to return
+  per query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, geometry and requested address
-  columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, geometry and
+  requested address columns are returned.
 
 - return_addresses:
 
-  If `TRUE`, include single-line addresses in the results.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
@@ -96,8 +98,9 @@ geo_lite_struct_sf(
 
 - points_only:
 
-  If `TRUE`, return only point geometries. If `FALSE`, the API may
-  return other geometry types. See **About geometry types**.
+  A logical value indicating whether to return only point geometries. If
+  `FALSE`, the API may return other geometry types. See **About geometry
+  types**.
 
 ## Value
 
@@ -112,7 +115,7 @@ are optional, so provide only those relevant to the address you want to
 find.
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## About geometry types
 
@@ -130,10 +133,6 @@ With `points_only = FALSE`, multiple geometry types may be returned.
 ## See also
 
 Address search functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
@@ -149,7 +148,7 @@ Spatial output functions:
 
 ``` r
 # \donttest{
-# Structured address search
+# Search with a structured address.
 
 pl_mayor <- geo_lite_struct_sf(
   street = "Plaza Mayor",
@@ -158,7 +157,7 @@ pl_mayor <- geo_lite_struct_sf(
   full_results = TRUE, verbose = TRUE
 )
 
-# Administrative boundary
+# Retrieve an administrative boundary.
 ccaa <- geo_lite_sf("Comunidad de Madrid, Spain", points_only = FALSE)
 
 library(ggplot2)

@@ -9,15 +9,15 @@ rows and three columns:
 
 - category:
 
-  The category of the amenity.
+  Amenity category.
 
 - amenity:
 
-  The value of the amenity.
+  Amenity value.
 
 - comment:
 
-  A brief description of the type of amenity.
+  Brief description of the amenity type.
 
 ## Source
 
@@ -36,7 +36,6 @@ Amenity lookup functions:
 ## Examples
 
 ``` r
-
 data("osm_amenities")
 
 osm_amenities

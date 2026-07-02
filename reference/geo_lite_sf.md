@@ -1,6 +1,7 @@
-# Address search API with [sf](https://CRAN.R-project.org/package=sf) output (free-form query)
+# Search for addresses with free-form queries and return [sf](https://CRAN.R-project.org/package=sf) objects
 
-Searches for addresses and returns matching results as an
+Searches for addresses supplied as a character vector and returns
+matching results as an
 [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object. Use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
 to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
@@ -35,31 +36,34 @@ geo_lite_sf(
 
 - limit:
 
-  A positive integer giving the maximum number of results to return per
-  query. Nominatim returns at most 50 results per query.
+  A positive integer specifying the maximum number of results to return
+  per query. Nominatim returns at most 50 results per query.
 
 - return_addresses:
 
-  If `TRUE`, include single-line addresses in the results.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, geometry and requested address
-  columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, geometry and
+  requested address columns are returned.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - progressbar:
 
-  If `TRUE`, displays a progress bar when processing multiple queries.
+  A logical value indicating whether to display a progress bar when
+  processing multiple queries.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
@@ -68,8 +72,9 @@ geo_lite_sf(
 
 - points_only:
 
-  If `TRUE`, return only point geometries. If `FALSE`, the API may
-  return other geometry types. See **About geometry types**.
+  A logical value indicating whether to return only point geometries. If
+  `FALSE`, the API may return other geometry types. See **About geometry
+  types**.
 
 ## Value
 
@@ -79,7 +84,7 @@ the results that match the query.
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## About geometry types
 
@@ -97,10 +102,6 @@ With `points_only = FALSE`, multiple geometry types may be returned.
 ## See also
 
 Address search functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
@@ -116,7 +117,7 @@ Spatial output functions:
 
 ``` r
 # \donttest{
-# Point geometries
+# Return point geometries.
 library(ggplot2)
 
 string <- "Statue of Liberty, NY, USA"
@@ -136,7 +137,7 @@ if (!all(sf::st_is_empty(sol_poly))) {
     geom_sf(data = sol, color = "red")
 }
 
-# Multiple matches
+# Return multiple matches.
 
 madrid <- geo_lite_sf("Comunidad de Madrid, Spain",
   limit = 2,

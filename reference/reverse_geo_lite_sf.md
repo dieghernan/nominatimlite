@@ -1,10 +1,9 @@
-# Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf) output
+# Reverse geocode coordinates and return [sf](https://CRAN.R-project.org/package=sf) objects
 
-Finds addresses from latitude and longitude coordinates and returns the
-matching results as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
-Latitude values must be in \\\left\[-90, 90 \right\]\\ and longitude
-values in \\\left\[-180, 180 \right\]\\. Use
+Reverse geocodes latitude and longitude coordinates and returns matching
+results as an [`sf`](https://r-spatial.github.io/sf/reference/sf.html)
+object. Latitude values must be in \\\left\[-90, 90 \right\]\\ and
+longitude values in \\\left\[-180, 180 \right\]\\. Use
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
 to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
 instead.
@@ -30,39 +29,44 @@ reverse_geo_lite_sf(
 
 - lat:
 
-  Numeric latitude values in the range \\\left\[-90, 90 \right\]\\.
+  A numeric vector of latitude values in the range \\\left\[-90, 90
+  \right\]\\.
 
 - long:
 
-  Numeric longitude values in the range \\\left\[-180, 180 \right\]\\.
+  A numeric vector of longitude values in the range \\\left\[-180, 180
+  \right\]\\.
 
 - address:
 
-  A string giving the name of the address column in the output. Defaults
-  to `"address"`.
+  A character string specifying the name of the address column in the
+  output. Defaults to `"address"`.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, geometry and requested address
-  columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, geometry and
+  requested address columns are returned.
 
 - return_coords:
 
-  If `TRUE`, returns the input coordinates with the results.
+  A logical value indicating whether to return the input coordinates
+  with the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, displays a progress bar when processing multiple queries.
+  A logical value indicating whether to display a progress bar when
+  processing multiple queries.
 
 - custom_query:
 
@@ -71,8 +75,9 @@ reverse_geo_lite_sf(
 
 - points_only:
 
-  If `TRUE`, return only point geometries. If `FALSE`, the API may
-  return other geometry types. See **About geometry types**.
+  A logical value indicating whether to return only point geometries. If
+  `FALSE`, the API may return other geometry types. See **About geometry
+  types**.
 
 ## Value
 
@@ -82,7 +87,7 @@ the results that match the query.
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Reverse/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## About zooming
 
@@ -132,11 +137,11 @@ Spatial output functions:
 # \donttest{
 library(ggplot2)
 
-# Colosseum coordinates
+# Define the Colosseum coordinates.
 col_lon <- 12.49309
 col_lat <- 41.89026
 
-# Colosseum as a polygon
+# Return the Colosseum as a polygon.
 col_sf <- reverse_geo_lite_sf(
   lat = col_lat,
   long = col_lon,
@@ -157,7 +162,7 @@ if (!all(sf::st_is_empty(col_sf))) {
 }
 
 
-# City of Rome: same coordinates with zoom 10
+# Return the city of Rome by using the same coordinates with zoom 10.
 
 rome_sf <- reverse_geo_lite_sf(
   lat = col_lat,

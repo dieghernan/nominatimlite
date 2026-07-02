@@ -52,7 +52,7 @@ CRAN release: 2024-07-19
 
 CRAN release: 2024-05-27
 
-- Updated endpoints for **Nominatim 4.4.0** (`Python-only`).
+- Updated endpoints for **Nominatim 4.4.0** (Python only).
 
 - API calls for non-spatial functions now use JSONv2 format
   (`&format=jsonv2`), so `class` is renamed to `category` and
@@ -76,7 +76,7 @@ CRAN release: 2024-05-27
 - [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
   and
   [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
-  are back as wrappers of
+  are back as wrappers around
   [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
   and
   [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md),
@@ -141,10 +141,11 @@ CRAN release: 2023-05-11
 - `sf` objects now handle nested fields provided in the JSON response,
   such as the nested address field, consistently with non-spatial
   functions.
-- [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
+- Output from
+  [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
   and
   [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
-  output is improved when the API returns nested lists.
+  is improved when the API returns nested lists.
 
 ## nominatimlite 0.1.6
 
@@ -171,7 +172,7 @@ CRAN release: 2021-10-28
 
 CRAN release: 2021-10-21
 
-- Skip API query tests on **CRAN** to avoid false positives.
+- API query tests are skipped on **CRAN** to avoid false positives.
 - Centralized API queries in the internal `api_call()` function.
 - Queries now fully honor the [Nominatim Usage
   Policy](https://operations.osmfoundation.org/policies/nominatim/).

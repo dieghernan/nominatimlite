@@ -14,8 +14,8 @@ nominatim_check_access(
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 ## Value
 

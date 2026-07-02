@@ -2,75 +2,68 @@
 
 ## Address search
 
-Perform free-form and structured address searches to find coordinates
-and place information.
+Search for addresses with free-form and structured queries.
 
 - [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
-  : Address search API (free-form query)
+  : Search for addresses with free-form queries
 
 - [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md)
   :
 
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (free-form query)
+  Search for addresses with free-form queries and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 - [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md)
-  : Address search API (structured query)
+  : Search for addresses with structured queries
 
 - [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
   :
 
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (structured query)
+  Search for addresses with structured queries and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 ## Reverse geocoding
 
-Find addresses and place information from latitude and longitude
-coordinates.
+Reverse geocode latitude and longitude coordinates.
 
 - [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
-  : Reverse geocoding API
+  : Reverse geocode coordinates
 
 - [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite_sf.md)
   :
 
-  Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
-  output
+  Reverse geocode coordinates and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 ## Amenity lookup
 
-Search for OpenStreetMap amenities within a bounding box.
+Look up OpenStreetMap amenities within a bounding box.
 
 - [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md)
-  : Look up amenities
+  : Look up OpenStreetMap amenities
 
 - [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
   :
 
-  Look up amenities with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-- [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
-  : OpenStreetMap amenities
+  Look up OpenStreetMap amenities and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 ## Address lookup
 
-Retrieve address details for OpenStreetMap node, way and relation
-identifiers.
+Look up OpenStreetMap nodes, ways and relations by identifier.
 
 - [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
-  : Address lookup API
+  : Look up OpenStreetMap objects
 
 - [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
   :
 
-  Address lookup API with [sf](https://CRAN.R-project.org/package=sf)
-  output
+  Look up OpenStreetMap objects and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
-## Spatial helpers
+## Spatial output
 
-Convert bounding boxes to `sf` geometries. Functions that return `sf`
-objects are listed with their corresponding API operations above.
+Convert bounding boxes to `sfc` polygon objects.
 
 - [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md)
   :

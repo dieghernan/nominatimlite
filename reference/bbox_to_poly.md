@@ -19,8 +19,8 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 
 - xmin, ymin, xmax, ymax:
 
-  Individual bounding box coordinates. Use these arguments as an
-  alternative to `bbox`.
+  A numeric value specifying an individual bounding box coordinate. Use
+  these arguments as an alternative to `bbox`.
 
 - crs:
 
@@ -53,8 +53,7 @@ Spatial output functions:
 ## Examples
 
 ``` r
-
-# Bounding box for Germany
+# Convert the bounding box for Germany.
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)
@@ -65,7 +64,7 @@ ggplot(bbox_GER_sf) +
   geom_sf()
 
 # \donttest{
-# Extract the bounding box of an `sf` object
+# Extract the bounding box of an `sf` object.
 sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj
@@ -79,7 +78,7 @@ sfobj
 #> * <chr>      <chr>                                            <MULTIPOLYGON [°]>
 #> 1 seychelles Sesel   (((45.99888 -9.401015, 46.00121 -9.427337, 46.00564 -9.456…
 
-# Require at least one non-empty object
+# Require at least one non-empty object.
 if (!all(sf::st_is_empty(sfobj))) {
   bbox <- sf::st_bbox(sfobj)
 

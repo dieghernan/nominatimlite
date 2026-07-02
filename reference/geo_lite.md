@@ -1,4 +1,4 @@
-# Address search API (free-form query)
+# Search for addresses with free-form queries
 
 Searches for addresses supplied as a character vector and returns
 matching results as a
@@ -37,41 +37,44 @@ geo_lite(
 
 - lat:
 
-  A string giving the name of the latitude column in the output.
-  Defaults to `"lat"`.
+  A character string specifying the name of the latitude column in the
+  output. Defaults to `"lat"`.
 
 - long:
 
-  A string giving the name of the longitude column in the output.
-  Defaults to `"lon"`.
+  A character string specifying the name of the longitude column in the
+  output. Defaults to `"lon"`.
 
 - limit:
 
-  A positive integer giving the maximum number of results to return per
-  query. Nominatim returns at most 50 results per query.
+  A positive integer specifying the maximum number of results to return
+  per query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, location data and requested
-  address columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, location data and
+  requested address columns are returned.
 
 - return_addresses:
 
-  If `TRUE`, include single-line addresses in the results.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, displays a progress bar when processing multiple queries.
+  A logical value indicating whether to display a progress bar when
+  processing multiple queries.
 
 - custom_query:
 
@@ -86,15 +89,11 @@ the results that match the query.
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## See also
 
 Address search functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
 [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
@@ -109,7 +108,7 @@ geo_lite("Madrid, Spain")
 #>   <chr>         <dbl> <dbl> <chr>                              
 #> 1 Madrid, Spain  40.4 -3.70 Madrid, Comunidad de Madrid, España
 
-# Multiple addresses
+# Search for multiple addresses.
 geo_lite(c("Madrid", "Barcelona"))
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 #> # A tibble: 2 × 4
@@ -118,7 +117,7 @@ geo_lite(c("Madrid", "Barcelona"))
 #> 1 Madrid     40.4 -3.70 Madrid, Comunidad de Madrid, España                
 #> 2 Barcelona  41.4  2.18 Barcelona, Barcelonès, Barcelona, Catalunya, España
 
-# Restrict the search to the United States and return all fields
+# Restrict the search to the United States and return all fields.
 geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE

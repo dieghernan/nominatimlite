@@ -1,4 +1,4 @@
-# Look up amenities
+# Look up OpenStreetMap amenities
 
 Looks up OpenStreetMap
 [amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
@@ -32,12 +32,12 @@ geo_amenity(
 
 - bbox:
 
-  A bounding box (viewbox) used to limit the search. Supply a numeric
-  vector of **longitude** (`x`) and **latitude** (`y`) in the form
-  `(xmin, ymin, xmax, ymax)`, an
+  A numeric vector, an
   [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object or an
-  [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object. See
-  **Details**.
+  [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object
+  specifying a bounding box (viewbox) used to limit the search. Numeric
+  vectors must contain **longitude** (`x`) and **latitude** (`y`) in the
+  form `(xmin, ymin, xmax, ymax)`. See **Details**.
 
 - amenity:
 
@@ -47,41 +47,44 @@ geo_amenity(
 
 - lat:
 
-  A string giving the name of the latitude column in the output.
-  Defaults to `"lat"`.
+  A character string specifying the name of the latitude column in the
+  output. Defaults to `"lat"`.
 
 - long:
 
-  A string giving the name of the longitude column in the output.
-  Defaults to `"lon"`.
+  A character string specifying the name of the longitude column in the
+  output. Defaults to `"lon"`.
 
 - limit:
 
-  A positive integer giving the maximum number of results to return per
-  query. Nominatim returns at most 50 results per query.
+  A positive integer specifying the maximum number of results to return
+  per query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, location data and requested
-  address columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, location data and
+  requested address columns are returned.
 
 - return_addresses:
 
-  If `TRUE`, include single-line addresses in the results.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, displays a progress bar when processing multiple queries.
+  A logical value indicating whether to display a progress bar when
+  processing multiple queries.
 
 - custom_query:
 
@@ -90,8 +93,9 @@ geo_amenity(
 
 - strict:
 
-  If `TRUE`, keeps only results inside `bbox`. If `FALSE` (the default),
-  Nominatim may return results outside the bounding box.
+  A logical value indicating whether to keep only results inside `bbox`.
+  If `FALSE` (the default), Nominatim may return results outside the
+  bounding box.
 
 ## Value
 
@@ -108,7 +112,7 @@ For a full list of valid amenities, see
 [osm_amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md).
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## See also
 
@@ -116,20 +120,11 @@ Amenity lookup functions:
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
 
-Address search functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
-[`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
-[`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
-[`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
-
 ## Examples
 
 ``` r
 # \donttest{
-# Times Square, NY, USA
+# Define a bounding box around Times Square, New York.
 bbox <- c(
   -73.9894467311, 40.75573629,
   -73.9830630737, 40.75789245
@@ -144,7 +139,7 @@ geo_amenity(
 #>   <chr>      <dbl> <dbl> <chr>                                                  
 #> 1 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manhat…
 
-# Multiple amenities
+# Search for multiple amenities.
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub")
@@ -156,7 +151,7 @@ geo_amenity(
 #> 1 restaurant  40.8 -74.0 Amor Loco, 134, West 46th Street, Times Square, Manhat…
 #> 2 pub         40.8 -74.0 Connolly's, 121, West 45th Street, Times Square, Manha…
 
-# Increase `limit` and use strict filtering
+# Increase `limit` and use strict filtering.
 geo_amenity(
   bbox = bbox,
   amenity = c("restaurant", "pub"),
@@ -179,10 +174,10 @@ geo_amenity(
 #> 10 restaurant  40.8 -74.0 Bubba Gump Shrimp Company, 1501, Broadway, Times Squa…
 #> 11 pub         40.8 -74.0 Connolly's, 121, West 45th Street, Times Square, Manh…
 #> 12 pub         40.8 -74.0 Perfect Pint, 123, West 45th Street, Times Square, Ma…
-#> 13 pub         40.8 -74.0 Merrion Row, 119, West 45th Street, Times Square, Man…
-#> 14 pub         40.8 -74.0 O'Donoghue's, 156, West 44th Street, Times Square, Ma…
-#> 15 pub         40.8 -74.0 Jimmy's Corner, 140, West 44th Street, Times Square, …
-#> 16 pub         40.8 -74.0 BXL Cafe, 125, West 43rd Street, Times Square, Manhat…
-#> 17 pub         40.8 -74.0 Bar 54, 135, West 45th Street, Times Square, Manhatta…
+#> 13 pub         40.8 -74.0 Bar 54, 135, West 45th Street, Times Square, Manhatta…
+#> 14 pub         40.8 -74.0 Merrion Row, 119, West 45th Street, Times Square, Man…
+#> 15 pub         40.8 -74.0 O'Donoghue's, 156, West 44th Street, Times Square, Ma…
+#> 16 pub         40.8 -74.0 Jimmy's Corner, 140, West 44th Street, Times Square, …
+#> 17 pub         40.8 -74.0 BXL Cafe, 125, West 43rd Street, Times Square, Manhat…
 # }
 ```

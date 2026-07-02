@@ -1,4 +1,4 @@
-# Address lookup API with [sf](https://CRAN.R-project.org/package=sf) output
+# Look up OpenStreetMap objects and return [sf](https://CRAN.R-project.org/package=sf) objects
 
 Looks up addresses and other details for one or more OpenStreetMap (OSM)
 objects, such as nodes, ways or relations. Results are returned as an
@@ -36,22 +36,24 @@ geo_address_lookup_sf(
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, geometry and requested address
-  columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, geometry and
+  requested address columns are returned.
 
 - return_addresses:
 
-  If `TRUE`, include single-line addresses in the results.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
@@ -60,8 +62,9 @@ geo_address_lookup_sf(
 
 - points_only:
 
-  If `TRUE`, return only point geometries. If `FALSE`, the API may
-  return other geometry types. See **About geometry types**.
+  A logical value indicating whether to return only point geometries. If
+  `FALSE`, the API may return other geometry types. See **About geometry
+  types**.
 
 ## Value
 
@@ -71,7 +74,7 @@ the results that match the query.
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Lookup/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## About geometry types
 
@@ -88,15 +91,6 @@ With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
-Address search functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
-[`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
-[`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
-[`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
-
 Address lookup functions:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
 
@@ -111,11 +105,11 @@ Spatial output functions:
 
 ``` r
 # \donttest{
-# Notre-Dame Cathedral, Paris
+# Look up Notre-Dame Cathedral in Paris.
 
 NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 
-# Require at least one non-empty object
+# Require at least one non-empty object.
 if (!all(sf::st_is_empty(NotreDame))) {
   library(ggplot2)
 
@@ -135,7 +129,7 @@ if (!all(sf::st_is_empty(NotreDame_poly))) {
 }
 
 
-# Vectorized input
+# Look up multiple OSM objects.
 
 several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 several

@@ -1,4 +1,4 @@
-# Look up amenities with [sf](https://CRAN.R-project.org/package=sf) output
+# Look up OpenStreetMap amenities and return [sf](https://CRAN.R-project.org/package=sf) objects
 
 Looks up OpenStreetMap
 [amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
@@ -31,12 +31,12 @@ geo_amenity_sf(
 
 - bbox:
 
-  A bounding box (viewbox) used to limit the search. Supply a numeric
-  vector of **longitude** (`x`) and **latitude** (`y`) in the form
-  `(xmin, ymin, xmax, ymax)`, an
+  A numeric vector, an
   [`sf`](https://r-spatial.github.io/sf/reference/sf.html) object or an
-  [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object. See
-  **Details**.
+  [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object
+  specifying a bounding box (viewbox) used to limit the search. Numeric
+  vectors must contain **longitude** (`x`) and **latitude** (`y`) in the
+  form `(xmin, ymin, xmax, ymax)`. See **Details**.
 
 - amenity:
 
@@ -46,31 +46,34 @@ geo_amenity_sf(
 
 - limit:
 
-  A positive integer giving the maximum number of results to return per
-  query. Nominatim returns at most 50 results per query.
+  A positive integer specifying the maximum number of results to return
+  per query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, geometry and requested address
-  columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, geometry and
+  requested address columns are returned.
 
 - return_addresses:
 
-  If `TRUE`, include single-line addresses in the results.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - progressbar:
 
-  If `TRUE`, displays a progress bar when processing multiple queries.
+  A logical value indicating whether to display a progress bar when
+  processing multiple queries.
 
 - custom_query:
 
@@ -79,13 +82,15 @@ geo_amenity_sf(
 
 - strict:
 
-  If `TRUE`, keeps only results inside `bbox`. If `FALSE` (the default),
-  Nominatim may return results outside the bounding box.
+  A logical value indicating whether to keep only results inside `bbox`.
+  If `FALSE` (the default), Nominatim may return results outside the
+  bounding box.
 
 - points_only:
 
-  If `TRUE`, return only point geometries. If `FALSE`, the API may
-  return other geometry types. See **About geometry types**.
+  A logical value indicating whether to return only point geometries. If
+  `FALSE`, the API may return other geometry types. See **About geometry
+  types**.
 
 ## Value
 
@@ -102,7 +107,7 @@ For a full list of valid amenities, see
 [osm_amenities](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md).
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## About geometry types
 
@@ -123,15 +128,6 @@ Amenity lookup functions:
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
 [`osm_amenities`](https://dieghernan.github.io/nominatimlite/reference/osm_amenities.md)
 
-Address search functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
-[`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
-[`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct.md),
-[`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
-
 Spatial output functions:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
@@ -143,12 +139,12 @@ Spatial output functions:
 
 ``` r
 # \donttest{
-# Usera, Madrid
+# Retrieve the Usera district in Madrid.
 
 library(ggplot2)
 mad <- geo_lite_sf("Usera, Madrid, Spain", points_only = FALSE)
 
-# Restaurants, pubs and schools
+# Search for restaurants, pubs and schools.
 
 rest_pub <- geo_amenity_sf(mad, c("restaurant", "pub", "school"),
   limit = 50

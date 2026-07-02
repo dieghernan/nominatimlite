@@ -1,4 +1,4 @@
-# Address search API (structured query)
+# Search for addresses with structured queries
 
 Searches for addresses already split into components and returns
 matching results as a
@@ -39,66 +39,68 @@ geo_lite_struct(
 
 - amenity:
 
-  A string giving the name or type of amenity. See
+  A character string specifying the name or type of amenity. See
   [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md).
 
 - street:
 
-  A string giving the house number and street name.
+  A character string specifying the house number and street name.
 
 - city:
 
-  A string giving the city.
+  A character string specifying the city.
 
 - county:
 
-  A string giving the county.
+  A character string specifying the county.
 
 - state:
 
-  A string giving the state.
+  A character string specifying the state.
 
 - country:
 
-  A string giving the country.
+  A character string specifying the country.
 
 - postalcode:
 
-  A string giving the postal code.
+  A character string specifying the postal code.
 
 - lat:
 
-  A string giving the name of the latitude column in the output.
-  Defaults to `"lat"`.
+  A character string specifying the name of the latitude column in the
+  output. Defaults to `"lat"`.
 
 - long:
 
-  A string giving the name of the longitude column in the output.
-  Defaults to `"lon"`.
+  A character string specifying the name of the longitude column in the
+  output. Defaults to `"lon"`.
 
 - limit:
 
-  A positive integer giving the maximum number of results to return per
-  query. Nominatim returns at most 50 results per query.
+  A positive integer specifying the maximum number of results to return
+  per query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
-  If `TRUE`, return all available fields from the Nominatim API. If
-  `FALSE`, return only query metadata, location data and requested
-  address columns.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, location data and
+  requested address columns are returned.
 
 - return_addresses:
 
-  If `TRUE`, include single-line addresses in the results.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, displays detailed messages in the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  A string giving the base URL of the Nominatim server. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
@@ -118,15 +120,11 @@ are optional, so provide only those relevant to the address you want to
 find.
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## See also
 
 Address search functions:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md),
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_sf.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite_struct_sf.md)
@@ -141,7 +139,7 @@ pl_mayor <- geo_lite_struct(
 )
 
 dplyr::glimpse(pl_mayor)
-#> Rows: 31
+#> Rows: 30
 #> Columns: 41
 #> $ q_amenity                <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ q_street                 <chr> "Plaza Mayor", "Plaza Mayor", "Plaza Mayor", …
@@ -153,7 +151,7 @@ dplyr::glimpse(pl_mayor)
 #> $ lat                      <dbl> 40.41539, 40.96503, 41.65206, 40.95033, 40.02…
 #> $ lon                      <dbl> -3.7069974, -5.6640558, -4.7285484, -4.123986…
 #> $ address                  <chr> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…
-#> $ place_id                 <int> 291459241, 291059616, 290448086, 293050135, 2…
+#> $ place_id                 <int> 295440561, 293945216, 293394845, 294032427, 2…
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "relation", "way", "way", "relation", "way", …
 #> $ osm_id                   <int> 16657232, 78180390, 24432960, 18226870, 18456…

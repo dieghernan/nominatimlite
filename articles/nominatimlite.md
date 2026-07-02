@@ -3,8 +3,8 @@
 **nominatimlite** provides a lightweight interface to the [Nominatim
 API](https://nominatim.org/release-docs/latest/). It supports free-form
 and structured address searches, reverse geocoding, amenity lookup and
-address lookup by OpenStreetMap object identifier. Results are returned
-as tibbles or `sf` objects.
+address lookup by OpenStreetMap (OSM) object identifier. Results are
+returned as tibbles or `sf` objects.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>.
@@ -14,7 +14,7 @@ The full site with examples and vignettes is available at
 **Nominatim** searches [OpenStreetMap](https://www.openstreetmap.org/)
 data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
-and finds addresses from geographic coordinates (reverse geocoding).
+and reverse geocodes geographic coordinates.
 
 ## Why nominatimlite?
 
@@ -28,21 +28,20 @@ Related packages provide broader interfaces to geocoding services and
 OpenStreetMap data:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-  ([Cambon et al. 2021](#ref-R-tidygeocoder)): Provides an interface to
+  ([Cambon et al. 2021](#ref-R-tidygeocoder)) provides an interface to
   geocoding services such as Nominatim, Google, TomTom and Mapbox.
 - [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
-  2017](#ref-R-osmdata)): Downloads spatial data from OpenStreetMap with
+  2017](#ref-R-osmdata)) downloads spatial data from OpenStreetMap with
   the [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
-  ([Hernangómez 2024](#ref-R-arcgeocoder)): Provides a lightweight
+  ([Hernangómez 2024](#ref-R-arcgeocoder)) provides a lightweight
   interface for geocoding with the ArcGIS REST API service.
 
 ## Usage
 
-### `sf` objects
+### `sf` output
 
-Use functions with the `_sf` suffix to return matching results as `sf`
-objects:
+Use functions with the `_sf` suffix to return results as `sf` objects:
 
 ``` r
 
@@ -95,7 +94,7 @@ package.*
 
 Use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
-to perform a free-form address search:
+to search for addresses with free-form queries:
 
 ``` r
 
@@ -132,7 +131,7 @@ Table 1: Geocoded addresses.
 
 Use
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
-to find addresses from latitude and longitude coordinates. The `lat` and
+to reverse geocode latitude and longitude coordinates. The `lat` and
 `long` arguments use the results from the address search above. The
 `address` argument specifies the name of the output column that contains
 each single-line address.
@@ -149,15 +148,15 @@ reverse <- reverse_geo_lite(
 
 | address_found | lat | lon |
 |:---|---:|---:|
-| White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
+| 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79541 | -122.40257 |
 | The Metropolitan, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87883 | -87.63607 |
 
 Table 2: Reverse-geocoded addresses.
 
 See the [Nominatim search API
 documentation](https://nominatim.org/release-docs/latest/api/Search/)
-for additional parameters that can be passed through `custom_query`.
+for additional parameters to pass to `custom_query`.
 
 ## References
 
