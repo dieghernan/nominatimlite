@@ -1,7 +1,7 @@
 # Contributing to nominatimlite
 
 This outlines how to propose a change to nominatimlite. For a detailed
-discussion on contributing to this and other tidyverse packages, please see the
+discussion on contributing to this package, please see the
 [development contributing guide](https://rstd.io/tidy-contrib) and our [code
 review principles](https://code-review.tidyverse.org/).
 
