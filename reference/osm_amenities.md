@@ -25,7 +25,8 @@ rows and three columns:
 
 ## Note
 
-The data were extracted on **April 3, 2024**.
+The data were extracted on **April 3, 2024**. See `inst/COPYRIGHTS` for
+copyright and license details.
 
 ## See also
 

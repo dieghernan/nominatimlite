@@ -33,4 +33,5 @@ Other contributors:
 
 - Alex White \[contributor\]
 
-- OpenStreetMap (For the data) \[copyright holder\]
+- OpenStreetMap contributors (For the osm_amenities data) \[copyright
+  holder\]
