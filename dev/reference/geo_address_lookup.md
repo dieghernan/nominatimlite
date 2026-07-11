@@ -1,12 +1,11 @@
-# Address lookup API
+# Look up OpenStreetMap objects
 
-The lookup API queries the address and other details of one or more OSM
-objects, such as nodes, ways or relations, and returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query. See
+Looks up addresses and other details for one or more OpenStreetMap (OSM)
+objects, such as nodes, ways or relations. Results are returned as a
+[tibble](https://tibble.tidyverse.org/reference/tibble.html). Use
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
-for retrieving the data as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
+to return an [`sf`](https://r-spatial.github.io/sf/reference/sf.html)
+object instead.
 
 ## Usage
 
@@ -28,45 +27,48 @@ geo_address_lookup(
 
 - osm_ids:
 
-  Vector of OSM identifiers as numeric values, for example
-  `c(00000, 11111, 22222)`.
+  A numeric vector of OSM identifiers, for example `c(12345, 67890)`.
 
 - type:
 
-  Character vector of the OSM object type associated with each `osm_ids`
-  value. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided, it will be recycled.
+  A character vector containing the OSM object type associated with each
+  value in `osm_ids`. Possible values are node (`"N"`), way (`"W"`) and
+  relation (`"R"`). A single value is recycled.
 
 - lat:
 
-  Latitude column name in the output data (default `"lat"`).
+  A character string specifying the name of the latitude column in the
+  output. Defaults to `"lat"`.
 
 - long:
 
-  Longitude column name in the output data (default `"long"`).
+  A character string specifying the name of the longitude column in the
+  output. Defaults to `"lon"`.
 
 - full_results:
 
-  Return all available data from the Nominatim API. If `FALSE`
-  (default), only latitude, longitude and address columns are returned.
-  See also `return_addresses`.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, location data and
+  requested address columns are returned.
 
 - return_addresses:
 
-  Return input addresses with results if `TRUE`.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, detailed logs are output to the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  URL of the Nominatim server to use. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  Named list with API-specific parameters, for example
+  A named list of additional API parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 ## Value
@@ -77,21 +79,12 @@ the results that match the query.
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Lookup/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## See also
 
-Address lookup:
+Address lookup functions:
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
-
-Geocoding:
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md),
-[`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),
-[`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.md),
-[`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
 
 ## Examples
 

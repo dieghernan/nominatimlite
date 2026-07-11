@@ -1,23 +1,23 @@
-# OpenStreetMap amenity database
+# OpenStreetMap amenities
 
-Database with the list of amenities available on OpenStreetMap.
+A dataset of amenity values available on OpenStreetMap.
 
 ## Format
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-136 rows and fields:
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with 140
+rows and three columns:
 
 - category:
 
-  The category of the amenity.
+  Amenity category.
 
 - amenity:
 
-  The value of the amenity.
+  Amenity value.
 
 - comment:
 
-  A brief description of the type of amenity.
+  Brief description of the amenity type.
 
 ## Source
 
@@ -25,22 +25,22 @@ A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
 
 ## Note
 
-Data extracted on **03 April 2024**.
+The data were extracted on **July 11, 2026**. See `inst/COPYRIGHTS` for
+copyright and license details.
 
 ## See also
 
-Amenity lookup:
+Amenity lookup functions:
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md)
 
 ## Examples
 
 ``` r
-
 data("osm_amenities")
 
 osm_amenities
-#> # A tibble: 136 × 3
+#> # A tibble: 140 × 3
 #>    category   amenity        comment                                            
 #>    <chr>      <chr>          <chr>                                              
 #>  1 Sustenance bar            Bar is a purpose-built commercial establishment th…
@@ -53,5 +53,5 @@ osm_amenities
 #>  8 Sustenance restaurant     Restaurant (not fast food, see amenity=fast_food).…
 #>  9 Education  college        Campus or buildings of an institute of Further Edu…
 #> 10 Education  dancing_school A dancing school or dance studio                   
-#> # ℹ 126 more rows
+#> # ℹ 130 more rows
 ```

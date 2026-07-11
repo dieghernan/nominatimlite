@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="index.html"><img src="apple-touch-icon.png" alt="nominatimlite logo" height="34" width="34" class="d-inline-block me-1">nominatimlite</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.5.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.6.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +26,10 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Articles</h6></li>
-    <li><a class="dropdown-item" href="articles/leaflet.html">nominatimlite and leaflet maps</a></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Maps</h6></li>
+    <li><a class="dropdown-item" href="articles/leaflet.html">Interactive maps with nominatimlite and leaflet</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="articles/index.html">More articles...</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -52,7 +54,7 @@
 
 <div id="contributing-to-nominatimlite" class="section level1">
 
-<p>This outlines how to propose a change to nominatimlite. For a detailed discussion on contributing to this and other tidyverse packages, please see the <a href="https://rstd.io/tidy-contrib" class="external-link">development contributing guide</a> and our <a href="https://code-review.tidyverse.org/" class="external-link">code review principles</a>.</p>
+<p>This outlines how to propose a change to nominatimlite. For a detailed discussion on contributing to this package, please see the <a href="https://rstd.io/tidy-contrib" class="external-link">development contributing guide</a> and our <a href="https://code-review.tidyverse.org/" class="external-link">code review principles</a>.</p>
 <div class="section level2">
 <h2 id="fixing-typos">Fixing typos<a class="anchor" aria-label="anchor" href="#fixing-typos"></a></h2>
 <p>You can fix typos, spelling mistakes, or grammatical errors in the documentation directly using the GitHub web interface, as long as the changes are made in the <em>source</em> file. This generally means you’ll need to edit <a href="https://roxygen2.r-lib.org/articles/roxygen2.html" class="external-link">roxygen2 comments</a> in an <code>.R</code>, not a <code>.Rd</code> file. You can find the <code>.R</code> file that generates the <code>.Rd</code> by reading the comment in the first line.</p>

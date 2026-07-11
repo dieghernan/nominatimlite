@@ -1,13 +1,14 @@
-# Address search API (structured query)
+# Search for addresses with structured queries
 
-Geocodes addresses already split into components and returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
-associated with the query. See
+Searches for addresses already split into components and returns
+matching results as a
+[tibble](https://tibble.tidyverse.org/reference/tibble.html). Use
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
-for retrieving the data as an
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object.
+to return an [`sf`](https://r-spatial.github.io/sf/reference/sf.html)
+object instead.
 
-Corresponds to the **structured query** search described in the [API
+This function performs the **structured address search** described in
+the [API
 endpoint](https://nominatim.org/release-docs/latest/api/Search/). To
 perform a free-form search, use
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md).
@@ -38,68 +39,72 @@ geo_lite_struct(
 
 - amenity:
 
-  Name and/or type of POI. See also
+  A character string specifying the name or type of amenity. See
   [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md).
 
 - street:
 
-  House number and street name.
+  A character string specifying the house number and street name.
 
 - city:
 
-  City.
+  A character string specifying the city.
 
 - county:
 
-  County.
+  A character string specifying the county.
 
 - state:
 
-  State.
+  A character string specifying the state.
 
 - country:
 
-  Country.
+  A character string specifying the country.
 
 - postalcode:
 
-  Postal code.
+  A character string specifying the postal code.
 
 - lat:
 
-  Latitude column name in the output data (default `"lat"`).
+  A character string specifying the name of the latitude column in the
+  output. Defaults to `"lat"`.
 
 - long:
 
-  Longitude column name in the output data (default `"long"`).
+  A character string specifying the name of the longitude column in the
+  output. Defaults to `"lon"`.
 
 - limit:
 
-  Maximum number of results to return per input address. Note that each
-  query returns a maximum of 50 results.
+  A positive integer specifying the maximum number of results to return
+  per query. Nominatim returns at most 50 results per query.
 
 - full_results:
 
-  Return all available data from the Nominatim API. If `FALSE`
-  (default), only latitude, longitude and address columns are returned.
-  See also `return_addresses`.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, location data and
+  requested address columns are returned.
 
 - return_addresses:
 
-  Return input addresses with results if `TRUE`.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, detailed logs are output to the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  URL of the Nominatim server to use. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  Named list with API-specific parameters, for example
+  A named list of additional API parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 ## Value
@@ -109,23 +114,17 @@ the results that match the query.
 
 ## Details
 
-The structured form of the search query allows you to look up an address
-that is already split into its components. Each parameter represents a
-field of the address. All parameters are optional. You should only use
-the ones that are relevant for the address you want to geocode.
+A structured address search accepts an address already split into
+components. Each argument represents an address field. All components
+are optional, so provide only those relevant to the address you want to
+find.
 
 See <https://nominatim.org/release-docs/latest/api/Search/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## See also
 
-[`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html).
-
-Geocoding:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md),
-[`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
+Address search functions:
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),
 [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
@@ -152,7 +151,7 @@ dplyr::glimpse(pl_mayor)
 #> $ lat                      <dbl> 40.41539, 40.96503, 41.65206, 40.95033, 40.02…
 #> $ lon                      <dbl> -3.7069974, -5.6640558, -4.7285484, -4.123986…
 #> $ address                  <chr> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…
-#> $ place_id                 <int> 291459241, 291059616, 290448086, 293050135, 2…
+#> $ place_id                 <int> 293280562, 292768831, 292162441, 292826660, 2…
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "relation", "way", "way", "relation", "way", …
 #> $ osm_id                   <int> 16657232, 78180390, 24432960, 18226870, 18456…
@@ -165,22 +164,22 @@ dplyr::glimpse(pl_mayor)
 #> $ display_name             <chr> "Plaza Mayor, Barrio de los Austrias, Sol, Ce…
 #> $ address.road             <chr> "Plaza Mayor", "Plaza Mayor", "Plaza Mayor", …
 #> $ address.neighbourhood    <chr> "Barrio de los Austrias", NA, NA, "La Judería…
-#> $ address.quarter          <chr> "Sol", NA, NA, NA, "Miralvalle", NA, NA, NA, …
+#> $ address.quarter          <chr> "Sol", NA, NA, NA, "Miralvalle", NA, NA, "San…
 #> $ address.city_district    <chr> "Centro", "Centro", NA, "Comunidad de Ciudad …
 #> $ address.city             <chr> "Madrid", "Salamanca", "Valladolid", "Segovia…
 #> $ address.state            <chr> "Comunidad de Madrid", "Castilla y León", "Ca…
 #> $ `address.ISO3166-2-lvl4` <chr> "ES-MD", "ES-CL", "ES-CL", "ES-CL", "ES-EX", …
-#> $ address.postcode         <chr> "28012", "37002", "47003", "40001", "10609", …
+#> $ address.postcode         <chr> "28012", "37002", "47003", "40001", "10600", …
 #> $ address.country          <chr> "España", "España", "España", "España", "Espa…
 #> $ address.country_code     <chr> "es", "es", "es", "es", "es", "es", "es", "es…
 #> $ address.province         <chr> NA, "Salamanca", "Valladolid", "Segovia", "Cá…
 #> $ `address.ISO3166-2-lvl6` <chr> NA, "ES-SA", "ES-VA", "ES-SG", "ES-CC", "ES-Z…
 #> $ address.suburb           <chr> NA, NA, "Plaza Mayor", "La Albuera", NA, "Bar…
 #> $ address.hamlet           <chr> NA, NA, NA, NA, "Olivar del Puerto", NA, NA, …
-#> $ address.town             <chr> NA, NA, NA, NA, "Plasencia", NA, "Vic", NA, N…
-#> $ address.village          <chr> NA, NA, NA, NA, NA, NA, "Sentfores", NA, NA, …
-#> $ address.county           <chr> NA, NA, NA, NA, NA, NA, "Osona", NA, NA, NA, …
-#> $ address.region           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "l'Al…
+#> $ address.town             <chr> NA, NA, NA, NA, "Plasencia", NA, NA, NA, "Oca…
+#> $ address.region           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, "l'Alt Vi…
+#> $ address.village          <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "…
+#> $ address.county           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ address.borough          <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ boundingbox              <list> <40.414989, 40.415813, -3.708120, -3.706629>…
 # }

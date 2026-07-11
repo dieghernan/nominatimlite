@@ -1,13 +1,11 @@
-# Address lookup API with [sf](https://CRAN.R-project.org/package=sf) output
+# Look up OpenStreetMap objects and return [sf](https://CRAN.R-project.org/package=sf) objects
 
-The lookup API queries the address and other details of one or more OSM
-objects, such as nodes, ways or relations, and returns the
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object
-associated with the query using
-[sf](https://CRAN.R-project.org/package=sf). See
+Looks up addresses and other details for one or more OpenStreetMap (OSM)
+objects, such as nodes, ways or relations. Results are returned as an
+[`sf`](https://r-spatial.github.io/sf/reference/sf.html) object. Use
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md)
-for retrieving the data in
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
+to return a [tibble](https://tibble.tidyverse.org/reference/tibble.html)
+instead.
 
 ## Usage
 
@@ -28,44 +26,45 @@ geo_address_lookup_sf(
 
 - osm_ids:
 
-  Vector of OSM identifiers as numeric values, for example
-  `c(00000, 11111, 22222)`.
+  A numeric vector of OSM identifiers, for example `c(12345, 67890)`.
 
 - type:
 
-  Character vector of the OSM object type associated with each `osm_ids`
-  value. Possible values are node (`"N"`), way (`"W"`) or relation
-  (`"R"`). If a single value is provided, it will be recycled.
+  A character vector containing the OSM object type associated with each
+  value in `osm_ids`. Possible values are node (`"N"`), way (`"W"`) and
+  relation (`"R"`). A single value is recycled.
 
 - full_results:
 
-  Return all available data from the Nominatim API. If `FALSE`
-  (default), only address columns are returned. See also
-  `return_addresses`.
+  A logical value indicating whether to return all available fields from
+  the Nominatim API. If `FALSE`, only query metadata, geometry and
+  requested address columns are returned.
 
 - return_addresses:
 
-  Return input addresses with results if `TRUE`.
+  A logical value indicating whether to include single-line addresses in
+  the results.
 
 - verbose:
 
-  If `TRUE`, detailed logs are output to the console.
+  A logical value indicating whether to display detailed messages in the
+  console.
 
 - nominatim_server:
 
-  URL of the Nominatim server to use. Defaults to
-  `"https://nominatim.openstreetmap.org/"`.
+  A character string specifying the base URL of the Nominatim server.
+  Defaults to `"https://nominatim.openstreetmap.org/"`.
 
 - custom_query:
 
-  Named list with API-specific parameters, for example
+  A named list of additional API parameters, for example
   `list(countrycodes = "US")`. See **Details**.
 
 - points_only:
 
-  Logical `TRUE/FALSE`. Whether to return only point geometries (`TRUE`,
-  which is the default) or potentially other shapes as returned by the
-  Nominatim API (`FALSE`). See **About geometry types**.
+  A logical value indicating whether to return only point geometries. If
+  `FALSE`, the API may return other geometry types. See **About geometry
+  types**.
 
 ## Value
 
@@ -75,38 +74,27 @@ the results that match the query.
 ## Details
 
 See <https://nominatim.org/release-docs/latest/api/Lookup/> for
-additional parameters to be passed to `custom_query`.
+additional parameters to pass to `custom_query`.
 
 ## About geometry types
 
-The parameter `points_only` specifies whether the function results will
-be points (all Nominatim results are guaranteed to have at least point
-geometry) or other geometry types.
+The `points_only` argument controls whether the results contain only
+points. All Nominatim results have at least a point geometry.
 
-Note that when `points_only = FALSE`, the type of geometry returned
-depends on the object being geocoded. Administrative areas, major
-buildings and the like will be returned as polygons, rivers, roads and
-similar features will be returned as lines, and amenities may still be
-returned as points.
+When `points_only = FALSE`, the geometry type depends on the matching
+feature. Administrative areas and major buildings are returned as
+polygons, rivers and roads are returned as lines and amenities may still
+be returned as points.
 
-This function is vectorized, allowing multiple addresses to be geocoded.
+This function is vectorized, allowing multiple addresses to be searched.
 With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
-Address lookup:
+Address lookup functions:
 [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md)
 
-Geocoding:
-[`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md),
-[`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md),
-[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md),
-[`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),
-[`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.md),
-[`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
-
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) outputs:
+Spatial output functions:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),
@@ -117,11 +105,11 @@ Geocoding:
 
 ``` r
 # \donttest{
-# Notre Dame Cathedral, Paris
+# Look up Notre-Dame Cathedral in Paris.
 
 NotreDame <- geo_address_lookup_sf(osm_ids = 201611261, type = "W")
 
-# Require at least one non-empty object
+# Require at least one non-empty object.
 if (!all(sf::st_is_empty(NotreDame))) {
   library(ggplot2)
 
@@ -141,7 +129,7 @@ if (!all(sf::st_is_empty(NotreDame_poly))) {
 }
 
 
-# Vectorized input
+# Look up multiple OSM objects.
 
 several <- geo_address_lookup_sf(c(146656, 240109189), type = c("R", "N"))
 several

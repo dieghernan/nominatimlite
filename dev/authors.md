@@ -13,7 +13,7 @@
 
 - **[![OpenStreetMap](https://wiki.openstreetmap.org/w/images/6/6f/Made_with.svg)](https://www.openstreetmap.org/copyright/)**.
   Copyright holder.  
-  For the data
+  For the osm_amenities data
 
 ## Citation
 
@@ -29,7 +29,7 @@ Hernangómez D (2026). *nominatimlite: Interface to the Nominatim API*.
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.5.0.9000},
+      version = {0.6.0.9000},
       url = {https://dieghernan.github.io/nominatimlite/},
-      abstract = {Lightweight interface to the OpenStreetMap Nominatim service <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames (tibbles) or sf objects.},
+      abstract = {Provides a lightweight interface to the Nominatim API <https://nominatim.org/release-docs/latest/>. It supports free-form and structured address searches, searches for addresses from coordinates, amenity lookup and address lookup by OpenStreetMap object identifier. It returns results as tibble data frames or sf objects.},
     }

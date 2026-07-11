@@ -1,39 +1,40 @@
 # nominatimlite
 
-The goal of **nominatimlite** is to provide a lightweight interface for
-geocoding addresses with the [Nominatim
-API](https://nominatim.org/release-docs/latest/). It also allows you to
-return results as `sf` objects using the **sf** package.
+**nominatimlite** provides a lightweight interface to the [Nominatim
+API](https://nominatim.org/release-docs/latest/). It supports free-form
+and structured address searches, reverse geocoding, amenity lookup and
+address lookup by OpenStreetMap (OSM) object identifier. Results are
+returned as tibbles or `sf` objects.
 
 The full site with examples and vignettes is available at
-<https://dieghernan.github.io/nominatimlite/>
+<https://dieghernan.github.io/nominatimlite/>.
 
 ## What is Nominatim?
 
-**Nominatim** is a tool for searching
-[OpenStreetMap](https://www.openstreetmap.org/) data by name and address
+**Nominatim** searches [OpenStreetMap](https://www.openstreetmap.org/)
+data by name and address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
-and generating synthetic addresses for OSM points (reverse geocoding).
+and reverse geocodes geographic coordinates.
 
 ## Why nominatimlite?
 
-**nominatimlite** accesses the Nominatim API without depending on
-**curl**. In some situations, **curl** may not be available or
-accessible, so **nominatimlite** uses base R functions instead.
+**nominatimlite** accesses the Nominatim API without requiring the
+**curl** package. This makes the package useful in environments where
+**curl** is not available. API requests use base R functions instead.
 
 ## Recommended packages
 
-Other packages are more complete and mature than **nominatimlite** and
-provide similar features:
+Related packages provide broader interfaces to geocoding services and
+OpenStreetMap data:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-  ([Cambon et al. 2021](#ref-R-tidygeocoder)): Provides an interface to
+  ([Cambon et al. 2021](#ref-R-tidygeocoder)) provides an interface to
   geocoding services such as Nominatim, Google, TomTom and Mapbox.
 - [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
-  2017](#ref-R-osmdata)): Downloads spatial data from OpenStreetMap with
+  2017](#ref-R-osmdata)) downloads spatial data from OpenStreetMap with
   the [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
-  ([Hernangómez 2024](#ref-R-arcgeocoder)): Provides a lightweight
+  ([Hernangómez 2024](#ref-R-arcgeocoder)) provides a lightweight
   interface for geocoding with the ArcGIS REST API service.
 
 ## Installation
@@ -65,9 +66,9 @@ install.packages(
 
 ## Usage
 
-### `sf` objects
+### `sf` output
 
-With **nominatimlite** you can return `sf` objects:
+Use functions with the `_sf` suffix to return results as `sf` objects:
 
 ``` r
 
@@ -90,11 +91,11 @@ ggplot(CA) +
   geom_sf(data = pizzahut, col = "red")
 ```
 
-![Pizza Hut restaurant locations in California extracted with
+![Pizza Hut locations in California returned by
 nominatimlite.](reference/figures/README-pizzahut-1.png)
 
-You can also return polygon and line objects when the Nominatim API
-provides them, using the option `points_only = FALSE`:
+Set `points_only = FALSE` to return polygon and line geometries when
+they are available from the Nominatim API:
 
 ``` r
 
@@ -105,7 +106,7 @@ ggplot(sol_poly) +
   geom_sf()
 ```
 
-![Location of the Statue of Liberty extracted with
+![Statue of Liberty geometry returned by
 nominatimlite.](reference/figures/README-statue_liberty-1.png)
 
 ``` r
@@ -123,22 +124,22 @@ ggplot() +
   geom_sf(data = ohio_river, color = "blue")
 ```
 
-![Different features named Ohio extracted with
+![Different features named Ohio returned by
 nominatimlite.](reference/figures/README-line-object-1.png)
 
-### Geocoding and reverse geocoding
+### Address search and reverse geocoding
 
-*Note: examples are adapted from the **tidygeocoder** package.*
+*The examples in this section are adapted from the **tidygeocoder**
+package.*
 
-In this first example, we geocode a few addresses with
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md):
+Use
+[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
+to search for addresses with free-form queries:
 
 ``` r
 
-library(tibble)
-
 # Create a data frame with addresses.
-some_addresses <- tribble(
+some_addresses <- dplyr::tribble(
   ~name, ~addr,
   "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
@@ -154,27 +155,26 @@ lat_longs <- geo_lite(
 )
 ```
 
-This example returns only latitude, longitude and address columns from
-the Nominatim API. Use `full_results = TRUE` to return all available
-data from the Nominatim API.
+By default,
+[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
+returns the query, latitude, longitude and address columns. Set
+`full_results = TRUE` to return all available fields from the Nominatim
+API.
 
 | query | latitude | longitude | address |
 |:---|---:|---:|:---|
-| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Downtown, Ward 2, Washington, District of Columbia, 20500, United States |
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89764 | -77.03655 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79519 | -122.40279 | Transamerica Pyramid, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States |
 | 233 S Wacker Dr, Chicago, IL 60606 | 41.87874 | -87.63596 | Willis Tower, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States |
 
-Table 1: Example: geocoding addresses.
+Table 1: Geocoded addresses.
 
-To perform reverse geocoding, use
+Use
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md)
-to obtain addresses from geographic coordinates. The arguments are
-similar to
-[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md),
-but now we provide coordinate values with the `lat` and `long`
-arguments. The dataset used here is from the geocoding query above. The
-single-line address is returned in a column named with the `address`
-argument.
+to reverse geocode latitude and longitude coordinates. The `lat` and
+`long` arguments use the results from the address search above. The
+`address` argument specifies the name of the output column that contains
+each single-line address.
 
 ``` r
 
@@ -189,14 +189,14 @@ reverse <- reverse_geo_lite(
 | address_found | lat | lon |
 |:---|---:|---:|
 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| Sky Bar, Mark Twain Place, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
-| West Adams Street, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60675, United States | 41.87874 | -87.63589 |
+| 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79541 | -122.40257 |
+| SkyDeck Chicago Willis Tower, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87850 | -87.63589 |
 
-Table 2: Example: reverse geocoding addresses.
+Table 2: Reverse-geocoded addresses.
 
-For more advanced users, see the [Nominatim
+See the [Nominatim search API
 documentation](https://nominatim.org/release-docs/latest/api/Search/)
-for the available parameters.
+for additional parameters to pass to `custom_query`.
 
 ## Citation
 
@@ -204,7 +204,7 @@ Hernangómez D (2026). *nominatimlite: Interface to the Nominatim API*.
 [doi:10.32614/CRAN.package.nominatimlite](https://doi.org/10.32614/CRAN.package.nominatimlite).
 <https://dieghernan.github.io/nominatimlite/>.
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is shown below.
 
 ``` R
 @Manual{R-nominatimlite,
@@ -212,9 +212,9 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.nominatimlite},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.5.0.9000},
+  version = {0.6.0.9000},
   url = {https://dieghernan.github.io/nominatimlite/},
-  abstract = {Lightweight interface to the OpenStreetMap Nominatim service <https://nominatim.org/release-docs/latest/>. Geocode addresses, reverse geocode coordinates, look up amenities and return results as data frames (tibbles) or sf objects.},
+  abstract = {Provides a lightweight interface to the Nominatim API <https://nominatim.org/release-docs/latest/>. It supports free-form and structured address searches, searches for addresses from coordinates, amenity lookup and address lookup by OpenStreetMap object identifier. It returns results as tibble data frames or sf objects.},
 }
 ```
 

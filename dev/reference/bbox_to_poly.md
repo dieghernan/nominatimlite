@@ -1,7 +1,8 @@
-# Coerce a bounding box to a [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON` object
+# Convert a bounding box to an [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON` object
 
-Create a [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html)
-object from the coordinates of a bounding box.
+Converts bounding box coordinates to an
+[`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object with
+`POLYGON` geometry.
 
 ## Usage
 
@@ -13,12 +14,13 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 
 - bbox:
 
-  Numeric vector of 4 elements representing the coordinates of the
-  bounding box. Values should be `c(xmin, ymin, xmax, ymax)`.
+  A numeric vector of four bounding box coordinates in the form
+  `c(xmin, ymin, xmax, ymax)`.
 
 - xmin, ymin, xmax, ymax:
 
-  Alternatively, you can use these named parameters instead of `bbox`.
+  A numeric value specifying an individual bounding box coordinate. Use
+  these arguments as an alternative to `bbox`.
 
 - crs:
 
@@ -27,8 +29,8 @@ bbox_to_poly(bbox = NA, xmin = NA, ymin = NA, xmax = NA, ymax = NA, crs = 4326)
 
 ## Value
 
-A [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object of
-class `POLYGON` with the corresponding coordinate reference system
+An [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) object
+with `POLYGON` geometry and the coordinate reference system specified by
 `crs`.
 
 ## Details
@@ -41,7 +43,7 @@ Bounding boxes can be located using online tools such as
 [`sf::st_as_sfc()`](https://r-spatial.github.io/sf/reference/st_as_sfc.html)
 and [`sf::st_sfc()`](https://r-spatial.github.io/sf/reference/sfc.html).
 
-[`sf`](https://r-spatial.github.io/sf/reference/sf.html) outputs:
+Spatial output functions:
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),
@@ -51,8 +53,7 @@ and [`sf::st_sfc()`](https://r-spatial.github.io/sf/reference/sfc.html).
 ## Examples
 
 ``` r
-
-# Bounding box of Germany
+# Convert the bounding box for Germany.
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 
 bbox_GER_sf <- bbox_to_poly(bbox_GER)
@@ -63,7 +64,7 @@ ggplot(bbox_GER_sf) +
   geom_sf()
 
 # \donttest{
-# Extract the bounding box of an sf object
+# Extract the bounding box of an `sf` object.
 sfobj <- geo_lite_sf("seychelles", points_only = FALSE)
 
 sfobj
@@ -77,7 +78,7 @@ sfobj
 #> * <chr>      <chr>                                            <MULTIPOLYGON [°]>
 #> 1 seychelles Sesel   (((45.99888 -9.401015, 46.00121 -9.427337, 46.00564 -9.456…
 
-# Require at least one non-empty object
+# Require at least one non-empty object.
 if (!all(sf::st_is_empty(sfobj))) {
   bbox <- sf::st_bbox(sfobj)
 

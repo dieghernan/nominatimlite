@@ -2,125 +2,104 @@
 
 ## Geocoding
 
-Search addresses and structured queries to return coordinates.
+Search OpenStreetMap using free-form text, structured queries or
+geographic coordinates.
+
+### Address search
+
+Search for places and addresses using free-form text or structured
+address components.
 
 - [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
-  : Address search API (free-form query)
+  : Search for addresses with free-form queries
 
 - [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md)
   :
 
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (free-form query)
+  Search for addresses with free-form queries and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
 - [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.md)
-  : Address search API (structured query)
+  : Search for addresses with structured queries
 
 - [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
   :
 
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (structured query)
+  Search for addresses with structured queries and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
-### Amenity lookup
+### Reverse geocoding
 
-Search OpenStreetMap amenities within a bounding box.
-
-- [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md)
-  : Geocode amenities
-
-- [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md)
-  :
-
-  Geocode amenities with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-- [`osm_amenities`](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md)
-  : OpenStreetMap amenity database
-
-### Address lookup
-
-Retrieve address details for OSM node, way and relation identifiers.
-
-- [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md)
-  : Address lookup API
-
-- [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
-  :
-
-  Address lookup API with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-## Reverse geocoding
-
-Reverse geocode coordinates to return addresses and place information.
+Convert latitude and longitude coordinates into human-readable
+addresses.
 
 - [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md)
-  : Reverse geocoding API
+  : Reverse geocode coordinates
 
 - [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.md)
   :
 
-  Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
-  output
+  Reverse geocode coordinates and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
 
-## [sf](https://CRAN.R-project.org/package=sf) outputs
+## OpenStreetMap lookups
 
-Return API results as [sf](https://CRAN.R-project.org/package=sf)
-objects and convert bounding boxes to sf geometries.
+Retrieve OpenStreetMap features directly from existing OSM identifiers
+or search for amenities within a geographic area.
+
+### Address lookup
+
+Retrieve OpenStreetMap nodes, ways and relations from their OSM
+identifiers.
+
+- [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md)
+  : Look up OpenStreetMap objects
+
+- [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
+  :
+
+  Look up OpenStreetMap objects and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
+
+### Amenity lookup
+
+Find OpenStreetMap amenities and points of interest inside a bounding
+box.
+
+- [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md)
+  : Look up OpenStreetMap amenities
+
+- [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md)
+  :
+
+  Look up OpenStreetMap amenities and return
+  [sf](https://CRAN.R-project.org/package=sf) objects
+
+## Utilities
+
+Helper functions and bundled datasets.
+
+### Spatial output
+
+Convert returned bounding boxes into `sf` polygon geometries.
 
 - [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.md)
   :
 
-  Coerce a bounding box to a
+  Convert a bounding box to an
   [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON`
   object
 
-- [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
-  :
+### Datasets
 
-  Address lookup API with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-- [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md)
-  :
-
-  Geocode amenities with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-- [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md)
-  :
-
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (free-form query)
-
-- [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md)
-  :
-
-  Address search API with [sf](https://CRAN.R-project.org/package=sf)
-  output (structured query)
-
-- [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.md)
-  :
-
-  Reverse geocoding API with [sf](https://CRAN.R-project.org/package=sf)
-  output
-
-## API management
-
-Check API availability and manage request behavior.
-
-- [`nominatim_check_access()`](https://dieghernan.github.io/nominatimlite/dev/reference/nominatim_check_access.md)
-  : Check access to Nominatim API
-
-## Datasets
-
-Data shipped with the package.
+Sample data included with the package.
 
 - [`osm_amenities`](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md)
-  : OpenStreetMap amenity database
+  : OpenStreetMap amenities
 
-## About the package
+## Package documentation
+
+Package overview and metadata.
 
 - [`nominatimlite`](https://dieghernan.github.io/nominatimlite/dev/reference/nominatimlite-package.md)
   [`nominatimlite-package`](https://dieghernan.github.io/nominatimlite/dev/reference/nominatimlite-package.md)

@@ -1,7 +1,10 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/AGENTS.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>https://dieghernan.github.io/nominatimlite/dev/CONTRIBUTING.html</loc></url>
 <url><loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE-text.html</loc></url>
 <url><loc>https://dieghernan.github.io/nominatimlite/dev/LICENSE.html</loc></url>
+<url><loc>https://dieghernan.github.io/nominatimlite/dev/SUPPORT.html</loc></url>
 <url><loc>https://dieghernan.github.io/nominatimlite/dev/articles/index.html</loc></url>
 <url><loc>https://dieghernan.github.io/nominatimlite/dev/articles/leaflet.html</loc></url>
 <url><loc>https://dieghernan.github.io/nominatimlite/dev/articles/nominatimlite.html</loc></url>

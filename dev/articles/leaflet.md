@@ -1,13 +1,14 @@
-# nominatimlite and leaflet maps
+# Interactive maps with nominatimlite and leaflet
 
-## Example
+## Build the map
 
-The following example shows how to create an interactive [leaflet
-map](https://rstudio.github.io/leaflet/) with data retrieved using
-**nominatimlite**.
+This example displays Nominatim API results on an interactive
+[**leaflet**](https://rstudio.github.io/leaflet/) map. It looks up cafes
+and restaurants near the Eiffel Tower with
+[`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md).
 
-The widget can be browsed and filtered with **crosstalk** and
-**reactable**:
+The **crosstalk** and **reactable** packages link the map to a
+filterable table.
 
 ``` r
 
@@ -28,7 +29,7 @@ eiffel_tower <- geo_lite_sf(
   progressbar = FALSE
 )
 
-# Step 2: Coffee shops and restaurants nearby.
+# Step 2: Look up coffee shops and restaurants nearby.
 
 # Create a buffer of 1 km around the Eiffel Tower.
 buff <- eiffel_tower |>
@@ -44,7 +45,7 @@ cf_bk <- geo_amenity_sf(
   custom_query = list(extratags = TRUE),
   progressbar = FALSE
 ) |>
-  # Build addresses with street, house number, suburb and postcode.
+  # Build addresses with street, house number, suburb and postal code.
   unite(
     "addr",
     address.road,
@@ -143,8 +144,8 @@ tb <- reactable(
       if (any(is.null(value), is.na(value))) {
         return("")
       }
-      clearphone <- gsub("-", "", value)
-      clearphone <- gsub(" ", "", clearphone)
+      clearphone <- gsub("-", "", value, fixed = TRUE)
+      clearphone <- gsub(" ", "", clearphone, fixed = TRUE)
       htmltools::a(
         href = paste0("tel:", clearphone),
         target = "_blank",
@@ -155,7 +156,7 @@ tb <- reactable(
 )
 ```
 
-## Widget
+## Explore the results
 
 ``` r
 
@@ -168,8 +169,8 @@ htmltools::browsable(
 ## Attributions
 
 - [Eiffel Tower icons created by Freepik on
-  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
+  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons").
 - [Mug icons created by Freepik on
-  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
+  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons").
 - [Food icons created by Freepik on
-  Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons")
+  Flaticon](https://www.flaticon.com/free-icons/food "restaurant icons").
