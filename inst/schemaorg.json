@@ -30,7 +30,7 @@
         },
         {
           "type": "Organization",
-          "name": "OpenStreetMap"
+          "name": "OpenStreetMap contributors"
         }
       ],
       "description": "Provides a lightweight interface to the 'Nominatim' API <https://nominatim.org/release-docs/latest/>. It supports free-form and structured address searches, searches for addresses from coordinates, amenity lookup and address lookup by 'OpenStreetMap' object identifier. It returns results as 'tibble' data frames or 'sf' objects.",

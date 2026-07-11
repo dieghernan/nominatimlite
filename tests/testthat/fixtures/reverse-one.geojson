@@ -1,0 +1,20 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "place_id": 3,
+        "osm_type": "node",
+        "osm_id": 10,
+        "display_name": "Mock reverse, Madrid, Spain",
+        "address": "{\"city\":\"Madrid\",\"country\":\"Spain\"}",
+        "extratags": "{\"wikidata\":\"Q2807\"}"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.7038, 40.4168]
+      }
+    }
+  ]
+}

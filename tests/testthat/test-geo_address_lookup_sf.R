@@ -1,11 +1,10 @@
 test_that("Returning Empty", {
-  skip_on_cran()
-  skip_if_api_server()
+  local_mocked_bindings(api_call = function(...) test_fixture("empty.geojson"))
 
   expect_snapshot(obj <- geo_address_lookup_sf(34633854, "N"))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$query == "N34633854")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "N34633854")
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_true(sf::st_is_empty(obj))
@@ -21,6 +20,21 @@ test_that("Data format", {
   obj <- geo_address_lookup_sf(34633854, "W")
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
+})
+
+test_that("Successful fixture response", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("lookup-one.geojson")
+  })
+
+  obj <- geo_address_lookup_sf(10, "N", full_results = TRUE)
+
+  expect_s3_class(obj, "sf")
+  expect_s3_class(obj, "tbl")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "N10")
+  expect_identical(as.character(sf::st_geometry_type(obj)), "POINT")
+  expect_contains(names(obj), c("address.city", "extratags.wikidata"))
 })
 
 test_that("Checking query", {
@@ -50,23 +64,23 @@ test_that("Checking query", {
     )),
     1
   )
-  expect_true(
-    sf::st_geometry_type(geo_address_lookup_sf(
+  expect_identical(
+    as.character(sf::st_geometry_type(geo_address_lookup_sf(
       34633854,
       "W",
       points_only = TRUE,
       custom_query = list(countrycode = "us")
-    )) ==
-      "POINT"
+    ))),
+    "POINT"
   )
-  expect_true(
-    sf::st_geometry_type(geo_address_lookup_sf(
+  expect_identical(
+    as.character(sf::st_geometry_type(geo_address_lookup_sf(
       34633854,
       "W",
       points_only = FALSE,
       custom_query = list(countrycode = "us")
-    )) ==
-      "POLYGON"
+    ))),
+    "POLYGON"
   )
 })
 
@@ -113,27 +127,23 @@ test_that("Verify names", {
   expect_named(several, unique(names(several)))
 
   # Do I have dups by any chance?
-  expect_false(any(grepl("\\.[0-9]$", names(several))))
+  expect_no_match(names(several), "\\.[0-9]$")
 })
 
 test_that("Fail", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(api_call = function(...) FALSE)
 
-  # KO
   vector_ids <- c(343921, 240109189)
   vector_type <- c("R", "N")
   expect_snapshot(
     several <- geo_address_lookup_sf(
       vector_ids,
       vector_type,
-      full_results = TRUE,
-      nominatim_server = "https://api.jsonserver.io/"
+      full_results = TRUE
     )
   )
 
-  expect_true(all(sf::st_is_empty(several)))
+  expect_all_equal(sf::st_is_empty(several), TRUE)
 })
 
 
@@ -154,12 +164,14 @@ test_that("Integers #47", {
   # With decimals
   vector_ids2 <- 9743343761.34
   several <- geo_address_lookup_sf(vector_ids2)
+  comp <- unique(gsub("[^0-9]", "", several$query))
 
   expect_identical(vector_ids, comp)
 
   # With negatives
   vector_ids3 <- -1 * vector_ids2
   several <- geo_address_lookup_sf(vector_ids3)
+  comp <- unique(gsub("[^0-9]", "", several$query))
 
   expect_identical(vector_ids, comp)
 })

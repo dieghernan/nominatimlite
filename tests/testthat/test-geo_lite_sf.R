@@ -1,11 +1,10 @@
 test_that("Returning empty query", {
-  skip_on_cran()
-  skip_if_api_server()
+  local_mocked_bindings(api_call = function(...) test_fixture("empty.geojson"))
 
   expect_snapshot(obj <- geo_lite_sf("xbzbzbzoa aiaia"))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$query == "xbzbzbzoa aiaia")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "xbzbzbzoa aiaia")
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_true(sf::st_is_empty(obj))
@@ -24,7 +23,7 @@ test_that("Data format", {
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 2)
   expect_identical(as.character(obj$query), c("Madrid", "Barcelona"))
-  expect_true(all(grepl("POINT", sf::st_geometry_type(obj), fixed = TRUE)))
+  expect_equal(as.character(sf::st_geometry_type(obj)), c("POINT", "POINT"))
 
   # Polygon
 
@@ -36,7 +35,7 @@ test_that("Data format", {
     "No results were found for the query"
   )
 
-  expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))
+  expect_contains(as.character(sf::st_geometry_type(test)), "POLYGON")
   expect_s3_class(test, "sf")
   expect_s3_class(test, "tbl")
   expect_equal(nrow(test), 3)
@@ -45,6 +44,21 @@ test_that("Data format", {
     c("Madrid", "ga hann xx kaa pa", "Barcelona")
   )
   expect_identical(sf::st_is_empty(test), c(FALSE, TRUE, FALSE))
+})
+
+test_that("Successful fixture response", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("search-one.geojson")
+  })
+
+  obj <- geo_lite_sf("Madrid", full_results = TRUE, return_addresses = FALSE)
+
+  expect_s3_class(obj, "sf")
+  expect_s3_class(obj, "tbl")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "Madrid")
+  expect_identical(as.character(sf::st_geometry_type(obj)), "POINT")
+  expect_contains(names(obj), c("address.city", "extratags.wikidata"))
 })
 
 test_that("Checking query", {
@@ -100,9 +114,11 @@ test_that("Checking query", {
 })
 
 test_that("Dedupe", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    geo_lite_sf_single = function(address, ...) {
+      mock_geo_sf(address)
+    }
+  )
 
   # Dupes
   dup <- geo_lite_sf(rep(c("Madrid", "Barcelona"), 50), limit = 1)
@@ -135,38 +151,32 @@ test_that("Verify names", {
   expect_named(several, unique(names(several)))
 
   # Do I have dups by any chance?
-  expect_false(any(grepl("\\.[0-9]$", names(several))))
+  expect_no_match(names(several), "\\.[0-9]$")
 })
 
 test_that("Progress bar", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    geo_lite_sf_single = function(address, ...) {
+      mock_geo_sf(address)
+    }
+  )
+
   # No pbar
   expect_silent(geo_lite_sf("Madrid"))
   expect_silent(geo_lite_sf("Madrid", progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- geo_lite_sf(c("Madrid", "Barcelona")))
+  expect_output(geo_lite_sf(c("Madrid", "Barcelona")))
 
   # Not
   expect_silent(
-    aa <- geo_lite_sf(c("Madrid", "Barcelona"), progressbar = FALSE)
+    geo_lite_sf(c("Madrid", "Barcelona"), progressbar = FALSE)
   )
 })
 test_that("Fail", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(api_call = function(...) FALSE)
 
-  # KO
-  expect_snapshot(
-    several <- geo_lite_sf(
-      "madrid",
-      full_results = TRUE,
-      nominatim_server = "https://api.jsonserver.io/"
-    )
-  )
+  expect_snapshot(several <- geo_lite_sf("madrid", full_results = TRUE))
 
-  expect_true(all(sf::st_is_empty(several)))
+  expect_all_equal(sf::st_is_empty(several), TRUE)
 })

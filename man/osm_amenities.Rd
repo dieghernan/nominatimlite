@@ -22,7 +22,8 @@ three columns:
 A dataset of amenity values available on OpenStreetMap.
 }
 \note{
-The data were extracted on \strong{April 3, 2024}.
+The data were extracted on \strong{April 3, 2024}. See
+\code{inst/COPYRIGHTS} for copyright and license details.
 }
 \examples{
 data("osm_amenities")

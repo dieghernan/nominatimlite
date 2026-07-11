@@ -1,0 +1,11 @@
+The nominatimlite package source code is Copyright (c) 2021
+nominatimlite authors and is licensed under the MIT license. See the package
+LICENSE and LICENSE.md files for details.
+
+The osm_amenities dataset is derived from OpenStreetMap wiki data:
+https://wiki.openstreetmap.org/wiki/Key:amenity
+
+OpenStreetMap data is copyright OpenStreetMap contributors and is available
+under the Open Database License (ODbL) 1.0:
+https://www.openstreetmap.org/copyright
+https://opendatacommons.org/licenses/odbl/1-0/

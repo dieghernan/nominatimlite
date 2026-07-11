@@ -53,7 +53,7 @@
     },
     {
       "@type": "Organization",
-      "name": "OpenStreetMap"
+      "name": "OpenStreetMap contributors"
     }
   ],
   "maintainer": [
@@ -188,7 +188,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "openstreetmap", "address", "coordinates", "nominatim", "reverse-search", "rstats", "r-package", "cran", "api-wrapper", "api", "geocoder", "geocoding", "gis", "reverse-geocoder", "reverse-geocoding", "shapefile", "spatial"],
-  "fileSize": "258.464KB",
+  "fileSize": "270.372KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

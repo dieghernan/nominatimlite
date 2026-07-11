@@ -8,8 +8,8 @@ Authors@R: c(
     person("Jindra", "Lacko", role = c("ctb", "rev"),
            comment = c(ORCID = "0000-0002-0375-5156")),
     person("Alex", "White", role = "ctb"),
-    person("OpenStreetMap", role = "cph",
-           comment = "For the data")
+    person("OpenStreetMap contributors", role = "cph",
+           comment = "For the osm_amenities data")
   )
 Description: Provides a lightweight interface to the 'Nominatim' API
     <https://nominatim.org/release-docs/latest/>. It supports free-form
@@ -43,8 +43,7 @@ Config/roxygen2/markdown: TRUE
 Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Config/testthat/parallel: false
-Copyright: Data © OpenStreetMap contributors, ODbL 1.0.
-    <https://www.openstreetmap.org/copyright>
+Copyright: See file inst/COPYRIGHTS.
 Encoding: UTF-8
 LazyData: true
 X-schema.org-applicationCategory: cartography

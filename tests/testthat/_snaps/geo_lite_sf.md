@@ -8,7 +8,7 @@
 # Fail
 
     Code
-      several <- geo_lite_sf("madrid", full_results = TRUE, nominatim_server = "https://api.jsonserver.io/")
+      several <- geo_lite_sf("madrid", full_results = TRUE)
     Message
-      Could not reach the API endpoint: https://api.jsonserver.io/search?q=madrid&format=geojson&limit=1&addressdetails=1.
+      Could not reach the API endpoint: https://nominatim.openstreetmap.org/search?q=madrid&format=geojson&limit=1&addressdetails=1.
 

@@ -3,15 +3,15 @@ test_that("Check add_custom_query", {
   t <- add_custom_query(custom_query = list(), url = u)
   expect_identical(u, t)
 
-  # Uname some argument
+  # Unnamed argument
   t <- add_custom_query(custom_query = list(1, b = 2), url = u)
   expect_identical(u, t)
 
-  # Uname some argument
+  # Unnamed argument
   t <- add_custom_query(custom_query = list(a = 1, 2), url = u)
   expect_identical(u, t)
 
-  # Uname some argument
+  # Unnamed argument
   t <- add_custom_query(custom_query = list(3), url = u)
   expect_identical(u, t)
 
@@ -31,6 +31,72 @@ test_that("prepare_api_url", {
   # Custom server
   t3 <- prepare_api_url("http://localhost:2322/nominatim-update", "custom")
   expect_identical(t3, "http://localhost:2322/nominatim-update/custom")
+})
+
+test_that("URL builders add options", {
+  expect_identical(
+    build_search_url(
+      "https://example.com",
+      format = "json",
+      limit = 10,
+      full_results = TRUE,
+      query = "New York",
+      points_only = FALSE,
+      custom_query = list(countrycodes = c("us", "ca"), extratags = TRUE)
+    ),
+    paste0(
+      "https://example.com/search?q=New+York&format=json&limit=10",
+      "&addressdetails=1&polygon_geojson=1&countrycodes=us,ca&extratags=1"
+    )
+  )
+
+  expect_identical(
+    build_search_url(
+      "https://example.com",
+      format = "geojson",
+      limit = 1,
+      full_results = FALSE,
+      query = NULL
+    ),
+    "https://example.com/search?format=geojson&limit=1"
+  )
+
+  expect_identical(
+    build_reverse_url(
+      "https://example.com",
+      lat = 42,
+      long = -3,
+      format = "json",
+      full_results = FALSE
+    ),
+    "https://example.com/reverse?lat=42&lon=-3&format=json&addressdetails=0"
+  )
+
+  expect_identical(
+    build_lookup_url(
+      "https://example.com",
+      nodes = "N1,W2",
+      full_results = TRUE,
+      custom_query = list(namedetails = TRUE)
+    ),
+    paste0(
+      "https://example.com/lookup?osm_ids=N1,W2&format=jsonv2",
+      "&addressdetails=1&namedetails=1"
+    )
+  )
+})
+
+test_that("cap helpers report changes", {
+  expect_identical(cap_limit(10), 10)
+  expect_message(limit <- cap_limit(51), "at most 50")
+  expect_identical(limit, 50)
+
+  expect_snapshot(error = TRUE, cap_coordinates("a", 1))
+  expect_snapshot(error = TRUE, cap_coordinates(1, c(1, 2)))
+
+  expect_snapshot(coords <- cap_coordinates(200, -200))
+  expect_identical(coords$lat, 90)
+  expect_identical(coords$long, -180)
 })
 
 test_that("sf to tibble", {

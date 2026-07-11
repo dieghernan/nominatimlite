@@ -1,8 +1,4 @@
 test_that("Errors", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
-
   expect_snapshot(error = TRUE, reverse_geo_lite_sf(0, c(2, 3)))
   expect_snapshot(error = TRUE, reverse_geo_lite_sf("a", "a"))
 })
@@ -13,18 +9,18 @@ test_that("Messages", {
   skip_if_offline()
 
   expect_snapshot(obj <- reverse_geo_lite_sf(0, 200))
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$lon == 180)
-  expect_true(is.na(obj$address))
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$lon, 180)
+  expect_equal(obj$address, NA_character_)
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_true(sf::st_is_empty(obj))
   expect_identical(sf::st_crs(obj), sf::st_crs(4326))
 
   expect_snapshot(obj <- reverse_geo_lite_sf(200, 200))
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$lat == 90)
-  expect_true(is.na(obj$address))
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$lat, 90)
+  expect_equal(obj$address, NA_character_)
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_true(sf::st_is_empty(obj))
@@ -33,18 +29,19 @@ test_that("Messages", {
 
 
 test_that("Returning empty query", {
-  skip_on_cran()
-  skip_if_api_server()
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("reverse-error.json")
+  })
 
   expect_snapshot(obj <- reverse_geo_lite_sf(89.999999, 179.9999))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$lat == 89.999999)
-  expect_true(obj$lon == 179.9999)
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$lat, 89.999999)
+  expect_equal(obj$lon, 179.9999)
   expect_s3_class(obj, "tbl")
   expect_s3_class(obj, "sf")
   expect_named(obj, c("address", "lat", "lon", "geometry"))
-  expect_true(is.na(obj$address))
+  expect_equal(obj$address, NA_character_)
 
   expect_snapshot(
     obj_renamed <- reverse_geo_lite_sf(89.999999, 179.9999, address = "adddata")
@@ -68,7 +65,7 @@ test_that("Data format", {
   expect_s3_class(obj, "sf")
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
-  expect_true(all(grepl("POINT", sf::st_geometry_type(obj), fixed = TRUE)))
+  expect_identical(as.character(sf::st_geometry_type(obj)), "POINT")
 
   # Polygon
 
@@ -82,12 +79,31 @@ test_that("Data format", {
     "No results were found"
   )
 
-  expect_true(any(grepl("POLYGON", sf::st_geometry_type(test), fixed = TRUE)))
+  expect_match(
+    as.character(sf::st_geometry_type(test)),
+    "POLYGON|GEOMETRYCOLLECTION"
+  )
   expect_s3_class(test, "sf")
   expect_s3_class(test, "tbl")
   expect_equal(nrow(test), 3)
 
   expect_identical(sf::st_is_empty(test), c(FALSE, TRUE, FALSE))
+})
+
+test_that("Successful fixture response", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("reverse-one.geojson")
+  })
+
+  obj <- reverse_geo_lite_sf(40.4168, -3.7038, full_results = TRUE)
+
+  expect_s3_class(obj, "sf")
+  expect_s3_class(obj, "tbl")
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$lat, 40.4168)
+  expect_equal(obj$lon, -3.7038)
+  expect_identical(as.character(sf::st_geometry_type(obj)), "POINT")
+  expect_contains(names(obj), c("address.city", "extratags.wikidata"))
 })
 
 test_that("Checking query", {
@@ -192,13 +208,15 @@ test_that("Check unnesting", {
   colclass <- vapply(sf::st_drop_geometry(sev), class, FUN.VALUE = character(1))
 
   # Not lists
-  expect_false(any(grepl("list", colclass, fixed = TRUE)))
+  expect_no_match(colclass, "list", fixed = TRUE)
 })
 
 test_that("Dedupe", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    reverse_geo_lite_sf_single = function(lat_cap, long_cap, address, ...) {
+      mock_reverse_sf(lat_cap, long_cap, address)
+    }
+  )
 
   # Dupes
 
@@ -223,9 +241,11 @@ test_that("Dedupe", {
 })
 
 test_that("Progress bar", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    reverse_geo_lite_sf_single = function(lat_cap, long_cap, address, ...) {
+      mock_reverse_sf(lat_cap, long_cap, address)
+    }
+  )
 
   lat <- c(40.75728, 55.95335)
   long <- c(-73.98586, -3.188375)
@@ -235,25 +255,17 @@ test_that("Progress bar", {
   expect_silent(reverse_geo_lite_sf(lat[1], long[1], progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- reverse_geo_lite_sf(lat, long))
+  expect_output(reverse_geo_lite_sf(lat, long))
 
   # Not
-  expect_silent(aa <- reverse_geo_lite_sf(lat, long, progressbar = FALSE))
+  expect_silent(reverse_geo_lite_sf(lat, long, progressbar = FALSE))
 })
 test_that("Fail", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(api_call = function(...) FALSE)
 
-  # KO
   expect_snapshot(
-    several <- reverse_geo_lite_sf(
-      40.75728,
-      -73.98,
-      full_results = TRUE,
-      nominatim_server = "https://api.jsonserver.io/"
-    )
+    several <- reverse_geo_lite_sf(40.75728, -73.98, full_results = TRUE)
   )
 
-  expect_true(all(sf::st_is_empty(several)))
+  expect_all_equal(sf::st_is_empty(several), TRUE)
 })

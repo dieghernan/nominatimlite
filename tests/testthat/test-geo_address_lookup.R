@@ -1,19 +1,23 @@
 test_that("Returning empty query", {
-  skip_on_cran()
-  skip_if_api_server()
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("search-empty.json")
+  })
 
   expect_snapshot(obj <- geo_address_lookup(34633854, "N"))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$query == "N34633854")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "N34633854")
   expect_s3_class(obj, "tbl")
   expect_named(obj, c("query", "lat", "lon"))
 
   objclass <- vapply(obj, class, FUN.VALUE = character(1))
 
-  expect_true(all(objclass == c("character", rep("numeric", 2))))
-  expect_true(is.na(obj$lat))
-  expect_true(is.na(obj$lon))
+  expect_equal(
+    objclass,
+    c(query = "character", lat = "numeric", lon = "numeric")
+  )
+  expect_equal(obj$lat, NA_real_)
+  expect_equal(obj$lon, NA_real_)
 
   expect_snapshot(
     obj_renamed <- geo_address_lookup(
@@ -40,6 +44,22 @@ test_that("Data format", {
 
   expect_s3_class(out, "tbl")
   expect_false(inherits(out, "sf"))
+})
+
+test_that("Successful fixture response", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("lookup-one.json")
+  })
+
+  obj <- geo_address_lookup(10, "N", full_results = TRUE)
+
+  expect_s3_class(obj, "tbl")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "N10")
+  expect_equal(obj$lat, 40.4168)
+  expect_equal(obj$lon, -3.7038)
+  expect_contains(names(obj), c("address", "boundingbox"))
+  expect_type(obj$boundingbox, "list")
 })
 
 test_that("Checking query", {
@@ -135,23 +155,25 @@ test_that("Handle several", {
 })
 
 test_that("Fail", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(api_call = function(...) FALSE)
 
-  # KO
   vector_ids <- c(343921, 240109189)
   vector_type <- c("R", "N")
   expect_snapshot(
     several <- geo_address_lookup(
       vector_ids,
       vector_type,
-      full_results = TRUE,
-      nominatim_server = "https://api.jsonserver.io/"
+      full_results = TRUE
     )
   )
 
-  expect_true(all(is.na(several[, 2:3])))
+  expect_equal(
+    several[, 2:3],
+    dplyr::tibble(
+      lat = rep(NA_real_, nrow(several)),
+      lon = rep(NA_real_, nrow(several))
+    )
+  )
 })
 
 
@@ -172,12 +194,14 @@ test_that("Integers #47", {
   # With decimals
   vector_ids2 <- 9743343761.34
   several <- geo_address_lookup(vector_ids2)
+  comp <- unique(gsub("[^0-9]", "", several$query))
 
   expect_identical(vector_ids, comp)
 
   # With negatives
   vector_ids3 <- -1 * vector_ids2
   several <- geo_address_lookup(vector_ids3)
+  comp <- unique(gsub("[^0-9]", "", several$query))
 
   expect_identical(vector_ids, comp)
 })

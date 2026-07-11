@@ -1,19 +1,20 @@
 test_that("Returning empty query", {
-  skip_on_cran()
-  skip_if_api_server()
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("search-empty.json")
+  })
 
   expect_snapshot(obj <- geo_lite("xbzbzbzoa aiaia"))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$query == "xbzbzbzoa aiaia")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "xbzbzbzoa aiaia")
   expect_s3_class(obj, "tbl")
   expect_named(obj, c("query", "lat", "lon"))
-  expect_true(all(
-    vapply(obj, class, FUN.VALUE = character(1)) ==
-      c("character", rep("numeric", 2))
-  ))
-  expect_true(is.na(obj$lat))
-  expect_true(is.na(obj$lon))
+  expect_equal(
+    vapply(obj, class, FUN.VALUE = character(1)),
+    c(query = "character", lat = "numeric", lon = "numeric")
+  )
+  expect_equal(obj$lat, NA_real_)
+  expect_equal(obj$lon, NA_real_)
 
   expect_snapshot(
     obj_renamed <- geo_lite("xbzbzbzoa aiaia", lat = "lata", long = "longa")
@@ -34,8 +35,24 @@ test_that("Data format", {
   obj <- geo_lite("Madrid")
 
   expect_s3_class(obj, "tbl")
-  expect_false(inherits(geo_lite("Madrid"), "sf"))
+  expect_false(inherits(obj, "sf"))
   # this is _not_ a _sf function
+})
+
+test_that("Successful fixture response", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("search-one.json")
+  })
+
+  obj <- geo_lite("Madrid", full_results = TRUE, return_addresses = FALSE)
+
+  expect_s3_class(obj, "tbl")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$query, "Madrid")
+  expect_equal(obj$lat, 40.4168)
+  expect_equal(obj$lon, -3.7038)
+  expect_contains(names(obj), c("address", "boundingbox"))
+  expect_type(obj$boundingbox, "list")
 })
 
 
@@ -102,9 +119,11 @@ test_that("Checking query", {
 })
 
 test_that("Dedupe", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    geo_lite_single = function(address, lat, long, ...) {
+      mock_geo_tbl(address, lat, long)
+    }
+  )
 
   # Dupes
   expect_silent(
@@ -128,32 +147,32 @@ test_that("Dedupe", {
 
 
 test_that("Progress bar", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    geo_lite_single = function(address, lat, long, ...) {
+      mock_geo_tbl(address, lat, long)
+    }
+  )
+
   # No pbar
   expect_silent(geo_lite("Madrid"))
   expect_silent(geo_lite("Madrid", progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- geo_lite(c("Madrid", "Barcelona")))
+  expect_output(geo_lite(c("Madrid", "Barcelona")))
 
   # Not
-  expect_silent(aa <- geo_lite(c("Madrid", "Barcelona"), progressbar = FALSE))
+  expect_silent(geo_lite(c("Madrid", "Barcelona"), progressbar = FALSE))
 })
 test_that("Fail", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(api_call = function(...) FALSE)
 
-  # KO
-  expect_snapshot(
-    several <- geo_lite(
-      "Madrid",
-      full_results = TRUE,
-      nominatim_server = "https://api.jsonserver.io/"
+  expect_snapshot(several <- geo_lite("Madrid", full_results = TRUE))
+
+  expect_equal(
+    several[, 2:3],
+    dplyr::tibble(
+      lat = rep(NA_real_, nrow(several)),
+      lon = rep(NA_real_, nrow(several))
     )
   )
-
-  expect_true(all(is.na(several[, 2:3])))
 })

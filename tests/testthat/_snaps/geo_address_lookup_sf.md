@@ -16,8 +16,7 @@
 # Fail
 
     Code
-      several <- geo_address_lookup_sf(vector_ids, vector_type, full_results = TRUE,
-        nominatim_server = "https://api.jsonserver.io/")
+      several <- geo_address_lookup_sf(vector_ids, vector_type, full_results = TRUE)
     Message
-      Could not reach the API endpoint: https://api.jsonserver.io/lookup?osm_ids=R343921,N240109189&format=geojson&addressdetails=1.
+      Could not reach the API endpoint: https://nominatim.openstreetmap.org/lookup?osm_ids=R343921,N240109189&format=geojson&addressdetails=1.
 

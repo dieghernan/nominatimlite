@@ -47,8 +47,7 @@
 # Fail
 
     Code
-      several <- reverse_geo_lite(40.75728, -73.98, full_results = TRUE,
-        nominatim_server = "https://api.jsonserver.io/")
+      several <- reverse_geo_lite(40.75728, -73.98, full_results = TRUE)
     Message
-      Could not reach the API endpoint: https://api.jsonserver.io/reverse?lat=40.75728&lon=-73.98&format=jsonv2&addressdetails=1.
+      Could not reach the API endpoint: https://nominatim.openstreetmap.org/reverse?lat=40.75728&lon=-73.98&format=jsonv2&addressdetails=1.
 
