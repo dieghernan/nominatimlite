@@ -4,7 +4,7 @@
   "identifier": "nominatimlite",
   "description": "Provides a lightweight interface to the 'Nominatim' API <https://nominatim.org/release-docs/latest/>. It supports free-form and structured address searches, searches for addresses from coordinates, amenity lookup and address lookup by 'OpenStreetMap' object identifier. It returns results as 'tibble' data frames or 'sf' objects.",
   "name": "nominatimlite: Interface to the 'Nominatim' API",
-  "relatedLink": "https://dieghernan.github.io/nominatimlite/",
+  "relatedLink": ["https://dieghernan.github.io/nominatimlite/", "https://CRAN.R-project.org/package=nominatimlite"],
   "codeRepository": "https://github.com/dieghernan/nominatimlite",
   "issueTracker": "https://github.com/dieghernan/nominatimlite/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -15,6 +15,12 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.6.1 (2026-06-24 ucrt)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -63,28 +69,63 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "curl",
-      "name": "curl"
+      "name": "curl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=curl"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
-      "name": "ggplot2"
+      "name": "ggplot2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "knitr",
-      "name": "knitr"
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "quarto",
-      "name": "quarto"
+      "name": "quarto",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=quarto"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.0.0"
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "softwareRequirements": {
@@ -98,19 +139,40 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 1.0.0"
+      "version": ">= 1.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
     "3": {
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
-      "version": ">= 1.7.0"
+      "version": ">= 1.7.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
     "4": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
-      "version": ">= 0.9.0"
+      "version": ">= 0.9.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=sf"
     },
     "5": {
       "@type": "SoftwareApplication",
@@ -126,7 +188,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "openstreetmap", "address", "coordinates", "nominatim", "reverse-search", "rstats", "r-package", "cran", "api-wrapper", "api", "geocoder", "geocoding", "gis", "reverse-geocoder", "reverse-geocoding", "shapefile", "spatial"],
-  "fileSize": "270.581KB",
+  "fileSize": "270.372KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
