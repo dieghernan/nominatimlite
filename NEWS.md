@@ -1,3 +1,7 @@
+# nominatimlite (development version)
+
+- `nominatimlite::osm_amenities` dataset has been updated.
+
 # nominatimlite 0.6.0
 
 - The minimum required version of **R** is now 4.1.0.

@@ -7,7 +7,7 @@
 \title{OpenStreetMap amenities}
 \format{
 A \link[dplyr:tibble]{tibble} with
-136 rows and
+140 rows and
 three columns:
 \describe{
 \item{category}{Amenity category.}
@@ -22,7 +22,7 @@ three columns:
 A dataset of amenity values available on OpenStreetMap.
 }
 \note{
-The data were extracted on \strong{April 3, 2024}. See
+The data were extracted on \strong{July 11, 2026}. See
 \code{inst/COPYRIGHTS} for copyright and license details.
 }
 \examples{

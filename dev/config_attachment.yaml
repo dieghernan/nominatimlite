@@ -6,6 +6,7 @@ dir.t: tests
 extra.suggests:
   - ggplot2
   - curl
+  - tibble
 pkg_ignore:
   - tidyverse
   - leaflet
