@@ -11,7 +11,8 @@
 
 - **Alex White**. Contributor.
 
-- **OpenStreetMap contributors**. Copyright holder.  
+- **[![OpenStreetMap](https://wiki.openstreetmap.org/w/images/6/6f/Made_with.svg)](https://www.openstreetmap.org/copyright/)**.
+  Copyright holder.  
   For the osm_amenities data
 
 ## Citation
