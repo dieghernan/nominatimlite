@@ -70,7 +70,7 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
   dwn_res <- download_api_file(url, destfile, quiet)
 
   # Always sleep to keep one call per second with an extra buffer.
-  Sys.sleep(1.2)
+  pause_api_call()
 
   if (!inherits(dwn_res, "try-error")) {
     return(destfile)
@@ -78,7 +78,7 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
   if (isFALSE(quiet)) {
     message("Retrying the Nominatim API query.")
   }
-  Sys.sleep(1.2)
+  pause_api_call()
 
   dwn_res <- download_api_file(url, destfile, quiet)
 
@@ -97,6 +97,10 @@ download_api_file <- function(url, destfile, quiet) {
     download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
     silent = TRUE
   ))
+}
+
+pause_api_call <- function() {
+  Sys.sleep(1.2)
 }
 
 #' Create a hashed filename for caching requests

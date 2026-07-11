@@ -1,8 +1,4 @@
 test_that("Errors", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
-
   expect_snapshot(error = TRUE, reverse_geo_lite(0, c(2, 3)))
   expect_snapshot(error = TRUE, reverse_geo_lite("a", "a"))
 })
@@ -23,21 +19,22 @@ test_that("Messages", {
 
 
 test_that("Returning empty query", {
-  skip_on_cran()
-  skip_if_api_server()
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("reverse-error.json")
+  })
 
   expect_snapshot(obj <- reverse_geo_lite(89.999999, 179.9999))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$lat == 89.999999)
-  expect_true(obj$lon == 179.9999)
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$lat, 89.999999)
+  expect_equal(obj$lon, 179.9999)
   expect_s3_class(obj, "tbl")
   expect_named(obj, c("address", "lat", "lon"))
-  expect_true(all(
-    vapply(obj, class, FUN.VALUE = character(1)) ==
-      c("character", rep("numeric", 2))
-  ))
-  expect_true(is.na(obj$address))
+  expect_equal(
+    vapply(obj, class, FUN.VALUE = character(1)),
+    c(address = "character", lat = "numeric", lon = "numeric")
+  )
+  expect_equal(obj$address, NA_character_)
 
   expect_snapshot(
     obj_renamed <- reverse_geo_lite(89.999999, 179.9999, address = "adddata")
@@ -60,6 +57,21 @@ test_that("Data format", {
   expect_s3_class(obj, "tbl")
   expect_false(inherits(obj, "sf"))
   # this is _not_ a _sf function
+})
+
+test_that("Successful fixture response", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("reverse-one.json")
+  })
+
+  obj <- reverse_geo_lite(40.4168, -3.7038, full_results = TRUE)
+
+  expect_s3_class(obj, "tbl")
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$lat, 40.4168)
+  expect_equal(obj$lon, -3.7038)
+  expect_contains(names(obj), c("address", "boundingbox"))
+  expect_type(obj$boundingbox, "list")
 })
 
 test_that("Checking query", {
@@ -155,15 +167,15 @@ test_that("Check unnesting", {
   # Classes of all cols
 
   colclass <- vapply(sev, class, FUN.VALUE = character(1))
-  expect_true("boundingbox" %in% names(colclass))
-  expect_true(colclass["boundingbox"] == "list")
+  expect_contains(names(colclass), "boundingbox")
+  expect_identical(colclass[["boundingbox"]], "list")
 
   # Rest of columns not list
-  expect_false(any(grepl(
-    "list",
+  expect_no_match(
     colclass["boundingbox" != names(colclass)],
+    "list",
     fixed = TRUE
-  )))
+  )
 
   # Extract
   bb_l <- sev[["boundingbox"]]
@@ -174,14 +186,16 @@ test_that("Check unnesting", {
   for (i in seq_along(bb_l)) {
     lc <- bb_l[[i]]
     expect_length(lc, 4)
-    expect_true(is.numeric(lc))
+    expect_type(lc, "double")
   }
 })
 
 test_that("Dedupe", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    reverse_geo_lite_single = function(lat_cap, long_cap, address, ...) {
+      mock_reverse_tbl(lat_cap, long_cap, address)
+    }
+  )
 
   # Dupes
 
@@ -204,9 +218,11 @@ test_that("Dedupe", {
 })
 
 test_that("Progress bar", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    reverse_geo_lite_single = function(lat_cap, long_cap, address, ...) {
+      mock_reverse_tbl(lat_cap, long_cap, address)
+    }
+  )
 
   lat <- c(40.75728, 55.95335)
   long <- c(-73.98586, -3.188375)
@@ -216,25 +232,17 @@ test_that("Progress bar", {
   expect_silent(reverse_geo_lite(lat[1], long[1], progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- reverse_geo_lite(lat, long))
+  expect_output(reverse_geo_lite(lat, long))
 
   # Not
-  expect_silent(aa <- reverse_geo_lite(lat, long, progressbar = FALSE))
+  expect_silent(reverse_geo_lite(lat, long, progressbar = FALSE))
 })
 test_that("Fail", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(api_call = function(...) FALSE)
 
-  # KO
   expect_snapshot(
-    several <- reverse_geo_lite(
-      40.75728,
-      -73.98,
-      full_results = TRUE,
-      nominatim_server = "https://api.jsonserver.io/"
-    )
+    several <- reverse_geo_lite(40.75728, -73.98, full_results = TRUE)
   )
 
-  expect_true(is.na(several$address))
+  expect_equal(several$address, NA_character_)
 })

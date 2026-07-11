@@ -1,7 +1,9 @@
 test_that("Progress bar", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(
+    geo_lite_struct = function(amenity, lat = "lat", long = "lon", ...) {
+      mock_geo_tbl(amenity, lat, long)
+    }
+  )
 
   bbox <- c(-73.9894467311, 40.75573629, -73.9830630737, 40.75789245)
 
@@ -10,11 +12,11 @@ test_that("Progress bar", {
   expect_silent(geo_amenity(bbox, "restaurant", progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- geo_amenity(bbox, c("pub", "restaurant")))
+  expect_output(geo_amenity(bbox, c("pub", "restaurant")))
 
   # Not
   expect_silent(
-    aa <- geo_amenity(bbox, c("pub", "restaurant"), progressbar = FALSE)
+    geo_amenity(bbox, c("pub", "restaurant"), progressbar = FALSE)
   )
 })
 

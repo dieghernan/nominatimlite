@@ -1,13 +1,14 @@
 test_that("Returning empty query", {
-  skip_on_cran()
-  skip_if_api_server()
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("search-empty.json")
+  })
 
   expect_snapshot(obj <- geo_lite_struct())
 
   expect_snapshot(obj <- geo_lite_struct(amenity = "xbzbzbzoa aiaia"))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$q_amenity == "xbzbzbzoa aiaia")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$q_amenity, "xbzbzbzoa aiaia")
   expect_s3_class(obj, "tbl")
   expect_named(
     obj,
@@ -24,8 +25,8 @@ test_that("Returning empty query", {
     )
   )
 
-  expect_true(is.na(obj$lat))
-  expect_true(is.na(obj$lon))
+  expect_equal(obj$lat, NA_real_)
+  expect_equal(obj$lon, NA_real_)
 
   expect_snapshot(
     obj_renamed <- geo_lite_struct(
@@ -63,8 +64,24 @@ test_that("Data format", {
   obj <- geo_lite_struct(city = "Madrid")
 
   expect_s3_class(obj, "tbl")
-  expect_false(inherits(geo_lite("Madrid"), "sf"))
+  expect_false(inherits(obj, "sf"))
   # this is _not_ a _sf function
+})
+
+test_that("Successful fixture response", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("search-one.json")
+  })
+
+  obj <- geo_lite_struct(city = "Madrid", full_results = TRUE)
+
+  expect_s3_class(obj, "tbl")
+  expect_equal(nrow(obj), 1)
+  expect_identical(obj$q_city, "Madrid")
+  expect_equal(obj$lat, 40.4168)
+  expect_equal(obj$lon, -3.7038)
+  expect_contains(names(obj), c("address", "boundingbox"))
+  expect_type(obj$boundingbox, "list")
 })
 
 
@@ -122,18 +139,15 @@ test_that("Checking query", {
   )
 })
 test_that("Fail", {
-  skip_on_cran()
-  skip_if_api_server()
-  skip_if_offline()
+  local_mocked_bindings(api_call = function(...) FALSE)
 
-  # KO
-  expect_snapshot(
-    several <- geo_lite_struct(
-      "Madrid",
-      full_results = TRUE,
-      nominatim_server = "https://api.jsonserver.io/"
+  expect_snapshot(several <- geo_lite_struct("Madrid", full_results = TRUE))
+
+  expect_equal(
+    several[, c("lat", "lon")],
+    dplyr::tibble(
+      lat = rep(NA_real_, nrow(several)),
+      lon = rep(NA_real_, nrow(several))
     )
   )
-
-  expect_true(all(is.na(several[, c("lat", "lon")])))
 })

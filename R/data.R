@@ -15,7 +15,8 @@
 #'
 #' @source <https://wiki.openstreetmap.org/wiki/Key:amenity>
 #'
-#' @note The data were extracted on **April 3, 2024**.
+#' @note The data were extracted on **April 3, 2024**. See
+#' `inst/COPYRIGHTS` for copyright and license details.
 #'
 #' @family amenity
 #' @keywords datasets

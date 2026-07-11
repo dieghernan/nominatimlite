@@ -32,7 +32,7 @@ Other contributors:
 \itemize{
   \item Jindra Lacko (\href{https://orcid.org/0000-0002-0375-5156}{ORCID}) [contributor, reviewer]
   \item Alex White [contributor]
-  \item OpenStreetMap (For the data) [copyright holder]
+  \item OpenStreetMap contributors (For the osm_amenities data) [copyright holder]
 }
 
 }

@@ -1,71 +1,97 @@
-test_that("api_url", {
-  api <- prepare_api_url("https://www.google.com", "some_invented_entry?")
+test_that("api_call returns a cached file", {
+  tmp <- tempfile(fileext = ".json")
+  file.create(tmp)
+  local_mocked_bindings(cached_filename = function(url, ext) tmp)
 
-  expect_snapshot(f <- api_call(api, quiet = FALSE))
-  expect_type(f, "logical")
-  expect_false(f)
-
-  # Checking with right approach
-  skip_on_cran()
-  skip_if_api_server()
-  url <- prepare_api_url(
-    "https://nominatim.openstreetmap.org/",
-    "status?format=json"
+  expect_identical(
+    api_call("https://example.com", ext = ".json", quiet = TRUE),
+    tmp
   )
 
-  expect_silent(t <- api_call(url, quiet = TRUE))
-  expect_true(file.exists(t))
+  unlink(tmp)
 })
 
-test_that("Mock no access", {
+test_that("api_call returns FALSE after failed retries", {
+  tmp <- tempfile(fileext = ".json")
+  calls <- 0L
+
+  local_mocked_bindings(
+    cached_filename = function(url, ext) tmp,
+    download_api_file = function(url, destfile, quiet) {
+      calls <<- calls + 1L
+      file.create(destfile)
+      structure("boom", class = "try-error")
+    },
+    pause_api_call = function() NULL
+  )
+
+  expect_false(api_call("https://example.com", ext = ".json", quiet = TRUE))
+  expect_equal(calls, 2L)
+  expect_false(file.exists(tmp))
+})
+
+test_that("api_call returns after a successful first request", {
+  tmp <- tempfile(fileext = ".json")
+  calls <- 0L
+
+  local_mocked_bindings(
+    cached_filename = function(url, ext) tmp,
+    download_api_file = function(url, destfile, quiet) {
+      calls <<- calls + 1L
+      file.create(destfile)
+      destfile
+    },
+    pause_api_call = function() NULL
+  )
+
+  expect_identical(
+    api_call("https://example.com", ext = ".json", quiet = TRUE),
+    tmp
+  )
+  expect_equal(calls, 1L)
+  expect_true(file.exists(tmp))
+
+  unlink(tmp)
+})
+
+test_that("cached_filename creates stable cache paths", {
+  one <- cached_filename("https://example.com/search?q=Madrid", ".json")
+  two <- cached_filename("https://example.com/search?q=Madrid", ".json")
+  geojson <- cached_filename("https://example.com/search?q=Madrid", ".geojson")
+
+  expect_identical(one, two)
+  expect_match(one, "nominatim_cache", fixed = TRUE)
+  expect_match(one, "\\.json$")
+  expect_match(geojson, "\\.geojson$")
+  expect_true(dir.exists(dirname(one)))
+})
+
+test_that("nominatim_check_access reads status responses", {
+  local_mocked_bindings(
+    on_cran = function() FALSE,
+    api_call = testthat::mock_output_sequence(
+      test_fixture("status-ok.json"),
+      test_fixture("status-message-ok.json"),
+      test_fixture("status-ko.json"),
+      FALSE
+    )
+  )
+
+  expect_true(nominatim_check_access())
+  expect_true(nominatim_check_access())
+  expect_false(nominatim_check_access())
+  expect_false(nominatim_check_access())
+})
+
+test_that("nominatim_check_access can query the live status endpoint", {
   skip_on_cran()
+  skip_if_offline()
 
-  my_fn <- api_call
-
-  api_res <- tempfile(fileext = ".json")
-
-  writeLines('{\"status\":0,\"message\":\"OK\"}', con = api_res)
-
-  local_mocked_bindings(api_call = function(...) {
-    api_res <- tempfile(fileext = ".json")
-
-    writeLines('{\"status\":0,\"message\":\"OK\"}', con = api_res)
-    api_res
-  })
-
-  expect_true(nominatim_check_access())
-
-  local_mocked_bindings(api_call = function(...) {
-    api_res <- tempfile(fileext = ".json")
-
-    writeLines('{\"status\":0,\"message\":\"KO\"}', con = api_res)
-    api_res
-  })
-  expect_true(nominatim_check_access())
-
-  local_mocked_bindings(api_call = function(...) {
-    api_res <- tempfile(fileext = ".json")
-
-    writeLines('{\"status\":999,\"message\":\"KO\"}', con = api_res)
-    api_res
-  })
-  expect_false(nominatim_check_access())
-
-  local_mocked_bindings(api_call = function(...) {
-    FALSE
-  })
-  expect_false(nominatim_check_access())
-
-  local_mocked_bindings(api_call = my_fn)
-
-  expect_identical(api_call, my_fn)
+  expect_type(nominatim_check_access(), "logical")
 })
 
 
 test_that("On CRAN", {
-  skip_on_cran()
-  skip_if_api_server()
-
   env_orig <- Sys.getenv("NOT_CRAN", unset = NA_character_)
 
   on.exit(
@@ -105,7 +131,8 @@ test_that("api_call informs when retrying", {
 
       file.create(destfile)
       destfile
-    }
+    },
+    pause_api_call = function() NULL
   )
 
   expect_message(

@@ -1,0 +1,18 @@
+[
+  {
+    "place_id": 1,
+    "osm_type": "node",
+    "osm_id": 10,
+    "lat": "40.4168",
+    "lon": "-3.7038",
+    "display_name": "Mock place, Madrid, Spain",
+    "boundingbox": ["40.40", "40.43", "-3.72", "-3.69"],
+    "address": {
+      "city": "Madrid",
+      "country": "Spain"
+    },
+    "extratags": {
+      "wikidata": "Q2807"
+    }
+  }
+]
