@@ -29,7 +29,7 @@ Bounding boxes can be located using online tools such as
 \url{https://boundingbox.klokantech.com/}.
 }
 \examples{
-\dontshow{if (nominatim_check_access()) withAutoprint(\{ # examplesIf}
+\dontshow{if (nominatim_check_access() && requireNamespace("ggplot2")) withAutoprint(\{ # examplesIf}
 # Convert the bounding box for Germany.
 bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 

@@ -26,7 +26,7 @@
 #' @encoding UTF-8
 #' @export
 #'
-#' @examplesIf nominatim_check_access()
+#' @examplesIf nominatim_check_access() && requireNamespace("ggplot2")
 #' # Convert the bounding box for Germany.
 #' bbox_GER <- c(5.86631529, 47.27011137, 15.04193189, 55.09916098)
 #'
