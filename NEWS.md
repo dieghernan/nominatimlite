@@ -1,6 +1,7 @@
 # nominatimlite (development version)
 
-- `nominatimlite::osm_amenities` dataset has been updated.
+- `nominatimlite::osm_amenities` has been updated with the latest information
+  available from the OpenStreetMap wiki.
 
 # nominatimlite 0.6.0
 

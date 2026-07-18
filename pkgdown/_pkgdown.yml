@@ -66,7 +66,7 @@ reference:
     OSM identifiers.
   contents:
   - has_concept("lookup")
- 
+
 - subtitle: Amenity lookup
   desc: >
     Find OpenStreetMap amenities and points of interest inside a
@@ -94,7 +94,7 @@ reference:
 - title: Package documentation
   desc: >
     Package overview and metadata.
-- contents:
+  contents:
   - nominatimlite-package
 
 articles:
