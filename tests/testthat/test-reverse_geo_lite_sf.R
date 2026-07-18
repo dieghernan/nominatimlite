@@ -4,9 +4,7 @@ test_that("Errors", {
 })
 
 test_that("Messages", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   expect_snapshot(obj <- reverse_geo_lite_sf(0, 200))
   expect_equal(nrow(obj), 1)
@@ -57,9 +55,7 @@ test_that("Returning empty query", {
 
 
 test_that("Data format", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   obj <- reverse_geo_lite_sf(42, 3)
   expect_s3_class(obj, "sf")
@@ -107,9 +103,7 @@ test_that("Successful fixture response", {
 })
 
 test_that("Checking query", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   obj <- reverse_geo_lite_sf(40.4207414, -3.6687109)
   expect_s3_class(obj, "tbl")
@@ -188,9 +182,7 @@ test_that("Checking query", {
 
 
 test_that("Check unnesting", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   # Several coordinates
   sev <- reverse_geo_lite_sf(

@@ -57,9 +57,7 @@ test_that("Returning empty query", {
 })
 
 test_that("Data format", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   obj <- geo_lite_struct(city = "Madrid")
 
@@ -86,9 +84,7 @@ test_that("Successful fixture response", {
 
 
 test_that("Checking query", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   expect_message(
     obj <- geo_lite_struct(city = c("Madrid", "Barcelona"), limit = 51),

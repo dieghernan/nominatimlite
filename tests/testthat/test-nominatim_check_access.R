@@ -1,5 +1,5 @@
 test_that("api_call returns a cached file", {
-  tmp <- tempfile(fileext = ".json")
+  tmp <- withr::local_tempfile(fileext = ".json")
   file.create(tmp)
   local_mocked_bindings(cached_filename = function(url, ext) tmp)
 
@@ -7,18 +7,17 @@ test_that("api_call returns a cached file", {
     api_call("https://example.com", ext = ".json", quiet = TRUE),
     tmp
   )
-
-  unlink(tmp)
 })
 
 test_that("api_call returns FALSE after failed retries", {
-  tmp <- tempfile(fileext = ".json")
-  calls <- 0L
+  tmp <- withr::local_tempfile(fileext = ".json")
+  state <- new.env(parent = emptyenv())
+  state$calls <- 0L
 
   local_mocked_bindings(
     cached_filename = function(url, ext) tmp,
     download_api_file = function(url, destfile, quiet) {
-      calls <<- calls + 1L
+      state$calls <- state$calls + 1L
       file.create(destfile)
       structure("boom", class = "try-error")
     },
@@ -26,18 +25,19 @@ test_that("api_call returns FALSE after failed retries", {
   )
 
   expect_false(api_call("https://example.com", ext = ".json", quiet = TRUE))
-  expect_equal(calls, 2L)
+  expect_equal(state$calls, 2L)
   expect_false(file.exists(tmp))
 })
 
 test_that("api_call returns after a successful first request", {
-  tmp <- tempfile(fileext = ".json")
-  calls <- 0L
+  tmp <- withr::local_tempfile(fileext = ".json")
+  state <- new.env(parent = emptyenv())
+  state$calls <- 0L
 
   local_mocked_bindings(
     cached_filename = function(url, ext) tmp,
     download_api_file = function(url, destfile, quiet) {
-      calls <<- calls + 1L
+      state$calls <- state$calls + 1L
       file.create(destfile)
       destfile
     },
@@ -48,10 +48,8 @@ test_that("api_call returns after a successful first request", {
     api_call("https://example.com", ext = ".json", quiet = TRUE),
     tmp
   )
-  expect_equal(calls, 1L)
+  expect_equal(state$calls, 1L)
   expect_true(file.exists(tmp))
-
-  unlink(tmp)
 })
 
 test_that("cached_filename creates stable cache paths", {
@@ -85,47 +83,34 @@ test_that("nominatim_check_access reads status responses", {
 
 test_that("nominatim_check_access can query the live status endpoint", {
   skip_on_cran()
-  skip_if_offline()
+  skip_on_ci()
+  skip_if_offline(host = "nominatim.openstreetmap.org")
 
   expect_type(nominatim_check_access(), "logical")
 })
 
 
 test_that("On CRAN", {
-  env_orig <- Sys.getenv("NOT_CRAN", unset = NA_character_)
-
-  on.exit(
-    {
-      if (is.na(env_orig)) {
-        Sys.unsetenv("NOT_CRAN")
-      } else {
-        Sys.setenv("NOT_CRAN" = env_orig)
-      }
-    },
-    add = TRUE
-  )
-
   # Imagine we are in CRAN
-  Sys.setenv("NOT_CRAN" = "false")
+  withr::local_envvar("NOT_CRAN" = "false")
   expect_true(on_cran())
   expect_false(nominatim_check_access())
 
-  Sys.setenv("NOT_CRAN" = "")
+  withr::local_envvar("NOT_CRAN" = "")
   expect_identical(!interactive(), on_cran())
 })
 
 test_that("api_call informs when retrying", {
-  skip_on_cran()
-
-  tmp <- tempfile(fileext = ".json")
-  calls <- 0L
+  tmp <- withr::local_tempfile(fileext = ".json")
+  state <- new.env(parent = emptyenv())
+  state$calls <- 0L
 
   local_mocked_bindings(
     cached_filename = function(url, ext) tmp,
     download_api_file = function(url, destfile, quiet) {
-      calls <<- calls + 1L
+      state$calls <- state$calls + 1L
 
-      if (calls == 1L) {
+      if (state$calls == 1L) {
         return(structure("boom", class = "try-error"))
       }
 
@@ -141,7 +126,5 @@ test_that("api_call informs when retrying", {
   )
 
   expect_identical(res, tmp)
-  expect_equal(calls, 2L)
-
-  unlink(tmp)
+  expect_equal(state$calls, 2L)
 })

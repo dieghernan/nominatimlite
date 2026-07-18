@@ -111,6 +111,28 @@ test_that("sf to tibble", {
   expect_s3_class(tbl_sf, c("sf", "tbl_df"))
 })
 
+test_that("normalize_bbox() handles sf and sfc inputs", {
+  bbox <- c(1, 2, 3, 4)
+  bbox_sfc <- bbox_to_poly(bbox)
+  bbox_sf <- sf::st_sf(id = 1, geometry = bbox_sfc)
+
+  expect_equal(normalize_bbox(bbox_sfc), bbox)
+  expect_equal(normalize_bbox(bbox_sf), bbox)
+})
+
+test_that("unnest_sf() removes missing extratags placeholder columns", {
+  sfobj <- sf::st_as_sf(
+    data.frame(extratags = NA_character_, lon = 0, lat = 0),
+    coords = c("lon", "lat"),
+    crs = 4326
+  )
+
+  out <- unnest_sf(sfobj)
+
+  expect_s3_class(out, "sf")
+  expect_named(out, "geometry")
+})
+
 test_that("is_named() covers all branches", {
   # No names -> first branch
   expect_false(is_named(1:3))

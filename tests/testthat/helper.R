@@ -1,9 +1,13 @@
 skip_if_nominatim_unavailable <- function() {
-  if (is.null(.nominatim_check_access)) {
-    .nominatim_check_access <<- nominatim_check_access()
+  testthat::skip_on_cran()
+  testthat::skip_on_ci()
+  testthat::skip_if_offline(host = "nominatim.openstreetmap.org")
+
+  if (is.null(.nominatim_check_access$value)) {
+    .nominatim_check_access$value <- nominatim_check_access()
   }
 
-  if (.nominatim_check_access) {
+  if (.nominatim_check_access$value) {
     return(invisible(TRUE))
   }
 
@@ -12,7 +16,8 @@ skip_if_nominatim_unavailable <- function() {
   invisible()
 }
 
-.nominatim_check_access <- NULL
+.nominatim_check_access <- new.env(parent = emptyenv())
+.nominatim_check_access$value <- NULL
 
 skip_if_api_server <- skip_if_nominatim_unavailable
 

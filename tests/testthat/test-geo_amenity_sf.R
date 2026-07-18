@@ -20,10 +20,96 @@ test_that("Progress bar", {
   )
 })
 
+test_that("geo_amenity_sf() forwards bbox options and deduplicates amenities", {
+  bbox <- c(-2, 40, -1, 41)
+  state <- new.env(parent = emptyenv())
+  state$calls <- list()
+
+  local_mocked_bindings(
+    geo_lite_struct_sf = function(amenity,
+                                  limit,
+                                  full_results,
+                                  return_addresses,
+                                  verbose,
+                                  nominatim_server,
+                                  custom_query,
+                                  points_only) {
+      state$calls[[length(state$calls) + 1L]] <- list(
+        amenity = amenity,
+        limit = limit,
+        full_results = full_results,
+        return_addresses = return_addresses,
+        verbose = verbose,
+        nominatim_server = nominatim_server,
+        custom_query = custom_query,
+        points_only = points_only
+      )
+      mock_geo_sf(amenity)
+    }
+  )
+
+  out <- geo_amenity_sf(
+    bbox,
+    c("pub", "restaurant", "pub"),
+    limit = 3,
+    full_results = TRUE,
+    return_addresses = FALSE,
+    verbose = TRUE,
+    nominatim_server = "https://example.com/nominatim",
+    progressbar = FALSE,
+    custom_query = list(countrycode = "es"),
+    points_only = FALSE
+  )
+
+  expect_s3_class(out, "sf")
+  expect_named(out, c("query", "address", "geometry"))
+  expect_equal(out$query, c("pub", "restaurant"))
+  expect_length(state$calls, 2)
+  expect_equal(
+    vapply(state$calls, `[[`, character(1), "amenity"),
+    c("pub", "restaurant")
+  )
+  expect_equal(state$calls[[1]]$custom_query$viewbox, bbox)
+  expect_true(state$calls[[1]]$custom_query$bounded)
+  expect_identical(state$calls[[1]]$custom_query$countrycode, "es")
+  expect_identical(state$calls[[1]]$limit, 3)
+  expect_true(state$calls[[1]]$full_results)
+  expect_false(state$calls[[1]]$return_addresses)
+  expect_false(state$calls[[1]]$points_only)
+})
+
+test_that("geo_amenity_sf() strict keeps only rows inside bbox", {
+  local_mocked_bindings(
+    geo_lite_struct_sf = function(amenity, ...) {
+      sf::st_as_sf(
+        dplyr::tibble(
+          q_amenity = amenity,
+          address = c("inside", "outside"),
+          lon = c(0.5, 2),
+          lat = c(0.5, 2)
+        ),
+        coords = c("lon", "lat"),
+        crs = 4326
+      )
+    }
+  )
+
+  out <- geo_amenity_sf(
+    c(0, 0, 1, 1),
+    "pub",
+    strict = TRUE,
+    progressbar = FALSE
+  )
+
+  expect_s3_class(out, "sf")
+  expect_named(out, c("query", "address", "geometry"))
+  expect_equal(nrow(out), 1)
+  expect_equal(out$query, "pub")
+  expect_equal(out$address, "inside")
+})
+
 test_that("Checking query", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   expect_message(
     obj <- geo_amenity_sf(

@@ -13,9 +13,7 @@ test_that("Returning empty query", {
 
 
 test_that("Data format", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   obj <- geo_lite_sf(c("Madrid", "Barcelona"))
 
@@ -62,9 +60,7 @@ test_that("Successful fixture response", {
 })
 
 test_that("Checking query", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   expect_message(
     obj <- geo_lite_sf(c("Madrid", "Barcelona"), limit = 51),
@@ -137,9 +133,7 @@ test_that("Dedupe", {
 })
 
 test_that("Verify names", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   # Ok
   several <- geo_lite_sf(

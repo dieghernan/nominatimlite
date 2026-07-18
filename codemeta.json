@@ -138,6 +138,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "withr",
+      "name": "withr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=withr"
     }
   ],
   "softwareRequirements": {
@@ -200,7 +212,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "openstreetmap", "address", "coordinates", "nominatim", "reverse-search", "rstats", "r-package", "cran", "api-wrapper", "api", "geocoder", "geocoding", "gis", "reverse-geocoder", "reverse-geocoding", "shapefile", "spatial"],
-  "fileSize": "270.798KB",
+  "fileSize": "280.133KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

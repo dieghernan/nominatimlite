@@ -36,9 +36,7 @@ test_that("Returning empty query", {
 })
 
 test_that("Data format", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   out <- geo_address_lookup(34633854, "W")
 
@@ -62,10 +60,74 @@ test_that("Successful fixture response", {
   expect_type(obj$boundingbox, "list")
 })
 
+test_that("geo_address_lookup() normalizes OSM IDs before building query", {
+  state <- new.env(parent = emptyenv())
+  state$urls <- character()
+
+  local_mocked_bindings(
+    api_call = function(url, ...) {
+      state$urls <- c(state$urls, url)
+      test_fixture("lookup-one.json")
+    }
+  )
+
+  out_string <- geo_address_lookup("10", "N")
+  out_decimal <- geo_address_lookup(10.9, "N")
+  out_negative <- geo_address_lookup(-10.9, "N")
+
+  expect_identical(out_string$query, "N10")
+  expect_identical(out_decimal$query, "N10")
+  expect_identical(out_negative$query, "N10")
+  expect_length(state$urls, 3)
+  expect_equal(
+    state$urls,
+    rep(
+      "https://nominatim.openstreetmap.org/lookup?osm_ids=N10&format=jsonv2",
+      3
+    )
+  )
+})
+
+test_that("geo_address_lookup() adds full results and custom options to URL", {
+  state <- new.env(parent = emptyenv())
+  state$url_seen <- NULL
+
+  local_mocked_bindings(
+    api_call = function(url, ...) {
+      state$url_seen <- url
+      test_fixture("lookup-one.json")
+    }
+  )
+
+  out <- geo_address_lookup(
+    10,
+    "N",
+    full_results = TRUE,
+    custom_query = list(extratags = TRUE, countrycodes = c("es", "fr"))
+  )
+
+  expect_identical(out$query, "N10")
+  expect_match(state$url_seen, "lookup\\?osm_ids=N10&format=jsonv2")
+  expect_match(state$url_seen, "addressdetails=1", fixed = TRUE)
+  expect_match(state$url_seen, "extratags=1", fixed = TRUE)
+  expect_match(state$url_seen, "countrycodes=es,fr", fixed = TRUE)
+})
+
+test_that("geo_address_lookup() warns when some OSM IDs are missing", {
+  local_mocked_bindings(api_call = function(...) {
+    test_fixture("lookup-one.json")
+  })
+
+  expect_warning(
+    out <- geo_address_lookup(c(10, 999), "N", verbose = TRUE),
+    "No results were found for some OSM IDs"
+  )
+
+  expect_identical(out$query, "N10")
+})
+
 test_that("Checking query", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   obj <- geo_address_lookup(32965412, "W")
 
@@ -126,9 +188,7 @@ test_that("Checking query", {
 
 
 test_that("Handle several", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   # Ok
   vector_ids <- c(343921, 240109189)
@@ -178,9 +238,7 @@ test_that("Fail", {
 
 
 test_that("Integers #47", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   vector_ids <- "9743343761"
 

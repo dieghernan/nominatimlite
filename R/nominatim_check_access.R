@@ -93,14 +93,18 @@ api_call <- function(url, ext = c(".json", ".geojson"), quiet) {
 }
 
 download_api_file <- function(url, destfile, quiet) {
+  # nocov start
   suppressWarnings(try(
     download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
     silent = TRUE
   ))
+  # nocov end
 }
 
 pause_api_call <- function() {
+  # nocov start
   Sys.sleep(1.2)
+  # nocov end
 }
 
 #' Create a hashed filename for caching requests

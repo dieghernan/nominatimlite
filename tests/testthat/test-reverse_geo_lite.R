@@ -4,9 +4,7 @@ test_that("Errors", {
 })
 
 test_that("Messages", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   expect_snapshot(out <- reverse_geo_lite(0, 200))
   chk <- dplyr::tibble(lat = 0, lon = 180)
@@ -49,9 +47,7 @@ test_that("Returning empty query", {
 
 
 test_that("Data format", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   obj <- reverse_geo_lite(0, 0)
   expect_s3_class(obj, "tbl")
@@ -75,9 +71,7 @@ test_that("Successful fixture response", {
 })
 
 test_that("Checking query", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   obj <- reverse_geo_lite(40.4207414, -3.6687109)
   expect_s3_class(obj, "tbl")
@@ -149,9 +143,7 @@ test_that("Checking query", {
 
 
 test_that("Check unnesting", {
-  skip_on_cran()
   skip_if_api_server()
-  skip_if_offline()
 
   # Several coordinates
   sev <- reverse_geo_lite(
