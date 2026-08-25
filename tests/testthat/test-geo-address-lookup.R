@@ -36,7 +36,7 @@ test_that("geo_address_lookup() returns a typed row when no object matches", {
 })
 
 test_that("geo_address_lookup() returns a non-spatial tibble", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   out <- geo_address_lookup(34633854, "W")
 
@@ -123,7 +123,7 @@ test_that("geo_address_lookup() warns when some OSM IDs are missing", {
 })
 
 test_that("geo_address_lookup() controls coordinate and address columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- geo_address_lookup(32965412, "W")
 
@@ -164,7 +164,7 @@ test_that("geo_address_lookup() controls coordinate and address columns", {
 })
 
 test_that("geo_address_lookup() forwards custom query options", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_equal(
     nrow(geo_address_lookup(
@@ -188,7 +188,7 @@ test_that("geo_address_lookup() forwards custom query options", {
 
 
 test_that("geo_address_lookup() matches multiple IDs and drops missing ones", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Ok
   vector_ids <- c(343921, 240109189)
@@ -234,7 +234,7 @@ test_that("geo_address_lookup() returns typed rows after API failure", {
 
 
 test_that("geo_address_lookup() preserves normalized long OSM identifiers", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   vector_ids <- "9743343761"
 

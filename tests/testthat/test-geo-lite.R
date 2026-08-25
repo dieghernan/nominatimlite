@@ -28,7 +28,7 @@ test_that("geo_lite() returns a typed row when no address matches", {
 })
 
 test_that("geo_lite() returns a non-spatial tibble", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- geo_lite("Madrid")
 
@@ -55,7 +55,7 @@ test_that("geo_lite() parses a successful JSON response", {
 
 
 test_that("geo_lite() caps limits and controls output columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_message(
     obj <- geo_lite(c("Madrid", "Barcelona"), limit = 51),
@@ -96,7 +96,7 @@ test_that("geo_lite() caps limits and controls output columns", {
 })
 
 test_that("geo_lite() forwards custom query options", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_gt(
     nrow(geo_lite(

@@ -1,7 +1,15 @@
 test_that("api_call() returns an existing cached response", {
   tmp <- withr::local_tempfile(fileext = ".json")
   file.create(tmp)
-  local_mocked_bindings(cached_filename = function(url, ext) tmp)
+  local_mocked_bindings(
+    cached_filename = function(url, ext) tmp,
+    download_api_file = function(...) {
+      testthat::fail("A cached response must not trigger a download.")
+    },
+    pause_api_call = function() {
+      testthat::fail("A cached response must not trigger throttling.")
+    }
+  )
 
   expect_identical(
     api_call("https://example.com", ext = ".json", quiet = TRUE),
@@ -13,6 +21,7 @@ test_that("api_call() returns FALSE and removes files after failed retries", {
   tmp <- withr::local_tempfile(fileext = ".json")
   state <- new.env(parent = emptyenv())
   state$calls <- 0L
+  state$pauses <- 0L
 
   local_mocked_bindings(
     cached_filename = function(url, ext) tmp,
@@ -21,11 +30,14 @@ test_that("api_call() returns FALSE and removes files after failed retries", {
       file.create(destfile)
       structure("boom", class = "try-error")
     },
-    pause_api_call = function() NULL
+    pause_api_call = function() {
+      state$pauses <- state$pauses + 1L
+    }
   )
 
   expect_false(api_call("https://example.com", ext = ".json", quiet = TRUE))
   expect_equal(state$calls, 2L)
+  expect_equal(state$pauses, 2L)
   expect_false(file.exists(tmp))
 })
 
@@ -33,6 +45,7 @@ test_that("api_call() returns after the first successful request", {
   tmp <- withr::local_tempfile(fileext = ".json")
   state <- new.env(parent = emptyenv())
   state$calls <- 0L
+  state$pauses <- 0L
 
   local_mocked_bindings(
     cached_filename = function(url, ext) tmp,
@@ -41,7 +54,9 @@ test_that("api_call() returns after the first successful request", {
       file.create(destfile)
       destfile
     },
-    pause_api_call = function() NULL
+    pause_api_call = function() {
+      state$pauses <- state$pauses + 1L
+    }
   )
 
   expect_identical(
@@ -49,7 +64,15 @@ test_that("api_call() returns after the first successful request", {
     tmp
   )
   expect_equal(state$calls, 1L)
+  expect_equal(state$pauses, 1L)
   expect_true(file.exists(tmp))
+})
+
+test_that("api_call() rejects unsupported cache formats before downloading", {
+  expect_snapshot(
+    error = TRUE,
+    api_call("https://example.com", ext = ".txt", quiet = TRUE)
+  )
 })
 
 test_that("cached_filename() creates stable paths for each format", {
@@ -81,15 +104,6 @@ test_that("nominatim_check_access() interprets status responses", {
   expect_false(nominatim_check_access())
 })
 
-test_that("nominatim_check_access() returns logical status from the live API", {
-  skip_on_cran()
-  skip_on_ci()
-  skip_if_offline(host = "nominatim.openstreetmap.org")
-
-  expect_type(nominatim_check_access(), "logical")
-})
-
-
 test_that("on_cran() controls access checks from NOT_CRAN", {
   # Imagine we are in CRAN
   withr::local_envvar("NOT_CRAN" = "false")
@@ -101,6 +115,39 @@ test_that("on_cran() controls access checks from NOT_CRAN", {
 })
 
 test_that("api_call() reports and completes a successful retry", {
+  tmp <- withr::local_tempfile(fileext = ".json")
+  state <- new.env(parent = emptyenv())
+  state$calls <- 0L
+  state$pauses <- 0L
+
+  local_mocked_bindings(
+    cached_filename = function(url, ext) tmp,
+    download_api_file = function(url, destfile, quiet) {
+      state$calls <- state$calls + 1L
+
+      if (state$calls == 1L) {
+        return(structure("boom", class = "try-error"))
+      }
+
+      file.create(destfile)
+      destfile
+    },
+    pause_api_call = function() {
+      state$pauses <- state$pauses + 1L
+    }
+  )
+
+  expect_message(
+    res <- api_call("https://example.com", ext = ".json", quiet = FALSE),
+    "Retrying the Nominatim API query."
+  )
+
+  expect_identical(res, tmp)
+  expect_equal(state$calls, 2L)
+  expect_equal(state$pauses, 2L)
+})
+
+test_that("api_call() retries quietly when verbose output is disabled", {
   tmp <- withr::local_tempfile(fileext = ".json")
   state <- new.env(parent = emptyenv())
   state$calls <- 0L
@@ -120,11 +167,9 @@ test_that("api_call() reports and completes a successful retry", {
     pause_api_call = function() NULL
   )
 
-  expect_message(
-    res <- api_call("https://example.com", ext = ".json", quiet = FALSE),
-    "Retrying the Nominatim API query."
+  expect_silent(
+    res <- api_call("https://example.com", ext = ".json", quiet = TRUE)
   )
-
   expect_identical(res, tmp)
   expect_equal(state$calls, 2L)
 })

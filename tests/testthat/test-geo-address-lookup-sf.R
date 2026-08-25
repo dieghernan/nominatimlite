@@ -13,7 +13,7 @@ test_that("geo_address_lookup_sf() returns empty geometry without a match", {
 
 
 test_that("geo_address_lookup_sf() returns an sf tibble", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- geo_address_lookup_sf(34633854, "W")
   expect_s3_class(obj, "sf")
@@ -100,7 +100,7 @@ test_that("geo_address_lookup_sf() warns when some OSM IDs are missing", {
 })
 
 test_that("geo_address_lookup_sf() controls compact and full output columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- geo_address_lookup_sf(34633854, "W")
 
@@ -109,7 +109,7 @@ test_that("geo_address_lookup_sf() controls compact and full output columns", {
 })
 
 test_that("geo_address_lookup_sf() forwards geometry and custom options", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_equal(
     nrow(geo_address_lookup_sf(
@@ -151,7 +151,7 @@ test_that("geo_address_lookup_sf() forwards geometry and custom options", {
 
 
 test_that("geo_address_lookup_sf() drops unmatched IDs from multiple lookups", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Ok
   vector_ids <- c(343921, 240109189)
@@ -178,7 +178,7 @@ test_that("geo_address_lookup_sf() drops unmatched IDs from multiple lookups", {
 
 
 test_that("geo_address_lookup_sf() returns unique column names", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Ok
   vector_ids <- c(343921, 240109189)
@@ -209,7 +209,7 @@ test_that("geo_address_lookup_sf() returns empty geometry after API failure", {
 
 
 test_that("geo_address_lookup_sf() preserves normalized long OSM identifiers", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   vector_ids <- "9743343761"
 

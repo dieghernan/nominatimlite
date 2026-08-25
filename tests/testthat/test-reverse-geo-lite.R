@@ -4,7 +4,7 @@ test_that("reverse_geo_lite() rejects nonnumeric and mismatched coordinates", {
 })
 
 test_that("reverse_geo_lite() reports and clamps coordinates outside bounds", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_snapshot(out <- reverse_geo_lite(0, 200))
   chk <- dplyr::tibble(lat = 0, lon = 180)
@@ -47,7 +47,7 @@ test_that("reverse_geo_lite() returns a typed row when no address matches", {
 
 
 test_that("reverse_geo_lite() returns a non-spatial tibble", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- reverse_geo_lite(40.4168, -3.7038)
   expect_s3_class(obj, "tbl")
@@ -71,7 +71,7 @@ test_that("reverse_geo_lite() parses a successful JSON response", {
 })
 
 test_that("reverse_geo_lite() returns tabular results and forwards zoom", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- reverse_geo_lite(40.4207414, -3.6687109)
   expect_s3_class(obj, "tbl")
@@ -92,7 +92,7 @@ test_that("reverse_geo_lite() returns tabular results and forwards zoom", {
 })
 
 test_that("reverse_geo_lite() handles multiple coordinates and address names", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Several coordinates
   sev <- reverse_geo_lite(
@@ -124,7 +124,7 @@ test_that("reverse_geo_lite() handles multiple coordinates and address names", {
 })
 
 test_that("reverse_geo_lite() controls coordinate and full-result columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- reverse_geo_lite(
     40.4207414,
@@ -151,7 +151,7 @@ test_that("reverse_geo_lite() controls coordinate and full-result columns", {
 
 
 test_that("reverse_geo_lite() unnests bounding boxes in full results", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Several coordinates
   sev <- reverse_geo_lite(

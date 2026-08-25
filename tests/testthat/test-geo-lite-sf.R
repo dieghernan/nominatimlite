@@ -13,7 +13,7 @@ test_that("geo_lite_sf() returns an empty geometry when no address matches", {
 
 
 test_that("geo_lite_sf() returns point and polygon geometries", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- geo_lite_sf(c("Madrid", "Barcelona"))
 
@@ -60,7 +60,7 @@ test_that("geo_lite_sf() parses a successful GeoJSON response", {
 })
 
 test_that("geo_lite_sf() caps limits and controls output columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_message(
     obj <- geo_lite_sf(c("Madrid", "Barcelona"), limit = 51),
@@ -91,7 +91,7 @@ test_that("geo_lite_sf() caps limits and controls output columns", {
 })
 
 test_that("geo_lite_sf() forwards custom query options", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_gt(
     nrow(geo_lite_sf(
@@ -135,7 +135,7 @@ test_that("geo_lite_sf() queries unique addresses and restores input order", {
 })
 
 test_that("geo_lite_sf() returns unique column names", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Ok
   several <- geo_lite_sf(

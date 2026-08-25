@@ -19,7 +19,7 @@ test_that("geo_lite_struct_sf() handles missing and unmatched components", {
 
 
 test_that("geo_lite_struct_sf() returns point and polygon geometries", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- geo_lite_struct_sf(city = "Madrid")
 
@@ -62,7 +62,7 @@ test_that("geo_lite_struct_sf() parses a successful GeoJSON response", {
 })
 
 test_that("geo_lite_struct_sf() caps limits and controls output columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_message(
     obj <- geo_lite_struct_sf(city = c("Madrid", "Barcelona"), limit = 51),
@@ -104,7 +104,7 @@ test_that("geo_lite_struct_sf() caps limits and controls output columns", {
 })
 
 test_that("geo_lite_struct_sf() forwards custom query options", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_gt(
     nrow(geo_lite_struct_sf(

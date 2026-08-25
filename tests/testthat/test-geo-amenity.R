@@ -101,7 +101,7 @@ test_that("geo_amenity() strict mode keeps only rows inside the bbox", {
 })
 
 test_that("geo_amenity() caps limits and controls output columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_message(
     obj <- geo_amenity(
@@ -149,7 +149,7 @@ test_that("geo_amenity() caps limits and controls output columns", {
 })
 
 test_that("geo_amenity() forwards custom query options", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_gt(
     nrow(geo_amenity(
@@ -179,7 +179,7 @@ test_that("geo_amenity() forwards custom query options", {
 })
 
 test_that("geo_amenity() applies strict mode to numeric, sfc and sf bboxes", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_lt(
     nrow(geo_amenity(

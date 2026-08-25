@@ -4,7 +4,7 @@ test_that("reverse_geo_lite_sf() rejects invalid coordinate inputs", {
 })
 
 test_that("reverse_geo_lite_sf() reports coordinates clamped to bounds", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   expect_snapshot(obj <- reverse_geo_lite_sf(0, 200))
   expect_equal(nrow(obj), 1)
@@ -55,7 +55,7 @@ test_that("reverse_geo_lite_sf() returns empty geometry without a match", {
 
 
 test_that("reverse_geo_lite_sf() returns point and polygon geometries", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- reverse_geo_lite_sf(42, 3)
   expect_s3_class(obj, "sf")
@@ -103,7 +103,7 @@ test_that("reverse_geo_lite_sf() parses a successful GeoJSON response", {
 })
 
 test_that("reverse_geo_lite_sf() returns sf results and forwards zoom", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- reverse_geo_lite_sf(40.4207414, -3.6687109)
   expect_s3_class(obj, "tbl")
@@ -127,7 +127,7 @@ test_that("reverse_geo_lite_sf() returns sf results and forwards zoom", {
 })
 
 test_that("reverse_geo_lite_sf() handles batches and renamed columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Several coordinates
   sev <- reverse_geo_lite_sf(
@@ -162,7 +162,7 @@ test_that("reverse_geo_lite_sf() handles batches and renamed columns", {
 })
 
 test_that("reverse_geo_lite_sf() controls coordinate and full-result columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   obj <- reverse_geo_lite_sf(
     40.4207414,
@@ -190,7 +190,7 @@ test_that("reverse_geo_lite_sf() controls coordinate and full-result columns", {
 
 
 test_that("reverse_geo_lite_sf() unnests full results without list columns", {
-  skip_if_api_server()
+  skip_nominatim_ci()
 
   # Several coordinates
   sev <- reverse_geo_lite_sf(

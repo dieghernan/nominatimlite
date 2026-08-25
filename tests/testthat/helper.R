@@ -1,6 +1,5 @@
 skip_if_nominatim_unavailable <- function() {
   testthat::skip_on_cran()
-  testthat::skip_on_ci()
   testthat::skip_if_offline(host = "nominatim.openstreetmap.org")
 
   if (is.null(.nominatim_check_access$value)) {
@@ -16,10 +15,15 @@ skip_if_nominatim_unavailable <- function() {
   invisible()
 }
 
+skip_nominatim_ci <- function() {
+  testthat::skip_on_ci()
+  skip_if_nominatim_unavailable()
+
+  invisible()
+}
+
 .nominatim_check_access <- new.env(parent = emptyenv())
 .nominatim_check_access$value <- NULL
-
-skip_if_api_server <- skip_if_nominatim_unavailable
 
 test_fixture <- function(...) {
   testthat::test_path("fixtures", ...)
