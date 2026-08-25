@@ -102,6 +102,9 @@ levels correspond to these address details:
 
 ## See also
 
+[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
+for geocoding addresses.
+
 Reverse geocoding functions:
 [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.md)
 
@@ -138,7 +141,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52489199, 276157440
+#> $ place_id                                 <int> 52172514, 274782588
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

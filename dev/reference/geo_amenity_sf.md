@@ -124,11 +124,11 @@ With `points_only = FALSE`, multiple geometry types may be returned.
 
 ## See also
 
-Amenity lookup functions:
+Amenity lookup functions and data:
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md),
 [`osm_amenities`](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md)
 
-Spatial output functions:
+Spatial helper and output functions:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md),
 [`geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_sf.md),

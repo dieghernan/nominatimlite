@@ -24,7 +24,10 @@ otherwise.
 
 ## See also
 
-<https://nominatim.org/release-docs/latest/api/Status/>.
+[`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
+for submitting search requests and the [Nominatim status
+endpoint](https://nominatim.org/release-docs/latest/api/Status/) for
+server status details.
 
 ## Examples
 

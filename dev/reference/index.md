@@ -1,11 +1,6 @@
 # Package index
 
-## Geocoding
-
-Search OpenStreetMap using free-form text, structured queries or
-geographic coordinates.
-
-### Address search
+## Address search
 
 Search for places and addresses using free-form text or structured
 address components.
@@ -28,7 +23,7 @@ address components.
   Search for addresses with structured queries and return
   [sf](https://CRAN.R-project.org/package=sf) objects
 
-### Reverse geocoding
+## Reverse geocoding
 
 Convert latitude and longitude coordinates into human-readable
 addresses.
@@ -42,12 +37,7 @@ addresses.
   Reverse geocode coordinates and return
   [sf](https://CRAN.R-project.org/package=sf) objects
 
-## OpenStreetMap lookups
-
-Retrieve OpenStreetMap features directly from existing OSM identifiers
-or search for amenities within a geographic area.
-
-### Address lookup
+## OpenStreetMap object lookup
 
 Retrieve OpenStreetMap nodes, ways and relations from their OSM
 identifiers.
@@ -61,7 +51,7 @@ identifiers.
   Look up OpenStreetMap objects and return
   [sf](https://CRAN.R-project.org/package=sf) objects
 
-### Amenity lookup
+## Amenity lookup
 
 Find OpenStreetMap amenities and points of interest inside a bounding
 box.
@@ -75,13 +65,10 @@ box.
   Look up OpenStreetMap amenities and return
   [sf](https://CRAN.R-project.org/package=sf) objects
 
-## Utilities
+## Spatial and API helpers
 
-Helper functions and bundled datasets.
-
-### Spatial output
-
-Convert returned bounding boxes into `sf` polygon geometries.
+Convert bounding box coordinates into **sf** polygons and check access
+to the Nominatim API.
 
 - [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/dev/reference/bbox_to_poly.md)
   :
@@ -90,9 +77,12 @@ Convert returned bounding boxes into `sf` polygon geometries.
   [`sfc`](https://r-spatial.github.io/sf/reference/sfc.html) `POLYGON`
   object
 
-### Datasets
+- [`nominatim_check_access()`](https://dieghernan.github.io/nominatimlite/dev/reference/nominatim_check_access.md)
+  : Check access to the Nominatim API
 
-Sample data included with the package.
+## Data
+
+Bundled OpenStreetMap amenity reference data.
 
 - [`osm_amenities`](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md)
   : OpenStreetMap amenities

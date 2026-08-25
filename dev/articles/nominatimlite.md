@@ -1,47 +1,51 @@
 # Get started with nominatimlite
 
-**nominatimlite** provides a lightweight interface to the [Nominatim
-API](https://nominatim.org/release-docs/latest/). It supports free-form
-and structured address searches, reverse geocoding, amenity lookup and
-address lookup by OpenStreetMap (OSM) object identifier. Results are
-returned as tibbles or `sf` objects.
+**nominatimlite** provides a lightweight interface to the [**Nominatim
+API**](https://nominatim.org/release-docs/latest/). It supports
+free-form and structured address searches, reverse geocoding, amenity
+lookup and address lookup by **OpenStreetMap** (OSM) object identifier.
+Results are returned as tibbles or **sf** objects.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/nominatimlite/>.
 
 ## What is Nominatim?
 
-**Nominatim** searches [OpenStreetMap](https://www.openstreetmap.org/)
-data by name and address
+**Nominatim** searches
+[**OpenStreetMap**](https://www.openstreetmap.org/) data by name and
+address
 ([geocoding](https://wiki.openstreetmap.org/wiki/Geocoding "Geocoding"))
 and reverse geocodes geographic coordinates.
 
 ## Why nominatimlite?
 
-**nominatimlite** accesses the Nominatim API without requiring the
+**nominatimlite** accesses the **Nominatim API** without requiring the
 **curl** package. This makes the package useful in environments where
-**curl** is not available. API requests use base R functions instead.
+**curl** is not available. API requests use base **R** functions
+instead.
 
 ## Recommended packages
 
 Related packages provide broader interfaces to geocoding services and
-OpenStreetMap data:
+**OpenStreetMap** data:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)) provides an interface to
-  geocoding services such as Nominatim, Google, TomTom and Mapbox.
+  geocoding services such as **Nominatim**, **Google**, **TomTom** and
+  **Mapbox**.
 - [**osmdata**](https://docs.ropensci.org/osmdata/) ([Padgham et al.
-  2017](#ref-R-osmdata)) downloads spatial data from OpenStreetMap with
-  the [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
+  2017](#ref-R-osmdata)) downloads spatial data from **OpenStreetMap**
+  with the [**Overpass**
+  API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 - [**arcgeocoder**](https://dieghernan.github.io/arcgeocoder/)
   ([Hernangómez 2024](#ref-R-arcgeocoder)) provides a lightweight
-  interface for geocoding with the ArcGIS REST API service.
+  interface for geocoding with the **ArcGIS REST API** service.
 
 ## Usage
 
-### `sf` output
+### sf output
 
-Use functions with the `_sf` suffix to return results as `sf` objects:
+Use functions with the `_sf` suffix to return results as **sf** objects:
 
 ``` r
 
@@ -71,7 +75,7 @@ Map of Pizza Hut locations in California.
 Figure 1: Pizza Hut locations in California.
 
 Set `points_only = FALSE` to return polygon and line geometries when
-they are available from the Nominatim API:
+they are available from the **Nominatim API**:
 
 ``` r
 
@@ -118,8 +122,8 @@ lat_longs <- geo_lite(
 By default,
 [`geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite.md)
 returns the query, latitude, longitude and address columns. Set
-`full_results = TRUE` to return all available fields from the Nominatim
-API.
+`full_results = TRUE` to return all available fields from the
+**Nominatim API**.
 
 | query | latitude | longitude | address |
 |:---|---:|---:|:---|
@@ -149,12 +153,12 @@ reverse <- reverse_geo_lite(
 | address_found | lat | lon |
 |:---|---:|---:|
 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
-| 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79541 | -122.40257 |
-| The Metropolitan, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87883 | -87.63607 |
+| Sky Bar, 600, Montgomery Street, Financial District, South of Market, San Francisco, California, 94111, United States | 37.79519 | -122.40254 |
+| SkyDeck Chicago Willis Tower, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87850 | -87.63589 |
 
 Table 2: Reverse-geocoded addresses.
 
-See the [Nominatim search API
+See the [**Nominatim search API**
 documentation](https://nominatim.org/release-docs/latest/api/Search/)
 for additional parameters to pass to `custom_query`.
 

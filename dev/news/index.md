@@ -2,9 +2,18 @@
 
 ## nominatimlite (development version)
 
+- [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup.md)
+  and
+  [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_address_lookup_sf.md)
+  now identify unmatched OSM IDs in warnings.
 - [`nominatimlite::osm_amenities`](https://dieghernan.github.io/nominatimlite/dev/reference/osm_amenities.md)
   has been updated with the latest information available from the
-  OpenStreetMap wiki.
+  **OpenStreetMap** wiki.
+- [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md)
+  and
+  [`reverse_geo_lite_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite_sf.md)
+  now reject missing coordinates with a clear error and no longer report
+  in-range integer latitudes as clamped.
 
 ## nominatimlite 0.6.0
 
@@ -29,7 +38,7 @@ CRAN release: 2026-03-18
   session to reduce load on the service.
 - API calls now wait 1.2 seconds between requests to reduce overload
   risk.
-- Vignettes have been migrated to Quarto.
+- Vignettes have been migrated to **Quarto**.
 
 ## nominatimlite 0.4.3
 
@@ -58,9 +67,9 @@ CRAN release: 2024-07-19
 
 CRAN release: 2024-05-27
 
-- Updated endpoints for **Nominatim 4.4.0** (Python only).
+- Updated endpoints for **Nominatim** 4.4.0 (**Python** only).
 
-- API calls for non-spatial functions now use JSONv2 format
+- API calls for non-spatial functions now use **JSONv2** format
   (`&format=jsonv2`), so `class` is renamed to `category` and
   `place_rank` is added with the search rank of the object.
 
@@ -86,7 +95,7 @@ CRAN release: 2024-05-27
   [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.md)
   and
   [`geo_lite_struct_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct_sf.md),
-  making them more robust and compatible with `sf` objects.
+  making them more robust and compatible with **sf** objects.
 
 - [`geo_lite_struct()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_lite_struct.md)
   and
@@ -119,7 +128,7 @@ CRAN release: 2024-03-01
   and
   [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md).
   See
-  [Nominatim/issues/1311](https://github.com/osm-search/Nominatim/issues/1311).
+  [**Nominatim**/issues/1311](https://github.com/osm-search/Nominatim/issues/1311).
   Use
   [`arcgeocoder::arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.html)
   as an alternative.
@@ -142,11 +151,11 @@ CRAN release: 2023-05-11
 - **rlang** and **tibble** are no longer explicitly required.
   Conversions to tibbles use
   [`dplyr::tibble()`](https://tibble.tidyverse.org/reference/tibble.html).
-- Attributes of `sf` objects are now returned as tibbles for easier
+- Attributes of **sf** objects are now returned as tibbles for easier
   printing in the console.
-- `sf` objects now handle nested fields provided in the JSON response,
-  such as the nested address field, consistently with non-spatial
-  functions.
+- **sf** objects now handle nested fields provided in the **JSON**
+  response, such as the nested address field, consistently with
+  non-spatial functions.
 - Output from
   [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/dev/reference/reverse_geo_lite.md)
   and
@@ -180,8 +189,8 @@ CRAN release: 2021-10-21
 
 - API query tests are skipped on **CRAN** to avoid false positives.
 - Centralized API queries in the internal `api_call()` function.
-- Queries now fully honor the [Nominatim Usage
-  Policy](https://operations.osmfoundation.org/policies/nominatim/).
+- Queries now fully honor the [**Nominatim Usage
+  Policy**](https://operations.osmfoundation.org/policies/nominatim/).
   Queries may be slower now.
 
 ## nominatimlite 0.1.2
@@ -204,7 +213,8 @@ CRAN release: 2021-09-30
 CRAN release: 2021-09-16
 
 - **CRAN** release.
-- Adjusted query rate limits to comply with the Nominatim usage policy.
+- Adjusted query rate limits to comply with the **Nominatim** usage
+  policy.
 - Added the `strict` argument to
   [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md)
   and

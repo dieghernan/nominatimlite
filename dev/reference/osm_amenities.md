@@ -30,7 +30,7 @@ copyright and license details.
 
 ## See also
 
-Amenity lookup functions:
+Amenity lookup functions and data:
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/dev/reference/geo_amenity_sf.md)
 
