@@ -2,6 +2,8 @@
 
 ## nominatimlite 0.7.0
 
+CRAN release: 2026-08-25
+
 - [`geo_address_lookup()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup.md)
   and
   [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
