@@ -124,7 +124,7 @@ With `points_only = FALSE`, multiple geometry types may be returned.
 Reverse geocoding functions:
 [`reverse_geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/reverse_geo_lite.md)
 
-Spatial output functions:
+Spatial helper and output functions:
 [`bbox_to_poly()`](https://dieghernan.github.io/nominatimlite/reference/bbox_to_poly.md),
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md),

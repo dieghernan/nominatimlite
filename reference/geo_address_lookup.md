@@ -83,6 +83,9 @@ additional parameters to pass to `custom_query`.
 
 ## See also
 
+[`geo_lite()`](https://dieghernan.github.io/nominatimlite/reference/geo_lite.md)
+for finding objects when their OSM identifiers are unknown.
+
 Address lookup functions:
 [`geo_address_lookup_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_address_lookup_sf.md)
 

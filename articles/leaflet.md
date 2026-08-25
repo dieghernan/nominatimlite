@@ -2,7 +2,7 @@
 
 ## Build the map
 
-This example displays Nominatim API results on an interactive
+This example displays **Nominatim API** results on an interactive
 [**leaflet**](https://rstudio.github.io/leaflet/) map. It looks up cafes
 and restaurants near the Eiffel Tower with
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md).

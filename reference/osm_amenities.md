@@ -4,7 +4,7 @@ A dataset of amenity values available on OpenStreetMap.
 
 ## Format
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with 136
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with 140
 rows and three columns:
 
 - category:
@@ -25,12 +25,12 @@ rows and three columns:
 
 ## Note
 
-The data were extracted on **April 3, 2024**. See `inst/COPYRIGHTS` for
+The data were extracted on **July 11, 2026**. See `inst/COPYRIGHTS` for
 copyright and license details.
 
 ## See also
 
-Amenity lookup functions:
+Amenity lookup functions and data:
 [`geo_amenity()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity.md),
 [`geo_amenity_sf()`](https://dieghernan.github.io/nominatimlite/reference/geo_amenity_sf.md)
 
@@ -40,7 +40,7 @@ Amenity lookup functions:
 data("osm_amenities")
 
 osm_amenities
-#> # A tibble: 136 × 3
+#> # A tibble: 140 × 3
 #>    category   amenity        comment                                            
 #>    <chr>      <chr>          <chr>                                              
 #>  1 Sustenance bar            Bar is a purpose-built commercial establishment th…
@@ -53,5 +53,5 @@ osm_amenities
 #>  8 Sustenance restaurant     Restaurant (not fast food, see amenity=fast_food).…
 #>  9 Education  college        Campus or buildings of an institute of Further Edu…
 #> 10 Education  dancing_school A dancing school or dance studio                   
-#> # ℹ 126 more rows
+#> # ℹ 130 more rows
 ```
