@@ -1,4 +1,4 @@
-# nominatimlite (development version)
+# nominatimlite 0.7.0
 
 - `geo_address_lookup()` and `geo_address_lookup_sf()` now identify unmatched OSM IDs in warnings.
 - `nominatimlite::osm_amenities` has been updated with the latest information

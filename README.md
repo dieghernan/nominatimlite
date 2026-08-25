@@ -251,7 +251,7 @@ A BibTeX entry for LaTeX users is shown below.
       doi = {10.32614/CRAN.package.nominatimlite},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.6.0.9000},
+      version = {0.7.0},
       url = {https://dieghernan.github.io/nominatimlite/},
       abstract = {Provides a lightweight interface to the Nominatim API <https://nominatim.org/release-docs/latest/>. It supports free-form and structured address searches, searches for addresses from coordinates, amenity lookup and address lookup by OpenStreetMap object identifier. It returns results as tibble data frames or sf objects.},
     }
