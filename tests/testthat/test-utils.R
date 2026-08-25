@@ -1,4 +1,4 @@
-test_that("Check add_custom_query", {
+test_that("add_custom_query() ignores unnamed options and encodes named ones", {
   u <- "http://test"
   t <- add_custom_query(custom_query = list(), url = u)
   expect_identical(u, t)
@@ -20,7 +20,7 @@ test_that("Check add_custom_query", {
   expect_identical("http://test&a=3&b=3", t)
 })
 
-test_that("prepare_api_url", {
+test_that("prepare_api_url() normalizes default and custom server URLs", {
   t <- prepare_api_url(entry = "an_entry")
   expect_identical(t, "https://nominatim.openstreetmap.org/an_entry")
 
@@ -33,7 +33,7 @@ test_that("prepare_api_url", {
   expect_identical(t3, "http://localhost:2322/nominatim-update/custom")
 })
 
-test_that("URL builders add options", {
+test_that("URL builders encode endpoint-specific query options", {
   expect_identical(
     build_search_url(
       "https://example.com",
@@ -86,20 +86,25 @@ test_that("URL builders add options", {
   )
 })
 
-test_that("cap helpers report changes", {
+test_that("cap helpers validate and report adjusted values", {
   expect_identical(cap_limit(10), 10)
   expect_message(limit <- cap_limit(51), "at most 50")
   expect_identical(limit, 50)
 
   expect_snapshot(error = TRUE, cap_coordinates("a", 1))
   expect_snapshot(error = TRUE, cap_coordinates(1, c(1, 2)))
+  expect_snapshot(error = TRUE, cap_coordinates(NA_real_, 1))
+  expect_snapshot(error = TRUE, cap_coordinates(1, NA_real_))
+
+  expect_silent(integer_coords <- cap_coordinates(1L, 1L))
+  expect_equal(integer_coords, list(lat = 1, long = 1))
 
   expect_snapshot(coords <- cap_coordinates(200, -200))
   expect_identical(coords$lat, 90)
   expect_identical(coords$long, -180)
 })
 
-test_that("sf to tibble", {
+test_that("sf_to_tbl() restores sf tibble classes", {
   normal_sf <- sf::st_as_sf(
     data.frame(x = 1, lon = 0, lat = 0),
     coords = c("lat", "lon"),
@@ -111,7 +116,7 @@ test_that("sf to tibble", {
   expect_s3_class(tbl_sf, c("sf", "tbl_df"))
 })
 
-test_that("normalize_bbox() handles sf and sfc inputs", {
+test_that("normalize_bbox() transforms sf and sfc inputs to coordinates", {
   bbox <- c(1, 2, 3, 4)
   bbox_sfc <- bbox_to_poly(bbox)
   bbox_sf <- sf::st_sf(id = 1, geometry = bbox_sfc)
@@ -120,7 +125,7 @@ test_that("normalize_bbox() handles sf and sfc inputs", {
   expect_equal(normalize_bbox(bbox_sf), bbox)
 })
 
-test_that("unnest_sf() removes missing extratags placeholder columns", {
+test_that("unnest_sf() removes placeholders for missing extra tags", {
   sfobj <- sf::st_as_sf(
     data.frame(extratags = NA_character_, lon = 0, lat = 0),
     coords = c("lon", "lat"),
@@ -133,7 +138,7 @@ test_that("unnest_sf() removes missing extratags placeholder columns", {
   expect_named(out, "geometry")
 })
 
-test_that("is_named() covers all branches", {
+test_that("is_named() distinguishes complete names from missing names", {
   # No names -> first branch
   expect_false(is_named(1:3))
   expect_false(is_named(list(1, 2, 3)))

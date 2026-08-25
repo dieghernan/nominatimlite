@@ -61,11 +61,7 @@ mock_geo_sf <- function(query) {
 
 mock_reverse_sf <- function(lat, lon, address = "address") {
   out <- sf::st_as_sf(
-    dplyr::tibble(
-      address = paste("address", lat, lon),
-      lat = lat,
-      lon = lon
-    ),
+    dplyr::tibble(address = paste("address", lat, lon), lat = lat, lon = lon),
     coords = c("lon", "lat"),
     crs = 4326,
     remove = FALSE

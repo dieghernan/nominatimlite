@@ -1,4 +1,4 @@
-# cap helpers report changes
+# cap helpers validate and report adjusted values
 
     Code
       cap_coordinates("a", 1)
@@ -13,6 +13,22 @@
     Condition
       Error in `cap_coordinates()`:
       ! `lat` and `long` must have the same length.
+
+---
+
+    Code
+      cap_coordinates(NA_real_, 1)
+    Condition
+      Error in `cap_coordinates()`:
+      ! `lat` and `long` must not contain missing values.
+
+---
+
+    Code
+      cap_coordinates(1, NA_real_)
+    Condition
+      Error in `cap_coordinates()`:
+      ! `lat` and `long` must not contain missing values.
 
 ---
 

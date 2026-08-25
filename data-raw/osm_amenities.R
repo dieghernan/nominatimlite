@@ -1,16 +1,16 @@
-## code to prepare `osm_amenities` dataset goes here
+## Prepare the `osm_amenities` dataset.
 
 # https://www.r-bloggers.com/2021/07/politely-scraping-wikipedia-tables-2/
 
-# To clean data
+# Load packages used to clean the data.
 library(tidyverse)
-# To scrape data
+# Load packages used to scrape the data.
 library(rvest)
 
 url <- "https://wiki.openstreetmap.org/wiki/Key:amenity"
 
-osm_amenities <- rvest::read_html(url) |> # scrape web page
-  rvest::html_nodes("table.wikitable") |> # pull out specific table
+osm_amenities <- rvest::read_html(url) |> # Scrape the web page.
+  rvest::html_nodes("table.wikitable") |> # Extract the relevant table.
   rvest::html_table() |>
   pluck(1) |>
   as_tibble(.name_repair = "unique") |>

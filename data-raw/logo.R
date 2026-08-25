@@ -1,4 +1,4 @@
-## code to prepare `logo` dataset goes here
+## Prepare the `logo` dataset.
 
 rm(list = ls())
 
@@ -12,7 +12,6 @@ library(hexSticker)
 mad <- esp_get_munic(munic = "^Madrid$") |> st_transform(3857)
 mad2 <- st_buffer(mad, -2000)
 
-
 set.seed(1234)
 r <- st_sample(mad2, 200)
 r
@@ -21,7 +20,7 @@ max(st_coordinates(r))
 
 st_bbox(mad)
 
-## Section----
+## Create the text labels. ----
 
 df1 <- data.frame(label = "nominatim", lon = -3.544387, lat = 40.55039)
 
@@ -32,14 +31,14 @@ df2 <- data.frame(label = "lite", lon = -3.405387, lat = 40.55039)
 p2 <- st_as_sf(df2, coords = c("lon", "lat"), crs = 4326) |> st_transform(3857)
 
 library(showtext)
-## Loading Google fonts (http://www.google.com/fonts)
+## Load Google Fonts (<http://www.google.com/fonts>).
 font_add_google("Lato", "lato")
 
 font_add_google(
-  name = "Pacifico", # Nombre de la fuente en el sitio Google Fonts
+  name = "Pacifico", # Use the font name listed on Google Fonts.
   family = "pacifico"
-) # Nombre con el que quieres llamar a la fuente
-## Automatically use showtext to render text for future devices
+) # Set the family name used to reference the font.
+## Use showtext to render text automatically for future devices.
 showtext_auto()
 
 map <- ggplot(mad) +
@@ -61,7 +60,6 @@ map <- ggplot(mad) +
   ) +
   theme_void() +
   coord_sf(xlim = c(-432731.6, -375817))
-
 
 sticker(
   map,

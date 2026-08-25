@@ -1,0 +1,28 @@
+# geo_lite_struct() handles missing and unmatched components
+
+    Code
+      obj <- geo_lite_struct()
+    Message
+      No search parameters were provided.
+
+---
+
+    Code
+      obj <- geo_lite_struct(amenity = "xbzbzbzoa aiaia")
+    Message
+      No results were found for the query.
+
+---
+
+    Code
+      obj_renamed <- geo_lite_struct("xbzbzbzoa aiaia", lat = "lata", long = "longa")
+    Message
+      No results were found for the query.
+
+# geo_lite_struct() returns a typed row when the API is unavailable
+
+    Code
+      several <- geo_lite_struct("Madrid", full_results = TRUE)
+    Message
+      Could not reach the API endpoint: https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&addressdetails=1&amenity=Madrid.
+

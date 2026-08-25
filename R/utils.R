@@ -49,13 +49,17 @@ cap_coordinates <- function(lat, long) {
     stop("`lat` and `long` must have the same length.")
   }
 
+  if (anyNA(lat) || anyNA(long)) {
+    stop("`lat` and `long` must not contain missing values.")
+  }
+
   lat_cap <- pmax(pmin(lat, 90), -90)
-  if (!identical(lat_cap, lat)) {
+  if (any(lat_cap != lat)) {
     message("Latitude values outside [-90, 90] were clamped to that range.")
   }
 
   long_cap <- pmax(pmin(long, 180), -180)
-  if (!all(long_cap == long)) {
+  if (any(long_cap != long)) {
     message("Longitude values outside [-180, 180] were clamped to that range.")
   }
 

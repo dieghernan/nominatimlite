@@ -31,7 +31,7 @@ data("osm_amenities")
 osm_amenities
 }
 \seealso{
-Amenity lookup functions:
+Amenity lookup functions and data:
 \code{\link[=geo_amenity]{geo_amenity()}},
 \code{\link[=geo_amenity_sf]{geo_amenity_sf()}}
 }

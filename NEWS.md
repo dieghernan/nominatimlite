@@ -1,7 +1,9 @@
 # nominatimlite (development version)
 
+- `geo_address_lookup()` and `geo_address_lookup_sf()` now identify unmatched OSM IDs in warnings.
 - `nominatimlite::osm_amenities` has been updated with the latest information
-  available from the OpenStreetMap wiki.
+  available from the **OpenStreetMap** wiki.
+- `reverse_geo_lite()` and `reverse_geo_lite_sf()` now reject missing coordinates with a clear error and no longer report in-range integer latitudes as clamped.
 
 # nominatimlite 0.6.0
 
@@ -20,7 +22,7 @@
 - API responses are cached in `tempdir()` during the current session to reduce
   load on the service.
 - API calls now wait 1.2 seconds between requests to reduce overload risk.
-- Vignettes have been migrated to Quarto.
+- Vignettes have been migrated to **Quarto**.
 
 # nominatimlite 0.4.3
 
@@ -37,9 +39,10 @@
 
 # nominatimlite 0.4.0
 
-- Updated endpoints for **Nominatim 4.4.0** (Python only).
+- Updated endpoints for **Nominatim** 4.4.0 (**Python** only).
 
-- API calls for non-spatial functions now use JSONv2 format (`&format=jsonv2`),
+- API calls for non-spatial functions now use **JSONv2** format
+  (`&format=jsonv2`),
   so `class` is renamed to `category` and `place_rank` is added with the search
   rank of the object.
 
@@ -57,7 +60,7 @@
 
 - `geo_amenity()` and `geo_amenity_sf()` are back as wrappers around
   `geo_lite_struct()` and `geo_lite_struct_sf()`, making them more robust and
-  compatible with `sf` objects.
+  compatible with **sf** objects.
 
 - `geo_lite_struct()` and `geo_lite_struct_sf()` are new functions for
   structured address searches.
@@ -77,7 +80,7 @@
 ## Deprecated
 
 - Deprecated `geo_amenity()` and `geo_amenity_sf()`. See
-  [Nominatim/issues/1311](https://github.com/osm-search/Nominatim/issues/1311).
+  [**Nominatim**/issues/1311](https://github.com/osm-search/Nominatim/issues/1311).
   Use `arcgeocoder::arc_geo_categories()` as an alternative.
 - The `nominatimlite::osm_amenities` dataset was removed.
 
@@ -91,10 +94,10 @@
 - Improved code and tests.
 - **rlang** and **tibble** are no longer explicitly required. Conversions to
   tibbles use `dplyr::tibble()`.
-- Attributes of `sf` objects are now returned as tibbles for easier printing in
-  the console.
-- `sf` objects now handle nested fields provided in the JSON response, such as
-  the nested address field, consistently with non-spatial functions.
+- Attributes of **sf** objects are now returned as tibbles for easier printing
+  in the console.
+- **sf** objects now handle nested fields provided in the **JSON** response,
+  such as the nested address field, consistently with non-spatial functions.
 - Output from `reverse_geo_lite()` and `reverse_geo_lite_sf()` is improved when
   the API returns nested lists.
 
@@ -114,8 +117,8 @@
 
 - API query tests are skipped on **CRAN** to avoid false positives.
 - Centralized API queries in the internal `api_call()` function.
-- Queries now fully honor the [Nominatim Usage
-  Policy](https://operations.osmfoundation.org/policies/nominatim/). Queries may
+- Queries now fully honor the [**Nominatim Usage
+  Policy**](https://operations.osmfoundation.org/policies/nominatim/). Queries may
   be slower now.
 
 # nominatimlite 0.1.2
@@ -130,7 +133,7 @@
 # nominatimlite 0.1.0
 
 - **CRAN** release.
-- Adjusted query rate limits to comply with the Nominatim usage policy.
+- Adjusted query rate limits to comply with the **Nominatim** usage policy.
 - Added the `strict` argument to `geo_amenity()` and `geo_amenity_sf()`.
 - Renamed the `polygon` argument to `points_only` (#8, thanks to @jlacko).
 - The package now fails gracefully when the API endpoint is unreachable.

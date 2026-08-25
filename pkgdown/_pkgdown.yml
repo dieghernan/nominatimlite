@@ -36,65 +36,53 @@ authors:
       width='150' alt='OpenStreetMap' style='margin-bottom: 3px;'>
 
 reference:
-- title: Geocoding
-  desc: >
-    Search OpenStreetMap using free-form text, structured queries or
-    geographic coordinates.
-
-- subtitle: Address search
+- title: Address search
   desc: >
     Search for places and addresses using free-form text or structured
     address components.
-  contents:
+- contents:
   - has_concept("geocoding")
 
-- subtitle: Reverse geocoding
+- title: Reverse geocoding
   desc: >
     Convert latitude and longitude coordinates into human-readable
     addresses.
-  contents:
+- contents:
   - has_concept("reverse")
 
-- title: OpenStreetMap lookups
-  desc: >
-    Retrieve OpenStreetMap features directly from existing OSM
-    identifiers or search for amenities within a geographic area.
-
-- subtitle: Address lookup
+- title: OpenStreetMap object lookup
   desc: >
     Retrieve OpenStreetMap nodes, ways and relations from their
     OSM identifiers.
-  contents:
+- contents:
   - has_concept("lookup")
 
-- subtitle: Amenity lookup
+- title: Amenity lookup
   desc: >
     Find OpenStreetMap amenities and points of interest inside a
     bounding box.
-  contents:
+- contents:
   - has_concept("amenity")
   - -has_keyword("datasets")
 
-- title: Utilities
+- title: Spatial and API helpers
   desc: >
-    Helper functions and bundled datasets.
-
-- subtitle: Spatial output
-  desc: >
-    Convert returned bounding boxes into `sf` polygon geometries.
-  contents:
+    Convert bounding box coordinates into **sf** polygons and check access
+    to the Nominatim API.
+- contents:
   - bbox_to_poly
+  - nominatim_check_access
 
-- subtitle: Datasets
+- title: Data
   desc: >
-    Sample data included with the package.
-  contents:
+    Bundled OpenStreetMap amenity reference data.
+- contents:
   - has_keyword("datasets")
 
 - title: Package documentation
   desc: >
     Package overview and metadata.
-  contents:
+- contents:
   - nominatimlite-package
 
 articles:
@@ -106,7 +94,7 @@ articles:
   - nominatimlite
 
 - title: Interactive maps
-  navbar: Maps
+  navbar: ~
   desc: >
     Display Nominatim API results with **leaflet** and use them in interactive
     spatial workflows.

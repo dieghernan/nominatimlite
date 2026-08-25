@@ -13,6 +13,7 @@ Maëlle
 Nominatim
 ORCID
 OSM
+OpenStreetMap
 Padgham
 Possenriede
 README
@@ -22,7 +23,6 @@ TomTom
 Transamerica
 Unnesting
 al
-api
 arcgeocoder
 codecov
 crosstalk
@@ -30,8 +30,10 @@ doi
 et
 geocode
 geocoded
+geocodes
 geocoding
 lon
+osm
 osmdata
 pkgdown
 reactable
