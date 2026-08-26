@@ -67,7 +67,8 @@ bbox_to_poly <- function(
     stop(
       "`bbox` must contain exactly four elements, but the provided value has ",
       length(bbox),
-      "."
+      ".",
+      call. = FALSE
     )
   }
 
@@ -78,7 +79,8 @@ bbox_to_poly <- function(
     if (anyNA(bbox)) {
       stop(
         "Provide `bbox` or non-missing values for `xmin`, `ymin`, `xmax` ",
-        "and `ymax`."
+        "and `ymax`.",
+        call. = FALSE
       )
     }
   }

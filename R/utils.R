@@ -42,15 +42,15 @@ progress_lapply <- function(n, progressbar, f) {
 
 cap_coordinates <- function(lat, long) {
   if (!is.numeric(lat) || !is.numeric(long)) {
-    stop("`lat` and `long` must be numeric.")
+    stop("`lat` and `long` must be numeric.", call. = FALSE)
   }
 
   if (length(lat) != length(long)) {
-    stop("`lat` and `long` must have the same length.")
+    stop("`lat` and `long` must have the same length.", call. = FALSE)
   }
 
   if (anyNA(lat) || anyNA(long)) {
-    stop("`lat` and `long` must not contain missing values.")
+    stop("`lat` and `long` must not contain missing values.", call. = FALSE)
   }
 
   lat_cap <- pmax(pmin(lat, 90), -90)
@@ -368,7 +368,7 @@ prepare_api_url <- function(
 empty_tbl <- function(x, lat, lon) {
   init_nm <- names(x)
   x <- dplyr::as_tibble(x)
-  x$lat <- as.double(NA)
+  x$lat <- NA_real_
   x$lon <- x$lat
 
   names(x) <- c(init_nm, lat, lon)
@@ -379,7 +379,7 @@ empty_tbl <- function(x, lat, lon) {
 empty_tbl_rev <- function(x, address) {
   init_nm <- names(x)
   x <- dplyr::as_tibble(x)
-  x$n <- as.character(NA)
+  x$n <- NA_character_
 
   names(x) <- c(init_nm, address)
 
@@ -458,7 +458,6 @@ unnest_sf <- function(x) {
     newadd <- dplyr::bind_rows(newadd)
     names(newadd) <- paste0("address.", names(newadd))
 
-    newsfobj <- x
     newsfobj <- x[, setdiff(names(x), "address")]
     x <- dplyr::bind_cols(newsfobj, newadd)
   }
@@ -478,7 +477,6 @@ unnest_sf <- function(x) {
     newxtra <- dplyr::bind_rows(newxtra)
     names(newxtra) <- paste0("extratags.", names(newxtra))
 
-    newsfobj <- x
     newsfobj <- x[, setdiff(names(x), "extratags")]
     x <- dplyr::bind_cols(newsfobj, newxtra)
     x <- x[, setdiff(names(x), "extratags.xxx_empty_remove")]
@@ -513,7 +511,6 @@ unnest_sf_reverse <- function(x) {
     newadd <- dplyr::bind_rows(newadd)[1, ]
     names(newadd) <- paste0("address.", names(newadd))
 
-    newsfobj <- x
     newsfobj <- x[, setdiff(names(x), "address")]
     x <- dplyr::bind_cols(newsfobj, newadd)
   }
@@ -530,7 +527,6 @@ unnest_sf_reverse <- function(x) {
     newxtra <- dplyr::bind_rows(newxtra)[1, ]
     names(newxtra) <- paste0("extratags.", names(newxtra))
 
-    newsfobj <- x
     newsfobj <- x[, setdiff(names(x), "extratags")]
     x <- dplyr::bind_cols(newsfobj, newxtra)
   }

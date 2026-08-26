@@ -213,14 +213,12 @@ test_that("query helpers normalize structured and custom options", {
     )
   )
 
-  compact <- compact_query_options(
-    list(
-      city = "New York",
-      county = NULL,
-      state = NA_character_,
-      bounded = FALSE
-    )
-  )
+  compact <- compact_query_options(list(
+    city = "New York",
+    county = NULL,
+    state = NA_character_,
+    bounded = FALSE
+  ))
   expect_identical(compact, list(city = "New York", bounded = FALSE))
   expect_identical(encode_query_value(TRUE), "1")
   expect_identical(encode_query_value(FALSE), "0")
@@ -288,10 +286,7 @@ test_that("reverse query helpers clamp, deduplicate and bind coordinates", {
     }
   )
 
-  expect_named(
-    out,
-    c("result", "lat_key_int", "long_key_int")
-  )
+  expect_named(out, c("result", "lat_key_int", "long_key_int"))
   expect_identical(out$result, c("90 20", "40 -3"))
 })
 
@@ -299,11 +294,13 @@ test_that("progress_lapply() preserves values with and without progress", {
   quiet <- progress_lapply(1, FALSE, \(i) i * 2)
   expect_identical(quiet, list(2))
 
+  # jarl-ignore-start implicit_assignment: Use anonymous function
   expect_output(
     visible <- progress_lapply(2, TRUE, \(i) i * 2),
     "100%",
     fixed = TRUE
   )
+  # jarl-ignore-end implicit_assignment
   expect_identical(visible, list(2, 4))
 })
 

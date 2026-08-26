@@ -94,11 +94,11 @@ geo_address_lookup <- function(
   # Warn about lost rows.
   if (all(nrow(result_clean) < nrow(tbl_query), verbose)) {
     missing_ids <- setdiff(tbl_query$query, result_clean$query)
-    warning(paste0(
+    warning(
       "No results were found for the following OSM IDs: ",
       paste(missing_ids, collapse = ", "),
       ". The output contains only matched IDs."
-    ))
+    )
   }
 
   # Keep selected columns.

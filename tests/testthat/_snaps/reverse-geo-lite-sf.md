@@ -3,7 +3,7 @@
     Code
       reverse_geo_lite_sf(0, c(2, 3))
     Condition
-      Error in `cap_coordinates()`:
+      Error:
       ! `lat` and `long` must have the same length.
 
 ---
@@ -11,7 +11,7 @@
     Code
       reverse_geo_lite_sf("a", "a")
     Condition
-      Error in `cap_coordinates()`:
+      Error:
       ! `lat` and `long` must be numeric.
 
 # reverse_geo_lite_sf() reports coordinates clamped to bounds

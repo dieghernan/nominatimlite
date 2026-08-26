@@ -3,7 +3,7 @@
     Code
       cap_coordinates("a", 1)
     Condition
-      Error in `cap_coordinates()`:
+      Error:
       ! `lat` and `long` must be numeric.
 
 ---
@@ -11,7 +11,7 @@
     Code
       cap_coordinates(1, c(1, 2))
     Condition
-      Error in `cap_coordinates()`:
+      Error:
       ! `lat` and `long` must have the same length.
 
 ---
@@ -19,7 +19,7 @@
     Code
       cap_coordinates(NA_real_, 1)
     Condition
-      Error in `cap_coordinates()`:
+      Error:
       ! `lat` and `long` must not contain missing values.
 
 ---
@@ -27,7 +27,7 @@
     Code
       cap_coordinates(1, NA_real_)
     Condition
-      Error in `cap_coordinates()`:
+      Error:
       ! `lat` and `long` must not contain missing values.
 
 ---

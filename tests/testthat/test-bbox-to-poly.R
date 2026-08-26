@@ -8,12 +8,12 @@ test_that("bbox_to_poly() rejects incomplete bounding boxes", {
 test_that("bbox_to_poly() accepts vector and component coordinates", {
   expect_silent(bbox_to_poly(c(1, 2, 3, 4)))
   expect_silent(bbox_to_poly(xmin = 1, xmax = 2, ymin = 3, ymax = 4))
-  expect_equal(
-    sf::st_bbox(bbox_to_poly(xmin = 1, xmax = 2, ymin = 3, ymax = 4)) |>
-      as.numeric() |>
-      setNames(c("xmin", "ymin", "xmax", "ymax")),
-    c(xmin = 1, ymin = 3, xmax = 2, ymax = 4)
-  )
+
+  test_box <- bbox_to_poly(xmin = 1, xmax = 2, ymin = 3, ymax = 4) |>
+    sf::st_bbox() |>
+    as.numeric() |>
+    setNames(c("xmin", "ymin", "xmax", "ymax"))
+  expect_equal(test_box, c(xmin = 1, ymin = 3, xmax = 2, ymax = 4))
 
   crsa <- sf::st_crs(bbox_to_poly(c(1, 2, 3, 4)))
   crsb <- sf::st_crs(bbox_to_poly(c(1, 2, 3, 4), crs = 3857))
