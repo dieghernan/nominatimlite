@@ -172,7 +172,7 @@ test_that("reverse_geo_lite() unnests bounding boxes in full results", {
 
   # Rest of columns not list
   expect_no_match(
-    colclass["boundingbox" != names(colclass)],
+    colclass[names(colclass) != "boundingbox"],
     "list",
     fixed = TRUE
   )

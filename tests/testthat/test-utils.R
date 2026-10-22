@@ -17,7 +17,7 @@ test_that("add_custom_query() ignores unnamed options and encodes named ones", {
 
   # Check
   t <- add_custom_query(custom_query = list(a = 3, b = 3), url = u)
-  expect_identical("http://test&a=3&b=3", t)
+  expect_identical(t, "http://test&a=3&b=3")
 })
 
 test_that("prepare_api_url() normalizes default and custom server URLs", {
