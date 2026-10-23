@@ -177,7 +177,7 @@ reverse <- reverse_geo_lite(
 |:---|---:|---:|
 | White House, 1600, Pennsylvania Avenue Northwest, Ward 2, Washington, District of Columbia, 20500, United States | 38.89764 | -77.03655 |
 | 600, Montgomery Street, Financial District, San Francisco, California, 94111, United States | 37.79541 | -122.40257 |
-| 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87874 | -87.63589 |
+| Convene, 233, South Wacker Drive, Financial District, Loop, Chicago, South Chicago Township, Cook County, Illinois, 60606, United States | 41.87857 | -87.63589 |
 
 Table 2: Reverse-geocoded addresses.
 
