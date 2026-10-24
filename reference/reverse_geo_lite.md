@@ -120,7 +120,13 @@ reverse_geo_lite(lat = 40.75728, long = -73.98586)
 
 # Reverse geocode multiple coordinate pairs.
 reverse_geo_lite(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
+  |                                                        
+  |==================================================| 100%
 #> # A tibble: 2 × 3
 #>   address                                                             lat    lon
 #>   <chr>                                                             <dbl>  <dbl>
@@ -133,7 +139,13 @@ sev <- reverse_geo_lite(
   custom_query = list(zoom = 0, extratags = TRUE),
   verbose = TRUE, full_results = TRUE
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
+  |                                                        
+  |==================================================| 100%
 
 dplyr::glimpse(sev)
 #> Rows: 2
@@ -141,7 +153,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52172514, 276157440
+#> $ place_id                                 <int> 52243716, 273351366
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149

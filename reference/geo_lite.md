@@ -117,7 +117,13 @@ geo_lite("Madrid, Spain")
 
 # Search for multiple addresses.
 geo_lite(c("Madrid", "Barcelona"))
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
+  |                                                        
+  |==================================================| 100%
 #> # A tibble: 2 × 4
 #>   query       lat   lon address                                            
 #>   <chr>     <dbl> <dbl> <chr>                                              
@@ -129,7 +135,13 @@ geo_lite(c("Madrid", "Barcelona"),
   custom_query = list(countrycodes = "US"),
   full_results = TRUE
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
+  |                                                        
+  |==================================================| 100%
 #> # A tibble: 2 × 24
 #>   query       lat   lon address  place_id licence osm_type osm_id category type 
 #>   <chr>     <dbl> <dbl> <chr>       <int> <chr>   <chr>     <int> <chr>    <chr>
@@ -137,8 +149,8 @@ geo_lite(c("Madrid", "Barcelona"),
 #> 2 Barcelona  42.3 -79.6 Barcelo…   3.51e8 Data ©… node     1.58e8 place    haml…
 #> # ℹ 14 more variables: place_rank <int>, importance <dbl>, addresstype <chr>,
 #> #   name <chr>, display_name <chr>, address.town <chr>, address.county <chr>,
-#> #   address.state <chr>, `address.ISO3166-2-lvl4` <chr>, address.country <chr>,
-#> #   address.country_code <chr>, boundingbox <list>, address.hamlet <chr>,
-#> #   address.postcode <chr>
+#> #   address.state <chr>, `address.ISO3166-2-lvl4` <chr>,
+#> #   address.postcode <chr>, address.country <chr>, address.country_code <chr>,
+#> #   boundingbox <list>, address.hamlet <chr>
 # }
 ```
