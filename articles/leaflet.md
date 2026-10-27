@@ -97,18 +97,9 @@ lmend <- leaflet(
   height = "60vh",
   options = leafletOptions(minZoom = 12)
 ) |>
-  addProviderTiles(
-    provider = "CartoDB.Positron",
-    group = "CartoDB.Positron"
-  ) |>
   addTiles(group = "OSM") |>
   addPolygons(data = eiffel_tower) |>
-  addMarkers(popup = labs, icon = leaf_icons) |>
-  addLayersControl(
-    baseGroups = c("CartoDB.Positron", "OSM"),
-    position = "topleft",
-    options = layersControlOptions(collapsed = FALSE)
-  )
+  addMarkers(popup = labs, icon = leaf_icons)
 
 # Step 5: Create a reactable table for filtering.
 tb <- reactable(
