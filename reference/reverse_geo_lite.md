@@ -149,11 +149,11 @@ sev <- reverse_geo_lite(
 
 dplyr::glimpse(sev)
 #> Rows: 2
-#> Columns: 53
+#> Columns: 54
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52172514, 276157440
+#> $ place_id                                 <int> 51484763, 275211732
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149
@@ -166,7 +166,7 @@ dplyr::glimpse(sev)
 #> $ display_name                             <chr> "United States", "United King…
 #> $ address.country                          <chr> "United States", "United King…
 #> $ address.country_code                     <chr> "us", "gb"
-#> $ extratags.flag                           <chr> "File:Flag of the United Stat…
+#> $ extratags.flag                           <chr> "https://upload.wikimedia.org…
 #> $ extratags.sqkm                           <chr> "9826675", "243610"
 #> $ extratags.website                        <chr> "https://america.gov/", NA
 #> $ extratags.wikidata                       <chr> "Q30", "Q145"
@@ -177,6 +177,7 @@ dplyr::glimpse(sev)
 #> $ extratags.capital_city                   <chr> "Washington DC", NA
 #> $ extratags.driving_side                   <chr> "right", "left"
 #> $ extratags.linked_place                   <chr> "country", "country"
+#> $ `extratags.flag:wikidata`                <chr> "Q42537", NA
 #> $ `extratags.contact:website`              <chr> "https://america.gov/", NA
 #> $ `extratags.population:date`              <chr> "2020", NA
 #> $ `extratags.ISO3166-1:alpha2`             <chr> "US", "GB"
