@@ -153,7 +153,7 @@ dplyr::glimpse(sev)
 #> $ address                                  <chr> "United States", "United King…
 #> $ lat                                      <dbl> 39.78373, 54.70235
 #> $ lon                                      <dbl> -100.445882, -3.276575
-#> $ place_id                                 <int> 52391348, 276157440
+#> $ place_id                                 <int> 52489199, 273351366
 #> $ licence                                  <chr> "Data © OpenStreetMap contrib…
 #> $ osm_type                                 <chr> "relation", "relation"
 #> $ osm_id                                   <int> 148838, 62149
@@ -172,14 +172,14 @@ dplyr::glimpse(sev)
 #> $ extratags.wikidata                       <chr> "Q30", "Q145"
 #> $ extratags.wikipedia                      <chr> "en:United States", "en:Unite…
 #> $ extratags.check_date                     <chr> "2024-10-17", NA
-#> $ extratags.population                     <chr> "331449281", "61792000"
+#> $ extratags.population                     <chr> "331449281", "69483939"
 #> $ extratags.border_type                    <chr> "national", NA
 #> $ extratags.capital_city                   <chr> "Washington DC", NA
 #> $ extratags.driving_side                   <chr> "right", "left"
 #> $ extratags.linked_place                   <chr> "country", "country"
 #> $ `extratags.flag:wikidata`                <chr> "Q42537", NA
 #> $ `extratags.contact:website`              <chr> "https://america.gov/", NA
-#> $ `extratags.population:date`              <chr> "2020", NA
+#> $ `extratags.population:date`              <chr> "2020", "2025"
 #> $ `extratags.ISO3166-1:alpha2`             <chr> "US", "GB"
 #> $ `extratags.ISO3166-1:alpha3`             <chr> "USA", "GBR"
 #> $ extratags.default_language               <chr> "en", "en"
