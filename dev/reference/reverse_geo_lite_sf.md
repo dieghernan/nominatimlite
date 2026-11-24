@@ -154,7 +154,7 @@ dplyr::glimpse(col_sf)
 #> $ address  <chr> "Piazza del Colosseo, Celio, Municipio Roma I, Roma, Roma Cap…
 #> $ lat      <dbl> 41.89026
 #> $ lon      <dbl> 12.49309
-#> $ geometry <POINT [°]> POINT (12.49333 41.89014)
+#> $ geometry <POLYGON [°]> POLYGON ((12.49095 41.88984...
 
 if (!all(sf::st_is_empty(col_sf))) {
   ggplot(col_sf) +
@@ -177,7 +177,7 @@ dplyr::glimpse(rome_sf)
 #> $ address  <chr> "Roma, Roma Capitale, Lazio, Italia"
 #> $ lat      <dbl> 41.89026
 #> $ lon      <dbl> 12.49309
-#> $ geometry <MULTIPOLYGON [°]> MULTIPOLYGON (((12.23447 41...
+#> $ geometry <MULTIPOLYGON [°]> MULTIPOLYGON (((12.23444 41...
 
 if (!all(sf::st_is_empty(rome_sf))) {
   ggplot(rome_sf) +
